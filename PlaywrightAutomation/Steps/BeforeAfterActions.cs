@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using BoDi;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Pages;
@@ -33,10 +34,17 @@ namespace PlaywrightAutomation.Steps
         [AfterScenario]
         public async Task AfterScenario(IObjectContainer container)
         {
-            var browser = container.Resolve<IBrowser>();
-            await browser.CloseAsync();
-            var pw = container.Resolve<IPlaywright>();
-            pw.Dispose();
+            var browsers = _browserFactory.Browsers;
+            if (browsers.Any())
+            {
+                foreach (IBrowser browser in browsers)
+                {
+                    browser.CloseAsync();
+                }
+            }
+
+            var playwright = _browserFactory.PlaywrightInstance;
+            playwright.Dispose();
         }
     }
 }
