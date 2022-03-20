@@ -1,3 +1,6 @@
+TestResults/**
+*.feature.cs
+
 # Prerequisites
 *.d
 
