@@ -12,11 +12,11 @@ namespace PlaywrightAutomation.Steps
     {
         private readonly GooglePage _pageGoogle;
         private readonly BrowserFactory _browserFactory;
-        private readonly IPage _page;
+        private IPage _page;
 
         public InitialSteps(GooglePage googlePage, BrowserFactory browserFactory)
         {
-            //_page = browserFactory.Page;
+            _page = browserFactory.Page;
             _pageGoogle = googlePage;
             _browserFactory = browserFactory;
         }
@@ -24,16 +24,16 @@ namespace PlaywrightAutomation.Steps
         [Given(@"User on Google page")]
         public async void GivenUserOnGooglePage()
         {
-            //var page = _page.Init<WelcomePage>();
-            //page.CheckLogo();
-            await _pageGoogle.NavigateAsync();
-            await _pageGoogle.ClickSearchButton();
+            var page = _page.Init<WelcomePage>();
+            page.CheckLogo();
+            //await _pageGoogle.NavigateAsync();
+            //await _pageGoogle.ClickSearchButton();
         }
 
         [Given(@"User is on the '([^']*)' page")]
         public async void GivenUserIsOnThePage(string url)
         {
-            _browserFactory.OpenNewPage(UrlProvider.Application);
+            _page = _browserFactory.OpenNewPage(UrlProvider.Application).Result;
         }
     }
 }

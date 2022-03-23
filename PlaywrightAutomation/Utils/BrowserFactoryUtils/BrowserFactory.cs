@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Utils.BrowserFactoryUtils;
 
@@ -30,19 +31,7 @@ namespace PlaywrightAutomation.Utils
 
         public List<KeyValuePair<IBrowser, List<IPage>>> Pages { get; set; }
 
-        private IPage _page;
-
-        public IPage Page
-        {
-            get
-            {
-                if (_page is not null) return _page;
-
-                _page = Browser.NewPageAsync().Result;
-                return _page;
-            }
-            set => _page = value;
-        }
+        public IPage Page { get; set; }
 
         public void InitLocalBrowser()
         {
@@ -55,11 +44,12 @@ namespace PlaywrightAutomation.Utils
             Browsers.Add(_browser);
         }
 
-        public async void OpenNewPage(string url)
+        public async Task<IPage> OpenNewPage(string url)
         {
-            var page = await Browser.NewPageAsync();
+            var page = Browser.NewPageAsync().Result;
             await page.GotoAsync(url);
             Page = page;
+            return Page;
         }
     }
 }

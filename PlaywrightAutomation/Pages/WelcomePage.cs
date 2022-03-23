@@ -9,7 +9,7 @@ namespace PlaywrightAutomation.Pages
 
         public void CheckLogo()
         {
-            Verify.IsTrue(Logo.IsDisabledAsync().Result, "Header logo is not displayed");
+            Verify.IsTrue(Logo.IsVisibleAsync().Result, "Header logo is not displayed");
             Verify.AreEqual("Techstack", Logo.GetAttributeAsync("alt").Result, 
                 "Header logo is not displayed");
         }
