@@ -1,7 +1,4 @@
-﻿using AutomationUtils.Extensions;
-using AutomationUtils.Utils;
-
-namespace PlaywrightAutomation.Providers
+﻿namespace PlaywrightAutomation.Providers
 {
     internal class UrlProvider
     {

@@ -10,14 +10,12 @@ namespace PlaywrightAutomation.Steps
     [Binding]
     internal class InitialSteps : SpecFlowContext
     {
-        private readonly GooglePage _pageGoogle;
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
 
-        public InitialSteps(GooglePage googlePage, BrowserFactory browserFactory)
+        public InitialSteps(BrowserFactory browserFactory)
         {
             _page = browserFactory.Page;
-            _pageGoogle = googlePage;
             _browserFactory = browserFactory;
         }
 
@@ -26,8 +24,6 @@ namespace PlaywrightAutomation.Steps
         {
             var page = _page.Init<WelcomePage>();
             page.CheckLogo();
-            //await _pageGoogle.NavigateAsync();
-            //await _pageGoogle.ClickSearchButton();
         }
 
         [Given(@"User is on the '([^']*)' page")]

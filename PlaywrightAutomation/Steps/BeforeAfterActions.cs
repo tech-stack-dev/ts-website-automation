@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using BoDi;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
@@ -26,9 +25,6 @@ namespace PlaywrightAutomation.Steps
         {
             _browserFactory.PlaywrightInstance = await Playwright.CreateAsync();
             _browserFactory.InitLocalBrowser();
-
-            var pageObject = new GooglePage(_browserFactory.Browser);
-            _objectContainer.RegisterInstanceAs(pageObject);
         }
 
         [AfterScenario]
