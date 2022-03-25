@@ -33,20 +33,20 @@ namespace PlaywrightAutomation.Utils
 
         public IPage Page { get; set; }
 
-        public void InitLocalBrowser()
+        public async void InitLocalBrowser()
         {
             var options = new BrowserTypeLaunchOptions()
             {
                 Headless = false
             };
 
-            _browser = PlaywrightInstance.Chromium.LaunchAsync(options).Result;
+            _browser = PlaywrightInstance.Chromium.LaunchAsync(options).GetAwaiter().GetResult();
             Browsers.Add(_browser);
         }
 
         public async Task<IPage> OpenNewPage(string url)
         {
-            var page = Browser.NewPageAsync().Result;
+            var page = await Browser.NewPageAsync();
             await page.GotoAsync(url);
             Page = page;
             return Page;
