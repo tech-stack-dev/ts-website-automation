@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,19 +9,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutomationUtils" Version="1.1.84" />
+    <PackageReference Include="AutomationUtils" Version="1.1.86" />
     <PackageReference Include="BoDi" Version="1.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.20.1" />
-    <PackageReference Include="NUnit" Version="3.13.2" />
-    <PackageReference Include="SpecFlow" Version="3.9.58" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.9.58" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.22.0" />
+    <PackageReference Include="SpecFlow" Version="3.9.74" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
+    <PackageReference Include="xRetry.SpecFlow" Version="1.8.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="UnitTests\" />
   </ItemGroup>
 
 </Project>
