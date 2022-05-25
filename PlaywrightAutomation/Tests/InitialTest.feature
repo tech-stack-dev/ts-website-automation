@@ -1,4 +1,5 @@
-﻿Feature: InitialTest
+﻿@retry(2)
+Feature: InitialTest
 
 Initial test. Will be removed
 
