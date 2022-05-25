@@ -28,7 +28,7 @@ namespace PlaywrightAutomation.Steps
         [When(@"User selects '([^']*)' language")]
         public void WhenUserSelectsLanguage(string language)
         {
-            _page.Init<HomePage>().SelectLanguage(language).Wait();
+            _page.Init<HomePage>().SelectLanguage(language).GetAwaiter().GetResult();
         }
     }
 }

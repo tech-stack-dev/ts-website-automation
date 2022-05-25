@@ -20,13 +20,19 @@ namespace PlaywrightAutomation.Steps
         [Given(@"User is on the career website")]
         public async void GivenUserIsOnTheCareerWebsite()
         {
-            _page = _browserFactory.OpenNewPage(UrlProvider.Application).GetAwaiter().GetResult();
+            _page = _browserFactory
+                .OpenNewPage(UrlProvider.Application)
+                .GetAwaiter()
+                .GetResult();
         }
 
         [Given(@"User is on the '([^']*)' page")]
         public async void GivenUserIsOnThePage(string url)
         {
-            _page = _browserFactory.OpenNewPage(url).GetAwaiter().GetResult(); ;
+            _page = _browserFactory
+                .OpenNewPage(url)
+                .GetAwaiter()
+                .GetResult();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     internal class UrlProvider
     {
-        public static string Application => "https://staging-career.tech-stack.io/";// Config.Read.ByKey("AppUrl");
+        // Config.Read.ByKey("AppUrl");
+        public static string Application => "https://staging-career.tech-stack.io/";
     }
 }
