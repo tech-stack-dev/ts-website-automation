@@ -12,7 +12,7 @@ namespace PlaywrightAutomation.UnitTests
         [Trait("Category", "OnBuild")]
         public void Does_All_Tests_Have_Unique_Names()
         {
-            var allTestsNames = TestsUtils.TestsAndTags
+            var allTestsNames = AutomationUtils.Utils.TestsUtils.TestsAndTags
                 .Select(x => x.Key)
                 .ToList();
 
@@ -30,7 +30,7 @@ namespace PlaywrightAutomation.UnitTests
         [Trait("Category", "OnBuild")]
         public void Does_All_Tests_Have_Appropriate_Names()
         {
-            var allTestsNames = TestsUtils.TestsAndTags
+            var allTestsNames = AutomationUtils.Utils.TestsUtils.TestsAndTags
                 .Select(x => x.Key)
                 .ToList();
 
