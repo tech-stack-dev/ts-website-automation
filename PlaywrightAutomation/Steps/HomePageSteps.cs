@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using AutomationUtils.Utils;
+﻿using AutomationUtils.Utils;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
@@ -13,9 +13,9 @@ namespace PlaywrightAutomation.Steps
     internal class HomePageSteps : SpecFlowContext
     {
         private readonly IPage _page;
-        private readonly ListDataPosition _position;
+        private readonly VacancyList _position;
 
-        public HomePageSteps(BrowserFactory browserFactory, ListDataPosition position)
+        public HomePageSteps(BrowserFactory browserFactory, VacancyList position)
         {
             _page = browserFactory.Page;
             _position = position;
@@ -27,36 +27,44 @@ namespace PlaywrightAutomation.Steps
             _page.Init<HomePage>().SelectLanguage(language).GetAwaiter().GetResult();
         }
 
-        [When("User clicks on Search button")]
-        public void WhenUserClicksOnSearchButton()
+        [When(@"User clicks on '([^']*)' button")]
+        public void WhenUserClicksOnButton(string buttonName)
         {
-            _page.Init<HomePage>().SearchButton.ClickAsync().GetAwaiter();
+            _page.GetComponent<Button>(buttonName).ClickAsync().GetAwaiter().GetResult();
         }
 
-        [When("User clicks on clear search field button")]
-        public async Task WhenUserClicksOnClearSearchFieldButton()
+        [When(@"User clicks on 'Clear' search field button")]
+        public void WhenUserClicksOnClearSearchFieldButton()
         {
-            await _page.WaitForTimeoutAsync(1000);
-            await _page.Init<HomePage>().ClearSearchFieldButton.ClickAsync();
+            _page.Init<HomePage>().ClearSearchFieldButton.ClickAsync().GetAwaiter().GetResult();
         }
 
-        [When("User set '([^']*)' text in search by role field")]
-        public async Task WhenUserSetTextInSearchByRoleField(string text)
+        [When(@"User set '([^']*)' text in '([^']*)' by role field")]
+        public void WhenUserSetTextInByRoleField(string text, string fieldName)
         {
-            await _page.Init<HomePage>().InputSearchByRole.FillAsync(text);
+            _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
+                .FillAsync(text).GetAwaiter().GetResult();
+            var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>("Search").Construct()).ElementHandleAsync().GetAwaiter().GetResult();
+            _page.WaitForFunctionAsync($"a => a.getAttribute('value').includes('{text}')", a);
         }
 
-        [When("User remember names vacancies on page")]
-        public async Task WhenUserRememberNameByVacanciesOnPage()
+        [When(@"User remember names from '([^']*)' vacancies on page")]
+        public void WhenUserRememberNameFromVacanciesOnPage(string card)
         {
-            _position.Value = await _page.Init<HomePage>().HeaderCardPosition.AllTextContentsAsync();
+            _position.Value = _page.Component<Card>(card).GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
         }
 
-        [Then("Search results contains '([^']*)'")]
-        public async void ThenSearchResultsContains(string text)
+        [When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
+        public void WhenUserSelectsSoftwareDevelopmentVacancyFromDirectionDropdown(string vacancyName, string dropdownName)
         {
-            await _page.WaitForTimeoutAsync(2000);
-            var texts = await _page.Init<HomePage>().HeaderCardPosition.AllTextContentsAsync();
+            _page.GetComponent<Filter>(dropdownName).ClickAsync().GetAwaiter().GetResult();
+            _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
+        }
+
+        [Then(@"Search results contains '([^']*)'")]
+        public void ThenSearchResultsContains(string text)
+        {
+            var texts = _page.Component<Card>("Card").GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
             
             foreach (var roleText in texts)
             {
@@ -64,15 +72,14 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then("'([^']*)' error message is correctly")]
-        public async void ThenErrorMessageIsCorrectly(string errorMessage)
+        [Then(@"'([^']*)' error message is correctly")]
+        public void ThenErrorMessageIsCorrectly(string errorMessage)
         {
-            await _page.WaitForTimeoutAsync(2000);
-            var actualErrorMessage = await _page.Init<HomePage>().ErrorMessageOnResultsCareerPage.TextContentAsync();
+            var actualErrorMessage = _page.Init<HomePage>().MessageAboutWithoutResults.TextContentAsync().GetAwaiter().GetResult();
             Verify.AreEqual(actualErrorMessage, errorMessage, $"'{actualErrorMessage}' is not correctly");
         }
 
-        [Then("'Techstack' logo is displayed in the main page")]
+        [Then(@"'Techstack' logo is displayed in the main page")]
         public void ThechstackLogoIsDisplayedInTheMainPage()
         {
             _page.Init<HomePage>().CheckLogo();
@@ -86,19 +93,25 @@ namespace PlaywrightAutomation.Steps
                 "Incorrect language is selected");
         }
 
-        [Then("Search by role field is empty")]
-        public async Task ThenSearchByRoleFieldIsEmpty()
+        [Then(@"'([^']*)' by role field is empty")]
+        public void ThenSearchByRoleFieldIsEmpty(string fieldName)
         {
-            var textInSearchField = await _page.Init<HomePage>().InputSearchByRole.GetAttributeAsync("value");
+            var textInSearchField = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>(fieldName).Construct()).GetAttributeAsync("value").GetAwaiter().GetResult();
             Verify.AreEqual(string.Empty, textInSearchField, "Search by role field is not empty");
         }
 
-        [Then("Positions on the page equals to positions before enter any terms")]
-        public async Task ThenPositionsOnThePageEqualsToPositionsBeforeEnterAnyTerms()
+        [Then(@"Positions on the page equals to positions before enter any terms")]
+        public void ThenPositionsOnThePageEqualsToPositionsBeforeEnterAnyTerms()
         {
-            var actualListNames = await _page.Init<HomePage>().HeaderCardPosition.AllTextContentsAsync();
+            var actualListNames = _page.Component<Card>("Card").GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             Verify.AreEqual(expectedListNames, actualListNames, "List vacansions is changed after clear search field");
+        }
+
+        [Then(@"Selected tag is displayed")]
+        public void ThenSelectedTagIsDisplayed()
+        {
+
         }
     }
 }

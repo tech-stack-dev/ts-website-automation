@@ -13,17 +13,10 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator LanguageSwitchers => Container.Locator("//div[contains(@class,'_LocaleSwitcherBlock')]/a");
 
-        public ILocator InputSearchByRole =>
-            Page.Locator("//div[contains(@class,'styledComponents__SearchWrapper-sc-n43udi-1 dgVdyz')]//input[@placeholder='Search by role']");
+        public ILocator ClearSearchFieldButton => Container.Locator("//img[@class='clearSearchButton']");
 
-        public ILocator ClearSearchFieldButton => InputSearchByRole.Locator("//following-sibling::button");
-
-        public ILocator HeaderCardPosition => Page.Locator("//div[@class='card-header-position-title']");
-
-        public ILocator ErrorMessageOnResultsCareerPage =>
+        public ILocator MessageAboutWithoutResults =>
             Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
-
-        public ILocator SearchButton => Page.Locator("//button[@class='search-button']");
 
         public async void CheckLogo()
         {
