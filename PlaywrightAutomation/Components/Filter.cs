@@ -1,5 +1,4 @@
-﻿
-namespace PlaywrightAutomation.Components
+﻿namespace PlaywrightAutomation.Components
 {
     public class Filter : BaseWebComponent
     {

@@ -1,4 +1,6 @@
-﻿using AutomationUtils.Utils;
+﻿using System.Linq;
+using AutomationUtils.Extensions;
+using AutomationUtils.Utils;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -33,9 +35,16 @@ namespace PlaywrightAutomation.Steps
             _page.GetComponent<Button>(buttonName).ClickAsync().GetAwaiter().GetResult();
         }
 
+        [When(@"User clicks '([^']*)' div button")]
+        public void WhenUserClicksDivButton(string divButtonName)
+        {
+           _page.Init<HomePage>().Container.Locator(_page.Component<DivButton>(divButtonName).Construct()).ClickAsync().GetAwaiter().GetResult();
+        }
+
         [When(@"User clicks on 'Clear' search field button")]
         public void WhenUserClicksOnClearSearchFieldButton()
         {
+            _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
             _page.Init<HomePage>().ClearSearchFieldButton.ClickAsync().GetAwaiter().GetResult();
         }
 
@@ -44,8 +53,11 @@ namespace PlaywrightAutomation.Steps
         {
             _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
                 .FillAsync(text).GetAwaiter().GetResult();
-            var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>("Search").Construct()).ElementHandleAsync().GetAwaiter().GetResult();
-            _page.WaitForFunctionAsync($"a => a.getAttribute('value').includes('{text}')", a);
+            var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
+                .GetAttributeAsync("value").GetAwaiter().GetResult();
+            Verify.AreEqual(text, a, "");
+            // var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>("Search").Construct()).ElementHandleAsync().GetAwaiter().GetResult();
+            // _page.WaitForFunctionAsync($"a => a.getAttribute('value').includes('{text}')", a).GetAwaiter().GetResult();
         }
 
         [When(@"User remember names from '([^']*)' vacancies on page")]
@@ -54,16 +66,33 @@ namespace PlaywrightAutomation.Steps
             _position.Value = _page.Component<Card>(card).GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
         }
 
-        [When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
-        public void WhenUserSelectsSoftwareDevelopmentVacancyFromDirectionDropdown(string vacancyName, string dropdownName)
+        [When(@"User selects '([^']*)' vacancy from 'Direction' dropdown")]
+        public void WhenUserSelectsSoftwareDevelopmentVacancyFromDirectionDropdown(string vacancyName)
+        {
+            _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
+        }
+
+        [When(@"User selects tag vacancy from Direction dropdown")]
+        public void WhenUserSelectsTagVacancyFromDirectionDropdown(Table table)
+        {
+            var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
+
+            foreach (var vacancyName in tags)
+            {
+                _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
+            }
+        }
+
+        [When(@"User clicks on '([^']*)' dropdown")]
+        public void WhenUserClicksOnDropdown(string dropdownName)
         {
             _page.GetComponent<Filter>(dropdownName).ClickAsync().GetAwaiter().GetResult();
-            _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
         }
 
         [Then(@"Search results contains '([^']*)'")]
         public void ThenSearchResultsContains(string text)
         {
+            _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
             var texts = _page.Component<Card>("Card").GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
             
             foreach (var roleText in texts)
@@ -72,7 +101,7 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then(@"'([^']*)' error message is correctly")]
+        [Then(@"'([^']*)' message is correctly")]
         public void ThenErrorMessageIsCorrectly(string errorMessage)
         {
             var actualErrorMessage = _page.Init<HomePage>().MessageAboutWithoutResults.TextContentAsync().GetAwaiter().GetResult();
@@ -100,18 +129,59 @@ namespace PlaywrightAutomation.Steps
             Verify.AreEqual(string.Empty, textInSearchField, "Search by role field is not empty");
         }
 
-        [Then(@"Positions on the page equals to positions before enter any terms")]
-        public void ThenPositionsOnThePageEqualsToPositionsBeforeEnterAnyTerms()
+        [Then(@"The page has not changed after removed terms from search field")]
+        public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
             var actualListNames = _page.Component<Card>("Card").GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             Verify.AreEqual(expectedListNames, actualListNames, "List vacansions is changed after clear search field");
         }
 
-        [Then(@"Selected tag is displayed")]
-        public void ThenSelectedTagIsDisplayed()
+        [Then(@"'([^']*)' tag is displayed")]
+        public void ThenSelectedTagIsDisplayed(string tag)
         {
+            Verify.IsTrue(_page.Component<Tag>(tag).ChosenTags().First.IsVisibleAsync().GetAwaiter().GetResult(), "");
+        }
 
+        [Then(@"Count of selected tags is correctly")]
+        public void ThenCountOfSelectedTagsIsCorrectly()
+        {
+            var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
+            var counterTags = int.Parse(_page.Init<HomePage>().ActiveTagsCounter.TextContentAsync().GetAwaiter().GetResult());
+            Verify.AreEqual(selectedTags, counterTags, $"'{selectedTags}' are not equal to '{counterTags}' in field");
+        }
+
+        [Then(@"Search results contains from dropdown")]
+        public void ThenSearchResultsContainsFromDropdown(Table table)
+        {
+            var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
+            var texts = _page.Component<Card>("Card").GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            
+            for (int i = 0; i < tags.Count; i++)
+            {
+                var tag = tags[i];
+
+                for (int j = texts.Count - 1; j > -1; j--)
+                {
+                    var text = texts[j];
+
+                    var textWithoutSpace = text.Replace(" ", string.Empty).Replace("/", string.Empty);
+
+                    if (textWithoutSpace.Contains(tag))
+                    {
+                        texts.Remove(text);
+                    }
+                }
+            }
+            
+            Verify.IsFalse(texts.Any(), $"'{texts.ToString(", ")}' is not equals no one tags");
+        }
+
+        [Then(@"All selected tags was cancel")]
+        public void ThenAllSelectedTagsWasCancel()
+        {
+            var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
+            Verify.AreEqual(0, selectedTags, "Not all tags was cancel");
         }
     }
 }

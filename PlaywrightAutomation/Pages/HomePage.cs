@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using AutomationUtils.Utils;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Extensions;
 
 namespace PlaywrightAutomation.Pages
 {
@@ -17,6 +19,8 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator MessageAboutWithoutResults =>
             Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
+        
+        public ILocator ActiveTagsCounter => Page.GetComponent<Filter>("Direction").Locator("//div[contains(@class,'ActiveTagsCounter')]");
 
         public async void CheckLogo()
         {
