@@ -39,7 +39,7 @@ Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
 @Regression @TSWEB133
 Scenario: AllSelectedTagsAreDisplayedOnThePage
 	When User clicks on 'Direction' dropdown
-	When User selects tag vacancy from Direction dropdown
+	When User selects tag from 'Direction' dropdown
 		| Vacancies           |
 		| SoftwareDevelopment |
 		| UIUX                |
@@ -54,15 +54,71 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 	Then 'SoftwareDevelopment' tag is displayed
 	Then 'UIUX' tag is displayed
 	Then 'Office' tag is displayed
-	Then Count of selected tags is correctly
+	Then Count of selected tags from 'Direction' is correctly
 
 @Regression @TSWEB133
 Scenario: ResetButtonCancelAllSelectedTags
 	When User clicks on 'Direction' dropdown
-	When User selects tag vacancy from Direction dropdown
+	When User selects tag from 'Direction' dropdown
 		| Vacancies           |
 		| SoftwareDevelopment |
 		| UIUX                |
 		| Office              |
 	When User clicks 'Reset' div button
 	Then All selected tags was cancel
+
+@Regression @TSWEB133
+Scenario: ThePageDisplayedSelectedTagFropmSeniorityLevelDropdown
+	When User clicks on 'SeniorityLevel' dropdown
+	When User selects 'Trainee' vacancy from 'SeniorityLevel' dropdown
+	When User clicks on 'Search' button
+	Then 'Trainee' tag is displayed
+
+@Regression @TSWEB133
+Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
+	When User clicks on 'SeniorityLevel' dropdown
+	When User selects tag from 'SeniorityLevel' dropdown
+		| Seniority |
+		| Trainee   |
+		| Junior    |
+		| Lead      |
+	When User clicks on 'SeniorityLevel' dropdown
+	Then 'Trainee' tag is displayed
+	Then 'Junior' tag is displayed
+	Then 'Lead' tag is displayed
+	Then Count of selected tags from 'SeniorityLevel' is correctly
+
+@Regression @TSWEB133
+Scenario: ResetButtonCancelAllSelectedTagsFromSeniorityLevelDropdown
+	When User clicks on 'Direction' dropdown
+	When User selects tag from 'Direction' dropdown
+		| Vacancies           |
+		| SoftwareDevelopment |
+		| UIUX                |
+		| Office              |
+	When User clicks 'Reset' div button
+	Then All selected tags was cancel
+
+@Regression @TSWEB133
+Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromDirectionDropdown
+	When User set 'Back' text in 'Search' by role field
+	When User clicks on 'Direction' dropdown
+	When User selects 'SoftwareDevelopment' vacancy from 'Direction' dropdown
+	When User clicks on 'Search' button
+	Then Search results contains 'Back'
+	Then Search results contains 'Software Develop'
+	Then 'SoftwareDevelopment' tag is displayed
+
+@Regression @TSWEB133
+Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromSeniorityLevelDropdown
+	When User set 'Back' text in 'Search' by role field
+	When User clicks on 'SeniorityLevel' dropdown
+	When User selects 'Junior' vacancy from 'SeniorityLevel' dropdown
+	When User clicks on 'Search' button
+	Then Search results contains 'Back'
+	Then 'Junior' tag is displayed
+
+@Regression @TSWEB133
+Scenario: SeackButtonRedirectsToTheSearchResultsFromTheJobsBlock
+	When User clicks on 'Search' button
+	Then User in on the 'Jobs' block

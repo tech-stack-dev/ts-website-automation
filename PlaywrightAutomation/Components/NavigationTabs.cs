@@ -1,10 +1,10 @@
 ﻿namespace PlaywrightAutomation.Components
 {
-    public class Button : BaseWebComponent
+    public class NavigationTabs : BaseWebComponent
     {
         public override string Construct()
         {
-            var selector = $"//button[contains(@data-id,'{Identifier}Button')]";
+            var selector = $"//button[contains(@data-id,'NavigationTab-{Identifier}')]";
             return selector;
         }
     }

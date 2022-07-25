@@ -19,5 +19,12 @@ namespace PlaywrightAutomation.Components
         {
             return Page.Locator("//div[@class='tags-wrapper']//div[contains(@class,'active-tag')]");
         }
+
+        public ILocator TagFromDropdown(string dropdownName, string tagName)
+        {
+            var selector =
+                $"//div[contains(@data-id,'Section{dropdownName}')]//following-sibling::ul//div[contains(@data-id,'Tag-{tagName}')]";
+            return Page.Locator(selector);
+        }
     }
 }

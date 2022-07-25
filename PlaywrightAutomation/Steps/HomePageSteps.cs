@@ -53,11 +53,9 @@ namespace PlaywrightAutomation.Steps
         {
             _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
                 .FillAsync(text).GetAwaiter().GetResult();
-            var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
+            var filed = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>($"{fieldName}").Construct())
                 .GetAttributeAsync("value").GetAwaiter().GetResult();
-            Verify.AreEqual(text, a, "");
-            // var a = _page.Init<HomePage>().Container.Locator(_page.Component<FieldInput>("Search").Construct()).ElementHandleAsync().GetAwaiter().GetResult();
-            // _page.WaitForFunctionAsync($"a => a.getAttribute('value').includes('{text}')", a).GetAwaiter().GetResult();
+            Verify.AreEqual(text, filed, "");
         }
 
         [When(@"User remember names from '([^']*)' vacancies on page")]
@@ -66,20 +64,20 @@ namespace PlaywrightAutomation.Steps
             _position.Value = _page.Component<Card>(card).GetHeaderCard().AllTextContentsAsync().GetAwaiter().GetResult();
         }
 
-        [When(@"User selects '([^']*)' vacancy from 'Direction' dropdown")]
-        public void WhenUserSelectsSoftwareDevelopmentVacancyFromDirectionDropdown(string vacancyName)
+        [When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
+        public void WhenUserSelectsSoftwareDevelopmentVacancyFromDirectionDropdown(string tagName, string dropdownName)
         {
-            _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Tag>().TagFromDropdown(dropdownName, tagName).ClickAsync().GetAwaiter().GetResult();
         }
 
-        [When(@"User selects tag vacancy from Direction dropdown")]
-        public void WhenUserSelectsTagVacancyFromDirectionDropdown(Table table)
+        [When(@"User selects tag from '([^']*)' dropdown")]
+        public void WhenUserSelectsTagFromDropdown(string dropdownName, Table table)
         {
             var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
 
             foreach (var vacancyName in tags)
             {
-                _page.Init<HomePage>().Container.Locator(_page.Component<Tag>(vacancyName).Construct()).ClickAsync().GetAwaiter().GetResult();
+                _page.Component<Tag>().TagFromDropdown(dropdownName, vacancyName).ClickAsync().GetAwaiter().GetResult();
             }
         }
 
@@ -140,14 +138,15 @@ namespace PlaywrightAutomation.Steps
         [Then(@"'([^']*)' tag is displayed")]
         public void ThenSelectedTagIsDisplayed(string tag)
         {
-            Verify.IsTrue(_page.Component<Tag>(tag).ChosenTags().First.IsVisibleAsync().GetAwaiter().GetResult(), "");
+            Verify.IsTrue(_page.Component<Tag>(tag).ChosenTags().First.IsVisibleAsync().GetAwaiter().GetResult(),$"'{tag}' is not displayed");
         }
 
-        [Then(@"Count of selected tags is correctly")]
-        public void ThenCountOfSelectedTagsIsCorrectly()
+        [Then(@"Count of selected tags from '([^']*)' is correctly")]
+        public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdownName)
         {
             var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
-            var counterTags = int.Parse(_page.Init<HomePage>().ActiveTagsCounter.TextContentAsync().GetAwaiter().GetResult());
+            var counterTags = int.Parse(_page.Component<Filter>(dropdownName).ActiveTagsCounter().TextContentAsync().GetAwaiter()
+                .GetResult());
             Verify.AreEqual(selectedTags, counterTags, $"'{selectedTags}' are not equal to '{counterTags}' in field");
         }
 
@@ -182,6 +181,14 @@ namespace PlaywrightAutomation.Steps
         {
             var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
             Verify.AreEqual(0, selectedTags, "Not all tags was cancel");
+        }
+
+        [Then(@"User in on the '([^']*)' block")]
+        public void ThenUserInOnTheBlock(string blockName)
+        {
+            var block = _page.GetComponent<NavigationTabs>(blockName);
+            Verify.IsTrue(block.IsVisibleAsync().GetAwaiter().GetResult(), "Jobs block is not visible");
+            Verify.IsTrue(block.GetAttributeAsync("class").GetAwaiter().GetResult().Contains("active-nav-tab"), "Jobs block is not selected");
         }
     }
 }
