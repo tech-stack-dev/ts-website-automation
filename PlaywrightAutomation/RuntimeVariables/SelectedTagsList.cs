@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-
 namespace PlaywrightAutomation.RuntimeVariables
 {
-    public class VacancyList
+    public class SelectedTagsList
     {
         public List<string> Value;
 
-        public VacancyList() => Value = new List<string>();
+        public SelectedTagsList() => Value = new List<string>();
     }
 }

@@ -15,7 +15,7 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator ClearSearchFieldButton => Container.Locator("//img[@class='clearSearchButton']");
 
-        public ILocator MessageAboutWithoutResults =>
+        public ILocator NoResultsMessage =>
             Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
 
         public async void CheckLogo()
