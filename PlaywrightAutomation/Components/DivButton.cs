@@ -1,9 +1,8 @@
-﻿
-namespace PlaywrightAutomation.Components
+﻿namespace PlaywrightAutomation.Components
 {
     internal class DivButton : BaseWebComponent
     {
-        public override string Construct()
+        protected override string Construct()
         {
             var selector = $"//div[contains(@data-id,'{Identifier}Button')]";
             return selector;

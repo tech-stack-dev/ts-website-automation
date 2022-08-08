@@ -1,21 +1,66 @@
-﻿using Microsoft.Playwright;
+﻿using System;
+using Microsoft.Playwright;
+using PlaywrightAutomation.Components.Base;
 
 namespace PlaywrightAutomation.Components
 {
-    public class BaseWebComponent
+    public abstract class BaseWebComponent
     {
         public IPage Page { get; set; }
-        public string Identifier { get; set; }
-        public ILocator Instance { get; set; }
 
-        public virtual string Construct()
+
+        public virtual void CheckAutomationClass()
         {
-            return Identifier;
         }
+
+        public Properties Props = new Properties();
+
+        protected ILocator Components;
+
+        protected abstract string Construct();
 
         public void Build()
         {
-            Instance = Page.Locator(Construct());
+            if (!(Props.ParentSelector is null) && !(Props.Parent is null))
+            {
+                throw new Exception("Not allowed to use Parent element selector and Parent element together");
+            }
+
+            ParentSelector = Props.ParentSelector;
+            Parent = Props.Parent;
+
+            #region Parent element
+
+            if (!(Props.ParentSelector is null))
+            {
+                if (!Page.IsVisibleAsync(Props.ParentSelector).GetAwaiter().GetResult())
+                {
+                    return;
+                }
+
+                Parent = Page.Locator(ParentSelector);
+            }
+
+            #endregion
+
+            var selector = Construct();
+            Components = Parent is null ? Page.Locator(selector) : Parent.Locator(selector);
+
+            try
+            {
+                CheckAutomationClass();
+            }
+            catch
+            {
+            }
         }
+
+        public ILocator Instance => Components;
+
+        public string Identifier { get; set; }
+
+        private string ParentSelector { get; set; }
+
+        private ILocator Parent { get; set; }
     }
 }

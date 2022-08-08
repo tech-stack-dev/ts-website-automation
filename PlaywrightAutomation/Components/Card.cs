@@ -4,7 +4,7 @@ namespace PlaywrightAutomation.Components
 {
     public class Card : BaseWebComponent
     {
-        public override string Construct()
+        protected override string Construct()
         {
             var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier}')]";
             return selector;
@@ -24,7 +24,7 @@ namespace PlaywrightAutomation.Components
         {
             return Instance.Locator("//div[@class='card-header-position-title']");
         }
-        
+
         public ILocator CardFooter()
         {
             return Instance.Locator("//div[@class='card-footer']");

@@ -4,7 +4,7 @@ Background:
 	Given User is on the career website
 
 @Regression @TSWEB133
-Scenario Outline: SearchResultsEqualsToEnteredTextInSearchByRoleField
+Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
 	When User set first vacancy from page in 'Search' by role field
 	When User clicks on 'Search' button
 	Then Search results contains to recorded value

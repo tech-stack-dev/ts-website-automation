@@ -4,7 +4,7 @@ namespace PlaywrightAutomation.Components
 {
     public class Tag : BaseWebComponent
     {
-        public override string Construct()
+        protected override string Construct()
         {
             var selector = $"//div[contains(@data-id,'Tag-{Identifier}')]";
             return selector;
@@ -12,14 +12,15 @@ namespace PlaywrightAutomation.Components
 
         public ILocator ChosenTags()
         {
-            return Page.Locator($"//div[contains(@class,'_FilterListWrapper')]//div[@class='chosen-tags']{Construct()}");
+            return Page.Locator($"//div[contains(@class,'_FilterListWrapper')]//div[@class='chosen-tags']");
         }
 
         public ILocator SelectedTagsFromSightBar(string sightBarName)
         {
             var sightBar = Page.Locator($"//div[contains(@class,'_FilterListWrapper')]//div[@class='Collapsible']",
-                new PageLocatorOptions { HasTextString = sightBarName });
-            return sightBar.Locator(Construct());
+                new PageLocatorOptions {HasTextString = sightBarName});
+
+            return sightBar;
         }
 
         public ILocator SelectedTagsList()
