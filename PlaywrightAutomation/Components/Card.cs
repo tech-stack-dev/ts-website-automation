@@ -1,12 +1,13 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Extensions;
 
 namespace PlaywrightAutomation.Components
 {
     public class Card : BaseWebComponent
     {
-        protected override string Construct()
+        public override string Construct()
         {
-            var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier}')]";
+            var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
 

@@ -1,10 +1,12 @@
-﻿namespace PlaywrightAutomation.Components
+﻿using PlaywrightAutomation.Extensions;
+
+namespace PlaywrightAutomation.Components
 {
     public class Button : BaseWebComponent
     {
-        protected override string Construct()
+        public override string Construct()
         {
-            var selector = $"//button[contains(@data-id,'{Identifier}Button')]";
+            var selector = $"//button[contains(@data-id,'{Identifier.ToAutomationValue()}Button')]";
             return selector;
         }
     }

@@ -1,10 +1,12 @@
-﻿namespace PlaywrightAutomation.Components
+﻿using PlaywrightAutomation.Extensions;
+
+namespace PlaywrightAutomation.Components
 {
     internal class FieldInput : BaseWebComponent
     {
-        protected override string Construct()
+        public override string Construct()
         {
-            var selector = $"//input[contains(@data-id,'{Identifier}FieldInput')]";
+            var selector = $"//input[contains(@data-id,'{Identifier.ToAutomationValue()}FieldInput')]";
             return selector;
         }
     }
