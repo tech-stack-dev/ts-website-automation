@@ -16,7 +16,7 @@ namespace PlaywrightAutomation.Components
             return Instance.Locator("//div[@class='card-header']");
         }
 
-        public ILocator CardTag()
+        public ILocator GetAllExistCardTags()
         {
             return Instance.Locator("//button[contains(@data-id,'CardHeaderDirectionTitle-')]");
         }

@@ -35,58 +35,6 @@ namespace PlaywrightAutomation.Steps
             _page.Init<HomePage>().SelectLanguage(language).GetAwaiter().GetResult();
         }
 
-        //[When(@"User clicks on '([^']*)' button")]
-        //public void WhenUserClicksOnButton(string buttonName)
-        //{
-        //    _page.Component<Button>(buttonName).ClickAsync().GetAwaiter().GetResult();
-        ////}
-
-        //[When(@"User clicks '([^']*)' div button")]
-        //public void WhenUserClicksDivButton(string divButtonName)
-        //{
-        //    _page.Component<DivButton>(divButtonName, new Properties{Parent = _page.Init<HomePage>().Container}).ClickAsync().GetAwaiter().GetResult();
-        ////}
-
-        //[When(@"User clicks on 'Clear' search field button")]
-        //public void WhenUserClicksOnClearSearchFieldButton()
-        //{
-        //    _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
-        //    _page.Init<HomePage>().ClearSearchFieldButton.ClickAsync().GetAwaiter().GetResult();
-        //}
-
-        //[When(@"User set '([^']*)' text to '([^']*)' by role field")]
-        //public void WhenUserSetTextToByRoleField(string text, string fieldName)
-        //{
-        //    _page.Component<FieldInput>(fieldName, new Properties()
-        //    {
-        //        Parent = _page.Init<HomePage>().Container
-        //    }).FillAsync(text).GetAwaiter().GetResult();
-        ////}
-
-        //[When(@"User set first vacancy from page in '([^']*)' by role field")]
-        //public void WhenUserSetFirstVacancyFromPageInByRoleField(string fieldName)
-        //{
-        //    string vacancyName = _page.Component<Card>("").CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
-        //        .First();
-        //    _position.Value.Add(vacancyName);
-        //    _page.Component<FieldInput>(fieldName, new Properties
-        //    {
-        //        Parent = _page.Init<
-        //            HomePage>().Container
-        //    }).FillAsync(vacancyName).GetAwaiter().GetResult();
-        ////}
-
-        //[When(@"User set part of the name first vacancy from page in '([^']*)' by role field")]
-        //public void WhenUserSetPartOfTheNameFirstVacancyFromPageInByRoleField(string fieldName)
-        //{
-        //    string vacancyName = _page.Component<Card>("").CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
-        //        .First();
-        //    var partName = Regex.Match(vacancyName, @"^([\w\-]+)");
-        //    _position.Value.Add(partName.Value);
-        //    _page.Component<FieldInput>(fieldName, new Properties() {Parent = _page.Init<HomePage>().Container})
-        //        .FillAsync(partName.Value).GetAwaiter().GetResult();
-        //}
-
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
@@ -94,56 +42,11 @@ namespace PlaywrightAutomation.Steps
                 .ToList();
         }
 
-        //[When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
-        //public void WhenUserSelectsVacancyFromDropdown(string tagName, string dropdownName)
-        //{
-        //    _page.Component<Tag>(tagName, new Properties{Parent = _page.Component<Filter>(dropdownName).PathToTags()}).ClickAsync().GetAwaiter().GetResult();
-        ////}
-
-        //[When(@"User clicks on '([^']*)' available tag from '([^']*)' dropdown")]
-        //public void WhenUserClicksOnAvailableTagFromDropdown(int numberTags, string dropdownName)
-        //{
-        //    var tagsList = _page.Component<Tag>("", new Properties
-        //        {Parent = _page.Component<Filter>(dropdownName).PathToTags()});
-
-        //    for (int i = 0; i < numberTags; i++)
-        //    {
-        //        tagsList.Nth(i).ClickAsync().GetAwaiter().GetResult();
-        //        var attribute = tagsList.Nth(i).GetAttributeAsync("class").GetAwaiter().GetResult()
-        //            .Contains("active-tag");
-        //        if (attribute)
-        //        {
-        //            _selectedTags.Value.Add(tagsList.Nth(i).TextContentAsync().GetAwaiter().GetResult());
-        //        }
-        //        else
-        //        {
-        //            numberTags++;
-        //        }
-        //    }
-        ////}
-
-        //[When(@"User selects tag from '([^']*)' dropdown")]
-        //public void WhenUserSelectsTagFromDropdown(string dropdownName, Table table)
-        //{
-        //    var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
-
-        //    foreach (var vacancyName in tags)
-        //    {
-        //        _page.Component<Tag>(vacancyName, new Properties{Parent = _page.Component<Filter>(dropdownName).PathToTags()}).ClickAsync().GetAwaiter().GetResult();
-        //    }
-        ////}
-
-        //[When(@"User clicks on '([^']*)' dropdown")]
-        //public void WhenUserClicksOnDropdown(string dropdownName)
-        //{
-        //    _page.Component<Filter>(dropdownName).ClickAsync().GetAwaiter().GetResult();
-        //}
-
         [Then(@"Search results contains '([^']*)'")]
         public void ThenSearchResultsContains(string text)
         {
             _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
-            var texts = _page.Component<Card>("").CardTag().AllTextContentsAsync().GetAwaiter().GetResult();
+            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult();
 
             foreach (var roleText in texts)
             {
@@ -151,22 +54,11 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        //[Then(@"Tag name displayed in '([^']*)' dropdown field")]
-        //public void ThenTagNameDisplayedInDropdownField(string dropdownName)
-        //{
-        //    var textInField = _page.Component<Filter>(dropdownName).InnerTextAsync().GetAwaiter().GetResult();
-        //    var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s]+\b"));
-        //    var selectedTag = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList().First();
-        //    selectedTag.Should().Be(textInField);
-        //}
-
         [Then(@"Search results equals to selected tags")]
         public void ThenSearchResultsEqualsToSelectedTags()
         {
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s/]+\b"));
-            var tagsWithoutNumber = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList();
-
-            var texts = _page.Component<Card>("").CardTag().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
+            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
 
             foreach (var text in texts)
             {
@@ -210,15 +102,6 @@ namespace PlaywrightAutomation.Steps
                 "Incorrect language is selected");
         }
 
-        //[Then(@"'([^']*)' by role field is empty")]
-        //public void ThenByRoleFieldIsEmpty(string fieldName)
-        //{
-        //    var textInSearchField =
-        //        _page.Component<FieldInput>(fieldName, new Properties() {Parent = _page.Init<HomePage>().Container})
-        //            .GetAttributeAsync("value").GetAwaiter().GetResult();
-        //    string.Empty.Should().Be(textInSearchField);
-        //}
-
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
@@ -230,20 +113,18 @@ namespace PlaywrightAutomation.Steps
         [Then(@"'([^']*)' tag is displayed")]
         public void ThenTagIsDisplayed(string tag)
         {
-            var displayedTags = _page.Component<Tag>("", new Properties() {Parent = _page.Component<Tag>().ChosenTags()})
-                .IsVisibleAsync().GetAwaiter().GetResult();
+            var displayedTags = _page.Component<Tag>("").ChosenTags().IsVisibleAsync().GetAwaiter().GetResult();
             displayedTags.Should().BeTrue();
         }
 
         [Then(@"Selected tags are displayed")]
         public void ThenSelectedTagsAreDisplayed()
         {
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s/]+\b"));
-            var tagsWithoutNumber = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList();
+            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
 
             foreach (var name in tagsWithoutNumber)
             {
-                var removedStuff = name.Replace(" ", string.Empty).Replace("/", string.Empty);
+                var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
                     new Properties() {Parent = _page.Component<Tag>("").ChosenTags()});
                 var displayedSelectedTags = tags.IsVisibleAsync().GetAwaiter().GetResult();
@@ -254,12 +135,11 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Selected tags has correctly color")]
         public void ThenSelectedTagsHasCorrectlyColor()
         {
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s/]+\b"));
-            var tagsWithoutNumber = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList();
+            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
 
             foreach (var name in tagsWithoutNumber)
             {
-                var removedStuff = name.Replace(" ", string.Empty).Replace("/", string.Empty);
+                var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
                     new Properties() {Parent = _page.Component<Tag>("").ChosenTags()});
                 var backgroundColor = LocatorExtensions.GetBackgroundColor(tags);
@@ -271,12 +151,11 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Selected tags are displayed in '([^']*)' sight bar")]
         public void ThenSelectedTagsAreDisplayedInSightBar(string sightBarName)
         {
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s/]+\b"));
-            var tagsWithoutNumber = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList();
+            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
 
             foreach (var name in tagsWithoutNumber)
             {
-                var removedStuff = name.Replace(" ", string.Empty).Replace("/", string.Empty);
+                var removedStuff = name.RemoveSpaceAndSlash();
                 var tag = _page.Component<Tag>(removedStuff,
                     new Properties() {Parent = _page.Component<Tag>("").SelectedTagsFromSightBar(sightBarName)});
                 var tagsDisplayedInSighBar = tag.IsVisibleAsync().GetAwaiter().GetResult();
@@ -287,12 +166,11 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Selected tags from '([^']*)' sight bar has correctly color")]
         public void ThenSelectedTagsFromSightBarHasCorrectlyColor(string sightBarName)
         {
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s/]+\b"));
-            var tagsWithoutNumber = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList();
+            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
 
             foreach (var name in tagsWithoutNumber)
             {
-                var removedStuff = name.Replace(" ", string.Empty).Replace("/", string.Empty);
+                var removedStuff = name.RemoveSpaceAndSlash();
 
                 var tag = _page.Component<Tag>(removedStuff,
                     new Properties() {Parent = _page.Component<Tag>("").SelectedTagsFromSightBar(sightBarName)});
@@ -302,21 +180,11 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        //[Then(@"Count of selected tags from '([^']*)' is correctly")]
-        //public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdownName)
-        //{
-        //    var selectedTags = _page.Component<Tag>("").SelectedTagsList().CountAsync().GetAwaiter().GetResult();
-        //    var counterTags = int.Parse(_page.Component<Filter>(dropdownName).ActiveTagsCounter().TextContentAsync()
-        //        .GetAwaiter()
-        //        .GetResult());
-        //    selectedTags.Should().Be(counterTags);
-        //}
-
         [Then(@"Search results contains selected tags from dropdown")]
         public void ThenSearchResultsContainsSelectedTagsFromDropdown(Table table)
         {
             var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
-            var texts = _page.Component<Card>("").CardTag().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
 
             foreach (var text in texts)
             {

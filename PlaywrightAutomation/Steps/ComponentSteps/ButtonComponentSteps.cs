@@ -9,7 +9,6 @@ using static PlaywrightAutomation.Components.BaseWebComponent;
 namespace PlaywrightAutomation.Steps.ComponentSteps
 {
     [Binding]
-
     internal class ButtonComponentSteps : SpecFlowContext
     {
         private readonly IPage _page;

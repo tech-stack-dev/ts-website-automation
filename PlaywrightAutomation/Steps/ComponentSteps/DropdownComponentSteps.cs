@@ -12,7 +12,6 @@ using static PlaywrightAutomation.Components.BaseWebComponent;
 namespace PlaywrightAutomation.Steps.ComponentSteps
 {
     [Binding]
-
     internal class DropdownComponentSteps : SpecFlowContext
     {
         private readonly IPage _page;
@@ -73,8 +72,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void ThenTagNameDisplayedInDropdownField(string dropdownName)
         {
             var textInField = _page.Component<Dropdown>(dropdownName).InnerTextAsync().GetAwaiter().GetResult();
-            var selectedTags = _selectedTags.Value.Select(x => Regex.Matches(x, @"^[a-zA-Z\s]+\b"));
-            var selectedTag = selectedTags.SelectMany(x => x).Select(x => x.Value).ToList().First();
+            var selectedTag = _selectedTags.Value.ListTagsWithoutNumber().First();
             selectedTag.Should().Be(textInField);
         }
 

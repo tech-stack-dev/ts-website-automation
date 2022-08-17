@@ -9,6 +9,7 @@ namespace PlaywrightAutomation.Components
     public abstract class BaseWebComponent : ILocator
     {
         public IPage Page { get; set; }
+
         public class Properties
         {
             public string ParentSelector;
@@ -18,7 +19,11 @@ namespace PlaywrightAutomation.Components
         public Properties Props = new Properties();
 
         protected ILocator Component;
-        public virtual void CheckAutomationClass() { }
+
+        public virtual void CheckAutomationClass()
+        {
+        }
+
         public abstract string Construct();
 
         public void Build()
@@ -44,12 +49,14 @@ namespace PlaywrightAutomation.Components
                     throw new Exception("Parent is not visible");
                 }
             }
-            
+
             try
             {
                 CheckAutomationClass();
             }
-            catch { }
+            catch
+            {
+            }
 
             #endregion
 
@@ -70,8 +77,8 @@ namespace PlaywrightAutomation.Components
 
         public ILocator Last => Component.Last;
 
-        #region Implimentaion
-        
+        #region implementation
+
         public Task<IReadOnlyList<string>> AllInnerTextsAsync()
         {
             return Component.AllInnerTextsAsync();
@@ -137,7 +144,8 @@ namespace PlaywrightAutomation.Components
             return Component.EvaluateAllAsync<T>(expression, arg);
         }
 
-        public Task<IJSHandle> EvaluateHandleAsync(string expression, object arg = null, LocatorEvaluateHandleOptions options = null)
+        public Task<IJSHandle> EvaluateHandleAsync(string expression, object arg = null,
+            LocatorEvaluateHandleOptions options = null)
         {
             return Component.EvaluateHandleAsync(expression, arg, options);
         }
@@ -252,27 +260,32 @@ namespace PlaywrightAutomation.Components
             return Component.SelectOptionAsync(values, options);
         }
 
-        public Task<IReadOnlyList<string>> SelectOptionAsync(IElementHandle values, LocatorSelectOptionOptions options = null)
+        public Task<IReadOnlyList<string>> SelectOptionAsync(IElementHandle values,
+            LocatorSelectOptionOptions options = null)
         {
             return Component.SelectOptionAsync(values, options);
         }
 
-        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<string> values, LocatorSelectOptionOptions options = null)
+        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<string> values,
+            LocatorSelectOptionOptions options = null)
         {
             return Component.SelectOptionAsync(values, options);
         }
 
-        public Task<IReadOnlyList<string>> SelectOptionAsync(SelectOptionValue values, LocatorSelectOptionOptions options = null)
+        public Task<IReadOnlyList<string>> SelectOptionAsync(SelectOptionValue values,
+            LocatorSelectOptionOptions options = null)
         {
             return Component.SelectOptionAsync(values, options);
         }
 
-        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<IElementHandle> values, LocatorSelectOptionOptions options = null)
+        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<IElementHandle> values,
+            LocatorSelectOptionOptions options = null)
         {
             return Component.SelectOptionAsync(values, options);
         }
 
-        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<SelectOptionValue> values, LocatorSelectOptionOptions options = null)
+        public Task<IReadOnlyList<string>> SelectOptionAsync(IEnumerable<SelectOptionValue> values,
+            LocatorSelectOptionOptions options = null)
         {
             return Component.SelectOptionAsync(values, options);
         }
@@ -332,11 +345,12 @@ namespace PlaywrightAutomation.Components
             return Component.WaitForAsync(options);
         }
 
-        public Task<JsonElement?> EvaluateAsync(string expression, object arg = null, LocatorEvaluateOptions options = null)
+        public Task<JsonElement?> EvaluateAsync(string expression, object arg = null,
+            LocatorEvaluateOptions options = null)
         {
             return Component.EvaluateAsync(expression, arg, options);
         }
-        
+
         #endregion
     }
 }
