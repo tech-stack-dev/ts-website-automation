@@ -1,3 +1,5 @@
+#Ignore Rider folders
+.idea/
 TestResults/
 #Ignore SpecFlow feature.cs files
 *.feature.cs
