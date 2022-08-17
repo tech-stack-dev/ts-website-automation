@@ -59,5 +59,15 @@ namespace PlaywrightAutomation.Extensions
             obj.Build();
             return obj;
         }
+
+        #region Waiters
+
+        public static void WaitForElementText(this IPage page, IElementHandle element, string text = null)
+        {
+            page
+                .WaitForFunctionAsync($"element => element.value == '{text}'", element).GetAwaiter().GetResult();
+        }
+
+        #endregion
     }
 }

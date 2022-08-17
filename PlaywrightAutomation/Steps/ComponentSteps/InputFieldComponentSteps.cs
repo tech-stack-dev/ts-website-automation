@@ -55,8 +55,11 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var textInSearchField =
                 _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
-                    .GetAttributeAsync("value").GetAwaiter().GetResult();
-            string.Empty.Should().Be(textInSearchField);
+                    .ElementHandleAsync().GetAwaiter().GetResult();
+
+            _page.WaitForElementText(textInSearchField);
+
+            string.Empty.Should().Be(textInSearchField.GetAttributeAsync("value").GetAwaiter().GetResult());
         }
     }
 }
