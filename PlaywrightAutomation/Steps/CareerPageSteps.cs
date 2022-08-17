@@ -58,7 +58,7 @@ namespace PlaywrightAutomation.Steps
         public void ThenSearchResultsEqualsToSelectedTags()
         {
             var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
-            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
 
             foreach (var text in texts)
             {
@@ -70,13 +70,11 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Search results contain desired value")]
         public void ThenSearchResultsContainDesiredValue()
         {
-            _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
-            var values = _page.Component<Card>("").CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult();
+            var values = _page.Component<Card>().CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult();
 
-            foreach (var value in values)
+            foreach (string value in values)
             {
-                var comparison = value.Contains(_position.Value.ToString(""));
-                comparison.Should().BeTrue();
+                _position.Value.Should().Contain(value);
             }
         }
 

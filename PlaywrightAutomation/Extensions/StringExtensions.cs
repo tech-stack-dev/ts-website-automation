@@ -9,7 +9,7 @@ namespace PlaywrightAutomation.Extensions
     {
         public static string ToAutomationValue(this string str)
         {
-            return str.ToPascalCase().Replace(" ", string.Empty);
+            return str?.ToPascalCase().Replace(" ", string.Empty);
         }
 
         public static string RemoveSpaceAndSlash(this string str)

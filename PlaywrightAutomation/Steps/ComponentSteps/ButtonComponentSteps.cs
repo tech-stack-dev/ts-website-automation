@@ -22,6 +22,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void WhenUserClicksOnButton(string buttonName)
         {
             _page.Component<Button>(buttonName).ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [When(@"User clicks '([^']*)' div button")]
