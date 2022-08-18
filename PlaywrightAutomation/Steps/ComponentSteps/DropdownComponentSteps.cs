@@ -23,17 +23,17 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         }
 
         [When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
-        public void WhenUserSelectsVacancyFromDropdown(string tagName, string dropdownName)
+        public void WhenUserSelectsVacancyFromDropdown(string tag, string dropdown)
         {
-            _page.Component<Tag>(tagName, new Properties { Parent = _page.Component<Dropdown>(dropdownName)
+            _page.Component<Tag>(tag, new Properties { Parent = _page.Component<Dropdown>(dropdown)
                 .PathToTags() }).ClickAsync().GetAwaiter().GetResult();
         }
 
         [When(@"User clicks on '([^']*)' available tag from '([^']*)' dropdown")]
-        public void WhenUserClicksOnAvailableTagFromDropdown(int numberTags, string dropdownName)
+        public void WhenUserClicksOnAvailableTagFromDropdown(int numberTags, string dropdown)
         {
             var tagsList = _page.Component<Tag>(new Properties
-                { Parent = _page.Component<Dropdown>(dropdownName).PathToTags() });
+                { Parent = _page.Component<Dropdown>(dropdown).PathToTags() });
 
             for (int i = 0; i < numberTags; i++)
             {
@@ -52,36 +52,35 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         }
 
         [When(@"User selects tag from '([^']*)' dropdown")]
-        public void WhenUserSelectsTagFromDropdown(string dropdownName, Table table)
+        public void WhenUserSelectsTagFromDropdown(string dropdown, Table table)
         {
-            var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
+            var tags = table.Rows.SelectMany(row => row.Values.ToList());
 
             foreach (var vacancyName in tags)
             {
-                _page.Component<Tag>(vacancyName, new Properties { Parent = _page.Component<Dropdown>(dropdownName)
+                _page.Component<Tag>(vacancyName, new Properties { Parent = _page.Component<Dropdown>(dropdown)
                     .PathToTags() }).ClickAsync().GetAwaiter().GetResult();
             }
         }
 
         [When(@"User clicks on '([^']*)' dropdown")]
-        public void WhenUserClicksOnDropdown(string dropdownName)
+        public void WhenUserClicksOnDropdown(string dropdown)
         {
-            _page.Component<Dropdown>(dropdownName).ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Dropdown>(dropdown).ClickAsync().GetAwaiter().GetResult();
         }
 
-        [Then(@"Tag name displayed in '([^']*)' dropdown field")]
-        public void ThenTagNameDisplayedInDropdownField(string dropdownName)
+        [Then(@"'([^']*)' tag name displayed in '([^']*)' dropdown field")]
+        public void ThenTagNameDisplayedInDropdownField(string tag, string dropdown)
         {
-            var textInField = _page.Component<Dropdown>(dropdownName).InnerTextAsync().GetAwaiter().GetResult();
-            var selectedTag = _selectedTags.Value.ListTagsWithoutNumber().First();
-            selectedTag.Should().Be(textInField);
+            var textInField = _page.Component<Dropdown>(dropdown).InnerTextAsync().GetAwaiter().GetResult();
+            textInField.Should().Be(tag);
         }
 
-        [Then(@"Count of selected tags from '([^']*)' is correctly")]
-        public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdownName)
+        [Then(@"Count of selected tags from '([^']*)' dropdown is correctly")]
+        public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdown)
         {
             var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
-            var counterTags = int.Parse(_page.Component<Dropdown>(dropdownName).ActiveTagsCounter().TextContentAsync()
+            var counterTags = int.Parse(_page.Component<Dropdown>(dropdown).ActiveTagsCounter().TextContentAsync()
                 .GetAwaiter()
                 .GetResult());
             selectedTags.Should().Be(counterTags);

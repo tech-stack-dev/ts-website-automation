@@ -77,7 +77,7 @@ namespace PlaywrightAutomation.Components
 
         public ILocator Last => Component.Last;
 
-        #region implementation
+        #region Implementation
 
         public Task<IReadOnlyList<string>> AllInnerTextsAsync()
         {

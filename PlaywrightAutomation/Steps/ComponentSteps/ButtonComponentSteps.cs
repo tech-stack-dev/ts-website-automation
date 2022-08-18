@@ -19,16 +19,16 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         }
 
         [When(@"User clicks on '([^']*)' button")]
-        public void WhenUserClicksOnButton(string buttonName)
+        public void WhenUserClicksOnButton(string button)
         {
-            _page.Component<Button>(buttonName).ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Button>(button).ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [When(@"User clicks '([^']*)' div button")]
-        public void WhenUserClicksDivButton(string divButtonName)
+        public void WhenUserClicksDivButton(string button)
         {
-            _page.Component<DivButton>(divButtonName, new Properties { Parent = _page.Init<HomePage>().Container })
+            _page.Component<DivButton>(button, new Properties { Parent = _page.Init<HomePage>().Container })
                 .ClickAsync().GetAwaiter().GetResult();
         }
 
@@ -37,7 +37,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             _page.Component<FieldInput>(new Properties { Parent = _page.Init<HomePage>().Container })
                 .CleanSearchByRoleInput().ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
     }
 }

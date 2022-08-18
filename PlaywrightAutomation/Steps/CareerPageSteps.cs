@@ -41,17 +41,17 @@ namespace PlaywrightAutomation.Steps
                 .ToList();
         }
 
-        [Then(@"Search results contains '([^']*)'")]
-        public void ThenSearchResultsContains(string text)
+        [Then(@"Search results contain '([^']*)'")]
+        public void ThenSearchResultsContain(string text)
         {
-            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult();
+            var texts = _page.Component<Card>().CardTitle().AllTextContentsAsync().GetAwaiter().GetResult();
 
             foreach (var roleText in texts)
             {
-                Verify.IsTrue(roleText.Contains(text), $"'{roleText}' is not contains '{text}'");
+                roleText.Should().Contain(text);
             }
         }
-
+        
         [Then(@"Search results equals to selected tags")]
         public void ThenSearchResultsEqualsToSelectedTags()
         {
@@ -72,7 +72,6 @@ namespace PlaywrightAutomation.Steps
 
             foreach (string value in values)
             {
-                // _position.Value.Should().Contain(value);
                 value.Should().Contain(_position.Value.ToString(""));
             }
         }
@@ -115,11 +114,11 @@ namespace PlaywrightAutomation.Steps
         }
 
         [Then(@"Selected tags are displayed")]
-        public void ThenSelectedTagsAreDisplayed()
+        public void ThenSelectedTagsAreDisplayed(Table table)
         {
-            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
-            foreach (var name in tagsWithoutNumber)
+            foreach (var name in tagsName)
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
@@ -129,12 +128,25 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then(@"Selected tags has correctly color")]
-        public void ThenSelectedTagsHasCorrectlyColor()
+        [Then(@"Search results equal to selected tag")]
+        public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
-            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
+            var tags = table.Rows.SelectMany(x => x.Values).ToList();
+            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
 
-            foreach (var name in tagsWithoutNumber)
+            foreach (var text in texts)
+            {
+                var comparison = tags.Any(x => x.Equals(text));
+                comparison.Should().BeTrue();
+            }
+        }
+
+        [Then(@"Selected tags has correctly color")]
+        public void ThenSelectedTagsHasCorrectlyColor(Table table)
+        {
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+
+            foreach (var name in tagsName)
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
@@ -146,11 +158,11 @@ namespace PlaywrightAutomation.Steps
         }
 
         [Then(@"Selected tags are displayed in '([^']*)' sight bar")]
-        public void ThenSelectedTagsAreDisplayedInSightBar(string sightBarName)
+        public void ThenSelectedTagsAreDisplayedInSightBar(string sightBarName, Table table)
         {
-            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
-            foreach (var name in tagsWithoutNumber)
+            foreach (var name in tagsName)
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tag = _page.Component<Tag>(removedStuff,
@@ -161,11 +173,11 @@ namespace PlaywrightAutomation.Steps
         }
 
         [Then(@"Selected tags from '([^']*)' sight bar has correctly color")]
-        public void ThenSelectedTagsFromSightBarHasCorrectlyColor(string sightBarName)
+        public void ThenSelectedTagsFromSightBarHasCorrectlyColor(string sightBarName, Table table)
         {
-            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
-            foreach (var name in tagsWithoutNumber)
+            foreach (var name in tagsName)
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
 
