@@ -5,7 +5,8 @@ namespace PlaywrightAutomation.Components
 {
     public class Card : BaseWebComponent
     {
-        public ILocator Logo => Instance.Locator("//div[@class='card-header']");
+        public ILocator CardHeader => Instance.Locator("//div[@class='card-header']");
+        public ILocator CardTitle => Instance.Locator("//div[@class='card-header-position-title']");
 
         public override string Construct()
         {
@@ -16,16 +17,6 @@ namespace PlaywrightAutomation.Components
         public ILocator GetAllExistCardTags()
         {
             return Instance.Locator("//button[contains(@data-id,'CardHeaderDirectionTitle-')]");
-        }
-
-        public ILocator CardTitle()
-        {
-            return Instance.Locator("//div[@class='card-header-position-title']");
-        }
-
-        public ILocator CardFooter()
-        {
-            return Instance.Locator("//div[@class='card-footer']");
         }
     }
 }

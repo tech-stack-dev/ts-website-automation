@@ -37,14 +37,14 @@ namespace PlaywrightAutomation.Steps
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
-            _position.Value = _page.Component<Card>().CardHeader().AllTextContentsAsync().GetAwaiter().GetResult()
+            _position.Value = _page.Component<Card>().CardHeader.AllTextContentsAsync().GetAwaiter().GetResult()
                 .ToList();
         }
 
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
-            var texts = _page.Component<Card>().CardTitle().AllTextContentsAsync().GetAwaiter().GetResult();
+            var texts = _page.Component<Card>().CardTitle.AllTextContentsAsync().GetAwaiter().GetResult();
 
             foreach (var roleText in texts)
             {
@@ -68,7 +68,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Search results contain desired value")]
         public void ThenSearchResultsContainDesiredValue()
         {
-            var values = _page.Component<Card>().CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult();
+            var values = _page.Component<Card>().CardTitle.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             foreach (string value in values)
             {
@@ -101,7 +101,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
-            var actualListNames = _page.Component<Card>().CardHeader().AllTextContentsAsync().GetAwaiter().GetResult();
+            var actualListNames = _page.Component<Card>().CardHeader.AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             actualListNames.Should().IntersectWith(expectedListNames);
         }
@@ -109,7 +109,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"'([^']*)' tag is displayed")]
         public void ThenTagIsDisplayed(string tag)
         {
-            var displayedTags = _page.Component<Tag>().ChosenTags().IsVisibleAsync().GetAwaiter().GetResult();
+            var displayedTags = _page.Component<Tag>().ChosenTags.IsVisibleAsync().GetAwaiter().GetResult();
             displayedTags.Should().BeTrue();
         }
 
@@ -122,7 +122,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
-                    new Properties {Parent = _page.Component<Tag>().ChosenTags()});
+                    new Properties { Parent = _page.Component<Tag>().ChosenTags });
                 var displayedSelectedTags = tags.IsVisibleAsync().GetAwaiter().GetResult();
                 displayedSelectedTags.Should().BeTrue();
             }
@@ -149,7 +149,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
-                    new Properties {Parent = _page.Component<Tag>().ChosenTags()});
+                    new Properties { Parent = _page.Component<Tag>().ChosenTags });
                 var backgroundColor = LocatorExtensions.GetBackgroundColor(tags);
                 var expectedColor = ColorsConvertor.Converter("orange yellow");
                 backgroundColor.Should().Be(expectedColor);
@@ -167,6 +167,8 @@ namespace PlaywrightAutomation.Steps
                 var tag = _page.Component<Tag>(removedStuff,
                     new Properties {Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName)});
                 var tagsDisplayedInSighBar = tag.IsVisibleAsync().GetAwaiter().GetResult();
+                var attribute = tag.GetAttributeAsync("class").GetAwaiter().GetResult();
+                attribute.Should().Contain("active-tag");
                 tagsDisplayedInSighBar.Should().BeTrue();
             }
         }
@@ -204,7 +206,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"All selected tags was cancel")]
         public void ThenAllSelectedTagsWasCancel()
         {
-            var selectedTags = _page.Component<Tag>().SelectedTagsList().AllTextContentsAsync().GetAwaiter()
+            var selectedTags = _page.Component<Tag>().ActiveTagsIntoDropdown.AllTextContentsAsync().GetAwaiter()
                 .GetResult();
             selectedTags.Should().BeEmpty();
         }

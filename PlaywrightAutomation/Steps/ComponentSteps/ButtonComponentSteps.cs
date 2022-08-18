@@ -21,22 +21,16 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks on '([^']*)' button")]
         public void WhenUserClicksOnButton(string button)
         {
-            _page.Component<Button>(button).ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-        }
-
-        [When(@"User clicks '([^']*)' div button")]
-        public void WhenUserClicksDivButton(string button)
-        {
-            _page.Component<DivButton>(button, new Properties { Parent = _page.Init<HomePage>().Container })
+            _page.Component<Button>(button, new Properties { Parent = _page.Init<HomePage>().Container })
                 .ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [When(@"User clears search field")]
         public void WhenUserClearsSearchField()
         {
-            _page.Component<FieldInput>(new Properties { Parent = _page.Init<HomePage>().Container })
-                .CleanSearchInput().ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Input>(new Properties { Parent = _page.Init<HomePage>().Container })
+                .CleanSearchInput.ClickAsync().GetAwaiter().GetResult();
         }
     }
 }

@@ -12,7 +12,7 @@ Scenario: ResetButtonCancelAllSelectedTags
 		| Software Development |
 		| HR                   |
 		| Office               |
-	When User clicks 'Reset' div button
+	When User clicks on 'Reset' button
 	Then All selected tags was cancel
 
 @Regression @TSWEB133
@@ -23,5 +23,5 @@ Scenario: ResetButtonCancelAllSelectedTagsFromSeniorityLevelDropdown
 		| Professional |
 		| Trainee      |
 		| Junior       |
-	When User clicks 'Reset' div button
+	When User clicks on 'Reset' button
 	Then All selected tags was cancel

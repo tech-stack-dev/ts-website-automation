@@ -26,14 +26,14 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void WhenUserSelectsVacancyFromDropdown(string tag, string dropdown)
         {
             _page.Component<Tag>(tag, new Properties { Parent = _page.Component<Dropdown>(dropdown)
-                .PathToTags() }).ClickAsync().GetAwaiter().GetResult();
+                .PathToTags }).ClickAsync().GetAwaiter().GetResult();
         }
 
         [When(@"User clicks on '([^']*)' available tag from '([^']*)' dropdown")]
         public void WhenUserClicksOnAvailableTagFromDropdown(int numberTags, string dropdown)
         {
             var tagsList = _page.Component<Tag>(new Properties
-                { Parent = _page.Component<Dropdown>(dropdown).PathToTags() });
+                { Parent = _page.Component<Dropdown>(dropdown).PathToTags });
 
             for (int i = 0; i < numberTags; i++)
             {
@@ -59,7 +59,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             foreach (var vacancyName in tags)
             {
                 _page.Component<Tag>(vacancyName, new Properties { Parent = _page.Component<Dropdown>(dropdown)
-                    .PathToTags() }).ClickAsync().GetAwaiter().GetResult();
+                    .PathToTags }).ClickAsync().GetAwaiter().GetResult();
             }
         }
 
@@ -79,8 +79,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Count of selected tags from '([^']*)' dropdown is correctly")]
         public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdown)
         {
-            var selectedTags = _page.Component<Tag>().SelectedTagsList().CountAsync().GetAwaiter().GetResult();
-            var counterTags = int.Parse(_page.Component<Dropdown>(dropdown).ActiveTagsCounter().TextContentAsync()
+            var selectedTags = _page.Component<Tag>().ActiveTagsIntoDropdown.CountAsync().GetAwaiter().GetResult();
+            var counterTags = int.Parse(_page.Component<Dropdown>(dropdown).ActiveTagsCounter.TextContentAsync()
                 .GetAwaiter()
                 .GetResult());
             selectedTags.Should().Be(counterTags);
