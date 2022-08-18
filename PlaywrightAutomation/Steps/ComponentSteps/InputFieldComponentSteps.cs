@@ -54,13 +54,21 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' by role field is empty")]
         public void ThenByRoleFieldIsEmpty(string fieldName)
         {
-            var textInSearchField =
-                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
-                    .ElementHandleAsync().GetAwaiter().GetResult();
-
-            _page.WaitForElementText(textInSearchField);
-
-            string.Empty.Should().Be(textInSearchField.GetAttributeAsync("value").GetAwaiter().GetResult());
+            // TODO replace this step by ThenTextIsDisplayedInInput
         }
+
+        [Then(@"'([^']*)' text is displayed in '([^']*)' input")]
+        public void ThenTextIsDisplayedInInput(string text, string fieldName)
+        {
+            var input =
+                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
+                .ElementHandleAsync().GetAwaiter().GetResult();
+
+            _page.WaitForElementText(input, text);
+
+            input.GetValue()
+                .Should().Be(text);
+        }
+
     }
 }

@@ -7,6 +7,8 @@ namespace PlaywrightAutomation.Extensions
 {
     public static class PageExtensions
     {
+        #region Page
+
         public static T Init<T>(this IPage page) where T : BasePage, new()
         {
             T newPage = new T
@@ -15,6 +17,10 @@ namespace PlaywrightAutomation.Extensions
             };
             return newPage;
         }
+
+        #endregion
+
+        #region Component
 
         public static T Component<T>(this IPage page, string identifier) where T : BaseWebComponent, new()
         {
@@ -59,6 +65,8 @@ namespace PlaywrightAutomation.Extensions
             obj.Build();
             return obj;
         }
+
+        #endregion
 
         #region Waiters
 
