@@ -1,4 +1,5 @@
-﻿using PlaywrightAutomation.Extensions;
+﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Extensions;
 
 namespace PlaywrightAutomation.Components
 {
@@ -8,6 +9,11 @@ namespace PlaywrightAutomation.Components
         {
             var selector = $"//input[contains(@data-id,'{Identifier.ToAutomationValue()}FieldInput')]";
             return selector;
+        }
+
+        public ILocator CleanSearchByRoleInput()
+        {
+            return Instance.Locator("//following-sibling::button//img[@class='clearSearchButton']");
         }
     }
 }

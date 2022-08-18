@@ -13,8 +13,6 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator LanguageSwitchers => Container.Locator("//div[contains(@class,'_LocaleSwitcherBlock')]/a");
 
-        public ILocator ClearSearchFieldButton => Container.Locator("//img[@class='clearSearchButton']");
-
         public ILocator NoResultsMessage =>
             Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
 

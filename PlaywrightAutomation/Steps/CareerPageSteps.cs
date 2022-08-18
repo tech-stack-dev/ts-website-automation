@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
 using FluentAssertions;
@@ -38,15 +37,14 @@ namespace PlaywrightAutomation.Steps
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
-            _position.Value = _page.Component<Card>("").CardHeader().AllTextContentsAsync().GetAwaiter().GetResult()
+            _position.Value = _page.Component<Card>().CardHeader().AllTextContentsAsync().GetAwaiter().GetResult()
                 .ToList();
         }
 
         [Then(@"Search results contains '([^']*)'")]
         public void ThenSearchResultsContains(string text)
         {
-            _page.WaitForTimeoutAsync(2000).GetAwaiter().GetResult();
-            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult();
+            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult();
 
             foreach (var roleText in texts)
             {
@@ -74,7 +72,8 @@ namespace PlaywrightAutomation.Steps
 
             foreach (string value in values)
             {
-                _position.Value.Should().Contain(value);
+                // _position.Value.Should().Contain(value);
+                value.Should().Contain(_position.Value.ToString(""));
             }
         }
 
@@ -103,7 +102,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
-            var actualListNames = _page.Component<Card>("").CardHeader().AllTextContentsAsync().GetAwaiter().GetResult();
+            var actualListNames = _page.Component<Card>().CardHeader().AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             actualListNames.Should().IntersectWith(expectedListNames);
         }
@@ -111,7 +110,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"'([^']*)' tag is displayed")]
         public void ThenTagIsDisplayed(string tag)
         {
-            var displayedTags = _page.Component<Tag>("").ChosenTags().IsVisibleAsync().GetAwaiter().GetResult();
+            var displayedTags = _page.Component<Tag>().ChosenTags().IsVisibleAsync().GetAwaiter().GetResult();
             displayedTags.Should().BeTrue();
         }
 
@@ -124,7 +123,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
-                    new Properties() {Parent = _page.Component<Tag>("").ChosenTags()});
+                    new Properties {Parent = _page.Component<Tag>().ChosenTags()});
                 var displayedSelectedTags = tags.IsVisibleAsync().GetAwaiter().GetResult();
                 displayedSelectedTags.Should().BeTrue();
             }
@@ -139,7 +138,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tags = _page.Component<Tag>(removedStuff,
-                    new Properties() {Parent = _page.Component<Tag>("").ChosenTags()});
+                    new Properties {Parent = _page.Component<Tag>().ChosenTags()});
                 var backgroundColor = LocatorExtensions.GetBackgroundColor(tags);
                 var expectedColor = ColorsConvertor.Converter("orange yellow");
                 backgroundColor.Should().Be(expectedColor);
@@ -155,7 +154,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tag = _page.Component<Tag>(removedStuff,
-                    new Properties() {Parent = _page.Component<Tag>("").SelectedTagsFromSightBar(sightBarName)});
+                    new Properties {Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName)});
                 var tagsDisplayedInSighBar = tag.IsVisibleAsync().GetAwaiter().GetResult();
                 tagsDisplayedInSighBar.Should().BeTrue();
             }
@@ -171,7 +170,7 @@ namespace PlaywrightAutomation.Steps
                 var removedStuff = name.RemoveSpaceAndSlash();
 
                 var tag = _page.Component<Tag>(removedStuff,
-                    new Properties() {Parent = _page.Component<Tag>("").SelectedTagsFromSightBar(sightBarName)});
+                    new Properties {Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName)});
                 var backgroundColor = LocatorExtensions.GetBackgroundColor(tag);
                 var expectedColor = ColorsConvertor.Converter("orange yellow");
                 backgroundColor.Should().Be(expectedColor);
@@ -182,7 +181,7 @@ namespace PlaywrightAutomation.Steps
         public void ThenSearchResultsContainsSelectedTagsFromDropdown(Table table)
         {
             var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
-            var texts = _page.Component<Card>("").GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
 
             foreach (var text in texts)
             {
@@ -194,7 +193,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"All selected tags was cancel")]
         public void ThenAllSelectedTagsWasCancel()
         {
-            var selectedTags = _page.Component<Tag>("").SelectedTagsList().AllTextContentsAsync().GetAwaiter()
+            var selectedTags = _page.Component<Tag>().SelectedTagsList().AllTextContentsAsync().GetAwaiter()
                 .GetResult();
             selectedTags.Should().BeEmpty();
         }

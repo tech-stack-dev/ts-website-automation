@@ -27,7 +27,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set '([^']*)' text to '([^']*)' by role field")]
         public void WhenUserSetTextToByRoleField(string text, string fieldName)
         {
-            _page.Component<FieldInput>(fieldName, new Properties { Parent = _page.Init<HomePage>().Container }).FillAsync(text).GetAwaiter().GetResult();
+            _page.Component<FieldInput>(fieldName, new Properties { Parent = _page.Init<HomePage>().Container })
+                .FillAsync(text).GetAwaiter().GetResult();
         }
 
         [When(@"User set first vacancy from page in '([^']*)' by role field")]
@@ -42,11 +43,11 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set part of the name first vacancy from page in '([^']*)' by role field")]
         public void WhenUserSetPartOfTheNameFirstVacancyFromPageInByRoleField(string fieldName)
         {
-            var vacancyName = _page.Component<Card>("").CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
+            var vacancyName = _page.Component<Card>().CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
                 .First();
             var partName = Regex.Match(vacancyName, @"^([\w\-]+)");
             _position.Value.Add(partName.Value);
-            _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
+            _page.Component<FieldInput>(fieldName, new Properties { Parent = _page.Init<HomePage>().Container })
                 .FillAsync(partName.Value).GetAwaiter().GetResult();
         }
 
@@ -54,7 +55,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void ThenByRoleFieldIsEmpty(string fieldName)
         {
             var textInSearchField =
-                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
+                _page.Component<FieldInput>(fieldName, new Properties { Parent = _page.Init<HomePage>().Container })
                     .GetAttributeAsync("value").GetAwaiter().GetResult();
             string.Empty.Should().Be(textInSearchField);
         }
