@@ -5,15 +5,12 @@ namespace PlaywrightAutomation.Components
 {
     public class Card : BaseWebComponent
     {
+        public ILocator Logo => Instance.Locator("//div[@class='card-header']");
+
         public override string Construct()
         {
             var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
             return selector;
-        }
-
-        public ILocator CardHeader()
-        {
-            return Instance.Locator("//div[@class='card-header']");
         }
 
         public ILocator GetAllExistCardTags()
