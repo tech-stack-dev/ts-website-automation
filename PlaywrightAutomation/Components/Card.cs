@@ -6,7 +6,8 @@ namespace PlaywrightAutomation.Components
     public class Card : BaseWebComponent
     {
         public ILocator CardHeader => Instance.Locator("//div[@class='card-header']");
-        public ILocator CardTitle => Instance.Locator("//div[@class='card-header-position-title']");
+        public ILocator DirectionTitle => Instance.Locator("//button[@data-id='CardHeaderDirectionTitle-DirectionTagName']");
+        public ILocator Title => Instance.Locator("//div[@class='card-header-position-title']");
 
         public override string Construct()
         {

@@ -35,7 +35,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set first vacancy from page to '([^']*)' input")]
         public void WhenUserSetFirstVacancyFromPageToInput(string input)
         {
-            var vacancyName = _page.Component<Card>().CardTitle.AllInnerTextsAsync().GetAwaiter().GetResult()
+            var vacancyName = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult()
                 .First();
             _position.Value.Add(vacancyName);
             _page.Component<Input>(input, new Properties { Parent = _page.Init<HomePage>().Container }).FillAsync(vacancyName).GetAwaiter().GetResult();
@@ -44,7 +44,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set part of the name first vacancy from page to '([^']*)' input")]
         public void WhenUserSetPartOfTheNameFirstVacancyFromPageToInput(string input)
         {
-            var vacancyName = _page.Component<Card>().CardTitle.AllInnerTextsAsync().GetAwaiter().GetResult()
+            var vacancyName = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult()
                 .First();
             var partName = Regex.Match(vacancyName, @"^([\w\-]+)");
             _position.Value.Add(partName.Value);
