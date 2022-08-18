@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.UnitTests
         [Trait("Category", "OnBuild")]
         public void Does_All_Tests_Have_Tags()
         {
-            var testsWithoutTags = AutomationUtils.Utils.TestsUtils.TestsAndTags
+            var testsWithoutTags = TestsUtils.TestsAndTags
                 .Where(x => !x.Value.Any())
                 .ToList();
 
@@ -22,7 +22,7 @@ namespace PlaywrightAutomation.UnitTests
         [Trait("Category", "OnBuild")]
         public void Does_All_Tests_Have_No_Duplicated_Tags()
         {
-            var testsAndTags = AutomationUtils.Utils.TestsUtils.TestsAndTags.ToList();
+            var testsAndTags = TestsUtils.TestsAndTags;
 
             foreach (var testAndTag in testsAndTags)
             {
