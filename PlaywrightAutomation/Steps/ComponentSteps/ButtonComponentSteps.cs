@@ -36,7 +36,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void WhenUserClearsSearchField()
         {
             _page.Component<FieldInput>(new Properties { Parent = _page.Init<HomePage>().Container })
-                .CleanSearchByRoleInput().ClickAsync().GetAwaiter().GetResult();
+                .CleanSearchInput().ClickAsync().GetAwaiter().GetResult();
         }
     }
 }

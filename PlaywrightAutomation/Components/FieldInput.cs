@@ -11,7 +11,7 @@ namespace PlaywrightAutomation.Components
             return selector;
         }
 
-        public ILocator CleanSearchByRoleInput()
+        public ILocator CleanSearchInput()
         {
             return Instance.Locator("//following-sibling::button//img[@class='clearSearchButton']");
         }

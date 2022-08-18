@@ -40,21 +40,21 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 	When User set 'Back' text to 'Search' input
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
-		| Tag          |
-		| Professional |
+		| Tag     |
+		| Trainee |
 	When User clicks on 'Search' button
 	Then Selected tags are displayed
-		| Tag          |
-		| Professional |
+		| Tag     |
+		| Trainee |
 	Then Selected tags has correctly color
-		| Tag          |
-		| Professional |
+		| Tag     |
+		| Trainee |
 	Then Selected tags are displayed in 'Seniority levels' sight bar
-		| Tag          |
-		| Professional |
+		| Tag     |
+		| Trainee |
 	Then Selected tags from 'Seniority levels' sight bar has correctly color
-		| Tag          |
-		| Professional |
+		| Tag     |
+		| Trainee |
 
 @Regression @TSWEB133
 Scenario: SeackButtonRedirectsToTheSearchResultsFromTheJobsBlock

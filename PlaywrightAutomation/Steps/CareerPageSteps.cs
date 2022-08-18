@@ -136,8 +136,7 @@ namespace PlaywrightAutomation.Steps
 
             foreach (var text in texts)
             {
-                var comparison = tags.Any(x => x.Equals(text));
-                comparison.Should().BeTrue();
+                tags.Should().Contain(text);
             }
         }
 
