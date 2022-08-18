@@ -29,6 +29,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             _page.Component<FieldInput>(input, new Properties { Parent = _page.Init<HomePage>().Container })
                 .FillAsync(text).GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [When(@"User set first vacancy from page to '([^']*)' input")]
