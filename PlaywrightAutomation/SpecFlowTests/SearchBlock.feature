@@ -1,4 +1,5 @@
-﻿Feature: SearchBlock
+﻿@retry(2)
+Feature: SearchBlock
 
 Background:
 	Given User is on the career website
