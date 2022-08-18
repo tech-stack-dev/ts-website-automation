@@ -34,7 +34,7 @@ namespace PlaywrightAutomation.Steps
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
-            _position.Value = _page.Component<Card>().CardHeader.AllTextContentsAsync().GetAwaiter().GetResult()
+            _position.Value = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult()
                 .ToList();
         }
 
@@ -74,7 +74,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
-            var actualListNames = _page.Component<Card>().CardHeader.AllTextContentsAsync().GetAwaiter().GetResult();
+            var actualListNames = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             actualListNames.Should().IntersectWith(expectedListNames);
         }
