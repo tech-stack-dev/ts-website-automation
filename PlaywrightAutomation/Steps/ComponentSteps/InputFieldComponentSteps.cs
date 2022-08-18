@@ -55,9 +55,12 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void ThenByRoleFieldIsEmpty(string fieldName)
         {
             var textInSearchField =
-                _page.Component<FieldInput>(fieldName, new Properties { Parent = _page.Init<HomePage>().Container })
-                    .GetAttributeAsync("value").GetAwaiter().GetResult();
-            string.Empty.Should().Be(textInSearchField);
+                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
+                    .ElementHandleAsync().GetAwaiter().GetResult();
+
+            _page.WaitForElementText(textInSearchField);
+
+            string.Empty.Should().Be(textInSearchField.GetAttributeAsync("value").GetAwaiter().GetResult());
         }
     }
 }
