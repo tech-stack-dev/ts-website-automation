@@ -42,7 +42,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set part of the name first vacancy from page in '([^']*)' by role field")]
         public void WhenUserSetPartOfTheNameFirstVacancyFromPageInByRoleField(string fieldName)
         {
-            var vacancyName = _page.Component<Card>("").CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
+            var vacancyName = _page.Component<Card>().CardTitle().AllInnerTextsAsync().GetAwaiter().GetResult()
                 .First();
             var partName = Regex.Match(vacancyName, @"^([\w\-]+)");
             _position.Value.Add(partName.Value);
@@ -53,13 +53,21 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' by role field is empty")]
         public void ThenByRoleFieldIsEmpty(string fieldName)
         {
-            var textInSearchField =
-                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
-                    .ElementHandleAsync().GetAwaiter().GetResult();
-
-            _page.WaitForElementText(textInSearchField);
-
-            string.Empty.Should().Be(textInSearchField.GetAttributeAsync("value").GetAwaiter().GetResult());
+            // TODO replace this step by ThenTextIsDisplayedInInput
         }
+
+        [Then(@"'([^']*)' text is displayed in '([^']*)' input")]
+        public void ThenTextIsDisplayedInInput(string text, string fieldName)
+        {
+            var input =
+                _page.Component<FieldInput>(fieldName, new Properties() { Parent = _page.Init<HomePage>().Container })
+                .ElementHandleAsync().GetAwaiter().GetResult();
+
+            _page.WaitForElementText(input, text);
+
+            input.GetValue()
+                .Should().Be(text);
+        }
+
     }
 }

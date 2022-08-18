@@ -20,5 +20,5 @@ Scenario: PageDisplayedVacanciesAfterDeleteTextFromSearchField
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' by role field
 	When User clicks on 'Clear' search field button
-	Then 'Search' by role field is empty
+	Then '' text is displayed in 'Search' input
 	Then The page has not changed after removed terms from search field
