@@ -44,7 +44,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
-            var texts = _page.Component<Card>().CardTitle.AllTextContentsAsync().GetAwaiter().GetResult();
+            var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
 
             foreach (var roleText in texts)
             {
@@ -68,7 +68,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Search results contain desired value")]
         public void ThenSearchResultsContainDesiredValue()
         {
-            var values = _page.Component<Card>().CardTitle.AllInnerTextsAsync().GetAwaiter().GetResult();
+            var values = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             foreach (string value in values)
             {
