@@ -52,9 +52,7 @@ namespace PlaywrightAutomation.Components
             {
                 CheckAutomationClass();
             }
-            catch
-            {
-            }
+            catch { }
 
             #endregion
 

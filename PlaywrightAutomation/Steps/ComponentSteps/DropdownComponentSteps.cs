@@ -19,15 +19,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [When(@"User selects '([^']*)' vacancy from '([^']*)' dropdown")]
-        public void WhenUserSelectsVacancyFromDropdown(string tag, string dropdown)
-        {
-            _page.Component<Tag>(tag, new Properties
-            {
-                Parent = _page.Component<Dropdown>(dropdown).PathToTags
-            }).ClickAsync().GetAwaiter().GetResult();
-        }
-
         [When(@"User selects tag from '([^']*)' dropdown")]
         public void WhenUserSelectsTagFromDropdown(string dropdown, Table table)
         {
@@ -37,7 +28,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             {
                 _page.Component<Tag>(vacancyName, new Properties
                 {
-                    Parent = _page.Component<Dropdown>(dropdown).PathToTags
+                    Parent = _page.Component<Dropdown>(dropdown)
                 }).ClickAsync().GetAwaiter().GetResult();
             }
         }
@@ -51,7 +42,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' tag name displayed in '([^']*)' dropdown field")]
         public void ThenTagNameDisplayedInDropdownField(string tag, string dropdown)
         {
-            var textInField = _page.Component<Dropdown>(dropdown).InnerTextAsync().GetAwaiter().GetResult();
+            var textInField = _page.Component<Dropdown>(dropdown)
+                .FiltersList.InnerTextAsync().GetAwaiter().GetResult();
             textInField.Should().Be(tag);
         }
 
