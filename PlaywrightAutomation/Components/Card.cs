@@ -14,10 +14,5 @@ namespace PlaywrightAutomation.Components
             var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
-
-        public ILocator GetAllExistCardTags()
-        {
-            return Instance.Locator("//button[contains(@data-id,'CardHeaderDirectionTitle-')]");
-        }
     }
 }

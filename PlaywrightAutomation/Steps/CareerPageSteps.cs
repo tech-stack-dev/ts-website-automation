@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
@@ -19,13 +18,11 @@ namespace PlaywrightAutomation.Steps
     {
         private readonly IPage _page;
         private readonly VacancyList _position;
-        private readonly SelectedTagsList _selectedTags;
 
-        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position, SelectedTagsList selectedTags)
+        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position)
         {
             _page = browserFactory.Page;
             _position = position;
-            _selectedTags = selectedTags;
         }
 
         [When(@"User selects '([^']*)' language")]
@@ -49,30 +46,6 @@ namespace PlaywrightAutomation.Steps
             foreach (var roleText in texts)
             {
                 roleText.Should().Contain(text);
-            }
-        }
-        
-        [Then(@"Search results equals to selected tags")]
-        public void ThenSearchResultsEqualsToSelectedTags()
-        {
-            var tagsWithoutNumber = _selectedTags.Value.ListTagsWithoutNumber();
-            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
-
-            foreach (var text in texts)
-            {
-                var comparison = tagsWithoutNumber.Any(x => x.Equals(text));
-                comparison.Should().BeTrue();
-            }
-        }
-
-        [Then(@"Search results contain desired value")]
-        public void ThenSearchResultsContainDesiredValue()
-        {
-            var values = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult();
-
-            foreach (string value in values)
-            {
-                value.Should().Contain(_position.Value.ToString(""));
             }
         }
 
@@ -106,13 +79,6 @@ namespace PlaywrightAutomation.Steps
             actualListNames.Should().IntersectWith(expectedListNames);
         }
 
-        [Then(@"'([^']*)' tag is displayed")]
-        public void ThenTagIsDisplayed(string tag)
-        {
-            var displayedTags = _page.Component<Tag>().ChosenTags.IsVisibleAsync().GetAwaiter().GetResult();
-            displayedTags.Should().BeTrue();
-        }
-
         [Then(@"Selected tags are displayed")]
         public void ThenSelectedTagsAreDisplayed(Table table)
         {
@@ -132,7 +98,10 @@ namespace PlaywrightAutomation.Steps
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
             var tags = table.Rows.SelectMany(x => x.Values).ToList();
-            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
+            var texts = _page.Component<Card>()
+                .DirectionTitle
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
             foreach (var text in texts)
             {
@@ -165,7 +134,7 @@ namespace PlaywrightAutomation.Steps
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
                 var tag = _page.Component<Tag>(removedStuff,
-                    new Properties {Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName)});
+                    new Properties { Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName) });
                 var tagsDisplayedInSighBar = tag.IsVisibleAsync().GetAwaiter().GetResult();
                 var attribute = tag.GetAttributeAsync("class").GetAwaiter().GetResult();
                 attribute.Should().Contain("active-tag");
@@ -183,23 +152,10 @@ namespace PlaywrightAutomation.Steps
                 var removedStuff = name.RemoveSpaceAndSlash();
 
                 var tag = _page.Component<Tag>(removedStuff,
-                    new Properties {Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName)});
+                    new Properties { Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName) });
                 var backgroundColor = LocatorExtensions.GetBackgroundColor(tag);
                 var expectedColor = ColorsConvertor.Converter("orange yellow");
                 backgroundColor.Should().Be(expectedColor);
-            }
-        }
-
-        [Then(@"Search results contains selected tags from dropdown")]
-        public void ThenSearchResultsContainsSelectedTagsFromDropdown(Table table)
-        {
-            var tags = table.Rows.Select(row => row.Values.FirstOrDefault()).ToList();
-            var texts = _page.Component<Card>().GetAllExistCardTags().AllTextContentsAsync().GetAwaiter().GetResult().ToList();
-
-            foreach (var text in texts)
-            {
-                var comparison = tags.Any(x => x.Equals(text));
-                comparison.Should().BeTrue();
             }
         }
 
