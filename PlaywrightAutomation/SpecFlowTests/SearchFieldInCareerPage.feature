@@ -1,4 +1,5 @@
-﻿Feature: SearchFieldInCareerPage
+﻿@retry(2)
+Feature: SearchFieldInCareerPage
 
 Background:
 	Given User is on the career website

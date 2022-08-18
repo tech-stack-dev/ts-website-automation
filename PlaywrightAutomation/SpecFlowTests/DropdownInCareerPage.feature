@@ -1,4 +1,5 @@
-﻿Feature: DropdownInCareerPage
+﻿@retry(2)
+Feature: DropdownInCareerPage
 
 Background:
 	Given User is on the career website
