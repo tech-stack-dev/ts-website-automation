@@ -34,34 +34,28 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 	When User selects tag from 'Direction' dropdown
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	When User clicks on 'Direction' dropdown
 	When User clicks on 'Search' button
 	Then Search results equal to selected tag
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	Then Selected tags are displayed
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	Then Selected tags has correctly color
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	Then Selected tags are displayed in 'Direction' sight bar
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	Then Selected tags from 'Direction' sight bar has correctly color
 		| Tag                  |
 		| Software Development |
-		| HR                   |
 		| Office               |
 	Then Count of selected tags from 'Direction' dropdown is correctly
 
