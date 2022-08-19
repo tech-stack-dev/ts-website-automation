@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -34,6 +30,14 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             var selectedTags = _page.Component<Tag>().SelectedTags();
             selectedTags.Should().BeEmpty();
         }
+
+        [Then(@"Number of selected tags equals to '([^']*)'")]
+        public void ThenNumberOfSelectedTagsEqualsTo(int number)
+        {
+            var counter = int.Parse(_page.Component<Dropdown>().ActiveTagsCounter.InnerTextAsync().GetAwaiter().GetResult());
+            counter.Should().Be(number);
+        }
+
 
         #endregion
 

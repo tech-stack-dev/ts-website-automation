@@ -58,6 +58,7 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 		| Software Development |
 		| Office               |
 	Then '2' tags are selected in 'Direction' dropdown
+	Then Number of selected tags equals to '2'
 
 @Regression @TSWEB133
 Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
@@ -109,3 +110,4 @@ Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
 		| Trainee      |
 		| Junior       |
 	Then '3' tags are selected in 'SeniorityLevel' dropdown
+	Then Number of selected tags equals to '3'
