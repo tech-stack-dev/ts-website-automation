@@ -19,8 +19,17 @@ namespace PlaywrightAutomation.Components
         public ILocator SelectedTagsFromSightBar(string sightBarName = null)
         {
             var sightBar = Page.Locator("//div[contains(@class,'_FilterListWrapper')]//div[@class='Collapsible']",
-                new PageLocatorOptions {HasTextString = sightBarName});
+                new PageLocatorOptions { HasTextString = sightBarName });
             return sightBar;
+        }
+
+        public bool SelectedState(string groupTitle)
+        {
+            var tagClass = Instance
+                .ElementHandleAsync().Result
+                .GetAttributeAsync("class").Result;
+
+            return tagClass.Contains("active-tag");
         }
     }
 }

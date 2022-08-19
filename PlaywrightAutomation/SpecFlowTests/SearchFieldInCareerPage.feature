@@ -20,6 +20,6 @@ Scenario: SearchResultsContainsPartOfTheNameVacancy
 Scenario: PageDisplayedVacanciesAfterDeleteTextFromSearchField
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input
-	When User clears search field
+	When User clears input
 	Then '' text is displayed in 'Search' input
 	Then The page has not changed after removed terms from search field

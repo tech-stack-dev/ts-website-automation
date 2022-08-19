@@ -21,7 +21,7 @@ Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
 	Then Selected tags has correctly color
 		| Tag                  |
 		| Software Development |
-	Then Selected tags are displayed in 'Direction' sight bar
+	Then Selected tags are displayed in 'Direction' sight bar on 'CareerPage' container
 		| Tag                  |
 		| Software Development |
 	Then Selected tags from 'Direction' sight bar has correctly color

@@ -25,12 +25,5 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                 .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
-
-        [When(@"User clears search field")]
-        public void WhenUserClearsSearchField()
-        {
-            _page.Component<Input>(new Properties { Parent = _page.Init<HomePage>().Container })
-                .CleanSearchInput.ClickAsync().GetAwaiter().GetResult();
-        }
     }
 }

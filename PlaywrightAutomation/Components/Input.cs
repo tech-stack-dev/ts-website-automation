@@ -5,7 +5,7 @@ namespace PlaywrightAutomation.Components
 {
     internal class Input : BaseWebComponent
     {
-        public ILocator CleanSearchInput =>
+        public ILocator CleanInputButton =>
             Instance.Locator("//following-sibling::button//img[@class='clearSearchButton']");
 
         public override string Construct()

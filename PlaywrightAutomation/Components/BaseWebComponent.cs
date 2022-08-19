@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
@@ -38,13 +39,13 @@ namespace PlaywrightAutomation.Components
 
             if (Props.ParentSelector is not null)
             {
-                if (Page.IsVisibleAsync(Props.ParentSelector).GetAwaiter().GetResult())
+                if (Page.Locator(ParentSelector).ElementHandlesAsync().Result.Count > 0)
                 {
                     Parent = Page.Locator(ParentSelector);
                 }
                 else
                 {
-                    throw new Exception("Parent is not visible");
+                    throw new Exception($"Parent element with '{ParentSelector}' locator is not present");
                 }
             }
 

@@ -7,6 +7,7 @@ using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
@@ -125,20 +126,18 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then(@"Selected tags are displayed in '([^']*)' sight bar")]
-        public void ThenSelectedTagsAreDisplayedInSightBar(string sightBarName, Table table)
+        [Then(@"Selected tags are displayed in '([^']*)' sight bar on '([^']*)' container")]
+        public void ThenSelectedTagsAreDisplayedInSightBarOnContainer(string sightBarName, string container, Table table)
         {
             var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
+            var parent = _page
+                .Component<FilterGroupWrapper>(sightBarName, new Properties { ParentSelector = WebContainer.GetLocator(container) });
+
             foreach (var name in tagsName)
             {
-                var removedStuff = name.RemoveSpaceAndSlash();
-                var tag = _page.Component<Tag>(removedStuff,
-                    new Properties { Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName) });
-                var tagsDisplayedInSighBar = tag.IsVisibleAsync().GetAwaiter().GetResult();
-                var attribute = tag.GetAttributeAsync("class").GetAwaiter().GetResult();
-                attribute.Should().Contain("active-tag");
-                tagsDisplayedInSighBar.Should().BeTrue();
+                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
+                tag.SelectedState(sightBarName).Should().BeTrue();
             }
         }
 

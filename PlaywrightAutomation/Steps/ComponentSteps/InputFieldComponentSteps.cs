@@ -24,37 +24,26 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _position = position;
         }
 
+        [When(@"User clears input")]
+        public void WhenUserClearsInput()
+        {
+            _page.Component<Input>(new Properties { Parent = _page.Init<HomePage>().Container })
+                .CleanInputButton.ClickAsync().GetAwaiter().GetResult();
+        }
+
         [When(@"User set '([^']*)' text to '([^']*)' input")]
         public void WhenUserSetTextToInput(string text, string input)
         {
+            // TODO Move container name to step definition
             _page.Component<Input>(input, new Properties { Parent = _page.Init<HomePage>().Container })
                 .FillAsync(text).GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [When(@"User set first vacancy from page to '([^']*)' input")]
-        public void WhenUserSetFirstVacancyFromPageToInput(string input)
-        {
-            var vacancyName = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult()
-                .First();
-            _position.Value.Add(vacancyName);
-            _page.Component<Input>(input, new Properties { Parent = _page.Init<HomePage>().Container }).FillAsync(vacancyName).GetAwaiter().GetResult();
-        }
-
-        [When(@"User set part of the name first vacancy from page to '([^']*)' input")]
-        public void WhenUserSetPartOfTheNameFirstVacancyFromPageToInput(string input)
-        {
-            var vacancyName = _page.Component<Card>().Title.AllInnerTextsAsync().GetAwaiter().GetResult()
-                .First();
-            var partName = Regex.Match(vacancyName, @"^([\w\-]+)");
-            _position.Value.Add(partName.Value);
-            _page.Component<Input>(input, new Properties { Parent = _page.Init<HomePage>().Container })
-                .FillAsync(partName.Value).GetAwaiter().GetResult();
-        }
-
         [Then(@"'([^']*)' text is displayed in '([^']*)' input")]
         public void ThenTextIsDisplayedInInput(string text, string input)
         {
+            // TODO Move container name to step definition
             var inputElement =
                 _page.Component<Input>(input, new Properties() { Parent = _page.Init<HomePage>().Container })
                 .ElementHandleAsync().GetAwaiter().GetResult();
