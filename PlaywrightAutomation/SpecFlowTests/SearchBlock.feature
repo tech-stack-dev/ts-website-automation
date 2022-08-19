@@ -59,4 +59,4 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 @Regression @TSWEB133
 Scenario: SeackButtonRedirectsToTheSearchResultsFromTheJobsBlock
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then User in on the 'Jobs' block
+	Then User in on the 'Jobs' tab

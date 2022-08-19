@@ -52,9 +52,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var parent = _page.Component<Dropdown>(dropdown).ItemsList;
 
-            var selectedTags = _page.Component<Tag>(new Properties() { Parent = parent }).SelectedTags();
+            var selectedTags = _page.Component<Tag>(new Properties { Parent = parent }).SelectedTags();
 
-            selectedTags.Count().Should().Be(count);
+            selectedTags.Count.Should().Be(count);
         }
     }
 }

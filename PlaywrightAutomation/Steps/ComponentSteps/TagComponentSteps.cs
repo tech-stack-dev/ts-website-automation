@@ -59,8 +59,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                 tagDisplayedState.Should().BeTrue();
             }
         }
-
-        // TODO review this step
+        
         [Then(@"Selected tags has correct color in Filters list on '([^']*)' container")]
         public void ThenSelectedTagsHasCorrectColorInFilterListOnContainer(string container, Table table)
         {
@@ -82,9 +81,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         #endregion
 
         #region SideBar
-
-        // TODO move to tags component steps
-        // TODO sight bar - > filter side bar
+        
         [Then(@"Selected tags are displayed in '([^']*)' filter side bar on '([^']*)' container")]
         public void ThenSelectedTagsAreDisplayedInFilterSideBarOnContainer(string filterGroupHeader, string container, Table table)
         {
@@ -100,9 +97,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                 tag.SelectedState().Should().BeTrue();
             }
         }
-
-        // TODO move to tags component steps
-        // TODO sight bar - > filter side bar
+        
         [Then(@"Selected tags from '([^']*)' filter side bar has correctly color on '([^']*)' container")]
         public void ThenSelectedTagsFromFilterSideBarHasCorrectlyColorOnContainer(string filterGroupHeader, string container, Table table)
         {

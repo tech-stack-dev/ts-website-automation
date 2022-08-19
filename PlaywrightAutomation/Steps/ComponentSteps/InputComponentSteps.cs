@@ -29,7 +29,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User set '([^']*)' text to '([^']*)' input on '([^']*)' container")]
         public void WhenUserSetTextToInputOnContainer(string text, string input, string container)
         {
-            // TODO Move container name to step definition
             var parent = WebContainer.GetLocator(container);
             _page.Component<Input>(input, new Properties { ParentSelector = parent })
                 .FillAsync(text).GetAwaiter().GetResult();
@@ -39,9 +38,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' text is displayed in '([^']*)' input on '([^']*)' container")]
         public void ThenTextIsDisplayedInInputOnContainer(string text, string input, string container)
         {
-            // TODO Move container name to step definition
             var inputElement =
-                _page.Component<Input>(input, new Properties() { ParentSelector = WebContainer.GetLocator(container) })
+                _page.Component<Input>(input, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                     .ElementHandleAsync().GetAwaiter().GetResult();
 
             _page.WaitForElementText(inputElement, text);

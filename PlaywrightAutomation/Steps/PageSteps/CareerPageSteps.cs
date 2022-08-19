@@ -42,7 +42,7 @@ namespace PlaywrightAutomation.Steps
         }
         
         [Then(@"'([^']*)' message is displayed")]
-        public void ThenErrorMessageIsDisplayed(string errorMessage)
+        public void ThenMessageIsDisplayed(string errorMessage)
         {
             var actualErrorMessage =
                 _page.Init<CareerPage>().NoResultsMessage.TextContentAsync().GetAwaiter().GetResult();
