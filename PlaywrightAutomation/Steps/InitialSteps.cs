@@ -21,7 +21,7 @@ namespace PlaywrightAutomation.Steps
         [Given(@"User on Google page")]
         public async void GivenUserOnGooglePage()
         {
-            var page = _page.Init<HomePage>();
+            var page = _page.Init<HeaderPage>();
             page.CheckLogo();
         }
     }

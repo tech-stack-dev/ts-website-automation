@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using AutomationUtils.Utils;
-using PlaywrightAutomation.Utils;
 using Xunit;
 
 namespace PlaywrightAutomation.UnitTests
@@ -23,7 +22,7 @@ namespace PlaywrightAutomation.UnitTests
         [Trait("Category", "OnBuild")]
         public void Does_All_Tests_Have_No_Duplicated_Tags()
         {
-            var testsAndTags = TestsUtils.TestsAndTags.ToList();
+            var testsAndTags = TestsUtils.TestsAndTags;
 
             foreach (var testAndTag in testsAndTags)
             {

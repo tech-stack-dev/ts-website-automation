@@ -35,7 +35,7 @@ namespace PlaywrightAutomation.Steps
             {
                 foreach (IBrowser browser in browsers)
                 {
-                    browser.CloseAsync();
+                    await browser.CloseAsync();
                 }
             }
 

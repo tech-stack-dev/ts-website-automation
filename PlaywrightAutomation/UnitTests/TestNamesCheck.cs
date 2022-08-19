@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
-using PlaywrightAutomation.Utils;
 using Xunit;
 
 namespace PlaywrightAutomation.UnitTests
