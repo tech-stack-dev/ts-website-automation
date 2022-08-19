@@ -28,7 +28,7 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 	Then Selected tags has correctly color
 		| Tag                  |
 		| Software Development |
-	Then Selected tags are displayed in 'Direction' sight bar
+	Then Selected tags are displayed in 'Direction' sight bar on 'CareerPage' container
 		| Tag                  |
 		| Software Development |
 	Then Selected tags from 'Direction' sight bar has correctly color
@@ -49,7 +49,7 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 	Then Selected tags has correctly color
 		| Tag     |
 		| Trainee |
-	Then Selected tags are displayed in 'Seniority levels' sight bar
+	Then Selected tags are displayed in 'Seniority levels' sight bar on 'CareerPage' container
 		| Tag     |
 		| Trainee |
 	Then Selected tags from 'Seniority levels' sight bar has correctly color

@@ -49,7 +49,7 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 		| Tag                  |
 		| Software Development |
 		| Office               |
-	Then Selected tags are displayed in 'Direction' sight bar
+	Then Selected tags are displayed in 'Direction' sight bar on 'CareerPage' container
 		| Tag                  |
 		| Software Development |
 		| Office               |
@@ -72,7 +72,7 @@ Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
 	Then Selected tags has correctly color
 		| Tag          |
 		| Professional |
-	Then Selected tags are displayed in 'Seniority levels' sight bar
+	Then Selected tags are displayed in 'Seniority levels' sight bar on 'CareerPage' container
 		| Tag          |
 		| Professional |
 	Then Selected tags from 'Seniority levels' sight bar has correctly color
@@ -98,7 +98,7 @@ Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
 		| Professional |
 		| Trainee      |
 		| Junior       |
-	Then Selected tags are displayed in 'Seniority levels' sight bar
+	Then Selected tags are displayed in 'Seniority levels' sight bar on 'CareerPage' container
 		| Tag          |
 		| Professional |
 		| Trainee      |
