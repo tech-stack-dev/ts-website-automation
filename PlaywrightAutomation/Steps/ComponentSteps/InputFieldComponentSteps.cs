@@ -2,7 +2,6 @@
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
@@ -14,12 +13,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
     internal class InputFieldComponentSteps : SpecFlowContext
     {
         private readonly IPage _page;
-        private readonly VacancyList _position;
 
-        public InputFieldComponentSteps(BrowserFactory browserFactory, VacancyList position)
+        public InputFieldComponentSteps(BrowserFactory browserFactory)
         {
             _page = browserFactory.Page;
-            _position = position;
         }
 
         [When(@"User clears input on '([^']*)' container")]

@@ -5,16 +5,13 @@ using Microsoft.Playwright;
 
 namespace PlaywrightAutomation.Pages
 {
-    internal class HomePage : BasePage, IWebContainer
+    internal class HeaderPage : BasePage, IWebContainer
     {
         public string Container => "//div[contains(@class,'_HeaderWrapper')]";
 
         public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");
 
         public ILocator LanguageSwitchers => Page.Locator(Container).Locator("//div[contains(@class,'_LocaleSwitcherBlock')]/a");
-
-        public ILocator NoResultsMessage =>
-            Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
 
         public async void CheckLogo()
         {

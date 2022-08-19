@@ -9,5 +9,7 @@ namespace PlaywrightAutomation.Components
             var selector = $"//button[contains(@data-id,'NavigationTab-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
+
+        public bool IsActive { get => Instance.GetAttributeAsync("class").GetAwaiter().GetResult().Contains("active-nav-tab"); }
     }
 }

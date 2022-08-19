@@ -3,15 +3,11 @@ using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
-using PlaywrightAutomation.Components.FilterListWrapper;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
-using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
-using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps
 {
@@ -27,12 +23,14 @@ namespace PlaywrightAutomation.Steps
             _position = position;
         }
 
+        // TODO move this to HeaderPage steps
         [When(@"User selects '([^']*)' language")]
         public void WhenUserSelectsLanguage(string language)
         {
-            _page.Init<HomePage>().SelectLanguage(language).GetAwaiter().GetResult();
+            _page.Init<HeaderPage>().SelectLanguage(language).GetAwaiter().GetResult();
         }
 
+        // TODO remove once beforeScanarios will be implemented
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
@@ -51,24 +49,29 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
+        // TODO Move this step to CareerPageSteps
         [Then(@"'([^']*)' message is displayed")]
         public void ThenErrorMessageIsDisplayed(string errorMessage)
         {
             var actualErrorMessage =
-                _page.Init<HomePage>().NoResultsMessage.TextContentAsync().GetAwaiter().GetResult();
+                _page.Init<CareerPage>().NoResultsMessage.TextContentAsync().GetAwaiter().GetResult();
+
             actualErrorMessage.Should().Be(errorMessage);
         }
 
+
+        // TODO Move to HeaderPageSteps
         [Then(@"'Techstack' logo is displayed in the main page")]
         public void ThechstackLogoIsDisplayedInTheMainPage()
         {
-            _page.Init<HomePage>().CheckLogo();
+            _page.Init<HeaderPage>().CheckLogo();
         }
 
+        // TODO Move to HeaderPageSteps
         [Then(@"'([^']*)' language is selected")]
         public async void ThenLanguageIsSelected(string language)
         {
-            var page = _page.Init<HomePage>();
+            var page = _page.Init<HeaderPage>();
             Verify.AreEqual(language, await page.GetSelectedLanguage(),
                 "Incorrect language is selected");
         }
@@ -97,14 +100,17 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
+        // TODO move to NavigationTabSteps
         [Then(@"User in on the '([^']*)' block")]
         public void ThenUserInOnTheBlock(string blockName)
         {
             var block = _page.Component<NavigationTabs>(blockName);
+
             var displayedBlock = block.IsVisibleAsync().GetAwaiter().GetResult();
             displayedBlock.Should().BeTrue();
-            var activeBlock = block.GetAttributeAsync("class").GetAwaiter().GetResult().Contains("active-nav-tab");
-            activeBlock.Should().BeTrue();
+
+            var blockActiveStatus = block.IsActive;
+            blockActiveStatus.Should().BeTrue();
         }
     }
 }
