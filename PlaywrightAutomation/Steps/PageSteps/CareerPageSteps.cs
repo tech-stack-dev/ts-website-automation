@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -23,13 +22,6 @@ namespace PlaywrightAutomation.Steps
             _position = position;
         }
 
-        // TODO move this to HeaderPage steps
-        [When(@"User selects '([^']*)' language")]
-        public void WhenUserSelectsLanguage(string language)
-        {
-            _page.Init<HeaderPage>().SelectLanguage(language).GetAwaiter().GetResult();
-        }
-
         // TODO remove once beforeScanarios will be implemented
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
@@ -48,8 +40,7 @@ namespace PlaywrightAutomation.Steps
                 roleText.Should().Contain(text);
             }
         }
-
-        // TODO Move this step to CareerPageSteps
+        
         [Then(@"'([^']*)' message is displayed")]
         public void ThenErrorMessageIsDisplayed(string errorMessage)
         {
@@ -57,23 +48,6 @@ namespace PlaywrightAutomation.Steps
                 _page.Init<CareerPage>().NoResultsMessage.TextContentAsync().GetAwaiter().GetResult();
 
             actualErrorMessage.Should().Be(errorMessage);
-        }
-
-
-        // TODO Move to HeaderPageSteps
-        [Then(@"'Techstack' logo is displayed in the main page")]
-        public void ThechstackLogoIsDisplayedInTheMainPage()
-        {
-            _page.Init<HeaderPage>().CheckLogo();
-        }
-
-        // TODO Move to HeaderPageSteps
-        [Then(@"'([^']*)' language is selected")]
-        public async void ThenLanguageIsSelected(string language)
-        {
-            var page = _page.Init<HeaderPage>();
-            Verify.AreEqual(language, await page.GetSelectedLanguage(),
-                "Incorrect language is selected");
         }
 
         [Then(@"The page has not changed after removed terms from search field")]
@@ -98,19 +72,6 @@ namespace PlaywrightAutomation.Steps
             {
                 tags.Should().Contain(text);
             }
-        }
-
-        // TODO move to NavigationTabSteps
-        [Then(@"User in on the '([^']*)' block")]
-        public void ThenUserInOnTheBlock(string blockName)
-        {
-            var tab = _page.Component<NavigationTabs>(blockName);
-
-            var tabDisplayedState = tab.IsVisibleAsync().GetAwaiter().GetResult();
-            tabDisplayedState.Should().BeTrue();
-
-            var tabActiveStatus = tab.IsActive;
-            tabActiveStatus.Should().BeTrue();
         }
     }
 }
