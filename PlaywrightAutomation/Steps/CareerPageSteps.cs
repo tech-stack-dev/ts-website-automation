@@ -81,23 +81,6 @@ namespace PlaywrightAutomation.Steps
             actualListNames.Should().IntersectWith(expectedListNames);
         }
 
-        [Then(@"Selected tags are displayed as active in Filters list")]
-        public void ThenSelectedTagsAreDisplayedAsActiveInFiltersList(Table table)
-        {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var parent = _page
-                .Component<ActiveTagsGroupWrapper>(new Properties { ParentSelector = WebContainer.GetLocator("CareerPage") });
-
-            foreach (var name in tagsName)
-            {
-                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
-
-                var tagDisplayedState = tag.IsVisibleAsync().GetAwaiter().GetResult();
-                tagDisplayedState.Should().BeTrue();
-            }
-        }
-
         [Then(@"Search results equal to selected tag")]
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
@@ -112,72 +95,6 @@ namespace PlaywrightAutomation.Steps
             {
                 tags.Should().Contain(text);
             }
-        }
-
-        // TODO review this step
-        [Then(@"Selected tags has correct color")]
-        public void ThenSelectedTagsHasCorrectColor(Table table)
-        {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
-
-            foreach (var name in tagsName)
-            {
-                var removedStuff = name.RemoveSpaceAndSlash();
-                var tags = _page.Component<Tag>(removedStuff,
-                    new Properties { Parent = _page.Component<Tag>().ChosenTags });
-                var backgroundColor = LocatorExtensions.GetBackgroundColor(tags);
-                var expectedColor = ColorsConvertor.Converter("orange yellow");
-                backgroundColor.Should().Be(expectedColor);
-            }
-        }
-
-        // TODO move to tags component steps
-        // TODO sight bar - > filter side bar
-        [Then(@"Selected tags are displayed in '([^']*)' sight bar on '([^']*)' container")]
-        public void ThenSelectedTagsAreDisplayedInSightBarOnContainer(string filterGroupHeader, string container, Table table)
-        {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var parent = _page
-                .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
-
-            foreach (var name in tagsName)
-            {
-                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
-
-                tag.SelectedState().Should().BeTrue();
-            }
-        }
-
-        // TODO move to tags component steps
-        // TODO sight bar - > filter side bar
-        [Then(@"Selected tags from '([^']*)' sight bar has correctly color on '([^']*)' container")]
-        public void ThenSelectedTagsFromSightBarHasCorrectlyColorOnContainer(string filterGroupHeader, string container, Table table)
-        {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var parent = _page
-                .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
-
-            foreach (var name in tagsName)
-            {
-                var removedStuff = name.RemoveSpaceAndSlash();
-
-                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
-
-                var backgroundColor = tag.GetBackgroundColor();
-                var expectedColor = ColorsConvertor.Converter("orange yellow");
-
-                backgroundColor.Should().Be(expectedColor);
-            }
-        }
-
-        [Then(@"All selected tags was cancel")]
-        public void ThenAllSelectedTagsWasCancel()
-        {
-            var selectedTags = _page.Component<Tag>().ActiveTagsIntoDropdown.AllTextContentsAsync().GetAwaiter()
-                .GetResult();
-            selectedTags.Should().BeEmpty();
         }
 
         [Then(@"User in on the '([^']*)' block")]

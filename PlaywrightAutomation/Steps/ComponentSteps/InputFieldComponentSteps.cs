@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
@@ -24,29 +22,30 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _position = position;
         }
 
-        [When(@"User clears input")]
-        public void WhenUserClearsInput()
+        [When(@"User clears input on '([^']*)' container")]
+        public void WhenUserClearsInputOnContainer(string container)
         {
-            _page.Component<Input>(new Properties { Parent = _page.Init<HomePage>().Container })
+            _page.Component<Input>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .CleanInputButton.ClickAsync().GetAwaiter().GetResult();
         }
 
-        [When(@"User set '([^']*)' text to '([^']*)' input")]
-        public void WhenUserSetTextToInput(string text, string input)
+        [When(@"User set '([^']*)' text to '([^']*)' input on '([^']*)' container")]
+        public void WhenUserSetTextToInputOnContainer(string text, string input, string container)
         {
             // TODO Move container name to step definition
-            _page.Component<Input>(input, new Properties { Parent = _page.Init<HomePage>().Container })
+            var parent = WebContainer.GetLocator(container);
+            _page.Component<Input>(input, new Properties { ParentSelector = parent })
                 .FillAsync(text).GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then(@"'([^']*)' text is displayed in '([^']*)' input")]
-        public void ThenTextIsDisplayedInInput(string text, string input)
+        [Then(@"'([^']*)' text is displayed in '([^']*)' input on '([^']*)' container")]
+        public void ThenTextIsDisplayedInInputOnContainer(string text, string input, string container)
         {
             // TODO Move container name to step definition
             var inputElement =
-                _page.Component<Input>(input, new Properties() { Parent = _page.Init<HomePage>().Container })
-                .ElementHandleAsync().GetAwaiter().GetResult();
+                _page.Component<Input>(input, new Properties() { ParentSelector = WebContainer.GetLocator(container) })
+                    .ElementHandleAsync().GetAwaiter().GetResult();
 
             _page.WaitForElementText(inputElement, text);
 

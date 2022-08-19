@@ -2,6 +2,7 @@
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
@@ -18,10 +19,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [When(@"User clicks on '([^']*)' button")]
-        public void WhenUserClicksOnButton(string button)
+        [When(@"User clicks on '([^']*)' button on '([^']*)' container")]
+        public void WhenUserClicksOnButtonOnContainer(string button, string container)
         {
-            _page.Component<Button>(button, new Properties { Parent = _page.Init<HomePage>().Container })
+            _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
