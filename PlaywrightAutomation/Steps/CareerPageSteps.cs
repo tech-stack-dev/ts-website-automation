@@ -3,6 +3,7 @@ using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Components.FilterListWrapper;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
@@ -80,18 +81,20 @@ namespace PlaywrightAutomation.Steps
             actualListNames.Should().IntersectWith(expectedListNames);
         }
 
-        [Then(@"Selected tags are displayed")]
-        public void ThenSelectedTagsAreDisplayed(Table table)
+        [Then(@"Selected tags are displayed as active in Filters list")]
+        public void ThenSelectedTagsAreDisplayedAsActiveInFiltersList(Table table)
         {
             var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
+            var parent = _page
+                .Component<ActiveTagsGroupWrapper>(new Properties { ParentSelector = WebContainer.GetLocator("CareerPage") });
+
             foreach (var name in tagsName)
             {
-                var removedStuff = name.RemoveSpaceAndSlash();
-                var tags = _page.Component<Tag>(removedStuff,
-                    new Properties { Parent = _page.Component<Tag>().ChosenTags });
-                var displayedSelectedTags = tags.IsVisibleAsync().GetAwaiter().GetResult();
-                displayedSelectedTags.Should().BeTrue();
+                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
+
+                var tagDisplayedState = tag.IsVisibleAsync().GetAwaiter().GetResult();
+                tagDisplayedState.Should().BeTrue();
             }
         }
 
@@ -99,6 +102,7 @@ namespace PlaywrightAutomation.Steps
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
             var tags = table.Rows.SelectMany(x => x.Values).ToList();
+
             var texts = _page.Component<Card>()
                 .DirectionTitle
                 .ElementHandlesAsync().GetAwaiter().GetResult()
@@ -110,8 +114,9 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then(@"Selected tags has correctly color")]
-        public void ThenSelectedTagsHasCorrectlyColor(Table table)
+        // TODO review this step
+        [Then(@"Selected tags has correct color")]
+        public void ThenSelectedTagsHasCorrectColor(Table table)
         {
             var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
@@ -126,34 +131,43 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
+        // TODO move to tags component steps
+        // TODO sight bar - > filter side bar
         [Then(@"Selected tags are displayed in '([^']*)' sight bar on '([^']*)' container")]
-        public void ThenSelectedTagsAreDisplayedInSightBarOnContainer(string sightBarName, string container, Table table)
+        public void ThenSelectedTagsAreDisplayedInSightBarOnContainer(string filterGroupHeader, string container, Table table)
         {
             var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
 
             var parent = _page
-                .Component<FilterGroupWrapper>(sightBarName, new Properties { ParentSelector = WebContainer.GetLocator(container) });
+                .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
 
             foreach (var name in tagsName)
             {
                 var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
-                tag.SelectedState(sightBarName).Should().BeTrue();
+
+                tag.SelectedState().Should().BeTrue();
             }
         }
 
-        [Then(@"Selected tags from '([^']*)' sight bar has correctly color")]
-        public void ThenSelectedTagsFromSightBarHasCorrectlyColor(string sightBarName, Table table)
+        // TODO move to tags component steps
+        // TODO sight bar - > filter side bar
+        [Then(@"Selected tags from '([^']*)' sight bar has correctly color on '([^']*)' container")]
+        public void ThenSelectedTagsFromSightBarHasCorrectlyColorOnContainer(string filterGroupHeader, string container, Table table)
         {
             var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var parent = _page
+                .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
 
             foreach (var name in tagsName)
             {
                 var removedStuff = name.RemoveSpaceAndSlash();
 
-                var tag = _page.Component<Tag>(removedStuff,
-                    new Properties { Parent = _page.Component<Tag>().SelectedTagsFromSightBar(sightBarName) });
-                var backgroundColor = LocatorExtensions.GetBackgroundColor(tag);
+                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
+
+                var backgroundColor = tag.GetBackgroundColor();
                 var expectedColor = ColorsConvertor.Converter("orange yellow");
+
                 backgroundColor.Should().Be(expectedColor);
             }
         }

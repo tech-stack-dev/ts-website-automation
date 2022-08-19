@@ -22,16 +22,16 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 	Then Search results equal to selected tag
 		| Tag                  |
 		| Software Development |
-	Then Selected tags are displayed
+	Then Selected tags are displayed as active in Filters list
 		| Tag                  |
 		| Software Development |
-	Then Selected tags has correctly color
+	Then Selected tags has correct color
 		| Tag                  |
 		| Software Development |
 	Then Selected tags are displayed in 'Direction' sight bar on 'CareerPage' container
 		| Tag                  |
 		| Software Development |
-	Then Selected tags from 'Direction' sight bar has correctly color
+	Then Selected tags from 'Direction' sight bar has correctly color on 'CareerPage' container
 		| Tag                  |
 		| Software Development |
 
@@ -43,16 +43,16 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 		| Tag     |
 		| Trainee |
 	When User clicks on 'Search' button
-	Then Selected tags are displayed
+	Then Selected tags are displayed as active in Filters list
 		| Tag     |
 		| Trainee |
-	Then Selected tags has correctly color
+	Then Selected tags has correct color
 		| Tag     |
 		| Trainee |
 	Then Selected tags are displayed in 'Seniority levels' sight bar on 'CareerPage' container
 		| Tag     |
 		| Trainee |
-	Then Selected tags from 'Seniority levels' sight bar has correctly color
+	Then Selected tags from 'Seniority levels' sight bar has correctly color on 'CareerPage' container
 		| Tag     |
 		| Trainee |
 

@@ -6,13 +6,11 @@ namespace PlaywrightAutomation.Helpers
     {
         public static string Converter(string colorName)
         {
-            switch (colorName.ToLower())
+            return colorName.ToLower() switch
             {
-                case "orange yellow":
-                    return "rgb(255, 198, 0)";
-                default:
-                    throw new Exception($"'{colorName}' color not found in convertor");
-            }
+                "orange yellow" => "rgb(255, 198, 0)",
+                _ => throw new Exception($"'{colorName}' color not found in convertor")
+            };
         }
     }
 }

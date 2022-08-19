@@ -1,6 +1,4 @@
-﻿using PlaywrightAutomation.Extensions;
-
-namespace PlaywrightAutomation.Components
+﻿namespace PlaywrightAutomation.Components
 {
     internal class FilterGroupWrapper : BaseWebComponent
     {

@@ -23,7 +23,7 @@ namespace PlaywrightAutomation.Components
             return sightBar;
         }
 
-        public bool SelectedState(string groupTitle)
+        public bool SelectedState()
         {
             var tagClass = Instance
                 .ElementHandleAsync().Result

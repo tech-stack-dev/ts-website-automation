@@ -8,5 +8,11 @@ namespace PlaywrightAutomation.Extensions
         {
             return element.GetAttributeAsync("value").GetAwaiter().GetResult();
         }
+
+        public static string GetBackgroundColor(this IElementHandle element)
+        {
+            return element.EvaluateAsync("element => getComputedStyle(element).backgroundColor")
+                .GetAwaiter().GetResult().Value.ToString();
+        }
     }
 }
