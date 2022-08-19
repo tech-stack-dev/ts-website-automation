@@ -104,13 +104,13 @@ namespace PlaywrightAutomation.Steps
         [Then(@"User in on the '([^']*)' block")]
         public void ThenUserInOnTheBlock(string blockName)
         {
-            var block = _page.Component<NavigationTabs>(blockName);
+            var tab = _page.Component<NavigationTabs>(blockName);
 
-            var displayedBlock = block.IsVisibleAsync().GetAwaiter().GetResult();
-            displayedBlock.Should().BeTrue();
+            var tabDisplayedState = tab.IsVisibleAsync().GetAwaiter().GetResult();
+            tabDisplayedState.Should().BeTrue();
 
-            var blockActiveStatus = block.IsActive;
-            blockActiveStatus.Should().BeTrue();
+            var tabActiveStatus = tab.IsActive;
+            tabActiveStatus.Should().BeTrue();
         }
     }
 }

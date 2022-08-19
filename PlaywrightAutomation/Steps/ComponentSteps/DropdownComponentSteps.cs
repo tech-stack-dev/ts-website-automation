@@ -47,14 +47,14 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             textInField.Should().Be(tag);
         }
 
-        [Then(@"Count of selected tags from '([^']*)' dropdown is correctly")]
-        public void ThenCountOfSelectedTagsFromIsCorrectly(string dropdown)
+        [Then(@"'([^']*)' tags are selected in '([^']*)' dropdown")]
+        public void ThenTagsAreSelectedInDropdown(int count, string dropdown)
         {
-            var selectedTags = _page.Component<Tag>().ActiveTagsIntoDropdown.CountAsync().GetAwaiter().GetResult();
-            var counterTags = int.Parse(_page.Component<Dropdown>(dropdown).ActiveTagsCounter.TextContentAsync()
-                .GetAwaiter()
-                .GetResult());
-            selectedTags.Should().Be(counterTags);
+            var parent = _page.Component<Dropdown>(dropdown).ItemsList;
+
+            var selectedTags = _page.Component<Tag>(new Properties() { Parent = parent }).SelectedTags();
+
+            selectedTags.Count().Should().Be(count);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace PlaywrightAutomation.Components
     {
         public ILocator ActiveTagsCounter => Instance.Locator("//div[contains(@class,'ActiveTagsCounter')]");
         public ILocator FiltersList => Instance.Locator("//div[contains(@class,'filters-list')]");
+        public ILocator ItemsList => Instance.Locator("//ul");
 
         public override string Construct()
         {

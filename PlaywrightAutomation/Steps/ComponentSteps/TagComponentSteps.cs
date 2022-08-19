@@ -16,6 +16,7 @@ using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.ComponentSteps
 {
+    [Binding]
     internal class TagComponentSteps : SpecFlowContext
     {
         private readonly IPage _page;
@@ -30,8 +31,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"All selected tags was cancel")]
         public void ThenAllSelectedTagsWasCancel()
         {
-            var selectedTags = _page.Component<Tag>().ActiveTagsIntoDropdown.AllTextContentsAsync().GetAwaiter()
-                .GetResult();
+            var selectedTags = _page.Component<Tag>().SelectedTags();
             selectedTags.Should().BeEmpty();
         }
 

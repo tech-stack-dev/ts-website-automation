@@ -10,7 +10,7 @@ Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                  |
 		| Software Development |
-	When User clicks on 'Search' button on 'HomePage' container 
+	When User clicks on 'Search' button on 'HeaderPage' container 
 	Then Search results equal to selected tag
 		| Tag                  |
 		| Software Development |
@@ -36,7 +36,7 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 		| Software Development |
 		| Office               |
 	When User clicks on 'Direction' dropdown
-	When User clicks on 'Search' button on 'HomePage' container
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results equal to selected tag
 		| Tag                  |
 		| Software Development |
@@ -57,7 +57,7 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 		| Tag                  |
 		| Software Development |
 		| Office               |
-	Then Count of selected tags from 'Direction' dropdown is correctly
+	Then '2' tags are selected in 'Direction' dropdown
 
 @Regression @TSWEB133
 Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
@@ -65,7 +65,7 @@ Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag          |
 		| Professional |
-	When User clicks on 'Search' button on 'HomePage' container
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag          |
 		| Professional |
@@ -108,4 +108,4 @@ Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
 		| Professional |
 		| Trainee      |
 		| Junior       |
-	Then Count of selected tags from 'SeniorityLevel' dropdown is correctly
+	Then '3' tags are selected in 'SeniorityLevel' dropdown

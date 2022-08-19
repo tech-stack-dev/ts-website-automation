@@ -6,18 +6,18 @@ Background:
 
 @Regession @TSWEB133
 Scenario: PageHasAMessageRelatedToNoResults
-	When User set 'wrongString' text to 'Search' input on 'HomePage' container 
-	When User clicks on 'Search' button on 'HomePage' container
+	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container 
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
 @Regression @TSWEB133
 Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromDirectionDropdown
-	When User set 'Back' text to 'Search' input on 'HomePage' container
+	When User set 'Back' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                  |
 		| Software Development |
-	When User clicks on 'Search' button on 'HomePage' container
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'Back'
 	Then Search results equal to selected tag
 		| Tag                  |
@@ -37,12 +37,12 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 
 @Regression @TSWEB133
 Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromSeniorityLevelDropdown
-	When User set 'Back' text to 'Search' input on 'HomePage' container
+	When User set 'Back' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag     |
 		| Trainee |
-	When User clicks on 'Search' button on 'HomePage' container
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag     |
 		| Trainee |
@@ -58,5 +58,5 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 
 @Regression @TSWEB133
 Scenario: SeackButtonRedirectsToTheSearchResultsFromTheJobsBlock
-	When User clicks on 'Search' button on 'HomePage' container
+	When User clicks on 'Search' button on 'HeaderPage' container
 	Then User in on the 'Jobs' block

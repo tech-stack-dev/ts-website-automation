@@ -1,35 +1,36 @@
 ﻿using Microsoft.Playwright;
 using PlaywrightAutomation.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PlaywrightAutomation.Components
 {
     public class Tag : BaseWebComponent
     {
-        public ILocator ChosenTags => Page.Locator("//div[contains(@class,'_FilterListWrapper')]//div[@class='chosen-tags']");
-
-        public ILocator ActiveTagsIntoDropdown =>
-            Page.Locator("//div[@class='tags-wrapper']//div[contains(@class,'active-tag')]");
-
         public override string Construct()
         {
             var selector = $"//div[contains(@data-id,'Tag-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
 
-        public ILocator SelectedTagsFromSightBar(string sightBarName = null)
-        {
-            var sightBar = Page.Locator("//div[contains(@class,'_FilterListWrapper')]//div[@class='Collapsible']",
-                new PageLocatorOptions { HasTextString = sightBarName });
-            return sightBar;
-        }
-
         public bool SelectedState()
         {
-            var tagClass = Instance
-                .ElementHandleAsync().Result
-                .GetAttributeAsync("class").Result;
+            return ElementSelectedState(Instance.ElementHandleAsync().Result);
+        }
 
-            return tagClass.Contains("active-tag");
+        public List<IElementHandle> SelectedTags()
+        {
+            var tagClass = Instance
+                .ElementHandlesAsync().Result
+                .Where(x => ElementSelectedState(x))
+                .ToList();
+
+            return tagClass;
+        }
+
+        private bool ElementSelectedState(IElementHandle element)
+        {
+            return element.GetAttributeAsync("class").Result.Contains("active-tag");
         }
     }
 }
