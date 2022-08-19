@@ -10,11 +10,11 @@ using static PlaywrightAutomation.Components.BaseWebComponent;
 namespace PlaywrightAutomation.Steps.ComponentSteps
 {
     [Binding]
-    internal class InputFieldComponentSteps : SpecFlowContext
+    internal class InputComponentSteps : SpecFlowContext
     {
         private readonly IPage _page;
 
-        public InputFieldComponentSteps(BrowserFactory browserFactory)
+        public InputComponentSteps(BrowserFactory browserFactory)
         {
             _page = browserFactory.Page;
         }
