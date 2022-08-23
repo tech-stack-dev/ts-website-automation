@@ -1,12 +1,18 @@
-﻿@retry(2)
-Feature: SearchBlock
+﻿Feature: SearchBlock
 
 Background:
 	Given User is on the career website
 
+@Regession @Not_Ready
+Scenario: COntentfullTest_TBD
+	When User creates new Career Description
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
+
+
 @Regession @TSWEB133
 Scenario: PageHasAMessageRelatedToNoResults
-	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container 
+	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
