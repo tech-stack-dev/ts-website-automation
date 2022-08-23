@@ -12,6 +12,7 @@
     <PackageReference Include="AutomationUtils" Version="1.1.91" />
     <PackageReference Include="BoDi" Version="1.5.0" />
     <PackageReference Include="ChoETL" Version="1.2.1.48" />
+    <PackageReference Include="contentful.csharp" Version="7.1.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
@@ -27,10 +28,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
