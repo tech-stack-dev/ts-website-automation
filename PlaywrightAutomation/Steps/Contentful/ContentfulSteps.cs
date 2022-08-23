@@ -18,16 +18,16 @@ namespace PlaywrightAutomation.Steps.Contentful
             _createdCareerDescriptions = createdCareerDescriptions;
         }
 
-        [When(@"User creates new Career Description")]
-        public void WhenUserCreatesNewCareerDescription(Table table)
+        [When(@"User creates and publish new Career Description")]
+        public void WhenUserCreatesAndPublishNewCareerDescription(Table table)
         {
             var careerDescriptions = table.CreateSet<CareerDescription>();
 
             foreach (var career in careerDescriptions)
             {
-                var id = _contentfulClient.CreateCareerDescription(career).Result;
+                var createdCareer = _contentfulClient.CreateCareerDescription(career).Result;
 
-                _createdCareerDescriptions.Value.Add(id);
+                _createdCareerDescriptions.Value.Add(createdCareer);
             }
         }
 

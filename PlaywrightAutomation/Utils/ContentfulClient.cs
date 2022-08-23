@@ -20,7 +20,9 @@ namespace PlaywrightAutomation.Utils
                 new ContentfulManagementClient(_httpClient, ContentfulProvider.ManagmentApiKey, ContentfulProvider.SpaceId);
         }
 
-        public async Task<string> CreateCareerDescription(CareerDescription careerDescription)
+        #region Career description
+
+        public async Task<CareerDescription> CreateCareerDescription(CareerDescription careerDescription)
         {
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
@@ -216,9 +218,21 @@ namespace PlaywrightAutomation.Utils
 
             var newEntry = await _client.CreateOrUpdateEntry(entry, contentTypeId: "careerDescription");
 
-            await _client.PublishEntry(careerDescription.Id, 1);
+            await _client.PublishEntry(careerDescription.Id, careerDescription.Version);
 
-            return careerDescription.Id;
+            return careerDescription;
         }
+
+        public async void UnpublishCareerDescription(CareerDescription careerDescription)
+        {
+            await _client.UnpublishEntry(careerDescription.Id, careerDescription.Version);
+        }
+
+        public async void DeleteCareerDescription(CareerDescription careerDescription)
+        {
+            await _client.DeleteEntry(careerDescription.Id, careerDescription.Version);
+        }
+
+        #endregion
     }
 }

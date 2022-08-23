@@ -5,6 +5,7 @@ namespace PlaywrightAutomation.Models.Contentful
     public class CareerDescription
     {
         public string Id { get; init; }
+        public int Version { get; set; }
 
         public string AboutTheProjectUs { get; set; }
         public string AboutTheProjectUa { get; set; }
@@ -32,6 +33,7 @@ namespace PlaywrightAutomation.Models.Contentful
         public CareerDescription()
         {
             Id = Guid.NewGuid().ToString("N");
+            Version = 1;
         }
     }
 }
