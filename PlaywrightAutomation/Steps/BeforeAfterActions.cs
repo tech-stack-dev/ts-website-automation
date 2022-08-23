@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -31,26 +32,28 @@ namespace PlaywrightAutomation.Steps
             var httpClient = new HttpClient();
             var client = new ContentfulManagementClient(httpClient, "CFPAT-6uzPJmOsnLeRqykPc4m0hrOeKs3DlEC1v53HbjOmLcE", "pr38pccqrbr6");
 
+            var objId = Guid.NewGuid().ToString("N");
+
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
-            entry.SystemProperties.Id = "careerDescription";
+            entry.SystemProperties.Id = objId;
 
             entry.Fields = new
             {
                 aboutTheProject = new Dictionary<string, string>()
                 {
-                    { "en-US", "AAAAAAA" },
-                    { "uk-UA", "BBBBBBB"}
+                    { "en-US", "VDO_US" },
+                    { "uk-UA", "VDO_UK"}
                 },
                 aboutTheRole = new Dictionary<string, string>()
                 {
-                    { "en-US", "AAAAAAA" },
-                    { "uk-UA", "BBBBBBB"}
+                    { "en-US", "VDO_UK" },
+                    { "uk-UA", "VDO_UK"}
                 },
                 title = new Dictionary<string, string>()
                 {
-                    { "en-US", "AAAAAAA" },
-                    { "uk-UA", "BBBBBBB"}
+                    { "en-US", "VDO_UK" },
+                    { "uk-UA", "VDO_UK"}
                 },
                 youWill = new Dictionary<string, dynamic>()
                 {
@@ -234,11 +237,13 @@ namespace PlaywrightAutomation.Steps
                 },
                 slug = new Dictionary<string, string>()
                 {
-                    { "en-US", "Test_Slug" }
+                    { "en-US", "Test_Slug2" }
                 },
             };
 
             var newEntry = await client.CreateOrUpdateEntry(entry, contentTypeId: "careerDescription");
+
+            await client.PublishEntry(objId, 1);
 
             _browserFactory.PlaywrightInstance = await Playwright.CreateAsync();
             _browserFactory.InitLocalBrowser();
