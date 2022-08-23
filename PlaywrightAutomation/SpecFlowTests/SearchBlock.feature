@@ -4,7 +4,7 @@ Background:
 	Given User is on the career website
 
 @Regession @Not_Ready
-Scenario: COntentfullTest_TBD
+Scenario: ContentfullTest_TBD
 	When User creates new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
