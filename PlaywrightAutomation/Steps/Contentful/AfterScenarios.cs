@@ -11,15 +11,17 @@ namespace PlaywrightAutomation.Steps.Contentful
     {
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedCareerDescription _createdCareerDescriptions;
+        private readonly CreatedCareer _createdCareer;
 
-        public AfterScenarios(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions)
+        public AfterScenarios(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
+            _createdCareer = createdCareer;
         }
 
         [AfterScenario("Cleanup")]
-        public void UnpublishAndDeleteCreatedCareerDescriptions()
+        public void UnpublishAndDeleteCreatedCareerDescriptionsAndCareer()
         {
             if (!_createdCareerDescriptions.Value.Any())
                 return;
@@ -42,6 +44,30 @@ namespace PlaywrightAutomation.Steps.Contentful
                 catch
                 {
                     Logger.Write($"Error deleting '{career.TitleUs}' career", Logger.LogLevel.Warning);
+                }
+            }
+
+            if (!_createdCareer.Value.Any())
+                return;
+
+            foreach (var career in _createdCareer.Value)
+            {
+                try
+                {
+                    _contentfulClient.UnpublishCareer(career);
+                }
+                catch
+                {
+                    Logger.Write($"Error unpublishing '{career.NameUs}' career", Logger.LogLevel.Warning);
+                }
+
+                try
+                {
+                    _contentfulClient.DeleteCareer(career);
+                }
+                catch
+                {
+                    Logger.Write($"Error deleting '{career.NameUs}' career", Logger.LogLevel.Warning);
                 }
             }
         }

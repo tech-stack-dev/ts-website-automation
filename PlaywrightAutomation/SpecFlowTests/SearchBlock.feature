@@ -1,16 +1,17 @@
-﻿#@retry(2)
+﻿@retry(2)
 Feature: SearchBlock
 
 Background:
 	Given User is on the career website
 
-@Regession @Not_Ready 
+@Regession @Not_Ready @Cleanup
 Scenario: ContentfullTest_TBD
+	When User creates and publish new Career Description
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
 	When User creates new Career
-	#When User creates and publish new Career Description
-	#	| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
-	#	| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
-
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 
 @Regession @TSWEB133
 Scenario: PageHasAMessageRelatedToNoResults

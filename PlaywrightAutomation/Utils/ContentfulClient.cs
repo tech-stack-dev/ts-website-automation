@@ -5,6 +5,7 @@ using PlaywrightAutomation.Providers;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using PlaywrightAutomation.RuntimeVariables;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -12,9 +13,11 @@ namespace PlaywrightAutomation.Utils
     {
         private readonly HttpClient _httpClient;
         private readonly ContentfulManagementClient _client;
+        private readonly CareerDescriptionId _careerDescriptionId;
 
-        public ContentfulClient()
+        public ContentfulClient(CareerDescriptionId careerDescriptionId)
         {
+            _careerDescriptionId = careerDescriptionId;
             _httpClient = new HttpClient();
             _client =
                 new ContentfulManagementClient(_httpClient, ContentfulProvider.ManagmentApiKey, ContentfulProvider.SpaceId);
@@ -27,6 +30,7 @@ namespace PlaywrightAutomation.Utils
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
             entry.SystemProperties.Id = careerDescription.Id;
+            _careerDescriptionId.Value = careerDescription.Id;
 
             entry.Fields = new
             {
@@ -37,8 +41,8 @@ namespace PlaywrightAutomation.Utils
                 },
                 aboutTheRole = new Dictionary<string, string>()
                 {
-                    { "en-US", careerDescription.AboutTheProjectUs },
-                    { "uk-UA", careerDescription.AboutTheProjectUa }
+                    { "en-US", careerDescription.AboutTheRoleUs },
+                    { "uk-UA", careerDescription.AboutTheRoleUa }
                 },
                 title = new Dictionary<string, string>()
                 {
@@ -231,6 +235,51 @@ namespace PlaywrightAutomation.Utils
         public async void DeleteCareerDescription(CareerDescription careerDescription)
         {
             await _client.DeleteEntry(careerDescription.Id, careerDescription.Version);
+        }
+
+        #endregion
+
+        #region Career
+
+        public async Task<Career> CreateCareer(Career career)
+        {
+            var entry = new Entry<dynamic>();
+            entry.SystemProperties = new SystemProperties();
+            entry.SystemProperties.Id = career.Id;
+
+            entry.Fields = new
+            {
+                name = new Dictionary<string, string>()
+                {
+                    { "en-US", career.NameUs },
+                    { "uk-UA", career.NameUa }
+                },
+                careerDescription = new Dictionary<string, dynamic>()
+                {
+                    { "en-US",  new { sys = new { type = career.Type, linkType = career.LinkType, id = _careerDescriptionId.Value } } }
+                },
+                description = new Dictionary<string, string>()
+                {
+                    { "en-US", career.DescriptionUs },
+                    { "uk-UA", career.DescriptionUa }
+                }
+            };
+
+            var newEntry = await _client.CreateOrUpdateEntry(entry, contentTypeId: "career");
+            
+            await _client.PublishEntry(career.Id, career.Version);
+
+            return career;
+        }
+
+        public async void UnpublishCareer(Career career)
+        {
+            await _client.UnpublishEntry(career.Id, career.Version);
+        }
+
+        public async void DeleteCareer(Career career)
+        {
+            await _client.DeleteEntry(career.Id, career.Version);
         }
 
         #endregion
