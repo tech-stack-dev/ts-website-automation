@@ -7,18 +7,18 @@ using AutomationUtils.Utils;
 namespace PlaywrightAutomation.Steps.Contentful
 {
     [Binding]
-    public class AfterScenarios : SpecFlowContext
+    public class CareerDescriptionAfterScenarios : SpecFlowContext
     {
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedCareerDescription _createdCareerDescriptions;
 
-        public AfterScenarios(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions)
+        public CareerDescriptionAfterScenarios(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
         }
 
-        [AfterScenario("Cleanup")]
+        [AfterScenario("Cleanup", Order = 10)]
         public void UnpublishAndDeleteCreatedCareerDescriptions()
         {
             if (!_createdCareerDescriptions.Value.Any())
