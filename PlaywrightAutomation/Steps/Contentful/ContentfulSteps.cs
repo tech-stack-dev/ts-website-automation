@@ -1,5 +1,6 @@
 ﻿using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
@@ -21,14 +22,16 @@ namespace PlaywrightAutomation.Steps.Contentful
             _createdCareer = createdCareer;
         }
 
-        [When(@"User creates new Career")]
-        public void WhenUserCreatesNewCareer(Table table)
+        [When(@"User creates new Career with '([^']*)' career description")]
+        public void WhenUserCreatesNewCareerWithCareerDescription(string careerDescriptionTitle, Table table)
         {
             var career = table.CreateSet<Career>();
+            var careerDescription = _createdCareerDescriptions
+                .Value.First(x => x.TitleUs.Equals(careerDescriptionTitle));
 
             foreach (var careerJob in career)
             {
-                var createdCareer = _contentfulClient.CreateCareer(careerJob).Result;
+                var createdCareer = _contentfulClient.CreateCareer(careerJob, careerDescription).Result;
 
                 _createdCareer.Value.Add(createdCareer);
             }

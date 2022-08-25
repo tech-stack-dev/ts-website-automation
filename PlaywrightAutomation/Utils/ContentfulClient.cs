@@ -5,7 +5,6 @@ using PlaywrightAutomation.Providers;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using PlaywrightAutomation.RuntimeVariables;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -13,11 +12,9 @@ namespace PlaywrightAutomation.Utils
     {
         private readonly HttpClient _httpClient;
         private readonly ContentfulManagementClient _client;
-        private readonly CareerDescriptionId _careerDescriptionId;
 
-        public ContentfulClient(CareerDescriptionId careerDescriptionId)
+        public ContentfulClient()
         {
-            _careerDescriptionId = careerDescriptionId;
             _httpClient = new HttpClient();
             _client =
                 new ContentfulManagementClient(_httpClient, ContentfulProvider.ManagmentApiKey, ContentfulProvider.SpaceId);
@@ -30,7 +27,6 @@ namespace PlaywrightAutomation.Utils
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
             entry.SystemProperties.Id = careerDescription.Id;
-            _careerDescriptionId.Value = careerDescription.Id;
 
             entry.Fields = new
             {
@@ -241,7 +237,7 @@ namespace PlaywrightAutomation.Utils
 
         #region Career
 
-        public async Task<Career> CreateCareer(Career career)
+        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription)
         {
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
@@ -256,7 +252,15 @@ namespace PlaywrightAutomation.Utils
                 },
                 careerDescription = new Dictionary<string, dynamic>()
                 {
-                    { "en-US",  new { sys = new { type = career.Type, linkType = career.LinkType, id = _careerDescriptionId.Value } } }
+                    { "en-US",
+                        new {
+                            sys = new {
+                                type = career.Type,
+                                linkType = career.LinkType,
+                                id = careerDescription.Id
+                            }
+                        }
+                    }
                 },
                 description = new Dictionary<string, string>()
                 {
@@ -266,7 +270,7 @@ namespace PlaywrightAutomation.Utils
             };
 
             var newEntry = await _client.CreateOrUpdateEntry(entry, contentTypeId: "career");
-            
+
             await _client.PublishEntry(career.Id, career.Version);
 
             return career;
