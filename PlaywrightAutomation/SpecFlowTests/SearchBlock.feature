@@ -1,15 +1,15 @@
-﻿@retry(2)
+﻿#@retry(2)
 Feature: SearchBlock
 
 Background:
 	Given User is on the career website
 
-@Regession @Not_Ready @Cleanup
+@Regession @Not_Ready 
 Scenario: ContentfullTest_TBD
 	When User creates new Career
-	When User creates and publish new Career Description
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
+	#When User creates and publish new Career Description
+	#	| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | SlugUs     |
+	#	| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TestSlugUs |
 
 
 @Regession @TSWEB133

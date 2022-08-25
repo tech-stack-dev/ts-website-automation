@@ -9,6 +9,7 @@ using TechTalk.SpecFlow.Assist;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
 using Table = TechTalk.SpecFlow.Table;
+using System;
 
 namespace PlaywrightAutomation.Steps.Contentful
 {
@@ -24,6 +25,39 @@ namespace PlaywrightAutomation.Steps.Contentful
             _createdCareerDescriptions = createdCareerDescriptions;
         }
 
+        [When(@"User creates new Career")]
+        public void WhenUserCreatesNewCareer()
+        {
+            var httpClient = new HttpClient();
+            var client = new ContentfulManagementClient(httpClient, ContentfulProvider.ManagmentApiKey,
+                ContentfulProvider.SpaceId);
+
+            var entry = new Entry<dynamic>();
+            entry.SystemProperties = new SystemProperties();
+            entry.SystemProperties.Id = Guid.NewGuid().ToString("N");
+            entry.SystemProperties.Version = 10;
+
+            entry.Fields = new
+            {
+                name = new Dictionary<string, string>()
+                {
+                    { "en-US", "TestCareer" },
+                    { "uk-UA", "TestUA" }
+                },
+                careerDescription = new Dictionary<string, dynamic>()
+                {
+                    { "en-US",  new { sys = new { type = "Link", linkType = "Entry", id = "dquTR2FgqylJuz5qE4zZc" } } }
+                },
+                description = new Dictionary<string, string>()
+                {
+                    { "en-US", "Small items to make you life or home complete." },
+                    { "uk-UA", "TestUA" }
+                }
+            };
+
+            var newEntry = client.CreateOrUpdateEntry(entry, contentTypeId: "career").GetAwaiter().GetResult();
+        }
+
         [When(@"User creates and publish new Career Description")]
         public void WhenUserCreatesAndPublishNewCareerDescription(Table table)
         {
@@ -35,65 +69,6 @@ namespace PlaywrightAutomation.Steps.Contentful
 
                 _createdCareerDescriptions.Value.Add(createdCareer);
             }
-        }
-
-        [When(@"User creates new Career")]
-        public void WhenUserCreatesNewCareer()
-        {
-            var httpClient = new HttpClient();
-            var client = new ContentfulManagementClient(httpClient, ContentfulProvider.ManagmentApiKey,
-                ContentfulProvider.SpaceId);
-
-            var entry = new Entry<dynamic>();
-            entry.SystemProperties = new SystemProperties();
-            entry.SystemProperties.Id = "TestCareer";
-
-            /*entry.Fields = new
-            {
-                name = new Dictionary<string, string>()
-                {
-                    { "en-US", "TestCareer" },
-                    { "uk-UA", "TestUA" }
-                },
-                careerDescription = new Dictionary<string, dynamic>()
-                {
-                    { "en-US", new { sys = new List<object>() {new {sys = new List<object>() {new { type = "Link", linkType = "Entry", id = "dquTR2FgqylJuz5qE4zZc" } } } }}}
-                },
-                description = new Dictionary<string, string>()
-                {
-                    { "en-US", "Small items to make you life or home complete." },
-                    { "uk-UA", "TestUA" }
-                }
-            };*/
-
-            entry.Fields = new
-            {
-                name = new Dictionary<string, string>()
-                {
-                    { "en-US", "TestCareer" },
-                    { "uk-UA", "TestUA" }
-                },
-                careerDescription = new Dictionary<string, dynamic>()
-                {
-                    { "en-US", new {
-                        sys = new List<dynamic>()
-                        {
-                            new {
-                                type = "Link",
-                                linkType= "Entry",
-                                id = "dquTR2FgqylJuz5qE4zZc"
-                                }
-                        }, }
-                    }
-                },
-                description = new Dictionary<string, string>()
-                {
-                    { "en-US", "Small items to make you life or home complete." },
-                    { "uk-UA", "TestUA" }
-                }
-            };
-
-            var newEntry = client.CreateOrUpdateEntry(entry, contentTypeId: "career").GetAwaiter().GetResult();
         }
     }
 }
