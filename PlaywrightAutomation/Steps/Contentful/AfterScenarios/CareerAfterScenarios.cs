@@ -18,7 +18,7 @@ namespace PlaywrightAutomation.Steps.Contentful
             _createdCareer = createdCareer;
         }
 
-        [AfterScenario("Cleanup")]
+        [AfterScenario("Cleanup", Order = 5)]
         public void UnpublishAndDeleteCreatedCareer()
         {
             if (!_createdCareer.Value.Any())
