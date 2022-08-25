@@ -210,6 +210,10 @@ namespace PlaywrightAutomation.Utils
                           nodeType = "document" }
                     }
                 },
+                technologyStack = new Dictionary<string, string>()
+                {
+                    { "en-US", careerDescription.TechnologyStackUs }
+                },
                 slug = new Dictionary<string, string>()
                 {
                     { "en-US", careerDescription.SlugUs }

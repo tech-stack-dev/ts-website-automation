@@ -27,7 +27,7 @@ namespace PlaywrightAutomation.Models.Contentful
 
         public string WeAreUs { get; set; }
         public string WeAreUa { get; set; }
-
+        public string TechnologyStackUs { get; set; }
         public string SlugUs { get; set; }
 
         public CareerDescription()
