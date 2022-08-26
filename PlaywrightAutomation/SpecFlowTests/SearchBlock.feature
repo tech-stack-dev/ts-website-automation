@@ -6,10 +6,13 @@ Background:
 
 @Regession @Not_Ready @Cleanup
 Scenario: ContentfullTest_TBD
+	When User creates tag
+		| Name     |
+		| TestTags |
 	When User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs     |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUs |
-	When User creates new Career with 'TitleUs' career description
+	When User creates new Career with 'TitleUs' career description and with 'TestTags' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 

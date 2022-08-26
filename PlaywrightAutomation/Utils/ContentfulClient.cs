@@ -5,6 +5,7 @@ using PlaywrightAutomation.Providers;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Contentful.Core.Models.Management;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -241,7 +242,7 @@ namespace PlaywrightAutomation.Utils
 
         #region Career
 
-        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription)
+        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription, TagInContentful tag)
         {
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
@@ -272,6 +273,11 @@ namespace PlaywrightAutomation.Utils
                     { "uk-UA", career.DescriptionUa }
                 }
             };
+            
+            entry.Metadata = new ContentfulMetadata()
+            {
+                Tags = new List<Reference> { new Reference(SystemLinkTypes.Tag, tag.Id) }
+            };
 
             var newEntry = await _client.CreateOrUpdateEntry(entry, contentTypeId: "career");
 
@@ -288,6 +294,21 @@ namespace PlaywrightAutomation.Utils
         public async void DeleteCareer(Career career)
         {
             await _client.DeleteEntry(career.Id, career.Version);
+        }
+
+        #endregion
+
+        #region Tag
+
+        public async Task<TagInContentful> CreateTag(TagInContentful tag)
+        {
+            await _client.CreateContentTag(tag.Name, tag.Id, true);
+            return tag;
+        }
+
+        public async void DeleteTag(TagInContentful tag)
+        {
+            await _client.DeleteContentTag(tag.Id, tag.Version);
         }
 
         #endregion
