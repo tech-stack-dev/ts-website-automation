@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutomationUtils.Extensions;
+using System;
+using System.ComponentModel;
 
 namespace PlaywrightAutomation.Models.Contentful
 {
@@ -8,10 +10,21 @@ namespace PlaywrightAutomation.Models.Contentful
         public int Version { get; set;}
         public string Id { get; set;}
 
-        public ContentfulTag()
+        // TagPrefix 
+        public enum TagPrefix
         {
-            // Id = Guid.NewGuid().ToString("N");
-            Id = "direction_testTag";
+            [Description("direction")]
+            Direction,
+            [Description("seniority")]
+            Seniority,
+            [Description("stack")]
+            Stack
+        }
+
+        public ContentfulTag(TagPrefix prefix)
+        {
+            var random = Guid.NewGuid().ToString("N");
+            Id = $"{prefix.GetValue()}_{random}";
             Version = 1;
         }
     }

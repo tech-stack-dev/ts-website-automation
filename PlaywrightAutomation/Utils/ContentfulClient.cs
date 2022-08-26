@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Contentful.Core.Models.Management;
+using static PlaywrightAutomation.Models.Contentful.ContentfulTag;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -300,8 +301,9 @@ namespace PlaywrightAutomation.Utils
 
         #region Tag
 
-        public async Task<ContentfulTag> CreateTag(ContentfulTag tag)
+        public async Task<ContentfulTag> CreateTag(ContentfulTag tag, TagPrefix prefix)
         {
+            var a = new ContentfulTag(prefix);
             await _client.CreateContentTag(tag.Name, tag.Id, true);
             return tag;
         }
