@@ -5,6 +5,7 @@ using PlaywrightAutomation.Providers;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Contentful.Core.Models.Management;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -227,12 +228,12 @@ namespace PlaywrightAutomation.Utils
             return careerDescription;
         }
 
-        public async void UnpublishCareerDescription(CareerDescription careerDescription)
+        public async Task UnpublishCareerDescription(CareerDescription careerDescription)
         {
             await _client.UnpublishEntry(careerDescription.Id, careerDescription.Version);
         }
 
-        public async void DeleteCareerDescription(CareerDescription careerDescription)
+        public async Task DeleteCareerDescription(CareerDescription careerDescription)
         {
             await _client.DeleteEntry(careerDescription.Id, careerDescription.Version);
         }
@@ -241,7 +242,7 @@ namespace PlaywrightAutomation.Utils
 
         #region Career
 
-        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription)
+        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription, List<ContentfulTag> tags)
         {
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
@@ -273,6 +274,17 @@ namespace PlaywrightAutomation.Utils
                 }
             };
 
+            var metadata = new List<Reference>();
+            foreach (var tag in tags)
+            {
+                metadata.Add(new Reference(SystemLinkTypes.Tag, tag.Id));
+            }
+
+            entry.Metadata = new ContentfulMetadata()
+            {
+                Tags = metadata
+            };
+
             var newEntry = await _client.CreateOrUpdateEntry(entry, contentTypeId: "career");
 
             await _client.PublishEntry(career.Id, career.Version);
@@ -280,14 +292,29 @@ namespace PlaywrightAutomation.Utils
             return career;
         }
 
-        public async void UnpublishCareer(Career career)
+        public async Task UnpublishCareer(Career career)
         {
             await _client.UnpublishEntry(career.Id, career.Version);
         }
 
-        public async void DeleteCareer(Career career)
+        public async Task DeleteCareer(Career career)
         {
             await _client.DeleteEntry(career.Id, career.Version);
+        }
+
+        #endregion
+
+        #region Tag
+
+        public async Task<ContentfulTag> CreateTag(ContentfulTag tag)
+        {
+            await _client.CreateContentTag(tag.Name, tag.Id, true);
+            return tag;
+        }
+
+        public async Task DeleteTag(ContentfulTag tag)
+        {
+            await _client.DeleteContentTag(tag.Id, tag.Version);
         }
 
         #endregion

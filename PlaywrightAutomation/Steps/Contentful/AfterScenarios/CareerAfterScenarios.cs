@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using System.Linq;
 using AutomationUtils.Utils;
+using System;
 
 namespace PlaywrightAutomation.Steps.Contentful
 {
@@ -28,20 +29,20 @@ namespace PlaywrightAutomation.Steps.Contentful
             {
                 try
                 {
-                    _contentfulClient.UnpublishCareer(career);
+                    _contentfulClient.UnpublishCareer(career).GetAwaiter().GetResult();
                 }
-                catch
+                catch (Exception e)
                 {
-                    Logger.Write($"Error unpublishing '{career.NameUs}' career", Logger.LogLevel.Warning);
+                    Logger.Write($"Error unpublishing '{career.NameUs}' career: {e}", Logger.LogLevel.Warning);
                 }
 
                 try
                 {
-                    _contentfulClient.DeleteCareer(career);
+                    _contentfulClient.DeleteCareer(career).GetAwaiter().GetResult();
                 }
-                catch
+                catch (Exception e)
                 {
-                    Logger.Write($"Error deleting '{career.NameUs}' career", Logger.LogLevel.Warning);
+                    Logger.Write($"Error deleting '{career.NameUs}' career: {e}", Logger.LogLevel.Warning);
                 }
             }
         }

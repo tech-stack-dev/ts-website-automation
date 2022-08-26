@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using System.Linq;
 using AutomationUtils.Utils;
+using System;
 
 namespace PlaywrightAutomation.Steps.Contentful
 {
@@ -18,30 +19,30 @@ namespace PlaywrightAutomation.Steps.Contentful
             _createdCareerDescriptions = createdCareerDescriptions;
         }
 
-        [AfterScenario("Cleanup", Order = 9)]
+        [AfterScenario("Cleanup", Order = 10)]
         public void UnpublishAndDeleteCreatedCareerDescriptions()
         {
             if (!_createdCareerDescriptions.Value.Any())
                 return;
 
-            foreach (var career in _createdCareerDescriptions.Value)
+            foreach (var careerDescription in _createdCareerDescriptions.Value)
             {
                 try
                 {
-                    _contentfulClient.UnpublishCareerDescription(career);
+                    _contentfulClient.UnpublishCareerDescription(careerDescription).GetAwaiter().GetResult();
                 }
-                catch
+                catch (Exception e)
                 {
-                    Logger.Write($"Error unpublishing '{career.TitleUs}' career", Logger.LogLevel.Warning);
+                    Logger.Write($"Error unpublishing '{careerDescription.TitleUs}' career: {e}", Logger.LogLevel.Warning);
                 }
 
                 try
                 {
-                    _contentfulClient.DeleteCareerDescription(career);
+                    _contentfulClient.DeleteCareerDescription(careerDescription).GetAwaiter().GetResult();
                 }
-                catch
+                catch (Exception e)
                 {
-                    Logger.Write($"Error deleting '{career.TitleUs}' career", Logger.LogLevel.Warning);
+                    Logger.Write($"Error deleting '{careerDescription.TitleUs}' career: {e}", Logger.LogLevel.Warning);
                 }
             }
         }
