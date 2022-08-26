@@ -14,14 +14,14 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedCareerDescription _createdCareerDescriptions;
         private readonly CreatedCareer _createdCareer;
-        private readonly CreatedTags _createdTag;
+        private readonly CreatedTags _createdTags;
 
-        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer, CreatedTags createdTag)
+        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer, CreatedTags createdTags)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
             _createdCareer = createdCareer;
-            _createdTag = createdTag;
+            _createdTags = createdTags;
         }
 
         [When(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
@@ -32,7 +32,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
                 .Value.First(x => x.TitleUs.Equals(careerDescriptionTitle));
 
             var tagNamesList = tagNames.Split(',').ToList();
-            var tags = _createdTag.Value.Where(x => tagNamesList.Contains(x.Name)).ToList();
+            var tags = _createdTags.Value.Where(x => tagNamesList.Contains(x.Name)).ToList();
 
             foreach (var careerJob in career)
             {

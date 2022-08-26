@@ -12,7 +12,7 @@ namespace PlaywrightAutomation.Models.Contentful
         public string Name { get; set; }
         public int Version { get; set; }
 
-        // TODO Add description why we need Prefix 
+        // TagPrefix is used to define the environment of the tag
         public enum TagPrefix
         {
             [Description("direction")]

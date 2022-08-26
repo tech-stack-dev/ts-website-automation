@@ -11,21 +11,21 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
     public class TagAfterScenarios
     {
         private readonly ContentfulClient _contentfulClient;
-        private readonly CreatedTags _createdTag;
+        private readonly CreatedTags _createdTags;
 
-        public TagAfterScenarios(ContentfulClient contentfulClient, CreatedTags createdTag)
+        public TagAfterScenarios(ContentfulClient contentfulClient, CreatedTags createdTags)
         {
             _contentfulClient = contentfulClient;
-            _createdTag = createdTag;
+            _createdTags = createdTags;
         }
 
         [AfterScenario("Cleanup", Order = 15)]
         public void UnpublishAndDeleteCreatedTags()
         {
-            if (!_createdTag.Value.Any())
+            if (!_createdTags.Value.Any())
                 return;
 
-            foreach (var tag in _createdTag.Value)
+            foreach (var tag in _createdTags.Value)
             {
                 try
                 {

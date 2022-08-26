@@ -10,12 +10,12 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
     internal class TagSteps
     {
         private readonly ContentfulClient _contentfulClient;
-        private readonly CreatedTags _createdTag;
+        private readonly CreatedTags _createdTags;
 
-        public TagSteps(ContentfulClient contentfulClient, CreatedTags createdTag)
+        public TagSteps(ContentfulClient contentfulClient, CreatedTags createdTags)
         {
             _contentfulClient = contentfulClient;
-            _createdTag = createdTag;
+            _createdTags = createdTags;
         }
 
         [When(@"User creates tag")]
@@ -27,7 +27,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
             {
                 var createdTag = _contentfulClient.CreateTag(tagJobs).Result;
 
-                _createdTag.Value.Add(createdTag);
+                _createdTags.Value.Add(createdTag);
             }
         }
     }
