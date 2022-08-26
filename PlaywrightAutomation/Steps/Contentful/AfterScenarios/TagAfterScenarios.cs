@@ -19,7 +19,7 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
         }
 
         [AfterScenario("Cleanup", Order = 15)]
-        public void UnpublishAndDeleteCreatedCareerDescriptions()
+        public void UnpublishAndDeleteCreatedTags()
         {
             if (!_createdTag.Value.Any())
                 return;
