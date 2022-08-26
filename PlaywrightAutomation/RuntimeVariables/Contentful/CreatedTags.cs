@@ -3,10 +3,10 @@ using PlaywrightAutomation.Models.Contentful;
 
 namespace PlaywrightAutomation.RuntimeVariables.Contentful
 {
-    public class CreatedTag
+    public class CreatedTags
     {
-        public List<TagInContentful> Value { get; set; }
+        public List<ContentfulTag> Value { get; set; }
 
-        public CreatedTag() => Value = new List<TagInContentful>();
+        public CreatedTags() => Value = new List<ContentfulTag>();
     }
 }

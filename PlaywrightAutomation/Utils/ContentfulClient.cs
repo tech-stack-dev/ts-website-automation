@@ -242,7 +242,7 @@ namespace PlaywrightAutomation.Utils
 
         #region Career
 
-        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription, TagInContentful tag)
+        public async Task<Career> CreateCareer(Career career, CareerDescription careerDescription, ContentfulTag tag)
         {
             var entry = new Entry<dynamic>();
             entry.SystemProperties = new SystemProperties();
@@ -300,13 +300,13 @@ namespace PlaywrightAutomation.Utils
 
         #region Tag
 
-        public async Task<TagInContentful> CreateTag(TagInContentful tag)
+        public async Task<ContentfulTag> CreateTag(ContentfulTag tag)
         {
             await _client.CreateContentTag(tag.Name, tag.Id, true);
             return tag;
         }
 
-        public async void DeleteTag(TagInContentful tag)
+        public async void DeleteTag(ContentfulTag tag)
         {
             await _client.DeleteContentTag(tag.Id, tag.Version);
         }

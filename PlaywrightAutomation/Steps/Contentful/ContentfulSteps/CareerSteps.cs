@@ -14,9 +14,9 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedCareerDescription _createdCareerDescriptions;
         private readonly CreatedCareer _createdCareer;
-        private readonly CreatedTag _createdTag;
+        private readonly CreatedTags _createdTag;
 
-        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer, CreatedTag createdTag)
+        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer, CreatedTags createdTag)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
@@ -24,8 +24,8 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
             _createdTag = createdTag;
         }
 
-        [When(@"User creates new Career with '([^']*)' career description and with '([^']*)' tag")]
-        public void WhenUserCreatesNewCareerWithCareerDescriptionAndWithTag(string careerDescriptionTitle, string tagName, Table table)
+        [When(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
+        public void WhenUserCreatesNewCareerWithCareerDescriptionAndTag(string careerDescriptionTitle, string tagName, Table table)
         {
             var career = table.CreateSet<Career>();
             var careerDescription = _createdCareerDescriptions

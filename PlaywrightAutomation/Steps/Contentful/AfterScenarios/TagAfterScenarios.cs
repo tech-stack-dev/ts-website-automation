@@ -10,9 +10,9 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
     public class TagAfterScenarios
     {
         private readonly ContentfulClient _contentfulClient;
-        private readonly CreatedTag _createdTag;
+        private readonly CreatedTags _createdTag;
 
-        public TagAfterScenarios(ContentfulClient contentfulClient, CreatedTag createdTag)
+        public TagAfterScenarios(ContentfulClient contentfulClient, CreatedTags createdTag)
         {
             _contentfulClient = contentfulClient;
             _createdTag = createdTag;
@@ -32,7 +32,7 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
                 }
                 catch
                 {
-                    Logger.Write($"Error deleting '{tag.Name}' career", Logger.LogLevel.Warning);
+                    Logger.Write($"Error deleting '{tag.Name}' tag", Logger.LogLevel.Warning);
                 }
             }
         }
