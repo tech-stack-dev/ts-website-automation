@@ -10,7 +10,8 @@ namespace PlaywrightAutomation.Models.Contentful
 
         public ContentfulTag()
         {
-            Id = Guid.NewGuid().ToString("N");
+            // Id = Guid.NewGuid().ToString("N");
+            Id = "direction_testTag";
             Version = 1;
         }
     }
