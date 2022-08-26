@@ -6,11 +6,13 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class ContentfulTag
     {
-        public string Name { get; set;}
-        public int Version { get; set;}
-        public string Id { get; set;}
+        public string Id { get; set; }
+        public TagPrefix Prefix { get; set; }
 
-        // TagPrefix 
+        public string Name { get; set; }
+        public int Version { get; set; }
+
+        // TODO Add description why we need Prefix 
         public enum TagPrefix
         {
             [Description("direction")]
@@ -21,10 +23,10 @@ namespace PlaywrightAutomation.Models.Contentful
             Stack
         }
 
-        public ContentfulTag(TagPrefix prefix)
+        public ContentfulTag()
         {
             var random = Guid.NewGuid().ToString("N");
-            Id = $"{prefix.GetValue()}_{random}";
+            Id = $"{Prefix.GetValue()}_{random}";
             Version = 1;
         }
     }

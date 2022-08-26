@@ -1,6 +1,7 @@
 ﻿using AutomationUtils.Utils;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -28,11 +29,11 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
             {
                 try
                 {
-                    _contentfulClient.DeleteTag(tag);
+                    _contentfulClient.DeleteTag(tag).GetAwaiter().GetResult();
                 }
-                catch
+                catch (Exception e)
                 {
-                    Logger.Write($"Error deleting '{tag.Name}' tag", Logger.LogLevel.Warning);
+                    Logger.Write($"Error deleting '{tag.Name}' tag: {e}", Logger.LogLevel.Warning);
                 }
             }
         }
