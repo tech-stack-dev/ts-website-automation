@@ -1,23 +1,41 @@
 ﻿@retry(2)
 Feature: SearchFieldInCareerPage
 
-Background:
-	Given User is on the career website
-
-@Regression @TSWEB133
+@Regression @TSWEB133 @Cleanup
 Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
-	When User set 'Back-End Engineer' text to 'Search' input on 'HeaderPage' container
+	When User creates tag
+		| Prefix    | Name                              |
+		| Direction | TestingDirectionOfSearch_Тестовий |
+	When User creates and publish new Career Description
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionOfSearch |
+	When User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User is on the career website
+	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Back-End Engineer'
+	Then Search results contain 'TestUs'
 
-@Regresiion @TSWEB133
+@Regresiion @TSWEB133 @Cleanup
 Scenario: SearchResultsContainsPartOfTheNameVacancy
-	When User set 'Back' text to 'Search' input on 'HeaderPage' container
+	When User creates tag
+		| Prefix    | Name                                |
+		| Direction | TestingDirectionPartOfText_Тестовий |
+	When User creates and publish new Career Description
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                        |
+		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionPartOfText |
+	When User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User is on the career website
+	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Back'
+	Then Search results contain 'Test'
 
 @Regression @TSWEB133
 Scenario: PageDisplayedVacanciesAfterDeleteTextFromSearchField
+	Given User is on the career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'HeaderPage' container
 	When User clears input on 'HeaderPage' container

@@ -25,9 +25,15 @@ namespace PlaywrightAutomation.Models.Contentful
 
         public ContentfulTag()
         {
+            
+        }
+
+        public ContentfulTag TestMethod()
+        {
             var random = Guid.NewGuid().ToString("N");
             Id = $"{Prefix.GetValue()}_{random}";
             Version = 1;
+            return this;
         }
     }
 }

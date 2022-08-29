@@ -36,7 +36,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks on '([^']*)' dropdown")]
         public void WhenUserClicksOnDropdown(string dropdown)
         {
-            _page.Component<Dropdown>(dropdown).ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Dropdown>(dropdown).FiltersList.ClickAsync().GetAwaiter().GetResult();
         }
 
         [Then(@"'([^']*)' tag name displayed in '([^']*)' dropdown field")]

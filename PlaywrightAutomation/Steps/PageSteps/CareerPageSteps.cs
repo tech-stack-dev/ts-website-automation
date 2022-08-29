@@ -37,7 +37,7 @@ namespace PlaywrightAutomation.Steps
 
             foreach (var roleText in texts)
             {
-                roleText.Should().Contain(text);
+                roleText.ToLower().Should().Contain(text.ToLower());
             }
         }
         
