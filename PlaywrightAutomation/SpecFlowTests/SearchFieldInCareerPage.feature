@@ -2,7 +2,7 @@
 Feature: SearchFieldInCareerPage
 
 @Regression @TSWEB133 @Cleanup
-Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
+Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionOfSearch_Тестовий |
@@ -33,7 +33,7 @@ Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
 	Then Search results contain 'TestUs'
 
 @Regresiion @TSWEB133 @Cleanup
-Scenario: SearchResultsContainsPartOfTheNameVacancy
+Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	Given User creates tag
 		| Prefix    | Name                                |
 		| Direction | TestingDirectionPartOfText_Тестовий |
@@ -64,7 +64,7 @@ Scenario: SearchResultsContainsPartOfTheNameVacancy
 	Then Search results contain 'Test'
 
 @Regression @TSWEB133
-Scenario: PageDisplayedVacanciesAfterDeleteTextFromSearchField
+Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInput
 	Given User is on the career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'HeaderPage' container

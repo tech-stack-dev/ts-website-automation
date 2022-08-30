@@ -2,14 +2,14 @@
 Feature: SearchBlock
 
 @Regession @TSWEB133
-Scenario: PageHasAMessageRelatedToNoResults
+Scenario: CheckThatUserSeesMessageAboutFailSearchResults
 	Given User is on the career website
 	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromDirectionDropdown
+Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelectedTagFromDirectionDropdown
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionWithText_Тестовий |
@@ -59,7 +59,7 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 		| TestingDirectionWithText |
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromSeniorityLevelDropdown
+Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelectedTagFromSeniorityLevelDropdown
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
