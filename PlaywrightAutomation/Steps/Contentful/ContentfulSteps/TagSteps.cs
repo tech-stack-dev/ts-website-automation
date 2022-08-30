@@ -25,7 +25,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
 
             foreach (var tagJobs in tag)
             {
-                var createdTag = _contentfulClient.CreateTag(tagJobs.CreateIdForTag()).Result;
+                var createdTag = _contentfulClient.CreateTag(tagJobs).Result;
 
                 _createdTags.Value.Add(createdTag);
             }

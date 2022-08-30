@@ -7,10 +7,22 @@ namespace PlaywrightAutomation.Models.Contentful
     public class ContentfulTag
     {
         public string Id { get; set; }
-        public TagPrefix Prefix { get; set; }
+
+        private TagPrefix _prefix;
+        public TagPrefix Prefix
+        {
+            get => _prefix;
+            set
+            {
+                _prefix = value;
+
+                var random = Guid.NewGuid().ToString("N");
+                Id = $"{_prefix.GetValue()}_{random}";
+            }
+        }
 
         public string Name { get; set; }
-        public int Version { get; set; }
+        public int Version { get; set; } = 1;
 
         // TagPrefix is used to define the environment of the tag
         public enum TagPrefix
@@ -21,14 +33,6 @@ namespace PlaywrightAutomation.Models.Contentful
             Seniority,
             [Description("stack")]
             Stack
-        }
-
-        public ContentfulTag CreateIdForTag()
-        {
-            var random = Guid.NewGuid().ToString("N");
-            Id = $"{Prefix.GetValue()}_{random}";
-            Version = 1;
-            return this;
         }
     }
 }
