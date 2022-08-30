@@ -18,8 +18,8 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
             _createdTags = createdTags;
         }
 
-        [When(@"User creates tag")]
-        public void WhenUserCreatesTag(Table table)
+        [Given(@"User creates tag")]
+        public void GivenUserCreatesTag(Table table)
         {
             var tag = table.CreateSet<ContentfulTag>();
 

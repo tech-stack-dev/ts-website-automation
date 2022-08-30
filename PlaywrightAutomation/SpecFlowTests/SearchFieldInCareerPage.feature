@@ -1,23 +1,71 @@
 ﻿@retry(2)
 Feature: SearchFieldInCareerPage
 
-Background:
-	Given User is on the career website
-
-@Regression @TSWEB133
+@Regression @TSWEB133 @Cleanup
 Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
-	When User set 'Back-End Engineer' text to 'Search' input on 'HeaderPage' container
+	Given User creates tag
+		| Prefix    | Name                              |
+		| Direction | TestingDirectionOfSearch_Тестовий |
+	Given User creates and publish new Career Description
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User is on the career website
+	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Back-End Engineer'
+	Then Search results contain 'TestUs'
 
-@Regresiion @TSWEB133
+@Regresiion @TSWEB133 @Cleanup
 Scenario: SearchResultsContainsPartOfTheNameVacancy
-	When User set 'Back' text to 'Search' input on 'HeaderPage' container
+	Given User creates tag
+		| Prefix    | Name                                |
+		| Direction | TestingDirectionPartOfText_Тестовий |
+	Given User creates and publish new Career Description
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User is on the career website
+	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Back'
+	Then Search results contain 'Test'
 
 @Regression @TSWEB133
 Scenario: PageDisplayedVacanciesAfterDeleteTextFromSearchField
+	Given User is on the career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'HeaderPage' container
 	When User clears input on 'HeaderPage' container
