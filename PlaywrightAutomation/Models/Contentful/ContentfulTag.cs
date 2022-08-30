@@ -6,7 +6,7 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class ContentfulTag
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
         private TagPrefix _prefix;
         public TagPrefix Prefix
