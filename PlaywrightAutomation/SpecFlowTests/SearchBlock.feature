@@ -14,8 +14,23 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionWithText_Тестовий |
 	Given User creates and publish new Career Description
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionWithText |
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
@@ -49,8 +64,23 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
 	Given User creates and publish new Career Description
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsSeniorityWithText |
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
 	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
