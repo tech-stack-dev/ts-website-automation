@@ -105,7 +105,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| TestingSeniorityWithText |
 
 @Regression @TSWEB133
-Scenario: SeackButtonRedirectsToTheSearchResultsFromTheJobsBlock
+Scenario: CheckThatUserRedirectsToJobsBlockWhenClickingSearchButton
 	Given User is on the career website
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then User in on the 'Jobs' tab
