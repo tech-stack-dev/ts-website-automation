@@ -10,13 +10,13 @@ Scenario: PageHasAMessageRelatedToNoResults
 
 @Regression @TSWEB133 @Cleanup
 Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromDirectionDropdown
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionWithText_Тестовий |
-	When User creates and publish new Career Description
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionWithText |
-	When User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
@@ -45,13 +45,13 @@ Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVa
 
 @Regression @TSWEB133 @Cleanup
 Scenario: ThePageIsDisplayedInfoCorrectlyAfterEnteringThePartOfTheNameExistingVacancyAndSelectingTagFromSeniorityLevelDropdown
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
-	When User creates and publish new Career Description
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsSeniorityWithText |
-	When User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website

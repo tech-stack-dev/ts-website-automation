@@ -3,13 +3,13 @@ Feature: SearchFieldInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionOfSearch_Тестовий |
-	When User creates and publish new Career Description
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                      |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionOfSearch |
-	When User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
@@ -19,13 +19,13 @@ Scenario: SearchResultsEqualsToEnteredTextInSearchByRoleField
 
 @Regresiion @TSWEB133 @Cleanup
 Scenario: SearchResultsContainsPartOfTheNameVacancy
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                                |
 		| Direction | TestingDirectionPartOfText_Тестовий |
-	When User creates and publish new Career Description
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                        |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionPartOfText |
-	When User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website

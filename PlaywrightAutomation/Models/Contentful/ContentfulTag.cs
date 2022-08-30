@@ -23,12 +23,7 @@ namespace PlaywrightAutomation.Models.Contentful
             Stack
         }
 
-        public ContentfulTag()
-        {
-            
-        }
-
-        public ContentfulTag TestMethod()
+        public ContentfulTag CreateIdForTag()
         {
             var random = Guid.NewGuid().ToString("N");
             Id = $"{Prefix.GetValue()}_{random}";

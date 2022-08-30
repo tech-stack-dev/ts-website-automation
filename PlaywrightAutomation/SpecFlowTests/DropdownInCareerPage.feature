@@ -3,13 +3,28 @@ Feature: DropdownInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                             |
 		| Direction | TestingDirectionOnlyOne_Тестовий |
-	When User creates and publish new Career Description
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                     |
-		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionOnlyOne |
-	When User creates new Career with 'TitleUs' career description and 'TestingDirectionOnlyOne_Тестовий' tag
+	Given User creates and publish new Career Description
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
@@ -37,56 +52,56 @@ Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
 
 @Regression @TSWEB133 @Cleanup
 Scenario: AllSelectedTagsAreDisplayedOnThePage
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                        |
-		| Direction | 1TestingDirection_Тестовий  |
-		| Direction | 2TestingDirection_2Тестовий |
-	When User creates and publish new Career Description
+		| Direction | TestingDirection1_Тестовий1 |
+		| Direction | TestingDirection2_Тестовий2 |
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                     |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsDirectionSeveral |
-	When User creates new Career with 'TitleUs' career description and '1TestingDirection_Тестовий,2TestingDirection_2Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingDirection1_Тестовий1,TestingDirection2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	When User clicks on 'Direction' dropdown
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results equal to selected tag
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
 		| Tag               |
-		| 1TestingDirection |
-		| 2TestingDirection |
+		| TestingDirection1 |
+		| TestingDirection2 |
 	Then '2' tags are selected in 'Direction' dropdown
 	Then Number of selected tags equals to '2'
 
 @Regression @TSWEB133 @Cleanup
 Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
-	When User creates tag
+	Given User creates tag
 		| Prefix    | Name                             |
 		| Seniority | TestingSeniorityOnlyOne_Тестовий |
-	When User creates and publish new Career Description
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                     |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsSeniorityOnlyOne |
-	When User creates new Career with 'TitleUs' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
@@ -110,44 +125,44 @@ Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
 
 @Regression @TSWEB133 @Cleanup
 Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
-	When User creates tag
-		| Prefix    | Name                          |
-		| Seniority | 1 Testing Seniority_Тестовий  |
-		| Seniority | 2 Testing Seniority_2Тестовий |
-		| Seniority | 3 Testing Seniority_3Тестовий |
-	When User creates and publish new Career Description
+	Given User creates tag
+		| Prefix    | Name                           |
+		| Seniority | Testing Seniority 1_Тестовий 1 |
+		| Seniority | Testing Seniority 2_Тестовий 2 |
+		| Seniority | Testing Seniority 3_Тестовий 3 |
+	Given User creates and publish new Career Description
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStack   | SlugUs                     |
 		| AboutTheProjectUs | AboutTheProjectUa | AboutTheRoleUs | AboutTheRoleUa | TitleUs | TitleUa | YouWillUs | YouWillUa | YouAreUs | YouAreUa | WeWillUs | WeWillUa | WeAreUs | WeAreUa | TechnologyStackUs | TestSlugUsSenioritySeveral |
-	When User creates new Career with 'TitleUs' career description and '1 Testing Seniority_Тестовий,2 Testing Seniority_2Тестовий,3 Testing Seniority_3Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'Testing Seniority 1_Тестовий 1,Testing Seniority 2_Тестовий 2,Testing Seniority 3_Тестовий 3' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                 |
-		| 1 Testing Seniority |
-		| 2 Testing Seniority |
-		| 3 Testing Seniority |
+		| Testing Seniority 1 |
+		| Testing Seniority 2 |
+		| Testing Seniority 3 |
 	When User clicks on 'SeniorityLevel' dropdown
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag                 |
-		| 1 Testing Seniority |
-		| 2 Testing Seniority |
-		| 3 Testing Seniority |
+		| Testing Seniority 1 |
+		| Testing Seniority 2 |
+		| Testing Seniority 3 |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag                 |
-		| 1 Testing Seniority |
-		| 2 Testing Seniority |
-		| 3 Testing Seniority |
+		| Testing Seniority 1 |
+		| Testing Seniority 2 |
+		| Testing Seniority 3 |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                 |
-		| 1 Testing Seniority |
-		| 2 Testing Seniority |
-		| 3 Testing Seniority |
+		| Testing Seniority 1 |
+		| Testing Seniority 2 |
+		| Testing Seniority 3 |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
 		| Tag                 |
-		| 1 Testing Seniority |
-		| 2 Testing Seniority |
-		| 3 Testing Seniority |
+		| Testing Seniority 1 |
+		| Testing Seniority 2 |
+		| Testing Seniority 3 |
 	Then '3' tags are selected in 'SeniorityLevel' dropdown
 	Then Number of selected tags equals to '3'

@@ -24,8 +24,8 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
             _createdTags = createdTags;
         }
 
-        [When(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
-        public void WhenUserCreatesNewCareerWithCareerDescriptionAndTag(string careerDescriptionTitle, string tagNames, Table table)
+        [Given(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
+        public void GivenUserCreatesNewCareerWithCareerDescriptionAndTag(string careerDescriptionTitle, string tagNames, Table table)
         {
             var career = table.CreateSet<Career>();
             var careerDescription = _createdCareerDescriptions

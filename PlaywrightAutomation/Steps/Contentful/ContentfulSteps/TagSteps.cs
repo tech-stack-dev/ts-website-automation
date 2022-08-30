@@ -18,14 +18,14 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
             _createdTags = createdTags;
         }
 
-        [When(@"User creates tag")]
-        public void WhenUserCreatesTag(Table table)
+        [Given(@"User creates tag")]
+        public void GivenUserCreatesTag(Table table)
         {
             var tag = table.CreateSet<ContentfulTag>();
 
             foreach (var tagJobs in tag)
             {
-                var createdTag = _contentfulClient.CreateTag(tagJobs.TestMethod()).Result;
+                var createdTag = _contentfulClient.CreateTag(tagJobs.CreateIdForTag()).Result;
 
                 _createdTags.Value.Add(createdTag);
             }
