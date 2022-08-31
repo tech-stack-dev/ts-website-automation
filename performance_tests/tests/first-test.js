@@ -1,28 +1,33 @@
-import http from 'k6/http';
 import { sleep } from 'k6';
-import { URL_PROVIDER } from '../providers/url-provider.js';
-import { getBack, getToAboutUs, getToCareer, getToContactUs, getToReviews } from '../steps/career-steps.js';
+import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToReviews, getToWebsite } from '../steps/career-steps.js';
 
 export let options = {
 	insecureSkipTLSVerify: true,
 	noConnectionReuse: false,
-	vus: 800,
-	duration: '60s'
+	vus: 700,
+	duration: '40s'
 };
 
-export default function () {
-	http.get(URL_PROVIDER.webApp);
+export function setup() {
+	const buildId = getBuildId();
+	console.log(buildId);
+	return { buildId: buildId }
+  }
 
-	getToCareer("back-end-engineer-new-v6");
-	getBack();
+export default function (data) {
+	console.log(data.buildId);
+	getToWebsite();
 
-	getToCareer("ios-software-developers-v10");
+	getToCareer("back-end-engineer-new-v6", data.buildId);
+	getBack(data.buildId);
 
-	getToContactUs();
+	getToCareer("ios-software-developers-v10", data.buildId);
 
-	getToAboutUs();
+	getToContactUs(data.buildId);
 
-	getToReviews();
+	getToAboutUs(data.buildId);
+
+	getToReviews(data.buildId);
 
 	sleep(1);
 };
