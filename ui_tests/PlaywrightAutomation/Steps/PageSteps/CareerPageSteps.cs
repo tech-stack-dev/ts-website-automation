@@ -21,8 +21,7 @@ namespace PlaywrightAutomation.Steps
             _page = browserFactory.Page;
             _position = position;
         }
-
-        // TODO remove once beforeScanarios will be implemented
+        
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
