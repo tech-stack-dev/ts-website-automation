@@ -2,7 +2,7 @@
 Feature: DropdownInCareerPage
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
+Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Direction | TestingDirectionOnlyOne_Тестовий |
@@ -51,7 +51,7 @@ Scenario: ThePageDisplaysVacanciesSelectedFromDirectionDropdown
 		| Testing Direction Only One |
 
 @Regression @TSWEB133 @Cleanup
-Scenario: AllSelectedTagsAreDisplayedOnThePage
+Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	Given User creates tag
 		| Prefix    | Name                        |
 		| Direction | TestingDirection1_Тестовий1 |
@@ -109,7 +109,7 @@ Scenario: AllSelectedTagsAreDisplayedOnThePage
 	Then Number of selected tags equals to '2'
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
+Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Seniority | TestingSeniorityOnlyOne_Тестовий |
@@ -154,7 +154,7 @@ Scenario: ThePageDisplayedSelectedTagFromSeniorityLevelDropdown
 		| TestingSeniorityOnlyOne |
 
 @Regression @TSWEB133 @Cleanup
-Scenario: AllSelectedTagsDisplayedOnThePageAndTagsCounterIsCorrectly
+Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 	Given User creates tag
 		| Prefix    | Name                           |
 		| Seniority | Testing Seniority 1_Тестовий 1 |

@@ -2,7 +2,7 @@
 Feature: DropdownInCareerPagePart2
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ResetButtonCancelAllSelectedTags
+Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton
 	Given User creates tag
 		| Prefix    | Name                               |
 		| Direction | TestingResetDirection 1_Тестовий 1 |
@@ -38,7 +38,7 @@ Scenario: ResetButtonCancelAllSelectedTags
 	Then All selected tags was cancel
 
 @Regression @TSWEB133 @Cleanup
-Scenario: ResetButtonCancelAllSelectedTagsFromSeniorityLevelDropdown
+Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
 	Given User creates tag
 		| Prefix    | Name                               |
 		| Seniority | TestingResetSeniority 1_Тестовий 1 |
