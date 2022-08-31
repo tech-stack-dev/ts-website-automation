@@ -1,7 +1,11 @@
-﻿namespace PlaywrightAutomation.Components
+﻿using Microsoft.Playwright;
+
+namespace PlaywrightAutomation.Components
 {
     internal class FilterGroupWrapper : BaseWebComponent
     {
+        public ILocator FilterHeader => Instance.Locator("//div[contains(@class,'styledComponents__FilterGroupHeader')]");
+
         public override string Construct()
         {
             // TODO Ask Front-End team to add data-id
