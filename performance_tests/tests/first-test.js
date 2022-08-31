@@ -4,18 +4,16 @@ import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToRe
 export let options = {
 	insecureSkipTLSVerify: true,
 	noConnectionReuse: false,
-	vus: 700,
+	vus: 500,
 	duration: '40s'
 };
 
 export function setup() {
 	const buildId = getBuildId();
-	console.log(buildId);
 	return { buildId: buildId }
   }
 
 export default function (data) {
-	console.log(data.buildId);
 	getToWebsite();
 
 	getToCareer("back-end-engineer-new-v6", data.buildId);

@@ -15,28 +15,28 @@ export function getToWebsite(){
     http.get(URL_PROVIDER.webApp);
 }
 
-export function getToCareer(carrer, BUILD_ID){
-    const url = URL_PROVIDER.webApp + '/_next/data/' + BUILD_ID + '/en-US/' + carrer + '.json';
+export function getToCareer(carrer, buildId){
+    const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/${carrer}.json`;
     http.get(url);
 };
 
 // navaiget back from career page
-export function getBack(BUILD_ID){
-    const url = URL_PROVIDER.webApp + '/_next/data/' + BUILD_ID + '/en-US.json';
+export function getBack(buildId){
+    const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US.json`;
     http.get(url);
 };
 
-export function getToContactUs(BUILD_ID){
-    const url = URL_PROVIDER.webApp + '/_next/data/' + BUILD_ID + '/en-US/contact-us.json';
+export function getToContactUs(buildId){
+    const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/contact-us.json`;
     http.get(url);
 };
 
-export function getToAboutUs(BUILD_ID){
-    const url = URL_PROVIDER.webApp + '/_next/data/' + BUILD_ID + '/en-US/about-us.json';
+export function getToAboutUs(buildId){
+    const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/about-us.json`;
     http.get(url);
 };
 
-export function getToReviews(BUILD_ID){
-    const url = URL_PROVIDER.webApp + '/_next/data/' + BUILD_ID + '/en-US/reviews.json';
+export function getToReviews(buildId){
+    const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/reviews.json`;
     http.get(url);
 };
