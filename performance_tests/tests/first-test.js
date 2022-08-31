@@ -5,7 +5,7 @@ export let options = {
 	insecureSkipTLSVerify: true,
 	noConnectionReuse: false,
 	vus: 500,
-	duration: '40s'
+	duration: '10s'
 };
 
 export function setup() {
@@ -16,10 +16,10 @@ export function setup() {
 export default function (data) {
 	getToWebsite();
 
-	getToCareer("back-end-engineer-new-v6", data.buildId);
+	getToCareer('back-end-engineer-new-v6', 'Back-End Engineer new', data.buildId);
 	getBack(data.buildId);
 
-	getToCareer("ios-software-developers-v10", data.buildId);
+	getToCareer('ios-software-developers-v10', 'iOS Software Developer', data.buildId);
 
 	getToContactUs(data.buildId);
 
