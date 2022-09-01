@@ -4,8 +4,8 @@ Feature: TechnologyStackBlock
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates tag
-		| Prefix    | Name                                 |
-		| Stack | TestingSideStackOnlyOne_Тестовий |
+		| Prefix | Name                             |
+		| Stack  | TestingSideStackOnlyOne_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -29,27 +29,27 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
-		| Tag                         |
+		| Tag                     |
 		| TestingSideStackOnlyOne |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                             |
+		| Tag                         |
 		| Testing Side Stack Only One |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                             |
+		| Tag                         |
 		| Testing Side Stack Only One |
 	Then Selected tags are displayed in 'Technology stack' filter side bar on 'CareerPage' container
-		| Tag                             |
+		| Tag                         |
 		| Testing Side Stack Only One |
 	Then Selected tags from 'Technology stack' filter side bar has correctly color on 'CareerPage' container
-		| Tag                             |
+		| Tag                         |
 		| Testing Side Stack Only One |
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Given User creates tag
-		| Prefix    | Name                            |
-		| Stack | TestingSideStack1_Тестовий1 |
-		| Stack | TestingSideStack2_Тестовий2 |
+		| Prefix | Name                        |
+		| Stack  | TestingSideStack1_Тестовий1 |
+		| Stack  | TestingSideStack2_Тестовий2 |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -73,23 +73,23 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
-		| Tag                   |
+		| Tag               |
 		| TestingSideStack1 |
 		| TestingSideStack2 |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                   |
+		| Tag               |
 		| TestingSideStack1 |
 		| TestingSideStack2 |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                   |
+		| Tag               |
 		| TestingSideStack1 |
 		| TestingSideStack2 |
 	Then Selected tags are displayed in 'Technology stack' filter side bar on 'CareerPage' container
-		| Tag                   |
+		| Tag               |
 		| TestingSideStack1 |
 		| TestingSideStack2 |
 	Then Selected tags from 'Technology stack' filter side bar has correctly color on 'CareerPage' container
-		| Tag                   |
+		| Tag               |
 		| TestingSideStack1 |
 		| TestingSideStack2 |
 	Then '2' tags are selected in 'Technology stack' sider bar on 'CareerPage' container
@@ -99,9 +99,9 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	Given User creates tag
-		| Prefix    | Name                                  |
-		| Stack | TestingResetSideStack1_Тестовий 1 |
-		| Stack | TestingResetSideStack2_Тестовий 2 |
+		| Prefix | Name                              |
+		| Stack  | TestingResetSideStack1_Тестовий 1 |
+		| Stack  | TestingResetSideStack2_Тестовий 2 |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -125,7 +125,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
-		| Tag                           |
+		| Tag                       |
 		| Testing Reset Side Stack1 |
 		| Testing Reset Side Stack2 |
 	When User clicks on 'Reset' button on 'CareerPage' container
