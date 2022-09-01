@@ -2,7 +2,7 @@
 Feature: SearchField
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCareerBlock
+Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Direction | TestingSideDirectionOfSearch_Тестовий |
@@ -32,7 +32,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCaree
 	Then Search results contain 'TestUs'
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchFieldInCareerBlock
+Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
 	Given User creates tag
 		| Prefix    | Name                                    |
 		| Direction | TestingSideDirectionPartOfText_Тестовий |
@@ -79,7 +79,7 @@ Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchInputI
 @Regession @TSWEB145
 Scenario: CheckThatAllDropdownsAreExpandedByDefault
 	Given User is on the career website
-	Then Dropdowns are Expanded on 'CareerPage' container
+	Then Dropdowns are expanded on 'CareerPage' container
 		| Dropdown         |
 		| Direction        |
 		| Seniority levels |

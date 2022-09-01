@@ -74,7 +74,7 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [Then(@"Dropdowns are Expanded on '([^']*)' container")]
+        [Then(@"Dropdowns are expanded on '([^']*)' container")]
         public void ThenDropdownsAreExpandedOnContainer(string container, Table table)
         {
             var dropdowns = table.Rows.SelectMany(x => x.Values).ToList();
