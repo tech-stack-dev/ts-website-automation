@@ -1,11 +1,11 @@
 ﻿@retry(2)
-Feature: SeniorityLevelBlock
+Feature: TechnologyStackBlock
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                                 |
-		| Seniority | TestingSideSeniorityOnlyOne_Тестовий |
+		| Stack | TestingSideStackOnlyOne_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -24,32 +24,32 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideSeniorityOnlyOne_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideStackOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
-	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
+	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                         |
-		| TestingSideSeniorityOnlyOne |
+		| TestingSideStackOnlyOne |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Testing Side Stack Only One |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag                             |
-		| Testing Side Seniority Only One |
-	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
+		| Testing Side Stack Only One |
+	Then Selected tags are displayed in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                             |
-		| Testing Side Seniority Only One |
-	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
+		| Testing Side Stack Only One |
+	Then Selected tags from 'Technology stack' filter side bar has correctly color on 'CareerPage' container
 		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Testing Side Stack Only One |
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                            |
-		| Seniority | TestingSideSeniority1_Тестовий1 |
-		| Seniority | TestingSideSeniority2_Тестовий2 |
+		| Stack | TestingSideStack1_Тестовий1 |
+		| Stack | TestingSideStack2_Тестовий2 |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -68,40 +68,40 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideSeniority1_Тестовий1,TestingSideSeniority2_Тестовий2' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideStack1_Тестовий1,TestingSideStack2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
-	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
+	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| TestingSideStack1 |
+		| TestingSideStack2 |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| TestingSideStack1 |
+		| TestingSideStack2 |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
-	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
+		| TestingSideStack1 |
+		| TestingSideStack2 |
+	Then Selected tags are displayed in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
-	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
+		| TestingSideStack1 |
+		| TestingSideStack2 |
+	Then Selected tags from 'Technology stack' filter side bar has correctly color on 'CareerPage' container
 		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
-	Then '2' tags are selected in 'Seniority levels' sider bar on 'CareerPage' container
-	When User clicks on header 'Seniority levels' filter sider bar on 'CareerPage' container
-	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
+		| TestingSideStack1 |
+		| TestingSideStack2 |
+	Then '2' tags are selected in 'Technology stack' sider bar on 'CareerPage' container
+	When User clicks on header 'Technology stack' filter sider bar on 'CareerPage' container
+	Then Number of selected tags in 'Technology stack' side bar on 'CareerPage' container equals to '2'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	Given User creates tag
 		| Prefix    | Name                                  |
-		| Seniority | TestingResetSideSeniority1_Тестовий 1 |
-		| Seniority | TestingResetSideSeniority2_Тестовий 2 |
+		| Stack | TestingResetSideStack1_Тестовий 1 |
+		| Stack | TestingResetSideStack2_Тестовий 2 |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -120,13 +120,13 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideSeniority1_Тестовий 1,TestingResetSideSeniority2_Тестовий 2' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideStack1_Тестовий 1,TestingResetSideStack2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
-	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
+	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                           |
-		| Testing Reset Side Seniority1 |
-		| Testing Reset Side Seniority2 |
+		| Testing Reset Side Stack1 |
+		| Testing Reset Side Stack2 |
 	When User clicks on 'Reset' button on 'CareerPage' container
 	Then All selected tags was cancel
