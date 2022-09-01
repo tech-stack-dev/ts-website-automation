@@ -5,7 +5,7 @@ Feature: SearchField
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCareerBlock
 	Given User creates tag
 		| Prefix    | Name                              |
-		| Direction | TestingDirectionOfSearch_Тестовий |
+		| Direction | TestingSideDirectionOfSearch_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -24,7 +24,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCaree
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionOfSearch_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
@@ -35,7 +35,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCaree
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchFieldInCareerBlock
 	Given User creates tag
 		| Prefix    | Name                                |
-		| Direction | TestingDirectionPartOfText_Тестовий |
+		| Direction | TestingSideDirectionPartOfText_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
@@ -54,7 +54,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionPartOfText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
