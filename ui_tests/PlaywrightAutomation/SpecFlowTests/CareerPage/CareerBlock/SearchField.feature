@@ -62,7 +62,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	Then Search results contain 'Test'
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInputInCareerBlock
+Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock
 	Given User is on the career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'CareerHeaderPage' container
@@ -71,7 +71,7 @@ Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInputInCareerBlock
 	Then The page has not changed after removed terms from search field
 
 @Regession @TSWEB145
-Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchFieldInCareerBlock
+Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchInputInCareerBlock
 	Given User is on the career website
 	When User set 'wrongString' text to 'Search' input on 'CareerHeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed

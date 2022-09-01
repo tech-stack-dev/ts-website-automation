@@ -1,8 +1,8 @@
 ﻿@retry(2)
-Feature: TagsSideBar
+Feature: TagsSideSideBar
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	Given User creates tag
 		| Prefix | Name                           |
 		| Tag    | TestingSideTagOnlyOne_Тестовий |
@@ -45,7 +45,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| Testing Side Tag Only One |
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 	Given User creates tag
 		| Prefix | Name                      |
 		| Tag    | TestingSideTag1_Тестовий1 |
@@ -97,7 +97,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Then Number of selected tags in 'Tags' side bar on 'CareerPage' container equals to '2'
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
+Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 	Given User creates tag
 		| Prefix | Name                            |
 		| Tag    | TestingResetSideTag1_Тестовий 1 |

@@ -1,8 +1,8 @@
 ﻿@retry(2)
-Feature: TechnologyStackBlock
+Feature: TechnologyStackSideBar
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 	Given User creates tag
 		| Prefix | Name                             |
 		| Stack  | TestingSideStackOnlyOne_Тестовий |
@@ -45,7 +45,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| Testing Side Stack Only One |
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 	Given User creates tag
 		| Prefix | Name                        |
 		| Stack  | TestingSideStack1_Тестовий1 |
@@ -97,7 +97,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Then Number of selected tags in 'Technology stack' side bar on 'CareerPage' container equals to '2'
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
+Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 	Given User creates tag
 		| Prefix | Name                              |
 		| Stack  | TestingResetSideStack1_Тестовий 1 |

@@ -1,8 +1,8 @@
 ﻿@retry(2)
-Feature: SeniorityLevelBlock
+Feature: SeniorityLevelSideBar
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                                 |
 		| Seniority | TestingSideSeniorityOnlyOne_Тестовий |
@@ -45,7 +45,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| Testing Side Seniority Only One |
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
+Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                            |
 		| Seniority | TestingSideSeniority1_Тестовий1 |
@@ -97,7 +97,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
 
 @Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
+Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Seniority | TestingResetSideSeniority1_Тестовий 1 |
