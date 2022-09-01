@@ -4,7 +4,7 @@ Feature: SearchField
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCareerBlock
 	Given User creates tag
-		| Prefix    | Name                              |
+		| Prefix    | Name                                  |
 		| Direction | TestingSideDirectionOfSearch_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
@@ -34,7 +34,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchFieldInCaree
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchFieldInCareerBlock
 	Given User creates tag
-		| Prefix    | Name                                |
+		| Prefix    | Name                                    |
 		| Direction | TestingSideDirectionPartOfText_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
@@ -75,3 +75,13 @@ Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchFieldI
 	Given User is on the career website
 	When User set 'wrongString' text to 'Search' input on 'CareerHeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
+
+@Regession @TSWEB145
+Scenario: CheckThatAllDropdownsAreExpandedByDefault
+	Given User is on the career website
+	Then Dropdowns are Expanded on 'CareerPage' container
+		| Dropdown         |
+		| Direction        |
+		| Seniority levels |
+		| Tags             |
+		| Technology stack |

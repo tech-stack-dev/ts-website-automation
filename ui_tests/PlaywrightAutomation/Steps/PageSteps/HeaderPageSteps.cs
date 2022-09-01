@@ -1,7 +1,10 @@
 ﻿using AutomationUtils.Utils;
+using FluentAssertions;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
@@ -17,10 +20,10 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page = browserFactory.Page;
         }
         
-        [When(@"User selects '([^']*)' language")]
-        public void WhenUserSelectsLanguage(string language)
+        [When(@"User selects '([^']*)' language on '([^']*)' container")]
+        public void WhenUserSelectsLanguage(string language, string container)
         {
-            _page.Init<HeaderPage>().SelectLanguage(language).GetAwaiter().GetResult();
+            _page.Component<Button>("Locale", new BaseWebComponent.Properties { ParentSelector = WebContainer.GetLocator(container)}).SelectLanguage(language).GetAwaiter().GetResult();
         }
         
         [Then(@"'Techstack' logo is displayed in the main page")]
@@ -29,12 +32,12 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page.Init<HeaderPage>().CheckLogo();
         }
 
-        [Then(@"'([^']*)' language is selected")]
-        public async void ThenLanguageIsSelected(string language)
+        [Then(@"'([^']*)' language is selected '([^']*)' on container")]
+        public async void ThenLanguageIsSelected(string language, string container)
         {
-            var page = _page.Init<HeaderPage>();
-            Verify.AreEqual(language, await page.GetSelectedLanguage(),
-                "Incorrect language is selected");
+            var page = _page.Component<Button>("Locale",
+                new BaseWebComponent.Properties {ParentSelector = WebContainer.GetLocator(container)}).GetSelectedLanguage().GetAwaiter().GetResult();
+            page.Should().Be(language);
         }
     }
 }

@@ -4,7 +4,7 @@ Feature: DirectionBlock
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates tag
-		| Prefix    | Name                             |
+		| Prefix    | Name                                 |
 		| Direction | TestingSideDirectionOnlyOne_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |
@@ -29,28 +29,28 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                     |
+		| Tag                         |
 		| TestingSideDirectionOnlyOne |
 	Then Search results equal to selected tag
-		| Tag                     |
+		| Tag                         |
 		| TestingSideDirectionOnlyOne |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                        |
+		| Tag                             |
 		| Testing Side Direction Only One |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                        |
+		| Tag                             |
 		| Testing Side Direction Only One |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                        |
+		| Tag                             |
 		| Testing Side Direction Only One |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag                        |
+		| Tag                             |
 		| Testing Side Direction Only One |
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Given User creates tag
-		| Prefix    | Name                        |
+		| Prefix    | Name                            |
 		| Direction | TestingSideDirection1_Тестовий1 |
 		| Direction | TestingSideDirection2_Тестовий2 |
 	Given User creates and publish new Career Description
@@ -76,27 +76,27 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then Search results equal to selected tag
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag               |
+		| Tag                   |
 		| TestingSideDirection1 |
 		| TestingSideDirection2 |
 	Then '2' tags are selected in 'Direction' sider bar on 'CareerPage' container
@@ -106,7 +106,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	Given User creates tag
-		| Prefix    | Name                               |
+		| Prefix    | Name                                  |
 		| Direction | TestingResetSideDirection1_Тестовий 1 |
 		| Direction | TestingResetSideDirection2_Тестовий 2 |
 	Given User creates and publish new Career Description
@@ -132,7 +132,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                     |
+		| Tag                           |
 		| Testing Reset Side Direction1 |
 		| Testing Reset Side Direction2 |
 	When User clicks on 'Reset' button on 'CareerPage' container

@@ -4,7 +4,7 @@ Feature: TagsSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates tag
-		| Prefix | Name                            |
+		| Prefix | Name                           |
 		| Tag    | TestingSideTagOnlyOne_Тестовий |
 	Given User creates and publish new Career Description
 		| Field             | Value                      |

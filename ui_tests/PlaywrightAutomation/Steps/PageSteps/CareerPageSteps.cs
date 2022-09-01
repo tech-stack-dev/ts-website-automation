@@ -5,6 +5,7 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
@@ -70,6 +71,20 @@ namespace PlaywrightAutomation.Steps
             foreach (var text in texts)
             {
                 tags.Should().Contain(text);
+            }
+        }
+
+        [Then(@"Dropdowns are Expanded on '([^']*)' container")]
+        public void ThenDropdownsAreExpandedOnContainer(string container, Table table)
+        {
+            var dropdowns = table.Rows.SelectMany(x => x.Values).ToList();
+
+            foreach (var dropdown in dropdowns)
+            {
+                var dropdownIsOpen = _page.Component<FilterGroupWrapper>(dropdown,
+                        new BaseWebComponent.Properties {ParentSelector = WebContainer.GetLocator(container)})
+                    .CollapsibleState();
+                dropdownIsOpen.Should().BeTrue();
             }
         }
     }

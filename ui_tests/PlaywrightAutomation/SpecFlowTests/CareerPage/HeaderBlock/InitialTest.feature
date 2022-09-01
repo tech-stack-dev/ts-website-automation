@@ -1,16 +1,20 @@
 ﻿@retry(2)
 Feature: InitialTest
 
-Initial test. Will be removed
-
 Background:
 	Given User is on the career website
 
 @Regression
-Scenario: Default_translation_and_translation_switch
-	Then 'En' language is selected
-	When User selects 'Ua' language
-	Then 'Ua' language is selected
+Scenario: CheckThatUserCanSwithedLanguageInHeader
+	Then 'En' language is selected 'HeaderPage' on container
+	When User selects 'Ua' language on 'HeaderPage' container
+	Then 'Ua' language is selected 'HeaderPage' on container
+
+@Regression
+Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
+	Then 'En' language is selected 'NavigationHeader' on container
+	When User selects 'Ua' language on 'NavigationHeader' container
+	Then 'Ua' language is selected 'NavigationHeader' on container
 
 @Regression
 Scenario: CheckLogoDisplayedInMainPage
