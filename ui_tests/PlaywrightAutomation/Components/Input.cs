@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Components
 
         public override string Construct()
         {
-            var selector = $"//input[contains(@data-id,'{Identifier.ToAutomationValue()}FieldInput')]";
+            var selector = $"//input[contains(@data-id,'Input-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
     }
