@@ -3,6 +3,8 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Utils;
+using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps.PageSteps
@@ -35,6 +37,21 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var page = _page.Init<HeaderPage>();
             Verify.AreEqual(language, await page.GetSelectedLanguage(),
                 "Incorrect language is selected");
+        }
+
+        [Then(@"The page has '([^']*)' language switcher")]
+        public void ThenThePageHasLanguageSwitcher(string language)
+        {
+            var page = _page.Init<HeaderPage>();
+            var switchers = page.LanguageSwitchers.ElementHandlesAsync().GetAwaiter().GetResult();
+
+            if (!switchers.Any())
+            {
+                throw new Exception("The page has not any language switchers");
+            }
+
+            var switcher = switchers.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(language));
+            Verify.IsTrue(switcher != null, $"The page has not '{language}' switcher");
         }
     }
 }

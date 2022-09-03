@@ -72,5 +72,22 @@ namespace PlaywrightAutomation.Steps
                 tags.Should().Contain(text);
             }
         }
+
+        [Then(@"The page has tabs")]
+        public void ThenThePageHasTabs(Table table)
+        {
+            var tabs = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var texts = _page.Component<NavigationTabs>()                
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+
+            tabs.Should().Equal(texts);
+
+            //foreach (var text in texts)
+            //{
+            //    tabs.Should().Equal(text);
+            //}
+        }
     }
 }
