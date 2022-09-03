@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -8,7 +9,7 @@ using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
-namespace PlaywrightAutomation.Steps
+namespace PlaywrightAutomation.Steps.PageSteps
 {
     [Binding]
     internal class CareerPageSteps : SpecFlowContext
@@ -76,18 +77,13 @@ namespace PlaywrightAutomation.Steps
         [Then(@"The page has tabs")]
         public void ThenThePageHasTabs(Table table)
         {
-            var tabs = table.Rows.SelectMany(x => x.Values).ToList();
+            var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
 
-            var texts = _page.Component<NavigationTabs>()                
+            var actualListTabs = _page.Component<NavigationTabs>()                
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
-            tabs.Should().Equal(texts);
-
-            //foreach (var text in texts)
-            //{
-            //    tabs.Should().Equal(text);
-            //}
+            Verify.AreEqual(expectedListTabs, actualListTabs, "Expected list tabs are different from actual list tabs");
         }
     }
 }
