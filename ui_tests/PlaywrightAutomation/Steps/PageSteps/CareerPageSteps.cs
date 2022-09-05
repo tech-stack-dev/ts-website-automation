@@ -85,5 +85,14 @@ namespace PlaywrightAutomation.Steps.PageSteps
 
             Verify.AreEqual(expectedListTabs, actualListTabs, "Expected list tabs are different from actual list tabs");
         }
+
+        [Then(@"Breadcrumbs has '([^']*)' text")]
+        public void ThenBreadcrumbsHasText(string expectedBreadcrumbs)
+        {
+            var tabPart = _page.Component<Breadcrumbs>().TabPart.TextContentAsync().GetAwaiter().GetResult();
+            var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
+
+            Verify.AreEqual(expectedBreadcrumbs, string.Concat(tabPart, jobTitlePart), $"Breadcrumbs has not contains '{expectedBreadcrumbs}' text");
+        }
     }
 }
