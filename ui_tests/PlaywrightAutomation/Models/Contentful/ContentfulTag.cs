@@ -32,7 +32,9 @@ namespace PlaywrightAutomation.Models.Contentful
             [Description("seniority")]
             Seniority,
             [Description("stack")]
-            Stack
+            Stack,
+            [Description("tag")]
+            Tag
         }
     }
 }

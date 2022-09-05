@@ -6,6 +6,7 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
@@ -93,6 +94,20 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
 
             Verify.AreEqual(expectedBreadcrumbs, string.Concat(tabPart, jobTitlePart), $"Breadcrumbs has not contains '{expectedBreadcrumbs}' text");
+        }
+
+        [Then(@"Dropdowns are expanded on '([^']*)' container")]
+        public void ThenDropdownsAreExpandedOnContainer(string container, Table table)
+        {
+            var dropdowns = table.Rows.SelectMany(x => x.Values).ToList();
+
+            foreach (var dropdown in dropdowns)
+            {
+                var dropdownIsOpen = _page.Component<FilterGroupWrapper>(dropdown,
+                        new BaseWebComponent.Properties {ParentSelector = WebContainer.GetLocator(container)})
+                    .CollapsibleState();
+                dropdownIsOpen.Should().BeTrue();
+            }
         }
     }
 }

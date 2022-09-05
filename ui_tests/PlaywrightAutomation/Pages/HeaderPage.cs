@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using AutomationUtils.Utils;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.UnitTests;
 
 namespace PlaywrightAutomation.Pages
 {
@@ -11,8 +14,6 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");
 
-        public ILocator LanguageSwitchers => Page.Locator(Container).Locator("//div[contains(@class,'_LocaleSwitcherBlock')]/a");
-
         public async void CheckLogo()
         {
             Verify.IsTrue(await Logo.IsVisibleAsync(), "Header logo is not displayed");
@@ -20,9 +21,9 @@ namespace PlaywrightAutomation.Pages
                 "Header logo is not displayed");
         }
 
-        public async Task SelectLanguage(string language)
+        public async Task SelectLanguage(string language, string container)
         {
-            var switcher = (await LanguageSwitchers.ElementHandlesAsync())
+            var switcher = (await Page.Component<Button>("Locale", new BaseWebComponent.Properties { ParentSelector = WebContainer.GetLocator(container)}).ElementHandlesAsync())
                 .First(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(language));
             await switcher.ClickAsync();
 
@@ -30,9 +31,9 @@ namespace PlaywrightAutomation.Pages
                 .WaitForFunctionAsync("switcher => switcher.getAttribute('class').includes('active-locale')", switcher);
         }
 
-        public async Task<string> GetSelectedLanguage()
+        public async Task<string> GetSelectedLanguage(string container)
         {
-            var selectedSwitcher = (await LanguageSwitchers.ElementHandlesAsync())
+            var selectedSwitcher = (await Page.Component<Button>("Locale", new BaseWebComponent.Properties { ParentSelector = WebContainer.GetLocator(container) }).ElementHandlesAsync())
                 .First(x => x.GetAttributeAsync("class").GetAwaiter().GetResult().Contains("active-locale"));
             return await selectedSwitcher.InnerTextAsync();
         }
