@@ -1,6 +1,4 @@
-﻿using Microsoft.Playwright;
-
-namespace PlaywrightAutomation.Pages.ApplyForAJob
+﻿namespace PlaywrightAutomation.Pages.ApplyForAJob
 {
     internal class ApplyForAJobPage : BasePage, IWebContainer
     {

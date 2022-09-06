@@ -20,16 +20,16 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page = browserFactory.Page;
         }
 
-        [Then(@"Error messages are displayed under field")]
-        public void ThenErrorMessagesAreDisplayedUnderField(Table table)
+        [Then(@"Error messages are displayed under fields")]
+        public void ThenErrorMessagesAreDisplayedUnderFields(Table table)
         {
-            var values = table.CreateSet<(string name, string messages)>();
+            var values = table.CreateSet<(string inputName, string messageText)>();
 
             foreach (var message in values)
             {
-                var parent = _page.Component<Input>(message.name);
+                var parent = _page.Component<Input>(message.inputName);
                 var errorMessage = parent.Locator(_page.Init<ApplyForAJobPage>().ErrorMessage).InnerTextAsync().Result;
-                errorMessage.Should().Be(message.messages);
+                errorMessage.Should().Be(message.messageText);
             }
         }
     }

@@ -31,7 +31,7 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 	When User clicks on 'TestingAppleForAJob' card
 	When User clicks on 'Apply Now' button on 'BreadcrumbsHeader' container
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container
-	Then Error messages are displayed under field
+	Then Error messages are displayed under fields
 		| Input    | ErrorMessage                   |
 		| Name     | Please enter your name         |
 		| LastName | Please enter your last name    |
