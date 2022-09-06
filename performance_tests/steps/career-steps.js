@@ -16,7 +16,7 @@ export function getToWebsite(){
     let response = http.get(URL_PROVIDER.webApp);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
+        'is status 200 - Home page': (r) => r.status === 200,
         'Home page check': (r) => r.body.includes('Find your dream job')
     });
 }
@@ -27,7 +27,7 @@ export function getToCareer(carrerId, careerTitle, buildId){
     let response = http.get(url);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
+        'is status 200 - Career page': (r) => r.status === 200,
         'Career title check': (r) => r.body.includes(careerTitle)
     });
 };
@@ -39,8 +39,8 @@ export function getBack(buildId){
     let response = http.get(url);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
-        'Home page opened back from career check': (r) => r.body.includes('Find your dream job')
+        'is status 200 - Home page back from Career page': (r) => r.status === 200,
+        'Home page opened back from career check': (r) => r.body.includes('https://staging-career.tech-stack.io')
     });
 };
 
@@ -50,8 +50,8 @@ export function getToContactUs(buildId){
     let response = http.get(url);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
-        'Contact Us page check': (r) => r.body.includes('Our HR Team')
+        'is status 200 - Contact Us page': (r) => r.status === 200,
+        'Contact Us page check': (r) => r.body.includes('https://staging-career.tech-stack.io/ContactUs')
     });
 };
 
@@ -61,8 +61,8 @@ export function getToAboutUs(buildId){
     let response = http.get(url);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
-        'About Us page check': (r) => r.body.includes('We are Techstack')
+        'is status 200 - About Us page': (r) => r.status === 200,
+        'About Us page check': (r) => r.body.includes('https://staging-career.tech-stack.io/AboutUs')
     });
 };
 
@@ -72,7 +72,7 @@ export function getToReviews(buildId){
     let response = http.get(url);
 
     check(response, {
-        'is status 200': (r) => r.status === 200,
-        'Reviews page check': (r) => r.body.includes('Our team')
+        'is status 200 - Reviews page': (r) => r.status === 200,
+        'Reviews page check': (r) => r.body.includes('https://staging-career.tech-stack.io/Rev')
     });
 };
