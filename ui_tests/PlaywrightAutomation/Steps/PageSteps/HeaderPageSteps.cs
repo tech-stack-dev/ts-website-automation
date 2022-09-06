@@ -33,7 +33,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         }
 
         [Then(@"'([^']*)' language is selected '([^']*)' on container")]
-        public async void ThenLanguageIsSelected(string language, string container)
+        public void ThenLanguageIsSelected(string language, string container)
         {
             var page = _page.Init<HeaderPage>().GetSelectedLanguage(container).GetAwaiter().GetResult();
             page.Should().Be(language);

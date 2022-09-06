@@ -1,11 +1,9 @@
 ﻿@retry(2)
 Feature: JobsBlock
 
-Background:
-	Given User is on the career website
-
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
+	Given User is on the career website
 	Then 'Techstack' logo is displayed in the main page
 	Then The page has 'En' language switcher
 	Then The page has 'Ua' language switcher
@@ -13,8 +11,8 @@ Scenario: CheckNavigationHeaderInCareerPage
 		| Tab        |
 		| Jobs       |
 		| About us   |
-		| Contact us |
 		| Reviews    |
+		| Contact us |
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
@@ -49,3 +47,4 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| TSWEB146TestingDirection |
 	When User clicks on 'Tsweb146Testus' card title
 	Then Breadcrumbs has 'Jobs / Tsweb146Testus' text
+	Then 'Apply now' button displayed on 'BreadcrumbsHeader' container
