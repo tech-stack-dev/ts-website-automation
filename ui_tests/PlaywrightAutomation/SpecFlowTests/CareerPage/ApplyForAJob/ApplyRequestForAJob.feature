@@ -1,7 +1,8 @@
 ﻿@retry(2)
 Feature: ApplyRequestForAJob
 
-Background:
+@Regression @TSWEB145 @Cleanup
+Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
 	Given User creates tag
 		| Prefix    | Name                         |
 		| Direction | TestingAppleForAJob_Тестовий |
@@ -27,11 +28,8 @@ Background:
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	Given User is on the career website
-	When User clicks on 'React Native Engineer' card
+	When User clicks on 'TestingAppleForAJob' card
 	When User clicks on 'Apply Now' button on 'BreadcrumbsHeader' container
-
-@Regression @TSWEB145 @Cleanup
-Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container
 	Then Error messages are displayed under field
 		| Input    | ErrorMessage                   |
