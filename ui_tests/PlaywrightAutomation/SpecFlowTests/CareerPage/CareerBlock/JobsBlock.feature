@@ -16,6 +16,7 @@ Scenario: CheckNavigationHeaderInCareerPage
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TSWEB146TestingDirection_Тестовий |
@@ -40,6 +41,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Given User creates new Career with 'TSWEB146_TitleUs' career description and 'TSWEB146TestingDirection_Тестовий' tag
 		| NameUs         | NameUa          | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| Tsweb146Testus | TSWEB146_TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
