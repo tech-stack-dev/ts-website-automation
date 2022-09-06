@@ -7,5 +7,6 @@ namespace PlaywrightAutomation.Pages
         public string Container => "//div[contains(@class,'styledComponents__CareerMainBody')]";
 
         public ILocator NoResultsMessage => Page.Locator("//div[contains(@class,'styledComponents__NoCareerWrapper')]");
+        public string ActiveTagsCounter => "//div[contains(@class,'ActiveTagsCounter')]";
     }
 }
