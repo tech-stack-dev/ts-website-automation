@@ -7,6 +7,6 @@ namespace PlaywrightAutomation.Pages.ApplyForAJob
         public string Container => "//div[contains(@class,'styledComponents__ModalWrapper')]";
 
         // Use only where input is parent
-        public ILocator ErrorMessage => Page.Locator("//following-sibling::div[@id='error']");
+        public string ErrorMessage => "//following-sibling::div[@id='error']";
     }
 }
