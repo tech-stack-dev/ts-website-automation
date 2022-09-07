@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
