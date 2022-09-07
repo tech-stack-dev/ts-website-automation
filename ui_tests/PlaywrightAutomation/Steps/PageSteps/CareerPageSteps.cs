@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using AutomationUtils.Utils;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -75,8 +74,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
             }
         }
 
-        [Then(@"The page has tabs")]
-        public void ThenThePageHasTabs(Table table)
+        [Then(@"Jobs block on Career page has tabs")]
+        public void ThenJobsBlockOnCareerPageHasTabs(Table table)
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
 
@@ -84,7 +83,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
-            Verify.AreEqual(expectedListTabs, actualListTabs, "Expected list tabs are different from actual list tabs");
+            actualListTabs.Should().Equal(expectedListTabs);
         }
 
         [Then(@"Breadcrumbs has '([^']*)' text")]
@@ -93,7 +92,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var tabPart = _page.Component<Breadcrumbs>().TabPart.TextContentAsync().GetAwaiter().GetResult();
             var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
 
-            Verify.AreEqual(expectedBreadcrumbs, string.Concat(tabPart, jobTitlePart), $"Breadcrumbs has not contains '{expectedBreadcrumbs}' text");
+            expectedBreadcrumbs.Should().Be(string.Concat(tabPart, jobTitlePart));
         }
 
         [Then(@"Dropdowns are expanded on '([^']*)' container")]

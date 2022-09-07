@@ -1,10 +1,13 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Pages;
 
 namespace PlaywrightAutomation.Components
 {
-    public class Breadcrumbs : BaseWebComponent
+    public class Breadcrumbs : BaseWebComponent, IWebContainer
     {
-        public ILocator TabPart => Instance.Locator("//a");
+        public string Container => "//div[contains(@class,'styledComponents__BreadcrumbsHeaderWrapper')]";
+
+        public ILocator TabPart => Instance.Locator("//a[@data-id='BreadcrumbsLink-SharedJobs']");
         public ILocator JobTitlePart => Instance.Locator("//span[@class='mobile-breadcrumbs-margin']");
 
         public override string Construct()

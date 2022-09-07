@@ -12,8 +12,7 @@ namespace PlaywrightAutomation.Pages
     {
         public string Container => "//div[contains(@class,'_HeaderWrapper')]";
 
-        public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");
-        public ILocator LanguageSwitchers => Page.Locator("//div[contains(@class,'_LocaleSwitcherBlock')]/a");
+        public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");        
 
         public async void CheckLogo()
         {

@@ -5,14 +5,15 @@ Feature: JobsBlock
 Scenario: CheckNavigationHeaderInCareerPage
 	Given User is on the career website
 	Then 'Techstack' logo is displayed in the main page
-	Then The page has 'En' language switcher
-	Then The page has 'Ua' language switcher
-	Then The page has tabs
+	Then Jobs block on Career page has tabs
 		| Tab        |
 		| Jobs       |
 		| About us   |
 		| Reviews    |
 		| Contact us |
+	Then 'En' language is selected 'HeaderPage' on container
+	When User selects 'Ua' language on 'HeaderPage' container
+	Then 'Ua' language is selected 'HeaderPage' on container
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
@@ -49,4 +50,4 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| TSWEB146TestingDirection |
 	When User clicks on 'Tsweb146Testus' card title
 	Then Breadcrumbs has 'Jobs / Tsweb146Testus' text
-	Then 'Apply now' button displayed on 'BreadcrumbsHeader' container
+	Then 'Apply now' button is displayed on 'Breadcrumbs' container

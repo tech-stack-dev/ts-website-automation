@@ -1,4 +1,5 @@
 ﻿using AutomationUtils.Utils;
+using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -27,13 +28,13 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then(@"'([^']*)' button displayed on '([^']*)' container")]
-        public void ThenButtonDisplayedOnContainer(string buttonText, string container)
+        [Then(@"'([^']*)' button is displayed on '([^']*)' container")]
+        public void ThenButtonIsDisplayedOnContainer(string buttonText, string container)
         {
             var isButtonVisible = _page.Component<Button>(buttonText, new Properties { ParentSelector = WebContainer.GetLocator(container) })
               .IsVisibleAsync().GetAwaiter().GetResult();
 
-            Verify.IsTrue(isButtonVisible, $"{buttonText} button is not display");
+            isButtonVisible.Should().BeTrue();
         }
     }
 }
