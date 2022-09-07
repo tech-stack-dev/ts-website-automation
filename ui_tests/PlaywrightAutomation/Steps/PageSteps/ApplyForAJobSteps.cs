@@ -27,8 +27,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
 
             foreach (var message in values)
             {
-                var parent = _page.Component<Input>(message.inputName);
-                var errorMessage = parent.Locator(_page.Init<ApplyForAJobPage>().ErrorMessage).InnerTextAsync().Result;
+                var errorMessage = _page.Component<Input>(message.inputName).ErrorMessage.InnerTextAsync().Result;
                 errorMessage.Should().Be(message.messageText);
             }
         }
