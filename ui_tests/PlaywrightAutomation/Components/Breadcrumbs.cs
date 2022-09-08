@@ -7,7 +7,7 @@ namespace PlaywrightAutomation.Components
     {
         public string Container => "//div[contains(@class,'styledComponents__BreadcrumbsHeaderWrapper')]";
 
-        public ILocator TabPart => Instance.Locator("//a[@data-id='BreadcrumbsLink-SharedJobs']");
+        public ILocator SharedJobsPart => Instance.Locator("//a[@data-id='BreadcrumbsLink-SharedJobs']");
         public ILocator JobTitlePart => Instance.Locator("//span[@class='mobile-breadcrumbs-margin']");
 
         public override string Construct()
