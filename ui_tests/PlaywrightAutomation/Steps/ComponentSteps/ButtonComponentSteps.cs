@@ -31,10 +31,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' button is displayed on '([^']*)' container")]
         public void ThenButtonIsDisplayedOnContainer(string buttonText, string container)
         {
-            var isButtonVisible = _page.Component<Button>(buttonText, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+            var buttonVisibleState = _page.Component<Button>(buttonText, new Properties { ParentSelector = WebContainer.GetLocator(container) })
               .IsVisibleAsync().GetAwaiter().GetResult();
 
-            isButtonVisible.Should().BeTrue();
+            buttonVisibleState.Should().BeTrue();
         }
     }
 }
