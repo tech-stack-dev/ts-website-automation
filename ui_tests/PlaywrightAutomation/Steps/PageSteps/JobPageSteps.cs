@@ -62,7 +62,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
 
             var actualPosition = tags.IndexOf(actualTag);
-            actualPosition.Should().Be(Int32.Parse(expectedPosition) - 1);
+            actualPosition.Should().Be(int.Parse(expectedPosition) - 1);
         }
 
         [Then(@"'([^']*)' tag has '([^']*)' background color on job page")]
@@ -84,6 +84,18 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var socialIcons = _page.Init<JobPage>().SocialIcons.IsVisibleAsync().GetAwaiter().GetResult();
             socialIcons.Should().BeTrue();
+        }
+
+        [Then("Job has description titles on job page")]
+        public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
+        {
+            var expectedDescriptionTitles = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var actualDescriptionTitles = _page.Init<JobPage>().JobDescriptionTitles
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+
+            actualDescriptionTitles.Should().Contain(expectedDescriptionTitles);
         }
     }
 }
