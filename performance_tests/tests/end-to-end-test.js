@@ -5,12 +5,12 @@ import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToRe
 export let options = {
 	thresholds: {
 		http_req_failed: ['rate<0.01'], // http errors should be less than 1%
-		http_req_duration: ['p(95)<300'], // 95% of requests should be below 200ms
+		http_req_duration: ['p(95)<400'], // 95% of requests should be below 400ms
 	},
 	stages: [
-		{ duration: '20s', target: 15 },
 		{ duration: '20s', target: 30 },
-		{ duration: '2m', target: 50 },
+		{ duration: '20s', target: 60 },
+		{ duration: '2m', target: 100 },
 		{ duration: '30s', target: 0 },
 	  ],
 	insecureSkipTLSVerify: true,

@@ -17,7 +17,7 @@ export function getToWebsite(){
 
     check(response, {
         'is status 200 - Home page': (r) => r.status === 200,
-        'Home page check': (r) => r.body.includes('Find your dream job')
+        'Home page check': (r) => r.body.includes('Make\nan impact')
     });
 }
 
