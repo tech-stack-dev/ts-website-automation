@@ -86,6 +86,20 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
+        [Then("'([^']*)' social media icon is clickable on job page")]
+        public void ThenSocialMediaIconIsClickableOnJobPage(string icon)
+        {
+            var socialIcons = _page.Init<JobPage>().SocialIcons.ElementHandlesAsync().GetAwaiter().GetResult();
+
+            if (!socialIcons.Any())
+            {
+                throw new Exception("Job page has not any job tags");
+            }
+
+            var socialIcon = socialIcons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(icon));
+            socialIcon.ClickAsync();
+        }
+
         [Then("Job has description titles on job page")]
         public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
         {
