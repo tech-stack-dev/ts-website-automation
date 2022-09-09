@@ -31,7 +31,7 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'TestUs' card title
-	When User clicks on 'Apply now' button on 'Breadcrumbs' container
+	When User clicks on 'Apply now' button on 'BreadcrumbsHeader' container
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container
 	Then Error messages are displayed under fields
 		| Input    | ErrorMessage                   |

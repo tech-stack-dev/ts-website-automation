@@ -50,4 +50,4 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| TSWEB146TestingDirectionOne |
 	When User clicks on 'Tsweb146TestusOne' card title
 	Then Breadcrumbs has 'Jobs / Tsweb146TestusOne' text
-	Then 'Apply now' button is displayed on 'Breadcrumbs' container
+	Then 'Apply now' button is displayed on 'BreadcrumbsHeader' container
