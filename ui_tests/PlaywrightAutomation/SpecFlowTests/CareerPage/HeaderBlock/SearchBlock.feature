@@ -10,6 +10,7 @@ Scenario: CheckThatUserSeesMessageAboutFailSearchResults
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelectedTagFromDirectionDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionWithText_Тестовий |
@@ -34,6 +35,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
@@ -60,6 +62,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelectedTagFromSeniorityLevelDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
@@ -84,6 +87,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
