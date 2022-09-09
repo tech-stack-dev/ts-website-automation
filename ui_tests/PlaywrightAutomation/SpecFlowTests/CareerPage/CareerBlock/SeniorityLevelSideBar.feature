@@ -3,6 +3,7 @@ Feature: SeniorityLevelSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                 |
 		| Seniority | TestingSideSeniorityOnlyOne_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideSeniorityOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                         |
@@ -46,6 +48,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                            |
 		| Seniority | TestingSideSeniority1_Тестовий1 |
@@ -71,6 +74,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideSeniority1_Тестовий1,TestingSideSeniority2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                   |
@@ -98,6 +102,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Seniority | TestingResetSideSeniority1_Тестовий 1 |
@@ -123,6 +128,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideSeniority1_Тестовий 1,TestingResetSideSeniority2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                           |

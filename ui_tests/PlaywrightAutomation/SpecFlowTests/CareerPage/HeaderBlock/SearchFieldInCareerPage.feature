@@ -3,6 +3,7 @@ Feature: SearchFieldInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionOfSearch_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOfSearch_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
@@ -34,6 +36,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 
 @Regresiion @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                |
 		| Direction | TestingDirectionPartOfText_Тестовий |
@@ -58,6 +61,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionPartOfText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container

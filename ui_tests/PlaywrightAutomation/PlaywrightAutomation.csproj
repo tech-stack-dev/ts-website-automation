@@ -35,16 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SpecFlowTests\CareerPage\CareerBlock\JobsBlock.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="SpecFlowTests\CareerPage\CareerBlock\JobsBlock.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
+    <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
   </ItemGroup>
 
 </Project>
