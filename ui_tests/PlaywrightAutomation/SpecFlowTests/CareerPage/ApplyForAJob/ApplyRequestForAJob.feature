@@ -3,6 +3,7 @@ Feature: ApplyRequestForAJob
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                         |
 		| Direction | TestingAppleForAJob_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 	Given User creates new Career with 'TitleUs' career description and 'TestingAppleForAJob_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'TestingAppleForAJob' card
 	When User clicks on 'Apply Now' button on 'BreadcrumbsHeader' container

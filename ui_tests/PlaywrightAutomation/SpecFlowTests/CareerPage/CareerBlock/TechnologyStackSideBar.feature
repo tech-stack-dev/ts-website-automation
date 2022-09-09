@@ -3,6 +3,7 @@ Feature: TechnologyStackSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                             |
 		| Stack  | TestingSideStackOnlyOne_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideStackOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                     |
@@ -46,6 +48,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                        |
 		| Stack  | TestingSideStack1_Тестовий1 |
@@ -71,6 +74,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideStack1_Тестовий1,TestingSideStack2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag               |
@@ -98,6 +102,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                              |
 		| Stack  | TestingResetSideStack1_Тестовий 1 |
@@ -123,6 +128,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideStack1_Тестовий 1,TestingResetSideStack2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                       |

@@ -3,6 +3,7 @@ Feature: TagsSideSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                           |
 		| Tag    | TestingSideTagOnlyOne_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideTagOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                   |
@@ -46,6 +48,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                      |
 		| Tag    | TestingSideTag1_Тестовий1 |
@@ -71,6 +74,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideTag1_Тестовий1,TestingSideTag2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag             |
@@ -98,6 +102,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix | Name                            |
 		| Tag    | TestingResetSideTag1_Тестовий 1 |
@@ -123,6 +128,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideTag1_Тестовий 1,TestingResetSideTag2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                     |

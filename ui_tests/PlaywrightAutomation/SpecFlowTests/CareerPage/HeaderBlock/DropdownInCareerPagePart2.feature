@@ -3,6 +3,7 @@ Feature: DropdownInCareerPagePart2
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                               |
 		| Direction | TestingResetDirection 1_Тестовий 1 |
@@ -28,6 +29,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetDirection 1_Тестовий 1,TestingResetDirection 2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
@@ -39,6 +41,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                               |
 		| Seniority | TestingResetSeniority 1_Тестовий 1 |
@@ -65,6 +68,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetSeniority 1_Тестовий 1,TestingResetSeniority 2_Тестовий 2,TestingResetSeniority 3_Тестовий 3' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
