@@ -1,5 +1,4 @@
-﻿using AutomationUtils.Utils;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;

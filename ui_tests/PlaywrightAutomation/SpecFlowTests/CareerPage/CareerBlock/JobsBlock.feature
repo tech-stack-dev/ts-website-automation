@@ -17,37 +17,37 @@ Scenario: CheckNavigationHeaderInCareerPage
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
-	# Precondition
+	# Preconditions
 	Given User creates tag
-		| Prefix    | Name                                |
-		| Direction | TSWEB146TestingDirection1_Тестовий1 |
+		| Prefix    | Name                                       |
+		| Direction | TSWEB146TestingDirectionOne_ТестовийПерший |
 	Given User creates and publish new Career Description
-		| Field             | Value                       |
-		| AboutTheProjectUs | AboutTheProjectUs1          |
-		| AboutTheProjectUa | AboutTheProjectUa1          |
-		| AboutTheRoleUs    | AboutTheRoleUs1             |
-		| AboutTheRoleUa    | AboutTheRoleUa1             |
-		| TitleUs           | TSWEB146_TitleUs1           |
-		| TitleUa           | TSWEB146_TitleUa1           |
-		| YouWillUs         | YouWillUs1                  |
-		| YouWillUa         | YouWillUa1                  |
-		| YouAreUs          | YouAreUs1                   |
-		| YouAreUa          | YouAreUa1                   |
-		| WeWillUs          | WeWillUs1                   |
-		| WeWillUa          | WeWillUa1                   |
-		| WeAreUs           | WeAreUs1                    |
-		| WeAreUa           | WeAreUa1                    |
-		| TechnologyStack   | TechnologyStackUs1          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne1 |
-	Given User creates new Career with 'TSWEB146_TitleUs1' career description and 'TSWEB146TestingDirection1_Тестовий1' tag
-		| NameUs          | NameUa          | DescriptionUs      | DescriptionUa      | Type | LinkType |
-		| Tsweb146Testus1 | TSWEB146TestUa1 | DescriptionTestUs1 | DescriptionTestUa1 | Link | Entry    |
+		| Field             | Value                         |
+		| AboutTheProjectUs | AboutTheProjectUsOne          |
+		| AboutTheProjectUa | AboutTheProjectUaOne          |
+		| AboutTheRoleUs    | AboutTheRoleUsOne             |
+		| AboutTheRoleUa    | AboutTheRoleUaOne             |
+		| TitleUs           | TSWEB146_TitleUsOne           |
+		| TitleUa           | TSWEB146_TitleUaOne           |
+		| YouWillUs         | YouWillUsOne                  |
+		| YouWillUa         | YouWillUaOne                  |
+		| YouAreUs          | YouAreUsOne                   |
+		| YouAreUa          | YouAreUaOne                   |
+		| WeWillUs          | WeWillUsOne                   |
+		| WeWillUa          | WeWillUaOne                   |
+		| WeAreUs           | WeAreUsOne                    |
+		| WeAreUa           | WeAreUaOne                    |
+		| TechnologyStack   | TechnologyStackUsOne          |
+		| SlugUs            | TestSlugUsDirectionOnlyOneOne |
+	Given User creates new Career with 'TSWEB146_TitleUsOne' career description and 'TSWEB146TestingDirectionOne_ТестовийПерший' tag
+		| NameUs            | NameUa            | DescriptionUs        | DescriptionUa        | Type | LinkType |
+		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag                       |
-		| TSWEB146TestingDirection1 |
-	When User clicks on 'Tsweb146Testus1' card title
-	Then Breadcrumbs has 'Jobs / Tsweb146Testus1' text
+		| Tag                         |
+		| TSWEB146TestingDirectionOne |
+	When User clicks on 'Tsweb146TestusOne' card title
+	Then Breadcrumbs has 'Jobs / Tsweb146TestusOne' text
 	Then 'Apply now' button is displayed on 'Breadcrumbs' container
