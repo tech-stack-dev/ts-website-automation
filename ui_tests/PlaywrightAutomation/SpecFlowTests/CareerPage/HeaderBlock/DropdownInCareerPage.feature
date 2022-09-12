@@ -3,6 +3,7 @@ Feature: DropdownInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Direction | TestingDirectionOnlyOne_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
@@ -52,6 +54,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                        |
 		| Direction | TestingDirection1_Тестовий1 |
@@ -77,6 +80,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	Given User creates new Career with 'TitleUs' career description and 'TestingDirection1_Тестовий1,TestingDirection2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
@@ -110,6 +114,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Seniority | TestingSeniorityOnlyOne_Тестовий |
@@ -134,6 +139,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
@@ -155,6 +161,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                           |
 		| Seniority | Testing Seniority 1_Тестовий 1 |
@@ -181,6 +188,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 	Given User creates new Career with 'TitleUs' career description and 'Testing Seniority 1_Тестовий 1,Testing Seniority 2_Тестовий 2,Testing Seniority 3_Тестовий 3' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown

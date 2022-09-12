@@ -3,6 +3,7 @@ Feature: SearchField
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Direction | TestingSideDirectionOfSearch_Тестовий |
@@ -27,12 +28,14 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionOfSearch_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'TestUs' text to 'Search' input on 'CareerHeaderPage' container
 	Then Search results contain 'TestUs'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                    |
 		| Direction | TestingSideDirectionPartOfText_Тестовий |
@@ -57,6 +60,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionPartOfText_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User set 'Test' text to 'Search' input on 'CareerHeaderPage' container
 	Then Search results contain 'Test'

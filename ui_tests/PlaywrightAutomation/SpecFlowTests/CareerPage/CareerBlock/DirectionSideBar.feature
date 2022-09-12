@@ -3,6 +3,7 @@ Feature: DirectionSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                 |
 		| Direction | TestingSideDirectionOnlyOne_Тестовий |
@@ -27,6 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionOnlyOne_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                         |
@@ -49,6 +51,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                            |
 		| Direction | TestingSideDirection1_Тестовий1 |
@@ -74,6 +77,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirection1_Тестовий1,TestingSideDirection2_Тестовий2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                   |
@@ -105,6 +109,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
+	# Precondition
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Direction | TestingResetSideDirection1_Тестовий 1 |
@@ -130,6 +135,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideDirection1_Тестовий 1,TestingResetSideDirection2_Тестовий 2' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                           |
