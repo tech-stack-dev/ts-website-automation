@@ -38,8 +38,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' text is displayed in '([^']*)' input on '([^']*)' container")]
         public void ThenTextIsDisplayedInInputOnContainer(string text, string input, string container)
         {
-            // Added this hover because "var inputElement" can't find on page 
-            _page.HoverAsync(_page.Component<FilterGroupWrapper>("Seniority levels").Construct());
             var inputElement =
                 _page.Component<Input>(input, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                     .ElementHandleAsync().GetAwaiter().GetResult();

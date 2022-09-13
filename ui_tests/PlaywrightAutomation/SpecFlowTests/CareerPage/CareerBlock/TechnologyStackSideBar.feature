@@ -13,8 +13,8 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| AboutTheProjectUa | AboutTheProjectUa          |
 		| AboutTheRoleUs    | AboutTheRoleUs             |
 		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUsSideStackOnlyOne    |
-		| TitleUa           | TitleUaSideStackOnlyOne    |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
 		| YouWillUs         | YouWillUs                  |
 		| YouWillUa         | YouWillUa                  |
 		| YouAreUs          | YouAreUs                   |
@@ -24,10 +24,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| WeAreUs           | WeAreUs                    |
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsSideStackOnlyOne |
-	Given User creates new Career with 'TitleUsSideStackOnlyOne' career description and 'TestingSideStackOnlyOne_Тестовий' tag
-		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideStackOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideStackOnlyOne_Тестовий' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
@@ -54,26 +54,26 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 		| Stack  | TestingSideStack1_Тестовий1 |
 		| Stack  | TestingSideStack2_Тестовий2 |
 	Given User creates and publish new Career Description
-		| Field             | Value               |
-		| AboutTheProjectUs | AboutTheProjectUs   |
-		| AboutTheProjectUa | AboutTheProjectUa   |
-		| AboutTheRoleUs    | AboutTheRoleUs      |
-		| AboutTheRoleUa    | AboutTheRoleUa      |
-		| TitleUs           | TitleUsSideStack    |
-		| TitleUa           | TitleUaSideStack    |
-		| YouWillUs         | YouWillUs           |
-		| YouWillUa         | YouWillUa           |
-		| YouAreUs          | YouAreUs            |
-		| YouAreUa          | YouAreUa            |
-		| WeWillUs          | WeWillUs            |
-		| WeWillUa          | WeWillUa            |
-		| WeAreUs           | WeAreUs             |
-		| WeAreUa           | WeAreUa             |
-		| TechnologyStack   | TechnologyStackUs   |
-		| SlugUs            | TestSlugUsSideStack |
-	Given User creates new Career with 'TitleUsSideStack' career description and 'TestingSideStack1_Тестовий1,TestingSideStack2_Тестовий2' tag
-		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideStack | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingSideStack1_Тестовий1,TestingSideStack2_Тестовий2' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
@@ -108,26 +108,26 @@ Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 		| Stack  | TestingResetSideStack1_Тестовий 1 |
 		| Stack  | TestingResetSideStack2_Тестовий 2 |
 	Given User creates and publish new Career Description
-		| Field             | Value                    |
-		| AboutTheProjectUs | AboutTheProjectUs        |
-		| AboutTheProjectUa | AboutTheProjectUa        |
-		| AboutTheRoleUs    | AboutTheRoleUs           |
-		| AboutTheRoleUa    | AboutTheRoleUa           |
-		| TitleUs           | TitleUsResetSideStack    |
-		| TitleUa           | TitleUaResetSideStack    |
-		| YouWillUs         | YouWillUs                |
-		| YouWillUa         | YouWillUa                |
-		| YouAreUs          | YouAreUs                 |
-		| YouAreUa          | YouAreUa                 |
-		| WeWillUs          | WeWillUs                 |
-		| WeWillUa          | WeWillUa                 |
-		| WeAreUs           | WeAreUs                  |
-		| WeAreUa           | WeAreUa                  |
-		| TechnologyStack   | TechnologyStackUs        |
-		| SlugUs            | TestSlugUsResetSideStack |
-	Given User creates new Career with 'TitleUsResetSideStack' career description and 'TestingResetSideStack1_Тестовий 1,TestingResetSideStack2_Тестовий 2' tag
-		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetSideStack | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
+	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideStack1_Тестовий 1,TestingResetSideStack2_Тестовий 2' tag
+		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
