@@ -20,8 +20,8 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| AboutTheProjectUa | AboutTheProjectUa          |
 		| AboutTheRoleUs    | AboutTheRoleUs             |
 		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
+		| TitleUs           | TitleUsirectionWithText    |
+		| TitleUa           | TitleUairectionWithText    |
 		| YouWillUs         | YouWillUs                  |
 		| YouWillUa         | YouWillUa                  |
 		| YouAreUs          | YouAreUs                   |
@@ -31,19 +31,19 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| WeAreUs           | WeAreUs                    |
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| SlugUs            | TestSlugUsirectionWithText |
+	Given User creates new Career with 'TitleUsirectionWithText' career description and 'TestingDirectionWithText_Тестовий' tag
+		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsirectionWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
+	When User set 'TestUsirectionWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                      |
 		| TestingDirectionWithText |
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'TestUs'
+	Then Search results contain 'TestUsirectionWithText'
 	Then Search results equal to selected tag
 		| Tag                      |
 		| TestingDirectionWithText |
@@ -67,29 +67,29 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                       |
+		| AboutTheProjectUs | AboutTheProjectUs           |
+		| AboutTheProjectUa | AboutTheProjectUa           |
+		| AboutTheRoleUs    | AboutTheRoleUs              |
+		| AboutTheRoleUa    | AboutTheRoleUa              |
+		| TitleUs           | TitleUsSeniorityWithText    |
+		| TitleUa           | TitleUaSeniorityWithText    |
+		| YouWillUs         | YouWillUs                   |
+		| YouWillUa         | YouWillUa                   |
+		| YouAreUs          | YouAreUs                    |
+		| YouAreUa          | YouAreUa                    |
+		| WeWillUs          | WeWillUs                    |
+		| WeWillUa          | WeWillUa                    |
+		| WeAreUs           | WeAreUs                     |
+		| WeAreUa           | WeAreUa                     |
+		| TechnologyStack   | TechnologyStackUs           |
+		| SlugUs            | TestSlugUsSeniorityWithText |
+	Given User creates new Career with 'TitleUsSeniorityWithText' career description and 'TestingSeniorityWithText_Тестовий' tag
+		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSeniorityWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
+	When User set 'TestUsSeniorityWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                      |

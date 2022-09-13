@@ -8,30 +8,30 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 		| Prefix    | Name                                  |
 		| Direction | TestingSideDirectionOfSearch_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionOfSearch_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                           |
+		| AboutTheProjectUs | AboutTheProjectUs               |
+		| AboutTheProjectUa | AboutTheProjectUa               |
+		| AboutTheRoleUs    | AboutTheRoleUs                  |
+		| AboutTheRoleUa    | AboutTheRoleUa                  |
+		| TitleUs           | TitleUsSideDirectionOfSearch    |
+		| TitleUa           | TitleUaSideDirectionOfSearch    |
+		| YouWillUs         | YouWillUs                       |
+		| YouWillUa         | YouWillUa                       |
+		| YouAreUs          | YouAreUs                        |
+		| YouAreUa          | YouAreUa                        |
+		| WeWillUs          | WeWillUs                        |
+		| WeWillUa          | WeWillUa                        |
+		| WeAreUs           | WeAreUs                         |
+		| WeAreUa           | WeAreUa                         |
+		| TechnologyStack   | TechnologyStackUs               |
+		| SlugUs            | TestSlugUsSideDirectionOfSearch |
+	Given User creates new Career with 'TitleUsSideDirectionOfSearch' career description and 'TestingSideDirectionOfSearch_Тестовий' tag
+		| NameUs                      | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSideDirectionOfSearch | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User set 'TestUs' text to 'Search' input on 'CareerHeaderPage' container
-	Then Search results contain 'TestUs'
+	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerHeaderPage' container
+	Then Search results contain 'TestUsSideDirectionOfSearch'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
@@ -40,26 +40,26 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 		| Prefix    | Name                                    |
 		| Direction | TestingSideDirectionPartOfText_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideDirectionPartOfText_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                             |
+		| AboutTheProjectUs | AboutTheProjectUs                 |
+		| AboutTheProjectUa | AboutTheProjectUa                 |
+		| AboutTheRoleUs    | AboutTheRoleUs                    |
+		| AboutTheRoleUa    | AboutTheRoleUa                    |
+		| TitleUs           | TitleUsSideDirectionPartOfText    |
+		| TitleUa           | TitleUaSideDirectionPartOfText    |
+		| YouWillUs         | YouWillUs                         |
+		| YouWillUa         | YouWillUa                         |
+		| YouAreUs          | YouAreUs                          |
+		| YouAreUa          | YouAreUa                          |
+		| WeWillUs          | WeWillUs                          |
+		| WeWillUa          | WeWillUa                          |
+		| WeAreUs           | WeAreUs                           |
+		| WeAreUa           | WeAreUa                           |
+		| TechnologyStack   | TechnologyStackUs                 |
+		| SlugUs            | TestSlugUsSideDirectionPartOfText |
+	Given User creates new Career with 'TitleUsSideDirectionPartOfText' career description and 'TestingSideDirectionPartOfText_Тестовий' tag
+		| NameUs                        | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSideDirectionPartOfText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User set 'Test' text to 'Search' input on 'CareerHeaderPage' container
