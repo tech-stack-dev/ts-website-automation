@@ -15,35 +15,35 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| Prefix    | Name                              |
 		| Direction | TestingDirectionWithText_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionWithText_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                       |
+		| AboutTheProjectUs | AboutTheProjectUs           |
+		| AboutTheProjectUa | AboutTheProjectUa           |
+		| AboutTheRoleUs    | AboutTheRoleUs              |
+		| AboutTheRoleUa    | AboutTheRoleUa              |
+		| TitleUs           | TitleUsDirectionWithText    |
+		| TitleUa           | TitleUaDirectionWithText    |
+		| YouWillUs         | YouWillUs                   |
+		| YouWillUa         | YouWillUa                   |
+		| YouAreUs          | YouAreUs                    |
+		| YouAreUa          | YouAreUa                    |
+		| WeWillUs          | WeWillUs                    |
+		| WeWillUa          | WeWillUa                    |
+		| WeAreUs           | WeAreUs                     |
+		| WeAreUa           | WeAreUa                     |
+		| TechnologyStack   | TechnologyStackUs           |
+		| SlugUs            | TestSlugUsDirectionWithText |
+	Given User creates new Career with 'TitleUsDirectionWithText' career description and 'TestingDirectionWithText_Тестовий' tag
+		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsDirectionWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
+	When User set 'TestUsDirectionWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                      |
 		| TestingDirectionWithText |
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'TestUs'
+	Then Search results contain 'TestUsDirectionWithText'
 	Then Search results equal to selected tag
 		| Tag                      |
 		| TestingDirectionWithText |
@@ -67,29 +67,29 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| Prefix    | Name                              |
 		| Seniority | TestingSeniorityWithText_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityWithText_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                       |
+		| AboutTheProjectUs | AboutTheProjectUs           |
+		| AboutTheProjectUa | AboutTheProjectUa           |
+		| AboutTheRoleUs    | AboutTheRoleUs              |
+		| AboutTheRoleUa    | AboutTheRoleUa              |
+		| TitleUs           | TitleUsSeniorityWithText    |
+		| TitleUa           | TitleUaSeniorityWithText    |
+		| YouWillUs         | YouWillUs                   |
+		| YouWillUa         | YouWillUa                   |
+		| YouAreUs          | YouAreUs                    |
+		| YouAreUa          | YouAreUa                    |
+		| WeWillUs          | WeWillUs                    |
+		| WeWillUa          | WeWillUa                    |
+		| WeAreUs           | WeAreUs                     |
+		| WeAreUa           | WeAreUa                     |
+		| TechnologyStack   | TechnologyStackUs           |
+		| SlugUs            | TestSlugUsSeniorityWithText |
+	Given User creates new Career with 'TitleUsSeniorityWithText' career description and 'TestingSeniorityWithText_Тестовий' tag
+		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSeniorityWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User set 'TestUs' text to 'Search' input on 'HeaderPage' container
+	When User set 'TestUsSeniorityWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                      |
