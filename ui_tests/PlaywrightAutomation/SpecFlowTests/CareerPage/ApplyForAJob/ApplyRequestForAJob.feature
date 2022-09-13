@@ -30,7 +30,7 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
-	When User clicks on 'TestUs' card
+	When User clicks on 'TestingAppleForAJob' card
 	When User clicks on 'Apply Now' button on 'BreadcrumbsHeader' container
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container
 	Then Error messages are displayed under fields
