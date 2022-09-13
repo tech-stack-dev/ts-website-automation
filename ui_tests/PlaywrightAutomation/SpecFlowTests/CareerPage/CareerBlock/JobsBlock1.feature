@@ -7,7 +7,8 @@ Scenario: CheckJobDescriptionOnJobPage
 	Given User creates tag
 		| Prefix    | Name                                |
 		| Direction | TSWEB146TestingDirection4_Тестовий4 |
-	
+		| Tag       | TSWEB146Hot_ГарячіВакансії          |
+		| Tag       | Test146Tag_ТестовийТег              |
 	Given User creates and publish new Career Description
 		| Field             | Value                       |
 		| AboutTheProjectUs | AboutTheProjectUs4          |
@@ -26,7 +27,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| WeAreUa           | WeAreUa4                    |
 		| TechnologyStack   | TechnologyStackUs4          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne4 |
-	Given User creates new Career with 'TSWEB146TitleUs4' career description and 'TSWEB146TestingDirection1_Тестовий4' tag
+	Given User creates new Career with 'TSWEB146TitleUs4' career description and 'TSWEB146TestingDirection4_Тестовий4,TSWEB146Hot_ГарячіВакансії,Test146Tag_ТестовийТег' tag
 		| NameUs          | NameUa          | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| Tsweb146Testus4 | TSWEB146TestUa4 | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
@@ -35,7 +36,7 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User selects tag from 'Direction' dropdown
 		| Tag                       |
 		| TSWEB146TestingDirection4 |
-	When User clicks on 'Tsweb146Testus4' card title	
+	When User clicks on 'Tsweb146Testus4' card title
 	Then 'Tsweb146Testus4' job title is displayed on job page
 	Then 'Hot' tag is displayed in the '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
