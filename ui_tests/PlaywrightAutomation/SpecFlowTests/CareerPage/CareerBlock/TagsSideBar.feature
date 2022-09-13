@@ -8,26 +8,26 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 		| Prefix | Name                           |
 		| Tag    | TestingSideTagOnlyOne_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideTagOnlyOne_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                    |
+		| AboutTheProjectUs | AboutTheProjectUs        |
+		| AboutTheProjectUa | AboutTheProjectUa        |
+		| AboutTheRoleUs    | AboutTheRoleUs           |
+		| AboutTheRoleUa    | AboutTheRoleUa           |
+		| TitleUs           | TitleUsSideTagOnlyOne    |
+		| TitleUa           | TitleUaSideTagOnlyOne    |
+		| YouWillUs         | YouWillUs                |
+		| YouWillUa         | YouWillUa                |
+		| YouAreUs          | YouAreUs                 |
+		| YouAreUa          | YouAreUa                 |
+		| WeWillUs          | WeWillUs                 |
+		| WeWillUa          | WeWillUa                 |
+		| WeAreUs           | WeAreUs                  |
+		| WeAreUa           | WeAreUa                  |
+		| TechnologyStack   | TechnologyStackUs        |
+		| SlugUs            | TestSlugUsSideTagOnlyOne |
+	Given User creates new Career with 'TitleUsSideTagOnlyOne' career description and 'TestingSideTagOnlyOne_Тестовий' tag
+		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSideTagOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
@@ -54,26 +54,26 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 		| Tag    | TestingSideTag1_Тестовий1 |
 		| Tag    | TestingSideTag2_Тестовий2 |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSideTag1_Тестовий1,TestingSideTag2_Тестовий2' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value             |
+		| AboutTheProjectUs | AboutTheProjectUs |
+		| AboutTheProjectUa | AboutTheProjectUa |
+		| AboutTheRoleUs    | AboutTheRoleUs    |
+		| AboutTheRoleUa    | AboutTheRoleUa    |
+		| TitleUs           | TitleUsSideTag    |
+		| TitleUa           | TitleUaSideTag    |
+		| YouWillUs         | YouWillUs         |
+		| YouWillUa         | YouWillUa         |
+		| YouAreUs          | YouAreUs          |
+		| YouAreUa          | YouAreUa          |
+		| WeWillUs          | WeWillUs          |
+		| WeWillUa          | WeWillUa          |
+		| WeAreUs           | WeAreUs           |
+		| WeAreUa           | WeAreUa           |
+		| TechnologyStack   | TechnologyStackUs |
+		| SlugUs            | TestSlugUsSideTag |
+	Given User creates new Career with 'TitleUsSideTag' career description and 'TestingSideTag1_Тестовий1,TestingSideTag2_Тестовий2' tag
+		| NameUs        | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
@@ -108,26 +108,26 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 		| Tag    | TestingResetSideTag1_Тестовий 1 |
 		| Tag    | TestingResetSideTag2_Тестовий 2 |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingResetSideTag1_Тестовий 1,TestingResetSideTag2_Тестовий 2' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value                  |
+		| AboutTheProjectUs | AboutTheProjectUs      |
+		| AboutTheProjectUa | AboutTheProjectUa      |
+		| AboutTheRoleUs    | AboutTheRoleUs         |
+		| AboutTheRoleUa    | AboutTheRoleUa         |
+		| TitleUs           | TitleUsResetSideTag    |
+		| TitleUa           | TitleUaResetSideTag    |
+		| YouWillUs         | YouWillUs              |
+		| YouWillUa         | YouWillUa              |
+		| YouAreUs          | YouAreUs               |
+		| YouAreUa          | YouAreUa               |
+		| WeWillUs          | WeWillUs               |
+		| WeWillUa          | WeWillUa               |
+		| WeAreUs           | WeAreUs                |
+		| WeAreUa           | WeAreUa                |
+		| TechnologyStack   | TechnologyStackUs      |
+		| SlugUs            | TestSlugUsResetSideTag |
+	Given User creates new Career with 'TitleUsResetSideTag' career description and 'TestingResetSideTag1_Тестовий 1,TestingResetSideTag2_Тестовий 2' tag
+		| NameUs             | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsResetSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
