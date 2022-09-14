@@ -8,23 +8,23 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 		| Prefix    | Name                         |
 		| Direction | TestingAppleForAJob_Тестовий |
 	Given User creates and publish new Career Description
-		| Field             | Value                             |
-		| AboutTheProjectUs | AboutTheProjectUs                 |
-		| AboutTheProjectUa | AboutTheProjectUa                 |
-		| AboutTheRoleUs    | AboutTheRoleUs                    |
-		| AboutTheRoleUa    | AboutTheRoleUa                    |
-		| TitleUs           | TitleUs                           |
-		| TitleUa           | TitleUa                           |
-		| YouWillUs         | YouWillUs                         |
-		| YouWillUa         | YouWillUa                         |
-		| YouAreUs          | YouAreUs                          |
-		| YouAreUa          | YouAreUa                          |
-		| WeWillUs          | WeWillUs                          |
-		| WeWillUa          | WeWillUa                          |
-		| WeAreUs           | WeAreUs                           |
-		| WeAreUa           | WeAreUa                           |
-		| TechnologyStack   | TechnologyStackUs                 |
-		| SlugUs            | TestSlugUsDirectionOnlyAnotherOne |
+		| Field             | Value                      |
+		| AboutTheProjectUs | AboutTheProjectUs          |
+		| AboutTheProjectUa | AboutTheProjectUa          |
+		| AboutTheRoleUs    | AboutTheRoleUs             |
+		| AboutTheRoleUa    | AboutTheRoleUa             |
+		| TitleUs           | TitleUs                    |
+		| TitleUa           | TitleUa                    |
+		| YouWillUs         | YouWillUs                  |
+		| YouWillUa         | YouWillUa                  |
+		| YouAreUs          | YouAreUs                   |
+		| YouAreUa          | YouAreUa                   |
+		| WeWillUs          | WeWillUs                   |
+		| WeWillUa          | WeWillUa                   |
+		| WeAreUs           | WeAreUs                    |
+		| WeAreUa           | WeAreUa                    |
+		| TechnologyStack   | TechnologyStackUs          |
+		| SlugUs            | TestSlugUsDirectionOnlyOne |
 	Given User creates new Career with 'TitleUs' career description and 'TestingAppleForAJob_Тестовий' tag
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
