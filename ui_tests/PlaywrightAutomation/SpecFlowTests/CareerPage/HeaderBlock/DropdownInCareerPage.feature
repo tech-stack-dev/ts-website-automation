@@ -13,8 +13,8 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| AboutTheProjectUa | AboutTheProjectUa          |
 		| AboutTheRoleUs    | AboutTheRoleUs             |
 		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
+		| TitleUs           | TitleUsDirectionOnlyOne    |
+		| TitleUa           | TitleUaDirectionOnlyOne    |
 		| YouWillUs         | YouWillUs                  |
 		| YouWillUa         | YouWillUa                  |
 		| YouAreUs          | YouAreUs                   |
@@ -25,9 +25,9 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirectionOnlyOne_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates new Career with 'TitleUsDirectionOnlyOne' career description and 'TestingDirectionOnlyOne_Тестовий' tag
+		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsDirectionOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
@@ -60,26 +60,26 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| Direction | TestingDirection1_Тестовий1 |
 		| Direction | TestingDirection2_Тестовий2 |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingDirection1_Тестовий1,TestingDirection2_Тестовий2' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value               |
+		| AboutTheProjectUs | AboutTheProjectUs   |
+		| AboutTheProjectUa | AboutTheProjectUa   |
+		| AboutTheRoleUs    | AboutTheRoleUs      |
+		| AboutTheRoleUa    | AboutTheRoleUa      |
+		| TitleUs           | TitleUsDirection    |
+		| TitleUa           | TitleUaDirection    |
+		| YouWillUs         | YouWillUs           |
+		| YouWillUa         | YouWillUa           |
+		| YouAreUs          | YouAreUs            |
+		| YouAreUa          | YouAreUa            |
+		| WeWillUs          | WeWillUs            |
+		| WeWillUa          | WeWillUa            |
+		| WeAreUs           | WeAreUs             |
+		| WeAreUa           | WeAreUa             |
+		| TechnologyStack   | TechnologyStackUs   |
+		| SlugUs            | TestSlugUsDirection |
+	Given User creates new Career with 'TitleUsDirection' career description and 'TestingDirection1_Тестовий1,TestingDirection2_Тестовий2' tag
+		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'Direction' dropdown
@@ -124,8 +124,8 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| AboutTheProjectUa | AboutTheProjectUa          |
 		| AboutTheRoleUs    | AboutTheRoleUs             |
 		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
+		| TitleUs           | TitleUsSeniorityOnlyOne    |
+		| TitleUa           | TitleUaSeniorityOnlyOne    |
 		| YouWillUs         | YouWillUs                  |
 		| YouWillUa         | YouWillUa                  |
 		| YouAreUs          | YouAreUs                   |
@@ -135,10 +135,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| WeAreUs           | WeAreUs                    |
 		| WeAreUa           | WeAreUa                    |
 		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| SlugUs            | TestSlugUsSeniorityOnlyOne |
+	Given User creates new Career with 'TitleUsSeniorityOnlyOne' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
+		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSeniorityOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
@@ -168,26 +168,26 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 		| Seniority | Testing Seniority 2_Тестовий 2 |
 		| Seniority | Testing Seniority 3_Тестовий 3 |
 	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUs                    |
-		| TitleUa           | TitleUa                    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUs' career description and 'Testing Seniority 1_Тестовий 1,Testing Seniority 2_Тестовий 2,Testing Seniority 3_Тестовий 3' tag
-		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+		| Field             | Value               |
+		| AboutTheProjectUs | AboutTheProjectUs   |
+		| AboutTheProjectUa | AboutTheProjectUa   |
+		| AboutTheRoleUs    | AboutTheRoleUs      |
+		| AboutTheRoleUa    | AboutTheRoleUa      |
+		| TitleUs           | TitleUsSeniority    |
+		| TitleUa           | TitleUaSeniority    |
+		| YouWillUs         | YouWillUs           |
+		| YouWillUa         | YouWillUa           |
+		| YouAreUs          | YouAreUs            |
+		| YouAreUa          | YouAreUa            |
+		| WeWillUs          | WeWillUs            |
+		| WeWillUa          | WeWillUa            |
+		| WeAreUs           | WeAreUs             |
+		| WeAreUa           | WeAreUa             |
+		| TechnologyStack   | TechnologyStackUs   |
+		| SlugUs            | TestSlugUsSeniority |
+	Given User creates new Career with 'TitleUsSeniority' career description and 'Testing Seniority 1_Тестовий 1,Testing Seniority 2_Тестовий 2,Testing Seniority 3_Тестовий 3' tag
+		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
+		| TestUsSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on the career website
 	When User clicks on 'SeniorityLevel' dropdown
