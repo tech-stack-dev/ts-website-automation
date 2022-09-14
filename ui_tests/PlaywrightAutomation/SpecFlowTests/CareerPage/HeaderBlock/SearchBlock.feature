@@ -1,7 +1,7 @@
 ﻿@retry(2)
 Feature: SearchBlock
 
-@Regession @TSWEB133
+@Regression @TSWEB133
 Scenario: CheckThatUserSeesMessageAboutFailSearchResults
 	Given User is on the career website
 	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container

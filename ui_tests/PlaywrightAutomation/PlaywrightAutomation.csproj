@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="SpecFlowTests\CareerPage\CareerBlock\JobsBlock.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutomationUtils" Version="1.1.91" />
     <PackageReference Include="BoDi" Version="1.5.0" />
     <PackageReference Include="ChoETL" Version="1.2.1.48" />
