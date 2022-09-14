@@ -6,7 +6,7 @@ namespace PlaywrightAutomation.Components
     {
         public override string Construct()
         {
-            var selector = $"//*[contains(@data-id,'{Identifier.ToAutomationValue()}Button')]";
+            var selector = $"//*[contains(@data-id,'{Identifier.ToAutomationValue()}Button')] | //button[@aria-label='{Identifier}']";
             return selector;
         }
     }

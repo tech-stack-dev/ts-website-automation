@@ -308,7 +308,11 @@ namespace PlaywrightAutomation.Utils
 
         public async Task<ContentfulTag> CreateTag(ContentfulTag tag)
         {
-            await _client.CreateContentTag(tag.Name, tag.Id, true);
+            if (!tag.Id.Equals("tag_hot"))
+            {
+                await _client.CreateContentTag(tag.Name, tag.Id, true);
+            }
+
             return tag;
         }
 

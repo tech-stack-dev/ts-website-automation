@@ -7,8 +7,8 @@ Scenario: CheckJobDescriptionOnJobPage
 	Given User creates tag
 		| Prefix    | Name                                |
 		| Direction | TSWEB146TestingDirection4_Тестовий4 |
-		| Tag       | TSWEB146Hot_ГарячіВакансії          |
-		| Tag       | Test146Tag_ТестовийТег              |
+		| Tag       | Test146Tag_Тестовий146Тег           |
+		| Tag       | Hot_ГарячіВакансії                  |
 	Given User creates and publish new Career Description
 		| Field             | Value                       |
 		| AboutTheProjectUs | AboutTheProjectUs4          |
@@ -27,7 +27,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| WeAreUa           | WeAreUa4                    |
 		| TechnologyStack   | TechnologyStackUs4          |
 		| SlugUs            | TestSlugUsDirectionOnlyOne4 |
-	Given User creates new Career with 'TSWEB146TitleUs4' career description and 'TSWEB146TestingDirection4_Тестовий4,TSWEB146Hot_ГарячіВакансії,Test146Tag_ТестовийТег' tag
+	Given User creates new Career with 'TSWEB146TitleUs4' career description and 'TSWEB146TestingDirection4_Тестовий4,Test146Tag_Тестовий146Тег,Hot_ГарячіВакансії' tag
 		| NameUs          | NameUa          | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| Tsweb146Testus4 | TSWEB146TestUa4 | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
@@ -41,7 +41,9 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Hot' tag is displayed in the '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
-	Then 'facebook' social media icon is clickable on job page
+	Then 'facebook' social media icon is clickable on 'JobPage' container on job page
+	Then 'linkedin' social media icon is clickable on 'JobPage' container on job page
+	Then 'twitter' social media icon is clickable on 'JobPage' container on job page
 	Then Job has description titles on job page
 		| Title              |
 		| About the product: |
@@ -50,3 +52,4 @@ Scenario: CheckJobDescriptionOnJobPage
 		| You:               |
 		| We will:           |
 		| We:                |
+	Then 'Would you like to be a part of our team?' text is displayed on job page

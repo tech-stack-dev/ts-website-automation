@@ -8,6 +8,7 @@ using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,28 +80,22 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
 
-        [Then("Social media icons are displayed below job title on job page")]
+        [Then(@"Social media icons are displayed below job title on job page")]
         public void ThenSocialMediaIconsAreDisplayedBelowJobTitleOnJobPage()
         {
             var socialIcons = _page.Init<JobPage>().SocialIcons.IsVisibleAsync().GetAwaiter().GetResult();
             socialIcons.Should().BeTrue();
         }
 
-        [Then("'([^']*)' social media icon is clickable on job page")]
-        public void ThenSocialMediaIconIsClickableOnJobPage(string icon)
+        [Then(@"'([^']*)' social media icon is clickable on '([^']*)' container on job page")]
+        public void ThenSocialMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
         {
-            var socialIcons = _page.Init<JobPage>().SocialIcons.ElementHandlesAsync().GetAwaiter().GetResult();
-
-            if (!socialIcons.Any())
-            {
-                throw new Exception("Job page has not any job tags");
-            }
-
-            var socialIcon = socialIcons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(icon));
-            socialIcon.ClickAsync();
+            _page.Component<Button>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                .ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then("Job has description titles on job page")]
+        [Then(@"Job has description titles on job page")]
         public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
         {
             var expectedDescriptionTitles = table.Rows.SelectMany(x => x.Values).ToList();
@@ -110,6 +105,21 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
             actualDescriptionTitles.Should().Contain(expectedDescriptionTitles);
+        }
+
+        [Then(@"'([^']*)' text is displayed on job page")]
+        public void ThenTextIsDisplayedOnJobPage(string expectedText)
+        {
+            var actualText = _page.Init<JobPage>().ApplyContainer.InnerTextAsync().GetAwaiter().GetResult();
+            actualText.Should().Contain(expectedText);
+        }
+
+        [Then(@"'([^']*)' button is clickable on '([^']*)' on job page")]
+        public void ThenButtonIsClickableOnJobPage(string button, string container)
+        {
+            _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                .ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
     }
 }

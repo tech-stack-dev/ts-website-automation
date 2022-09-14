@@ -23,8 +23,8 @@ namespace PlaywrightAutomation.Models.Contentful
                 {
                     if (Name.ToLower().Contains("hot"))
                     {
-                        // To create tag with background-color: rgb(255, 198, 0)
-                        Id = $"{_prefix.GetValue()}_hot_{random}";
+                        // To add tag with background-color: rgb(255, 198, 0)
+                        Id = "tag_hot";
                     }
                     else
                     {
