@@ -39,7 +39,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             counter.Should().Be(number);
         }
 
-
         #endregion
 
         #region ActiveTagsGroup

@@ -16,10 +16,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [When(@"User clicks on '([^']*)' card")]
-        public void WhenUserClicksOnCard(string name)
+        [When(@"User clicks on '([^']*)' card title")]
+        public void WhenUserClicksOnCardTitle(string title)
         {
-            _page.Component<Card>(name).ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Card>(title).Title.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
     }

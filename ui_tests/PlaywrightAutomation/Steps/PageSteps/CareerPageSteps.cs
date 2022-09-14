@@ -9,7 +9,7 @@ using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 
-namespace PlaywrightAutomation.Steps
+namespace PlaywrightAutomation.Steps.PageSteps
 {
     [Binding]
     internal class CareerPageSteps : SpecFlowContext
@@ -72,6 +72,27 @@ namespace PlaywrightAutomation.Steps
             {
                 tags.Should().Contain(text);
             }
+        }
+
+        [Then(@"Jobs block on Career page has tabs")]
+        public void ThenJobsBlockOnCareerPageHasTabs(Table table)
+        {
+            var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var actualListTabs = _page.Component<NavigationTabs>()                
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+
+            actualListTabs.Should().Equal(expectedListTabs);
+        }
+
+        [Then(@"Breadcrumbs has '([^']*)' text")]
+        public void ThenBreadcrumbsHasText(string expectedBreadcrumbs)
+        {
+            var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
+            var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
+
+            expectedBreadcrumbs.Should().Be(string.Concat(tabPart, jobTitlePart));
         }
 
         [Then(@"Dropdowns are expanded on '([^']*)' container")]
