@@ -4,6 +4,7 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
@@ -120,6 +121,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+        }
+
+        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
+        public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
+        {
+            var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+            actualTitle.Should().Be(expectedTitle);
         }
     }
 }
