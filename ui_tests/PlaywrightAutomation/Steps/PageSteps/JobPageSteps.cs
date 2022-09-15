@@ -8,11 +8,7 @@ using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
 
