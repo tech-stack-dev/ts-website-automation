@@ -115,14 +115,6 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualText.Should().Contain(expectedText);
         }
 
-        [Then(@"'([^']*)' button is clickable on '([^']*)' on job page")]
-        public void ThenButtonIsClickableOnJobPage(string button, string container)
-        {
-            _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-        }
-
         [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
         public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
         {
