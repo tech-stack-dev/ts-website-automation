@@ -24,7 +24,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         }
 
         [Then(@"'Techstack' logo is displayed in the main page")]
-        public void ThechstackLogoIsDisplayedInTheMainPage()
+        public void ThenTechstackLogoIsDisplayedInTheMainPage()
         {
             _page.Init<HeaderPage>().CheckLogo();
         }
