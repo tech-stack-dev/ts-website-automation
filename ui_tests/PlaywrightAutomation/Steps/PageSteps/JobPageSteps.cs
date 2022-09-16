@@ -109,5 +109,23 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualText = _page.Init<JobPage>().ApplyContainer.InnerTextAsync().GetAwaiter().GetResult();
             actualText.Should().Contain(expectedText);
         }
+
+        [Then(@"'Techstack' logo is displayed on job page")]
+        public void ThenTechstackLogoIsDisplayedOnJobPage()
+        {
+            _page.Init<JobPage>().CheckLogo();
+        }
+
+        [Then(@"Jobs block on job page has tabs")]
+        public void ThenJobsBlockOnJobPageHasTabs(Table table)
+        {
+            var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var actualListTabs = _page.Component<NavigationTabs>()
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+
+            actualListTabs.Should().Equal(expectedListTabs);
+        }
     }
 }

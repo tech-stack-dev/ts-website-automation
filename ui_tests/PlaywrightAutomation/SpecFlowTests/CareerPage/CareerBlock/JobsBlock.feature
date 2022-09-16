@@ -52,7 +52,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Then Breadcrumbs has 'Jobs / Tsweb146TestusOne' text
 	Then 'Apply now' button is displayed on 'BreadcrumbsHeader' container
 
-@Regression @TSWEB146
+@Regression @TSWEB146 @Cleanup
 Scenario: CheckNavigationHeaderOnJobPage
 	# Preconditions
 	Given User creates tag
@@ -86,3 +86,13 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| Tag                           |
 		| TSWEB146TestingDirectionThree |
 	When User clicks on 'Tsweb146TestusThree' card title
+	Then 'Techstack' logo is displayed on job page
+	Then Jobs block on job page has tabs
+		| Tab        |
+		| Jobs       |
+		| About us   |
+		| Reviews    |
+		| Contact us |
+	Then 'En' language is selected 'NavigationHeader' on container
+	When User selects 'Ua' language on 'NavigationHeader' container
+	Then 'Ua' language is selected 'NavigationHeader' on container
