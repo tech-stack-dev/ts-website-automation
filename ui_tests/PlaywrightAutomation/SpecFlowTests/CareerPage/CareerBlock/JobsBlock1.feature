@@ -38,7 +38,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| TSWEB146TestingDirectionTwo |
 	When User clicks on 'Tsweb146TestusTwo' card title
 	Then 'Tsweb146TestusTwo' job title is displayed on job page
-	Then 'Hot' tag is displayed in the '1' position on job page
+	Then 'Hot' tag is displayed in '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
 	Then 'Facebook share' social share media icon is clickable on 'JobPage' container on job page

@@ -47,8 +47,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualTag.Should().BeTrue();
         }
 
-        [Then(@"'([^']*)' tag is displayed in the '([^']*)' position on job page")]
-        public void ThenTagIsDisplayedInThePositionOnJobPage(string expectedTag, string expectedPosition)
+        [Then(@"'([^']*)' tag is displayed in '([^']*)' position on job page")]
+        public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, string expectedPosition)
         {
             var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult().ToList();
 
