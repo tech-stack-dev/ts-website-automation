@@ -30,7 +30,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                     |
@@ -69,7 +69,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                     |

@@ -2,7 +2,7 @@
 Feature: HomePage
 
 Background:
-	Given User is on the career website
+	Given User is on career website
 
 @Regression
 Scenario: CheckThatUserCanSwithedLanguageInHeader

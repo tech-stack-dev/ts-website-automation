@@ -29,7 +29,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideStackOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                     |
 		| TestingSideStackOnlyOne |
@@ -75,7 +75,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideStack | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag               |
 		| TestingSideStack1 |
@@ -129,7 +129,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetSideStack | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                       |
 		| Testing Reset Side Stack1 |

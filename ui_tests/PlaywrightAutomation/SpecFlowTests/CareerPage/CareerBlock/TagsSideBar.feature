@@ -29,7 +29,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideTagOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideTagOnlyOne |
@@ -75,7 +75,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 		| NameUs        | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag             |
 		| TestingSideTag1 |
@@ -129,7 +129,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 		| NameUs             | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                     |
 		| Testing Reset Side Tag1 |

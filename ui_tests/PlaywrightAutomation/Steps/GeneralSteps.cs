@@ -17,8 +17,8 @@ namespace PlaywrightAutomation.Steps
             _browserFactory = browserFactory;
         }
 
-        [Given(@"User is on the career website")]
-        public async void GivenUserIsOnTheCareerWebsite()
+        [Given(@"User is on career website")]
+        public async void GivenUserIsOnCareerWebsite()
         {
             _page = _browserFactory
                 .OpenNewPage(UrlProvider.Application)

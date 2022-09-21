@@ -29,7 +29,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsDirectionOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                        |
@@ -81,7 +81,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag               |
@@ -140,7 +140,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSeniorityOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                     |
@@ -189,7 +189,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                 |

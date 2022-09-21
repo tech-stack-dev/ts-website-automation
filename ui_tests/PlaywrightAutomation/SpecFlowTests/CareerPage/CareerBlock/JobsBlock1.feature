@@ -31,7 +31,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| NameUs            | NameUa            | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| Tsweb146TestusTwo | TSWEB146TestUaTwo | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
