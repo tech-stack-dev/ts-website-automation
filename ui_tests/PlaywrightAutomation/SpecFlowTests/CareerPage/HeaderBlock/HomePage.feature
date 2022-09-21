@@ -17,5 +17,5 @@ Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 	Then 'Ua' language is selected 'NavigationHeader' on container
 
 @Regression
-Scenario: CheckLogoDisplayedInMainPage
+Scenario: CheckLogoDisplayedOnMainPage
 	Then 'Techstack' logo is displayed on main page
