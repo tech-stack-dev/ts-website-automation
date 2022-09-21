@@ -26,8 +26,8 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
-        [Given(@"User is on the '([^']*)' page")]
-        public async void GivenUserIsOnThePage(string url)
+        [Given(@"User is on '([^']*)' page")]
+        public async void GivenUserIsOnPage(string url)
         {
             _page = _browserFactory
                 .OpenNewPage(url)
