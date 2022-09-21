@@ -4,7 +4,7 @@ Feature: JobsBlock
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
 	Given User is on the career website
-	Then 'Techstack' logo is displayed in the main page
+	Then 'Techstack' logo is displayed on main page
 	Then Jobs block on Career page has tabs
 		| Tab        |
 		| Jobs       |
