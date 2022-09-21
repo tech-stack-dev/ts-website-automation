@@ -84,11 +84,11 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [Then(@"'([^']*)' social media icon is clickable on '([^']*)' container on job page")]
-        public void ThenSocialMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
+        [Then(@"'([^']*)' social share media icon is clickable on '([^']*)' container on job page")]
+        public void ThenSocialShareMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
         {
             _page.Component<Button>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                 .SocialButton.ClickAsync().GetAwaiter().GetResult();
+                 .SocialShareButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 

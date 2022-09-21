@@ -41,9 +41,9 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Hot' tag is displayed in the '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
-	Then 'Facebook share' social media icon is clickable on 'JobPage' container on job page
-	Then 'Linkedin share' social media icon is clickable on 'JobPage' container on job page
-	Then 'Twitter share' social media icon is clickable on 'JobPage' container on job page
+	Then 'Facebook share' social share media icon is clickable on 'JobPage' container on job page
+	Then 'Linkedin share' social share media icon is clickable on 'JobPage' container on job page
+	Then 'Twitter share' social share media icon is clickable on 'JobPage' container on job page
 	Then Job has description titles on job page
 		| Title              |
 		| About the product: |
