@@ -88,7 +88,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenSocialMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
         {
             _page.Component<Button>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .ClickAsync().GetAwaiter().GetResult();
+                 .SocialButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
@@ -111,7 +111,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualText.Should().Contain(expectedText);
         }
 
-        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
+        [Then(@"'([^']*)' title is displayed on 'Apply for a Job' page")]
         public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
         {
             var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
