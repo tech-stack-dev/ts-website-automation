@@ -35,5 +35,16 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
 
             buttonVisibleState.Should().BeTrue();
         }
+
+        [Then(@"'([^']*)' button with '([^']*)' text is displayed on '([^']*)' container")]
+        public void ThenButtonWithTextIsDisplayedOnContainer(string button, string buttonText, string container)
+        {
+            ThenButtonIsDisplayedOnContainer(button, container);
+
+            var buttonTextState = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                .InnerTextAsync().GetAwaiter().GetResult().Equals(buttonText);
+
+            buttonTextState.Should().BeTrue();
+        }
     }
 }

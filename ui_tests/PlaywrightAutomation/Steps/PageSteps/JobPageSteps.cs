@@ -75,6 +75,12 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
+        [Then(@"'([^']*)' text is displayed with social media icons on job page")]
+        public void ThenTextIsDisplayedWithSocialMediaIconsOnJobPage(string expectedText)
+        {
+            var actualText = _page.Init<JobPage>().SocialIconsText.TextContentAsync().GetAwaiter().GetResult();
+            actualText.Should().Be(expectedText);
+        }
 
         [Then(@"Social media icons are displayed below job title on job page")]
         public void ThenSocialMediaIconsAreDisplayedBelowJobTitleOnJobPage()

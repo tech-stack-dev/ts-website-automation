@@ -96,3 +96,63 @@ Scenario: CheckNavigationHeaderOnJobPage
 	Then 'En' language is selected 'NavigationHeader' on container
 	When User selects 'Ua' language on 'NavigationHeader' container
 	Then 'Ua' language is selected 'NavigationHeader' on container
+
+@Regression @TSWEB146 @Cleanup
+Scenario: CheckLocalizationOnJobPage
+	# Preconditions
+	Given User creates tag
+		| Prefix    | Name                                              |
+		| Direction | TSWEB146TestingDirectionFour_Тестовий146Четвертий |
+		| Tag       | Test146TagFour_Тестовий146ТегЧетвертий            |
+		| Tag       | Hot_ГарячіВакансії                                |
+	Given User creates and publish new Career Description
+		| Field             | Value                   |
+		| AboutTheProjectUs | AboutTheProjectUsFour   |
+		| AboutTheProjectUa | AboutTheProjectUaFour   |
+		| AboutTheRoleUs    | AboutTheRoleUsFour      |
+		| AboutTheRoleUa    | AboutTheRoleUaFour      |
+		| TitleUs           | TSWEB146_TitleUsFour    |
+		| TitleUa           | TSWEB146_TitleUaFour    |
+		| YouWillUs         | YouWillUsFour           |
+		| YouWillUa         | YouWillUaFour           |
+		| YouAreUs          | YouAreUsFour            |
+		| YouAreUa          | YouAreUaFour            |
+		| WeWillUs          | WeWillUsFour            |
+		| WeWillUa          | WeWillUaFour            |
+		| WeAreUs           | WeAreUsFour             |
+		| WeAreUa           | WeAreUaFour             |
+		| TechnologyStack   | TechnologyStackUsFour   |
+		| SlugUs            | TestSlugUsDirectionFour |
+	Given User creates new Career with 'TSWEB146_TitleUsFour' career description and 'TSWEB146TestingDirectionFour_ТестовийЧетвертий,Test146TagFour_Тестовий146ТегЧетвертий,Hot_ГарячіВакансії' tag
+		| NameUs             | NameUa             | DescriptionUs         | DescriptionUa         | Type | LinkType |
+		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
+	# Scenario
+	Given User is on the career website
+	When User clicks on 'Direction' dropdown
+	When User selects tag from 'Direction' dropdown
+		| Tag                          |
+		| TSWEB146TestingDirectionFour |
+	When User clicks on 'Tsweb146TestusFour' card title
+	When User selects 'Ua' language on 'NavigationHeader' container
+	Then 'TSWEB146TestUaFour' job title is displayed on job page
+	Then Jobs block on job page has tabs
+		| Tab               |
+		| Вакансії          |
+		| Про компанію      |
+		| Відгуки           |
+		| Зв’язатись з нами |
+	Then Breadcrumbs has 'Вакансії / TSWEB146TestUaFour' text
+	Then 'Apply now' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
+	Then 'Гарячі вакансії' tag is displayed on job page
+	Then 'Тестовий146ТегЧетвертий' tag is displayed on job page
+	Then 'Поділитися:' text is displayed with social media icons on job page
+	Then Job has description titles on job page
+		| Title        |
+		| Про продукт: |
+		| Про роль:    |
+		| Ти будеш:    |
+		| Ти маєш:     |
+		| Ми будемо:   |
+		| Ми маємо:    |
+	Then 'Хочеш стати частиною нашої команди?' text is displayed on job page
+	Then 'Apply now vacancy' button with 'Подавай заявку!' text is displayed on 'JobPage' container
