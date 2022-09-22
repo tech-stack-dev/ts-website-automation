@@ -47,6 +47,17 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualTag.Should().BeTrue();
         }
 
+        [Then(@"Tags are displayed on job page")]
+        public void ThenTagsAreDisplayedOnJobPage(Table table)
+        {
+            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList();
+
+            var actualListTags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+
+            actualListTags.Should().Equal(expectedListTags);
+        }
+
         [Then(@"'([^']*)' tag is displayed in '([^']*)' position on job page")]
         public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, string expectedPosition)
         {
@@ -111,7 +122,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualText.Should().Contain(expectedText);
         }
 
-        [Then(@"'([^']*)' title is displayed on 'Apply for a Job' page")]
+        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
         public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
         {
             var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();

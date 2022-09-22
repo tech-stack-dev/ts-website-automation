@@ -5,7 +5,7 @@ namespace PlaywrightAutomation.Components
 {
     public class Button : BaseWebComponent
     {
-        public ILocator SocialShareButton => Instance.Locator("//button");
+        public ILocator SocialShareButton => Instance.Locator("//button[1]");
 
         public override string Construct()
         {

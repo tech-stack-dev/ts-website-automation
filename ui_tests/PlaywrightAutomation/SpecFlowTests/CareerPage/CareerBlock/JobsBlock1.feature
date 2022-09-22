@@ -38,6 +38,10 @@ Scenario: CheckJobDescriptionOnJobPage
 		| TSWEB146TestingDirectionTwo |
 	When User clicks on 'Tsweb146TestusTwo' card title
 	Then 'Tsweb146TestusTwo' job title is displayed on job page
+	Then Tags are displayed on job page
+		| Tag           |
+		| Hot           |
+		| Test146TagTwo |
 	Then 'Hot' tag is displayed in '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
@@ -54,4 +58,4 @@ Scenario: CheckJobDescriptionOnJobPage
 		| We:                |
 	Then 'Would you like to be a part of our team?' text is displayed on job page
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
-	Then 'Apply for a Job' title is displayed on 'Apply for a Job' page
+	Then 'Apply for a Job' title is displayed on Apply for a Job page
