@@ -1,8 +1,11 @@
-﻿namespace PlaywrightAutomation.Providers
+﻿using AutomationUtils.Extensions;
+using AutomationUtils.Utils;
+
+namespace PlaywrightAutomation.Providers
 {
     internal class ContentfulProvider
     {
-        public static string ManagmentApiKey => "CFPAT-6uzPJmOsnLeRqykPc4m0hrOeKs3DlEC1v53HbjOmLcE";
-        public static string SpaceId => "pr38pccqrbr6";
+        public static string ManagmentApiKey => Config.Read.ByKey("Contentful_ManagmentApiKey");
+        public static string SpaceId => Config.Read.ByKey("Contentful_SpaceId");
     }
 }
