@@ -1,13 +1,14 @@
 ﻿using System.Linq;
 using AutomationUtils.Utils;
-using Xunit;
+using NUnit.Framework;
 
 namespace PlaywrightAutomation.UnitTests
 {
+    [TestFixture]
     public class TagsCheck
     {
-        [Fact]
-        [Trait("Category", "OnBuild")]
+        [Test]
+        [Category("OnBuild")]
         public void Does_All_Tests_Have_Tags()
         {
             var testsWithoutTags = TestsUtils.TestsAndTags
@@ -18,8 +19,8 @@ namespace PlaywrightAutomation.UnitTests
                 "There are some tests in the solution without tags");
         }
 
-        [Fact]
-        [Trait("Category", "OnBuild")]
+        [Test]
+        [Category("OnBuild")]
         public void Does_All_Tests_Have_No_Duplicated_Tags()
         {
             var testsAndTags = TestsUtils.TestsAndTags;

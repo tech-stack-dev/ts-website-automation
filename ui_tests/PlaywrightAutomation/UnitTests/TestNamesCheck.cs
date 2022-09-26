@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
-using Xunit;
+using NUnit.Framework;
 
 namespace PlaywrightAutomation.UnitTests
 {
+    [TestFixture]
     public class TestNamesCheck
     {
-        [Fact]
-        [Trait("Category", "OnBuild")]
+        [Test]
+        [Category("OnBuild")]
         public void Does_All_Tests_Have_Unique_Names()
         {
             var allTestsNames = TestsUtils.TestsAndTags
@@ -25,8 +26,8 @@ namespace PlaywrightAutomation.UnitTests
                 $"There are some tests with the same names: {duplicates.ToList().ToString(" ,")}");
         }
 
-        [Fact]
-        [Trait("Category", "OnBuild")]
+        [Test]
+        [Category("OnBuild")]
         public void Does_All_Tests_Have_Appropriate_Names()
         {
             var allTestsNames = TestsUtils.TestsAndTags
