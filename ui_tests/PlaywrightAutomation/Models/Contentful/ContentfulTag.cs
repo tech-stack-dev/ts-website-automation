@@ -22,7 +22,7 @@ namespace PlaywrightAutomation.Models.Contentful
                 if (Name is not null)
                 {
                     // "tag_hot" adds tag with background-color: rgb(255, 198, 0)
-                    Id = (Name.ToLower().Contains("hot")) ? "tag_hot" : $"{_prefix.GetValue()}_{random}";
+                    Id = Name.ToLower().Contains("hot") ? "tag_hot" : $"{_prefix.GetValue()}_{random}";
                 }
             }
         }

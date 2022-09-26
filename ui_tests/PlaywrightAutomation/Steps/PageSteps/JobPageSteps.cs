@@ -31,22 +31,6 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualJobTitle.Should().Be(expectedJobTitle);
         }
 
-        [Then(@"'([^']*)' tag is displayed on job page")]
-        public void ThenTagIsDisplayedOnJobPage(string expectedTag)
-        {
-            var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult();
-
-            if (!tags.Any())
-            {
-                throw new Exception("Job page has not any job tags");
-            }
-
-            var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag))
-               .IsVisibleAsync().GetAwaiter().GetResult();
-
-            actualTag.Should().BeTrue();
-        }
-
         [Then(@"Tags are displayed on job page")]
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
@@ -59,7 +43,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         }
 
         [Then(@"'([^']*)' tag is displayed in '([^']*)' position on job page")]
-        public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, string expectedPosition)
+        public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, int expectedPosition)
         {
             var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult().ToList();
 
@@ -71,7 +55,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
 
             var actualPosition = tags.IndexOf(actualTag);
-            actualPosition.Should().Be(int.Parse(expectedPosition) - 1);
+            actualPosition.Should().Be(expectedPosition - 1);
         }
 
         [Then(@"'([^']*)' tag has '([^']*)' background color on job page")]
@@ -95,38 +79,31 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [Then(@"'([^']*)' social share media icon is clickable on '([^']*)' container on job page")]
-        public void ThenSocialShareMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
+        [Then(@"'([^']*)' wrapped button is clickable on '([^']*)' container")]
+        public void ThenWrappedButtonIsClickableOnContainer(string icon, string container)
         {
-            _page.Component<Button>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                 .SocialShareButton.ClickAsync().GetAwaiter().GetResult();
+            _page.Component<WrappedButton>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                 .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then(@"Job has description titles on job page")]
+        [Then(@"Job has block titles on job page")]
         public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
         {
-            var expectedDescriptionTitles = table.Rows.SelectMany(x => x.Values).ToList();
+            var expectedBlockTitles = table.Rows.SelectMany(x => x.Values).ToList();
 
-            var actualDescriptionTitles = _page.Init<JobPage>().JobDescriptionTitles
+            var actualBlockTitles = _page.Init<JobPage>().BlockTitles
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
-            actualDescriptionTitles.Should().Contain(expectedDescriptionTitles);
+            actualBlockTitles.Should().Equal(expectedBlockTitles);
         }
 
-        [Then(@"'([^']*)' text is displayed on job page")]
-        public void ThenTextIsDisplayedOnJobPage(string expectedText)
+        [Then(@"'([^']*)' text is displayed on Apply Container on job page")]
+        public void ThenTextIsDisplayedOnApplyContainerOnJobPage(string expectedText)
         {
             var actualText = _page.Init<JobPage>().ApplyContainer.InnerTextAsync().GetAwaiter().GetResult();
             actualText.Should().Contain(expectedText);
-        }
-
-        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
-        public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
-        {
-            var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
-            actualTitle.Should().Be(expectedTitle);
         }
     }
 }
