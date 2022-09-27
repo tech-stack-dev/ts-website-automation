@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: DropdownInCareerPage
+﻿Feature: DropdownInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown

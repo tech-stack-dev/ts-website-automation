@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: TagsSideSideBar
+﻿Feature: TagsSideSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar

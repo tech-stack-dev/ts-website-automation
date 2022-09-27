@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: HomePage
+﻿Feature: HomePage
 
 Background:
 	Given User is on career website

@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: DropdownInCareerPagePart2
+﻿Feature: DropdownInCareerPagePart2
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton

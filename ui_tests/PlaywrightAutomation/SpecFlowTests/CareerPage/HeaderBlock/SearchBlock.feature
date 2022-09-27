@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: SearchBlock
+﻿Feature: SearchBlock
 
 @Regression @TSWEB133
 Scenario: CheckThatUserSeesMessageAboutFailSearchResults

@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: JobsBlock
+﻿Feature: JobsBlock
 
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage

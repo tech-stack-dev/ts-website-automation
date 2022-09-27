@@ -4,7 +4,7 @@ using AutomationUtils.Utils;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.UnitTests;
+using PlaywrightAutomation.Utils;
 
 namespace PlaywrightAutomation.Pages
 {

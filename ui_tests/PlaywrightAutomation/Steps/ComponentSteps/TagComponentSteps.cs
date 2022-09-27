@@ -6,7 +6,6 @@ using PlaywrightAutomation.Components.FilterListWrapper;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
-using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;

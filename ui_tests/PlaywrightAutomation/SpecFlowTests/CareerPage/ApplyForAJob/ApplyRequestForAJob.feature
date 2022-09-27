@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: ApplyRequestForAJob
+﻿Feature: ApplyRequestForAJob
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
