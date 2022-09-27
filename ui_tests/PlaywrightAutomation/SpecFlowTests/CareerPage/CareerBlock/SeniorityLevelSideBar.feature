@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: SeniorityLevelSideBar
+﻿Feature: SeniorityLevelSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar

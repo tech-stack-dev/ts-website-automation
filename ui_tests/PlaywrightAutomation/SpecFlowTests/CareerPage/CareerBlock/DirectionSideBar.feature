@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: DirectionSideBar
+﻿Feature: DirectionSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar

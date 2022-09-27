@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: SearchField
+﻿Feature: SearchField
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock

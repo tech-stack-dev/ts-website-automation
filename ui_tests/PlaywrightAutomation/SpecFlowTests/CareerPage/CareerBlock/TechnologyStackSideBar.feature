@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: TechnologyStackSideBar
+﻿Feature: TechnologyStackSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
