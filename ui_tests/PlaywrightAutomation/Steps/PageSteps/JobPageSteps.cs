@@ -78,14 +78,6 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [When(@"User clicks on '([^']*)' wrapped button on '([^']*)' container")]
-        public void WhenUserClicksOnWrappedButtonOnContainer(string button, string container)
-        {
-            _page.Component<WrappedButton>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-        }
-
         [Given(@"User is on '([^']*)' website in popup window")]
         public void GivenUserIsOnWebsiteInPopupWindow(string website)
         {
