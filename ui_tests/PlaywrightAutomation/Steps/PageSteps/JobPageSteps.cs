@@ -1,15 +1,12 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
-using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
