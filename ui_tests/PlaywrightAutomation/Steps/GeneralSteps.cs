@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using FluentAssertions;
+using Microsoft.Playwright;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
@@ -33,6 +34,13 @@ namespace PlaywrightAutomation.Steps
                 .OpenNewPage(url)
                 .GetAwaiter()
                 .GetResult();
+        }
+
+        [Then(@"'([^']*)' website is opened in popup window")]
+        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        {
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
     }
 }
