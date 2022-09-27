@@ -63,7 +63,7 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
 
 @Regression @TSWEB146 @Cleanup
-Scenario: CheckPaginationOnJobPage
+Scenario: CheckPaginationOnCareerPage
 	# Preconditions
 	Given User creates and publishes '12' Careers with descriptions and tags
 	# Scenario
