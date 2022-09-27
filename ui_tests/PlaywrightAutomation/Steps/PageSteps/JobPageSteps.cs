@@ -78,13 +78,6 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [Given(@"User is on '([^']*)' website in popup window")]
-        public void GivenUserIsOnWebsiteInPopupWindow(string website)
-        {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
-        }
-
         [Then(@"Following block titles are displayed on job page")]
         public void ThenFollowingBlockTitlesAreDisplayedOnJobPage(Table table)
         {

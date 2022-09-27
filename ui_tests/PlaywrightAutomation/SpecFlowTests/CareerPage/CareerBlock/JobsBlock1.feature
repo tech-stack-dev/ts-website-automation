@@ -45,11 +45,11 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
 	When User clicks on 'Facebook share' wrapped button on 'JobPage' container
-	Given User is on 'Facebook' website in popup window
+	Then 'Facebook' website is opened in popup window
 	When User clicks on 'Linkedin share' wrapped button on 'JobPage' container
-	Given User is on 'Linkedin' website in popup window
+	Then 'Linkedin' website is opened in popup window
 	When User clicks on 'Twitter share' wrapped button on 'JobPage' container
-	Given User is on 'Twitter' website in popup window
+	Then 'Twitter' website is opened in popup window
 	Then Following block titles are displayed on job page
 		| Title              |
 		| About the product: |
