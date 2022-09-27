@@ -107,5 +107,12 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 dropdownIsOpen.Should().BeTrue();
             }
         }
+
+        [Then(@"Career page has pagination")]
+        public void ThenCareerPageHasPagination()
+        {
+            var paginationButtons = _page.Component<Pagination>().PaginationButtons.ElementHandlesAsync().GetAwaiter().GetResult();
+            paginationButtons.Should().NotBeNull();
+        }
     }
 }

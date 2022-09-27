@@ -1,7 +1,4 @@
 ﻿using FluentAssertions;
-using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
-using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Steps.Contentful.ContentfulSteps;
@@ -23,8 +20,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly CreatedTags _createdTags;
         private readonly TagSteps _tagSteps;
         private readonly Contentful.CareerDescriptionSteps _careerDescriptionSteps;
-        private readonly IPage _page;
-
+        
         public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, 
                                       CreatedCareer createdCareer, CreatedTags createdTags, 
                                       TagSteps tagSteps, Contentful.CareerDescriptionSteps careerDescriptionSteps)
@@ -56,9 +52,9 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         }
 
         [Given(@"User creates and publishes '([^']*)' Careers with descriptions and tags")]
-        public void GivenUserCreatesAndPublishesCareersWithDescriptionsAndTags(string careerNumber)
+        public void GivenUserCreatesAndPublishesCareersWithDescriptionsAndTags(int careerNumber)
         {
-            for (int i = 0; i < Int32.Parse(careerNumber); i++)
+            for (int i = 0; i < careerNumber; i++)
             {
                 var random = Guid.NewGuid().ToString("N");
 
@@ -94,13 +90,6 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
 
                 GivenUserCreatesNewCareerWithCareerDescriptionAndTag(string.Concat("TitleUs", random), string.Concat("TestingDirection", random, "_Тестовий", random), careerTable);
             }
-        }
-
-        [Then(@"Career page has pagination")]
-        public void ThenCareerPageHasPagination()
-        {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons.ElementHandlesAsync().GetAwaiter().GetResult();
-            paginationButtons.Should().NotBeNull();
         }
     }
 }

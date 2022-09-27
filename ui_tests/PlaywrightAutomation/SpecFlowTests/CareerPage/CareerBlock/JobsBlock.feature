@@ -79,7 +79,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| NameUs              | NameUa              | DescriptionUs          | DescriptionUa          | Type | LinkType |
 		| Tsweb146TestusThree | TSWEB146TestUaThree | DescriptionTestUsThree | DescriptionTestUaThree | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                           |
@@ -126,7 +126,7 @@ Scenario: CheckLocalizationOnJobPage
 		| NameUs             | NameUa             | DescriptionUs         | DescriptionUa         | Type | LinkType |
 		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                          |
@@ -142,10 +142,12 @@ Scenario: CheckLocalizationOnJobPage
 		| Зв’язатись з нами |
 	Then Breadcrumbs has 'Вакансії / TSWEB146TestUaFour' text
 	Then 'Apply now' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
-	Then 'Гарячі вакансії' tag is displayed on job page
-	Then 'Тестовий146ТегЧетвертий' tag is displayed on job page
+	Then Tags are displayed on job page
+		| Tag                     |
+		| Гарячі вакансії         |
+		| Тестовий146ТегЧетвертий |
 	Then 'Поділитися:' text is displayed with social media icons on job page
-	Then Job has description titles on job page
+	Then Following block titles are displayed on job page
 		| Title        |
 		| Про продукт: |
 		| Про роль:    |
@@ -153,5 +155,5 @@ Scenario: CheckLocalizationOnJobPage
 		| Ти маєш:     |
 		| Ми будемо:   |
 		| Ми маємо:    |
-	Then 'Хочеш стати частиною нашої команди?' text is displayed on job page
+	Then 'Хочеш стати частиною нашої команди?' text is displayed on Apply Container on job page
 	Then 'Apply now vacancy' button with 'Подавай заявку!' text is displayed on 'JobPage' container

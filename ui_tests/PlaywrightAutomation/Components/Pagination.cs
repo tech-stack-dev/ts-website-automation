@@ -2,9 +2,9 @@
 
 namespace PlaywrightAutomation.Components
 {
-    public class Pagination : BaseWebComponent
+    internal class Pagination : BaseWebComponent
     {
-        public ILocator PaginationButtons => Instance.Locator("PaginationButtonWrapper");
+        public ILocator PaginationButtons => Instance.Locator("//div[contains(@class,'PaginationButtonWrapper')]");
 
         public override string Construct()
         {

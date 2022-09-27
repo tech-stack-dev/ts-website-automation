@@ -8,7 +8,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| Direction | TSWEB146TestingDirectionTwo_ТестовийДругий |
 		| Tag       | Test146TagTwo_Тестовий146ТегДругий         |
 		| Tag       | Hot_ГарячіВакансії                         |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                  |
 		| AboutTheProjectUs | AboutTheProjectUsTwo   |
 		| AboutTheProjectUa | AboutTheProjectUaTwo   |
@@ -61,3 +61,11 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Would you like to be a part of our team?' text is displayed on Apply Container on job page
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
+
+@Regression @TSWEB146 @Cleanup
+Scenario: CheckPaginationOnJobPage
+	# Preconditions
+	Given User creates and publishes '12' Careers with descriptions and tags
+	# Scenario
+	Given User is on career website
+	Then Career page has pagination
