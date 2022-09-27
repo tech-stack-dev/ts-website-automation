@@ -1,9 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
@@ -30,6 +31,22 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualJobTitle.Should().Be(expectedJobTitle);
         }
 
+        [Then(@"'([^']*)' tag is displayed on job page")]
+        public void ThenTagIsDisplayedOnJobPage(string expectedTag)
+        {
+            var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult();
+
+            if (!tags.Any())
+            {
+                throw new Exception("Job page has not any job tags");
+            }
+
+            var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag))
+               .IsVisibleAsync().GetAwaiter().GetResult();
+
+            actualTag.Should().BeTrue();
+        }
+
         [Then(@"Tags are displayed on job page")]
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
@@ -42,7 +59,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         }
 
         [Then(@"'([^']*)' tag is displayed in '([^']*)' position on job page")]
-        public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, int expectedPosition)
+        public void ThenTagIsDisplayedInPositionOnJobPage(string expectedTag, string expectedPosition)
         {
             var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult().ToList();
 
@@ -54,7 +71,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
 
             var actualPosition = tags.IndexOf(actualTag);
-            actualPosition.Should().Be(expectedPosition - 1);
+            actualPosition.Should().Be(int.Parse(expectedPosition) - 1);
         }
 
         [Then(@"'([^']*)' tag has '([^']*)' background color on job page")]
@@ -78,38 +95,38 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [When(@"User clicks on '([^']*)' wrapped button on '([^']*)' container")]
-        public void WhenUserClicksOnWrappedButtonOnContainer(string button, string container)
+        [Then(@"'([^']*)' social share media icon is clickable on '([^']*)' container on job page")]
+        public void ThenSocialShareMediaIconIsClickableOnContainerOnJobPage(string icon, string container)
         {
-            _page.Component<WrappedButton>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .ClickAsync().GetAwaiter().GetResult();
+            _page.Component<Button>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                 .SocialShareButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Given(@"User is on '([^']*)' website in popup window")]
-        public void GivenUserIsOnWebsiteInPopupWindow(string website)
+        [Then(@"Job has description titles on job page")]
+        public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
         {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
-        }
+            var expectedDescriptionTitles = table.Rows.SelectMany(x => x.Values).ToList();
 
-        [Then(@"Following block titles are displayed on job page")]
-        public void ThenFollowingBlockTitlesAreDisplayedOnJobPage(Table table)
-        {
-            var expectedBlockTitles = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var actualBlockTitles = _page.Init<JobPage>().BlockTitles
+            var actualDescriptionTitles = _page.Init<JobPage>().JobDescriptionTitles
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
-            actualBlockTitles.Should().Equal(expectedBlockTitles);
+            actualDescriptionTitles.Should().Contain(expectedDescriptionTitles);
         }
 
-        [Then(@"'([^']*)' text is displayed on Apply Container on job page")]
-        public void ThenTextIsDisplayedOnApplyContainerOnJobPage(string expectedText)
+        [Then(@"'([^']*)' text is displayed on job page")]
+        public void ThenTextIsDisplayedOnJobPage(string expectedText)
         {
             var actualText = _page.Init<JobPage>().ApplyContainer.InnerTextAsync().GetAwaiter().GetResult();
             actualText.Should().Contain(expectedText);
+        }
+
+        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
+        public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
+        {
+            var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+            actualTitle.Should().Be(expectedTitle);
         }
     }
 }

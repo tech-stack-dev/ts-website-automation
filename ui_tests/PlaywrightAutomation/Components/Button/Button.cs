@@ -1,6 +1,6 @@
 ﻿using PlaywrightAutomation.Extensions;
 
-namespace PlaywrightAutomation.Components
+namespace PlaywrightAutomation.Components.Button
 {
     public class Button : BaseWebComponent
     {
