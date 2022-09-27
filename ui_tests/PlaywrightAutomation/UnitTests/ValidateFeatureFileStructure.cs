@@ -32,24 +32,11 @@ namespace PlaywrightAutomation.UnitTests
                 var lines = ff.Value;
                 Verify.IsTrue(lines.Count > 3, $"'{ff.Key}' featureFile is empty");
 
-                Verify.IsTrue(lines[1].StartsWith("Feature: "),
+                Verify.IsTrue(lines.First().StartsWith("Feature: "),
                     $"'{ff.Key}' featureFile started not from feature name");
 
                 Verify.IsTrue(lines.First().Split("Feature: ").Last().Length > 4,
                     $"'{ff.Key}' featureFile name is missed or too short");
-            }
-        }
-
-        [Test]
-        [Category("OnBuild")]
-        public void Does_All_FeatureFiles_Has_Retries()
-        {
-            foreach (var ff in _allFeatureFiles)
-            {
-                var lines = ff.Value;
-
-                Verify.IsTrue(lines.First().Equals("@retry(2)"),
-                    $"'{ff.Key}' featureFile doesn't have retry");
             }
         }
 
