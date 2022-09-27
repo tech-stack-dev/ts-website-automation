@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: JobsBlock1
+﻿Feature: JobsBlock1
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckJobDescriptionOnJobPage
