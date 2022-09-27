@@ -31,7 +31,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             }
         }
 
-        [Then(@"'([^']*)' title is displayed on Apply for a Job page")]
+        [Then(@"'([^']*)' title is displayed on Apply For A Job page")]
         public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
         {
             var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();

@@ -4,7 +4,6 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
-using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
@@ -79,16 +78,23 @@ namespace PlaywrightAutomation.Steps.PageSteps
             socialIcons.Should().BeTrue();
         }
 
-        [Then(@"'([^']*)' wrapped button is clickable on '([^']*)' container")]
-        public void ThenWrappedButtonIsClickableOnContainer(string icon, string container)
+        [When(@"User clicks on '([^']*)' wrapped button on '([^']*)' container")]
+        public void WhenUserClicksOnWrappedButtonOnContainer(string button, string container)
         {
-            _page.Component<WrappedButton>(icon, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                 .ClickAsync().GetAwaiter().GetResult();
+            _page.Component<WrappedButton>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then(@"Job has block titles on job page")]
-        public void ThenJobHasDescriptionTitlesOnJobPage(Table table)
+        [Given(@"User is on '([^']*)' website")]
+        public void ThenWrappedButtonIsClickableOnContainer(string website)
+        {           
+            var url = _page.Url;
+            url.Should().Contain(website.ToLower());
+        }
+
+        [Then(@"Following block titles are displayed on job page")]
+        public void ThenFollowingBlockTitlesAreDisplayedOnJobPage(Table table)
         {
             var expectedBlockTitles = table.Rows.SelectMany(x => x.Values).ToList();
 

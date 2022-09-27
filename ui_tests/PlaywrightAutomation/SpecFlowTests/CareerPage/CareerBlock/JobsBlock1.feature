@@ -45,10 +45,13 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Hot' tag is displayed in '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page
-	Then 'Facebook share' wrapped button is clickable on 'JobPage' container
-	Then 'Linkedin share' wrapped button is clickable on 'JobPage' container
-	Then 'Twitter share' wrapped button is clickable on 'JobPage' container
-	Then Job has block titles on job page
+	When User clicks on 'Facebook share' wrapped button on 'JobPage' container
+	Given User is on 'Facebook' website
+	When User clicks on 'Linkedin share' wrapped button on 'JobPage' container
+	Given User is on 'Linkedin' website
+	When User clicks on 'Twitter share' wrapped button on 'JobPage' container
+	Given User is on 'Twitter' website
+	Then Following block titles are displayed on job page
 		| Title              |
 		| About the product: |
 		| About the role:    |
@@ -58,4 +61,4 @@ Scenario: CheckJobDescriptionOnJobPage
 		| We:                |
 	Then 'Would you like to be a part of our team?' text is displayed on Apply Container on job page
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
-	Then 'Apply for a Job' title is displayed on Apply for a Job page
+	Then 'Apply for a Job' title is displayed on Apply For A Job page

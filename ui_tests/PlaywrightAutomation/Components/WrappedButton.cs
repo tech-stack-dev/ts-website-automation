@@ -2,6 +2,7 @@
 
 namespace PlaywrightAutomation.Components
 {
+    // Use if button without data-id is contained inside wrapper with data-id
     public class WrappedButton : BaseWebComponent
     {
         public override string Construct()
