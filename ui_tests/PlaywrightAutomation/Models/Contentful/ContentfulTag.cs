@@ -7,6 +7,7 @@ namespace PlaywrightAutomation.Models.Contentful
     public class ContentfulTag
     {
         public string Id { get; private set; }
+        public string Name { get; set; }
 
         private TagPrefix _prefix;
         public TagPrefix Prefix
@@ -17,11 +18,15 @@ namespace PlaywrightAutomation.Models.Contentful
                 _prefix = value;
 
                 var random = Guid.NewGuid().ToString("N");
-                Id = $"{_prefix.GetValue()}_{random}";
+
+                if (Name is not null)
+                {
+                    // "tag_hot" adds tag with background-color: rgb(255, 198, 0)
+                    Id = Name.ToLower().Contains("hot") ? "tag_hot" : $"{_prefix.GetValue()}_{random}";
+                }
             }
         }
-
-        public string Name { get; set; }
+        
         public int Version { get; set; } = 1;
 
         // TagPrefix is used to define the environment of the tag

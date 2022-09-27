@@ -28,7 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 		| NameUs                     | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideSeniorityOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                         |
 		| TestingSideSeniorityOnlyOne |
@@ -74,7 +74,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 		| NameUs              | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideSeniority1 |
@@ -128,7 +128,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 		| NameUs                   | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetSideSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                           |
 		| Testing Reset Side Seniority1 |

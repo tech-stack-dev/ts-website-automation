@@ -28,7 +28,7 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 		| NameUs | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUs | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'TestUs' card title
 	When User clicks on 'Apply now' button on 'BreadcrumbsHeader' container
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container

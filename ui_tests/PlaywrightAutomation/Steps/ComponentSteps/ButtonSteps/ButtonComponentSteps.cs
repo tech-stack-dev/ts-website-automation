@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;

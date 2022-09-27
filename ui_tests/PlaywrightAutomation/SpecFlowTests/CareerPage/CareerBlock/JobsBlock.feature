@@ -2,8 +2,8 @@
 
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
-	Given User is on the career website
-	Then 'Techstack' logo is displayed in the main page
+	Given User is on career website
+	Then 'Techstack' logo is displayed on main page
 	Then Jobs block on Career page has tabs
 		| Tab        |
 		| Jobs       |
@@ -42,7 +42,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| NameUs            | NameUa            | DescriptionUs        | DescriptionUa        | Type | LinkType |
 		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
