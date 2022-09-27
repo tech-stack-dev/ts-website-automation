@@ -1,9 +1,8 @@
-﻿@retry(2)
-Feature: SearchBlock
+﻿Feature: SearchBlock
 
 @Regression @TSWEB133
 Scenario: CheckThatUserSeesMessageAboutFailSearchResults
-	Given User is on the career website
+	Given User is on career website
 	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
@@ -36,7 +35,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsDirectionWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'TestUsDirectionWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
@@ -88,7 +87,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSeniorityWithText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'TestUsSeniorityWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
@@ -110,6 +109,6 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 
 @Regression @TSWEB133
 Scenario: CheckThatUserRedirectsToJobsBlockWhenClickingSearchButton
-	Given User is on the career website
+	Given User is on career website
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then User in on the 'Jobs' tab

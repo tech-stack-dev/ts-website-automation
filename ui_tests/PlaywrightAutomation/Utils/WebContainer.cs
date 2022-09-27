@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace PlaywrightAutomation.UnitTests
+namespace PlaywrightAutomation.Utils
 {
     public static class WebContainer
     {

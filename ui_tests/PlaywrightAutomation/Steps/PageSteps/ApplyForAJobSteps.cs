@@ -2,6 +2,7 @@
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -28,6 +29,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 var errorMessage = _page.Component<Input>(message.inputName).ErrorMessage.InnerTextAsync().Result;
                 errorMessage.Should().Be(message.messageText);
             }
+        }
+
+        [Then(@"'([^']*)' title is displayed on Apply For A Job page")]
+        public void ThenTitleIsDisplayedOnApplyForAJobPage(string expectedTitle)
+        {
+            var actualTitle = _page.Init<ApplyForAJobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+            actualTitle.Should().Be(expectedTitle);
         }
     }
 }

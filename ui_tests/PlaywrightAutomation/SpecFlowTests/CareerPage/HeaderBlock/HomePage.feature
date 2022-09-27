@@ -1,8 +1,7 @@
-﻿@retry(2)
-Feature: HomePage
+﻿Feature: HomePage
 
 Background:
-	Given User is on the career website
+	Given User is on career website
 
 @Regression
 Scenario: CheckThatUserCanSwithedLanguageInHeader
@@ -17,5 +16,5 @@ Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 	Then 'Ua' language is selected 'NavigationHeader' on container
 
 @Regression
-Scenario: CheckLogoDisplayedInMainPage
-	Then 'Techstack' logo is displayed in the main page
+Scenario: CheckLogoDisplayedOnMainPage
+	Then 'Techstack' logo is displayed on main page

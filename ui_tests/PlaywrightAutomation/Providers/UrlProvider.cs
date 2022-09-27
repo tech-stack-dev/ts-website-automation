@@ -1,8 +1,10 @@
-﻿namespace PlaywrightAutomation.Providers
+﻿using AutomationUtils.Extensions;
+using AutomationUtils.Utils;
+
+namespace PlaywrightAutomation.Providers
 {
     internal class UrlProvider
     {
-        // Config.Read.ByKey("AppUrl");
-        public static string Application => "https://staging-career.tech-stack.io/";
+        public static string Application => Config.Read.ByKey("AppUrl");
     }
 }

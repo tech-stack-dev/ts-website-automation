@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: SearchFieldInCareerPage
+﻿Feature: SearchFieldInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
@@ -29,7 +28,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsDirectionOfSearch | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'TestUsDirectionOfSearch' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'TestUsDirectionOfSearch'
@@ -62,14 +61,14 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 		| NameUs                    | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsDirectionPartOfText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'Test'
 
 @Regression @TSWEB133
 Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInput
-	Given User is on the career website
+	Given User is on career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'HeaderPage' container
 	When User clears input on 'HeaderPage' container

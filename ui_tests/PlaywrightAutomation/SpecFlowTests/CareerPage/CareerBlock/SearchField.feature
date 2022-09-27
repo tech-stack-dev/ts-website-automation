@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: SearchField
+﻿Feature: SearchField
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
@@ -29,7 +28,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 		| NameUs                      | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideDirectionOfSearch | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerHeaderPage' container
 	Then Search results contain 'TestUsSideDirectionOfSearch'
 
@@ -61,13 +60,13 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 		| NameUs                        | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideDirectionPartOfText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User set 'Test' text to 'Search' input on 'CareerHeaderPage' container
 	Then Search results contain 'Test'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock
-	Given User is on the career website
+	Given User is on career website
 	When User remembers vacancy names from Job page
 	When User set 'Any term' text to 'Search' input on 'CareerHeaderPage' container
 	When User clears input on 'CareerHeaderPage' container
@@ -76,13 +75,13 @@ Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock
 
 @Regession @TSWEB145
 Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchInputInCareerBlock
-	Given User is on the career website
+	Given User is on career website
 	When User set 'wrongString' text to 'Search' input on 'CareerHeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
 @Regession @TSWEB145
 Scenario: CheckThatAllDropdownsAreExpandedByDefault
-	Given User is on the career website
+	Given User is on career website
 	Then Dropdowns are expanded on 'CareerPage' container
 		| Dropdown         |
 		| Direction        |

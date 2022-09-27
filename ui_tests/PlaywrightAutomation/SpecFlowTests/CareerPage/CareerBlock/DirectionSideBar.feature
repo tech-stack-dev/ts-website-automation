@@ -1,5 +1,4 @@
-﻿@retry(2)
-Feature: DirectionSideBar
+﻿Feature: DirectionSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
@@ -29,7 +28,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| NameUs                     | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideDirectionOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                         |
 		| TestingSideDirectionOnlyOne |
@@ -78,7 +77,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| NameUs              | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsSideDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideDirection1 |
@@ -136,7 +135,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| NameUs                   | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| TestUsResetSideDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
-	Given User is on the career website
+	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                           |
 		| Testing Reset Side Direction1 |
