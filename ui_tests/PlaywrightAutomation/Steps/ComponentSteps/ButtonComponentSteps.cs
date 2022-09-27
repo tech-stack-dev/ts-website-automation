@@ -1,8 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components.Button;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;

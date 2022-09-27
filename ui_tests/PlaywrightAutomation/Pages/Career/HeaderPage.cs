@@ -3,9 +3,8 @@ using System.Threading.Tasks;
 using AutomationUtils.Utils;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
-using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.UnitTests;
+using PlaywrightAutomation.Utils;
 
 namespace PlaywrightAutomation.Pages
 {
