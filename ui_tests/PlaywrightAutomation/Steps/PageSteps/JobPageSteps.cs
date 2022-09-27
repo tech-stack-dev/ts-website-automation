@@ -86,11 +86,11 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Given(@"User is on '([^']*)' website")]
-        public void ThenWrappedButtonIsClickableOnContainer(string website)
-        {           
-            var url = _page.Url;
-            url.Should().Contain(website.ToLower());
+        [Given(@"User is on '([^']*)' website in popup window")]
+        public void GivenUserIsOnWebsiteInPopupWindow(string website)
+        {
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
 
         [Then(@"Following block titles are displayed on job page")]
