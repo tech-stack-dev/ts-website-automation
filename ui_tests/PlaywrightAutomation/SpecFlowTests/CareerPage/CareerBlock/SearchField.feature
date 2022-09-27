@@ -7,7 +7,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 	Given User creates tag
 		| Prefix    | Name                                  |
 		| Direction | TestingSideDirectionOfSearch_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                           |
 		| AboutTheProjectUs | AboutTheProjectUs               |
 		| AboutTheProjectUa | AboutTheProjectUa               |
@@ -39,7 +39,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	Given User creates tag
 		| Prefix    | Name                                    |
 		| Direction | TestingSideDirectionPartOfText_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                             |
 		| AboutTheProjectUs | AboutTheProjectUs                 |
 		| AboutTheProjectUa | AboutTheProjectUa                 |

@@ -1,5 +1,11 @@
-﻿using PlaywrightAutomation.Models.Contentful;
+﻿using FluentAssertions;
+using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
+using PlaywrightAutomation.Steps.Contentful.ContentfulSteps;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -15,13 +21,20 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly CreatedCareerDescription _createdCareerDescriptions;
         private readonly CreatedCareer _createdCareer;
         private readonly CreatedTags _createdTags;
+        private readonly TagSteps _tagSteps;
+        private readonly Contentful.CareerDescriptionSteps _careerDescriptionSteps;
+        private readonly IPage _page;
 
-        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, CreatedCareer createdCareer, CreatedTags createdTags)
+        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, 
+                                      CreatedCareer createdCareer, CreatedTags createdTags, 
+                                      TagSteps tagSteps, Contentful.CareerDescriptionSteps careerDescriptionSteps)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
             _createdCareer = createdCareer;
             _createdTags = createdTags;
+            _tagSteps = tagSteps;
+            _careerDescriptionSteps = careerDescriptionSteps;
         }
 
         [Given(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
@@ -40,6 +53,54 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
 
                 _createdCareer.Value.Add(createdCareer);
             }
+        }
+
+        [Given(@"User creates and publishes '([^']*)' Careers with descriptions and tags")]
+        public void GivenUserCreatesAndPublishesCareersWithDescriptionsAndTags(string careerNumber)
+        {
+            for (int i = 0; i < Int32.Parse(careerNumber); i++)
+            {
+                var random = Guid.NewGuid().ToString("N");
+
+                Table tagTable = new Table(new string[] { "Prefix", "Name" });
+                Table descriptionTable = new Table(new string[] { "Field", "Value" });
+                Table careerTable = new Table(new string[] { "NameUs", "NameUa", "DescriptionUs", "DescriptionUa", "Type", "LinkType" });
+
+                tagTable.AddRow(new string[] { "Direction", string.Concat("TestingDirection", random, "_Тестовий", random) });
+                _tagSteps.GivenUserCreatesTag(tagTable);
+
+                descriptionTable.AddRow(new string[] { "AboutTheProjectUs", string.Concat("AboutTheProjectUs", random) });
+                descriptionTable.AddRow(new string[] { "AboutTheProjectUa", string.Concat("AboutTheProjectUa", random) });
+                descriptionTable.AddRow(new string[] { "AboutTheRoleUs", string.Concat("AboutTheRoleUs", random) });
+                descriptionTable.AddRow(new string[] { "AboutTheRoleUa", string.Concat("AboutTheRoleUa", random) });
+                descriptionTable.AddRow(new string[] { "TitleUs", string.Concat("TitleUs", random) });
+                descriptionTable.AddRow(new string[] { "TitleUa", string.Concat("TitleUa", random) });
+                descriptionTable.AddRow(new string[] { "YouWillUs", string.Concat("YouWillUs", random) });
+                descriptionTable.AddRow(new string[] { "YouWillUa", string.Concat("YouWillUa", random) });
+                descriptionTable.AddRow(new string[] { "YouAreUs", string.Concat("YouAreUs", random) });
+                descriptionTable.AddRow(new string[] { "YouAreUa", string.Concat("YouAreUa", random) });
+                descriptionTable.AddRow(new string[] { "WeWillUs", string.Concat("WeWillUs", random) });
+                descriptionTable.AddRow(new string[] { "WeWillUa", string.Concat("WeWillUa", random) });
+                descriptionTable.AddRow(new string[] { "WeAreUs", string.Concat("WeAreUs", random) });
+                descriptionTable.AddRow(new string[] { "WeAreUa", string.Concat("WeAreUa", random) });
+                descriptionTable.AddRow(new string[] { "TechnologyStack", string.Concat("TechnologyStack", random) });
+                descriptionTable.AddRow(new string[] { "SlugUs", string.Concat("SlugUs", random) });
+
+                _careerDescriptionSteps.GivenUserCreatesAndPublishesNewCareerDescription(descriptionTable);
+
+                careerTable.AddRow(new string[] { string.Concat("NameUs", random), string.Concat("NameUa", random),
+                                                  string.Concat("DescriptionUs", random), string.Concat("DescriptionUa", random),
+                                                  "Link", "Entry" });
+
+                GivenUserCreatesNewCareerWithCareerDescriptionAndTag(string.Concat("TitleUs", random), string.Concat("TestingDirection", random, "_Тестовий", random), careerTable);
+            }
+        }
+
+        [Then(@"Career page has pagination")]
+        public void ThenCareerPageHasPagination()
+        {
+            var paginationButtons = _page.Component<Pagination>().PaginationButtons.ElementHandlesAsync().GetAwaiter().GetResult();
+            paginationButtons.Should().NotBeNull();
         }
     }
 }

@@ -21,7 +21,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Given User creates tag
 		| Prefix    | Name                                       |
 		| Direction | TSWEB146TestingDirectionOne_ТестовийПерший |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                  |
 		| AboutTheProjectUs | AboutTheProjectUsOne   |
 		| AboutTheProjectUa | AboutTheProjectUaOne   |
@@ -58,7 +58,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 	Given User creates tag
 		| Prefix    | Name                                         |
 		| Direction | TSWEB146TestingDirectionThree_ТестовийТретій |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                    |
 		| AboutTheProjectUs | AboutTheProjectUsThree   |
 		| AboutTheProjectUa | AboutTheProjectUaThree   |
@@ -105,7 +105,7 @@ Scenario: CheckLocalizationOnJobPage
 		| Direction | TSWEB146TestingDirectionFour_Тестовий146Четвертий |
 		| Tag       | Test146TagFour_Тестовий146ТегЧетвертий            |
 		| Tag       | Hot_ГарячіВакансії                                |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                   |
 		| AboutTheProjectUs | AboutTheProjectUsFour   |
 		| AboutTheProjectUa | AboutTheProjectUaFour   |

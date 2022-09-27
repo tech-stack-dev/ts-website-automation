@@ -7,7 +7,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Direction | TestingDirectionOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
 		| AboutTheProjectUa | AboutTheProjectUa          |
@@ -59,7 +59,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| Prefix    | Name                        |
 		| Direction | TestingDirection1_Тестовий1 |
 		| Direction | TestingDirection2_Тестовий2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value               |
 		| AboutTheProjectUs | AboutTheProjectUs   |
 		| AboutTheProjectUa | AboutTheProjectUa   |
@@ -118,7 +118,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	Given User creates tag
 		| Prefix    | Name                             |
 		| Seniority | TestingSeniorityOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                      |
 		| AboutTheProjectUs | AboutTheProjectUs          |
 		| AboutTheProjectUa | AboutTheProjectUa          |
@@ -167,7 +167,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 		| Seniority | Testing Seniority 1_Тестовий 1 |
 		| Seniority | Testing Seniority 2_Тестовий 2 |
 		| Seniority | Testing Seniority 3_Тестовий 3 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value               |
 		| AboutTheProjectUs | AboutTheProjectUs   |
 		| AboutTheProjectUa | AboutTheProjectUa   |

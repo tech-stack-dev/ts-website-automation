@@ -7,7 +7,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	Given User creates tag
 		| Prefix | Name                           |
 		| Tag    | TestingSideTagOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                    |
 		| AboutTheProjectUs | AboutTheProjectUs        |
 		| AboutTheProjectUa | AboutTheProjectUa        |
@@ -53,7 +53,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 		| Prefix | Name                      |
 		| Tag    | TestingSideTag1_Тестовий1 |
 		| Tag    | TestingSideTag2_Тестовий2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value             |
 		| AboutTheProjectUs | AboutTheProjectUs |
 		| AboutTheProjectUa | AboutTheProjectUa |
@@ -107,7 +107,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 		| Prefix | Name                            |
 		| Tag    | TestingResetSideTag1_Тестовий 1 |
 		| Tag    | TestingResetSideTag2_Тестовий 2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                  |
 		| AboutTheProjectUs | AboutTheProjectUs      |
 		| AboutTheProjectUa | AboutTheProjectUa      |

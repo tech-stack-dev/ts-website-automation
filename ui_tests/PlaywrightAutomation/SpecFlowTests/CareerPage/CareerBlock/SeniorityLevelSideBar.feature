@@ -7,7 +7,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                                 |
 		| Seniority | TestingSideSeniorityOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                          |
 		| AboutTheProjectUs | AboutTheProjectUs              |
 		| AboutTheProjectUa | AboutTheProjectUa              |
@@ -53,7 +53,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 		| Prefix    | Name                            |
 		| Seniority | TestingSideSeniority1_Тестовий1 |
 		| Seniority | TestingSideSeniority2_Тестовий2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                   |
 		| AboutTheProjectUs | AboutTheProjectUs       |
 		| AboutTheProjectUa | AboutTheProjectUa       |
@@ -107,7 +107,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 		| Prefix    | Name                                  |
 		| Seniority | TestingResetSideSeniority1_Тестовий 1 |
 		| Seniority | TestingResetSideSeniority2_Тестовий 2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                        |
 		| AboutTheProjectUs | AboutTheProjectUs            |
 		| AboutTheProjectUa | AboutTheProjectUa            |

@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
+    <Folder Include="SpecFlowTests\CareerPage\JobBlock\" />
   </ItemGroup>
 
 </Project>

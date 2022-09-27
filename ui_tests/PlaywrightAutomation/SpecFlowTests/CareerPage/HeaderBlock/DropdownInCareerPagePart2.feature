@@ -8,7 +8,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| Prefix    | Name                               |
 		| Direction | TestingResetDirection 1_Тестовий 1 |
 		| Direction | TestingResetDirection 2_Тестовий 2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                    |
 		| AboutTheProjectUs | AboutTheProjectUs        |
 		| AboutTheProjectUa | AboutTheProjectUa        |
@@ -47,7 +47,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| Seniority | TestingResetSeniority 1_Тестовий 1 |
 		| Seniority | TestingResetSeniority 2_Тестовий 2 |
 		| Seniority | TestingResetSeniority 3_Тестовий 3 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                    |
 		| AboutTheProjectUs | AboutTheProjectUs        |
 		| AboutTheProjectUa | AboutTheProjectUa        |
