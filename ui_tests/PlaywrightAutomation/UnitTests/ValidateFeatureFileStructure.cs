@@ -60,7 +60,7 @@ namespace PlaywrightAutomation.UnitTests
 
         [Test]
         [Category("OnBuild")]
-        public void Does_All_FeatureFiles_Has_Not_Two_Empty_Lines_In_A_Row()
+        public void Does_All_FeatureFiles_Has_No_Two_Empty_Lines_In_A_Row()
         {
             foreach (var feature in _allFeatureFiles)
             {
@@ -70,6 +70,17 @@ namespace PlaywrightAutomation.UnitTests
                     emptyLines = line.IsNullOrEmpty() ? emptyLines + 1 : 0;
                     Verify.IsTrue(emptyLines < 2, $"Two empty lines in a row in the '{feature.Key}' feature");
                 }
+            }
+        }
+
+        [Test]
+        [Category("OnBuild")]
+        public void Does_All_FeatureFiles_Has_No_Ending_Empty_Lines()
+        {
+            foreach (var feature in _allFeatureFiles)
+            {
+                Verify.IsNotEmpty(feature.Value.LastOrDefault(),
+                    $"Feature file ends with empty line: {feature.Key}");
             }
         }
     }
