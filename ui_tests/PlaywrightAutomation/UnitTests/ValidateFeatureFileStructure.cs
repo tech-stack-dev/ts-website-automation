@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutomationUtils.Utils;
+using ChoETL;
 using NUnit.Framework;
 
 namespace PlaywrightAutomation.UnitTests
@@ -53,6 +54,21 @@ namespace PlaywrightAutomation.UnitTests
                     {
                         Verify.IsFalse(lines[i + 1].TrimStart().StartsWith("@"), $"'{ff.Key}' featureFile contains test with two line tags");
                     }
+                }
+            }
+        }
+
+        [Test]
+        [Category("OnBuild")]
+        public void Does_All_FeatureFiles_Has_Not_Two_Empty_Lines_In_A_Row()
+        {
+            foreach (var feature in _allFeatureFiles)
+            {
+                int emptyLines = 0;
+                foreach (var line in feature.Value)
+                {
+                    emptyLines = line.IsNullOrEmpty() ? emptyLines + 1 : 0;
+                    Verify.IsTrue(emptyLines < 2, $"Two empty lines in a row in the '{feature.Key}' feature");
                 }
             }
         }
