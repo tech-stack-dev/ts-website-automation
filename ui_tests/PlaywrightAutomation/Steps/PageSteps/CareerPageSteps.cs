@@ -109,7 +109,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         }
 
         [Then(@"Career page has pagination")]
-        public void ThenCareerPageHasPagination()
+        public void ThenPaginationIsDisplayedOnCareerPage()
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons.ElementHandlesAsync().GetAwaiter().GetResult();
             paginationButtons.Should().NotBeNull();
