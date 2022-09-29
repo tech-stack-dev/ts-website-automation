@@ -69,3 +69,7 @@ Scenario: CheckPaginationOnCareerPage
 	# Scenario
 	Given User is on career website
 	Then Pagination is displayed on Career page
+	Then Next page button is on last position on pagination panel
+	When User clicks on next page button on pagination panel
+	Then '02' pagination button has 'orange yellow' background color on pagination panel
+	Then Next page button is on first position on pagination panel
