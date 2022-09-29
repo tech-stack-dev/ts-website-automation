@@ -68,4 +68,4 @@ Scenario: CheckPaginationOnCareerPage
 	Given User creates and publishes '12' Careers with descriptions and tags
 	# Scenario
 	Given User is on career website
-	Then Career page has pagination
+	Then Pagination is displayed on Career page

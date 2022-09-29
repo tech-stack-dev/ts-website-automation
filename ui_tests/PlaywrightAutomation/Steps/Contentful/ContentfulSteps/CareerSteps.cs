@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using PlaywrightAutomation.Models.Contentful;
+﻿using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Steps.Contentful.ContentfulSteps;
 using System;

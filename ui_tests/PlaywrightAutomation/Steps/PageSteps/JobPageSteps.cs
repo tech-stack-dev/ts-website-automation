@@ -4,12 +4,10 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
-using PlaywrightAutomation.UnitTests;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
@@ -70,6 +68,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
+
         [Then(@"'([^']*)' text is displayed with social media icons on job page")]
         public void ThenTextIsDisplayedWithSocialMediaIconsOnJobPage(string expectedText)
         {
@@ -103,10 +102,16 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualText.Should().Contain(expectedText);
         }
 
-        [Then(@"'Techstack' logo is displayed on job page")]
+        [Then(@"Techstack logo is displayed on job page")]
         public void ThenTechstackLogoIsDisplayedOnJobPage()
         {
-            _page.Init<JobPage>().CheckLogo();
+            var logo = _page.Init<NavigationHeader>().Logo;
+
+            var logoState = logo.IsVisibleAsync();
+            logoState.Should().Equals(true);
+
+            var logoAttribute = logo.GetAttributeAsync("alt");
+            logoAttribute.Should().BeEquivalentTo("Techstack");
         }
 
         [Then(@"Jobs block on job page has tabs")]

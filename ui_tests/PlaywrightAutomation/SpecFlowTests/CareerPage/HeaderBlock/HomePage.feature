@@ -17,4 +17,4 @@ Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 
 @Regression
 Scenario: CheckLogoDisplayedOnMainPage
-	Then 'Techstack' logo is displayed on main page
+	Then Techstack logo is displayed on main page

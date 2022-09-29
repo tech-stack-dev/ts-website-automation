@@ -3,7 +3,7 @@
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
 	Given User is on career website
-	Then 'Techstack' logo is displayed on main page
+	Then Techstack logo is displayed on main page
 	Then Jobs block on Career page has tabs
 		| Tab        |
 		| Jobs       |
@@ -85,7 +85,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| Tag                           |
 		| TSWEB146TestingDirectionThree |
 	When User clicks on 'Tsweb146TestusThree' card title
-	Then 'Techstack' logo is displayed on job page
+	Then Techstack logo is displayed on job page
 	Then Jobs block on job page has tabs
 		| Tab        |
 		| Jobs       |
