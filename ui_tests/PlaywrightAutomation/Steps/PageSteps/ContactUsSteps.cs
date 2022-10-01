@@ -6,6 +6,7 @@ using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
@@ -24,6 +25,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var actualTitle = _page.Init<ContactUsPage>().Title.TextContentAsync().GetAwaiter().GetResult();
             actualTitle.Should().Be(expectedTitle);
+        }
+
+        [Then(@"'([^']*)' text is displayed on Contact Us form")]
+        public void ThenTextIsDisplayedOnApplyContainerOnJobPage(string expectedText)
+        {
+            var actualText = _page.Init<ContactUsPage>().Text.TextContentAsync().GetAwaiter().GetResult();
+            actualText.Should().Be(expectedText);
         }
     }
 }
