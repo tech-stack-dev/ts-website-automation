@@ -1,15 +1,10 @@
-﻿using AutomationUtils.Extensions;
-using AutomationUtils.Utils;
-using Contentful.Core.Models.Management;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {

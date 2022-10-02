@@ -36,6 +36,9 @@
     <None Update="Resources\test.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\test.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\test.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
