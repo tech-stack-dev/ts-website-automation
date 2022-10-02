@@ -31,3 +31,19 @@ Scenario: CheckAttachFileFunctionality
 	Then 'test.pdf' attached file name is displayed in input
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then 'Thanks for your message. We will contact you shortly.' text is displayed on Contact Us form
+
+@Regression @TSWEB149
+Scenario: CheckErrorMessagesForInvalidRequiredInputs
+	Given User is on 'https://staging-career.tech-stack.io/contact-us' page
+	When User set '     ' text to 'Full name' input on 'ContactUsPage' container
+	When User set '@email.com' text to 'Email' input on 'ContactUsPage' container
+	When User set 'test' text to 'Tel' input on 'ContactUsPage' container
+	When User set 'test' text to 'Message' textarea on 'ContactUsPage' container
+	When User attach 'test.pdf' file
+	Then 'test.pdf' attached file name is displayed in input
+	When User clicks on 'Submit' button on 'ContactUsPage' container
+	Then Error messages are displayed under fields
+		| Input     | ErrorMessage                      |
+		| Full name | Please enter your name            |
+		| Email     | Please enter a valid email        |
+		| Tel       | Please enter a valid phone number |
