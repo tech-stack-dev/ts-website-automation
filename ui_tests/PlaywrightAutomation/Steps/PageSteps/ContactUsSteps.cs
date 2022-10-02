@@ -1,12 +1,13 @@
-﻿using FluentAssertions;
+﻿using AutomationUtils.Extensions;
+using AutomationUtils.Utils;
+using Contentful.Core.Models.Management;
+using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
@@ -32,6 +33,20 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var actualText = _page.Init<ContactUsPage>().Text.TextContentAsync().GetAwaiter().GetResult();
             actualText.Should().Be(expectedText);
+        }
+
+        [When(@"User attach '([^']*)' file")]
+        public void WhenUserAttachFile(string file)
+        {
+            var filePath = $"{PathProvider.ResourcesFolder}/{file}";
+            _page.Init<ContactUsPage>().AttachFileInput.SetInputFilesAsync(filePath);
+        }
+
+        [Then(@"'([^']*)' attached file name is displayed in input")]
+        public void ThenAttachedFileNameIsDisplayedInWebElement(string expectedFileName)
+        {
+            var actualFileName = _page.Init<ContactUsPage>().AttachedFile.TextContentAsync().GetAwaiter().GetResult();
+            actualFileName.Should().Be(expectedFileName);
         }
     }
 }
