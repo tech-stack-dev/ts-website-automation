@@ -1,7 +1,7 @@
 ﻿Feature: ContactUs
 
 @Regression @TSWEB149
-Scenario: CheckErrorMessagesForRequiredInputs
+Scenario: CheckErrorMessagesForEmptyRequiredInputs
 	Given User is on career website
 	When User clicks on 'Contact us' tab
 	Then 'Contact us' title is displayed on Contact Us form
