@@ -11,5 +11,7 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator AttachFileInput => Page.Locator(Container).Locator("//input[@type='file']");
         public ILocator AttachedFile => Page.Locator(Container).Locator("//label[@for='file']/span");
+
+        public ILocator ErrorMessageForAttachInput => Page.Locator(Container).Locator("//div[@class='invalid']");
     }
 }

@@ -61,3 +61,14 @@ Scenario: CheckErrorMessagesForInvalidRequiredInputs2
 	Then Error messages are displayed under fields
 		| Input | ErrorMessage               |
 		| Email | Please enter a valid email |
+
+@Regression @TSWEB149
+Scenario: CheckErrorMessagesForInvalidRequiredInputs3
+	Given User is on 'https://staging-career.tech-stack.io/contact-us' page
+	When User set 'test' text to 'Full name' input on 'ContactUsPage' container
+	When User set 'test@-email.com' text to 'Email' input on 'ContactUsPage' container
+	When User set '55555' text to 'Tel' input on 'ContactUsPage' container
+	When User set '' text to 'Message' textarea on 'ContactUsPage' container
+	When User attach 'test.mp4' file
+	When User clicks on 'Submit' button on 'ContactUsPage' container
+	Then 'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text and *.log extensions' error message is displayed under attache files input
