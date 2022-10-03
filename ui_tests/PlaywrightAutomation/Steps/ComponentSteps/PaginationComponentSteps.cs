@@ -65,7 +65,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
 
             var nextPageButtonInnerHTM = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
 
-            var paginationButton = paginationButtons.FirstOrDefault(x => x.InnerHTMLAsync().GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
+            var paginationButton = paginationButtons.FirstOrDefault(x => x.InnerHTMLAsync()
+                .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
 
             var actualPosition = paginationButtons.IndexOf(paginationButton);
             actualPosition.Should().Be(0);
@@ -87,7 +88,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
 
             var nextPageButtonInnerHTM = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
 
-            var paginationButton = paginationButtons.LastOrDefault(x => x.InnerHTMLAsync().GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
+            var paginationButton = paginationButtons.LastOrDefault(x => x.InnerHTMLAsync()
+                .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
 
             var actualPosition = paginationButtons.LastIndexOf(paginationButton);
             actualPosition.Should().Be(paginationButtons.Count - 1);

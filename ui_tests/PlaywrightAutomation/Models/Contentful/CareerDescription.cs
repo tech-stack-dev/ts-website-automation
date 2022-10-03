@@ -4,7 +4,7 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class CareerDescription
     {
-        public string Id { get; init; }
+        public string Id { get; set; }
         public int Version { get; set; }
 
         public string AboutTheProjectUs { get; set; }
@@ -34,6 +34,31 @@ namespace PlaywrightAutomation.Models.Contentful
         {
             Id = Guid.NewGuid().ToString("N");
             Version = 1;
+        }
+
+        public CareerDescription FillWithDefaultData(string randomValue = null)
+        {
+            randomValue ??= Guid.NewGuid().ToString("N");
+
+            this.Id ??= randomValue;
+            this.Version = this.Version <= 0 ? 1 : this.Version;
+            this.AboutTheProjectUs ??= $"AboutTheProjectUs{randomValue}";
+            this.AboutTheProjectUa ??= $"AboutTheProjectUa{randomValue}";
+            this.AboutTheRoleUs ??= $"AboutTheRoleUs{randomValue}";
+            this.AboutTheRoleUa ??= $"AboutTheRoleUa{randomValue}";
+            this.TitleUs ??= $"TitleUs{randomValue}";
+            this.TitleUa ??= $"TitleUa{randomValue}";
+            this.YouWillUs ??= $"YouWillUs{randomValue}";
+            this.YouWillUa ??= $"YouWillUa{randomValue}";
+            this.YouAreUs ??= $"YouAreUs{randomValue}";
+            this.YouAreUa ??= $"YouAreUa{randomValue}";
+            this.WeWillUs ??= $"WeWillUs{randomValue}";
+            this.WeWillUa ??= $"WeWillUa{randomValue}";
+            this.WeAreUs ??= $"WeAreUs{randomValue}";
+            this.WeAreUa ??= $"WeAreUa{randomValue}";
+            this.SlugUs ??= $"SlugUs{randomValue}";
+
+            return this;
         }
     }
 }

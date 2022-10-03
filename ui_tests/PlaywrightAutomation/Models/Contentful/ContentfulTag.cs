@@ -6,7 +6,7 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class ContentfulTag
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public string Name { get; set; }
 
         private TagPrefix _prefix;
@@ -40,6 +40,18 @@ namespace PlaywrightAutomation.Models.Contentful
             Stack,
             [Description("tag")]
             Tag
+        }
+
+        public ContentfulTag FillWithDefaultData(string randomValue = null)
+        {
+            randomValue ??= Guid.NewGuid().ToString("N");
+
+            this.Id ??= randomValue;
+            this.Name ??= $"TestingDirection{randomValue}_Тестовий{randomValue}";
+            this.Prefix = ((int)this.Prefix) < 0 ? TagPrefix.Direction : this.Prefix;
+            this.Version = this.Version <= 0 ? 1 : this.Version;
+
+            return this;
         }
     }
 }
