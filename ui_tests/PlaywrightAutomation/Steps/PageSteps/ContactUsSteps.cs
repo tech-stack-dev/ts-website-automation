@@ -32,17 +32,17 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualText.Should().Be(expectedText);
         }
 
-        [When(@"User attach '([^']*)' file")]
-        public void WhenUserAttachFile(string file)
+        [When(@"User attaches '([^']*)' file")]
+        public void WhenUserAttachesFile(string file)
         {
             var filePath = $"{PathProvider.ResourcesFolder}/{file}";
             _page.Init<ContactUsPage>().AttachFileInput.SetInputFilesAsync(filePath);
         }
 
         [Then(@"'([^']*)' attached file name is displayed in input")]
-        public void ThenAttachedFileNameIsDisplayedInWebElement(string expectedFileName)
+        public void ThenAttachedFileNameIsDisplayedInInput(string expectedFileName)
         {
-            var actualFileName = _page.Init<ContactUsPage>().AttachedFile.TextContentAsync().GetAwaiter().GetResult();
+            var actualFileName = _page.Init<ContactUsPage>().AttachedFileName.TextContentAsync().GetAwaiter().GetResult();
             actualFileName.Should().Be(expectedFileName);
         }
 

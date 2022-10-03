@@ -27,7 +27,7 @@ Scenario: CheckAttachFileFunctionality
 	When User set 'Full name' text to 'Full name' input on 'ContactUsPage' container
 	When User set 'Email@test.com' text to 'Email' input on 'ContactUsPage' container
 	When User set '123456789' text to 'Tel' input on 'ContactUsPage' container
-	When User attach 'test.pdf' file
+	When User attaches 'test.pdf' file
 	Then 'test.pdf' attached file name is displayed in input
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then 'Thanks for your message. We will contact you shortly.' text is displayed on Contact Us form
@@ -39,7 +39,7 @@ Scenario: CheckErrorMessagesForInvalidRequiredInputs1
 	When User set '@email.com' text to 'Email' input on 'ContactUsPage' container
 	When User set 'test' text to 'Tel' input on 'ContactUsPage' container
 	When User set 'test' text to 'Message' textarea on 'ContactUsPage' container
-	When User attach 'test.pdf' file
+	When User attaches 'test.pdf' file
 	Then 'test.pdf' attached file name is displayed in input
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then Error messages are displayed under fields
@@ -55,7 +55,7 @@ Scenario: CheckErrorMessagesForInvalidRequiredInputs2
 	When User set '123456' text to 'Email' input on 'ContactUsPage' container
 	When User set '55555' text to 'Tel' input on 'ContactUsPage' container
 	When User set '' text to 'Message' textarea on 'ContactUsPage' container
-	When User attach 'test.docx' file
+	When User attaches 'test.docx' file
 	Then 'test.docx' attached file name is displayed in input
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then Error messages are displayed under fields
@@ -69,6 +69,6 @@ Scenario: CheckErrorMessagesForInvalidRequiredInputs3
 	When User set 'test@-email.com' text to 'Email' input on 'ContactUsPage' container
 	When User set '55555' text to 'Tel' input on 'ContactUsPage' container
 	When User set '' text to 'Message' textarea on 'ContactUsPage' container
-	When User attach 'test.mp4' file
+	When User attaches 'test.mp4' file
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then 'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text and *.log extensions' error message is displayed under attache files input

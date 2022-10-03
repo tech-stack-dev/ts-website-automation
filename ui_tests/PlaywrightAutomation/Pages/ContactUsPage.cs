@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Pages
         public ILocator Text => Page.Locator(Container).Locator("//span[@class='styled-success-modal-text']/parent::span");
 
         public ILocator AttachFileInput => Page.Locator(Container).Locator("//input[@type='file']");
-        public ILocator AttachedFile => Page.Locator(Container).Locator("//label[@for='file']/span");
+        public ILocator AttachedFileName => Page.Locator(Container).Locator("//label[@for='file']/span");
 
         public ILocator ErrorMessageForAttachInput => Page.Locator(Container).Locator("//div[@class='invalid']");
     }
