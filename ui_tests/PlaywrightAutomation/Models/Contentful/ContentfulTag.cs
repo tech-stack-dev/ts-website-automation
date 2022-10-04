@@ -7,6 +7,7 @@ namespace PlaywrightAutomation.Models.Contentful
     public class ContentfulTag
     {
         public string Id { get; set; }
+        public int Version { get; set; }
         public string Name { get; set; }
 
         private TagPrefix _prefix;
@@ -26,8 +27,11 @@ namespace PlaywrightAutomation.Models.Contentful
                 }
             }
         }
-        
-        public int Version { get; set; } = 1;
+
+        public ContentfulTag()
+        {
+            Version = 1;
+        }
 
         // TagPrefix is used to define the environment of the tag
         public enum TagPrefix
@@ -45,11 +49,9 @@ namespace PlaywrightAutomation.Models.Contentful
         public ContentfulTag FillWithDefaultData(string randomValue = null)
         {
             randomValue ??= Guid.NewGuid().ToString("N");
-
-            this.Id ??= randomValue;
+            
             this.Name ??= $"TestingDirection{randomValue}_Тестовий{randomValue}";
             this.Prefix = ((int)this.Prefix) < 0 ? TagPrefix.Direction : this.Prefix;
-            this.Version = this.Version <= 0 ? 1 : this.Version;
 
             return this;
         }

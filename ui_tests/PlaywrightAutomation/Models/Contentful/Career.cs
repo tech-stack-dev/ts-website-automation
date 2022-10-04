@@ -4,7 +4,7 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class Career
     {
-        public string Id { get; set; }
+        public string Id { get; init; }
         public int Version { get; set; }
         public string NameUs { get; set; }
         public string NameUa { get; set; }
@@ -22,9 +22,7 @@ namespace PlaywrightAutomation.Models.Contentful
         public Career FillWithDefaultData(string randomValue = null)
         {
             randomValue ??= Guid.NewGuid().ToString("N");
-
-            this.Id ??= randomValue;
-            this.Version = this.Version <= 0 ? 1 : this.Version;
+           
             this.NameUs = $"NameUs{randomValue}";
             this.NameUa = $"NameUa{randomValue}";
             this.DescriptionUs = $"DescriptionUs{randomValue}";

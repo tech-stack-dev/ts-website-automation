@@ -65,7 +65,7 @@ Scenario: CheckJobDescriptionOnJobPage
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckPaginationOnCareerPage
 	# Preconditions
-	Given User creates and publishes '12' Careers with descriptions and tags
+	Given User creates and publishes '12' Careers with default descriptions and tags
 	# Scenario
 	Given User is on career website
 	Then Pagination is displayed on Career page
