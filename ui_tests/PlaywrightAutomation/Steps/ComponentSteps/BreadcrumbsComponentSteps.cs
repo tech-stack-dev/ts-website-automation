@@ -22,8 +22,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
             var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
+            var actualBreadcrumbs = string.Concat(tabPart, jobTitlePart);
 
-            expectedBreadcrumbs.Should().Be(string.Concat(tabPart, jobTitlePart));
+            actualBreadcrumbs.Should().Be(expectedBreadcrumbs);
         }
     }
 }
