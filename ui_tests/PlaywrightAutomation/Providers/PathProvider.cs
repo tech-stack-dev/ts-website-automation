@@ -5,8 +5,10 @@ namespace PlaywrightAutomation.Providers
 {
     public class PathProvider
     {
-        public static string SourceFolder => getFolder("PlaywrightAutomation", Folder.SpecFlowTests.ToString());
-        public static string ResourcesFolder => getFolder("PlaywrightAutomation", Folder.Resources.ToString());
+        private static string solutionName = "PlaywrightAutomation";
+
+        public static string SourceFolder => GetFolder(solutionName, Folder.SpecFlowTests.ToString());
+        public static string ResourcesFolder => GetFolder(solutionName, Folder.Resources.ToString());
 
         private static DirectoryInfo SolutionDirectoryInfo()
         {
@@ -18,7 +20,7 @@ namespace PlaywrightAutomation.Providers
             return directory;
         }
 
-        private static string getFolder(string solutionName, string folder)
+        private static string GetFolder(string solutionName, string folder)
         {
             return Path.Combine(SolutionDirectoryInfo().FullName, solutionName, folder);
         }
