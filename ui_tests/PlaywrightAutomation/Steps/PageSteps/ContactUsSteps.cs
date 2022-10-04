@@ -25,18 +25,18 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualTitle.Should().Be(expectedTitle);
         }
 
-        [Then(@"'([^']*)' text is displayed on Contact Us form")]
-        public void ThenTextIsDisplayedOnApplyContainerOnJobPage(string expectedText)
+        [Then(@"'([^']*)' text is displayed on Contact Us modal window")]
+        public void ThenTextIsDisplayedOnContactUsModalWindow(string expectedText)
         {
             var actualText = _page.Init<ContactUsPage>().Text.TextContentAsync().GetAwaiter().GetResult();
             actualText.Should().Be(expectedText);
         }
 
-        [When(@"User attaches '([^']*)' file")]
-        public void WhenUserAttachesFile(string file)
+        [When(@"User attaches '([^']*)' file on Contact Us form")]
+        public void WhenUserAttachesFileOnContactUsForm(string file)
         {
             var filePath = $"{PathProvider.ResourcesFolder}/{file}";
-            _page.Init<ContactUsPage>().AttachFileInput.SetInputFilesAsync(filePath);
+            _page.Init<ContactUsPage>().AttachFileInput.SetInputFilesAsync(filePath).GetAwaiter().GetResult();
         }
 
         [Then(@"'([^']*)' attached file name is displayed in input")]
@@ -46,11 +46,18 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualFileName.Should().Be(expectedFileName);
         }
 
-        [Then(@"'([^']*)' error message is displayed under attache files input")]
-        public void ThenErrorMessagesIsDisplayedUnderAttacheFilesInput(string expectedErrorMessage)
+        [Then(@"'([^']*)' error message is displayed under attach files input")]
+        public void ThenErrorMessagesIsDisplayedUnderAttachFilesInput(string expectedErrorMessage)
         {
             var actualErrorMessage = _page.Init<ContactUsPage>().ErrorMessageForAttachInput.InnerTextAsync().GetAwaiter().GetResult();
             actualErrorMessage.Should().Be(expectedErrorMessage);
+        }
+
+        [When(@"User set '([^']*)' text to message field on Contact Us form")]
+        public void WhenUserSetTextToMessageFieldOnContactUsForm(string text)
+        {
+            _page.Init<ContactUsPage>().TextArea.FillAsync(text).GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
     }
 }
