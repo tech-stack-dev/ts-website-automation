@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChoETL;
+using System;
 
 namespace PlaywrightAutomation.Models.Contentful
 {
@@ -40,21 +41,21 @@ namespace PlaywrightAutomation.Models.Contentful
         {
             randomValue ??= Guid.NewGuid().ToString("N");
            
-            this.AboutTheProjectUs ??= $"AboutTheProjectUs{randomValue}";
-            this.AboutTheProjectUa ??= $"AboutTheProjectUa{randomValue}";
-            this.AboutTheRoleUs ??= $"AboutTheRoleUs{randomValue}";
-            this.AboutTheRoleUa ??= $"AboutTheRoleUa{randomValue}";
-            this.TitleUs ??= $"TitleUs{randomValue}";
-            this.TitleUa ??= $"TitleUa{randomValue}";
-            this.YouWillUs ??= $"YouWillUs{randomValue}";
-            this.YouWillUa ??= $"YouWillUa{randomValue}";
-            this.YouAreUs ??= $"YouAreUs{randomValue}";
-            this.YouAreUa ??= $"YouAreUa{randomValue}";
-            this.WeWillUs ??= $"WeWillUs{randomValue}";
-            this.WeWillUa ??= $"WeWillUa{randomValue}";
-            this.WeAreUs ??= $"WeAreUs{randomValue}";
-            this.WeAreUa ??= $"WeAreUa{randomValue}";
-            this.SlugUs ??= $"SlugUs{randomValue}";
+            this.AboutTheProjectUs = this.AboutTheProjectUs.IsNullOrEmpty() ? $"AboutTheProjectUs{randomValue}" : this.AboutTheProjectUs;
+            this.AboutTheProjectUa = this.AboutTheProjectUa.IsNullOrEmpty() ? $"AboutTheProjectUa{randomValue}": this.AboutTheProjectUa;
+            this.AboutTheRoleUs = this.AboutTheRoleUs.IsNullOrEmpty() ? $"AboutTheRoleUs{randomValue}" : this.AboutTheRoleUs;
+            this.AboutTheRoleUa = this.AboutTheRoleUa.IsNullOrEmpty() ? $"AboutTheRoleUa{randomValue}" : this.AboutTheRoleUa;
+            this.TitleUs = this.TitleUs.IsNullOrEmpty() ? $"TitleUs{randomValue}" : this.TitleUs;
+            this.TitleUa = this.TitleUa.IsNullOrEmpty() ? $"TitleUa{randomValue}" : this.TitleUa;
+            this.YouWillUs = this.YouWillUs.IsNullOrEmpty() ? $"YouWillUs{randomValue}" : this.YouWillUs;
+            this.YouWillUa = this.YouWillUa.IsNullOrEmpty() ? $"YouWillUa{randomValue}" : this.YouWillUa;
+            this.YouAreUs = this.YouAreUs.IsNullOrEmpty() ? $"YouAreUs{randomValue}" : this.YouAreUs;
+            this.YouAreUa = this.YouAreUa.IsNullOrEmpty() ? $"YouAreUa{randomValue}" : this.YouAreUa;
+            this.WeWillUs = this.WeWillUs.IsNullOrEmpty() ? $"WeWillUs{randomValue}" : this.WeWillUs;
+            this.WeWillUa = this.WeWillUa.IsNullOrEmpty() ? $"WeWillUa{randomValue}" : this.WeWillUa;
+            this.WeAreUs = this.WeAreUs.IsNullOrEmpty() ? $"WeAreUs{randomValue}" : this.WeAreUs;
+            this.WeAreUa = this.WeAreUa.IsNullOrEmpty() ? $"WeAreUa{randomValue}" : this.WeAreUa;
+            this.SlugUs = this.SlugUs.IsNullOrEmpty() ? $"SlugUs{randomValue}" : this.SlugUs;
 
             return this;
         }

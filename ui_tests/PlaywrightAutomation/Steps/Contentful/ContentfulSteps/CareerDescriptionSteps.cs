@@ -23,8 +23,17 @@ namespace PlaywrightAutomation.Steps.Contentful
         public void GivenUserCreatesAndPublishesNewCareerDescription(Table table)
         {
             var careerDescriptions = table.CreateInstance<CareerDescription>();
-            var createdCareer = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
-            _createdCareerDescriptions.Value.Add(createdCareer);
+            var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
+            _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
+        }
+
+        [Given(@"User creates and publishes new Career Description with default values")]
+        public void GivenUserCreatesAndPublishesNewCareerDescriptionWithDefaultValues(Table table)
+        {
+            var careerDescriptions = table.CreateInstance<CareerDescription>();
+            careerDescriptions.FillWithDefaultData();
+            var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
+            _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
         }
     }
 }

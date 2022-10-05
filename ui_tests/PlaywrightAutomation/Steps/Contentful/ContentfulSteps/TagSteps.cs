@@ -30,5 +30,19 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
                 _createdTags.Value.Add(createdTag);
             }
         }
+
+        [Given(@"User creates tag with default values")]
+        public void GivenUserCreatesTagWithDefaultValues(Table table)
+        {
+            var tag = table.CreateSet<ContentfulTag>();
+
+            foreach (var tagJobs in tag)
+            {
+                tagJobs.FillWithDefaultData();
+                var createdTag = _contentfulClient.CreateTag(tagJobs).Result;
+
+                _createdTags.Value.Add(createdTag);
+            }
+        }
     }
 }
