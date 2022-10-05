@@ -3,30 +3,13 @@
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                  |
-		| Direction | TestingSideDirectionOfSearch_Тестовий |
-	Given User creates and publishes new Career Description
-		| Field             | Value                           |
-		| AboutTheProjectUs | AboutTheProjectUs               |
-		| AboutTheProjectUa | AboutTheProjectUa               |
-		| AboutTheRoleUs    | AboutTheRoleUs                  |
-		| AboutTheRoleUa    | AboutTheRoleUa                  |
-		| TitleUs           | TitleUsSideDirectionOfSearch    |
-		| TitleUa           | TitleUaSideDirectionOfSearch    |
-		| YouWillUs         | YouWillUs                       |
-		| YouWillUa         | YouWillUa                       |
-		| YouAreUs          | YouAreUs                        |
-		| YouAreUa          | YouAreUa                        |
-		| WeWillUs          | WeWillUs                        |
-		| WeWillUa          | WeWillUa                        |
-		| WeAreUs           | WeAreUs                         |
-		| WeAreUa           | WeAreUa                         |
-		| TechnologyStack   | TechnologyStackUs               |
-		| SlugUs            | TestSlugUsSideDirectionOfSearch |
-	Given User creates new Career with 'TitleUsSideDirectionOfSearch' career description and 'TestingSideDirectionOfSearch_Тестовий' tag
-		| NameUs                      | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideDirectionOfSearch | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix | Name |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates and publishes new Career Description with default values
+		| NameUs                      | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerHeaderPage' container
