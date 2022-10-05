@@ -28,5 +28,12 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             var tabActiveStatus = tab.IsActive;
             tabActiveStatus.Should().BeTrue();
         }
+
+        [When(@"User clicks on '([^']*)' tab")]
+        public void WhenUserClicksOnTab(string tabName)
+        {
+            _page.Component<NavigationTabs>(tabName).ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+        }
     }
 }
