@@ -42,24 +42,9 @@ Scenario: CheckNavigationHeaderOnJobPage
 	Given User creates tag
 		| Prefix    | Name                                         |
 		| Direction | TSWEB146TestingDirectionThree_ТестовийТретій |
-	Given User creates and publishes new Career Description
-		| Field             | Value                    |
-		| AboutTheProjectUs | AboutTheProjectUsThree   |
-		| AboutTheProjectUa | AboutTheProjectUaThree   |
-		| AboutTheRoleUs    | AboutTheRoleUsThree      |
-		| AboutTheRoleUa    | AboutTheRoleUaThree      |
-		| TitleUs           | TSWEB146_TitleUsThree    |
-		| TitleUa           | TSWEB146_TitleUaThree    |
-		| YouWillUs         | YouWillUsThree           |
-		| YouWillUa         | YouWillUaThree           |
-		| YouAreUs          | YouAreUsThree            |
-		| YouAreUa          | YouAreUaThree            |
-		| WeWillUs          | WeWillUsThree            |
-		| WeWillUa          | WeWillUaThree            |
-		| WeAreUs           | WeAreUsThree             |
-		| WeAreUa           | WeAreUaThree             |
-		| TechnologyStack   | TechnologyStackUsThree   |
-		| SlugUs            | TestSlugUsDirectionThree |
+	Given User creates and publishes new Career Description with default values
+		| Field   | Value                 |
+		| TitleUs | TSWEB146_TitleUsThree |
 	Given User creates new Career with 'TSWEB146_TitleUsThree' career description and 'TSWEB146TestingDirectionThree_ТестовийТретій' tag
 		| NameUs              | NameUa              | DescriptionUs          | DescriptionUa          | Type | LinkType |
 		| Tsweb146TestusThree | TSWEB146TestUaThree | DescriptionTestUsThree | DescriptionTestUaThree | Link | Entry    |

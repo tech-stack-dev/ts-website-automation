@@ -107,10 +107,10 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var logo = _page.Init<NavigationHeader>().Logo;
 
-            var logoState = logo.IsVisibleAsync();
-            logoState.Should().Equals(true);
+            var logoState = logo.IsVisibleAsync().GetAwaiter().GetResult();
+            logoState.Should().BeTrue();
 
-            var logoAttribute = logo.GetAttributeAsync("alt");
+            var logoAttribute = logo.GetAttributeAsync("alt").GetAwaiter().GetResult();
             logoAttribute.Should().BeEquivalentTo("Techstack");
         }
 
