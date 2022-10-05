@@ -20,24 +20,9 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Given User creates tag
 		| Prefix    | Name                                       |
 		| Direction | TSWEB146TestingDirectionOne_ТестовийПерший |
-	Given User creates and publishes new Career Description
-		| Field             | Value                  |
-		| AboutTheProjectUs | AboutTheProjectUsOne   |
-		| AboutTheProjectUa | AboutTheProjectUaOne   |
-		| AboutTheRoleUs    | AboutTheRoleUsOne      |
-		| AboutTheRoleUa    | AboutTheRoleUaOne      |
-		| TitleUs           | TSWEB146_TitleUsOne    |
-		| TitleUa           | TSWEB146_TitleUaOne    |
-		| YouWillUs         | YouWillUsOne           |
-		| YouWillUa         | YouWillUaOne           |
-		| YouAreUs          | YouAreUsOne            |
-		| YouAreUa          | YouAreUaOne            |
-		| WeWillUs          | WeWillUsOne            |
-		| WeWillUa          | WeWillUaOne            |
-		| WeAreUs           | WeAreUsOne             |
-		| WeAreUa           | WeAreUaOne             |
-		| TechnologyStack   | TechnologyStackUsOne   |
-		| SlugUs            | TestSlugUsDirectionOne |
+	Given User creates and publishes new Career Description with default values
+		| Field   | Value               |
+		| TitleUs | TSWEB146_TitleUsOne |
 	Given User creates new Career with 'TSWEB146_TitleUsOne' career description and 'TSWEB146TestingDirectionOne_ТестовийПерший' tag
 		| NameUs            | NameUa            | DescriptionUs        | DescriptionUa        | Type | LinkType |
 		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
