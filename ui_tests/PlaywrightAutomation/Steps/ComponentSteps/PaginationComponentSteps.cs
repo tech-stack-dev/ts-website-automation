@@ -1,6 +1,7 @@
 ﻿using ChoETL;
 using FluentAssertions;
 using Microsoft.Playwright;
+using NUnit.Framework.Constraints;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
@@ -29,8 +30,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             paginationButtons.Should().NotBeNull();
         }
 
-        [When(@"User clicks on next page button on pagination panel")]
-        public void WhenUserClicksOnNextPageButtonOnPaginationPanel()
+        [When(@"User clicks on next page button in pagination panel")]
+        public void WhenUserClicksOnNextPageButtonInPaginationPanel()
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
@@ -39,8 +40,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        [Then(@"'([^']*)' pagination button has '([^']*)' background color on pagination panel")]
-        public void ThenPaginationButtonHasBackgroundColorOnPaginationPanel(string buttonName, string backgroundColor)
+        [Then(@"'([^']*)' pagination button has '([^']*)' background color in pagination panel")]
+        public void ThenPaginationButtonHasBackgroundColorInPaginationPanel(string buttonName, string backgroundColor)
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
@@ -49,8 +50,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             button.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(backgroundColor));
         }
 
-        [Then(@"Next page button is on first position on pagination panel")]
-        public void ThenNextPageButtonIsOnFirstPositionOnPaginationPanel()
+        // position can only be "first" or "last"
+        [Then(@"Next page button is on '([^']*)' position in pagination panel")]
+        public void ThenNextPageButtonIsOnPositionInPaginationPanel(string position)
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
@@ -63,36 +65,27 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             var nextPageButtons = _page.Component<Pagination>().NextPageButton
                 .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
 
-            var nextPageButtonInnerHTM = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
+            var nextPageButtonInnerHTML = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
 
-            var paginationButton = paginationButtons.FirstOrDefault(x => x.InnerHTMLAsync()
-                .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
-
-            var actualPosition = paginationButtons.IndexOf(paginationButton);
-            actualPosition.Should().Be(0);
-        }
-
-        [Then(@"Next page button is on last position on pagination panel")]
-        public void ThenNextPageButtonIsOnLastPositionOnPaginationPanel()
-        {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
-
-            if (!paginationButtons.Any())
+            switch (position)
             {
-                throw new Exception("Pagination panel has not any buttons");
+                case "first":
+                    var firstPaginationButton = paginationButtons.FirstOrDefault(x => x.InnerHTMLAsync()
+                        .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTML));
+                    var actualFirstPaginationButtonPosition = paginationButtons.IndexOf(firstPaginationButton);
+                    actualFirstPaginationButtonPosition.Should().Be(0);
+                    break;
+
+                case "last":
+                    var lastPaginationButton = paginationButtons.LastOrDefault(x => x.InnerHTMLAsync()
+                        .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTML));
+                    var actualLastPaginationButtonPosition = paginationButtons.LastIndexOf(lastPaginationButton);
+                    actualLastPaginationButtonPosition.Should().Be(paginationButtons.Count - 1);
+                    break;
+
+                default:
+                    throw new Exception("Pagination panel has not any buttons");
             }
-
-            var nextPageButtons = _page.Component<Pagination>().NextPageButton
-               .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
-
-            var nextPageButtonInnerHTM = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
-
-            var paginationButton = paginationButtons.LastOrDefault(x => x.InnerHTMLAsync()
-                .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTM));
-
-            var actualPosition = paginationButtons.LastIndexOf(paginationButton);
-            actualPosition.Should().Be(paginationButtons.Count - 1);
         }
     }
 }
