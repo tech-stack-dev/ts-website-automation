@@ -74,24 +74,9 @@ Scenario: CheckLocalizationOnJobPage
 		| Direction | TSWEB146TestingDirectionFour_Тестовий146Четвертий |
 		| Tag       | Test146TagFour_Тестовий146ТегЧетвертий            |
 		| Tag       | Hot_ГарячіВакансії                                |
-	Given User creates and publishes new Career Description
-		| Field             | Value                   |
-		| AboutTheProjectUs | AboutTheProjectUsFour   |
-		| AboutTheProjectUa | AboutTheProjectUaFour   |
-		| AboutTheRoleUs    | AboutTheRoleUsFour      |
-		| AboutTheRoleUa    | AboutTheRoleUaFour      |
-		| TitleUs           | TSWEB146_TitleUsFour    |
-		| TitleUa           | TSWEB146_TitleUaFour    |
-		| YouWillUs         | YouWillUsFour           |
-		| YouWillUa         | YouWillUaFour           |
-		| YouAreUs          | YouAreUsFour            |
-		| YouAreUa          | YouAreUaFour            |
-		| WeWillUs          | WeWillUsFour            |
-		| WeWillUa          | WeWillUaFour            |
-		| WeAreUs           | WeAreUsFour             |
-		| WeAreUa           | WeAreUaFour             |
-		| TechnologyStack   | TechnologyStackUsFour   |
-		| SlugUs            | TestSlugUsDirectionFour |
+	Given User creates and publishes new Career Description with default values
+		| Field   | Value                |
+		| TitleUs | TSWEB146_TitleUsFour |
 	Given User creates new Career with 'TSWEB146_TitleUsFour' career description and 'TSWEB146TestingDirectionFour_ТестовийЧетвертий,Test146TagFour_Тестовий146ТегЧетвертий,Hot_ГарячіВакансії' tag
 		| NameUs             | NameUa             | DescriptionUs         | DescriptionUa         | Type | LinkType |
 		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
