@@ -7,7 +7,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 		| Prefix | Name |
 	Given User creates and publishes new Career Description with default values
 		| Field | Value |
-	Given User creates and publishes new Career Description with default values
+	Given User creates default Career with career description and tag
 		| NameUs                      | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
