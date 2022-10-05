@@ -84,7 +84,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                     break;
 
                 default:
-                    throw new Exception("Pagination panel has not any buttons");
+                    throw new Exception($"Incorrect position name: {position}");
             }
         }
     }
