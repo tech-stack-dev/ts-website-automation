@@ -9,10 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutomationUtils" Version="1.1.92.1" />
+    <PackageReference Include="AutomationUtils" Version="1.1.92.4" />
     <PackageReference Include="BoDi" Version="1.5.0" />
     <PackageReference Include="ChoETL" Version="1.2.1.48" />
-    <PackageReference Include="contentful.csharp" Version="7.2.0" />
+    <PackageReference Include="contentful.csharp" Version="7.2.2" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
