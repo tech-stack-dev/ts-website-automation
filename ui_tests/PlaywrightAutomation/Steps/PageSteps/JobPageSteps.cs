@@ -106,10 +106,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenTechstackLogoIsDisplayedOnJobPage()
         {
             var logo = _page.Init<NavigationHeader>().Logo;
-
             var logoState = logo.IsVisibleAsync().GetAwaiter().GetResult();
             logoState.Should().BeTrue();
-
             var logoAttribute = logo.GetAttributeAsync("alt").GetAwaiter().GetResult();
             logoAttribute.Should().BeEquivalentTo("Techstack");
         }
@@ -118,11 +116,9 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenJobsBlockOnJobPageHasTabs(Table table)
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
-
             var actualListTabs = _page.Component<NavigationTabs>()
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
-
             actualListTabs.Should().Equal(expectedListTabs);
         }
     }

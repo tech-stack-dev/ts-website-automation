@@ -31,6 +31,7 @@ namespace PlaywrightAutomation.Models.Contentful
 
         public ContentfulTag()
         {
+            Id = Guid.NewGuid().ToString("N");
             Version = 1;
         }
 

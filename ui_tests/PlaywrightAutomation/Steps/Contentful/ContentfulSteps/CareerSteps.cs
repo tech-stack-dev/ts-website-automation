@@ -95,46 +95,5 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
                 _createdCareer.Value.Add(createdCareer);
             }
         }
-
-        [Given(@"User creates and publishes '([^']*)' Careers with default descriptions and tags")]
-        public void GivenUserCreatesAndPublishesCareersWithDefaultDescriptionsAndTags(int careerNumber)
-        {
-            for (int i = 0; i < careerNumber; i++)
-            {
-                var random = Guid.NewGuid().ToString("N");
-
-                Table tagTable = new Table(new string[] { "Prefix", "Name" });
-                Table descriptionTable = new Table(new string[] { "Field", "Value" });
-                Table careerTable = new Table(new string[] { "NameUs", "NameUa", "DescriptionUs", "DescriptionUa", "Type", "LinkType" });
-
-                tagTable.AddRow(new string[] { "Direction", string.Concat("TestingDirection", random, "_Тестовий", random) });
-                _tagSteps.GivenUserCreatesTag(tagTable);
-
-                descriptionTable.AddRow(new string[] { "AboutTheProjectUs", $"AboutTheProjectUs{random}" });
-                descriptionTable.AddRow(new string[] { "AboutTheProjectUa", $"AboutTheProjectUa{random}" });
-                descriptionTable.AddRow(new string[] { "AboutTheRoleUs", $"AboutTheRoleUs{random}" });
-                descriptionTable.AddRow(new string[] { "AboutTheRoleUa", $"AboutTheRoleUa{random}" });
-                descriptionTable.AddRow(new string[] { "TitleUs", $"TitleUs{random}" });
-                descriptionTable.AddRow(new string[] { "TitleUa", $"TitleUa{random}" });
-                descriptionTable.AddRow(new string[] { "YouWillUs", $"YouWillUs{random}" });
-                descriptionTable.AddRow(new string[] { "YouWillUa", $"YouWillUa{random}" });
-                descriptionTable.AddRow(new string[] { "YouAreUs", $"YouAreUs{random}" });
-                descriptionTable.AddRow(new string[] { "YouAreUa", $"YouAreUa{random}" });
-                descriptionTable.AddRow(new string[] { "WeWillUs", $"WeWillUs{random}" });
-                descriptionTable.AddRow(new string[] { "WeWillUa", $"WeWillUa{random}" });
-                descriptionTable.AddRow(new string[] { "WeAreUs", $"WeAreUs{random}" });
-                descriptionTable.AddRow(new string[] { "WeAreUa", $"WeAreUa{random}" });
-                descriptionTable.AddRow(new string[] { "TechnologyStack", $"TechnologyStack{random}" });
-                descriptionTable.AddRow(new string[] { "SlugUs", $"SlugUs{random}" });
-
-                _careerDescriptionSteps.GivenUserCreatesAndPublishesNewCareerDescription(descriptionTable);
-
-                careerTable.AddRow(new string[] { string.Concat("NameUs", random), string.Concat("NameUa", random),
-                                                  string.Concat("DescriptionUs", random), string.Concat("DescriptionUa", random),
-                                                  "Link", "Entry" });
-
-                GivenUserCreatesNewCareerWithCareerDescriptionAndTag(string.Concat("TitleUs", random), string.Concat("TestingDirection", random, "_Тестовий", random), careerTable);
-            }
-        }
     }
 }

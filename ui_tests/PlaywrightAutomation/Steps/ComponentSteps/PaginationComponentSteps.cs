@@ -7,6 +7,7 @@ using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Utils;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -30,13 +31,12 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             paginationButtons.Should().NotBeNull();
         }
 
-        [When(@"User clicks on next page button in pagination panel")]
-        public void WhenUserClicksOnNextPageButtonInPaginationPanel()
+        [When(@"User clicks on '(.*)' direction button in pagination panel")]
+        public void WhenUserClicksOnNextPageButtonInPaginationPanel(string direction)
         {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult();
-
-            paginationButtons.Last().ClickAsync().GetAwaiter().GetResult();
+            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
+                .GetAwaiter().GetResult();
+            navigationButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
@@ -45,47 +45,18 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
-
-            var button = paginationButtons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(buttonName));
+            var button =
+                paginationButtons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(buttonName));
             button.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(backgroundColor));
         }
 
-        // position can only be "first" or "last"
-        [Then(@"Next page button is on '([^']*)' position in pagination panel")]
-        public void ThenNextPageButtonIsOnPositionInPaginationPanel(string position)
+        // position can only be "next" or "previous"
+        [Then(@"Pagination navigation button with '(.*)' direction is displayed")]
+        public void ThenNextPageButtonIsOnPositionInPaginationPanel(string direction)
         {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
-
-            if (!paginationButtons.Any())
-            {
-                throw new Exception("Pagination panel has not any buttons");
-            }
-
-            var nextPageButtons = _page.Component<Pagination>().NextPageButton
-                .ElementHandlesAsync().GetAwaiter().GetResult().ToList();
-
-            var nextPageButtonInnerHTML = nextPageButtons[0].InnerHTMLAsync().GetAwaiter().GetResult();
-
-            switch (position)
-            {
-                case "first":
-                    var firstPaginationButton = paginationButtons.FirstOrDefault(x => x.InnerHTMLAsync()
-                        .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTML));
-                    var actualFirstPaginationButtonPosition = paginationButtons.IndexOf(firstPaginationButton);
-                    actualFirstPaginationButtonPosition.Should().Be(0);
-                    break;
-
-                case "last":
-                    var lastPaginationButton = paginationButtons.LastOrDefault(x => x.InnerHTMLAsync()
-                        .GetAwaiter().GetResult().Contains(nextPageButtonInnerHTML));
-                    var actualLastPaginationButtonPosition = paginationButtons.LastIndexOf(lastPaginationButton);
-                    actualLastPaginationButtonPosition.Should().Be(paginationButtons.Count - 1);
-                    break;
-
-                default:
-                    throw new Exception($"Incorrect position name: {position}");
-            }
+            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
+                .GetAwaiter().GetResult();
+            navigationButton.Should().NotBeNull();
         }
     }
 }
