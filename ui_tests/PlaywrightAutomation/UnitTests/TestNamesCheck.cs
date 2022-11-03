@@ -34,13 +34,17 @@ namespace PlaywrightAutomation.UnitTests
                 .Select(x => x.Key)
                 .ToList();
 
-            var testsWithSpace = allTestsNames.Where(x => x.Split(',')[0].Contains(" ")).ToList();
-            var testsWithTab = allTestsNames.Where(x => x.Split(',')[0].Contains("	")).ToList();
-            var testsWithComma = allTestsNames.Where(x => x.Split(',')[0].Contains(",")).ToList();
-            var testsWithDot = allTestsNames.Where(x => x.Split(',')[0].Contains(".")).ToList();
-            var testsWithSemicolon = allTestsNames.Where(x => x.Split(',')[0].Contains(";")).ToList();
-            var testsWithColon = allTestsNames.Where(x => x.Split(',')[0].Contains(":")).ToList();
-            var testsWithHash = allTestsNames.Where(x => x.Split(',')[0].Contains("#")).ToList();
+            var testsWithoutExamples = allTestsNames.Select(x => x.Split(',')[0]).ToList();
+
+            var testsWithSpace = testsWithoutExamples.Where(x => x.Contains(" ")).ToList();
+            var testsWithTab = testsWithoutExamples.Where(x => x.Contains("	")).ToList();
+            var testsWithComma = testsWithoutExamples.Where(x => x.Contains(",")).ToList();
+            var testsWithDot = testsWithoutExamples.Where(x => x.Contains(".")).ToList();
+            var testsWithSemicolon = testsWithoutExamples.Where(x => x.Contains(";")).ToList();
+            var testsWithColon = testsWithoutExamples.Where(x => x.Contains(":")).ToList();
+            var testsWithHash = testsWithoutExamples.Where(x => x.Contains("#")).ToList();
+            var testsWithDash = testsWithoutExamples.Where(x => x.Contains("-")).ToList();
+            var testsWithParenthesis = testsWithoutExamples.Where(x => x.Contains("(") || x.Contains(")")).ToList();
 
             Verify.AreEqual(0, testsWithSpace.Count,
                 "There are some tests with space in the name");
@@ -56,6 +60,10 @@ namespace PlaywrightAutomation.UnitTests
                 "There are some tests with colon in the name");
             Verify.AreEqual(0, testsWithHash.Count,
                 "There are some tests with hash in the name");
+            Verify.AreEqual(0, testsWithDash.Count,
+                "There are some tests with dash in the name");
+            Verify.AreEqual(0, testsWithParenthesis.Count,
+                "There are some tests with parenthesis in the name");
         }
     }
 }
