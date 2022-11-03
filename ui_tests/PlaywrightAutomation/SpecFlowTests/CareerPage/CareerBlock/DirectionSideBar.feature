@@ -6,7 +6,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User creates tag
 		| Prefix    | Name                                 |
 		| Direction | TestingSideDirectionOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                          |
 		| AboutTheProjectUs | AboutTheProjectUs              |
 		| AboutTheProjectUa | AboutTheProjectUa              |
@@ -55,7 +55,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| Prefix    | Name                            |
 		| Direction | TestingSideDirection1_Тестовий1 |
 		| Direction | TestingSideDirection2_Тестовий2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                   |
 		| AboutTheProjectUs | AboutTheProjectUs       |
 		| AboutTheProjectUa | AboutTheProjectUa       |
@@ -113,7 +113,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| Prefix    | Name                                  |
 		| Direction | TestingResetSideDirection1_Тестовий 1 |
 		| Direction | TestingResetSideDirection2_Тестовий 2 |
-	Given User creates and publish new Career Description
+	Given User creates and publishes new Career Description
 		| Field             | Value                        |
 		| AboutTheProjectUs | AboutTheProjectUs            |
 		| AboutTheProjectUa | AboutTheProjectUa            |

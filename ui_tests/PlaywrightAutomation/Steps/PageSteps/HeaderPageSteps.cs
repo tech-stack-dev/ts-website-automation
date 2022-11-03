@@ -23,7 +23,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page.Init<HeaderPage>().SelectLanguage(language, container).GetAwaiter().GetResult();
         }
 
-        [Then(@"'Techstack' logo is displayed on main page")]
+        [Then(@"Techstack logo is displayed on main page")]
         public void ThenTechstackLogoIsDisplayedOnMainPage()
         {
             _page.Init<HeaderPage>().CheckLogo();

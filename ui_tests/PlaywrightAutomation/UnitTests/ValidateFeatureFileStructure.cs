@@ -61,7 +61,11 @@ namespace PlaywrightAutomation.UnitTests
 
         [Test]
         [Category("OnBuild")]
+<<<<<<< HEAD
+        public void Does_All_FeatureFiles_Has_No_Two_Empty_Lines_In_A_Row()
+=======
         public void Does_All_FeatureFiles_Have_No_Two_Empty_Lines_In_A_Row()
+>>>>>>> main
         {
             foreach (var feature in _allFeatureFiles)
             {
@@ -76,7 +80,11 @@ namespace PlaywrightAutomation.UnitTests
 
         [Test]
         [Category("OnBuild")]
+<<<<<<< HEAD
+        public void Does_All_FeatureFiles_Has_No_Ending_Empty_Lines()
+=======
         public void Does_All_FeatureFiles_Have_No_Ending_Empty_Lines()
+>>>>>>> main
         {
             foreach (var feature in _allFeatureFiles)
             {

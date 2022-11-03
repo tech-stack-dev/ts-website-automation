@@ -85,15 +85,6 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualListTabs.Should().Equal(expectedListTabs);
         }
 
-        [Then(@"Breadcrumbs has '([^']*)' text")]
-        public void ThenBreadcrumbsHasText(string expectedBreadcrumbs)
-        {
-            var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
-            var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
-
-            expectedBreadcrumbs.Should().Be(string.Concat(tabPart, jobTitlePart));
-        }
-
         [Then(@"Dropdowns are expanded on '([^']*)' container")]
         public void ThenDropdownsAreExpandedOnContainer(string container, Table table)
         {
