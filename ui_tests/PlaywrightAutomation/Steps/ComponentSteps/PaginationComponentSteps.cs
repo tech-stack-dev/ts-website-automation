@@ -1,13 +1,9 @@
-﻿using ChoETL;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
-using NUnit.Framework.Constraints;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Utils;
-using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -26,7 +22,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks on '(.*)' direction button in pagination panel")]
         public void WhenUserClicksOnNextPageButtonInPaginationPanel(string direction)
         {
-            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
+            var navigationButton = _page.Component<Pagination>()
+                .ArrowButtonByDirection(direction)
+                .ElementHandleAsync()
                 .GetAwaiter().GetResult();
             navigationButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
@@ -38,8 +36,12 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
             var button =
-                paginationButtons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(buttonName));
-            button.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(backgroundColor));
+                paginationButtons.FirstOrDefault(x => x.InnerTextAsync()
+                    .GetAwaiter().GetResult()
+                    .Equals(buttonName));
+            button.GetBackgroundColor()
+                .Should()
+                .Be(ColorsConvertor.Converter(backgroundColor));
         }
 
         [Then(@"Pagination navigation button with '(.*)' direction is displayed")]
@@ -47,15 +49,20 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
                 .GetAwaiter().GetResult();
-            navigationButton.IsVisibleAsync().GetAwaiter().GetResult().Should().BeTrue();
+            navigationButton.IsVisibleAsync().GetAwaiter().GetResult()
+                .Should()
+                .BeTrue();
         }
 
         [Then(@"Pagination is displayed on Career page")]
         public void ThenPaginationIsDisplayedOnCareerPage()
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult();
-            paginationButtons.Should().NotBeNull();
+                .ElementHandlesAsync()
+                .GetAwaiter().GetResult();
+            paginationButtons.All(x => x.IsVisibleAsync().GetAwaiter().GetResult())
+                .Should()
+                .BeTrue();
         }
     }
 }
