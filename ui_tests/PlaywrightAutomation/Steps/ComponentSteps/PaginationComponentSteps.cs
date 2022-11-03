@@ -24,8 +24,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var navigationButton = _page.Component<Pagination>()
                 .ArrowButtonByDirection(direction)
-                .ElementHandleAsync()
-                .GetAwaiter().GetResult();
+                .ElementHandleAsync().GetAwaiter().GetResult();
             navigationButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
@@ -36,8 +35,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
             var button =
-                paginationButtons.FirstOrDefault(x => x.InnerTextAsync()
-                    .GetAwaiter().GetResult()
+                paginationButtons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult()
                     .Equals(buttonName));
             button.GetBackgroundColor()
                 .Should()
@@ -47,8 +45,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Pagination navigation button with '(.*)' direction is displayed")]
         public void ThenNextPageButtonIsOnPositionInPaginationPanel(string direction)
         {
-            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
-                .GetAwaiter().GetResult();
+            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction)
+                .ElementHandleAsync().GetAwaiter().GetResult();
             navigationButton.IsVisibleAsync().GetAwaiter().GetResult()
                 .Should()
                 .BeTrue();
@@ -58,8 +56,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void ThenPaginationIsDisplayedOnCareerPage()
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync()
-                .GetAwaiter().GetResult();
+                .ElementHandlesAsync().GetAwaiter().GetResult();
             paginationButtons.All(x => x.IsVisibleAsync().GetAwaiter().GetResult())
                 .Should()
                 .BeTrue();
