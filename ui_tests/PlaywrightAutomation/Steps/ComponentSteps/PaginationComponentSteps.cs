@@ -23,14 +23,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [Then(@"Pagination is displayed on Career page")]
-        public void ThenPaginationIsDisplayedOnCareerPage()
-        {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult();
-            paginationButtons.Should().NotBeNull();
-        }
-
         [When(@"User clicks on '(.*)' direction button in pagination panel")]
         public void WhenUserClicksOnNextPageButtonInPaginationPanel(string direction)
         {
@@ -50,13 +42,20 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             button.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(backgroundColor));
         }
 
-        // position can only be "next" or "previous"
         [Then(@"Pagination navigation button with '(.*)' direction is displayed")]
         public void ThenNextPageButtonIsOnPositionInPaginationPanel(string direction)
         {
             var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction).ElementHandleAsync()
                 .GetAwaiter().GetResult();
-            navigationButton.Should().NotBeNull();
+            navigationButton.IsVisibleAsync().GetAwaiter().GetResult().Should().BeTrue();
+        }
+
+        [Then(@"Pagination is displayed on Career page")]
+        public void ThenPaginationIsDisplayedOnCareerPage()
+        {
+            var paginationButtons = _page.Component<Pagination>().PaginationButtons
+                .ElementHandlesAsync().GetAwaiter().GetResult();
+            paginationButtons.Should().NotBeNull();
         }
     }
 }
