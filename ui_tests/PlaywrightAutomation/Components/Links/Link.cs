@@ -1,4 +1,4 @@
-﻿namespace PlaywrightAutomation.Components
+﻿namespace PlaywrightAutomation.Components.Links
 {
     // Rework component after developers add data-id
     public class Link : BaseWebComponent

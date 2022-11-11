@@ -2,16 +2,21 @@
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Components.Button;
+using PlaywrightAutomation.Components.Cards;
+using PlaywrightAutomation.Components.Img;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages.OurServices.ConsultingService;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Web;
+using ChoETL;
+using PlaywrightAutomation.Components.Inputs;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
+using PlaywrightAutomation.Components.Links;
 
-namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
+namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
 {
     [Binding]
     internal class ConsultingServiceSteps : SpecFlowContext
@@ -23,6 +28,101 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
             _page = browserFactory.Page;
         }
 
+        [When(@"User clicks on '([^']*)' breadcrumbs in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnBreadcrumbsInContainerAndSeesEventCategoryAndEventAction(string breadcrumbsSection, string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<Breadcrumbs>(breadcrumbsSection, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                    .ClickAsync().GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
+        }
+
+        [When(@"User clicks on RequestAQuote button in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnRequestAQuoteButtonInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<RequestAQuoteButton>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                    .ClickAsync().GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
+        }
+
+        [When(@"User clicks on '([^']*)' img in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnImgInContainerAndSeesEventCategoryAndEventAction(string imgName, string container, string eventCategory, string eventAction)
+        {
+            var imgComponent = _page.Component<Arrow>(imgName, new Properties { ParentSelector = WebContainer.GetLocator(container) });
+
+            for (int i = 0; i < imgComponent.CountAsync().Result; i++)
+            {
+                void Action()
+                {
+                    imgComponent.Nth(i).ClickAsync().GetAwaiter().GetResult();
+                    _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+                }
+
+                if (imgComponent.CountAsync().Result == 1)
+                {
+                    RequestAction(Action, eventCategory, eventAction);
+                    return;
+                }
+
+                if (eventAction.Equals("QAasAServFaq"))
+                {
+                    RequestAction(Action, eventCategory, $"{eventAction}{i + 1}More");
+                    return;
+                }
+                
+                var expectedEventAction = eventAction + imgComponent.Nth(i).Locator(imgComponent.NameBlockWithArrow)
+                    .InnerTextAsync().GetAwaiter().GetResult().Replace(" ", "-");
+                RequestAction(Action, eventCategory, expectedEventAction);
+            }
+        }
+
+        [When(@"User clicks on img card in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnImgCardInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            var imtCardComponent = _page.Component<ImgCard>(new Properties
+                {ParentSelector = WebContainer.GetLocator(container)});
+
+            for (int i = 0; i < 3; i++)
+            {
+                void Action()
+                {
+                    imtCardComponent.Nth(i).ClickAsync().GetAwaiter().GetResult();
+                    _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+                }
+
+                var expectedEventAction = eventAction + "-" + imtCardComponent.Nth(i)
+                    .Locator(imtCardComponent.ImgCardTitle).InnerTextAsync().GetAwaiter().GetResult().Replace(" ", "-");
+                RequestAction(Action, eventCategory, expectedEventAction);
+            }
+        }
+
+        [When(@"User clicks case studies in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksCaseStudiesInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            var caseComponent = _page.Component<CaseCard>(new Properties
+            { ParentSelector = WebContainer.GetLocator(container) });
+
+            for (int i = 0; i < caseComponent.CountAsync().Result; i++)
+            {
+                void Action()
+                {
+                    caseComponent.Nth(i).ClickAsync().GetAwaiter().GetResult();
+                    _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+                }
+
+                var expectedEventAction = eventAction + caseComponent.Nth(i).Locator(caseComponent.CardName)
+                    .InnerTextAsync().GetAwaiter().GetResult().ToPascalCase().Replace("Qa", "QA");
+                RequestAction(Action, eventCategory, expectedEventAction);
+            }
+        }
+
         [When(@"User clicks on '([^']*)' element in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action are correct")]
         public void WhenUserClicksOnAndSeesEventCategoryAndEventActionAreCorrect(string element, string container, string eventCategory, string eventAction)
         {
@@ -30,9 +130,9 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
             {
                 switch (element)
                 {
-                    case "BreadCrumbsPrev":
-                        _page.Init<ConsultingServiceTopPage>().BreadCrumbsPrev.ClickAsync().GetAwaiter().GetResult();
-                        break;
+                    //case "BreadCrumbsPrev":
+                    //    _page.Init<ConsultingServiceTopPage>().BreadCrumbsPrev.ClickAsync().GetAwaiter().GetResult();
+                    //    break;
                     case "RequestAQuoteButton":
                         ClickOnRequestAQuoteButton(container);
                         break;
@@ -65,7 +165,6 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
         [When(@"User clicks on SendMessage element and sees '([^']*)' event category and '([^']*)' event action are correct")]
         public void WhenUserClicksOnSendMessageElementAndSeesEventCategoryAndEventActionAreCorrect(string eventCategory, string eventAction)
         {
-
             var request = _page.RunAndWaitForResponseAsync(async () =>
             {
                 _page.Init<GetInTouchPage>().SendMessageButton.ClickAsync().GetAwaiter().GetResult();
@@ -75,6 +174,34 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
             var returnData = HttpUtility.UrlDecode(request.Url);
             returnData.Should().Contain($"ec={eventCategory}");
             returnData.Should().Contain($"ea={eventAction}");
+        }
+
+        [When(@"User clicks on link with id in '([^']*)' container and wait response with '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnLinkWithIdInContainerAndWaitResponseWithEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            var response = _page.RunAndWaitForResponseAsync(async () =>
+            {
+                _page.Component<LinkWithId>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                    .ClickAsync().GetAwaiter().GetResult();
+                _page.Locator("//div[@class='msg']").Nth(1).IsVisibleAsync().GetAwaiter().GetResult();
+            }, x => x.Url.Contains("www.google-analytics.com") && x.Url.Contains($"ea={eventAction}")).Result;
+
+            var returnData = HttpUtility.UrlDecode(response.Url);
+            returnData.Should().Contain($"ec={eventCategory}");
+            returnData.Should().Contain($"ea={eventAction}");
+        }
+
+        [When(@"User clicks on link with id in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnLinkWithIdInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<LinkWithId>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                    .ClickAsync().GetAwaiter().GetResult();
+                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
         }
 
         [When(@"User clicks on members '([^']*)' link and sees '([^']*)' event category and '([^']*)' event action are correct")]
@@ -206,6 +333,47 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
             _page.Init<GetInTouchPage>().AttachFiles.SetInputFilesAsync(filePath).GetAwaiter().GetResult();
         }
 
+        [When(@"User attach '([^']*)' file in label in '([^']*)' container")]
+        public void WhenUserAttachFileInLabelInContainer(string file, string container)
+        {
+            var filePath = $"{PathProvider.ResourcesFolder}/{file}";
+            _page.Component<Label>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                .SetInputFilesAsync(filePath).GetAwaiter().GetResult();
+        }
+
+        [When(@"User clicks on label in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnLabelInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<Label>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                    .ClickAsync().GetAwaiter().GetResult();
+                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
+        }
+
+        [When(@"User clicks on img with id in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnImgWithIdInContainerAndSeesEventCategoryAndEventAction(string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<ImgWithId>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                    .ClickAsync().GetAwaiter().GetResult();
+                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
+        }
+
+        [When(@"User enters '([^']*)' text in input with '([^']*)' name in '([^']*)' container")]
+        public void WhenUserEntersTextInInputWithNameInContainer(string text, string input, string container)
+        {
+            _page.Component<InputWithName>(input, new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                .FillAsync(text).GetAwaiter().GetResult();
+        }
+
         public void ClickOnRequestAQuoteButton(string container)
         {
             _page.Component<RequestAQuoteButton>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
@@ -232,6 +400,18 @@ namespace PlaywrightAutomation.Steps.PageSteps.OurServices.ConsultingService
                 default:
                     throw new Exception("Side is not found");
             }
+        }
+
+        public void RequestAction(Action action, string eventCategory, string eventAction)
+        {
+            var request = _page.RunAndWaitForRequestAsync(async () =>
+            {
+                action();
+            }, x => x.Url.Contains("www.google-analytics.com")).Result;
+
+            var returnData = HttpUtility.UrlDecode(request.Url);
+            returnData.Should().Contain($"ec={eventCategory}");
+            returnData.Should().Contain($"ea={eventAction}");
         }
     }
 }

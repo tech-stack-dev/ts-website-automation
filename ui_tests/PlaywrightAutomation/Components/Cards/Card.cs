@@ -1,7 +1,7 @@
 ﻿using Microsoft.Playwright;
 using PlaywrightAutomation.Extensions;
 
-namespace PlaywrightAutomation.Components
+namespace PlaywrightAutomation.Components.Cards
 {
     public class Card : BaseWebComponent
     {
