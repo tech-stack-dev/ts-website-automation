@@ -8,6 +8,6 @@
             return selector;
         }
 
-        public string NameBlockWithArrow => "//..//h3";
+        public string NameBlockWithArrow => "//..//..//h3";
     }
 }

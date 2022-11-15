@@ -9,12 +9,15 @@ using PlaywrightAutomation.Pages.OurServices.ConsultingService;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using System;
+using System.Collections.Generic;
 using System.Web;
 using ChoETL;
 using PlaywrightAutomation.Components.Inputs;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
 using PlaywrightAutomation.Components.Links;
+using PlaywrightAutomation.Pages.OurServices.UxUiDesign;
+using TechTalk.SpecFlow.Assist;
 
 namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
 {
@@ -78,7 +81,7 @@ namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
                 }
                 
                 var expectedEventAction = eventAction + imgComponent.Nth(i).Locator(imgComponent.NameBlockWithArrow)
-                    .InnerTextAsync().GetAwaiter().GetResult().Replace(" ", "-");
+                    .InnerTextAsync().GetAwaiter().GetResult().Replace(" ", "-").Replace("\n", "");
                 RequestAction(Action, eventCategory, expectedEventAction);
             }
         }
@@ -113,14 +116,44 @@ namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
             {
                 void Action()
                 {
-                    caseComponent.Nth(i).ClickAsync().GetAwaiter().GetResult();
+                    caseComponent.Nth(i).ClickAsync(new LocatorClickOptions{Modifiers = new KeyboardModifier[]
+                        {
+                            KeyboardModifier.Control
+                        } }).GetAwaiter().GetResult();
                     _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
                 }
 
+                //var expectedEventAction = eventAction + caseComponent.Nth(i).Locator(caseComponent.CardName)
+                //    .InnerTextAsync().GetAwaiter().GetResult().ToPascalCase().Replace("Qa", "QA");
                 var expectedEventAction = eventAction + caseComponent.Nth(i).Locator(caseComponent.CardName)
-                    .InnerTextAsync().GetAwaiter().GetResult().ToPascalCase().Replace("Qa", "QA");
+                    .InnerTextAsync().GetAwaiter().GetResult().ConvertToPascalCase().Replace("Qa", "QA");
                 RequestAction(Action, eventCategory, expectedEventAction);
             }
+        }
+
+        [When(@"User clicks on '([^']*)' timeline in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnTimelineInContainerAndSeesEventCategoryAndEventAction(string side, string container, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<TimeLineControl>(side, new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                    .ClickAsync().GetAwaiter().GetResult();
+                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            }
+
+            var expectedEventAction = side.Equals("right") ? eventAction + "Next" : eventAction + "Prev";
+            RequestAction(Action, eventCategory, expectedEventAction);
+        }
+
+        [When(@"User clicks on '([^']*)' link and sees '([^']*)' event category and '([^']*)' event action")]
+        public void WhenUserClicksOnLinkAndSeesEventCategoryAndEventAction(string link, string eventCategory, string eventAction)
+        {
+            void Action()
+            {
+                _page.Component<LinkWithId>().MemberLink(link).ClickAsync().GetAwaiter().GetResult();
+            }
+
+            RequestAction(Action, eventCategory, eventAction);
         }
 
         [When(@"User clicks on '([^']*)' element in '([^']*)' container and sees '([^']*)' event category and '([^']*)' event action are correct")]
