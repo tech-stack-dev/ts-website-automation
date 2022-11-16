@@ -17,8 +17,8 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                     |
-		| TestingResetDirection 1 |
-		| TestingResetDirection 2 |
+		| Testing Reset Direction 1 |
+		| Testing Reset Direction 2 |
 	When User clicks on 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
@@ -40,8 +40,8 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                     |
-		| TestingResetSeniority 1 |
-		| TestingResetSeniority 2 |
-		| TestingResetSeniority 3 |
+		| Testing Reset Seniority 1 |
+		| Testing Reset Seniority 2 |
+		| Testing Reset Seniority 3 |
 	When User clicks on 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
