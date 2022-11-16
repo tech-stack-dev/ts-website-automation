@@ -3,31 +3,15 @@ Feature: DropdownInCareerPagePart2
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                               |
-		| Direction | TestingResetDirection 1_Тестовий 1 |
-		| Direction | TestingResetDirection 2_Тестовий 2 |
-	Given User creates and publishes new Career Description
-		| Field             | Value                    |
-		| AboutTheProjectUs | AboutTheProjectUs        |
-		| AboutTheProjectUa | AboutTheProjectUa        |
-		| AboutTheRoleUs    | AboutTheRoleUs           |
-		| AboutTheRoleUa    | AboutTheRoleUa           |
-		| TitleUs           | TitleUsResetDirection    |
-		| TitleUa           | TitleUaResetDirection    |
-		| YouWillUs         | YouWillUs                |
-		| YouWillUa         | YouWillUa                |
-		| YouAreUs          | YouAreUs                 |
-		| YouAreUa          | YouAreUa                 |
-		| WeWillUs          | WeWillUs                 |
-		| WeWillUa          | WeWillUa                 |
-		| WeAreUs           | WeAreUs                  |
-		| WeAreUa           | WeAreUa                  |
-		| TechnologyStack   | TechnologyStackUs        |
-		| SlugUs            | TestSlugUsResetDirection |
-	Given User creates new Career with 'TitleUsResetDirection' career description and 'TestingResetDirection 1_Тестовий 1,TestingResetDirection 2_Тестовий 2' tag
-		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                               |
+		| Direction | TestingResetDirection 1_ТестовийВидалитиНапрямок 1 |
+		| Direction | TestingResetDirection 2_ТестовийВидалитиНапрямок 2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs               | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsResetDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User clicks on 'Direction' dropdown
@@ -41,32 +25,16 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                               |
-		| Seniority | TestingResetSeniority 1_Тестовий 1 |
-		| Seniority | TestingResetSeniority 2_Тестовий 2 |
-		| Seniority | TestingResetSeniority 3_Тестовий 3 |
-	Given User creates and publishes new Career Description
-		| Field             | Value                    |
-		| AboutTheProjectUs | AboutTheProjectUs        |
-		| AboutTheProjectUa | AboutTheProjectUa        |
-		| AboutTheRoleUs    | AboutTheRoleUs           |
-		| AboutTheRoleUa    | AboutTheRoleUa           |
-		| TitleUs           | TitleUsResetSeniority    |
-		| TitleUa           | TitleUaResetSeniority    |
-		| YouWillUs         | YouWillUs                |
-		| YouWillUa         | YouWillUa                |
-		| YouAreUs          | YouAreUs                 |
-		| YouAreUa          | YouAreUa                 |
-		| WeWillUs          | WeWillUs                 |
-		| WeWillUa          | WeWillUa                 |
-		| WeAreUs           | WeAreUs                  |
-		| WeAreUa           | WeAreUa                  |
-		| TechnologyStack   | TechnologyStackUs        |
-		| SlugUs            | TestSlugUsResetSeniority |
-	Given User creates new Career with 'TitleUsResetSeniority' career description and 'TestingResetSeniority 1_Тестовий 1,TestingResetSeniority 2_Тестовий 2,TestingResetSeniority 3_Тестовий 3' tag
-		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                             |
+		| Seniority | TestingResetSeniority 1_ТестовийВидалитиРівень 1 |
+		| Seniority | TestingResetSeniority 2_ТестовийВидалитиРівень 2 |
+		| Seniority | TestingResetSeniority 3_ТестовийВидалитиРівень 3 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs               | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsResetSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User clicks on 'SeniorityLevel' dropdown
