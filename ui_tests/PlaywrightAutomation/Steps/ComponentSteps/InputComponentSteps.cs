@@ -23,6 +23,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             _page.Component<Input>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .CleanInputButton.ClickAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [When(@"User set '([^']*)' text to '([^']*)' input on '([^']*)' container")]
@@ -45,8 +46,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
 
             _page.WaitForElementText(inputElement, text);
 
-            inputElement.GetValue()
-                .Should().Be(text);
+            inputElement.GetValue().Should().Be(text);
         }
     }
 }

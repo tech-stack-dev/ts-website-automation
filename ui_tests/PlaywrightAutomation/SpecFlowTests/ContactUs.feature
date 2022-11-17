@@ -41,6 +41,7 @@ Examples:
 	| Email           | Tel     | EmailErrorMessage          | TelErrorMessage                   |
 	| 12345           | -12345  | Please enter a valid email | Please enter a valid phone number |
 	| @test.com       | test    | Please enter a valid email | Please enter a valid phone number |
+	# This variant shouldn't work while task TSWEB-279
 	| email@-test.com | !@#$%   | Please enter a valid email | Please enter a valid phone number |
 	| !@#$%           | +12345+ | Please enter a valid email | Please enter a valid phone number |
 

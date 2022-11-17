@@ -3,30 +3,14 @@
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                 |
-		| Direction | TestingSideDirectionOnlyOne_Тестовий |
-	Given User creates and publishes new Career Description
-		| Field             | Value                          |
-		| AboutTheProjectUs | AboutTheProjectUs              |
-		| AboutTheProjectUa | AboutTheProjectUa              |
-		| AboutTheRoleUs    | AboutTheRoleUs                 |
-		| AboutTheRoleUa    | AboutTheRoleUa                 |
-		| TitleUs           | TitleUsSideDirectionOnlyOne    |
-		| TitleUa           | TitleUaSideDirectionOnlyOne    |
-		| YouWillUs         | YouWillUs                      |
-		| YouWillUa         | YouWillUa                      |
-		| YouAreUs          | YouAreUs                       |
-		| YouAreUa          | YouAreUa                       |
-		| WeWillUs          | WeWillUs                       |
-		| WeWillUa          | WeWillUa                       |
-		| WeAreUs           | WeAreUs                        |
-		| WeAreUa           | WeAreUa                        |
-		| TechnologyStack   | TechnologyStackUs              |
-		| SlugUs            | TestSlugUsSideDirectionOnlyOne |
-	Given User creates new Career with 'TitleUsSideDirectionOnlyOne' career description and 'TestingSideDirectionOnlyOne_Тестовий' tag
-		| NameUs                     | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideDirectionOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                    |
+		| Direction | TestingSideDirectionOnlyOne_ТестовийНапрямокБоковийОдин |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                     | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
@@ -51,31 +35,15 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                            |
-		| Direction | TestingSideDirection1_Тестовий1 |
-		| Direction | TestingSideDirection2_Тестовий2 |
-	Given User creates and publishes new Career Description
-		| Field             | Value                   |
-		| AboutTheProjectUs | AboutTheProjectUs       |
-		| AboutTheProjectUa | AboutTheProjectUa       |
-		| AboutTheRoleUs    | AboutTheRoleUs          |
-		| AboutTheRoleUa    | AboutTheRoleUa          |
-		| TitleUs           | TitleUsSideDirection    |
-		| TitleUa           | TitleUaSideDirection    |
-		| YouWillUs         | YouWillUs               |
-		| YouWillUa         | YouWillUa               |
-		| YouAreUs          | YouAreUs                |
-		| YouAreUa          | YouAreUa                |
-		| WeWillUs          | WeWillUs                |
-		| WeWillUa          | WeWillUa                |
-		| WeAreUs           | WeAreUs                 |
-		| WeAreUa           | WeAreUa                 |
-		| TechnologyStack   | TechnologyStackUs       |
-		| SlugUs            | TestSlugUsSideDirection |
-	Given User creates new Career with 'TitleUsSideDirection' career description and 'TestingSideDirection1_Тестовий1,TestingSideDirection2_Тестовий2' tag
-		| NameUs              | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                           |
+		| Direction | TestingSideDirection1_ТестовийНапрямокБоковий1 |
+		| Direction | TestingSideDirection2_ТестовийНапрямокБоковий2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs              | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
@@ -109,31 +77,15 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                  |
-		| Direction | TestingResetSideDirection1_Тестовий 1 |
-		| Direction | TestingResetSideDirection2_Тестовий 2 |
-	Given User creates and publishes new Career Description
-		| Field             | Value                        |
-		| AboutTheProjectUs | AboutTheProjectUs            |
-		| AboutTheProjectUa | AboutTheProjectUa            |
-		| AboutTheRoleUs    | AboutTheRoleUs               |
-		| AboutTheRoleUa    | AboutTheRoleUa               |
-		| TitleUs           | TitleUsResetSideDirection    |
-		| TitleUa           | TitleUaResetSideDirection    |
-		| YouWillUs         | YouWillUs                    |
-		| YouWillUa         | YouWillUa                    |
-		| YouAreUs          | YouAreUs                     |
-		| YouAreUa          | YouAreUa                     |
-		| WeWillUs          | WeWillUs                     |
-		| WeWillUa          | WeWillUa                     |
-		| WeAreUs           | WeAreUs                      |
-		| WeAreUa           | WeAreUa                      |
-		| TechnologyStack   | TechnologyStackUs            |
-		| SlugUs            | TestSlugUsResetSideDirection |
-	Given User creates new Career with 'TitleUsResetSideDirection' career description and 'TestingResetSideDirection1_Тестовий 1,TestingResetSideDirection2_Тестовий 2' tag
-		| NameUs                   | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetSideDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                         |
+		| Direction | TestingResetSideDirection1_ТестовийВидалитиНапрямокБоковий 1 |
+		| Direction | TestingResetSideDirection2_ТестовийВидалитиНапрямокБоковий 2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                   | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsResetSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
