@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
 
@@ -168,6 +169,66 @@ namespace PlaywrightAutomation.Components
         public Task<string> GetAttributeAsync(string name, LocatorGetAttributeOptions options = null)
         {
             return Component.GetAttributeAsync(name, options);
+        }
+
+        public ILocator GetByAltText(string text, LocatorGetByAltTextOptions options = null)
+        {
+            return Component.GetByAltText(text, options);
+        }
+
+        public ILocator GetByAltText(Regex text, LocatorGetByAltTextOptions options = null)
+        {
+            return Component.GetByAltText(text, options);
+        }
+
+        public ILocator GetByLabel(string text, LocatorGetByLabelOptions options = null)
+        {
+            return Component.GetByLabel(text, options);
+        }
+
+        public ILocator GetByLabel(Regex text, LocatorGetByLabelOptions options = null)
+        {
+            return Component.GetByLabel(text, options);
+        }
+
+        public ILocator GetByPlaceholder(string text, LocatorGetByPlaceholderOptions options = null)
+        {
+            return Component.GetByPlaceholder(text, options);
+        }
+
+        public ILocator GetByPlaceholder(Regex text, LocatorGetByPlaceholderOptions options = null)
+        {
+            return Component.GetByPlaceholder(text, options);
+        }
+
+        public ILocator GetByRole(AriaRole role, LocatorGetByRoleOptions options = null)
+        {
+            return Component.GetByRole(role, options);
+        }
+
+        public ILocator GetByTestId(string testId)
+        {
+            return Component.GetByTestId(testId);
+        }
+
+        public ILocator GetByText(string text, LocatorGetByTextOptions options = null)
+        {
+            return Component.GetByText(text, options);
+        }
+
+        public ILocator GetByText(Regex text, LocatorGetByTextOptions options = null)
+        {
+            return Component.GetByText(text, options);
+        }
+
+        public ILocator GetByTitle(string text, LocatorGetByTitleOptions options = null)
+        {
+            return Component.GetByTitle(text, options);
+        }
+
+        public ILocator GetByTitle(Regex text, LocatorGetByTitleOptions options = null)
+        {
+            return Component.GetByTitle(text, options);
         }
 
         public Task HighlightAsync()
