@@ -3,7 +3,7 @@
 @Regression @TSWEB149
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
-	When User clicks on 'Contact us' tab in 'NavigationHeader' container
+	When User clicks on 'Contact us' tab on 'NavigationHeader' container
 	Then 'Contact us' title is displayed on Contact Us form
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then Error messages are displayed under fields

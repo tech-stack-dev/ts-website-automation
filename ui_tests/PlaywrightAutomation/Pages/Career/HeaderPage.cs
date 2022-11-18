@@ -16,7 +16,7 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");
 
-        public  void CheckLogo()
+        public void CheckLogo()
         {
             var logoVisibleState = Logo.IsVisibleAsync().GetAwaiter().GetResult();
             logoVisibleState.Should().BeTrue();

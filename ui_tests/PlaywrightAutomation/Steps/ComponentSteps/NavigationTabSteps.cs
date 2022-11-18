@@ -30,8 +30,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             tabActiveStatus.Should().BeTrue();
         }
 
-        [When(@"User clicks on '([^']*)' tab in '([^']*)' container")]
-        public void WhenUserClicksOnTabInContainer(string tabName, string container)
+        [When(@"User clicks on '([^']*)' tab on '([^']*)' container")]
+        public void WhenUserClicksOnTabOnContainer(string tabName, string container)
         {
             _page.Component<NavigationTabs>(tabName, new Properties { ParentSelector = WebContainer.GetLocator(container)})
                 .ClickAsync().GetAwaiter().GetResult();
