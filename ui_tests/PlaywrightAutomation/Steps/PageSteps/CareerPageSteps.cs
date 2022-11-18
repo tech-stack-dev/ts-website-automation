@@ -34,11 +34,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenSearchResultsContain(string text)
         {
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
-
-            if (texts is null)
-            {
-                throw new Exception("Page is not contain vacancy");
-            }
+            texts.Count.Should().NotBe(0);
 
             foreach (var roleText in texts)
             {
