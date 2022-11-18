@@ -57,6 +57,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var paginationButtons = _page.Component<Pagination>().PaginationButtons
                 .ElementHandlesAsync().GetAwaiter().GetResult();
+            paginationButtons.First().HoverAsync().GetAwaiter().GetResult();
             paginationButtons.All(x => x.IsVisibleAsync().GetAwaiter().GetResult())
                 .Should()
                 .BeTrue();

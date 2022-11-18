@@ -56,7 +56,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| TSWEB146TestingDirectionThree |
 	When User clicks on 'Tsweb146TestusThree' card title
 	Then Techstack logo is displayed on job page
-	Then Jobs block on job page has tabs
+	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab        |
 		| Jobs       |
 		| About us   |
@@ -89,7 +89,7 @@ Scenario: CheckLocalizationOnJobPage
 	When User clicks on 'Tsweb146TestusFour' card title
 	When User selects 'Ua' language on 'NavigationHeader' container
 	Then 'TSWEB146TestUaFour' job title is displayed on job page
-	Then Jobs block on job page has tabs
+	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |
 		| Вакансії          |
 		| Про компанію      |

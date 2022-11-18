@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -33,6 +34,11 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenSearchResultsContain(string text)
         {
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
+
+            if (texts is null)
+            {
+                throw new Exception("Page is not contain vacancy");
+            }
 
             foreach (var roleText in texts)
             {

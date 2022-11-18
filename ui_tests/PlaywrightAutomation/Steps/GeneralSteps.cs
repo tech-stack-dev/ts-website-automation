@@ -1,7 +1,11 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
+using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -41,6 +45,41 @@ namespace PlaywrightAutomation.Steps
         {
             var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
             popup.Url.Should().Contain(website.ToLower());
+        }
+
+        [When(@"User expects objects to be created")]
+        public void WhenUserExpectsObjectsToBeCreated(Table table)
+        {
+            var objectList = table.Rows.ToDictionary(r => r["Type"], r => r["Name"]);
+            int iterator = 0;
+
+            while (iterator < 4)
+            {
+                try
+                {
+                    foreach (var type in objectList)
+                    {
+                        switch (type.Key)
+                        {
+                            case "Tag":
+                                var element = _page.Component<Tag>(type.Value);
+                                var count = element.CountAsync().Result;
+                                count.Should().NotBe(0);
+                                break;
+                            case "Vacancy":
+                                var state2 = _page.Component<Card>(type.Value).CountAsync().Result;
+                                state2.Should().NotBe(0);
+                                break;
+                        }
+                    }
+                    break;
+                }
+                catch (Exception e)
+                {
+                    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
+                    iterator++;
+                }
+            }
         }
     }
 }
