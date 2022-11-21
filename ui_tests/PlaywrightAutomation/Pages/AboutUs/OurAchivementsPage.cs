@@ -1,19 +1,12 @@
 ﻿using Microsoft.Playwright;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PlaywrightAutomation.Pages.AboutUs
 {
-    internal class OurAchivementsPage: BasePage, IWebContainer
+    internal class OurAchivementsPage : BasePage, IWebContainer
     {
         public string Container => "//div[@id='ourAchievements']";
-        public string Achivements => "//div[contains(@class,'AchievementInfoBlock')]";
-        public string Title => "//h2";
-        public string Description => "//span";
-
+        public ILocator Achievements => Page.Locator(Container).Locator("//div[contains(@class,'AchievementInfoBlock')]");
+        public ILocator Title => Achievements.Locator("//h2");
+        public ILocator Description => Achievements.Locator("//span");
     }
 }

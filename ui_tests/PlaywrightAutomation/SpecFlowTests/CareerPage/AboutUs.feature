@@ -4,7 +4,7 @@ Background:
 	Given User is on 'https://staging-career.tech-stack.io/about-us' page
 
 Scenario: CheckThatBlockWeAreTechStackIsDisplayed
-	Then Title is equals 'We are Techstack' and description is equals 'Techstack is a community of 160+ people that collaborate on software products. Each of us can make an impact on the product or offer a key solution. We have built a product creation space because we’re inspired by making and seeing our contributions, achieving high quality standards, and providing value to users. We develop ambitious and innovative products and grow our skills along the road.'
+	Then Title is equals 'We are Techstack' and description is equals 'Techstack is a community of 160+ people that collaborate on software products. Each of us can make an impact on the product or offer a key solution. We have built a product creation space because we’re inspired by making and seeing our contributions, achieving high quality standards, and providing value to users. We develop ambitious and innovative products and grow our skills along the road.' on 'WeAreTechStackSectionPage' container
 
 Scenario: CheckThatOurAchivementsIsDisplayed
 	Then Our achivements are correctly displayed
@@ -18,7 +18,9 @@ Scenario: CheckThatOurAchivementsIsDisplayed
  | 93%         | Team member loyalty rate giving steady headcount growth (+30% per year).     |  
             
 Scenario: CheckThatBlockTechstackInGrowthIsDisplayed
-	Then Title is equals 'Techstack in Growth' and description is equals 'We never leave techstackers struggling alone with challenging tasks. Techstack has a flat organization structure meaning that you can access any specialist directly and cope with challenges side by side.'.
+	Then Title is equals 'Techstack in Growth' and description is equals 'We never leave techstackers struggling alone with challenging tasks. Techstack has a flat organization structure meaning that you can access any specialist directly and cope with challenges side by side.' on 'TechstackInGrowthPage' container
+
+	#Then Title is equals 'Techstack in Growth' and description is equals 'We never leave techstackers struggling alone with challenging tasks. Techstack has a flat organization structure meaning that you can access any specialist directly and cope with challenges side by side.'.
 	Then Top block title is equals 'Techstack member'
 	Then Main block titles are displayed
 	| Title            |

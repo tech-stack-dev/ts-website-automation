@@ -28,15 +28,27 @@ namespace PlaywrightAutomation.Steps
         }
 
 
-        [Then(@"Title is equals '([^']*)' and description is equals '([^']*)'")]
-        public void ThenTitleIsEqualsAndDescriptionIsEquals(string titleText, string descriptionText)
+        [Then(@"Title is equals '([^']*)' and description is equals '([^']*)' on '([^']*)' container")]
+        public void ThenTitleIsEqualsAndDescriptionIsEqualsOnContainer(string titleText, string descriptionText, string container)
         {
-            var title = _page.Init<WeAreTechStackSectionPage>()
-             .Title.InnerTextAsync().GetAwaiter().GetResult();
-            title.Should().Be(titleText);
-            var description = _page.Init<WeAreTechStackSectionPage>().Description
-                .InnerTextAsync().GetAwaiter().GetResult();
-            description.Should().Be(descriptionText);
+            var parent = WebContainer.GetLocator(container);
+
+            var title = _page.Init<AboutUsPage>().Title;
+            var description = _page.Init<AboutUsPage>().Description;
+
+            var actualTitleText = _page.Locator(parent).Locator(title).InnerTextAsync().GetAwaiter().GetResult();
+            actualTitleText.Should().Be(titleText);
+
+            var actualDescriptionText =
+                _page.Locator(parent).Locator(description).InnerTextAsync().GetAwaiter().GetResult();
+            actualDescriptionText.Should().Be(descriptionText);
+
+            //var title = _page.Init<WeAreTechStackSectionPage>()
+            //.Title.InnerTextAsync().GetAwaiter().GetResult();
+            //title.Should().Be(titleText);
+            //var description = _page.Init<WeAreTechStackSectionPage>().Description
+            //    .InnerTextAsync().GetAwaiter().GetResult();
+            //description.Should().Be(descriptionText);
         }
 
 
@@ -54,7 +66,7 @@ namespace PlaywrightAutomation.Steps
                 listTableValues.Add(b);
             }
 
-            var element = _page.Init<OurAchivementsPage>().Achivements;
+            var element = _page.Init<OurAchivementsPage>().Achievements;
             List<string> listFields = new List<string> { };
             List<string> listValues = new List<string> { };
             for (int i = 0; i < element.CountAsync().GetAwaiter().GetResult(); i++)
@@ -71,11 +83,15 @@ namespace PlaywrightAutomation.Steps
             listValues.Should().BeEquivalentTo(listTableValues); */
 
             var values = table.CreateSet<(string Fields, string Values)>();
-            var achivements = _page.Init<OurAchivementsPage>().Achivements;
-            foreach (var achivement in achivements)
-            {
-                //achivement.InnerTextAsync
-            }
+            var achievements = _page.Init<OurAchivementsPage>();
+
+            var title = achievements.Title.ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult()).ToList();
+            var description = achievements.Description.ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult()).ToList();
+
+            title.Should().BeEquivalentTo(values.Select(x => x.Fields).ToList());
+            description.Should().BeEquivalentTo(values.Select(x => x.Values).ToList());
         }
 
 
