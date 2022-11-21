@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using BoDi;
+﻿using BoDi;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Utils;
+using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps

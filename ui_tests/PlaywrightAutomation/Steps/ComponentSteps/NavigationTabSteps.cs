@@ -17,10 +17,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
         
-        [Then(@"User in on the '([^']*)' tab")]
-        public void ThenUserInOnTheBlock(string tabName)
+        [Then(@"User in on the '([^']*)' tab in '([^']*)' container")]
+        public void ThenUserInOnTheBlockInContainer(string tabName, string container)
         {
-            var tab = _page.Component<NavigationTabs>(tabName);
+            var tab = _page.Component<NavigationTabs>(tabName,new BaseWebComponent.Properties {ParentSelector = WebContainer.GetLocator(container)});
 
             var tabDisplayedState = tab.IsVisibleAsync().GetAwaiter().GetResult();
             tabDisplayedState.Should().BeTrue();

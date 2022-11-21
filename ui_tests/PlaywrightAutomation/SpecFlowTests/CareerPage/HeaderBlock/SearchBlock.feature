@@ -111,4 +111,4 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 Scenario: CheckThatUserRedirectsToJobsBlockWhenClickingSearchButton
 	Given User is on career website
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then User in on the 'Jobs' tab
+	Then User in on the 'Jobs' tab in 'NavigationHeader' container
