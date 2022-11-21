@@ -6,6 +6,8 @@ using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
+using ChoETL;
+using PlaywrightAutomation.RuntimeVariables;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -15,11 +17,13 @@ namespace PlaywrightAutomation.Steps
     {
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
+        private readonly DefaultCareersList _defaultCareersList;
 
-        public GeneralSteps(BrowserFactory browserFactory)
+        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
+            _defaultCareersList = defaultCareersList;
         }
 
         [Given(@"User is on career website")]
@@ -83,6 +87,88 @@ namespace PlaywrightAutomation.Steps
                     iterator++;
                 }
             }
+        }
+
+        [When(@"User waits careers with default descriptions and tags")]
+        public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
+        {
+            var careers = _defaultCareersList.Value;
+            
+            //restart:
+            foreach (var defaultCareer in careers)
+            {
+                restart:
+                var pascalCaseName = defaultCareer.ConvertToPascalCase();
+                var countCareer = _page.Component<Card>(pascalCaseName).CountAsync().Result;
+                
+                var pagination = _page.Component<Pagination>();
+                //pagination.HoverAsync().GetAwaiter().GetResult();
+                //var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
+
+                if (countCareer == 0 && pagination.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    pagination.HoverAsync().GetAwaiter().GetResult();
+
+                    //paginationDirectionVisibleState.Should().BeTrue();
+                    pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
+                    _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+                    goto restart;
+                }
+
+                if (countCareer == 0 && !pagination.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
+                    goto restart;
+                }
+
+                if (pagination.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    pagination.FirstPage.ClickAsync().GetAwaiter().GetResult();
+                }
+            }
+
+
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    try
+            //    {
+            //        foreach (var career in careers)
+            //        {
+            //            var element = _page.Component<Card>(career);
+            //            var count = element.CountAsync().GetAwaiter().GetResult();
+            //            if (count == 0)
+            //            {
+            //                var pagination = _page.Component<Pagination>();
+            //                pagination.HoverAsync().GetAwaiter().GetResult();
+            //                var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
+            //                paginationDirectionVisibleState.Should().BeTrue();
+            //                pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
+            //                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            //            }
+            //            count.Should().NotBe(0);
+            //            careers.Remove(career);
+            //        }
+            //        break;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        var pagination = _page.Component<Pagination>();
+            //        pagination.HoverAsync().GetAwaiter().GetResult();
+            //        var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
+            //        if (paginationDirectionVisibleState)
+            //        {
+            //            paginationDirectionVisibleState.Should().BeTrue();
+            //            pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
+            //            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            //        }
+            //        paginationDirectionVisibleState.Should().BeTrue();
+            //        pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
+            //        _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+
+            //        _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
+            //    }
+            //}
         }
     }
 }
