@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using ChoETL;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.Utils.Waiters;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -18,12 +19,14 @@ namespace PlaywrightAutomation.Steps
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
         private readonly DefaultCareersList _defaultCareersList;
+        private readonly CustomWaiter _customWaiter;
 
-        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList)
+        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList, CustomWaiter customWaiter)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
             _defaultCareersList = defaultCareersList;
+            _customWaiter = customWaiter;
         }
 
         [Given(@"User is on career website")]
@@ -55,38 +58,47 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserExpectsObjectsToBeCreated(Table table)
         {
             var objectList = table.Rows.ToDictionary(r => r["Name"], r => r["Type"]);
-            int iterator = 0;
+            
+            //int iterator = 0;
 
-            while (iterator < 4)
-            {
-                try
-                {
+            //while (iterator < 4)
+            //{
+            //    try
+            //    {
                     foreach (var type in objectList)
                     {
                         switch (type.Value)
                         {
                             case "Tag":
                                 var tagElement = _page.Component<Tag>(type.Key);
-                                var tagCount = tagElement.CountAsync().Result;
-                                tagCount.Should().NotBe(0);
+                                //tagElement.WaiterWithReloadPage();
+                                //var task = new CustomWaiter(TimeSpan.FromMinutes(1));
+                                //task.Start(_page, tagElement);
+                                _customWaiter.WaiterWithReloadPage(_page, tagElement);
+                                //var tagCount = tagElement.CountAsync().Result;
+                                //tagCount.Should().NotBe(0);
                                 objectList.Remove(type.Key);
                                 continue;
                             case "Vacancy":
                                 var vacancyElement = _page.Component<Card>(type.Key);
-                                var vacancyCount = vacancyElement.CountAsync().Result;
-                                vacancyCount.Should().NotBe(0);
+                                //var task2 = new CustomWaiter(TimeSpan.FromMinutes(1));
+                                //task2.Start(_page, vacancyElement);
+                                 //vacancyElement.WaiterWithReloadPage();
+                                _customWaiter.WaiterWithReloadPage(_page, vacancyElement);
+                                //var vacancyCount = vacancyElement.CountAsync().Result;
+                                //vacancyCount.Should().NotBe(0);
                                 objectList.Remove(type.Key);
                                 continue;
                         }
                     }
-                    break;
-                }
-                catch (Exception)
-                {
-                    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
-                    iterator++;
-                }
-            }
+                    //break;
+                //}
+                //catch (Exception)
+                //{
+                //    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
+                //    iterator++;
+                //}
+            //}
         }
 
         [When(@"User waits careers with default descriptions and tags")]
@@ -110,7 +122,12 @@ namespace PlaywrightAutomation.Steps
                     pagination.HoverAsync().GetAwaiter().GetResult();
 
                     //paginationDirectionVisibleState.Should().BeTrue();
-                    pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
+                    var paginationArrow = pagination.ArrowButtonByDirection("right");
+                    if (paginationArrow.IsVisibleAsync().GetAwaiter().GetResult())
+                    {
+                        paginationArrow.ClickAsync().GetAwaiter().GetResult();
+                    }
+                    //pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
                     _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
                     goto restart;
                 }

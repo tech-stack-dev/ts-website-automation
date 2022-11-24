@@ -3,14 +3,14 @@
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                         |
-		| Direction | TestingAppleForAJob_ТестовийПодатисьНаРоботу |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestFieldApplyForAJob |        |               |               | Link | Entry    |
+	#Given User creates tag with default values
+	#	| Prefix    | Name                                         |
+	#	| Direction | TestingAppleForAJob_ТестовийПодатисьНаРоботу |
+	#Given User creates and publishes new Career Description with default values
+	#	| Field | Value |
+	#Given User creates default Career with career description and tag
+	#	| NameUs                | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+	#	| TestFieldApplyForAJob |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
 	When User expects objects to be created
