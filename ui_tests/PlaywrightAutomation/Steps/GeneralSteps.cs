@@ -3,12 +3,10 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Providers;
-using PlaywrightAutomation.Utils;
-using System;
-using System.Linq;
-using ChoETL;
 using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.Utils;
 using PlaywrightAutomation.Utils.Waiters;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -58,61 +56,37 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserExpectsObjectsToBeCreated(Table table)
         {
             var objectList = table.Rows.ToDictionary(r => r["Name"], r => r["Type"]);
-            
-            //int iterator = 0;
 
-            //while (iterator < 4)
-            //{
-            //    try
-            //    {
-                    foreach (var type in objectList)
-                    {
-                        switch (type.Value)
-                        {
-                            case "Tag":
-                                var tagElement = _page.Component<Tag>(type.Key);
-                                //tagElement.WaiterWithReloadPage();
-                                //var task = new CustomWaiter(TimeSpan.FromMinutes(1));
-                                //task.Start(_page, tagElement);
-                                _customWaiter.WaiterWithReloadPage(_page, tagElement);
-                                //var tagCount = tagElement.CountAsync().Result;
-                                //tagCount.Should().NotBe(0);
-                                objectList.Remove(type.Key);
-                                continue;
-                            case "Vacancy":
-                                var vacancyElement = _page.Component<Card>(type.Key);
-                                //var task2 = new CustomWaiter(TimeSpan.FromMinutes(1));
-                                //task2.Start(_page, vacancyElement);
-                                 //vacancyElement.WaiterWithReloadPage();
-                                _customWaiter.WaiterWithReloadPage(_page, vacancyElement);
-                                //var vacancyCount = vacancyElement.CountAsync().Result;
-                                //vacancyCount.Should().NotBe(0);
-                                objectList.Remove(type.Key);
-                                continue;
-                        }
-                    }
-                    //break;
-                //}
-                //catch (Exception)
-                //{
-                //    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
-                //    iterator++;
-                //}
-            //}
+            foreach (var type in objectList)
+            {
+                switch (type.Value)
+                {
+                    case "Tag":
+                        var tagElement = _page.Component<Tag>(type.Key);
+                        _customWaiter.WaiterWithReloadPage(_page, tagElement);
+                        objectList.Remove(type.Key);
+                        continue;
+                    case "Vacancy":
+                        var vacancyElement = _page.Component<Card>(type.Key);
+                        _customWaiter.WaiterWithReloadPage(_page, vacancyElement);
+                        objectList.Remove(type.Key);
+                        continue;
+                }
+            }
         }
 
         [When(@"User waits careers with default descriptions and tags")]
         public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
         {
             var careers = _defaultCareersList.Value;
-            
+
             //restart:
             foreach (var defaultCareer in careers)
             {
                 restart:
                 var pascalCaseName = defaultCareer.ConvertToPascalCase();
                 var countCareer = _page.Component<Card>(pascalCaseName).CountAsync().Result;
-                
+
                 var pagination = _page.Component<Pagination>();
                 //pagination.HoverAsync().GetAwaiter().GetResult();
                 //var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();

@@ -20,7 +20,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void WhenUserClicksOnCardTitle(string title)
         {
             _page.Component<Card>(title).Title.ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.DOMContentLoaded).GetAwaiter().GetResult();
         }
     }
 }
