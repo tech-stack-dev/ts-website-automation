@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| TestUsDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                    |
+		| Vacancy | TestUsDirectionOnlyOne  |
+		| Tag     | TestingDirectionOnlyOne |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                        |
@@ -49,6 +53,11 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| TestUsDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name              |
+		| Vacancy | TestUsDirection   |
+		| Tag     | TestingDirection1 |
+		| Tag     | TestingDirection2 |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag               |
@@ -92,6 +101,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| TestUsSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                    |
+		| Vacancy | TestUsSeniorityOnlyOne  |
+		| Tag     | TestingSeniorityOnlyOne |
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                     |
@@ -125,6 +138,12 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 		| TestUsSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                |
+		| Vacancy | TestUsSeniority     |
+		| Tag     | Testing Seniority 1 |
+		| Tag     | Testing Seniority 2 |
+		| Tag     | Testing Seniority 3 |
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                 |

@@ -16,6 +16,12 @@ Scenario: CheckJobDescriptionOnJobPage
 		| Tsweb146TestusTwo | TSWEB146TestUaTwo | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                        |
+		| Vacancy | Tsweb146TestusTwo           |
+		| Tag     | TSWEB146TestingDirectionTwo |
+		| Tag     | Test146TagTwo               |
+		| Tag     | Hot                         |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |

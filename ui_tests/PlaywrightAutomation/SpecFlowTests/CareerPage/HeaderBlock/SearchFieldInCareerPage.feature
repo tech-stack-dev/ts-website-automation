@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 		| TestUsDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                     |
+		| Vacancy | TestUsDirectionOfSearch  |
+		| Tag     | TestingDirectionOfSearch |
 	When User set 'TestUsDirectionOfSearch' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'TestUsDirectionOfSearch'
@@ -30,6 +34,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 		| TestUsDirectionPartOfText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                       |
+		| Vacancy | TestUsDirectionPartOfText  |
+		| Tag     | TestingDirectionPartOfText |
 	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'Test'

@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 		| TestUsSideTagOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                  |
+		| Vacancy | TestUsSideTagOnlyOne  |
+		| Tag     | TestingSideTagOnlyOne |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideTagOnlyOne |
@@ -43,6 +47,11 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 		| TestUsSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name            |
+		| Vacancy | TestUsSideTag   |
+		| Tag     | TestingSideTag1 |
+		| Tag     | TestingSideTag2 |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag             |
 		| TestingSideTag1 |
@@ -81,6 +90,11 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 		| TestUsResetSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                 |
+		| Vacancy | TestUsResetSideTag   |
+		| Tag     | TestingResetSideTag1 |
+		| Tag     | TestingResetSideTag2 |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                     |
 		| Testing Reset Side Tag1 |

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using System;
-using System.Timers;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PlaywrightAutomation.Utils.Waiters
 {
@@ -9,35 +11,76 @@ namespace PlaywrightAutomation.Utils.Waiters
     {
         public void WaiterWithReloadPage(IPage page, ILocator locator)
         {
-            using var timer = new Timer(5000);
-            DateTime dt = DateTime.Now;
-            TimeSpan passedTime = default;
-            timer.Elapsed += (source, e) => OnTimeEvent(source, e, page, 
-                locator, dt, ref passedTime);
-            timer.AutoReset = true;
-            timer.Enabled = true;
-            while (passedTime < TimeSpan.FromMinutes(1)) ;
-            if (locator.CountLocators() == 0)
+            for (int i = 0; i < 12; i++)
             {
-                timer.Dispose();
+                if (locator.Count().Equals(0))
+                {
+                    page.ReloadAsync().GetAwaiter().GetResult();
+                    Task.Delay(5000).GetAwaiter().GetResult();
+                }
+
+                if (!locator.Count().Equals(0))
+                {
+                    break;
+                }
+            }
+
+            if (locator.Count().Equals(0))
+            {
                 throw new Exception("Timeout 60000ms exceeded.");
             }
-            timer.Dispose();
         }
 
-        private void OnTimeEvent(object source, ElapsedEventArgs e, IPage page, 
-            ILocator locator, DateTime dt, ref TimeSpan passedTime)
+        public void WaiterDefaultCareers(IPage page, List<string> careersList)
         {
-            passedTime = e.SignalTime - dt;
-            if (locator.CountLocators() == 0)
-            {
-                page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
-            }
+            var pagination = page.Component<Pagination>();
+            var paginationArrowRight = pagination.ArrowButtonByDirection("right");
 
-            if (locator.CountLocators() != 0)
+            foreach (var defaultCareer in careersList)
             {
-                passedTime = TimeSpan.FromMinutes(1);
-                
+                var pascalCaseName = defaultCareer.ConvertToPascalCase();
+                var component = page.Component<Card>(pascalCaseName);
+                int numberAttempts = 0;
+
+            restart:
+                if (pagination.IsVisibleAsync().Result)
+                {
+                    pagination.HoverAsync().GetAwaiter().GetResult();
+                }
+
+                if (numberAttempts.Equals(5))
+                {
+                    throw new Exception($"'{pascalCaseName}' wasn't created in Contentful");
+                }
+
+                if (component.Count().Equals(0) && !pagination.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
+                    goto restart;
+                }
+
+                if (component.Count().Equals(0) && pagination.IsVisibleAsync().GetAwaiter().GetResult()
+                                                && paginationArrowRight.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    paginationArrowRight.ClickAsync().GetAwaiter().GetResult();
+                    page.WaitForLoadStateAsync(LoadState.DOMContentLoaded).GetAwaiter().GetResult();
+                    goto restart;
+                }
+
+                if (component.Count().Equals(0) && pagination.IsVisibleAsync().GetAwaiter().GetResult()
+                                                && !paginationArrowRight.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    pagination.FirstPage.ClickAsync().GetAwaiter().GetResult();
+                    page.ReloadAsync().GetAwaiter().GetResult();
+                    page.WaitForLoadStateAsync(LoadState.DOMContentLoaded).GetAwaiter().GetResult();
+                    numberAttempts++;
+                    goto restart;
+                }
+
+                if (pagination.IsVisibleAsync().GetAwaiter().GetResult())
+                {
+                    pagination.FirstPage.ClickAsync().GetAwaiter().GetResult();
+                }
             }
         }
     }

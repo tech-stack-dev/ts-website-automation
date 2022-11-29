@@ -7,6 +7,7 @@ using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using PlaywrightAutomation.Utils.Waiters;
 using System.Linq;
+using ChoETL;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -79,87 +80,7 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
         {
             var careers = _defaultCareersList.Value;
-
-            //restart:
-            foreach (var defaultCareer in careers)
-            {
-                restart:
-                var pascalCaseName = defaultCareer.ConvertToPascalCase();
-                var countCareer = _page.Component<Card>(pascalCaseName).CountAsync().Result;
-
-                var pagination = _page.Component<Pagination>();
-                //pagination.HoverAsync().GetAwaiter().GetResult();
-                //var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
-
-                if (countCareer == 0 && pagination.IsVisibleAsync().GetAwaiter().GetResult())
-                {
-                    pagination.HoverAsync().GetAwaiter().GetResult();
-
-                    //paginationDirectionVisibleState.Should().BeTrue();
-                    var paginationArrow = pagination.ArrowButtonByDirection("right");
-                    if (paginationArrow.IsVisibleAsync().GetAwaiter().GetResult())
-                    {
-                        paginationArrow.ClickAsync().GetAwaiter().GetResult();
-                    }
-                    //pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
-                    _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-                    goto restart;
-                }
-
-                if (countCareer == 0 && !pagination.IsVisibleAsync().GetAwaiter().GetResult())
-                {
-                    _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
-                    goto restart;
-                }
-
-                if (pagination.IsVisibleAsync().GetAwaiter().GetResult())
-                {
-                    pagination.FirstPage.ClickAsync().GetAwaiter().GetResult();
-                }
-            }
-
-
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    try
-            //    {
-            //        foreach (var career in careers)
-            //        {
-            //            var element = _page.Component<Card>(career);
-            //            var count = element.CountAsync().GetAwaiter().GetResult();
-            //            if (count == 0)
-            //            {
-            //                var pagination = _page.Component<Pagination>();
-            //                pagination.HoverAsync().GetAwaiter().GetResult();
-            //                var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
-            //                paginationDirectionVisibleState.Should().BeTrue();
-            //                pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
-            //                _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-            //            }
-            //            count.Should().NotBe(0);
-            //            careers.Remove(career);
-            //        }
-            //        break;
-            //    }
-            //    catch (Exception)
-            //    {
-            //        var pagination = _page.Component<Pagination>();
-            //        pagination.HoverAsync().GetAwaiter().GetResult();
-            //        var paginationDirectionVisibleState = pagination.ArrowButtonByDirection("right").IsVisibleAsync().GetAwaiter().GetResult();
-            //        if (paginationDirectionVisibleState)
-            //        {
-            //            paginationDirectionVisibleState.Should().BeTrue();
-            //            pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
-            //            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-            //        }
-            //        paginationDirectionVisibleState.Should().BeTrue();
-            //        pagination.ArrowButtonByDirection("right").ClickAsync().GetAwaiter().GetResult();
-            //        _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-
-            //        _page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
-            //    }
-            //}
+            _customWaiter.WaiterDefaultCareers(_page, careers);
         }
     }
 }

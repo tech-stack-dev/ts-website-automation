@@ -14,9 +14,14 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| TestUsResetDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                      |
+		| Vacancy | TestUsResetDirection      |
+		| Tag     | Testing Reset Direction 1 |
+		| Tag     | Testing Reset Direction 2 |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag                     |
+		| Tag                       |
 		| Testing Reset Direction 1 |
 		| Testing Reset Direction 2 |
 	When User clicks on 'Reset' button on 'HeaderPage' container
@@ -37,9 +42,15 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| TestUsResetSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                      |
+		| Vacancy | TestUsResetSeniority      |
+		| Tag     | Testing Reset Seniority 1 |
+		| Tag     | Testing Reset Seniority 2 |
+		| Tag     | Testing Reset Seniority 3 |
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
-		| Tag                     |
+		| Tag                       |
 		| Testing Reset Seniority 1 |
 		| Testing Reset Seniority 2 |
 		| Testing Reset Seniority 3 |

@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| TestUsSideDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                        |
+		| Vacancy | TestUsSideDirectionOnlyOne  |
+		| Tag     | TestingSideDirectionOnlyOne |
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                         |
 		| TestingSideDirectionOnlyOne |
@@ -46,6 +50,11 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| TestUsSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                  |
+		| Vacancy | TestUsSideDirection   |
+		| Tag     | TestingSideDirection1 |
+		| Tag     | TestingSideDirection2 |
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideDirection1 |
@@ -88,6 +97,11 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| TestUsResetSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                       |
+		| Vacancy | TestUsResetSideDirection   |
+		| Tag     | TestingResetSideDirection1 |
+		| Tag     | TestingResetSideDirection2 |
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
 		| Tag                           |
 		| Testing Reset Side Direction1 |

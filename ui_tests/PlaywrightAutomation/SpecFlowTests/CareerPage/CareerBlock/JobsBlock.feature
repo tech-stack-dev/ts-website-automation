@@ -28,6 +28,10 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                        |
+		| Vacancy | Tsweb146TestusOne           |
+		| Tag     | TSWEB146TestingDirectionOne |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
@@ -50,6 +54,10 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| Tsweb146TestusThree | TSWEB146TestUaThree | DescriptionTestUsThree | DescriptionTestUaThree | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                          |
+		| Vacancy | Tsweb146TestusThree           |
+		| Tag     | TSWEB146TestingDirectionThree |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                           |
@@ -82,6 +90,12 @@ Scenario: CheckLocalizationOnJobPage
 		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                         |
+		| Vacancy | Tsweb146TestusFour           |
+		| Tag     | TSWEB146TestingDirectionFour |
+		| Tag     | Test146TagFour               |
+		| Tag     | Hot                          |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                          |

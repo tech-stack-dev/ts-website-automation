@@ -20,6 +20,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| TestUsDirectionWithText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                     |
+		| Vacancy | TestUsDirectionWithText  |
+		| Tag     | TestingDirectionWithText |
 	When User set 'TestUsDirectionWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
@@ -56,6 +60,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| TestUsSeniorityWithText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects objects to be created
+		| Type    | Name                     |
+		| Vacancy | TestUsSeniorityWithText  |
+		| Tag     | TestingSeniorityWithText |
 	When User set 'TestUsSeniorityWithText' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
