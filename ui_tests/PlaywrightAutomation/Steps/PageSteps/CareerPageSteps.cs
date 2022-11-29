@@ -32,6 +32,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             texts.Should().NotBeNullOrEmpty();
 
