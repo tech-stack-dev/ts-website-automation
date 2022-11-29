@@ -11,7 +11,7 @@ namespace PlaywrightAutomation.Utils.Waiters
     {
         public void WaiterWithReloadPage(IPage page, ILocator locator)
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 24; i++)
             {
                 if (locator.Count().Equals(0))
                 {
@@ -27,7 +27,7 @@ namespace PlaywrightAutomation.Utils.Waiters
 
             if (locator.Count().Equals(0))
             {
-                throw new Exception("Timeout 60000ms exceeded.");
+                throw new Exception("Timeout 120000ms exceeded.");
             }
         }
 

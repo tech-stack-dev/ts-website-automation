@@ -7,7 +7,6 @@ using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using PlaywrightAutomation.Utils.Waiters;
 using System.Linq;
-using ChoETL;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
