@@ -33,8 +33,9 @@ namespace PlaywrightAutomation.Utils.Waiters
             }
         }
 
-        public static void WaitForDefaultCareers(this IPage page, List<string> careersList)
+        public static void WaitForDefaultCareers(this IPage page, List<string> careersList, string amountOfAttempt = "FiveAttempt")
         {
+            int attempt = (int)Enum.Parse(typeof(NumberOfAttempts), amountOfAttempt);
             var pagination = page.Component<Pagination>();
             var paginationArrowRight = pagination.ArrowButtonByDirection("right");
 
@@ -50,7 +51,7 @@ namespace PlaywrightAutomation.Utils.Waiters
                     pagination.HoverAsync().GetAwaiter().GetResult();
                 }
 
-                if (numberAttempts.Equals(5))
+                if (numberAttempts.Equals(attempt))
                 {
                     throw new Exception($"'{pascalCaseName}' wasn't created in Contentful");
                 }
@@ -92,6 +93,14 @@ namespace PlaywrightAutomation.Utils.Waiters
             Medium = 10,
             Long = 15,
             ExtraLong = 24
+        }
+
+        public enum NumberOfAttempts
+        {
+            ThreeAttempt = 3,
+            FiveAttempt = 5,
+            TenAttempt = 10,
+            FifteenAttempt = 15
         }
     }
 }
