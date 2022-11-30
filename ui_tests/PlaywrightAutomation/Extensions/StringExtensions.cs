@@ -1,6 +1,5 @@
-﻿using System;
-using ChoETL;
-using System.Globalization;
+﻿using ChoETL;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -15,10 +14,6 @@ namespace PlaywrightAutomation.Extensions
 
         public static string ConvertToPascalCase(this string s)
         {
-            //var yourString = s.ToLower().Replace("_", " ");
-            //TextInfo info = CultureInfo.CurrentCulture.TextInfo;
-            //yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
-            //return yourString;
             Regex invalidCharsRgx = new Regex("[^_a-zA-Z0-9]");
             Regex whiteSpace = new Regex(@"(?<=\s)");
             Regex startsWithLowerCaseChar = new Regex("^[a-z]");

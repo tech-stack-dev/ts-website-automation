@@ -17,14 +17,12 @@ namespace PlaywrightAutomation.Steps
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
         private readonly DefaultCareersList _defaultCareersList;
-        private readonly CustomWaiter _customWaiter;
 
-        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList, CustomWaiter customWaiter)
+        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
             _defaultCareersList = defaultCareersList;
-            _customWaiter = customWaiter;
         }
 
         [Given(@"User is on career website")]
@@ -63,12 +61,12 @@ namespace PlaywrightAutomation.Steps
                 {
                     case "Tag":
                         var tagElement = _page.Component<Tag>(type.Key);
-                        _customWaiter.WaiterWithReloadPage(_page, tagElement);
+                        _page.WaiterWithReloadPage(tagElement);
                         objectList.Remove(type.Key);
                         continue;
                     case "Vacancy":
                         var vacancyElement = _page.Component<Card>(type.Key);
-                        _customWaiter.WaiterWithReloadPage(_page, vacancyElement);
+                        _page.WaiterWithReloadPage(vacancyElement);
                         objectList.Remove(type.Key);
                         continue;
                 }
@@ -79,7 +77,7 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
         {
             var careers = _defaultCareersList.Value;
-            _customWaiter.WaiterDefaultCareers(_page, careers);
+            _page.WaitForDefaultCareers(careers);
         }
     }
 }

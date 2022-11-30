@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace PlaywrightAutomation.Utils.Waiters
 {
-    public class CustomWaiter
+    public static class CustomWaiter
     {
-        public void WaiterWithReloadPage(IPage page, ILocator locator)
+        public static void WaiterWithReloadPage(this IPage page, ILocator locator, string amountOfTime = "ExtraLong")
         {
-            for (int i = 0; i < 24; i++)
+            int time = (int)Enum.Parse(typeof(AmountOfTime), amountOfTime);
+
+            for (var i = 0; i < time; i++)
             {
                 if (locator.Count().Equals(0))
                 {
@@ -31,7 +33,7 @@ namespace PlaywrightAutomation.Utils.Waiters
             }
         }
 
-        public void WaiterDefaultCareers(IPage page, List<string> careersList)
+        public static void WaitForDefaultCareers(this IPage page, List<string> careersList)
         {
             var pagination = page.Component<Pagination>();
             var paginationArrowRight = pagination.ArrowButtonByDirection("right");
@@ -82,6 +84,14 @@ namespace PlaywrightAutomation.Utils.Waiters
                     pagination.FirstPage.ClickAsync().GetAwaiter().GetResult();
                 }
             }
+        }
+
+        public enum AmountOfTime
+        {
+            Short = 3,
+            Medium = 10,
+            Long = 15,
+            ExtraLong = 24
         }
     }
 }
