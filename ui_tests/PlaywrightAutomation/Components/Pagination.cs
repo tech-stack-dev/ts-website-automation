@@ -6,8 +6,7 @@ namespace PlaywrightAutomation.Components
     {
         public ILocator PaginationButtons => Instance.Locator("//div[contains(@class,'PaginationButtonWrapper')]");
 
-        public ILocator FirstPage => Instance.Locator("//div[contains(@class,'PaginationButtonWrapper')]",
-            new LocatorLocatorOptions {HasTextString = "1"});
+        public ILocator FirstPage => Instance.Locator("//div[text()='01']");
 
         public override string Construct()
         {
