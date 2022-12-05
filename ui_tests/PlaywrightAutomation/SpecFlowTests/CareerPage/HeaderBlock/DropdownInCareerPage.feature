@@ -13,7 +13,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| TestUsDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                    |
 		| Vacancy | TestUsDirectionOnlyOne  |
 		| Tag     | TestingDirectionOnlyOne |
@@ -53,7 +53,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| TestUsDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name              |
 		| Vacancy | TestUsDirection   |
 		| Tag     | TestingDirection1 |
@@ -101,7 +101,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| TestUsSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                    |
 		| Vacancy | TestUsSeniorityOnlyOne  |
 		| Tag     | TestingSeniorityOnlyOne |
@@ -138,7 +138,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 		| TestUsSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                |
 		| Vacancy | TestUsSeniority     |
 		| Tag     | Testing Seniority 1 |

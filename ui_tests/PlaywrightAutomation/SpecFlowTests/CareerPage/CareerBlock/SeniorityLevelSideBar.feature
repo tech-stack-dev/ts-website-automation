@@ -13,7 +13,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 		| TestUsSideSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                        |
 		| Vacancy | TestUsSideSeniorityOnlyOne  |
 		| Tag     | TestingSideSeniorityOnlyOne |
@@ -47,7 +47,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 		| TestUsSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                  |
 		| Vacancy | TestUsSideSeniority   |
 		| Tag     | TestingSideSeniority1 |
@@ -90,7 +90,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 		| TestUsResetSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                       |
 		| Vacancy | TestUsResetSideSeniority   |
 		| Tag     | TestingResetSideSeniority1 |

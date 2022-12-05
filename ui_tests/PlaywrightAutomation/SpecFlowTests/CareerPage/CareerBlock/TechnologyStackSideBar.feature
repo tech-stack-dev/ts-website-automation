@@ -13,7 +13,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| TestUsSideStackOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                    |
 		| Vacancy | TestUsSideStackOnlyOne  |
 		| Tag     | TestingSideStackOnlyOne |
@@ -47,7 +47,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 		| TestUsSideStack |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name              |
 		| Vacancy | TestUsSideStack   |
 		| Tag     | TestingSideStack1 |
@@ -90,7 +90,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 		| TestUsResetSideStack |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                   |
 		| Vacancy | TestUsResetSideStack   |
 		| Tag     | TestingResetSideStack1 |

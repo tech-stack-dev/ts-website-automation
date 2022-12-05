@@ -14,7 +14,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| TestUsResetDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                      |
 		| Vacancy | TestUsResetDirection      |
 		| Tag     | Testing Reset Direction 1 |
@@ -42,7 +42,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| TestUsResetSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                      |
 		| Vacancy | TestUsResetSeniority      |
 		| Tag     | Testing Reset Seniority 1 |

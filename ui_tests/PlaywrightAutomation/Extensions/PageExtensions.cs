@@ -1,6 +1,8 @@
 ﻿using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Pages;
+using System;
+using System.Threading.Tasks;
 using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Extensions
@@ -74,6 +76,36 @@ namespace PlaywrightAutomation.Extensions
         {
             page
                 .WaitForFunctionAsync($"element => element.value == '{text}'", element).GetAwaiter().GetResult();
+        }
+
+        public static void WaiterWithReloadPage(this IPage page, ILocator locator, string amountOfTime = "ExtraLong")
+        {
+            var ms = 5000;
+            int time = (int)Enum.Parse(typeof(AmountOfTime), amountOfTime);
+
+            for (var i = 0; i < time; i++)
+            {
+                if (!locator.Count().Equals(0))
+                {
+                    break;
+                }
+
+                page.ReloadAsync().GetAwaiter().GetResult();
+                Task.Delay(ms).GetAwaiter().GetResult();
+            }
+
+            if (locator.Count().Equals(0))
+            {
+                throw new Exception($"Timeout {ms * time}ms exceeded.");
+            }
+        }
+
+        public enum AmountOfTime
+        {
+            Short = 2,
+            Medium = 6,
+            Long = 12,
+            ExtraLong = 24
         }
 
         #endregion

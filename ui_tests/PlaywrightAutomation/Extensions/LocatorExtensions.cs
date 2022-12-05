@@ -8,6 +8,7 @@ namespace PlaywrightAutomation.Extensions
         {
             return locator.ElementHandleAsync().Result.GetBackgroundColor();
         }
+        
         public static int Count(this ILocator locator)
         {
             return locator.CountAsync().GetAwaiter().GetResult();

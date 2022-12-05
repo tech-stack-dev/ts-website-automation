@@ -12,7 +12,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                        |
 		| Vacancy | TestUsSideDirectionOfSearch |
 	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerMainPage' container
@@ -30,7 +30,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 		| TestUsSideDirectionOfPartSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                            |
 		| Vacancy | TestUsSideDirectionOfPartSearch |
 	When User set 'Test' text to 'Search' input on 'CareerMainPage' container

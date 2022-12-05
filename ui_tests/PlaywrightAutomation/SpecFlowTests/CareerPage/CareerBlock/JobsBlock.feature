@@ -28,7 +28,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                        |
 		| Vacancy | Tsweb146TestusOne           |
 		| Tag     | TSWEB146TestingDirectionOne |
@@ -54,7 +54,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| Tsweb146TestusThree | TSWEB146TestUaThree | DescriptionTestUsThree | DescriptionTestUaThree | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                          |
 		| Vacancy | Tsweb146TestusThree           |
 		| Tag     | TSWEB146TestingDirectionThree |
@@ -90,7 +90,7 @@ Scenario: CheckLocalizationOnJobPage
 		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                         |
 		| Vacancy | Tsweb146TestusFour           |
 		| Tag     | TSWEB146TestingDirectionFour |

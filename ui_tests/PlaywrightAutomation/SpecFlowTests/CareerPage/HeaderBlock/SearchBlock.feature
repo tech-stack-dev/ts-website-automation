@@ -20,7 +20,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| TestUsDirectionWithText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                     |
 		| Vacancy | TestUsDirectionWithText  |
 		| Tag     | TestingDirectionWithText |
@@ -60,7 +60,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 		| TestUsSeniorityWithText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                     |
 		| Vacancy | TestUsSeniorityWithText  |
 		| Tag     | TestingSeniorityWithText |

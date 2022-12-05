@@ -13,7 +13,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| TestUsSideDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                        |
 		| Vacancy | TestUsSideDirectionOnlyOne  |
 		| Tag     | TestingSideDirectionOnlyOne |
@@ -50,7 +50,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 		| TestUsSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                  |
 		| Vacancy | TestUsSideDirection   |
 		| Tag     | TestingSideDirection1 |
@@ -97,7 +97,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| TestUsResetSideDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                       |
 		| Vacancy | TestUsResetSideDirection   |
 		| Tag     | TestingResetSideDirection1 |

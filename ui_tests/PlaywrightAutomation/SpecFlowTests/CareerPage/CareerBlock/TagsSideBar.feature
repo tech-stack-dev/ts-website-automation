@@ -13,7 +13,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 		| TestUsSideTagOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                  |
 		| Vacancy | TestUsSideTagOnlyOne  |
 		| Tag     | TestingSideTagOnlyOne |
@@ -47,7 +47,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 		| TestUsSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name            |
 		| Vacancy | TestUsSideTag   |
 		| Tag     | TestingSideTag1 |
@@ -90,7 +90,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 		| TestUsResetSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
-	When User expects objects to be created
+	When User expects tag and vacancy created in 'Contentful' on the page
 		| Type    | Name                 |
 		| Vacancy | TestUsResetSideTag   |
 		| Tag     | TestingResetSideTag1 |

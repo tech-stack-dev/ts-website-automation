@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -50,8 +51,8 @@ namespace PlaywrightAutomation.Steps
             popup.Url.Should().Contain(website.ToLower());
         }
 
-        [When(@"User expects objects to be created")]
-        public void WhenUserExpectsObjectsToBeCreated(Table table)
+        [When(@"User expects tag and vacancy created in 'Contentful' on the page")]
+        public void WhenUserExpectsTagAndVacancyCreatedInContentfulOnThePage(Table table)
         {
             var objectList = table.Rows.ToDictionary(r => r["Name"], r => r["Type"]);
 
@@ -62,13 +63,17 @@ namespace PlaywrightAutomation.Steps
                     case "Tag":
                         var tagElement = _page.Component<Tag>(type.Key);
                         _page.WaiterWithReloadPage(tagElement);
+                        tagElement.Count().Should().NotBe(0);
                         objectList.Remove(type.Key);
                         continue;
                     case "Vacancy":
                         var vacancyElement = _page.Component<Card>(type.Key);
                         _page.WaiterWithReloadPage(vacancyElement);
+                        vacancyElement.Count().Should().NotBe(0);
                         objectList.Remove(type.Key);
                         continue;
+                    default:
+                        throw new Exception($"'{type.Value}' element with '{type.Key}' name is not displayed");
                 }
             }
         }
