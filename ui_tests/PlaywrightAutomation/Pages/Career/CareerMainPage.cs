@@ -25,7 +25,7 @@ namespace PlaywrightAutomation.Pages
                         break;
                     }
 
-                    Page.Component<Pagination>().ReturnFirstPage();
+                    Page.Component<Pagination>().ReturnToFirstPage();
                     Page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded }).GetAwaiter().GetResult();
                 }
 
@@ -46,15 +46,8 @@ namespace PlaywrightAutomation.Pages
                 return true;
             }
 
-            if (pagination.IsVisibleAsync().Result)
+            while (pagination.MoveToAndCheckPaginationArrow())
             {
-                pagination.HoverAsync().GetAwaiter().GetResult();
-            }
-
-            while (pagination.IsVisibleAsync().GetAwaiter().GetResult()
-                   && paginationArrowRight.Count() > 0)
-            {
-                pagination.HoverAsync().GetAwaiter().GetResult();
                 paginationArrowRight.ClickAsync().GetAwaiter().GetResult();
 
                 if (component.Count() > 0)

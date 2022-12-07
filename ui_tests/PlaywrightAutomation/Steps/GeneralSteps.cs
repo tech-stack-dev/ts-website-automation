@@ -78,8 +78,8 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        [When(@"User waits careers with default descriptions and tags")]
-        public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
+        [When(@"User waits careers with mocked data")]
+        public void WhenUserWaitsCareersWithMockedData()
         {
             var careers = _defaultCareersList.Value;
             _page.Init<CareerMainPage>().WaitForRandomCareers(careers);
