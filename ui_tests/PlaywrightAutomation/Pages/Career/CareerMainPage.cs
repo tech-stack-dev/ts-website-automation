@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Pages
     {
         public string Container => "//div[contains(@class,'styledComponents__CareerMainBody')]";
 
-        public void WaitForRandomCareers(List<string> careersList, NumberOfAttempts amountOfAttempt = NumberOfAttempts.FiveAttempt)
+        public void WaitForMockedCareers(List<string> careersList, NumberOfAttempts amountOfAttempt = NumberOfAttempts.FiveAttempt)
         {
             foreach (var defaultCareer in careersList)
             {

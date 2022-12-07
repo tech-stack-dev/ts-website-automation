@@ -82,7 +82,7 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserWaitsCareersWithMockedData()
         {
             var careers = _defaultCareersList.Value;
-            _page.Init<CareerMainPage>().WaitForRandomCareers(careers);
+            _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
         }
     }
 }
