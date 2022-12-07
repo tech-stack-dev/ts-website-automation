@@ -78,12 +78,11 @@ namespace PlaywrightAutomation.Extensions
                 .WaitForFunctionAsync($"element => element.value == '{text}'", element).GetAwaiter().GetResult();
         }
 
-        public static void WaiterWithReloadPage(this IPage page, ILocator locator, string amountOfTime = "ExtraLong")
+        public static void WaiterWithReloadPage(this IPage page, ILocator locator, AmountOfTime amountOfTime = AmountOfTime.Long)
         {
             var ms = 5000;
-            int time = (int)Enum.Parse(typeof(AmountOfTime), amountOfTime);
 
-            for (var i = 0; i < time; i++)
+            for (var i = 0; i < (int)amountOfTime; i++)
             {
                 if (!locator.Count().Equals(0))
                 {
@@ -96,7 +95,7 @@ namespace PlaywrightAutomation.Extensions
 
             if (locator.Count().Equals(0))
             {
-                throw new Exception($"Timeout {ms * time}ms exceeded.");
+                throw new Exception($"Timeout {ms * (int)amountOfTime}ms exceeded.");
             }
         }
 

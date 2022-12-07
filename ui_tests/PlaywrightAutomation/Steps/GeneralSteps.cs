@@ -1,12 +1,12 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
-using PlaywrightAutomation.Utils.Waiters;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -82,7 +82,7 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserWaitsCareersWithDefaultDescriptionsAndTags()
         {
             var careers = _defaultCareersList.Value;
-            _page.WaitForDefaultCareers(careers);
+            _page.Init<CareerMainPage>().WaitForRandomCareers(careers);
         }
     }
 }

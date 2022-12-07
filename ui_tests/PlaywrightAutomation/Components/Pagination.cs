@@ -16,5 +16,13 @@ namespace PlaywrightAutomation.Components
         {
             return Instance.Locator($"//div[not(contains(@class,'PageNumber'))]//img[contains(@src,'{buttonDirection}')]");
         }
+
+        public void ReturnFirstPage()
+        {
+            if (Instance.IsVisibleAsync().GetAwaiter().GetResult())
+            {
+                PaginationButtons.Nth(0).ClickAsync().GetAwaiter().GetResult();
+            }
+        }
     }
 }
