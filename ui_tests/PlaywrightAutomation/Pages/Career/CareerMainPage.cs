@@ -46,7 +46,7 @@ namespace PlaywrightAutomation.Pages
                 return true;
             }
 
-            while (pagination.MoveToAndCheckPaginationArrow())
+            while (pagination.FocusAndGetPaginationArrowDisplayedState())
             {
                 paginationArrowRight.ClickAsync().GetAwaiter().GetResult();
 

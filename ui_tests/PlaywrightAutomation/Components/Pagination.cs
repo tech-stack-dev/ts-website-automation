@@ -25,7 +25,7 @@ namespace PlaywrightAutomation.Components
             }
         }
 
-        public bool MoveToAndCheckPaginationArrow()
+        public bool FocusAndGetPaginationArrowDisplayedState()
         {
             if (Instance.IsVisibleAsync().GetAwaiter().GetResult())
             {
