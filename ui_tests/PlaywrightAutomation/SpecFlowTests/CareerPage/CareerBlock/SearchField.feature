@@ -12,6 +12,9 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | TestUsSideDirectionOfSearch |
 	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerMainPage' container
 	Then Search results contain 'TestUsSideDirectionOfSearch'
 
@@ -23,10 +26,13 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	Given User creates and publishes new Career Description with default values
 		| Field | Value |
 	Given User creates default Career with career description and tag
-		| NameUs                      | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
+		| NameUs                          | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideDirectionOfPartSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                            |
+		| Vacancy | TestUsSideDirectionOfPartSearch |
 	When User set 'Test' text to 'Search' input on 'CareerMainPage' container
 	Then Search results contain 'Test'
 

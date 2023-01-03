@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 		| TestUsSideSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | TestUsSideSeniorityOnlyOne  |
+		| Tag     | TestingSideSeniorityOnlyOne |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                         |
 		| TestingSideSeniorityOnlyOne |
@@ -43,6 +47,11 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 		| TestUsSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                  |
+		| Vacancy | TestUsSideSeniority   |
+		| Tag     | TestingSideSeniority1 |
+		| Tag     | TestingSideSeniority2 |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideSeniority1 |
@@ -81,6 +90,11 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 		| TestUsResetSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                       |
+		| Vacancy | TestUsResetSideSeniority   |
+		| Tag     | TestingResetSideSeniority1 |
+		| Tag     | TestingResetSideSeniority2 |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                           |
 		| Testing Reset Side Seniority1 |

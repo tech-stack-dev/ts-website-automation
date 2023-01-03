@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps.PageSteps
@@ -21,7 +21,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             _page = browserFactory.Page;
             _position = position;
         }
-        
+
         [When(@"User remembers vacancy names from Job page")]
         public void WhenUserRemembersVacancyNamesFromJobPage()
         {
@@ -32,14 +32,16 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
+            texts.Should().NotBeNullOrEmpty();
 
             foreach (var roleText in texts)
             {
                 roleText.ToLower().Should().Contain(text.ToLower());
             }
         }
-        
+
         [Then(@"'([^']*)' message is displayed")]
         public void ThenMessageIsDisplayed(string errorMessage)
         {
@@ -78,7 +80,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
 
-            var actualListTabs = _page.Component<NavigationTabs>()                
+            var actualListTabs = _page.Component<NavigationTabs>()
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
 
@@ -93,7 +95,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             foreach (var dropdown in dropdowns)
             {
                 var dropdownIsOpen = _page.Component<FilterGroupWrapper>(dropdown,
-                        new BaseWebComponent.Properties {ParentSelector = WebContainer.GetLocator(container)})
+                        new BaseWebComponent.Properties { ParentSelector = WebContainer.GetLocator(container) })
                     .CollapsibleState();
                 dropdownIsOpen.Should().BeTrue();
             }

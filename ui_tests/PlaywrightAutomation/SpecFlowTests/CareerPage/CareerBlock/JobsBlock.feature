@@ -28,6 +28,10 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| Tsweb146TestusOne | TSWEB146TestUaOne | DescriptionTestUsOne | DescriptionTestUaOne | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | Tsweb146TestusOne           |
+		| Tag     | TSWEB146TestingDirectionOne |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
@@ -50,13 +54,17 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| Tsweb146TestusThree | TSWEB146TestUaThree | DescriptionTestUsThree | DescriptionTestUaThree | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                          |
+		| Vacancy | Tsweb146TestusThree           |
+		| Tag     | TSWEB146TestingDirectionThree |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                           |
 		| TSWEB146TestingDirectionThree |
 	When User clicks on 'Tsweb146TestusThree' card title
 	Then Techstack logo is displayed on job page
-	Then Jobs block on job page has tabs
+	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab        |
 		| Jobs       |
 		| About us   |
@@ -82,6 +90,12 @@ Scenario: CheckLocalizationOnJobPage
 		| Tsweb146TestusFour | TSWEB146TestUaFour | DescriptionTestUsFour | DescriptionTestUaFour | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                         |
+		| Vacancy | Tsweb146TestusFour           |
+		| Tag     | TSWEB146TestingDirectionFour |
+		| Tag     | Test146TagFour               |
+		| Tag     | Hot                          |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                          |
@@ -89,7 +103,7 @@ Scenario: CheckLocalizationOnJobPage
 	When User clicks on 'Tsweb146TestusFour' card title
 	When User selects 'Ua' language on 'NavigationHeader' container
 	Then 'TSWEB146TestUaFour' job title is displayed on job page
-	Then Jobs block on job page has tabs
+	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |
 		| Вакансії          |
 		| Про компанію      |

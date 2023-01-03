@@ -45,11 +45,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Pagination navigation button with '(.*)' direction is displayed")]
         public void ThenNextPageButtonIsOnPositionInPaginationPanel(string direction)
         {
-            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction)
-                .ElementHandleAsync().GetAwaiter().GetResult();
-            navigationButton.IsVisibleAsync().GetAwaiter().GetResult()
-                .Should()
-                .BeTrue();
+            var pagination = _page.Component<Pagination>();
+            pagination.HoverAsync().GetAwaiter().GetResult();
+            var paginationDirectionVisibleState = pagination.ArrowButtonByDirection(direction).IsVisibleAsync().GetAwaiter().GetResult();
+            paginationDirectionVisibleState.Should().BeTrue();
         }
 
         [Then(@"Pagination is displayed on Career page")]

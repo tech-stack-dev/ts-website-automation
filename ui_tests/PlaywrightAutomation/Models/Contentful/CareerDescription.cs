@@ -55,7 +55,7 @@ namespace PlaywrightAutomation.Models.Contentful
             this.WeWillUa = this.WeWillUa.IsNullOrEmpty() ? $"WeWillUa{randomValue}" : this.WeWillUa;
             this.WeAreUs = this.WeAreUs.IsNullOrEmpty() ? $"WeAreUs{randomValue}" : this.WeAreUs;
             this.WeAreUa = this.WeAreUa.IsNullOrEmpty() ? $"WeAreUa{randomValue}" : this.WeAreUa;
-            this.SlugUs = this.SlugUs.IsNullOrEmpty() ? $"SlugUs{randomValue}" : this.SlugUs;
+            this.SlugUs = this.SlugUs.IsNullOrEmpty() ? $"SlugUs{randomValue}-v1" : this.SlugUs;
 
             return this;
         }

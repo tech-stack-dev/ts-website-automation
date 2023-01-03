@@ -8,6 +8,7 @@ using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
+using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
@@ -112,11 +113,11 @@ namespace PlaywrightAutomation.Steps.PageSteps
             logoAttribute.Should().BeEquivalentTo("Techstack");
         }
 
-        [Then(@"Jobs block on job page has tabs")]
-        public void ThenJobsBlockOnJobPageHasTabs(Table table)
+        [Then(@"Jobs block on '([^']*)' container on job page has tabs")]
+        public void ThenJobsBlockOnContainerOnJobPageHasTabs(string container, Table table)
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
-            var actualListTabs = _page.Component<NavigationTabs>()
+            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
                 .ElementHandlesAsync().GetAwaiter().GetResult()
                 .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
             actualListTabs.Should().Equal(expectedListTabs);

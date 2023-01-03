@@ -4,6 +4,7 @@ using PlaywrightAutomation.Steps.Contentful.ContentfulSteps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PlaywrightAutomation.RuntimeVariables;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
@@ -20,9 +21,10 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly CreatedTags _createdTags;
         private readonly TagSteps _tagSteps;
         private readonly Contentful.CareerDescriptionSteps _careerDescriptionSteps;
+        private readonly DefaultCareersList _defaultCareersList;
 
         public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions,
-                                      CreatedCareer createdCareer, CreatedTags createdTags, TagSteps tagSteps, Contentful.CareerDescriptionSteps careerDescriptionSteps)
+                                      CreatedCareer createdCareer, CreatedTags createdTags, TagSteps tagSteps, Contentful.CareerDescriptionSteps careerDescriptionSteps, DefaultCareersList defaultCareersList)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
@@ -30,6 +32,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
             _createdTags = createdTags;
             _tagSteps = tagSteps;
             _careerDescriptionSteps = careerDescriptionSteps;
+            _defaultCareersList = defaultCareersList;
         }
 
         [Given(@"User creates new Career with '([^']*)' career description and '([^']*)' tag")]
@@ -90,6 +93,7 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
                 // Create Career
                 var career = new Career();
                 career.FillWithDefaultData(randomValue);
+                _defaultCareersList.Value.Add(career.NameUs);
 
                 var createdCareer = _contentfulClient.CreateCareer(career, careerDescription, tags).GetAwaiter().GetResult();
                 _createdCareer.Value.Add(createdCareer);

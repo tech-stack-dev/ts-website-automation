@@ -16,6 +16,12 @@ Scenario: CheckJobDescriptionOnJobPage
 		| Tsweb146TestusTwo | TSWEB146TestUaTwo | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | Tsweb146TestusTwo           |
+		| Tag     | TSWEB146TestingDirectionTwo |
+		| Tag     | Test146TagTwo               |
+		| Tag     | Hot                         |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
@@ -53,6 +59,7 @@ Scenario: CheckPaginationOnCareerPage
 	Given User creates and publishes '12' Careers with descriptions and tags
 	# Scenario
 	Given User is on career website
+	When User waits careers with mocked data
 	Then Pagination is displayed on Career page
 	Then Pagination navigation button with 'right' direction is displayed
 	When User clicks on 'right' direction button in pagination panel

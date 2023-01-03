@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| TestUsSideStackOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                    |
+		| Vacancy | TestUsSideStackOnlyOne  |
+		| Tag     | TestingSideStackOnlyOne |
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                     |
 		| TestingSideStackOnlyOne |
@@ -43,6 +47,11 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 		| TestUsSideStack |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name              |
+		| Vacancy | TestUsSideStack   |
+		| Tag     | TestingSideStack1 |
+		| Tag     | TestingSideStack2 |
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag               |
 		| TestingSideStack1 |
@@ -81,6 +90,11 @@ Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 		| TestUsResetSideStack |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                   |
+		| Vacancy | TestUsResetSideStack   |
+		| Tag     | TestingResetSideStack1 |
+		| Tag     | TestingResetSideStack2 |
 	When User selects tags in 'Technology stack' filter side bar on 'CareerPage' container
 		| Tag                       |
 		| Testing Reset Side Stack1 |

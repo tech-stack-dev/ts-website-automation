@@ -13,6 +13,10 @@ Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMess
 		| TestFieldApplyForAJob |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                  |
+		| Vacancy | TestFieldApplyForAJob |
+		| Tag     | TestingAppleForAJob   |
 	When User clicks on 'TestFieldApplyForAJob' card title
 	When User clicks on 'Apply now' button on 'BreadcrumbsHeader' container
 	When User clicks on 'Submit' button on 'ApplyForAJobPage' container
