@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Contentful.Core.Models.Management;
+using Contentful.Core.Configuration;
 
 namespace PlaywrightAutomation.Utils
 {
@@ -17,8 +18,14 @@ namespace PlaywrightAutomation.Utils
         public ContentfulClient()
         {
             _httpClient = new HttpClient();
+            var options = new ContentfulOptions
+            {
+                ManagementApiKey = ContentfulProvider.ManagmentApiKey,
+                SpaceId = ContentfulProvider.SpaceId,
+                MaxNumberOfRateLimitRetries = 5
+            };
             _client =
-                new ContentfulManagementClient(_httpClient, ContentfulProvider.ManagmentApiKey, ContentfulProvider.SpaceId);
+                new ContentfulManagementClient(_httpClient, options);
         }
 
         #region Career description

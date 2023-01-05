@@ -1,34 +1,22 @@
-﻿Feature: TagsSideSideBar
+Feature: TagsSideSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix | Name                           |
-		| Tag    | TestingSideTagOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                    |
-		| AboutTheProjectUs | AboutTheProjectUs        |
-		| AboutTheProjectUa | AboutTheProjectUa        |
-		| AboutTheRoleUs    | AboutTheRoleUs           |
-		| AboutTheRoleUa    | AboutTheRoleUa           |
-		| TitleUs           | TitleUsSideTagOnlyOne    |
-		| TitleUa           | TitleUaSideTagOnlyOne    |
-		| YouWillUs         | YouWillUs                |
-		| YouWillUa         | YouWillUa                |
-		| YouAreUs          | YouAreUs                 |
-		| YouAreUa          | YouAreUa                 |
-		| WeWillUs          | WeWillUs                 |
-		| WeWillUa          | WeWillUa                 |
-		| WeAreUs           | WeAreUs                  |
-		| WeAreUa           | WeAreUa                  |
-		| TechnologyStack   | TechnologyStackUs        |
-		| SlugUs            | TestSlugUsSideTagOnlyOne |
-	Given User creates new Career with 'TitleUsSideTagOnlyOne' career description and 'TestingSideTagOnlyOne_Тестовий' tag
-		| NameUs               | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideTagOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix | Name                                         |
+		| Tag    | TestingSideTagOnlyOne_ТестовийБоковийТегОдин |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs               | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideTagOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                  |
+		| Vacancy | TestUsSideTagOnlyOne  |
+		| Tag     | TestingSideTagOnlyOne |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideTagOnlyOne |
@@ -48,33 +36,22 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix | Name                      |
-		| Tag    | TestingSideTag1_Тестовий1 |
-		| Tag    | TestingSideTag2_Тестовий2 |
-	Given User creates and publish new Career Description
-		| Field             | Value             |
-		| AboutTheProjectUs | AboutTheProjectUs |
-		| AboutTheProjectUa | AboutTheProjectUa |
-		| AboutTheRoleUs    | AboutTheRoleUs    |
-		| AboutTheRoleUa    | AboutTheRoleUa    |
-		| TitleUs           | TitleUsSideTag    |
-		| TitleUa           | TitleUaSideTag    |
-		| YouWillUs         | YouWillUs         |
-		| YouWillUa         | YouWillUa         |
-		| YouAreUs          | YouAreUs          |
-		| YouAreUa          | YouAreUa          |
-		| WeWillUs          | WeWillUs          |
-		| WeWillUa          | WeWillUa          |
-		| WeAreUs           | WeAreUs           |
-		| WeAreUa           | WeAreUa           |
-		| TechnologyStack   | TechnologyStackUs |
-		| SlugUs            | TestSlugUsSideTag |
-	Given User creates new Career with 'TitleUsSideTag' career description and 'TestingSideTag1_Тестовий1,TestingSideTag2_Тестовий2' tag
-		| NameUs        | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix | Name                                |
+		| Tag    | TestingSideTag1_ТестовийБоковийТег1 |
+		| Tag    | TestingSideTag2_ТестовийБоковийТег2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs        | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name            |
+		| Vacancy | TestUsSideTag   |
+		| Tag     | TestingSideTag1 |
+		| Tag     | TestingSideTag2 |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag             |
 		| TestingSideTag1 |
@@ -102,33 +79,22 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 	# Precondition
-	Given User creates tag
-		| Prefix | Name                            |
-		| Tag    | TestingResetSideTag1_Тестовий 1 |
-		| Tag    | TestingResetSideTag2_Тестовий 2 |
-	Given User creates and publish new Career Description
-		| Field             | Value                  |
-		| AboutTheProjectUs | AboutTheProjectUs      |
-		| AboutTheProjectUa | AboutTheProjectUa      |
-		| AboutTheRoleUs    | AboutTheRoleUs         |
-		| AboutTheRoleUa    | AboutTheRoleUa         |
-		| TitleUs           | TitleUsResetSideTag    |
-		| TitleUa           | TitleUaResetSideTag    |
-		| YouWillUs         | YouWillUs              |
-		| YouWillUa         | YouWillUa              |
-		| YouAreUs          | YouAreUs               |
-		| YouAreUa          | YouAreUa               |
-		| WeWillUs          | WeWillUs               |
-		| WeWillUa          | WeWillUa               |
-		| WeAreUs           | WeAreUs                |
-		| WeAreUa           | WeAreUa                |
-		| TechnologyStack   | TechnologyStackUs      |
-		| SlugUs            | TestSlugUsResetSideTag |
-	Given User creates new Career with 'TitleUsResetSideTag' career description and 'TestingResetSideTag1_Тестовий 1,TestingResetSideTag2_Тестовий 2' tag
-		| NameUs             | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetSideTag | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix | Name                                              |
+		| Tag    | TestingResetSideTag1_ТестовийВидалитиБоковийТег 1 |
+		| Tag    | TestingResetSideTag2_ТестовийВидалитиБоковийТег 2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs             | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsResetSideTag |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                 |
+		| Vacancy | TestUsResetSideTag   |
+		| Tag     | TestingResetSideTag1 |
+		| Tag     | TestingResetSideTag2 |
 	When User selects tags in 'Tags' filter side bar on 'CareerPage' container
 		| Tag                     |
 		| Testing Reset Side Tag1 |

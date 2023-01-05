@@ -1,4 +1,4 @@
-﻿Feature: JobsBlock1
+Feature: JobsBlock1
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckJobDescriptionOnJobPage
@@ -8,29 +8,20 @@ Scenario: CheckJobDescriptionOnJobPage
 		| Direction | TSWEB146TestingDirectionTwo_ТестовийДругий |
 		| Tag       | Test146TagTwo_Тестовий146ТегДругий         |
 		| Tag       | Hot_ГарячіВакансії                         |
-	Given User creates and publish new Career Description
-		| Field             | Value                  |
-		| AboutTheProjectUs | AboutTheProjectUsTwo   |
-		| AboutTheProjectUa | AboutTheProjectUaTwo   |
-		| AboutTheRoleUs    | AboutTheRoleUsTwo      |
-		| AboutTheRoleUa    | AboutTheRoleUaTwo      |
-		| TitleUs           | TSWEB146TitleUsTwo     |
-		| TitleUa           | TSWEB146TitleUaTwo     |
-		| YouWillUs         | YouWillUsTwo           |
-		| YouWillUa         | YouWillUaTwo           |
-		| YouAreUs          | YouAreUsTwo            |
-		| YouAreUa          | YouAreUaTwo            |
-		| WeWillUs          | WeWillUsTwo            |
-		| WeWillUa          | WeWillUaTwo            |
-		| WeAreUs           | WeAreUsTwo             |
-		| WeAreUa           | WeAreUaTwo             |
-		| TechnologyStack   | TechnologyStackUsTwo   |
-		| SlugUs            | TestSlugUsDirectionTwo |
+	Given User creates and publishes new Career Description with default values
+		| Field   | Value              |
+		| TitleUs | TSWEB146TitleUsTwo |
 	Given User creates new Career with 'TSWEB146TitleUsTwo' career description and 'TSWEB146TestingDirectionTwo_ТестовийДругий,Test146TagTwo_Тестовий146ТегДругий,Hot_ГарячіВакансії' tag
 		| NameUs            | NameUa            | DescriptionUs     | DescriptionUa     | Type | LinkType |
 		| Tsweb146TestusTwo | TSWEB146TestUaTwo | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | Tsweb146TestusTwo           |
+		| Tag     | TSWEB146TestingDirectionTwo |
+		| Tag     | Test146TagTwo               |
+		| Tag     | Hot                         |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                         |
@@ -61,3 +52,16 @@ Scenario: CheckJobDescriptionOnJobPage
 	Then 'Would you like to be a part of our team?' text is displayed on Apply Container on job page
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
+
+@Regression @TSWEB146 @Cleanup
+Scenario: CheckPaginationOnCareerPage
+	# Preconditions
+	Given User creates and publishes '12' Careers with descriptions and tags
+	# Scenario
+	Given User is on career website
+	When User waits careers with mocked data
+	Then Pagination is displayed on Career page
+	Then Pagination navigation button with 'right' direction is displayed
+	When User clicks on 'right' direction button in pagination panel
+	Then '02' pagination button has 'orange yellow' background color in pagination panel
+	Then Pagination navigation button with 'left' direction is displayed

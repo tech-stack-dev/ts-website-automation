@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
 using ChoETL;
 using NUnit.Framework;
@@ -14,19 +15,19 @@ namespace PlaywrightAutomation.UnitTests
 
         [Test]
         [Category("OnBuild")]
-        public void Does_All_FeatureFiles_Has_Tests()
+        public void Does_All_FeatureFiles_Have_Tests()
         {
-            foreach (var ff in _allFeatureFiles)
-            {
-                var lines = ff.Value;
-                Verify.IsTrue(lines.Count(x => x.TrimStart().StartsWith("@")) >= 1,
-                    $"'{ff.Key}' doesn't contains tests");
-            }
+            var filesWithoutTests = _allFeatureFiles
+                .Where(x => !x.Value.Any(y => y.StartsWith("Scenario")))
+                .ToList();
+
+            Verify.AreEqual(0, filesWithoutTests.Count(),
+                $"Some feature files doesn't contains tests: {filesWithoutTests.Select(x => x.Key).ToString("; ")}");
         }
 
         [Test]
         [Category("OnBuild")]
-        public void Does_All_FeatureFiles_Has_Names()
+        public void Does_All_FeatureFiles_Have_Names()
         {
             foreach (var ff in _allFeatureFiles)
             {
@@ -43,7 +44,7 @@ namespace PlaywrightAutomation.UnitTests
 
         [Test]
         [Category("OnBuild")]
-        public void Does_All_Scenarios_Has_Correct_Structure()
+        public void Does_All_Scenarios_Have_Correct_Structure()
         {
             foreach (var ff in _allFeatureFiles)
             {
