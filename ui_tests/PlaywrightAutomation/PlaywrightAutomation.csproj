@@ -49,6 +49,8 @@
 
   <ItemGroup>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
+    <Folder Include="SpecFlowTests\OurServices\ConsultingService\" />
+    <Folder Include="SpecFlowTests\OurServices\QaAsAService\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
