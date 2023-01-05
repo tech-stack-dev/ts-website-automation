@@ -43,6 +43,8 @@
     <None Update="Resources\test.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
+    <Folder Include="SpecFlowTests\CareerPage\JobBlock\" />
   </ItemGroup>
 
   <ItemGroup>

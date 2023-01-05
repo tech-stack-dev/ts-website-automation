@@ -1,4 +1,5 @@
 ﻿using AutomationUtils.Extensions;
+using ChoETL;
 using System;
 using System.ComponentModel;
 
@@ -6,7 +7,8 @@ namespace PlaywrightAutomation.Models.Contentful
 {
     public class ContentfulTag
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
+        public int Version { get; set; }
         public string Name { get; set; }
 
         private TagPrefix _prefix;
@@ -26,8 +28,12 @@ namespace PlaywrightAutomation.Models.Contentful
                 }
             }
         }
-        
-        public int Version { get; set; } = 1;
+
+        public ContentfulTag()
+        {
+            Id = Guid.NewGuid().ToString("N");
+            Version = 1;
+        }
 
         // TagPrefix is used to define the environment of the tag
         public enum TagPrefix
@@ -40,6 +46,16 @@ namespace PlaywrightAutomation.Models.Contentful
             Stack,
             [Description("tag")]
             Tag
+        }
+
+        public ContentfulTag FillWithDefaultData(string randomValue = null)
+        {
+            randomValue ??= Guid.NewGuid().ToString("N");
+
+            this.Name = this.Name.IsNullOrEmpty() ? $"TestingDirection{randomValue}_Тестовий{randomValue}" : this.Name;
+            this.Prefix = ((int)this.Prefix) < 0 ? TagPrefix.Direction : this.Prefix;
+
+            return this;
         }
     }
 }
