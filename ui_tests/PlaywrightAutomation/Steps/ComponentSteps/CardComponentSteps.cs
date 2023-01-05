@@ -1,5 +1,5 @@
 ﻿using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Components.Cards;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;

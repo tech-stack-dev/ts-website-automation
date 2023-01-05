@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
+using PlaywrightAutomation.Components.Cards;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
