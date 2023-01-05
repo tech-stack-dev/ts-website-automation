@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Components
 
         public override string Construct()
         {
-            var selector = $"//div[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
+            var selector = $"//a[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
     }
