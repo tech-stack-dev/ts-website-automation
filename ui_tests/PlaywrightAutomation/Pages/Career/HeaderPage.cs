@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using AutomationUtils.Utils;
+using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Components.Button;
@@ -15,11 +16,12 @@ namespace PlaywrightAutomation.Pages
 
         public ILocator Logo => Page.Locator(Container).Locator("//img[contains(@src, 'logo')]");
 
-        public async void CheckLogo()
+        public void CheckLogo()
         {
-            Verify.IsTrue(await Logo.IsVisibleAsync(), "Header logo is not displayed");
-            Verify.AreEqual("Techstack", await Logo.GetAttributeAsync("alt"),
-                "Header logo is not displayed");
+            var logoVisibleState = Logo.IsVisibleAsync().GetAwaiter().GetResult();
+            logoVisibleState.Should().BeTrue();
+            var logoText = Logo.GetAttributeAsync("alt").GetAwaiter().GetResult();
+            logoText.Should().Be("Techstack");
         }
 
         public async Task SelectLanguage(string language, string container)

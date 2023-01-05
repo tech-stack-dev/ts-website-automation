@@ -1,34 +1,22 @@
-﻿Feature: DropdownInCareerPage
+Feature: DropdownInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                             |
-		| Direction | TestingDirectionOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUsDirectionOnlyOne    |
-		| TitleUa           | TitleUaDirectionOnlyOne    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsDirectionOnlyOne |
-	Given User creates new Career with 'TitleUsDirectionOnlyOne' career description and 'TestingDirectionOnlyOne_Тестовий' tag
-		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsDirectionOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                 |
+		| Direction | TestingDirectionOnlyOne_ТестовийНапрямокОднаВакансія |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                 | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsDirectionOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                    |
+		| Vacancy | TestUsDirectionOnlyOne  |
+		| Tag     | TestingDirectionOnlyOne |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag                        |
@@ -54,33 +42,22 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                        |
-		| Direction | TestingDirection1_Тестовий1 |
-		| Direction | TestingDirection2_Тестовий2 |
-	Given User creates and publish new Career Description
-		| Field             | Value               |
-		| AboutTheProjectUs | AboutTheProjectUs   |
-		| AboutTheProjectUa | AboutTheProjectUa   |
-		| AboutTheRoleUs    | AboutTheRoleUs      |
-		| AboutTheRoleUa    | AboutTheRoleUa      |
-		| TitleUs           | TitleUsDirection    |
-		| TitleUa           | TitleUaDirection    |
-		| YouWillUs         | YouWillUs           |
-		| YouWillUa         | YouWillUa           |
-		| YouAreUs          | YouAreUs            |
-		| YouAreUa          | YouAreUa            |
-		| WeWillUs          | WeWillUs            |
-		| WeWillUa          | WeWillUa            |
-		| WeAreUs           | WeAreUs             |
-		| WeAreUa           | WeAreUa             |
-		| TechnologyStack   | TechnologyStackUs   |
-		| SlugUs            | TestSlugUsDirection |
-	Given User creates new Career with 'TitleUsDirection' career description and 'TestingDirection1_Тестовий1,TestingDirection2_Тестовий2' tag
-		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsDirection | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                |
+		| Direction | TestingDirection1_ТестовийНапрямок1 |
+		| Direction | TestingDirection2_ТестовийНапрямок2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs          | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsDirection |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name              |
+		| Vacancy | TestUsDirection   |
+		| Tag     | TestingDirection1 |
+		| Tag     | TestingDirection2 |
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag               |
@@ -114,32 +91,20 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                             |
-		| Seniority | TestingSeniorityOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                      |
-		| AboutTheProjectUs | AboutTheProjectUs          |
-		| AboutTheProjectUa | AboutTheProjectUa          |
-		| AboutTheRoleUs    | AboutTheRoleUs             |
-		| AboutTheRoleUa    | AboutTheRoleUa             |
-		| TitleUs           | TitleUsSeniorityOnlyOne    |
-		| TitleUa           | TitleUaSeniorityOnlyOne    |
-		| YouWillUs         | YouWillUs                  |
-		| YouWillUa         | YouWillUa                  |
-		| YouAreUs          | YouAreUs                   |
-		| YouAreUa          | YouAreUa                   |
-		| WeWillUs          | WeWillUs                   |
-		| WeWillUa          | WeWillUa                   |
-		| WeAreUs           | WeAreUs                    |
-		| WeAreUa           | WeAreUa                    |
-		| TechnologyStack   | TechnologyStackUs          |
-		| SlugUs            | TestSlugUsSeniorityOnlyOne |
-	Given User creates new Career with 'TitleUsSeniorityOnlyOne' career description and 'TestingSeniorityOnlyOne_Тестовий' tag
-		| NameUs                 | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSeniorityOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                               |
+		| Seniority | TestingSeniorityOnlyOne_ТестовийРівеньОднаВакансія |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                 | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                    |
+		| Vacancy | TestUsSeniorityOnlyOne  |
+		| Tag     | TestingSeniorityOnlyOne |
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                     |
@@ -161,34 +126,24 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                           |
-		| Seniority | Testing Seniority 1_Тестовий 1 |
-		| Seniority | Testing Seniority 2_Тестовий 2 |
-		| Seniority | Testing Seniority 3_Тестовий 3 |
-	Given User creates and publish new Career Description
-		| Field             | Value               |
-		| AboutTheProjectUs | AboutTheProjectUs   |
-		| AboutTheProjectUa | AboutTheProjectUa   |
-		| AboutTheRoleUs    | AboutTheRoleUs      |
-		| AboutTheRoleUa    | AboutTheRoleUa      |
-		| TitleUs           | TitleUsSeniority    |
-		| TitleUa           | TitleUaSeniority    |
-		| YouWillUs         | YouWillUs           |
-		| YouWillUa         | YouWillUa           |
-		| YouAreUs          | YouAreUs            |
-		| YouAreUa          | YouAreUa            |
-		| WeWillUs          | WeWillUs            |
-		| WeWillUa          | WeWillUa            |
-		| WeAreUs           | WeAreUs             |
-		| WeAreUa           | WeAreUa             |
-		| TechnologyStack   | TechnologyStackUs   |
-		| SlugUs            | TestSlugUsSeniority |
-	Given User creates new Career with 'TitleUsSeniority' career description and 'Testing Seniority 1_Тестовий 1,Testing Seniority 2_Тестовий 2,Testing Seniority 3_Тестовий 3' tag
-		| NameUs          | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                 |
+		| Seniority | Testing Seniority 1_ТестовийРівень 1 |
+		| Seniority | Testing Seniority 2_ТестовийРівень 2 |
+		| Seniority | Testing Seniority 3_ТестовийРівень 3 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs          | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                |
+		| Vacancy | TestUsSeniority     |
+		| Tag     | Testing Seniority 1 |
+		| Tag     | Testing Seniority 2 |
+		| Tag     | Testing Seniority 3 |
 	When User clicks on 'SeniorityLevel' dropdown
 	When User selects tag from 'SeniorityLevel' dropdown
 		| Tag                 |

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
@@ -7,6 +8,7 @@ using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
+using static PlaywrightAutomation.Components.BaseWebComponent;
 
 namespace PlaywrightAutomation.Steps.PageSteps
 {
@@ -68,6 +70,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
 
+        [Then(@"'([^']*)' text is displayed with social media icons on job page")]
+        public void ThenTextIsDisplayedWithSocialMediaIconsOnJobPage(string expectedText)
+        {
+            var actualText = _page.Init<JobPage>().SocialIconsText.TextContentAsync().GetAwaiter().GetResult();
+            actualText.Should().Be(expectedText);
+        }
+
         [Then(@"Social media icons are displayed below job title on job page")]
         public void ThenSocialMediaIconsAreDisplayedBelowJobTitleOnJobPage()
         {
@@ -92,6 +101,26 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var actualText = _page.Init<JobPage>().ApplyContainer.InnerTextAsync().GetAwaiter().GetResult();
             actualText.Should().Contain(expectedText);
+        }
+
+        [Then(@"Techstack logo is displayed on job page")]
+        public void ThenTechstackLogoIsDisplayedOnJobPage()
+        {
+            var logo = _page.Init<NavigationHeader>().Logo;
+            var logoState = logo.IsVisibleAsync().GetAwaiter().GetResult();
+            logoState.Should().BeTrue();
+            var logoAttribute = logo.GetAttributeAsync("alt").GetAwaiter().GetResult();
+            logoAttribute.Should().BeEquivalentTo("Techstack");
+        }
+
+        [Then(@"Jobs block on '([^']*)' container on job page has tabs")]
+        public void ThenJobsBlockOnContainerOnJobPageHasTabs(string container, Table table)
+        {
+            var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
+            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+                .ElementHandlesAsync().GetAwaiter().GetResult()
+                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+            actualListTabs.Should().Equal(expectedListTabs);
         }
     }
 }

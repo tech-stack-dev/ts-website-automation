@@ -1,34 +1,22 @@
-﻿Feature: SearchFieldInCareerPage
+Feature: SearchFieldInCareerPage
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                              |
-		| Direction | TestingDirectionOfSearch_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                       |
-		| AboutTheProjectUs | AboutTheProjectUs           |
-		| AboutTheProjectUa | AboutTheProjectUa           |
-		| AboutTheRoleUs    | AboutTheRoleUs              |
-		| AboutTheRoleUa    | AboutTheRoleUa              |
-		| TitleUs           | TitleUsDirectionOfSearch    |
-		| TitleUa           | TitleUaDirectionOfSearch    |
-		| YouWillUs         | YouWillUs                   |
-		| YouWillUa         | YouWillUa                   |
-		| YouAreUs          | YouAreUs                    |
-		| YouAreUa          | YouAreUa                    |
-		| WeWillUs          | WeWillUs                    |
-		| WeWillUa          | WeWillUa                    |
-		| WeAreUs           | WeAreUs                     |
-		| WeAreUa           | WeAreUa                     |
-		| TechnologyStack   | TechnologyStackUs           |
-		| SlugUs            | TestSlugUsDirectionOfSearch |
-	Given User creates new Career with 'TitleUsDirectionOfSearch' career description and 'TestingDirectionOfSearch_Тестовий' tag
-		| NameUs                  | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsDirectionOfSearch | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                              |
+		| Direction | TestingDirectionOfSearch_ТестовийПошукЗаНапрямком |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                  | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsDirectionOfSearch |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                     |
+		| Vacancy | TestUsDirectionOfSearch  |
+		| Tag     | TestingDirectionOfSearch |
 	When User set 'TestUsDirectionOfSearch' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'TestUsDirectionOfSearch'
@@ -36,32 +24,20 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 @Regresiion @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                |
-		| Direction | TestingDirectionPartOfText_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                         |
-		| AboutTheProjectUs | AboutTheProjectUs             |
-		| AboutTheProjectUa | AboutTheProjectUa             |
-		| AboutTheRoleUs    | AboutTheRoleUs                |
-		| AboutTheRoleUa    | AboutTheRoleUa                |
-		| TitleUs           | TitleUsDirectionPartOfText    |
-		| TitleUa           | TitleUaDirectionPartOfText    |
-		| YouWillUs         | YouWillUs                     |
-		| YouWillUa         | YouWillUa                     |
-		| YouAreUs          | YouAreUs                      |
-		| YouAreUa          | YouAreUa                      |
-		| WeWillUs          | WeWillUs                      |
-		| WeWillUa          | WeWillUa                      |
-		| WeAreUs           | WeAreUs                       |
-		| WeAreUa           | WeAreUa                       |
-		| TechnologyStack   | TechnologyStackUs             |
-		| SlugUs            | TestSlugUsDirectionPartOfText |
-	Given User creates new Career with 'TitleUsDirectionPartOfText' career description and 'TestingDirectionPartOfText_Тестовий' tag
-		| NameUs                    | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsDirectionPartOfText | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                    |
+		| Direction | TestingDirectionPartOfText_ТестовийНапрямокЧастинаНазви |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                    | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsDirectionPartOfText |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                       |
+		| Vacancy | TestUsDirectionPartOfText  |
+		| Tag     | TestingDirectionPartOfText |
 	When User set 'Test' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Search results contain 'Test'

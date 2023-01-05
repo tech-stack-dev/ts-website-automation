@@ -1,4 +1,4 @@
-﻿Feature: HomePage
+Feature: HomePage
 
 Background:
 	Given User is on career website
@@ -17,4 +17,4 @@ Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 
 @Regression
 Scenario: CheckLogoDisplayedOnMainPage
-	Then 'Techstack' logo is displayed on main page
+	Then Techstack logo is displayed on main page

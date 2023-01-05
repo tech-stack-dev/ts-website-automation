@@ -3,7 +3,7 @@
 @Regression @TSWEB149
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
-	When User clicks on 'Contact us' tab
+	When User clicks on 'Contact us' tab on 'NavigationHeader' container
 	Then 'Contact us' title is displayed on Contact Us form
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then Error messages are displayed under fields
@@ -41,6 +41,7 @@ Examples:
 	| Email           | Tel     | EmailErrorMessage          | TelErrorMessage                   |
 	| 12345           | -12345  | Please enter a valid email | Please enter a valid phone number |
 	| @test.com       | test    | Please enter a valid email | Please enter a valid phone number |
+	# This variant shouldn't work while task TSWEB-279
 	| email@-test.com | !@#$%   | Please enter a valid email | Please enter a valid phone number |
 	| !@#$%           | +12345+ | Please enter a valid email | Please enter a valid phone number |
 

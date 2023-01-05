@@ -1,34 +1,22 @@
-﻿Feature: SeniorityLevelSideBar
+Feature: SeniorityLevelSideBar
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                 |
-		| Seniority | TestingSideSeniorityOnlyOne_Тестовий |
-	Given User creates and publish new Career Description
-		| Field             | Value                          |
-		| AboutTheProjectUs | AboutTheProjectUs              |
-		| AboutTheProjectUa | AboutTheProjectUa              |
-		| AboutTheRoleUs    | AboutTheRoleUs                 |
-		| AboutTheRoleUa    | AboutTheRoleUa                 |
-		| TitleUs           | TitleUsSideSeniorityOnlyOne    |
-		| TitleUa           | TitleUaSideSeniorityOnlyOne    |
-		| YouWillUs         | YouWillUs                      |
-		| YouWillUa         | YouWillUa                      |
-		| YouAreUs          | YouAreUs                       |
-		| YouAreUa          | YouAreUa                       |
-		| WeWillUs          | WeWillUs                       |
-		| WeWillUa          | WeWillUa                       |
-		| WeAreUs           | WeAreUs                        |
-		| WeAreUa           | WeAreUa                        |
-		| TechnologyStack   | TechnologyStackUs              |
-		| SlugUs            | TestSlugUsSideSeniorityOnlyOne |
-	Given User creates new Career with 'TitleUsSideSeniorityOnlyOne' career description and 'TestingSideSeniorityOnlyOne_Тестовий' tag
-		| NameUs                     | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideSeniorityOnlyOne | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                  |
+		| Seniority | TestingSideSeniorityOnlyOne_ТестовийРівеньБоковийОдин |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                     | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideSeniorityOnlyOne |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                        |
+		| Vacancy | TestUsSideSeniorityOnlyOne  |
+		| Tag     | TestingSideSeniorityOnlyOne |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                         |
 		| TestingSideSeniorityOnlyOne |
@@ -48,33 +36,22 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                            |
-		| Seniority | TestingSideSeniority1_Тестовий1 |
-		| Seniority | TestingSideSeniority2_Тестовий2 |
-	Given User creates and publish new Career Description
-		| Field             | Value                   |
-		| AboutTheProjectUs | AboutTheProjectUs       |
-		| AboutTheProjectUa | AboutTheProjectUa       |
-		| AboutTheRoleUs    | AboutTheRoleUs          |
-		| AboutTheRoleUa    | AboutTheRoleUa          |
-		| TitleUs           | TitleUsSideSeniority    |
-		| TitleUa           | TitleUaSideSeniority    |
-		| YouWillUs         | YouWillUs               |
-		| YouWillUa         | YouWillUa               |
-		| YouAreUs          | YouAreUs                |
-		| YouAreUa          | YouAreUa                |
-		| WeWillUs          | WeWillUs                |
-		| WeWillUa          | WeWillUa                |
-		| WeAreUs           | WeAreUs                 |
-		| WeAreUa           | WeAreUa                 |
-		| TechnologyStack   | TechnologyStackUs       |
-		| SlugUs            | TestSlugUsSideSeniority |
-	Given User creates new Career with 'TitleUsSideSeniority' career description and 'TestingSideSeniority1_Тестовий1,TestingSideSeniority2_Тестовий2' tag
-		| NameUs              | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsSideSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                         |
+		| Seniority | TestingSideSeniority1_ТестовийРівеньБоковий1 |
+		| Seniority | TestingSideSeniority2_ТестовийРівеньБоковий2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs              | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                  |
+		| Vacancy | TestUsSideSeniority   |
+		| Tag     | TestingSideSeniority1 |
+		| Tag     | TestingSideSeniority2 |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                   |
 		| TestingSideSeniority1 |
@@ -102,33 +79,22 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	# Precondition
-	Given User creates tag
-		| Prefix    | Name                                  |
-		| Seniority | TestingResetSideSeniority1_Тестовий 1 |
-		| Seniority | TestingResetSideSeniority2_Тестовий 2 |
-	Given User creates and publish new Career Description
-		| Field             | Value                        |
-		| AboutTheProjectUs | AboutTheProjectUs            |
-		| AboutTheProjectUa | AboutTheProjectUa            |
-		| AboutTheRoleUs    | AboutTheRoleUs               |
-		| AboutTheRoleUa    | AboutTheRoleUa               |
-		| TitleUs           | TitleUsResetSideSeniority    |
-		| TitleUa           | TitleUaResetSideSeniority    |
-		| YouWillUs         | YouWillUs                    |
-		| YouWillUa         | YouWillUa                    |
-		| YouAreUs          | YouAreUs                     |
-		| YouAreUa          | YouAreUa                     |
-		| WeWillUs          | WeWillUs                     |
-		| WeWillUa          | WeWillUa                     |
-		| WeAreUs           | WeAreUs                      |
-		| WeAreUa           | WeAreUa                      |
-		| TechnologyStack   | TechnologyStackUs            |
-		| SlugUs            | TestSlugUsResetSideSeniority |
-	Given User creates new Career with 'TitleUsResetSideSeniority' career description and 'TestingResetSideSeniority1_Тестовий 1,TestingResetSideSeniority2_Тестовий 2' tag
-		| NameUs                   | NameUa | DescriptionUs     | DescriptionUa     | Type | LinkType |
-		| TestUsResetSideSeniority | TestUa | DescriptionTestUs | DescriptionTestUa | Link | Entry    |
+	Given User creates tag with default values
+		| Prefix    | Name                                                       |
+		| Seniority | TestingResetSideSeniority1_ТестовийВидалитиБоковийРівень 1 |
+		| Seniority | TestingResetSideSeniority2_ТестовийВидалитиБоковийРівень 2 |
+	Given User creates and publishes new Career Description with default values
+		| Field | Value |
+	Given User creates default Career with career description and tag
+		| NameUs                   | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
+		| TestUsResetSideSeniority |        |               |               | Link | Entry    |
 	# Scenario
 	Given User is on career website
+	When User expects tag and vacancy created in 'Contentful' on the page
+		| Type    | Name                       |
+		| Vacancy | TestUsResetSideSeniority   |
+		| Tag     | TestingResetSideSeniority1 |
+		| Tag     | TestingResetSideSeniority2 |
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag                           |
 		| Testing Reset Side Seniority1 |
