@@ -49,6 +49,7 @@
 
   <ItemGroup>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
+    <Folder Include="SpecFlowTests\OurServices\ConsultingService\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
