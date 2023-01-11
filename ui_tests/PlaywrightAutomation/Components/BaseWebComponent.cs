@@ -298,11 +298,13 @@ namespace PlaywrightAutomation.Components
 
         public Task<bool> IsHiddenAsync(LocatorIsHiddenOptions options = null)
         {
+            Component.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Hidden}).GetAwaiter().GetResult();
             return Component.IsHiddenAsync(options);
         }
 
         public Task<bool> IsVisibleAsync(LocatorIsVisibleOptions options = null)
         {
+            Component.WaitForAsync(new LocatorWaitForOptions{State = WaitForSelectorState.Visible}).GetAwaiter().GetResult();
             return Component.IsVisibleAsync(options);
         }
 
