@@ -4,7 +4,6 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Utils;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps.ComponentSteps
@@ -22,9 +21,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks on '(.*)' direction button in pagination panel")]
         public void WhenUserClicksOnNextPageButtonInPaginationPanel(string direction)
         {
-            var navigationButton = _page.Component<Pagination>()
-                .ArrowButtonByDirection(direction)
-                .ElementHandleAsync().GetAwaiter().GetResult();
+            var navigationButton = _page.Component<Pagination>().ArrowButtonByDirection(direction);
             navigationButton.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
@@ -32,11 +29,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' pagination button has '([^']*)' background color in pagination panel")]
         public void ThenPaginationButtonHasBackgroundColorInPaginationPanel(string buttonName, string backgroundColor)
         {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult();
-            var button =
-                paginationButtons.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult()
-                    .Equals(buttonName));
+            var paginationButtons = _page.Component<Pagination>().PaginationButtons;
+            var button = paginationButtons.GetByText(buttonName);
+
             button.GetBackgroundColor()
                 .Should()
                 .Be(ColorsConvertor.Converter(backgroundColor));
@@ -54,11 +49,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Pagination is displayed on Career page")]
         public void ThenPaginationIsDisplayedOnCareerPage()
         {
-            var paginationButtons = _page.Component<Pagination>().PaginationButtons
-                .ElementHandlesAsync().GetAwaiter().GetResult();
-            paginationButtons.All(x => x.IsVisibleAsync().GetAwaiter().GetResult())
-                .Should()
-                .BeTrue();
+            _page.Component<Pagination>().PaginationButtons.First.WaitForAsync().GetAwaiter().GetResult();
         }
     }
 }

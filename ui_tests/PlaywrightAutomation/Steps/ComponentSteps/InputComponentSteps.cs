@@ -42,11 +42,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page.HoverAsync(_page.Component<FilterGroupWrapper>("Seniority levels").Construct());
             var inputElement =
                 _page.Component<Input>(input, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                    .ElementHandleAsync().GetAwaiter().GetResult();
+                .Instance.TextContentAsync().GetAwaiter().GetResult();
 
-            _page.WaitForElementText(inputElement, text);
-
-            inputElement.GetValue().Should().Be(text);
+            inputElement.Should().Be(text);
         }
     }
 }
