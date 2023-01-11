@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Extensions;
 
 namespace PlaywrightAutomation.Components
 {
@@ -9,7 +10,7 @@ namespace PlaywrightAutomation.Components
 
         public override string Construct()
         {
-            var selector = "//div[@class='breadcrumbs-block']";
+            var selector = $"//div[@class='breadcrumbs-block'] | //a[@id='bredcrumbs-{Identifier}']";
             return selector;
         }
     }
