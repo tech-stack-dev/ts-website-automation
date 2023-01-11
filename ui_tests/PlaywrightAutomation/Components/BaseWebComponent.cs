@@ -21,7 +21,9 @@ namespace PlaywrightAutomation.Components
 
         protected ILocator Component;
 
-        public virtual void CheckAutomationClass() { }
+        public virtual void CheckAutomationClass()
+        {
+        }
 
         public abstract string Construct();
 
@@ -53,7 +55,9 @@ namespace PlaywrightAutomation.Components
             {
                 CheckAutomationClass();
             }
-            catch { }
+            catch
+            {
+            }
 
             #endregion
 
@@ -75,6 +79,11 @@ namespace PlaywrightAutomation.Components
 
         #region Implementation
 
+        public Task<IReadOnlyList<ILocator>> AllAsync()
+        {
+            return Component.AllAsync();
+        }
+
         public Task<IReadOnlyList<string>> AllInnerTextsAsync()
         {
             return Component.AllInnerTextsAsync();
@@ -85,6 +94,11 @@ namespace PlaywrightAutomation.Components
             return Component.AllTextContentsAsync();
         }
 
+        public Task BlurAsync(LocatorBlurOptions options = null)
+        {
+            return Component.BlurAsync(options);
+        }
+
         public Task<LocatorBoundingBoxResult> BoundingBoxAsync(LocatorBoundingBoxOptions options = null)
         {
             return Component.BoundingBoxAsync(options);
@@ -93,6 +107,11 @@ namespace PlaywrightAutomation.Components
         public Task CheckAsync(LocatorCheckOptions options = null)
         {
             return Component.CheckAsync(options);
+        }
+
+        public Task ClearAsync(LocatorClearOptions options = null)
+        {
+            return Component.ClearAsync(options);
         }
 
         public Task ClickAsync(LocatorClickOptions options = null)
@@ -207,6 +226,11 @@ namespace PlaywrightAutomation.Components
         }
 
         public ILocator GetByTestId(string testId)
+        {
+            return Component.GetByTestId(testId);
+        }
+
+        public ILocator GetByTestId(Regex testId)
         {
             return Component.GetByTestId(testId);
         }
