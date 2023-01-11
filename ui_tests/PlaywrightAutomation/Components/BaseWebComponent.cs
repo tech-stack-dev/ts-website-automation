@@ -21,9 +21,7 @@ namespace PlaywrightAutomation.Components
 
         protected ILocator Component;
 
-        public virtual void CheckAutomationClass()
-        {
-        }
+        public virtual void CheckAutomationClass() { }
 
         public abstract string Construct();
 
@@ -55,9 +53,7 @@ namespace PlaywrightAutomation.Components
             {
                 CheckAutomationClass();
             }
-            catch
-            {
-            }
+            catch { }
 
             #endregion
 
