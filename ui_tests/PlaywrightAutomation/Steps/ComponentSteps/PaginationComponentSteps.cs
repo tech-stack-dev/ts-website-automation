@@ -49,7 +49,10 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Pagination is displayed on Career page")]
         public void ThenPaginationIsDisplayedOnCareerPage()
         {
-            _page.Component<Pagination>().PaginationButtons.First.WaitForAsync().GetAwaiter().GetResult();
+            var paginationButton = _page.Component<Pagination>().PaginationButtons.First;
+            paginationButton.WaitForAsync().GetAwaiter().GetResult();
+
+            paginationButton.IsVisibleAsync().GetAwaiter().GetResult().Should().BeTrue();
         }
     }
 }

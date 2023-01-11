@@ -25,7 +25,7 @@ Scenario: CheckErrorMessagesForRequiredFieldsWithSpacesOnContactForm
 		| Email     | Please enter a valid email        |
 		| Tel       | Please enter a valid phone number |
 
-@Regression @TSWEB149 @NotReady
+@Regression @TSWEB149
 Scenario Outline: CheckErrorMessagesForRequiredFieldsWithInvalidDataOnContactForm
 	Given User is on 'https://staging-career.tech-stack.io/contact-us' page
 	When User set 'test' text to 'Full name' input on 'ContactUsPage' container
