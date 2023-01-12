@@ -75,6 +75,11 @@ namespace PlaywrightAutomation.Components
 
         #region Implementation
 
+        public Task<IReadOnlyList<ILocator>> AllAsync()
+        {
+            return Component.AllAsync();
+        }
+
         public Task<IReadOnlyList<string>> AllInnerTextsAsync()
         {
             return Component.AllInnerTextsAsync();
@@ -85,6 +90,11 @@ namespace PlaywrightAutomation.Components
             return Component.AllTextContentsAsync();
         }
 
+        public Task BlurAsync(LocatorBlurOptions options = null)
+        {
+            return Component.BlurAsync(options);
+        }
+
         public Task<LocatorBoundingBoxResult> BoundingBoxAsync(LocatorBoundingBoxOptions options = null)
         {
             return Component.BoundingBoxAsync(options);
@@ -93,6 +103,11 @@ namespace PlaywrightAutomation.Components
         public Task CheckAsync(LocatorCheckOptions options = null)
         {
             return Component.CheckAsync(options);
+        }
+
+        public Task ClearAsync(LocatorClearOptions options = null)
+        {
+            return Component.ClearAsync(options);
         }
 
         public Task ClickAsync(LocatorClickOptions options = null)
@@ -211,6 +226,11 @@ namespace PlaywrightAutomation.Components
             return Component.GetByTestId(testId);
         }
 
+        public ILocator GetByTestId(Regex testId)
+        {
+            return Component.GetByTestId(testId);
+        }
+
         public ILocator GetByText(string text, LocatorGetByTextOptions options = null)
         {
             return Component.GetByText(text, options);
@@ -278,11 +298,13 @@ namespace PlaywrightAutomation.Components
 
         public Task<bool> IsHiddenAsync(LocatorIsHiddenOptions options = null)
         {
+            Component.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Hidden}).GetAwaiter().GetResult();
             return Component.IsHiddenAsync(options);
         }
 
         public Task<bool> IsVisibleAsync(LocatorIsVisibleOptions options = null)
         {
+            Component.WaitForAsync(new LocatorWaitForOptions{State = WaitForSelectorState.Visible}).GetAwaiter().GetResult();
             return Component.IsVisibleAsync(options);
         }
 
