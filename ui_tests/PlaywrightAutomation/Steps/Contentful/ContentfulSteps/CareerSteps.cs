@@ -7,8 +7,7 @@ using System.Linq;
 using PlaywrightAutomation.RuntimeVariables;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
-using Table = TechTalk.SpecFlow.Table;
+using PlaywrightAutomation.Utils;
 
 namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
 {
@@ -19,19 +18,15 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
         private readonly CreatedCareerDescription _createdCareerDescriptions;
         private readonly CreatedCareer _createdCareer;
         private readonly CreatedTags _createdTags;
-        private readonly TagSteps _tagSteps;
-        private readonly Contentful.CareerDescriptionSteps _careerDescriptionSteps;
         private readonly DefaultCareersList _defaultCareersList;
 
         public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions,
-                                      CreatedCareer createdCareer, CreatedTags createdTags, TagSteps tagSteps, Contentful.CareerDescriptionSteps careerDescriptionSteps, DefaultCareersList defaultCareersList)
+                                      CreatedCareer createdCareer, CreatedTags createdTags, DefaultCareersList defaultCareersList)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
             _createdCareer = createdCareer;
             _createdTags = createdTags;
-            _tagSteps = tagSteps;
-            _careerDescriptionSteps = careerDescriptionSteps;
             _defaultCareersList = defaultCareersList;
         }
 
@@ -80,8 +75,10 @@ namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
                 var createdTag = _contentfulClient.CreateTag(contentfulTag).GetAwaiter().GetResult();
                 _createdTags.Value.Add(createdTag);
 
-                List<ContentfulTag> tags = new List<ContentfulTag>();
-                tags.Add(createdTag);
+                List<ContentfulTag> tags = new List<ContentfulTag>
+                {
+                    createdTag
+                };
 
                 // Create CareerDescription
                 var careerDescription = new CareerDescription();

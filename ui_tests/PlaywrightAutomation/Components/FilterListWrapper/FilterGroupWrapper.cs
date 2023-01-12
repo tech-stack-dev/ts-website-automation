@@ -15,9 +15,7 @@ namespace PlaywrightAutomation.Components
 
         public bool CollapsibleState()
         {
-            var element = Instance.Locator("//span[contains(@class,'Collapsible__trigger')]")
-                .ElementHandleAsync().Result
-                .GetAttributeAsync("class").Result.Contains("is-open");
+            var element = Instance.Locator("//span[contains(@class,'Collapsible__trigger')]").GetAttributeAsync("class").Result.Contains("is-open");
             return element;
         }
     }

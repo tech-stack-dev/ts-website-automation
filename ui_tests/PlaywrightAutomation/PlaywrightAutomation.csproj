@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <EmbeddedResource Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <None Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <SpecFlowFeatureFiles Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Utils\Config.cs" />
   </ItemGroup>
 
@@ -44,7 +52,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
-    <Folder Include="SpecFlowTests\CareerPage\JobBlock\" />
   </ItemGroup>
 
   <ItemGroup>
