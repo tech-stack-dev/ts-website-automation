@@ -33,9 +33,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
             var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var actualListTags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult()
-                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+            var actualListTags = _page.Init<JobPage>().Tags.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTags.Should().Equal(expectedListTags);
         }
@@ -59,14 +57,15 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"'([^']*)' tag has '([^']*)' background color on job page")]
         public void ThenTagHasBackgroundColorOnJobPage(string expectedTag, string expectedColor)
         {
-            var tags = _page.Init<JobPage>().Tags.ElementHandlesAsync().GetAwaiter().GetResult();
+            var tags = _page.Init<JobPage>().Tags;
 
-            if (!tags.Any())
+            if (tags.CountAsync().Result.Equals(0))
             {
                 throw new Exception("Job page has not any job tags");
             }
 
-            var actualTag = tags.FirstOrDefault(x => x.InnerTextAsync().GetAwaiter().GetResult().Equals(expectedTag));
+            var actualTag = tags.GetByText(expectedTag);
+            
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
 
@@ -88,10 +87,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenFollowingBlockTitlesAreDisplayedOnJobPage(Table table)
         {
             var expectedBlockTitles = table.Rows.SelectMany(x => x.Values).ToList();
-
-            var actualBlockTitles = _page.Init<JobPage>().BlockTitles
-                .ElementHandlesAsync().GetAwaiter().GetResult()
-                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+            var actualBlockTitles = _page.Init<JobPage>().BlockTitles.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualBlockTitles.Should().Equal(expectedBlockTitles);
         }
@@ -118,8 +114,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
             var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
-                .ElementHandlesAsync().GetAwaiter().GetResult()
-                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+                .AllInnerTextsAsync().GetAwaiter().GetResult();
+
             actualListTabs.Should().Equal(expectedListTabs);
         }
     }

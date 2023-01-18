@@ -6,7 +6,8 @@ namespace PlaywrightAutomation.Extensions
     {
         public static string GetBackgroundColor(this ILocator locator)
         {
-            return locator.ElementHandleAsync().Result.GetBackgroundColor();
+            return locator.EvaluateAsync("element => getComputedStyle(element).backgroundColor")
+                .GetAwaiter().GetResult().Value.ToString();
         }
         
         public static int Count(this ILocator locator)
