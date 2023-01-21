@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils.BrowserFactoryUtils;
 
 namespace PlaywrightAutomation.Utils
@@ -37,7 +38,7 @@ namespace PlaywrightAutomation.Utils
         {
             var options = new BrowserTypeLaunchOptions
             {
-                Headless = true
+                Headless = BrowserConfigProvider.Headless
             };
 
             _browser = PlaywrightInstance.Chromium.LaunchAsync(options).GetAwaiter().GetResult();
