@@ -18,6 +18,7 @@ namespace PlaywrightAutomation.Utils
         public List<IBrowser> Browsers { get; set; }
 
         private IBrowser _browser;
+
         public IBrowser Browser
         {
             get
