@@ -72,12 +72,6 @@ namespace PlaywrightAutomation.Extensions
 
         #region Waiters
 
-        public static void WaitForElementText(this IPage page, IElementHandle element, string text = null)
-        {
-            page
-                .WaitForFunctionAsync($"element => element.value == '{text}'", element).GetAwaiter().GetResult();
-        }
-
         public static void WaiterWithReloadPage(this IPage page, ILocator locator, AmountOfTime amountOfTime = AmountOfTime.Long)
         {
             var ms = 5000;

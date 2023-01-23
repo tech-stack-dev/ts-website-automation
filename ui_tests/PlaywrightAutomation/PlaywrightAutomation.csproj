@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <EmbeddedResource Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <None Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <SpecFlowFeatureFiles Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="SpecFlowTests\CareerPage\JobBlock\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Utils\Config.cs" />
   </ItemGroup>
 
@@ -18,7 +26,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.27.2" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.29.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
@@ -44,14 +52,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
-    <Folder Include="SpecFlowTests\CareerPage\JobBlock\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="SpecFlowTests\CareerPage\ApplyForAJob\" />
-    <Folder Include="SpecFlowTests\OurServices\ConsultingService\" />
-    <Folder Include="SpecFlowTests\OurServices\UxUiDesign\" />
-    <Folder Include="SpecFlowTests\OurServices\QaAsAService\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

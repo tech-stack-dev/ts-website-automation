@@ -1,8 +1,8 @@
 ﻿using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
+using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
 
 namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
 {

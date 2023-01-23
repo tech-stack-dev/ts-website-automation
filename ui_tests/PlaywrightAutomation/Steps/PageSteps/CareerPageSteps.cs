@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
-using PlaywrightAutomation.Components.Cards;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.RuntimeVariables;
@@ -64,11 +63,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
             var tags = table.Rows.SelectMany(x => x.Values).ToList();
-
             var texts = _page.Component<Card>()
-                .DirectionTitle
-                .ElementHandlesAsync().GetAwaiter().GetResult()
-                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
+                .DirectionTitle.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             foreach (var text in texts)
             {
@@ -81,10 +77,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
 
-            var actualListTabs = _page.Component<NavigationTabs>()
-                .ElementHandlesAsync().GetAwaiter().GetResult()
-                .Select(x => x.InnerTextAsync().GetAwaiter().GetResult());
-
+            var actualListTabs = _page.Component<NavigationTabs>().AllInnerTextsAsync().GetAwaiter().GetResult();
+                
             actualListTabs.Should().Equal(expectedListTabs);
         }
 
@@ -98,6 +92,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 var dropdownIsOpen = _page.Component<FilterGroupWrapper>(dropdown,
                         new BaseWebComponent.Properties { ParentSelector = WebContainer.GetLocator(container) })
                     .CollapsibleState();
+
                 dropdownIsOpen.Should().BeTrue();
             }
         }

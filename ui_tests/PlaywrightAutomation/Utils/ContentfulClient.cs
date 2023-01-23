@@ -12,10 +12,10 @@ namespace PlaywrightAutomation.Utils
 {
     public class ContentfulClient
     {
-        private readonly HttpClient _httpClient;
-        private readonly ContentfulManagementClient _client;
+        private static HttpClient _httpClient;
+        private static ContentfulManagementClient _client;
 
-        public ContentfulClient()
+        static ContentfulClient()
         {
             _httpClient = new HttpClient();
             var options = new ContentfulOptions

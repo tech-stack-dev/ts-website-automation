@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components.Inputs;
+using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages.ApplyForAJob;
 using PlaywrightAutomation.Utils;
