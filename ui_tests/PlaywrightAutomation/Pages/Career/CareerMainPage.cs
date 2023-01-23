@@ -18,7 +18,7 @@ namespace PlaywrightAutomation.Pages
 
                 for (var i = 0; i < (int)amountOfAttempt; i++)
                 {
-                    result = CheckCareerDisplayed(Page.Component<Card>(defaultCareer.ConvertToPascalCase()));
+                    result = CheckCareerDisplayed(Page.Component<Card>(defaultCareer));
 
                     if (result)
                     {

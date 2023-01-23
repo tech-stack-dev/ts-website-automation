@@ -3,82 +3,64 @@
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                                    |
-		| Direction | TestingSideDirectionOnlyOne_ТестовийНапрямокБоковийОдин |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                     | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideDirectionOnlyOne |        |               |               | Link | Entry    |
+	Given User creates Career with default value
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                        |
-		| Vacancy | TestUsSideDirectionOnlyOne  |
-		| Tag     | TestingSideDirectionOnlyOne |
+	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                         |
-		| TestingSideDirectionOnlyOne |
+		| Tag          |
+		| Test1TagSRND |
 	Then Search results equal to selected tag
-		| Tag                         |
-		| TestingSideDirectionOnlyOne |
+		| Tag          |
+		| Test1TagSRND |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Direction Only One |
+		| Tag          |
+		| Test1TagSRND |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Direction Only One |
+		| Tag          |
+		| Test1TagSRND |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Direction Only One |
+		| Tag          |
+		| Test1TagSRND |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Direction Only One |
+		| Tag          |
+		| Test1TagSRND |
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                           |
-		| Direction | TestingSideDirection1_ТестовийНапрямокБоковий1 |
-		| Direction | TestingSideDirection2_ТестовийНапрямокБоковий2 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates '2' Tags
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs              | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideDirection |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                  |
-		| Vacancy | TestUsSideDirection   |
-		| Tag     | TestingSideDirection1 |
-		| Tag     | TestingSideDirection2 |
+	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then Search results equal to selected tag
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag                   |
-		| TestingSideDirection1 |
-		| TestingSideDirection2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	Then '2' tags are selected in 'Direction' sider bar on 'CareerPage' container
 	When User clicks on header 'Direction' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Direction' side bar on 'CareerPage' container equals to '2'
@@ -86,25 +68,17 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                                         |
-		| Direction | TestingResetSideDirection1_ТестовийВидалитиНапрямокБоковий 1 |
-		| Direction | TestingResetSideDirection2_ТестовийВидалитиНапрямокБоковий 2 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates '2' Tags
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                   | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsResetSideDirection |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                       |
-		| Vacancy | TestUsResetSideDirection   |
-		| Tag     | TestingResetSideDirection1 |
-		| Tag     | TestingResetSideDirection2 |
+	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag                           |
-		| Testing Reset Side Direction1 |
-		| Testing Reset Side Direction2 |
+		| Tag          |
+		| Test1TagSRND |
+		| Test2TagSRND |
 	When User clicks on 'Reset' button on 'CareerPage' container
 	Then All selected tags was cancel

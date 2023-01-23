@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using CorelAutotestsCore.DTO.RunTimeVariables;
+using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -15,11 +16,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
     {
         private readonly IPage _page;
         private readonly VacancyList _position;
+        private readonly SessionRandomValue _sessionRandom;
 
-        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position)
+        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position, SessionRandomValue sessionRandom)
         {
             _page = browserFactory.Page;
             _position = position;
+            _sessionRandom = sessionRandom;
         }
 
         [When(@"User remembers vacancy names from Job page")]
@@ -38,7 +41,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
 
             foreach (var roleText in texts)
             {
-                roleText.ToLower().Should().Contain(text.ToLower());
+                roleText.ToLower().Should().Contain(text.AddRandom(_sessionRandom).ToLower());
             }
         }
 
@@ -62,7 +65,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"Search results equal to selected tag")]
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
-            var tags = table.Rows.SelectMany(x => x.Values).ToList();
+            var tags = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
             var texts = _page.Component<Card>()
                 .DirectionTitle.AllInnerTextsAsync().GetAwaiter().GetResult();
 

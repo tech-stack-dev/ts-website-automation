@@ -1,4 +1,5 @@
 ﻿using ChoETL;
+using CorelAutotestsCore.DTO.RunTimeVariables;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,7 +10,7 @@ namespace PlaywrightAutomation.Extensions
     {
         public static string ToAutomationValue(this string str)
         {
-            return str?.ToPascalCase().Replace(" ", string.Empty);
+            return str?.ToLower().Replace(" ", "_");
         }
 
         public static string ConvertToPascalCase(this string s)
@@ -35,6 +36,14 @@ namespace PlaywrightAutomation.Extensions
                 .Select(w => upperCaseInside.Replace(w, m => m.Value.ToLower()));
 
             return string.Concat(pascalCase);
+        }
+
+        public static string AddRandom(this string str, SessionRandomValue sessionRandom)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            return str.Replace("SRND", sessionRandom.RandomString);
         }
     }
 }

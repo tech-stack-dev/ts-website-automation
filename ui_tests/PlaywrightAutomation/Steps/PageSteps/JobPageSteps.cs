@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using CorelAutotestsCore.DTO.RunTimeVariables;
+using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -16,23 +17,25 @@ namespace PlaywrightAutomation.Steps.PageSteps
     internal class JobPageSteps : SpecFlowContext
     {
         private readonly IPage _page;
+        private readonly SessionRandomValue _sessionRandom;
 
-        public JobPageSteps(BrowserFactory browserFactory)
+        public JobPageSteps(BrowserFactory browserFactory, SessionRandomValue sessionRandom)
         {
             _page = browserFactory.Page;
+            _sessionRandom = sessionRandom;
         }
 
         [Then(@"'([^']*)' job title is displayed on job page")]
         public void ThenJobTitleIsDisplayedOnJobPage(string expectedJobTitle)
         {
             var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
-            actualJobTitle.Should().Be(expectedJobTitle);
+            actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
         }
 
         [Then(@"Tags are displayed on job page")]
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
-            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList();
+            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList().Select(x=>x.AddRandom(_sessionRandom));
             var actualListTags = _page.Init<JobPage>().Tags.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTags.Should().Equal(expectedListTags);
@@ -65,7 +68,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             }
 
             var actualTag = tags.GetByText(expectedTag);
-            
+
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
 
@@ -113,7 +116,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenJobsBlockOnContainerOnJobPageHasTabs(string container, Table table)
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
-            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTabs.Should().Equal(expectedListTabs);

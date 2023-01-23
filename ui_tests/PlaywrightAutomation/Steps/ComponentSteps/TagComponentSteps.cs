@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CorelAutotestsCore.DTO.RunTimeVariables;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -17,9 +18,12 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
     {
         private readonly IPage _page;
 
-        public TagComponentSteps(BrowserFactory browserFactory)
+        public SessionRandomValue _sessionRandom { get; }
+
+        public TagComponentSteps(BrowserFactory browserFactory, SessionRandomValue sessionRandom)
         {
             _page = browserFactory.Page;
+            _sessionRandom = sessionRandom;
         }
 
         #region General
@@ -45,24 +49,24 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Selected tags are displayed as active in Filters list on '([^']*)' container")]
         public void ThenSelectedTagsAreDisplayedAsActiveInFiltersListOnContainer(string container, Table table)
         {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
 
             var parent = _page
                 .Component<ActiveTagsGroupWrapper>(new Properties { ParentSelector = WebContainer.GetLocator(container) });
 
             foreach (var name in tagsName)
             {
-                var tag = _page.Component<Tag>(name, new BaseWebComponent.Properties { Parent = parent });
+                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
 
                 var tagDisplayedState = tag.IsVisibleAsync().GetAwaiter().GetResult();
                 tagDisplayedState.Should().BeTrue();
             }
         }
-        
+
         [Then(@"Selected tags has correct color in Filters list on '([^']*)' container")]
         public void ThenSelectedTagsHasCorrectColorInFilterListOnContainer(string container, Table table)
         {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
 
             var parent = _page
                 .Component<ActiveTagsGroupWrapper>(new Properties { ParentSelector = WebContainer.GetLocator(container) });
@@ -84,7 +88,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User selects tags in '([^']*)' filter side bar on '([^']*)' container")]
         public void WhenUserSelectsTagsInFilterSideBarOnContainer(string filterGroupHeader, string container, Table table)
         {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
 
             var parent = _page
                 .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
@@ -98,13 +102,13 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks on header '([^']*)' filter sider bar on '([^']*)' container")]
         public void WhenUserClicksOnHeaderFilterSiderBarOnContainer(string filterGroup, string container)
         {
-            _page.Component<FilterGroupWrapper>(filterGroup, new Properties { ParentSelector = WebContainer.GetLocator(container)}).FilterHeader.ClickAsync().GetAwaiter().GetResult();
+            _page.Component<FilterGroupWrapper>(filterGroup, new Properties { ParentSelector = WebContainer.GetLocator(container) }).FilterHeader.ClickAsync().GetAwaiter().GetResult();
         }
 
         [Then(@"'([^']*)' tags are selected in '([^']*)' sider bar on '([^']*)' container")]
         public void ThenTagsAreSelectedInSiderBarOnContainer(int count, string siderBar, string container)
         {
-            var parent = _page.Component<FilterGroupWrapper>(siderBar, new Properties { ParentSelector = WebContainer.GetLocator(container)});
+            var parent = _page.Component<FilterGroupWrapper>(siderBar, new Properties { ParentSelector = WebContainer.GetLocator(container) });
 
             var selectedTags = _page.Component<Tag>(new Properties { Parent = parent }).SelectedTags();
 
@@ -114,7 +118,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Selected tags are displayed in '([^']*)' filter side bar on '([^']*)' container")]
         public void ThenSelectedTagsAreDisplayedInFilterSideBarOnContainer(string filterGroupHeader, string container, Table table)
         {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
 
             var parent = _page
                 .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });
@@ -131,7 +135,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         public void ThenNumberOfSelectedTagsInSideBarOnContainerEqualsTo(string sideBar, string container, int count)
         {
             var parent = _page.Component<FilterGroupWrapper>(sideBar,
-                new Properties {ParentSelector = WebContainer.GetLocator(container)});
+                new Properties { ParentSelector = WebContainer.GetLocator(container) });
             var counter = int.Parse(parent.Locator(_page.Init<CareerPage>().ActiveTagsCounter).InnerTextAsync()
                 .GetAwaiter().GetResult());
             counter.Should().Be(count);
@@ -140,7 +144,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Selected tags from '([^']*)' filter side bar has correctly color on '([^']*)' container")]
         public void ThenSelectedTagsFromFilterSideBarHasCorrectlyColorOnContainer(string filterGroupHeader, string container, Table table)
         {
-            var tagsName = table.Rows.SelectMany(x => x.Values).ToList();
+            var tagsName = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
 
             var parent = _page
                 .Component<FilterGroupWrapper>(filterGroupHeader, new Properties { ParentSelector = WebContainer.GetLocator(container) });

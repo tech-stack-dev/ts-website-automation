@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Components
 
         public override string Construct()
         {
-            var selector = $"//div[contains(@data-id,'Section{Identifier.ToAutomationValue()}')]//parent::div[contains(@class,'FilterWrapper')]";
+            var selector = $"//div[contains(@data-id,'section.{Identifier.ToAutomationValue()}')]//parent::div[contains(@class,'FilterWrapper')]";
             return selector;
         }
     }
