@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./PlaywrightAutomation.sln
+      run: dotnet restore ../PlaywrightAutomation.sln
     - name: Build
-      run: dotnet build ./PlaywrightAutomation.sln --no-restore
+      run: dotnet build ../PlaywrightAutomation.sln --no-restore
     - name: Test
-      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      run: dotnet test ../PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
