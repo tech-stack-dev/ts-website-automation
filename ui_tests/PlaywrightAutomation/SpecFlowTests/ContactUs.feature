@@ -1,6 +1,7 @@
 ﻿Feature: ContactUs
 
-@Regression @TSWEB149
+// Remvoe PlSettingsTest once CI will be configured
+@Regression @TSWEB149 @PlSettingsTest
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
 	When User clicks on 'Contact us' tab on 'NavigationHeader' container
