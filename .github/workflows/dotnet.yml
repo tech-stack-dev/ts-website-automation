@@ -18,12 +18,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
-      working-directory: **/ui_tests
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./PlaywrightAutomation.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./PlaywrightAutomation.sln --no-restore
     - name: Test
-      run: dotnet test --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
