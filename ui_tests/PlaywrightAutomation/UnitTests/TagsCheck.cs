@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutomationUtils.Utils;
 using NUnit.Framework;
 
@@ -18,7 +17,6 @@ namespace PlaywrightAutomation.UnitTests
 
             Verify.AreEqual(0, testsWithoutTags.Count,
                 "There are some tests in the solution without tags");
-            throw new Exception("Test");
         }
 
         [Test]
