@@ -81,5 +81,3 @@ Scenario: CheckErrorMessageForInvalidFormatAttachedFileOnContactForm
 	When User attaches 'test.mp4' file on Contact Us form
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then 'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text and *.log extensions' error message is displayed under attach files input
-
-
