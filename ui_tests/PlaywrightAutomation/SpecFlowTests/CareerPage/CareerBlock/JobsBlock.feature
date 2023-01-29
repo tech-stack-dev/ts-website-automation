@@ -27,7 +27,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 		| Test1TagSRND |
 	When User clicks on 'Test1CareerSRND' card title
 	Then Breadcrumbs has 'Jobs / Test1CareerSRND' text
-	Then 'ApplyNow' button is displayed on 'BreadcrumbsHeader' container
+	Then 'Apply Now' button is displayed on 'BreadcrumbsHeader' container
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckNavigationHeaderOnJobPage
@@ -81,7 +81,7 @@ Scenario: CheckLocalizationOnJobPage
 		| Відгуки           |
 		| Зв’язатись з нами |
 	Then Breadcrumbs has 'Вакансії / NameUa_1_SRND' text
-	Then 'ApplyNow' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
+	Then 'Apply Now' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
 	Then Tags are displayed on job page
 		| Tag             |
 		| Гарячі вакансії |
@@ -96,4 +96,4 @@ Scenario: CheckLocalizationOnJobPage
 		| Ми будемо:   |
 		| Ми маємо:    |
 	Then 'Хочеш стати частиною нашої команди?' text is displayed on Apply Container on job page
-	Then 'ApplyNowVacancy' button with 'Подавай заявку!' text is displayed on 'JobPage' container
+	Then 'Apply now vacancy' button with 'Подавай заявку!' text is displayed on 'JobPage' container
