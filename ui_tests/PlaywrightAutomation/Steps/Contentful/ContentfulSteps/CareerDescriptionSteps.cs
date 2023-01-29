@@ -22,16 +22,6 @@ namespace PlaywrightAutomation.Steps.Contentful
             _sessionRandom = sessionRandom;
         }
 
-        [Given(@"User creates and publishes new Career Description")]
-        public void GivenUserCreatesAndPublishesNewCareerDescription(Table table)
-        {
-            var careerDescriptions = table.CreateInstance<CareerDescription>();
-            careerDescriptions.FillWithDefaultData(_sessionRandom);
-
-            var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
-            _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
-        }
-
         [Given(@"User creates Career Description")]
         public void GivenUserCreatesCareerDescription(Table table)
         {
