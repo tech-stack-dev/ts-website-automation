@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Extensions
     {
         public static string ToAutomationValue(this string str)
         {
-            return str?.ToLower().Replace(" ", "_");
+            return str?.ToPascalCase().Replace(" ", string.Empty);
         }
 
         public static string ConvertToPascalCase(this string s)

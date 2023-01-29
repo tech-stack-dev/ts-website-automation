@@ -1,10 +1,12 @@
-﻿namespace PlaywrightAutomation.Components
+﻿using PlaywrightAutomation.Extensions;
+
+namespace PlaywrightAutomation.Components
 {
     public class NavigationTabs : BaseWebComponent
     {
         public override string Construct()
         {
-            var selector = $"//a[contains(@class, 'button') and contains(@data-id,'NavigationTab-{Identifier}')]";
+            var selector = $"//a[contains(@class, 'button') and contains(@data-id,'NavigationTab-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
 

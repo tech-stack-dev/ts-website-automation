@@ -4,7 +4,7 @@ namespace PlaywrightAutomation.Components
 {
     public class Breadcrumbs : BaseWebComponent
     {
-        public ILocator SharedJobsPart => Instance.Locator("//a[@data-id='BreadcrumbsLink-shared.jobs']");
+        public ILocator SharedJobsPart => Instance.Locator("//a[@data-id='BreadcrumbsLink-SharedJobs']");
         public ILocator JobTitlePart => Instance.Locator("//span[@class='mobile-breadcrumbs-margin']");
 
         public override string Construct()

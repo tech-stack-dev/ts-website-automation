@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightAutomation.Extensions;
 
 namespace PlaywrightAutomation.Components
 {
@@ -9,7 +10,7 @@ namespace PlaywrightAutomation.Components
 
         public override string Construct()
         {
-            var selector = $"//a[contains(@data-id,'CardWrapper-{Identifier}')]";
+            var selector = $"//a[contains(@data-id,'CardWrapper-{Identifier.ToAutomationValue()}')]";
             return selector;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AutomationUtils.Utils;
+using ChoETL;
 
 namespace CorelAutotestsCore.DTO.RunTimeVariables
 {
@@ -9,7 +10,7 @@ namespace CorelAutotestsCore.DTO.RunTimeVariables
 
         public SessionRandomValue()
         {
-            RandomString = TestDataGenerator.RandomString();
+            RandomString = TestDataGenerator.RandomString().ToUpper();
         }
     }
 }

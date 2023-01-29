@@ -6,7 +6,7 @@ namespace PlaywrightAutomation.Pages
     {
         public string Container => "//div[contains(@class,'DescriptionWrapper')]";
 
-        public ILocator Tags => Page.Locator("//div[@data-id='CardTag-title']");
+        public ILocator Tags => Page.Locator("//div[@data-id='CardTag-Title']");
         public ILocator Title => Page.Locator("//div[@class='career-title']");
         // To check that social media icons are under the job's title
         public ILocator SocialIcons => Title.Locator("//following-sibling::div//div[@class='social-icons-wrapper']");

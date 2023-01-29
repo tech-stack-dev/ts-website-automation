@@ -3,7 +3,7 @@ Feature: SearchBlock
 @Regression @TSWEB133
 Scenario: CheckThatUserSeesMessageAboutFailSearchResults
 	Given User is on career website
-	When User set 'wrongString' text to 'search' input on 'HeaderPage' container
+	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
@@ -14,7 +14,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'search' input on 'HeaderPage' container
+	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
@@ -50,7 +50,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'search' input on 'HeaderPage' container
+	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Seniority Level' dropdown
 	When User selects tag from 'Seniority Level' dropdown
 		| Tag          |
