@@ -35,11 +35,11 @@ namespace PlaywrightAutomation.Utils
 
         public IPage Page { get; set; }
 
-        public async void InitLocalBrowser()
+        public void InitLocalBrowser()
         {
             var options = new BrowserTypeLaunchOptions
             {
-                Headless = BrowserConfigProvider.Headless
+                Headless = false
             };
 
             _browser = PlaywrightInstance.Chromium.LaunchAsync(options).GetAwaiter().GetResult();
