@@ -93,7 +93,7 @@ namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
             requestData.Should().Contain($"ea={eventAction}");
         }
 
-        public IRequest MakeActionAndGetGoogleAnalyticsRequest(Action action)
+        private IRequest MakeActionAndGetGoogleAnalyticsRequest(Action action)
         {
             var request = _page
                 .RunAndWaitForRequestAsync(async () => { action(); }, x => x.Url.Contains("www.google-analytics.com"))
