@@ -10,7 +10,6 @@ using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Web;
-using AutomationUtils.Extensions;
 using PlaywrightAutomation.Components.Inputs;
 using TechTalk.SpecFlow;
 using PlaywrightAutomation.Components.Links;
@@ -20,12 +19,12 @@ using PlaywrightAutomation.RuntimeVariables;
 namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
 {
     [Binding]
-    internal class ConsultingServiceSteps : SpecFlowContext
+    internal class QaAsServiceSteps : SpecFlowContext
     {
         private readonly IPage _page;
         private readonly GoogleAnalyticsRequestData _googleAnalyticsRequestData;
 
-        public ConsultingServiceSteps(BrowserFactory browserFactory, GoogleAnalyticsRequestData googleAnalyticsRequestData)
+        public QaAsServiceSteps(BrowserFactory browserFactory, GoogleAnalyticsRequestData googleAnalyticsRequestData)
         {
             _page = browserFactory.Page;
             _googleAnalyticsRequestData = googleAnalyticsRequestData;
