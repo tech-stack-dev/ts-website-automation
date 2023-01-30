@@ -1,7 +1,7 @@
 ﻿using AutomationUtils.Utils;
 using ChoETL;
 
-namespace CorelAutotestsCore.DTO.RunTimeVariables
+namespace PlaywrightAutomation.RuntimeVariables
 {
     public class SessionRandomValue
     {
