@@ -21,10 +21,10 @@ public class QaAsServicePage : BasePage, IWebContainer
 
     public ILocator GetArrowWrapperForFAQSectionByText(string sectionHeaderText)
     {
-        var a = Page.Locator(
+        var arrowWrapper = Page.Locator(
             $"//h3[contains(text(),'{sectionHeaderText}')]//following-sibling::div//img[contains(@class,'collapse-arrow')]");
-        a.WaitForAsync();
-        return a;
+        arrowWrapper.WaitForAsync();
+        return arrowWrapper;
     }
 
     public ILocator GetCaseStudiesCardByHeaderText(string cardHeader)

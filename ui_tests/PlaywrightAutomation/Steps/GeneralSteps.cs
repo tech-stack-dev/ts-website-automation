@@ -8,7 +8,6 @@ using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
