@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CorelAutotestsCore.DTO.RunTimeVariables;
 using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
@@ -7,6 +6,7 @@ using PlaywrightAutomation.Components.FilterListWrapper;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;

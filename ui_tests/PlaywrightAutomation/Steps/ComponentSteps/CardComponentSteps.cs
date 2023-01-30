@@ -1,7 +1,7 @@
-﻿using CorelAutotestsCore.DTO.RunTimeVariables;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 

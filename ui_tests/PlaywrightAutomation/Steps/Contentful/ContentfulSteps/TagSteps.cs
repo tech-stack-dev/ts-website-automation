@@ -1,7 +1,7 @@
 ﻿using ChoETL;
-using CorelAutotestsCore.DTO.RunTimeVariables;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Models.Contentful;
+using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
 using System.Linq;
