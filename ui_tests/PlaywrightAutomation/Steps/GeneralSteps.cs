@@ -8,6 +8,7 @@ using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace PlaywrightAutomation.Steps
@@ -42,6 +43,19 @@ namespace PlaywrightAutomation.Steps
                 .OpenNewPage(url)
                 .GetAwaiter()
                 .GetResult();
+        }
+
+        [When(@"User click back button in the browser")]
+        public void WhenUserClickBackButtonInTheBrowser()
+        {
+            _page.GoBackAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(state: LoadState.Load);
+        }
+
+        [Then(@"'(.*)' page is opened in browser")]
+        public void ThenPageOpenedInBrowser(string url)
+        {
+            _page.Url.Should().BeEquivalentTo(url);
         }
 
         [Then(@"'([^']*)' website is opened in popup window")]

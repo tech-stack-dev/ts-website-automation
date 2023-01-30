@@ -21,7 +21,9 @@ namespace PlaywrightAutomation.Components
 
         protected ILocator Component;
 
-        public virtual void CheckAutomationClass() { }
+        public virtual void CheckAutomationClass()
+        {
+        }
 
         public abstract string Construct();
 
@@ -53,7 +55,9 @@ namespace PlaywrightAutomation.Components
             {
                 CheckAutomationClass();
             }
-            catch { }
+            catch
+            {
+            }
 
             #endregion
 
@@ -84,6 +88,7 @@ namespace PlaywrightAutomation.Components
         {
             return Component.AllInnerTextsAsync();
         }
+
         public Task<IReadOnlyList<string>> AllTextContentsAsync()
         {
             return Component.AllTextContentsAsync();
@@ -98,6 +103,7 @@ namespace PlaywrightAutomation.Components
         {
             return Component.BoundingBoxAsync(options);
         }
+
         public Task CheckAsync(LocatorCheckOptions options = null)
         {
             return Component.CheckAsync(options);
@@ -296,13 +302,15 @@ namespace PlaywrightAutomation.Components
 
         public Task<bool> IsHiddenAsync(LocatorIsHiddenOptions options = null)
         {
-            Component.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Hidden}).GetAwaiter().GetResult();
+            Component.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Hidden }).GetAwaiter()
+                .GetResult();
             return Component.IsHiddenAsync(options);
         }
 
         public Task<bool> IsVisibleAsync(LocatorIsVisibleOptions options = null)
         {
-            Component.WaitForAsync(new LocatorWaitForOptions{State = WaitForSelectorState.Visible}).GetAwaiter().GetResult();
+            Component.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Visible }).GetAwaiter()
+                .GetResult();
             return Component.IsVisibleAsync(options);
         }
 
