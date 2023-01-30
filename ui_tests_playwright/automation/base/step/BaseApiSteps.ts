@@ -7,7 +7,7 @@ export default class BaseApiSteps {
         await client.createClient(clientName, contextOption);
     }
 
-    public async switcheToClient(clientName: ClientsEnum) {
+    public async switchToClient(clientName: ClientsEnum) {
         client.focusedClient = client.listOfClients.find(x => x.ClientName === clientName)!;
     }
 }

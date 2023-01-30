@@ -12,11 +12,11 @@ export default class BaseDriverSteps {
         driver.ListOfPages.push(newPage);
     }
 
-    public async switcheToBrowser(browserName: BrowsersEnum) {
+    public async switchToBrowser(browserName: BrowsersEnum) {
         driver.focusedDriver = driver.listOfDrivers.find(x => x.DriverName === browserName)!;
     }
 
-    public async switcheToBrowserTab(tabNumber: number) {
+    public async switchToBrowserTab(tabNumber: number) {
         driver.Page = driver.ListOfPages[tabNumber];
     }
 

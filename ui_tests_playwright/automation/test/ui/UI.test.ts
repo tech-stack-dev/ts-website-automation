@@ -35,7 +35,7 @@ test("Test example with 2 browsers and 2 pages", async () => {
 
     await menuPageSteps.clickContactUsButton();
 
-    await baseActionSteps.switcheToBrowser(BrowsersEnum.Browser_1);
+    await baseActionSteps.switchToBrowser(BrowsersEnum.Browser_1);
     await baseActionSteps.closeBrowser();
 });
 
