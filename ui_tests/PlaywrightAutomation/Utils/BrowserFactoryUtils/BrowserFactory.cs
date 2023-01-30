@@ -34,7 +34,7 @@ namespace PlaywrightAutomation.Utils
 
         public IPage Page { get; set; }
 
-        public async void InitLocalBrowser()
+        public void InitLocalBrowser()
         {
             var options = new BrowserTypeLaunchOptions
             {
