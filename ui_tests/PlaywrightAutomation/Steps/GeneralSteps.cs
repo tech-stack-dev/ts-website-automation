@@ -52,12 +52,6 @@ namespace PlaywrightAutomation.Steps
             _page.WaitForLoadStateAsync(state: LoadState.Load);
         }
 
-        [Then(@"'(.*)' page is opened in browser")]
-        public void ThenPageOpenedInBrowser(string url)
-        {
-            _page.Url.Should().BeEquivalentTo(url);
-        }
-
         [Then(@"'([^']*)' website is opened in popup window")]
         public void ThenWebsiteIsOpenedInPopupWindow(string website)
         {

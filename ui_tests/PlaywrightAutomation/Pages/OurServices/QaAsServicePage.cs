@@ -2,7 +2,7 @@
 
 namespace PlaywrightAutomation.Pages.OurServices;
 
-public class ServicesPage : BasePage, IWebContainer
+public class QaAsServicePage : BasePage, IWebContainer
 {
     public string Container => "//div[@id='header']//parent::body";
 

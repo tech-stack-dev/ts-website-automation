@@ -3,7 +3,7 @@
 Background:
 	Given User is on 'https://tech-stack.io/services/qa-as-a-service' page
 
-@TSWEB302
+@Regression @OurServices @TSWEB302
 Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks card with 'Existing QA Processes Audit' header text from 'Case studies' section
 	Then User sees 'QAasAServPage' event category and 'QAasAServCase' event action
@@ -17,7 +17,7 @@ Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEven
 	Then User sees 'QAasAServPage' event category and 'QAasAServCase' event action
 	
 	
-@TSWEB302
+@Regression @OurServices @TSWEB302
 Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks source breadcrumbs button
 	Then User sees 'QAasAServPage' event category and 'QAasAServBreadServices' event action
@@ -29,7 +29,7 @@ Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks 'Open Source' arrow
 	Then User sees 'QAasAServPage' event category and 'QAasAServAchiveOpenSource' event action
 	
-@TSWEB302
+@Regression @OurServices @TSWEB302
 Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks arrow wrapper for 'Why is integrating QA' field in 'FAQ' section
 	Then User sees 'QAasAServPage' event category and 'QAasAServFaq6More' event action
@@ -49,7 +49,7 @@ Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks arrow wrapper for 'Should we hire a' field in 'FAQ' section
 	Then User sees 'QAasAServPage' event category and 'QAasAServFaq4More' event action
 	
-@TSWEB302
+@Regression @OurServices @TSWEB302
 Scenario: CheckThatAllServicesWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks arrow wrapper for 'Regression testing on demand' field in 'Services' section
 	Then User sees 'QAasAServPage' event category and 'QAasAServService' event action
