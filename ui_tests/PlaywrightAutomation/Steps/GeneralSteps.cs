@@ -27,7 +27,7 @@ namespace PlaywrightAutomation.Steps
         }
 
         [Given(@"User is on career website")]
-        public async void GivenUserIsOnCareerWebsite()
+        public void GivenUserIsOnCareerWebsite()
         {
             _page = _browserFactory
                 .OpenNewPage(UrlProvider.Application)
@@ -36,7 +36,7 @@ namespace PlaywrightAutomation.Steps
         }
 
         [Given(@"User is on '([^']*)' page")]
-        public async void GivenUserIsOnPage(string url)
+        public void GivenUserIsOnPage(string url)
         {
             _page = _browserFactory
                 .OpenNewPage(url)
