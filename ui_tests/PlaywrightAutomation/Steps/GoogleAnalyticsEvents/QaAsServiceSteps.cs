@@ -8,8 +8,8 @@ using TechTalk.SpecFlow;
 using PlaywrightAutomation.Pages.OurServices;
 using PlaywrightAutomation.RuntimeVariables;
 
-namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
-{
+namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents;
+
     [Binding]
     internal class QaAsServiceSteps : SpecFlowContext
     {
@@ -101,4 +101,3 @@ namespace PlaywrightAutomation.Steps.GoogleAnalyticsEvents
             return request;
         }
     }
-}
