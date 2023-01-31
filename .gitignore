@@ -71,5 +71,5 @@ yarn-error.log*
 
 .idea
 /test-results/
-/playwright-report/
+playwright-report/
 /playwright/.cache/
