@@ -1,5 +1,5 @@
 ﻿using ChoETL;
-using CorelAutotestsCore.DTO.RunTimeVariables;
+using PlaywrightAutomation.RuntimeVariables;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;

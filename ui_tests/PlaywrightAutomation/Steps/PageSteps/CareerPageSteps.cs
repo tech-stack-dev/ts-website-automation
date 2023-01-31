@@ -1,5 +1,4 @@
-﻿using CorelAutotestsCore.DTO.RunTimeVariables;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;

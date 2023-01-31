@@ -1,0 +1,25 @@
+{
+  "name": "playwright-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anastasiia-liashova/playwright-architecture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anastasiia-liashova/playwright-architecture/issues"
+  },
+  "homepage": "https://github.com/anastasiia-liashova/playwright-architecture#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.29.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "playwright-core": "^1.27.1"
+  }
+}

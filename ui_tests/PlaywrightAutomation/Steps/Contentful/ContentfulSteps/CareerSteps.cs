@@ -1,15 +1,11 @@
 ﻿using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
-using PlaywrightAutomation.Steps.Contentful.ContentfulSteps;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using PlaywrightAutomation.RuntimeVariables;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using PlaywrightAutomation.Utils;
-using CorelAutotestsCore.DTO.RunTimeVariables;
-using Contentful.Core.Models;
 using Table = TechTalk.SpecFlow.Table;
 
 namespace PlaywrightAutomation.Steps.Contentful.ContenrfulSteps
