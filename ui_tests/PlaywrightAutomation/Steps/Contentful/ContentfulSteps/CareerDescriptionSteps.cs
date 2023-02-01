@@ -27,7 +27,6 @@ namespace PlaywrightAutomation.Steps.Contentful
         {
             var careerDescriptions = table.CreateInstance<CareerDescription>();
             careerDescriptions.FillWithDefaultData(_sessionRandom);
-
             var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
             _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
         }
@@ -39,7 +38,6 @@ namespace PlaywrightAutomation.Steps.Contentful
             {
                 var careerDescriptions = new CareerDescription();
                 careerDescriptions.FillWithDefaultData(_sessionRandom, index);
-
                 var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
                 _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
             }

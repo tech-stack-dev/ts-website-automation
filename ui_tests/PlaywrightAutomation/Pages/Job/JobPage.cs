@@ -13,5 +13,6 @@ namespace PlaywrightAutomation.Pages
         public ILocator SocialIconsText => SocialIcons.Locator("//p[@class='social-icons-share']");
         public ILocator BlockTitles => Page.Locator("//div[@class='block-title']");
         public ILocator ApplyContainer => Page.Locator("//div[contains(@class,'ApplyPropositionWrapper')]");
+        public ILocator SearchValue => Page.Locator("//span[contains(@class,'searchValue')]");
     }
 }

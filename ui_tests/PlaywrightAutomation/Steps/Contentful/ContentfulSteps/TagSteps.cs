@@ -41,7 +41,6 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
             foreach(var tag in tags)
             {
                 tag.Name = tag.Name.AddRandom(_sessionRandom);
-
                 var createdTag = _contentfulClient.CreateTag(tag).Result;
                 _createdTags.Value.Add(createdTag);
             }

@@ -35,7 +35,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"Tags are displayed on job page")]
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
-            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList().Select(x=>x.AddRandom(_sessionRandom));
+            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
             var actualListTags = _page.Init<JobPage>().Tags.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTags.Should().Equal(expectedListTags);

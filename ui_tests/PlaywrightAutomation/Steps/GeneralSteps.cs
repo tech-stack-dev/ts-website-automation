@@ -4,7 +4,6 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
-using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
 using System;
@@ -18,15 +17,13 @@ namespace PlaywrightAutomation.Steps
     {
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
-        private readonly DefaultCareersList _defaultCareersList;
         private readonly CreatedTags _createdTags;
         private readonly CreatedCareer _createdCareer;
 
-        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList, CreatedTags createdTags, CreatedCareer createdCareer)
+        public GeneralSteps(BrowserFactory browserFactory, CreatedTags createdTags, CreatedCareer createdCareer)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
-            _defaultCareersList = defaultCareersList;
             _createdTags = createdTags;
             _createdCareer = createdCareer;
         }
