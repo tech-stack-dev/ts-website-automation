@@ -38,7 +38,7 @@ namespace PlaywrightAutomation.Utils
         {
             var options = new BrowserTypeLaunchOptions
             {
-                Headless = true
+                Headless = BrowserConfigProvider.Headless
             };
 
             _browser = PlaywrightInstance.Chromium.LaunchAsync(options).GetAwaiter().GetResult();
