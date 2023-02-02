@@ -1,39 +1,64 @@
-﻿using Microsoft.Playwright;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Playwright;
 
 namespace PlaywrightAutomation.Pages.OurServices;
 
 public class QaAsServicePage : BasePage, IWebContainer
 {
     public string Container => "//div[@id='header']//parent::body";
+    public string ServicesSectionElements => "//div[contains(@class,'domains-block-header')]";
+    public string MenuCategories => "//section[@class='accordion-item flex-content']";
+    public string FaqSectionElements => "//div[contains(@class,'faq-container collapsible')]";
+    public string CaseStudiesCardsElements => "//a[@class='case-card']";
 
-    public ILocator TopSectionRequestQuoteButton => Page.Locator("//div[contains(@id,'top-section')]//div[@class='request-btn']");
+    public ILocator MenuButton => Page.Locator("//a[@id='menu-btn']");
 
-    public ILocator OurApproachRequestQuoteButton => Page.Locator("//div[@class='side-content with-btn']//div[@class='request-btn']");
+    public ILocator TopSectionRequestQuoteButton =>
+        Page.Locator("//div[contains(@id,'top-section')]//div[@class='request-btn']");
+
+    public ILocator OurApproachRequestQuoteButton =>
+        Page.Locator("//div[@class='side-content with-btn']//div[@class='request-btn']");
 
     public ILocator BreadcrumbsSourceSectionButton => Page.Locator("//a[@id='bredcrumbs-prev']");
 
     public ILocator OpenSourceArrow => Page.Locator("//img[@class='arrow']");
-
+    
     public ILocator GetArrowWrapperForServicesSectionByText(string sectionHeaderText)
     {
-        return Page.Locator($"//h3[contains(text(),'{sectionHeaderText}')]//following-sibling::img[contains(@class,'collapse-arrow')]");
+        return GetElementFromListByTextAndXpathModify(ServicesSectionElements, "//h3", sectionHeaderText);
     }
 
     public ILocator GetArrowWrapperForFAQSectionByText(string sectionHeaderText)
     {
-        var arrowWrapper = Page.Locator(
-            $"//h3[contains(text(),'{sectionHeaderText}')]//following-sibling::div//img[contains(@class,'collapse-arrow')]");
-        arrowWrapper.WaitForAsync();
-        return arrowWrapper;
+        return GetElementFromListByTextAndXpathModify(FaqSectionElements, "//h3", sectionHeaderText);
     }
 
     public ILocator GetCaseStudiesCardByHeaderText(string cardHeader)
     {
-        return Page.Locator($"//div[@class='case-name' and contains(text(),'{cardHeader}')]//parent::a[@class='case-card']");
+        return GetElementFromListByTextAndXpathModify(CaseStudiesCardsElements, "//div[@class='case-name']", cardHeader);
     }
 
-    public ILocator GetRelatedArticlesCardByHeaderText(string cardHeader)
+    public ILocator GetElementFromMenuCategoryByText(string categoryText,string pageName)
     {
-        return Page.Locator($"//div[@class='img-card-title'and contains(text(),'{cardHeader}')]//ancestor::div[@class='img-card']");
+        var categoryMenu = GetElementFromListByTextAndXpathModify(MenuCategories, "//a//div[@class='h2']", categoryText);
+        categoryMenu.HoverAsync().GetAwaiter().GetResult();
+        var pagePointFromMenu = GetElementFromListByTextAndXpathModify($"{MenuCategories}//div//div//a", "//div[@class='h6']", pageName);
+        return pagePointFromMenu;
+    }
+
+    private ILocator GetElementFromListByTextAndXpathModify(string elementCollectionXpath,
+        string xpathModifier,
+        string textIdentifier)
+    {
+        var listOfElements = Page
+            .Locator(elementCollectionXpath)
+            .AllAsync()
+            .GetAwaiter().GetResult()
+            .ToList();
+        var neededElement = listOfElements
+            .Where(x => x.Locator(xpathModifier).TextContentAsync().GetAwaiter().GetResult().Contains(textIdentifier))
+            .FirstOrDefault();
+        return neededElement;
     }
 }
