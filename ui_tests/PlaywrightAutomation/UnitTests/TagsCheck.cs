@@ -8,7 +8,7 @@ namespace PlaywrightAutomation.UnitTests
     public class TagsCheck
     {
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_Tests_Have_Tags()
         {
             var testsWithoutTags = TestsUtils.TestsAndTags
@@ -20,7 +20,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_Tests_Have_No_Duplicated_Tags()
         {
             var testsAndTags = TestsUtils.TestsAndTags;
