@@ -30,15 +30,3 @@ jobs:
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
     - name: Test
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
-      
-name: .NET
-on:
-  pull_request:
-    paths-ignore:
-      - 'ui_tests/**'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No build required"'
