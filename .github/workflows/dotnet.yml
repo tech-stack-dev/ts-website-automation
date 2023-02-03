@@ -5,8 +5,8 @@ name: .NET
 
 on:
   pull_request:
-    paths: 
-    - 'performance_tests/configs/*'
+    paths:
+      - "performance_tests/**"
 
 jobs:
   build:
