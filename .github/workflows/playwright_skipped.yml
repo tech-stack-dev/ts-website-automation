@@ -2,7 +2,7 @@ name: Playwright UI E2E
             
 on:
   pull_request:
-    paths-ignore:
+    paths:
         - "performance_tests/**"
         - "ui_tests/**"
 
