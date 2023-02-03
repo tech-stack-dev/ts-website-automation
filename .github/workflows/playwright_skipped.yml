@@ -1,0 +1,11 @@
+name: Playwright UI E2E
+on:
+  pull_request:
+    paths-ignore:
+      - 'ui_tests_playwright/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required"'
