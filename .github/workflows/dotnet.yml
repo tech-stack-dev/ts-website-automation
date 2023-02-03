@@ -6,9 +6,13 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
+    paths:
+        - "ui_tests/**"
   pull_request:
     branches: [ "main" ]
-
+    paths:
+        - "ui_tests/**"
+        
 jobs:
   build:
     name: UnitTests
