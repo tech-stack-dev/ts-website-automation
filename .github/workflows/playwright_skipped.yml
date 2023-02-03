@@ -5,6 +5,9 @@ on:
     paths:
       - "performance_tests/**"
       - "ui_tests/**"
+    # Use paths-ignore instead of path after fix of https://github.com/actions/runner/issues/2324
+    # paths-ignore:
+    #   - "ui_tests_playwright/**"
 
 jobs:
   tests_e2e:
