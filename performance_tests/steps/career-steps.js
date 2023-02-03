@@ -8,7 +8,7 @@ export function getBuildId(){
     const response = http.get(URL_PROVIDER.webApp);
     const doc = parseHTML(response.body);
     const nextDataJson = doc.find('body script#__NEXT_DATA__').text();
-    const buildId = jsonpath.value(JSON.parse(nextDataJson), 'buildId');
+    const buildId = jsonpath.value(JSON.parse(nextDataJson), 'buildId'); 
     return buildId;
 }
 
