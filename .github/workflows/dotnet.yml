@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests_unitTests:
-    name: UnitTests
+    name: .Net unit tests
     runs-on: ubuntu-latest
 
     steps:

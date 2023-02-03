@@ -8,6 +8,7 @@ on:
         
 jobs:
   tests_unitTests:
+    name: .Net unit tests
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No tests execution required"'
