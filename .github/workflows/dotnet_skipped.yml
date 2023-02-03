@@ -1,9 +1,10 @@
 name: .NET
+
 on:
   pull_request:
     paths-ignore:
         - "ui_tests/**"
-
+        
 jobs:
   build:
     runs-on: ubuntu-latest
