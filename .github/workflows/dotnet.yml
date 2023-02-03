@@ -6,10 +6,10 @@ name: .NET
 on:
   push:
     paths:
-    - 'PlaywrightAutomation/**'
+    - 'performance_tests/*'
   pull_request:
     paths: 
-    - 'PlaywrightAutomation/**'
+    - 'performance_tests/*'
 
 jobs:
   build:
