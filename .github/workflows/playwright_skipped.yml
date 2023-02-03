@@ -1,12 +1,12 @@
 name: Playwright UI E2E
-
+            
 on:
   pull_request:
     paths-ignore:
-        - "ui_tests_playwright/**"
+      - 'ui_tests_playwright/**'
 
 jobs:
-    tests_e2e:
-        runs-on: ubuntu-latest
-        steps:
-            - run: 'echo "No tests execution required"'
+  tests_e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No tests execution required"'
