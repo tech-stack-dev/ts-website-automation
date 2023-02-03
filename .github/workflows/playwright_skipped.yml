@@ -1,0 +1,13 @@
+name: Playwright UI E2E
+            
+on:
+  pull_request:
+    paths:
+      - "performance_tests/**"
+      - "ui_tests/**"
+
+jobs:
+  tests_e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No tests execution required"'
