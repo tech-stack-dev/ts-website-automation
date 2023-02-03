@@ -11,7 +11,7 @@ namespace PlaywrightAutomation.Extensions
     {
         #region Page
 
-        public static T Init<T>(this IPage page) where T : BasePage, new()
+        public static T Init<T>(this IPage page) where T : BasePage, new() 
         {
             T newPage = new T
             {
