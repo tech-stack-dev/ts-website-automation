@@ -10,15 +10,18 @@ jobs:
   tests_e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
+    defaults:
+        run:
+            working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - name: Install dependencies
-        run: npm --prefix /ui_tests_playwright ci
+        run: npm ci
       - name: Install playwright browsers
-        run: npx --prefix /ui_tests_playwright playwright install --with-deps
+        run: npx playwright install --with-deps
       - name: Run tests
-        run: npx --prefix /ui_tests_playwright playwright test
+        run: npx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
