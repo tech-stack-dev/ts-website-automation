@@ -5,8 +5,8 @@ name: .NET
 
 on:
   pull_request:
-    paths-ignore:
-      - "performance_tests/**"
+    paths:
+      - "ui_tests_playwright/**"
 
 jobs:
   build:
