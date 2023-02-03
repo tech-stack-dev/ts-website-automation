@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 });
 
 test("Test example", async () => {
-    await menuPageSteps.openAndClosesMenu(); 
+    await menuPageSteps.openAndClosesMenu();
     await menuPageSteps.seeLogo();
 });
 
