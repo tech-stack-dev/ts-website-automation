@@ -1,12 +1,16 @@
 name: Playwright UI E2E
 on:
-  pull_request:
-    paths-ignore:
-        - "performance_tests/**"
-        - "ui_tests/**"
+    push:
+        paths-ignore:
+            - "performance_tests/**"
+            - "ui_tests/**"
+    pull_request:
+        paths-ignore:
+            - "performance_tests/**"
+            - "ui_tests/**"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No build required"'
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - run: 'echo "No build required"'
