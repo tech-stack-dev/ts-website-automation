@@ -17,7 +17,7 @@ let buttonSteps = new ButtonSteps();
 test.beforeEach(async () => {
     await baseActionSteps.createsNewBrowser(BrowsersEnum.Browser_1);
     await baseActionSteps.goToUrl(UrlProvider.webSiteUrl());
-});
+}); 
 
 test("Test example", async () => {
     await menuPageSteps.openAndClosesMenu();
