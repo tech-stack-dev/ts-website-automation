@@ -4,9 +4,6 @@
 name: .NET
 
 on:
-  push:
-    paths:
-    - 'performance_tests/configs/*'
   pull_request:
     paths: 
     - 'performance_tests/configs/*'
