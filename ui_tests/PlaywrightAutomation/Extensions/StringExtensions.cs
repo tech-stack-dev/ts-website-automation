@@ -12,7 +12,7 @@ namespace PlaywrightAutomation.Extensions
             return str?.ToPascalCase().Replace(" ", string.Empty);
         }
 
-        public static string ConvertToPascalCase(this string s)
+        public static string ConvertToPascalCase(this string s) 
         {
             Regex invalidCharsRgx = new Regex("[^_a-zA-Z0-9]");
             Regex whiteSpace = new Regex(@"(?<=\s)");
