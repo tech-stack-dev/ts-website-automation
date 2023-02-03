@@ -14,7 +14,7 @@ namespace PlaywrightAutomation.UnitTests
             TestsUtils.FeatureFilesAndTheirContent;
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_FeatureFiles_Have_Tests()
         {
             var filesWithoutTests = _allFeatureFiles
@@ -26,7 +26,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_FeatureFiles_Have_Names()
         {
             foreach (var ff in _allFeatureFiles)
@@ -43,7 +43,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_Scenarios_Have_Correct_Structure()
         {
             foreach (var ff in _allFeatureFiles)
@@ -60,7 +60,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_FeatureFiles_Has_No_Two_Empty_Lines_In_A_Row()
         {
             foreach (var feature in _allFeatureFiles)
@@ -75,7 +75,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_FeatureFiles_Has_No_Ending_Empty_Lines()
         {
             foreach (var feature in _allFeatureFiles)

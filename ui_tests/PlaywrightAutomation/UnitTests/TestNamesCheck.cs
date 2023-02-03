@@ -9,7 +9,7 @@ namespace PlaywrightAutomation.UnitTests
     public class TestNamesCheck
     {
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_Tests_Have_Unique_Names()
         {
             var allTestsNames = TestsUtils.TestsAndTags
@@ -27,7 +27,7 @@ namespace PlaywrightAutomation.UnitTests
         }
 
         [Test]
-        [Category("OnBuild")]
+        [CategoryAttribute("OnBuild")]
         public void Does_All_Tests_Have_Appropriate_Names()
         {
             var allTestsNames = TestsUtils.TestsAndTags
