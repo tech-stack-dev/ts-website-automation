@@ -1,8 +1,5 @@
 name: .NET
 on:
-  push:
-    paths-ignore:
-      - 'ui_tests/**'
   pull_request:
     paths-ignore:
       - 'ui_tests/**'

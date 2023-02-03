@@ -1,10 +1,6 @@
 name: Playwright UI E2E
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-        - "ui_tests_playwright/**"
   pull_request:
     branches: [ "main" ]
     paths:
