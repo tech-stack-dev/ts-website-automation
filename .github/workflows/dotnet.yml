@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'ui_tests/*'
+      - 'ui_tests/**'
 
 jobs:
   build:
