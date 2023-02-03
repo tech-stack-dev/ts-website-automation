@@ -1,7 +1,7 @@
 name: Playwright UI E2E
 
 on:
-  push:
+  pull_request:
     paths:
         - "ui_tests_playwright/**"
 

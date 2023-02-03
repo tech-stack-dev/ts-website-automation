@@ -1,9 +1,10 @@
 name: Playwright UI E2E
             
 on:
-  push:
+  pull_request:
     paths-ignore:
-        - "ui_tests_playwright/**"
+        - "performance_tests/**"
+        - "ui_tests/**"
 
 jobs:
   tests_e2e:

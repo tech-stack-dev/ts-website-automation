@@ -1,9 +1,10 @@
 name: .NET
 
 on:
-  push:
+  pull_request:
     paths-ignore:
-        - "ui_tests/**"
+        - "performance_tests/**"
+        - "ui_tests_playwright/**"
         
 jobs:
   build:
