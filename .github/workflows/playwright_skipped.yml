@@ -1,11 +1,14 @@
 name: Playwright UI E2E
+
 on:
-    push:
-        paths-ignore:
-            - "ui_tests_playwright/**"
-    pull_request:
-        paths-ignore:
-            - "ui_tests_playwright/**"
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+        - "ui_tests_playwright/**"
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+        - "ui_tests_playwright/**"
 
 jobs:
     build:
