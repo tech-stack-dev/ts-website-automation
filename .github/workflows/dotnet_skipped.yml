@@ -1,0 +1,13 @@
+name: .NET
+
+on:
+  pull_request:
+    paths:
+      - "performance_tests/**"
+      - "ui_tests_playwright/**"
+        
+jobs:
+  tests_unitTests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No tests execution required"'
