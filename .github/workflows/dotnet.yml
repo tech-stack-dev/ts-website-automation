@@ -4,10 +4,9 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'ui_tests_playwright/**'
 
 jobs:
   build:
