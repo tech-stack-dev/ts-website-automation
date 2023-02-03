@@ -8,7 +8,7 @@ Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	When User clicks on 'Submit' button on 'ContactUsPage' container
 	Then Error messages are displayed under fields
 		| Input     | ErrorMessage                   |
-		| Full name | Please enter your name         |
+		| Full name | Please enter your name         | 
 		| Email     | Please enter your email        |
 		| Tel       | Please enter your phone number |
 
