@@ -15,7 +15,7 @@ jobs:
 
     - name: Check file
       shell: pwsh
-      run: pwsh -Command "& {& './ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1' -Install}"
+      run: pwsh -Command "ls"
       
     - name: Run Playwright installation
       shell: pwsh
