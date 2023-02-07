@@ -2,8 +2,7 @@ name: .NET
 
 on:
   schedule:
-    # Runs at 10am every day
-    - cron: '*/5 * * * *'
+    - cron: '*/3 * * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
