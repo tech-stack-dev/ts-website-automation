@@ -56,6 +56,6 @@ jobs:
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
     
     # Jobs to run on Schedule
-    - name: UI tests
+    - name: UI tests on Schedule
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
