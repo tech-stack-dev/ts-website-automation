@@ -1,9 +1,11 @@
 name: .NET
 
 on:
+  schedule:
+    - cron: '*/3 * * * *'
   pull_request:
     paths:
-      - "ui_tests/**"
+      - 'ui_tests/**'
 
 jobs:
   tests_unitTests:
