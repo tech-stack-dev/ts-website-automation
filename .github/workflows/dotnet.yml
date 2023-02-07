@@ -23,5 +23,7 @@ jobs:
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
-    - name: Test
+    - name: Unit tests
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+    - name: UI tests
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=UiTest"
