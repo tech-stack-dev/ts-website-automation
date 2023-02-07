@@ -21,8 +21,7 @@ jobs:
         version: '7.0.0'
         architecture: 'x64'
         script: pwsh ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install
-        env:
-          PWSH_HOME: ${{env.PWSH_HOME}}
+
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
