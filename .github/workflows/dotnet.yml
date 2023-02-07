@@ -31,4 +31,4 @@ jobs:
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     - name: UI tests
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=UiTest"
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild"
