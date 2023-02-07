@@ -7,18 +7,44 @@ on:
 
 jobs:
   tests_unitTests:
-    name: .Net unit tests
+    name: Unit and UI tests
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+        
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
+      
+    - name: Override config parameters
+      shell: pwsh
+      run: |
+        Try
+          {
+            $configPath = './ui_tests/PlaywrightAutomation/appsettings.json'
+            $jsonConfig = Get-Content $configPath | Out-String | ConvertFrom-Json
+            $jsonConfig.Browser_Headless = 'true'
+            $jsonConfig | ConvertTo-Json -depth 100 | Out-File $configPath
+          }
+          Catch
+          {
+            throw "$_.Exception.ToString()"
+          }
+          
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
-    - name: Test
+      
+    - name: Run Playwright installation
+      shell: pwsh
+      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
+      
+    - name: Unit tests
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      
+    - name: UI tests
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
