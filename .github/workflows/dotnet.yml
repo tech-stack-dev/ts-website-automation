@@ -21,6 +21,21 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
       
+    - name: Override config parameters
+      shell: pwsh
+      run: |
+        Try
+          {
+            $configPath = './ui_tests/PlaywrightAutomation/appsettings.json'
+            $jsonConfig = Get-Content $configPath | Out-String | ConvertFrom-Json
+            $jsonConfig.Browser_Headless = 'true'
+            $jsonConfig | ConvertTo-Json -depth 100 | Out-File $configPath
+          }
+          Catch
+          {
+            throw "$_.Exception.ToString()"
+          }
+          
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
