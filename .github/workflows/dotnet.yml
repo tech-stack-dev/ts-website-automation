@@ -18,7 +18,7 @@ jobs:
     - name: Run Playwright installation
       shell: pwsh
       run: |
-        /ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install
+        pwsh /ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
