@@ -19,7 +19,7 @@ jobs:
       with:
         script: pwsh bin/Debug/netX/playwright.ps1 install
         env:
-          PWSH_HOME: ${{env.PWSH_HOME}}
+        PWSH_HOME: ${{env.PWSH_HOME}}
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
