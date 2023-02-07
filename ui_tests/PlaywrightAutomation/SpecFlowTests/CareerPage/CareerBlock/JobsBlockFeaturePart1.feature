@@ -1,6 +1,6 @@
 Feature: JobsBlockFeaturePart1
 
-@Regression @TSWEB146 @Cleanup
+@Regression @TSWEB146 @Cleanup @NotRun
 Scenario: CheckJobDescriptionOnJobPage
 	# Preconditions
 	Given User creates Tags

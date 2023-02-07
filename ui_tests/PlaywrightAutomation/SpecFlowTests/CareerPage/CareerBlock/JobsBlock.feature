@@ -73,6 +73,7 @@ Scenario: CheckLocalizationOnJobPage
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
 	When User selects 'Ua' language on 'NavigationHeader' container
+	Then 'Ua' language is selected 'NavigationHeader' on container
 	Then 'NameUa_1_{SRND}' job title is displayed on job page
 	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |
