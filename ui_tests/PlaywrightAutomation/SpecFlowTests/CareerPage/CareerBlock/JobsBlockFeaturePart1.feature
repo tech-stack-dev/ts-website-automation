@@ -1,5 +1,6 @@
 Feature: JobsBlockFeaturePart1
 
+# Added NotRun as this is not stable test. It will be fixed in separate PR (Dan and Asya)
 @Regression @TSWEB146 @Cleanup @NotRun
 Scenario: CheckJobDescriptionOnJobPage
 	# Preconditions
