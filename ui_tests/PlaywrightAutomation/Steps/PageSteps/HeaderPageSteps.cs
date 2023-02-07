@@ -1,5 +1,8 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.Playwright;
+using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Utils;
@@ -20,8 +23,10 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [When(@"User selects '([^']*)' language on '([^']*)' container")]
         public void WhenUserSelectsLanguage(string language, string container)
         {
-            _page.Init<HeaderPage>().SelectLanguage(language, container).GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.Load);
+            var languageButtons = _page.Component<Button>("Locale").AllAsync().GetAwaiter().GetResult().ToList();
+            var neededButton =
+                languageButtons.First(x => x.TextContentAsync().GetAwaiter().GetResult().Equals(language));
+            neededButton.ClickAsync().GetAwaiter().GetResult();
         }
 
         [Then(@"Techstack logo is displayed on main page")]
@@ -33,9 +38,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"'([^']*)' language is selected '([^']*)' on container")]
         public void ThenLanguageIsSelected(string language, string container)
         {
-            _page.ReloadAsync().GetAwaiter().GetResult();
-            var selectedLanguage = _page.Init<HeaderPage>().GetSelectedLanguage(container).GetAwaiter().GetResult();
-            selectedLanguage.Should().BeEquivalentTo(language);
+            // Playwright works pretty much faster than DOM is updating on TSWebSite at this current place.
+            Task.Delay(1000).GetAwaiter().GetResult();
+            var languageButtons = _page.Component<Button>("Locale").AllAsync().GetAwaiter().GetResult().ToList();
+            var neededButton =
+                languageButtons.First(x => x.TextContentAsync().GetAwaiter().GetResult().Equals(language));
+            var selectedLanguage = neededButton.GetAttributeAsync("class").GetAwaiter().GetResult();
+            selectedLanguage.Should().Contain("active-locale");
         }
     }
 }

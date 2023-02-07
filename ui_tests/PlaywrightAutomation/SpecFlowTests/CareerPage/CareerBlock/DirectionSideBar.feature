@@ -8,22 +8,22 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	Given User is on career website
 	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	Then Search results equal to selected tag
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 
 @Regression @TSWEB145 @Cleanup
@@ -38,27 +38,27 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	Given User is on career website
 	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then Search results equal to selected tag
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	Then '2' tags are selected in 'Direction' sider bar on 'CareerPage' container
@@ -77,7 +77,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	Given User is on career website
 	When User expects tags and careers on the page
 	When User selects tags in 'Direction' filter side bar on 'CareerPage' container
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	When User clicks on 'Reset' button on 'CareerPage' container

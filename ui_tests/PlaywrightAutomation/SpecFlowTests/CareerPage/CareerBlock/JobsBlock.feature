@@ -23,7 +23,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	When User expects tags and careers on the page
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
 	Then Breadcrumbs has 'Jobs / Test1Career{SRND}' text
@@ -38,7 +38,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 	When User expects tags and careers on the page
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
 	Then Techstack logo is displayed on job page
@@ -56,10 +56,10 @@ Scenario: CheckNavigationHeaderOnJobPage
 Scenario: CheckLocalizationOnJobPage
 	# Preconditions
 	Given User creates Tags
-		| Prefix    | Name                  |
-		| Direction | Test1Tag{SRND}          |
+		| Prefix    | Name                      |
+		| Direction | Test1Tag{SRND}            |
 		| Tag       | Test2Tag{SRND}_Test{SRND} |
-		| Tag       | Hot_Test3Tag{SRND}      |
+		| Tag       | Hot_Test3Tag{SRND}        |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -69,7 +69,7 @@ Scenario: CheckLocalizationOnJobPage
 	When User expects tags and careers on the page
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
 	When User selects 'Ua' language on 'NavigationHeader' container
@@ -85,7 +85,7 @@ Scenario: CheckLocalizationOnJobPage
 	Then Tags are displayed on job page
 		| Tag             |
 		| Гарячі вакансії |
-		| Test{SRND}        |
+		| Test{SRND}      |
 	Then 'Поділитися:' text is displayed with social media icons on job page
 	Then Following block titles are displayed on job page
 		| Title        |

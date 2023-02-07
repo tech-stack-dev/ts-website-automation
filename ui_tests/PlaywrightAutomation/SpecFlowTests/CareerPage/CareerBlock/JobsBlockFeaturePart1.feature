@@ -4,7 +4,7 @@ Feature: JobsBlockFeaturePart1
 Scenario: CheckJobDescriptionOnJobPage
 	# Preconditions
 	Given User creates Tags
-		| Prefix    | Name             |
+		| Prefix    | Name               |
 		| Direction | Test1Tag{SRND}     |
 		| Tag       | Test2Tag{SRND}     |
 		| Tag       | Hot_Test3Tag{SRND} |
@@ -17,13 +17,13 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User expects tags and careers on the page
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag          |
+		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
 	Then 'Test1Career{SRND}' job title is displayed on job page
 	Then Tags are displayed on job page
-		| Tag          |
-		| Hot          |
+		| Tag            |
+		| Hot            |
 		| Test2Tag{SRND} |
 	Then 'Hot' tag is displayed in '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
