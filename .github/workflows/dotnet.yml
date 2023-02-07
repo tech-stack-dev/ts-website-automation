@@ -16,7 +16,7 @@ jobs:
       uses: browser-actions/setup-chrome@v1.0.1
       
     - name: Run Playwright installation
-      uses: actions/setup-powershell@v3
+      uses: actions/setup-powershell@v1
       with:
         version: '7.0.0'
         architecture: 'x64'
