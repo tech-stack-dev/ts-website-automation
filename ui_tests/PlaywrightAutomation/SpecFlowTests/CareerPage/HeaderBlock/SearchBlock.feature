@@ -14,7 +14,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'Head rPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag            |
