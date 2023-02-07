@@ -72,7 +72,7 @@ namespace PlaywrightAutomation.Extensions
 
         #region Waiters
 
-        public static void WaiterWithReloadPage(this IPage page, ILocator locator, AmountOfTime amountOfTime = AmountOfTime.Long)
+        public static void WaiterWithReloadPage(this IPage page, ILocator locator, AmountOfTime amountOfTime = AmountOfTime.Medium)
         {
             var ms = 5000;
 

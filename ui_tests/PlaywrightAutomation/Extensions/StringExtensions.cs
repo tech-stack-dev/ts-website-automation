@@ -1,4 +1,5 @@
 ﻿using ChoETL;
+using PlaywrightAutomation.RuntimeVariables;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -35,6 +36,14 @@ namespace PlaywrightAutomation.Extensions
                 .Select(w => upperCaseInside.Replace(w, m => m.Value.ToLower()));
 
             return string.Concat(pascalCase);
+        }
+
+        public static string AddRandom(this string str, SessionRandomValue sessionRandom)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            return str.Replace("{SRND}", sessionRandom.RandomString);
         }
     }
 }

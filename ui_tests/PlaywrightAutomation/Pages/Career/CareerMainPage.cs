@@ -10,7 +10,7 @@ namespace PlaywrightAutomation.Pages
     {
         public string Container => "//div[contains(@class,'styledComponents__CareerMainBody')]";
 
-        public void WaitForMockedCareers(List<string> careersList, NumberOfAttempts amountOfAttempt = NumberOfAttempts.TenAttempt)
+        public void WaitForMockedCareers(List<string> careersList, NumberOfAttempts amountOfAttempt = NumberOfAttempts.TwentyAttempt)
         {
             foreach (var defaultCareer in careersList)
             {
@@ -18,7 +18,7 @@ namespace PlaywrightAutomation.Pages
 
                 for (var i = 0; i < (int)amountOfAttempt; i++)
                 {
-                    result = CheckCareerDisplayed(Page.Component<Card>(defaultCareer.ConvertToPascalCase()));
+                    result = CheckCareerDisplayed(Page.Component<Card>(defaultCareer));
 
                     if (result)
                     {
@@ -49,6 +49,7 @@ namespace PlaywrightAutomation.Pages
             while (pagination.FocusAndGetPaginationArrowDisplayedState())
             {
                 paginationArrowRight.ClickAsync().GetAwaiter().GetResult();
+                Page.WaitForLoadStateAsync(state:LoadState.DOMContentLoaded).GetAwaiter().GetResult();
 
                 if (component.Count() > 0)
                 {
@@ -64,7 +65,8 @@ namespace PlaywrightAutomation.Pages
             ThreeAttempt = 3,
             FiveAttempt = 5,
             TenAttempt = 10,
-            FifteenAttempt = 15
+            FifteenAttempt = 15,
+            TwentyAttempt = 20
         }
     }
 }
