@@ -3,38 +3,24 @@ Feature: SearchField
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
 	# Precondition
-	Given User creates tag with default values
-		| Prefix | Name |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                      | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideDirectionOfSearch |        |               |               | Link | Entry    |
+	Given User creates Career with default value
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                        |
-		| Vacancy | TestUsSideDirectionOfSearch |
-	When User set 'TestUsSideDirectionOfSearch' text to 'Search' input on 'CareerMainPage' container
-	Then Search results contain 'TestUsSideDirectionOfSearch'
+	When User expects tags and careers on the page
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'CareerMainPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
 	# Precondition
-	Given User creates tag with default values
-		| Prefix | Name |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                          | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideDirectionOfPartSearch |        |               |               | Link | Entry    |
+	Given User creates Career with default value
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                            |
-		| Vacancy | TestUsSideDirectionOfPartSearch |
-	When User set 'Test' text to 'Search' input on 'CareerMainPage' container
-	Then Search results contain 'Test'
+	When User expects tags and careers on the page
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'CareerMainPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock

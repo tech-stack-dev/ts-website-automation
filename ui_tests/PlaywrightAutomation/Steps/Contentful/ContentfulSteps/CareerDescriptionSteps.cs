@@ -1,8 +1,9 @@
 ﻿using PlaywrightAutomation.Models.Contentful;
+using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
+using PlaywrightAutomation.Utils;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using ContentfulClient = PlaywrightAutomation.Utils.ContentfulClient;
 using Table = TechTalk.SpecFlow.Table;
 
 namespace PlaywrightAutomation.Steps.Contentful
@@ -12,29 +13,34 @@ namespace PlaywrightAutomation.Steps.Contentful
     {
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedCareerDescription _createdCareerDescriptions;
+        private readonly SessionRandomValue _sessionRandom;
 
-        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions)
+        public CareerDescriptionSteps(ContentfulClient contentfulClient, CreatedCareerDescription createdCareerDescriptions, SessionRandomValue sessionRandom)
         {
             _contentfulClient = contentfulClient;
             _createdCareerDescriptions = createdCareerDescriptions;
+            _sessionRandom = sessionRandom;
         }
 
-        [Given(@"User creates and publishes new Career Description")]
-        public void GivenUserCreatesAndPublishesNewCareerDescription(Table table)
+        [Given(@"User creates Career Description")]
+        public void GivenUserCreatesCareerDescription(Table table)
         {
             var careerDescriptions = table.CreateInstance<CareerDescription>();
+            careerDescriptions.FillWithDefaultData(_sessionRandom);
             var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
             _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
         }
 
-        [Given(@"User creates and publishes new Career Description with default values")]
-        public void GivenUserCreatesAndPublishesNewCareerDescriptionWithDefaultValues(Table table)
+        [Given(@"User creates '([^']*)' Career Descriptions")]
+        public void GivenUserCreatesCareerDescriptions(int number)
         {
-            var careerDescriptions = table.CreateInstance<CareerDescription>();
-            careerDescriptions.FillWithDefaultData();
-
-            var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
-            _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
+            for (int index = 1; index <= number; index++)
+            {
+                var careerDescriptions = new CareerDescription();
+                careerDescriptions.FillWithDefaultData(_sessionRandom, index);
+                var createdCareerDescriptions = _contentfulClient.CreateCareerDescription(careerDescriptions).Result;
+                _createdCareerDescriptions.Value.Add(createdCareerDescriptions);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AutomationUtils.Extensions;
 using ChoETL;
+using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.RuntimeVariables;
 using System;
 using System.ComponentModel;
 
@@ -48,14 +50,12 @@ namespace PlaywrightAutomation.Models.Contentful
             Tag
         }
 
-        public ContentfulTag FillWithDefaultData(string randomValue = null)
+        public void FillWithDefaultData(SessionRandomValue sessionRandom, int number = 1)
         {
-            randomValue ??= Guid.NewGuid().ToString("N");
+            var randomValue = sessionRandom.RandomString;
 
-            this.Name = this.Name.IsNullOrEmpty() ? $"TestingDirection{randomValue}_Тестовий{randomValue}" : this.Name;
+            this.Name = this.Name.IsNullOrEmpty() ? $"Test{number}Tag{randomValue}" : this.Name.AddRandom(sessionRandom);
             this.Prefix = ((int)this.Prefix) < 0 ? TagPrefix.Direction : this.Prefix;
-
-            return this;
         }
     }
 }

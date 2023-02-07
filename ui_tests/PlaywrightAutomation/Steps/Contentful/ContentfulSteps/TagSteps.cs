@@ -1,6 +1,10 @@
-﻿using PlaywrightAutomation.Models.Contentful;
+﻿using ChoETL;
+using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Models.Contentful;
+using PlaywrightAutomation.RuntimeVariables;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -11,35 +15,45 @@ namespace PlaywrightAutomation.Steps.Contentful.ContentfulSteps
     {
         private readonly ContentfulClient _contentfulClient;
         private readonly CreatedTags _createdTags;
+        private readonly SessionRandomValue _sessionRandom;
 
-        public TagSteps(ContentfulClient contentfulClient, CreatedTags createdTags)
+        public TagSteps(ContentfulClient contentfulClient, CreatedTags createdTags, SessionRandomValue sessionRandom)
         {
             _contentfulClient = contentfulClient;
             _createdTags = createdTags;
+            _sessionRandom = sessionRandom;
         }
 
-        [Given(@"User creates tag")]
+        [Given(@"User creates Tag")]
         public void GivenUserCreatesTag(Table table)
         {
-            var tag = table.CreateSet<ContentfulTag>();
+            var tag = table.CreateInstance<ContentfulTag>();
+            tag.FillWithDefaultData(_sessionRandom);
+            var createdTag = _contentfulClient.CreateTag(tag).Result;
+            _createdTags.Value.Add(createdTag);
+        }
 
-            foreach (var tagJobs in tag)
+        [Given(@"User creates Tags")]
+        public void GivenUserCreatesTags(Table table)
+        {
+            var tags = table.CreateSet<ContentfulTag>().ToList();
+
+            foreach(var tag in tags)
             {
-                var createdTag = _contentfulClient.CreateTag(tagJobs).Result;
+                tag.Name = tag.Name.AddRandom(_sessionRandom);
+                var createdTag = _contentfulClient.CreateTag(tag).Result;
                 _createdTags.Value.Add(createdTag);
             }
         }
 
-        [Given(@"User creates tag with default values")]
-        public void GivenUserCreatesTagWithDefaultValues(Table table)
+        [Given(@"User creates '([^']*)' Tags")]
+        public void GivenUserCreatesTags(int number)
         {
-            var tag = table.CreateSet<ContentfulTag>();
-
-            foreach (var tagJobs in tag)
+            for (int index = 1; index <= number; index++)
             {
-                tagJobs.FillWithDefaultData();
-                var createdTag = _contentfulClient.CreateTag(tagJobs).Result;
-
+                var tag = new ContentfulTag();
+                tag.FillWithDefaultData(_sessionRandom, index);
+                var createdTag = _contentfulClient.CreateTag(tag).Result;
                 _createdTags.Value.Add(createdTag);
             }
         }
