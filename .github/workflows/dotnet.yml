@@ -2,7 +2,8 @@ name: .NET
 
 on:
   schedule:
-    - cron: '*/3 * * * *'
+  #Run each day at 22:15
+    - cron: '15 22 * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
@@ -45,8 +46,16 @@ jobs:
       shell: pwsh
       run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
       
+    # Jobs to run on each PR
     - name: Unit tests
+      if: github.event_name == 'pull_request'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     - name: UI tests
+      if: github.event_name == 'pull_request'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
+    
+    # Jobs to run on Schedule
+    - name: UI tests
+      if: github.event_name == 'schedule'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
