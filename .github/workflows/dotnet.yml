@@ -12,12 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v1.0.1
 
     - name: Check file
       shell: pwsh
-      run: pwsh -Command "Write-Host 'Hello World'"
+      run: pwsh -Command "& {& './ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1' -Install}"
       
     - name: Run Playwright installation
       shell: pwsh
