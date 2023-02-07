@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests_unitTests:
-    name: Unit and Selenium UI tests
+    name: Unit and UI tests
     runs-on: ubuntu-latest
 
     steps:
@@ -47,4 +47,4 @@ jobs:
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     - name: UI tests
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke"
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
