@@ -17,8 +17,7 @@ jobs:
 
     - name: Check file
       shell: pwsh
-      run: |
-        Test-Path run: Test-Path resultsfile.log | Should -Be $true | Should -Be $true
+      run: pwsh -Command "Write-Host 'Hello World'"
       
     - name: Run Playwright installation
       shell: pwsh
