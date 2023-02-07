@@ -39,6 +39,7 @@ namespace PlaywrightAutomation.Components
 
             if (Props.ParentSelector is not null)
             {
+                Page.Locator(ParentSelector).WaitForAsync().GetAwaiter().GetResult();
                 if (Page.Locator(ParentSelector).ElementHandlesAsync().Result.Count > 0)
                 {
                     Parent = Page.Locator(ParentSelector);

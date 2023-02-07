@@ -21,6 +21,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void WhenUserSelectsLanguage(string language, string container)
         {
             _page.Init<HeaderPage>().SelectLanguage(language, container).GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.Load);
         }
 
         [Then(@"Techstack logo is displayed on main page")]
@@ -32,8 +33,9 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"'([^']*)' language is selected '([^']*)' on container")]
         public void ThenLanguageIsSelected(string language, string container)
         {
-            var page = _page.Init<HeaderPage>().GetSelectedLanguage(container).GetAwaiter().GetResult();
-            page.Should().Be(language);
+            _page.ReloadAsync().GetAwaiter().GetResult();
+            var selectedLanguage = _page.Init<HeaderPage>().GetSelectedLanguage(container).GetAwaiter().GetResult();
+            selectedLanguage.Should().BeEquivalentTo(language);
         }
     }
 }

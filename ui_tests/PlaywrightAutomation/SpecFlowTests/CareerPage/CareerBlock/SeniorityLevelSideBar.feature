@@ -5,7 +5,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	# Precondition
 	Given User creates Tags
 		| Prefix    | Name         |
-		| Seniority | Test1TagSRND |
+		| Seniority | Test1Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -15,27 +15,27 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	# Precondition
 	Given User creates Tags
 		| Prefix    | Name         |
-		| Seniority | Test1TagSRND |
-		| Seniority | Test2TagSRND |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -45,24 +45,24 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then '2' tags are selected in 'Seniority levels' sider bar on 'CareerPage' container
 	When User clicks on header 'Seniority levels' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
@@ -72,8 +72,8 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	# Precondition
 	Given User creates Tags
 		| Prefix    | Name         |
-		| Seniority | Test1TagSRND |
-		| Seniority | Test2TagSRND |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -83,7 +83,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	When User clicks on 'Reset' button on 'CareerPage' container
 	Then All selected tags was cancel

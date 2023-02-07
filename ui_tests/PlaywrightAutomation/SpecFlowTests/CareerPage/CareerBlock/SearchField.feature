@@ -7,8 +7,9 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'CareerMainPage' container
-	Then Search results contain 'Test1CareerSRND'
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'CareerMainPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
 @Regression @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
@@ -17,7 +18,8 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'CareerMainPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'CareerMainPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1'
 
 @Regression @TSWEB145 @Cleanup

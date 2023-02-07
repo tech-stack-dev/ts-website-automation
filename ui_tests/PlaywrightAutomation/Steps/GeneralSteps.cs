@@ -87,9 +87,14 @@ namespace PlaywrightAutomation.Steps
             _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
         }
 
-
         [When(@"User expects tags and careers on the page")]
         public void WhenUserExpectsTagsAndCareersOnThePage()
+        {
+            WaitForTagsCreating();
+            WaitForCareerCreating();
+        }
+
+        public void WaitForTagsCreating()
         {
             foreach (var tag in _createdTags.Value)
             {
@@ -105,7 +110,10 @@ namespace PlaywrightAutomation.Steps
                     throw new Exception($"'{tag.Prefix}' element with '{tag.Name}' name is not displayed");
                 }
             }
+        }
 
+        public void WaitForCareerCreating()
+        {
             foreach (var career in _createdCareer.Value)
             {
                 try

@@ -14,35 +14,35 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Test1CareerSRND'
+	Then Search results contain 'Test1Career{SRND}'
 	Then Search results equal to selected tag
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed in 'Direction' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags from 'Direction' filter side bar has correctly color on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 
 @Regression @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelectedTagFromSeniorityLevelDropdown
 	# Precondition
 	Given User creates Tags
 		| Prefix    | Name         |
-		| Seniority | Test1TagSRND |
+		| Seniority | Test1Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -50,24 +50,24 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Seniority Level' dropdown
 	When User selects tag from 'Seniority Level' dropdown
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	When User clicks on 'Search' button on 'HeaderPage' container
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
 		| Tag          |
-		| Test1TagSRND |
+		| Test1Tag{SRND} |
 
 @Regression @TSWEB133
 Scenario: CheckThatUserRedirectsToJobsBlockWhenClickingSearchButton

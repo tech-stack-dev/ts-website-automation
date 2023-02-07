@@ -7,9 +7,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Test1CareerSRND'
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
 @Regresiion @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
@@ -18,9 +19,10 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	# Scenario
 	Given User is on career website
 	When User expects tags and careers on the page
-	When User set 'Test1CareerSRND' text to 'Search' input on 'HeaderPage' container
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
 	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Test1CareerSRND'
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
 @Regression @TSWEB133
 Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInput

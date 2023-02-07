@@ -22,14 +22,14 @@ namespace PlaywrightAutomation.Models.Contentful
             Version = 1;
         }
 
-        public void FillWithDefaultData(SessionRandomValue sessionRandom, int number = 1)
+        public void FillWithDefaultData(SessionRandomValue sessionRandom, int index = 1)
         {
             var randomValue = sessionRandom.RandomString;
            
-            this.NameUs = this.NameUs.IsNullOrEmpty() ? $"Test{number}Career{randomValue}" : this.NameUs.AddRandom(sessionRandom);
-            this.NameUa = this.NameUa.IsNullOrEmpty() ? $"NameUa_{number}_{randomValue}" : this.NameUa.AddRandom(sessionRandom);
-            this.DescriptionUs = this.DescriptionUs.IsNullOrEmpty() ? $"DescriptionUs_{number}_{randomValue}" : this.DescriptionUs.AddRandom(sessionRandom);
-            this.DescriptionUa = this.DescriptionUa.IsNullOrEmpty() ? $"DescriptionUa_{number}_{randomValue}" : this.DescriptionUa.AddRandom(sessionRandom);
+            this.NameUs = this.NameUs.IsNullOrEmpty() ? $"Test{index}Career{randomValue}" : this.NameUs.AddRandom(sessionRandom);
+            this.NameUa = this.NameUa.IsNullOrEmpty() ? $"NameUa_{index}_{randomValue}" : this.NameUa.AddRandom(sessionRandom);
+            this.DescriptionUs = this.DescriptionUs.IsNullOrEmpty() ? $"DescriptionUs_{index}_{randomValue}" : this.DescriptionUs.AddRandom(sessionRandom);
+            this.DescriptionUa = this.DescriptionUa.IsNullOrEmpty() ? $"DescriptionUa_{index}_{randomValue}" : this.DescriptionUa.AddRandom(sessionRandom);
             this.Type = "Link";
             this.LinkType = "Entry";
         }

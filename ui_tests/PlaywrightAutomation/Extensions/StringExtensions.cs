@@ -43,7 +43,7 @@ namespace PlaywrightAutomation.Extensions
             if (string.IsNullOrEmpty(str))
                 return str;
 
-            return str.Replace("SRND", sessionRandom.RandomString);
+            return str.Replace("{SRND}", sessionRandom.RandomString);
         }
     }
 }

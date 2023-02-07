@@ -31,9 +31,22 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 .ToList();
         }
 
+        [Then(@"User sees '(.*)' search value and '(.*)' count of results")]
+        public void ThenUserSeesSearchValueAndCountOfResults(string expectedSearchValue, int expectedCountOfResults)
+        {
+            _page.WaitForLoadStateAsync(state: LoadState.Load);
+            var actualSearchValue = _page.Init<JobPage>().SearchValue.TextContentAsync().GetAwaiter().GetResult();
+            var actualCountOfResults = int.Parse(_page.Init<JobPage>().CountOfResults.TextContentAsync()
+                .GetAwaiter().GetResult()
+                .Replace(" Job", string.Empty));
+            actualSearchValue.Should().BeEquivalentTo(expectedSearchValue.AddRandom(_sessionRandom));
+            actualCountOfResults.Should().Be(expectedCountOfResults);
+        }
+
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
+            _page.WaitForLoadStateAsync(state: LoadState.Load);
             _page.Init<JobPage>().SearchValue.IsVisibleAsync().GetAwaiter().GetResult();
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             texts.Should().NotBeNullOrEmpty();

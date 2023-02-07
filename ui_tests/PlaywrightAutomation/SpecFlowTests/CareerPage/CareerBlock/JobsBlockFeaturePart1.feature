@@ -1,13 +1,13 @@
-Feature: JobsBlock1
+Feature: JobsBlockFeaturePart1
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckJobDescriptionOnJobPage
 	# Preconditions
 	Given User creates Tags
 		| Prefix    | Name             |
-		| Direction | Test1TagSRND     |
-		| Tag       | Test2TagSRND     |
-		| Tag       | Hot_Test3TagSRND |
+		| Direction | Test1Tag{SRND}     |
+		| Tag       | Test2Tag{SRND}     |
+		| Tag       | Hot_Test3Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -18,13 +18,13 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
-	When User clicks on 'Test1CareerSRND' card title
-	Then 'Test1CareerSRND' job title is displayed on job page
+		| Test1Tag{SRND} |
+	When User clicks on 'Test1Career{SRND}' card title
+	Then 'Test1Career{SRND}' job title is displayed on job page
 	Then Tags are displayed on job page
 		| Tag          |
 		| Hot          |
-		| Test2TagSRND |
+		| Test2Tag{SRND} |
 	Then 'Hot' tag is displayed in '1' position on job page
 	Then 'Hot' tag has 'orange yellow' background color on job page
 	Then Social media icons are displayed below job title on job page

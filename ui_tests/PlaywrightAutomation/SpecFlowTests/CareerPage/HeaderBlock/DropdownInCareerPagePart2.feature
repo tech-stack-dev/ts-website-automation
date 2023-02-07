@@ -14,8 +14,8 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	When User clicks on 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
@@ -24,9 +24,9 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 	# Precondition
 	Given User creates Tags
 		| Prefix    | Name         |
-		| Seniority | Test1TagSRND |
-		| Seniority | Test2TagSRND |
-		| Seniority | Test3TagSRND |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
+		| Seniority | Test3Tag{SRND} |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -37,8 +37,8 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 	When User clicks on 'Seniority Level' dropdown
 	When User selects tag from 'Seniority Level' dropdown
 		| Tag          |
-		| Test1TagSRND |
-		| Test2TagSRND |
-		| Test3TagSRND |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
+		| Test3Tag{SRND} |
 	When User clicks on 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel

@@ -1,4 +1,4 @@
-Feature: JobsBlock
+Feature: JobsBlockFeature
 
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
@@ -24,9 +24,9 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
-	When User clicks on 'Test1CareerSRND' card title
-	Then Breadcrumbs has 'Jobs / Test1CareerSRND' text
+		| Test1Tag{SRND} |
+	When User clicks on 'Test1Career{SRND}' card title
+	Then Breadcrumbs has 'Jobs / Test1Career{SRND}' text
 	Then 'Apply Now' button is displayed on 'BreadcrumbsHeader' container
 
 @Regression @TSWEB146 @Cleanup
@@ -39,8 +39,8 @@ Scenario: CheckNavigationHeaderOnJobPage
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
-	When User clicks on 'Test1CareerSRND' card title
+		| Test1Tag{SRND} |
+	When User clicks on 'Test1Career{SRND}' card title
 	Then Techstack logo is displayed on job page
 	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab        |
@@ -57,9 +57,9 @@ Scenario: CheckLocalizationOnJobPage
 	# Preconditions
 	Given User creates Tags
 		| Prefix    | Name                  |
-		| Direction | Test1TagSRND          |
-		| Tag       | Test2TagSRND_TestSRND |
-		| Tag       | Hot_Test3TagSRND      |
+		| Direction | Test1Tag{SRND}          |
+		| Tag       | Test2Tag{SRND}_Test{SRND} |
+		| Tag       | Hot_Test3Tag{SRND}      |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -70,22 +70,22 @@ Scenario: CheckLocalizationOnJobPage
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag          |
-		| Test1TagSRND |
-	When User clicks on 'Test1CareerSRND' card title
+		| Test1Tag{SRND} |
+	When User clicks on 'Test1Career{SRND}' card title
 	When User selects 'Ua' language on 'NavigationHeader' container
-	Then 'NameUa_1_SRND' job title is displayed on job page
+	Then 'NameUa_1_{SRND}' job title is displayed on job page
 	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |
 		| Вакансії          |
 		| Про компанію      |
 		| Відгуки           |
 		| Зв’язатись з нами |
-	Then Breadcrumbs has 'Вакансії / NameUa_1_SRND' text
+	Then Breadcrumbs has 'Вакансії / NameUa_1_{SRND}' text
 	Then 'Apply Now' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
 	Then Tags are displayed on job page
 		| Tag             |
 		| Гарячі вакансії |
-		| TestSRND        |
+		| Test{SRND}        |
 	Then 'Поділитися:' text is displayed with social media icons on job page
 	Then Following block titles are displayed on job page
 		| Title        |
