@@ -14,7 +14,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1.0.1
-
+    - name: Run Playwright installation
+      uses: actions/windows-powershell@v1
+      with:
+        script: pwsh bin/Debug/netX/playwright.ps1 install
+        env:
+          PWSH_HOME: ${{env.PWSH_HOME}}
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
