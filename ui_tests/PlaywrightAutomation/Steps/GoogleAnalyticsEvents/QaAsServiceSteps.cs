@@ -37,6 +37,12 @@ internal class QaAsServiceSteps : SpecFlowContext
         _page.Init<QaAsServicePage>().MenuButton.ClickAsync().GetAwaiter().GetResult();
     }
 
+    [When(@"User accept cookie")]
+    public void WhenUserAcceptCookie()
+    {
+        _page.Init<QaAsServicePage>().AcceptCookieButton.ClickAsync().GetAwaiter().GetResult();
+    }
+
     [When(@"User goes to '(.*)' page from '(.*)' category")]
     public void WhenUserGoesToPageFromCategory(string pageName, string categoryName)
     {
@@ -108,9 +114,17 @@ internal class QaAsServiceSteps : SpecFlowContext
 
     private IRequest RunActionAndGetGoogleAnalyticsRequest(Action action)
     {
-        var request = _page
-            .RunAndWaitForRequestAsync(async () => { action(); }, x => x.Url.Contains("www.google-analytics.com"))
-            .GetAwaiter().GetResult();
-        return request;
+        try
+        {
+            var request = _page
+                .RunAndWaitForRequestAsync(async () => { action(); },
+                    x => x.Url.Contains("www.google-analytics.com") && !x.Url.Contains("ec=Page&ea=Scrolling"))
+                .GetAwaiter().GetResult();
+            return request;
+        }
+        catch
+        {
+            throw new Exception("Google Analytics request was not found during the action");
+        }
     }
 }

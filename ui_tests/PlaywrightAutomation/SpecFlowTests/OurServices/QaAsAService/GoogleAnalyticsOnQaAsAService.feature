@@ -5,6 +5,7 @@ Background:
 
 @Regression @OurServices @TSWEB302
 Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEvent
+	When User accept cookie
 	When User clicks menu button
 	When User goes to 'QA as a Service' page from 'Services' category
 	When User clicks card with 'Existing QA Processes Audit' header text from Case studies section
@@ -20,6 +21,7 @@ Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEven
 	
 @Regression @OurServices @TSWEB302
 Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
+	When User accept cookie
 	When User clicks menu button
 	When User goes to 'QA as a Service' page from 'Services' category
 	When User clicks source breadcrumbs button
@@ -34,6 +36,7 @@ Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	
 @Regression @OurServices @TSWEB302
 Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
+	When User accept cookie
 	When User clicks menu button
 	When User goes to 'QA as a Service' page from 'Services' category
 	When User clicks arrow wrapper for 'Why is integrating QA' field in FAQ section
@@ -56,19 +59,20 @@ Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	
 @Regression @OurServices @TSWEB302
 Scenario: CheckThatAllServicesWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
+	When User accept cookie
 	When User clicks menu button
 	When User goes to 'QA as a Service' page from 'Services' category
+	When User clicks arrow wrapper for 'Auditing existing company QA processes' field in Services section
+	Then User sees 'QAasAServPage' event category and 'QAasAServServiceAuditing-existing-company-QA-processes' event action
+	When User clicks arrow wrapper for 'Auditing existing company QA processes' field in Services section
 	When User clicks arrow wrapper for 'Testing processes setup from scratch' field in Services section
 	Then User sees 'QAasAServPage' event category and 'QAasAServServiceTesting-processes-setup-from-scratch' event action
 	When User clicks arrow wrapper for 'Testing processes setup from scratch' field in Services section
-	When User clicks arrow wrapper for 'Regression testing on demand' field in Services section  
+	When User clicks arrow wrapper for 'Regression testing on demand' field in Services section
 	Then User sees 'QAasAServPage' event category and 'QAasAServService' event action
 	When User clicks arrow wrapper for 'Regression testing on demand' field in Services section
 	When User clicks arrow wrapper for 'Exploratory and usability testing' field in Services section
 	Then User sees 'QAasAServPage' event category and 'QAasAServServiceExploratory-and-usability-testing' event action
 	When User clicks arrow wrapper for 'Exploratory and usability testing' field in Services section
-	When User clicks arrow wrapper for 'Auditing existing company QA processes' field in Services section
-	Then User sees 'QAasAServPage' event category and 'QAasAServServiceAuditing-existing-company-QA-processes' event action
-	When User clicks arrow wrapper for 'Auditing existing company QA processes' field in Services section
 	When User clicks arrow wrapper for 'Testing automation and integrating CI/CD' field in Services section
 	Then User sees 'QAasAServPage' event category and 'QAasAServServiceTesting-automation-and-integrating-CI/CD' event action

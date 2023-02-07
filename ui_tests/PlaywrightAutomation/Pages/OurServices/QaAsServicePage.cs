@@ -12,6 +12,8 @@ public class QaAsServicePage : BasePage, IWebContainer
     public string FaqSectionElements => "//div[contains(@class,'faq-container collapsible')]";
     public string CaseStudiesCardsElements => "//a[@class='case-card']";
 
+    public ILocator AcceptCookieButton => Page.Locator("//div[contains(@class,'accept-cookie')]//div[@id='btn-accept-container']//a");
+
     public ILocator MenuButton => Page.Locator("//a[@id='menu-btn']");
 
     public ILocator TopSectionRequestQuoteButton =>
