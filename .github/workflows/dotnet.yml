@@ -25,7 +25,7 @@ jobs:
       
     - name: Run Playwright installation
       shell: pwsh
-      run: pwsh -Command "& {& './ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1' -Install}"
+      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
       
     - name: Unit tests
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
