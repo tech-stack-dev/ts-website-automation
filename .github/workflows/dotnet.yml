@@ -13,25 +13,22 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Check file
-      shell: pwsh
-      run: pwsh -Command "ls ./ui_tests/PlaywrightAutomation/bin/Debug"
-      
-    - name: Run Playwright installation
-      shell: pwsh
-      run: |
-        ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install
-
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
+      
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
+      
+    - name: Run Playwright installation
+      shell: pwsh
+      run: pwsh -Command "& {& './ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1' -Install}"
+      
     - name: Unit tests
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      
     - name: UI tests
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=UiTest"
