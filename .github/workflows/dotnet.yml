@@ -15,7 +15,7 @@ jobs:
 
     - name: Check file
       shell: pwsh
-      run: pwsh -Command "Test-Path -Path ./ui_tests/PlaywrightAutomation -PathType Any"
+      run: pwsh -Command "Test-Path -Path ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0 -PathType Any"
       
     - name: Run Playwright installation
       shell: pwsh
