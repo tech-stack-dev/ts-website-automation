@@ -17,7 +17,8 @@ jobs:
 
     - name: Check file
       shell: pwsh
-      run: Test-Path run: Test-Path resultsfile.log | Should -Be $true | Should -Be $true
+      run: |
+        Test-Path run: Test-Path resultsfile.log | Should -Be $true | Should -Be $true
       
     - name: Run Playwright installation
       shell: pwsh
