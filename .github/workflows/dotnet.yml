@@ -15,7 +15,7 @@ jobs:
 
     - name: Check file
       shell: pwsh
-      run: pwsh -Command "ls"
+      run: pwsh -Command "Test-Path -Path ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 -PathType Leaf"
       
     - name: Run Playwright installation
       shell: pwsh
