@@ -14,6 +14,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1.0.1
+
+    - name: Check file
+      shell: pwsh
+      run: Test-Path run: Test-Path resultsfile.log | Should -Be $true | Should -Be $true
       
     - name: Run Playwright installation
       shell: pwsh
