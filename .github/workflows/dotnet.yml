@@ -21,10 +21,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
       
-    - name: Debug
-      shell: pwsh
-      run: pwsh -Command "ls ./ui_tests/PlaywrightAutomation"
-      
     - name: Override config parameters
       shell: pwsh
       run: |
