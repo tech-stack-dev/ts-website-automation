@@ -80,7 +80,23 @@ jobs:
         name: Allure-report
         path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
         retention-days: 2
+
+    - name: Get Allure history
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
         
+    - name: Allure Report action from marketplace
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 2
+          
     - name: Deploy Allure Report to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       if: always()
