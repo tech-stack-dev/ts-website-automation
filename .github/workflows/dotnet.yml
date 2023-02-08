@@ -24,6 +24,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
       
+    - name: Install Java
+      run: |
+        sudo apt update
+        sudo apt install default-jre -y
+        sudo apt install default-jdk -y
+        javac -version
+
     - name: Override config parameters
       shell: pwsh
       run: |
@@ -42,6 +49,7 @@ jobs:
     - name: Install Allure
       run: |
         sudo apt-add-repository ppa:qameta/allure
+        sudo apt-get update 
         sudo apt-get install allure
         
     - name: Check Allure installation
