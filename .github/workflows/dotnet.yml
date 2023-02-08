@@ -113,6 +113,6 @@ jobs:
         state: 'success'
         statuses: write
         owner: VitaliiDolotov
-        sha: ${{github.event.pull_request.head.sha}}
+        sha: ${{github.event.pull_request.head.sha || github.sha}}
         target_url: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
 
