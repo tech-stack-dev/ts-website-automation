@@ -58,7 +58,7 @@ jobs:
       
     - name: UI tests
       if: github.event_name == 'pull_request'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun" --logger "trx;logfilename=TestResults.trx" --results-directory ./allure-results
     
     # Jobs to run on Schedule
     - name: UI tests on Schedule
@@ -67,7 +67,7 @@ jobs:
 
     - name: Get files list
       shell: pwsh
-      run: pwsh -Command "ls ./ui_tests/PlaywrightAutomation/"
+      run: pwsh -Command "ls ./ui_tests/"
       
     - uses: actions/upload-artifact@v3
       if: always()
