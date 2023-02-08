@@ -23,13 +23,6 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
-      
-    - name: Install Java
-      run: |
-        sudo apt update
-        sudo apt install default-jre -y
-        sudo apt install default-jdk -y
-        javac -version
 
     - name: Override config parameters
       shell: pwsh
