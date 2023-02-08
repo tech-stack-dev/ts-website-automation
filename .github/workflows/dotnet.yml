@@ -38,17 +38,7 @@ jobs:
           {
             throw "$_.Exception.ToString()"
           }
-     
-    - name: Install Allure
-      run: |
-        sudo apt-get install default-jre
-        wget https://github.com/allure-framework/allure2/releases/download/2.21.0/allure_2.21.0-1_all.deb
-        sudo dpkg -i allure_2.21.0-1_all.deb
 
-        
-    - name: Check Allure installation
-      run: allure --version
-          
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
