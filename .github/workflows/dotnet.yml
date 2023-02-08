@@ -39,6 +39,15 @@ jobs:
             throw "$_.Exception.ToString()"
           }
           
+    # Allure
+    - name: Install Allure
+      uses: wongjiahau/allure-commandline-action@master
+      
+    - name: Allure Report
+      uses: wongjiahau/allure-report-action@master
+      with:
+        args: generate --clean
+          
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
@@ -60,9 +69,20 @@ jobs:
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
       
-    - uses: actions/upload-artifact@v3
-      if: always()
+    - name: Publish
+      uses: wongjiahau/allure-publish-action@master
       with:
-        name: Allure-report
-        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/
-        retention-days: 2
+        args: allure-results/
+        
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: allure-report
+        path: allure-results/
+        
+    # - uses: actions/upload-artifact@v3
+      # if: always()
+      # with:
+        # name: Allure-report
+        # path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/
+        # retention-days: 2
