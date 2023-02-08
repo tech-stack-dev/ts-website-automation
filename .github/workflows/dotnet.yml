@@ -68,19 +68,17 @@ jobs:
     # Jobs to run on Schedule
     - name: UI tests on Schedule
       if: github.event_name == 'schedule'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"  
 
-    # Generate Allure reports and deploy to GitHub Pages
-    - name: Generate Allure Report
-      run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report      
-
+    # Publish Allure results
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: Allure-report
         path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
         retention-days: 2
-
+    
+    # Prepare Allure history and publish to GitHub pages
     - name: Get Allure history
       uses: actions/checkout@v3
       if: always()
