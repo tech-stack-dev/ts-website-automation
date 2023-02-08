@@ -106,7 +106,7 @@ jobs:
         
     - name: Post the link to the report
       if: always()
-      uses: Sibz/github-status-action@v1
+      uses: Sibz/github-status-action@v1.1.6
       with: 
         authToken: ${{secrets.ACCESS_TOKEN}}
         context: 'Test report'
