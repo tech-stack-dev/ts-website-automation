@@ -59,3 +59,10 @@ jobs:
     - name: UI tests on Schedule
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: Allure-report
+        path: ui_tests/allure-results/
+        retention-days: 2
