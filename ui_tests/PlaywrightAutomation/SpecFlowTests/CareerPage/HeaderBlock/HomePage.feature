@@ -9,7 +9,7 @@ Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
 	When User selects 'Ua' language on 'HeaderPage' container
 	Then 'Ua' language is selected 'HeaderPage' on container
 
-@Regression
+@Smoke @Regression
 Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 	Then 'En' language is selected 'NavigationHeader' on container
 	When User selects 'Ua' language on 'NavigationHeader' container
