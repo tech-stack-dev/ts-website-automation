@@ -23,7 +23,7 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
-      
+
     - name: Override config parameters
       shell: pwsh
       run: |
@@ -38,6 +38,16 @@ jobs:
           {
             throw "$_.Exception.ToString()"
           }
+     
+    - name: Install Allure
+      run: |
+        sudo apt-get install default-jre
+        wget https://github.com/allure-framework/allure2/releases/download/2.21.0/allure_2.21.0-1_all.deb
+        sudo dpkg -i allure_2.21.0-1_all.deb
+
+        
+    - name: Check Allure installation
+      run: allure --version
           
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
@@ -58,11 +68,34 @@ jobs:
     # Jobs to run on Schedule
     - name: UI tests on Schedule
       if: github.event_name == 'schedule'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
-      
-    - uses: actions/upload-artifact@v3
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"  
+    
+    # Prepare Allure history and publish to GitHub pages
+    - name: Get Allure history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+        
+    - name: Compile Allure report
+      uses: simple-elf/allure-report-action@master
       if: always()
       with:
-        name: Allure-report
-        path: ui_tests/allure-results/
-        retention-days: 2
+        allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
+        allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        keep_reports: 35
+          
+    - name: Deploy Allure Report to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      if: always()
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        
+    - name: Add Allure report link to Annotations section
+      run: |
+        text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+        echo "::warning ::$text"
