@@ -3,8 +3,9 @@ name: .NET
 on:
   pull_request:
     paths:
-      - "performance_tests/**"
-      - "ui_tests_playwright/**"
+      - 'performance_tests/**'
+      - 'ui_tests_playwright/**'
+      - '.github/**"
     # Use paths-ignore instead of path after fix of https://github.com/actions/runner/issues/2324
     # paths-ignore:
     #   - "ui_tests/**"
