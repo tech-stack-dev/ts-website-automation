@@ -44,6 +44,7 @@ jobs:
         sudo apt-get install default-jre
         wget https://github.com/allure-framework/allure2/releases/download/2.21.0/allure_2.21.0-1_all.deb
         sudo dpkg -i allure_2.21.0-1_all.deb
+
         
     - name: Check Allure installation
       run: allure --version
@@ -74,7 +75,6 @@ jobs:
       run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report      
 
     - uses: actions/upload-artifact@v3
-    - name: Upload Allure Report
       if: always()
       with:
         name: Allure-report
