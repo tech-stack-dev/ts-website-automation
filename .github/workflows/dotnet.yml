@@ -77,7 +77,7 @@ jobs:
       if: always()
       with:
         name: Allure-report
-        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
+        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
         retention-days: 2
         
     - name: Deploy to GitHub Pages
@@ -86,6 +86,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
+        FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
         TARGET_FOLDER: docs
 
