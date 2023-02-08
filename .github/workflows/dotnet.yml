@@ -70,26 +70,17 @@ jobs:
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
 
-    - name: Test marketplace action
-    uses: simple-elf/allure-report-action@master
-    if: always()
-    id: allure-report
-    with:
-      allure_results: build/allure-results
-      gh_pages: gh-pages
-      allure_report: allure-report
-      allure_history: allure-history
-    
-    - name: Deploy report to Github Pages
-    if: always()
-    uses: peaceiris/actions-gh-pages@v2
-    env:
-      PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PUBLISH_BRANCH: gh-pages
-      PUBLISH_DIR: allure-history
-    
-    # - name: Generate Allure Report
-      # run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+    - name: Generate Allure Report
+      run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+
+    - name: Push Results
+      uses: actions/git-action@master
+      with:
+        args: push origin allure-reports-branch
+        path: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
 
       
     # - uses: actions/upload-artifact@v3
