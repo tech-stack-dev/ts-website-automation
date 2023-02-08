@@ -99,6 +99,6 @@ jobs:
     - name: Generate Warning Annotations
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
-        echo "::warning file=app.js,line=1,col=5::$text"
+        echo "::warning ::$text"
 
 
