@@ -64,5 +64,5 @@ jobs:
       if: always()
       with:
         name: Allure-report
-        path: ui_tests/allure-results/
+        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/
         retention-days: 2
