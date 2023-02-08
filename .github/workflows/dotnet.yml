@@ -84,7 +84,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       if: always()
       with:
-        ACCESS_TOKEN: ${{ secret.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
         TARGET_FOLDER: docs
