@@ -71,21 +71,21 @@ jobs:
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
 
     - name: Generate Allure Report
-      run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+      run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report      
 
-    - name: Push Results
-      uses: actions/git-action@master
+    - uses: actions/upload-artifact@v3
+      if: always()
       with:
-        args: push origin allure-reports-branch
-        path: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+        name: Allure-report
+        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
+        retention-days: 2
+        
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      if: always()
+      with:
+        ACCESS_TOKEN: ${{ secret.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
+        TARGET_FOLDER: docs
 
-      
-    # - uses: actions/upload-artifact@v3
-      # if: always()
-      # with:
-        # name: Allure-report
-        # path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-result
-        # retention-days: 2
