@@ -87,14 +87,14 @@ jobs:
       continue-on-error: true
       with:
         ref: gh-pages
-        path: docs
+        path: gh-pages
         
     - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
       with:
-        allure_results: allure-results
-        allure_history: allure-history
+        allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+        allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         keep_reports: 2
           
     - name: Deploy Allure Report to GitHub Pages
@@ -103,6 +103,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+        FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         TARGET_FOLDER: docs
 
