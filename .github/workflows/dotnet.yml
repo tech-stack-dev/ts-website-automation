@@ -67,7 +67,7 @@ jobs:
 
     - name: Get files list
       shell: pwsh
-      run: pwsh -Command "ls ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/"
+      run: pwsh -Command "ls ./ui_tests/PlaywrightAutomation/"
       
     - uses: actions/upload-artifact@v3
       if: always()
