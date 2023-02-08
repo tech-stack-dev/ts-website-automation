@@ -111,6 +111,7 @@ jobs:
         authToken: ${{secrets.ACCESS_TOKEN}}
         context: 'Test report'
         state: 'success'
+        statuses: write
         owner: VitaliiDolotov
         sha: ${{github.event.pull_request.head.sha}}
         target_url: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
