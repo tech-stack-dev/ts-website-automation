@@ -103,16 +103,9 @@ jobs:
         BRANCH: gh-pages
         FOLDER: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         TARGET_FOLDER: docs
-        
-    - name: Post the link to the report
-      if: always()
-      uses: Sibz/github-status-action@v1.1.6
-      with: 
-        authToken: ${{secrets.ACCESS_TOKEN}}
-        context: 'Test report'
-        state: 'success'
-        statuses: write
-        owner: VitaliiDolotov
-        sha: ${{github.event.pull_request.head.sha || github.sha}}
-        target_url: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+
+    - name: Set Annotations
+      uses: actions/set-output@v2
+      with:
+        annotations: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
 
