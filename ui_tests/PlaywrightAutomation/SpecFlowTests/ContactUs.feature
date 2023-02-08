@@ -1,6 +1,6 @@
 ﻿Feature: ContactUs
 
-@Regression @TSWEB149 
+@Regression @TSWEB149
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
 	When User clicks on 'Contact us' tab on 'NavigationHeader' container
