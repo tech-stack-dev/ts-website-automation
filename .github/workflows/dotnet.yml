@@ -70,12 +70,11 @@ jobs:
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
 
-    - name: Generate Allure Report
-      run: allure generate ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results/ --clean -o ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+
       
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: Allure-report
-        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-report
+        path: ./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
         retention-days: 2
