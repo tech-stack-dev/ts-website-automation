@@ -19,7 +19,7 @@ jobs:
       
       - uses: actions/checkout@v2
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
