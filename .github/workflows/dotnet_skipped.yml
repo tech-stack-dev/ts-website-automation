@@ -19,7 +19,7 @@ jobs:
       
       - uses: actions/checkout@v2
       - name: Slack Notification
-        if: ${{ github.event_name == 'schedule' and job.status == 'failure' }} 
+        if: ${{ github.event_name == 'schedule' && job.status == 'failure' }} 
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
