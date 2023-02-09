@@ -96,8 +96,8 @@ jobs:
       id: slack_icon_emoji
       with:
         cond: ${{ job.status == 'failure' }}
-        if_true: ':apple:'
-        if_false: ':green_apple:'
+        if_true: ':f_respect:'
+        if_false: ':aw_yeah:'
           
     - uses: actions/checkout@v2
     - name: Slack Notification
