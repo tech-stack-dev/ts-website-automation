@@ -86,6 +86,7 @@ jobs:
         folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         
     - name: Add Allure report link to Annotations section
+      if: always()
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
         echo "::warning ::$text"
