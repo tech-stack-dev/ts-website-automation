@@ -16,3 +16,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No tests execution required"'
+
+      - uses: haya14busa/action-cond@v1
+        id: slack_icon_emoji
+        with:
+          cond: ${{ job.status == 'failure' }}
+          if_true: ':apple:'
+          if_false: ':green_apple:'
+    
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_USERNAME: Tests execution report
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: test_slack_notifications
+          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+          SLACK_TITLE: .Net Unit and UI tests
+          MSG_MINIMAL: true
+          SLACK_FOOTER: TS website
