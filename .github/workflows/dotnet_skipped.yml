@@ -27,4 +27,4 @@ jobs:
           SLACK_ICON_EMOJI: ':bell:'
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
-         SLACK_TITLE: .Net Unit and UI tests
+          SLACK_TITLE: .Net Unit and UI tests
