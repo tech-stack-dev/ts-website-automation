@@ -17,9 +17,9 @@ jobs:
     steps:
       - run: 'echo "No tests execution required"'
       
-      - if: ${{ github.event_name == 'schedule' and job.status == 'failure' }} 
       - uses: actions/checkout@v2
       - name: Slack Notification
+        if: ${{ github.event_name == 'schedule' and job.status == 'failure' }} 
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
