@@ -19,8 +19,3 @@ jobs:
     steps:
       - run: 'echo "No tests execution required"'
       
-  second_job:
-    name: Second Job
-    
-    steps:
-      - run: 'echo "I'm second job"'
