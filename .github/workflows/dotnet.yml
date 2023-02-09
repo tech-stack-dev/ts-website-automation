@@ -104,3 +104,4 @@ jobs:
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
         SLACK_TITLE: .Net Unit and UI tests
         MSG_MINIMAL: true
+        
