@@ -17,14 +17,14 @@ jobs:
     steps:
       - run: 'echo "No tests execution required"'
       
-    - uses: actions/checkout@v2
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: test_slack_notifications
-        SLACK_ICON: https://github.com/rtBot.png?size=32
-        SLACK_ICON_EMOJI: ':bell:'
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
-        SLACK_TITLE: .Net Unit and UI tests
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: test_slack_notifications
+          SLACK_ICON: https://github.com/rtBot.png?size=32
+          SLACK_ICON_EMOJI: ':bell:'
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+         SLACK_TITLE: .Net Unit and UI tests
