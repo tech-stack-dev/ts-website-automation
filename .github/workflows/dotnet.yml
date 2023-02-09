@@ -90,3 +90,18 @@ jobs:
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
         echo "::warning ::$text"
+        
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && job.status == 'failure') }} 
+      uses: rtCamp/action-slack-notify@v2.2.0
+      env:
+        SLACK_USERNAME: Tests execution report
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: ts_website_automation
+        SLACK_ICON_EMOJI: ':gear:'
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+        SLACK_TITLE: .Net Unit and UI tests
+        MSG_MINIMAL: true
+        
