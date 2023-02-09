@@ -17,7 +17,6 @@ jobs:
     steps:
       - run: 'echo "No tests execution required"'
       
-    steps:
     - uses: actions/checkout@v2
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
