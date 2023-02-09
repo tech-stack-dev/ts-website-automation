@@ -20,9 +20,9 @@ jobs:
       - uses: haya14busa/action-cond@v1
         id: slack_icon_emoji
         with:
-          cond: ${{ job.status == 'failure' }}
+          cond: ${{ job.status != 'failure' }}
           if_true: ':apple:'
-          if_false: ':apple:'
+          if_false: ':green_apple:'
     
       - uses: actions/checkout@v2
       - name: Slack Notification
