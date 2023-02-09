@@ -22,7 +22,7 @@ jobs:
         with:
           cond: ${{ job.status == 'failure' }}
           if_true: ':apple:'
-          if_false: ':green_apple:'
+          if_false: ':apple:'
     
       - uses: actions/checkout@v2
       - name: Slack Notification
