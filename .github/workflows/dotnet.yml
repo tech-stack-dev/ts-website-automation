@@ -106,7 +106,7 @@ jobs:
       env:
         SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: test_slack_notifications
+        SLACK_CHANNEL: ts_website_automation
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
