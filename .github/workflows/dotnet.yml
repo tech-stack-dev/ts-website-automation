@@ -99,7 +99,6 @@ jobs:
         if_true: ':finnadie:'
         if_false: ':aw_yeah:'
           
-    - uses: actions/checkout@v2
     - name: Slack Notification
       if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && job.status == 'failure') }} 
       uses: rtCamp/action-slack-notify@v2.2.0
