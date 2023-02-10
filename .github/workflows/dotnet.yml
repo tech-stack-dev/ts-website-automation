@@ -3,7 +3,7 @@ name: .NET
 on:
   schedule:
   #Run each day at 22:15
-    - cron: "*/10 * * * *"
+    - cron: '0 * * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
@@ -23,8 +23,6 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
-      
-    - run: 'echo "DEBUG ${{ github.event_name }}"'
 
     - name: Override config parameters
       shell: pwsh
@@ -60,7 +58,7 @@ jobs:
     # Jobs to run on Schedule
     - name: UI tests on Schedule
       if: github.event_name == 'schedule'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=OnBuild&TestCategory!=NotRun"  
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"  
     
     # Prepare Allure history and publish to GitHub pages
     - name: Get Allure history
@@ -108,7 +106,7 @@ jobs:
       env:
         SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: test_slack_notifications
+        SLACK_CHANNEL: ts_website_automation
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
