@@ -93,7 +93,7 @@ jobs:
        
     # Prepare appropriate emoji for Slack notification    
     - uses: haya14busa/action-cond@v1
-      if: always()
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure()) }} 
       id: slack_icon_emoji
       with:
         cond: ${{ job.status == 'failure' }}
@@ -101,7 +101,7 @@ jobs:
         if_false: ':aw_yeah:'
           
     - name: Slack Notification
-      if: always()
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure()) }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report
