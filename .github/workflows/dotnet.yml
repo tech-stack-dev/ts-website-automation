@@ -3,7 +3,7 @@ name: .NET
 on:
   schedule:
   #Run each day at 22:15
-    - cron: '15 22 * * *'
+    - cron: '0 * * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
