@@ -90,23 +90,23 @@ jobs:
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
         echo "::warning ::$text"
-       
-    # Prepare appropriate emoji for Slack notification    
-    - uses: haya14busa/action-cond@v1
+         
+    - name: Preparing Slack emoji
+      uses: haya14busa/action-cond@v1
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure()) }} 
       id: slack_icon_emoji
       with:
         cond: ${{ job.status == 'failure' }}
         if_true: ':finnadie:'
         if_false: ':aw_yeah:'
           
-    - uses: actions/checkout@v2
     - name: Slack Notification
-      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && job.status == 'failure') }} 
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure()) }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: ts_website_automation
+        SLACK_CHANNEL: test_slack_notifications
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}

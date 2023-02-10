@@ -6,7 +6,7 @@ Background:
 @Smoke @Regression
 Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
 	Then 'En' language is selected 'HeaderPage' on container
-	When User selects 'Ua' language on 'HeaderPage' container
+	When User selects 'Ua1' language on 'HeaderPage' container
 	Then 'Ua' language is selected 'HeaderPage' on container
 
 @Regression
