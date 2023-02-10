@@ -3,7 +3,7 @@ Feature: HomePage
 Background:
 	Given User is on career website
 
-@Smoke @Regression
+@Smoke @Regression 
 Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
 	Then 'En' language is selected 'HeaderPage' on container
 	When User selects 'Ua' language on 'HeaderPage' container
