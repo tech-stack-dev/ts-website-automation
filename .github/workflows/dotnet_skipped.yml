@@ -15,4 +15,4 @@ jobs:
     name: Unit and UI tests
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo "No tests execution required ${{ (github.event_name }}"'
+      - run: 'echo "No tests execution required ${{ github.event_name }}"'
