@@ -60,58 +60,58 @@ jobs:
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"  
     
-    rescue:
-      steps:
-        # Prepare Allure history and publish to GitHub pages
-        - name: Get Allure history
-          uses: actions/checkout@v3
-          if: always()
-          continue-on-error: true
-          with:
-            ref: gh-pages
-            path: gh-pages
-            
-        - name: Compile Allure report
-          uses: simple-elf/allure-report-action@master
-          if: always()
-          with:
-            allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
-            allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
-            keep_reports: 20
-              
-        - name: Deploy Allure Report to GitHub Pages
-          uses: JamesIves/github-pages-deploy-action@v4.4.1
-          if: always()
-          with:
-            token: ${{ secrets.ACCESS_TOKEN }}
-            branch: gh-pages
-            folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
-            
-        - name: Add Allure report link to Annotations section
-          if: always()
-          run: |
-            text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
-            echo "::warning ::$text"
-           
-        # Prepare appropriate emoji for Slack notification    
-        - uses: haya14busa/action-cond@v1
-          id: slack_icon_emoji
-          with:
-            cond: ${{ job.status == 'failure' }}
-            if_true: ':finnadie:'
-            if_false: ':aw_yeah:'
-              
-        - uses: actions/checkout@v2
-        - name: Slack Notification
-          if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && job.status == 'failure') }} 
-          uses: rtCamp/action-slack-notify@v2.2.0
-          env:
-            SLACK_USERNAME: Tests execution report
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_CHANNEL: ts_website_automation
-            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
-            SLACK_TITLE: .Net Unit and UI tests
-            MSG_MINIMAL: true
+    # Prepare Allure history and publish to GitHub pages
+    - name: Get Allure history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+        
+    - name: Compile Allure report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
+        allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        keep_reports: 20
+          
+    - name: Deploy Allure Report to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      if: always()
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        
+    - name: Add Allure report link to Annotations section
+      if: always()
+      run: |
+        text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+        echo "::warning ::$text"
+       
+    # Prepare appropriate emoji for Slack notification    
+    - uses: haya14busa/action-cond@v1
+      continue-on-error: true
+      id: slack_icon_emoji
+      with:
+        cond: ${{ job.status == 'failure' }}
+        if_true: ':finnadie:'
+        if_false: ':aw_yeah:'
+          
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      continue-on-error: true
+      if: ${{ (github.event_name == 'schedule') || (github.event_name == 'pull_request' && job.status == 'failure') }} 
+      uses: rtCamp/action-slack-notify@v2.2.0
+      env:
+        SLACK_USERNAME: Tests execution report
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: ts_website_automation
+        SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+        SLACK_TITLE: .Net Unit and UI tests
+        MSG_MINIMAL: true
         
