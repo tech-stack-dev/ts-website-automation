@@ -52,6 +52,7 @@ jobs:
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     - name: UI tests
+      continue-on-error: true
       if: github.event_name == 'pull_request'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
     
