@@ -59,7 +59,7 @@ Scenario: CheckLocalizationOnJobPage
 		| Prefix    | Name                      |
 		| Direction | Test1Tag{SRND}            |
 		| Tag       | Test2Tag{SRND}_Test{SRND} |
-		| Tag       | Hot_Test3Tag{SRND}        |
+		| Tag       | Hot_ГарячіBакансії        |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career
@@ -84,9 +84,9 @@ Scenario: CheckLocalizationOnJobPage
 	Then Breadcrumbs has 'Вакансії / NameUa_1_{SRND}' text
 	Then 'Apply Now' button with 'Відгукнутися' text is displayed on 'BreadcrumbsHeader' container
 	Then Tags are displayed on job page
-		| Tag             |
-		| Гарячі вакансії |
-		| Test{SRND}      |
+		| Tag            |
+		| ГарячіBакансії |
+		| Test{SRND}     |
 	Then 'Поділитися:' text is displayed with social media icons on job page
 	Then Following block titles are displayed on job page
 		| Title        |
