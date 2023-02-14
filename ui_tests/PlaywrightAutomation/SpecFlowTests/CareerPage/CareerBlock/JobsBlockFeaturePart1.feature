@@ -1,4 +1,4 @@
-Feature: JobsBlockFeaturePart1
+﻿Feature: JobsBlockFeaturePart1
 
 # Added NotRun as this is not stable test. It will be fixed in separate PR (Dan and Asya)
 @Regression @TSWEB146 @Cleanup @NotRun
@@ -8,7 +8,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| Prefix    | Name               |
 		| Direction | Test1Tag{SRND}     |
 		| Tag       | Test2Tag{SRND}     |
-		| Tag       | Hot_Test3Tag{SRND} |
+		| Tag       | Hot_ГарячіВакансії |
 	Given User creates Career Description
 		| Field | Value |
 	Given User creates Career

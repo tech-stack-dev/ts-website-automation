@@ -22,7 +22,6 @@ namespace PlaywrightAutomation.Steps.ComponentSteps.ButtonSteps
         {
             _page.Component<WrappedButton>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
     }
 }
