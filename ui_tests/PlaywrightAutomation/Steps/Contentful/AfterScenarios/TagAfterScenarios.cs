@@ -30,7 +30,9 @@ namespace PlaywrightAutomation.Steps.Contentful.AfterScenarios
                 try
                 {
                     if (!tag.Id.Equals("tag_hot"))
+                    {
                         _contentfulClient.DeleteTag(tag).GetAwaiter().GetResult();
+                    }
                 }
                 catch (Exception e)
                 {

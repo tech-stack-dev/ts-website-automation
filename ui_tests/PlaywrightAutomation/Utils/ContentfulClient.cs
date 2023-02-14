@@ -315,6 +315,7 @@ namespace PlaywrightAutomation.Utils
 
         public async Task<ContentfulTag> CreateTag(ContentfulTag tag)
         {
+            // This tag created on Сontentful with a name 'Hot_ГарячіВакансії'
             if (!tag.Id.Equals("tag_hot"))
             {
                 await _client.CreateContentTag(tag.Name, tag.Id, true);
