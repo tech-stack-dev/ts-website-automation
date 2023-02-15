@@ -47,6 +47,7 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
 
+# Problem when we have some amount careers in our content
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckPaginationOnCareerPage
 	# Preconditions

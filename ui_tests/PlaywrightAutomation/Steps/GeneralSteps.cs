@@ -49,13 +49,6 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
-        [Then(@"'([^']*)' website is opened in popup window")]
-        public void ThenWebsiteIsOpenedInPopupWindow(string website)
-        {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
-        }
-
         [When(@"User expects tag and vacancy created in 'Contentful' on the page")]
         public void WhenUserExpectsTagAndVacancyCreatedInContentfulOnThePage(Table table)
         {
@@ -99,6 +92,19 @@ namespace PlaywrightAutomation.Steps
                 _page.GotoAsync(string.Format(URL_SEARCH, UrlProvider.Application, career.NameUs)).GetAwaiter().GetResult();
                 WaitForCareerCreating(career);
             }
+        }
+
+        [When(@"User scrolls down to the end of the page")]
+        public void UserScrollsDownToTheEndOfThePage()
+        {
+            _page.Keyboard.DownAsync("End").GetAwaiter().GetResult();
+        }
+
+        [Then(@"'([^']*)' website is opened in popup window")]
+        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        {
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
 
         public void WaitForTagsCreating()

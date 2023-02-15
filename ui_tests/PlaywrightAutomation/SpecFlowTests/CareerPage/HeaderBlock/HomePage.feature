@@ -5,15 +5,16 @@ Background:
 
 @Smoke @Regression
 Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
-	Then 'En' language is selected 'HeaderPage' on container
-	When User selects 'Ua' language on 'HeaderPage' container
-	Then 'Ua' language is selected 'HeaderPage' on container
+	Then 'Locale' button with 'En' text is active on 'HeaderPage' container
+	When User clicks on 'Locale' button with 'Ua' text on 'HeaderPage' container
+	Then 'Locale' button with 'Ua' text is active on 'HeaderPage' container
 
 @Regression
 Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
-	Then 'En' language is selected 'NavigationHeader' on container
-	When User selects 'Ua' language on 'NavigationHeader' container
-	Then 'Ua' language is selected 'NavigationHeader' on container
+	When User scrolls down to the end of the page
+	Then 'Locale' button with 'En' text is active on 'NavigationHeader' container
+	When User clicks on 'Locale' button with 'Ua' text on 'NavigationHeader' container
+	Then 'Locale' button with 'Ua' text is active on 'NavigationHeader' container
 
 @Regression
 Scenario: CheckLogoDisplayedOnMainPage
