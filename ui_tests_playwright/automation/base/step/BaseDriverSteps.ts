@@ -2,33 +2,33 @@ import { driver } from "../driver/Driver";
 import { BrowsersEnum } from "../driver/BrowsersEnum";
 
 export default class BaseDriverSteps {
-    public async createsNewBrowser(browserName: BrowsersEnum) {
+    public static async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
         await driver.createBrowser(browserName);
     }
 
-    public async createNewPage() {
+    public static async createNewPage() {
         let newPage = await driver.DriverContext.newPage();
         driver.Page = newPage;
         driver.ListOfPages.push(newPage);
     }
 
-    public async switchToBrowser(browserName: BrowsersEnum) {
+    public static async switchToBrowser(browserName: BrowsersEnum) {
         driver.focusedDriver = driver.listOfDrivers.find(x => x.DriverName === browserName)!;
     }
 
-    public async switchToBrowserTab(tabNumber: number) {
+    public static async switchToBrowserTab(tabNumber: number) {
         driver.Page = driver.ListOfPages[tabNumber];
     }
 
-    public async closeBrowser() {
+    public static async closeBrowser() {
         await driver.DriverContext.close();
     }
 
-    public async closeBrowserTab() {
+    public static async closeBrowserTab() {
         await driver.Page.close();
     }
 
-    public async goToUrl(url: string) {
+    public static async goToUrl(url: string) {
         await driver.Page.goto(url);
     }
 }
