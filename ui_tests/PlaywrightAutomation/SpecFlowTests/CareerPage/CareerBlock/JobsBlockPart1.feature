@@ -1,4 +1,4 @@
-Feature: JobsBlockFeature
+Feature: JobsBlockPart1
 
 @Regression @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
