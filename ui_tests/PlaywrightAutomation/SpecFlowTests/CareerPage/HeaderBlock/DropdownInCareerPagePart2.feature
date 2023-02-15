@@ -19,7 +19,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 	When User clicks on 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
-@Regression @TSWEB133 @Cleanup
+@Regression @TSWEB133 @Cleanup @Test
 Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
 	# Precondition
 	Given User creates Tags
