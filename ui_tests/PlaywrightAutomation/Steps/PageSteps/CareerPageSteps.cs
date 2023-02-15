@@ -69,8 +69,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
-            _page.Component<Card>().Title.AllAsync().GetAwaiter().GetResult()
-                .First().IsVisibleAsync().GetAwaiter().GetResult();
+            //_page.Component<Card>().Title.AllAsync().GetAwaiter().GetResult()?
+            _page.Component<Card>().Title.AllAsync().GetAwaiter().GetResult()?[0].IsVisibleAsync().GetAwaiter().GetResult();
             var actualListNames = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             actualListNames.Should().IntersectWith(expectedListNames);
