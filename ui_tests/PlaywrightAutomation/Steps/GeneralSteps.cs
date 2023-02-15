@@ -2,6 +2,7 @@
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
@@ -83,7 +84,7 @@ namespace PlaywrightAutomation.Steps
         [When(@"User waits careers with mocked data")]
         public void WhenUserWaitsCareersWithMockedData()
         {
-            var careers = _createdCareer.Value.Select(x=>x.NameUs).ToList();
+            var careers = _createdCareer.Value.Select(x => x.NameUs).ToList();
             _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
         }
 
@@ -91,7 +92,12 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserExpectsTagsAndCareersOnThePage()
         {
             WaitForTagsCreating();
-            WaitForCareerCreating();
+
+            foreach (var career in _createdCareer.Value)
+            {
+                _page.GotoAsync($"https://staging-career.tech-stack.com/?searchValue={career.NameUs}").GetAwaiter().GetResult();
+                WaitForCareerCreating(career);
+            }
         }
 
         public void WaitForTagsCreating()
@@ -112,20 +118,17 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        public void WaitForCareerCreating()
+        public void WaitForCareerCreating(Career career)
         {
-            foreach (var career in _createdCareer.Value)
+            try
             {
-                try
-                {
-                    var careerElement = _page.Component<Card>(career.NameUs);
-                    _page.WaiterWithReloadPage(careerElement);
-                    careerElement.Count().Should().NotBe(0);
-                }
-                catch
-                {
-                    throw new Exception($"'{career.NameUs}' career is not displayed");
-                }
+                var careerElement = _page.Component<Card>(career.NameUs);
+                _page.WaiterWithReloadPage(careerElement);
+                careerElement.Count().Should().NotBe(0);
+            }
+            catch
+            {
+                throw new Exception($"'{career.NameUs}' career is not displayed");
             }
         }
     }
