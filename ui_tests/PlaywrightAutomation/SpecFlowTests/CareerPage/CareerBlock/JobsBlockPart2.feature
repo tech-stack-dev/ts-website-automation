@@ -47,7 +47,6 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User clicks on 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
 
-# Problem when we have some amount careers in our content
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckPaginationOnCareerPage
 	# Preconditions
@@ -58,6 +57,7 @@ Scenario: CheckPaginationOnCareerPage
 	Given User is on career website
 	When User waits careers with mocked data
 	Then Pagination is displayed on Career page
+	When User opens '1' page number
 	Then Pagination navigation button with 'right' direction is displayed
 	When User clicks on 'right' direction button in pagination panel
 	Then '02' pagination button has 'orange yellow' background color in pagination panel

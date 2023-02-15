@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Gherkin;
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
@@ -17,6 +18,7 @@ namespace PlaywrightAutomation.Steps
     internal class GeneralSteps : SpecFlowContext
     {
         private const string URL_SEARCH = "{0}?searchValue={1}";
+        private const string URL_PAGE_NUMBER = "{0}?page={1}";
 
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
@@ -45,6 +47,14 @@ namespace PlaywrightAutomation.Steps
         {
             _page = _browserFactory
                 .OpenNewPage(url)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        [When(@"User opens '([^']*)' page number")]
+        public void GivenUserIsOnPage(int number)
+        {
+            _page.GotoAsync(string.Format(URL_PAGE_NUMBER, UrlProvider.Application, number))
                 .GetAwaiter()
                 .GetResult();
         }
