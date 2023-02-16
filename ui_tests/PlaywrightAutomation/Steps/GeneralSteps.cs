@@ -2,6 +2,7 @@
 using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
 using PlaywrightAutomation.RuntimeVariables.Contentful;
@@ -15,6 +16,9 @@ namespace PlaywrightAutomation.Steps
     [Binding]
     internal class GeneralSteps : SpecFlowContext
     {
+        private const string URL_SEARCH = "{0}?searchValue={1}";
+        private const string URL_PAGE_NUMBER = "{0}?page={1}";
+
         private readonly BrowserFactory _browserFactory;
         private IPage _page;
         private readonly CreatedTags _createdTags;
@@ -46,11 +50,13 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
-        [Then(@"'([^']*)' website is opened in popup window")]
-        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        [When(@"User opens '([^']*)' page number via URL")]
+        public void WhenUserOpensPageNumberViaURL(int number)
         {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
+            // Open a specific page according to the pagination in the staging
+            _page.GotoAsync(string.Format(URL_PAGE_NUMBER, UrlProvider.Application, number))
+             .GetAwaiter()
+             .GetResult();
         }
 
         [When(@"User expects tag and vacancy created in 'Contentful' on the page")]
@@ -83,7 +89,7 @@ namespace PlaywrightAutomation.Steps
         [When(@"User waits careers with mocked data")]
         public void WhenUserWaitsCareersWithMockedData()
         {
-            var careers = _createdCareer.Value.Select(x=>x.NameUs).ToList();
+            var careers = _createdCareer.Value.Select(x => x.NameUs).ToList();
             _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
         }
 
@@ -91,7 +97,25 @@ namespace PlaywrightAutomation.Steps
         public void WhenUserExpectsTagsAndCareersOnThePage()
         {
             WaitForTagsCreating();
-            WaitForCareerCreating();
+            foreach (var career in _createdCareer.Value)
+            {
+                // Application URL used to guarantee page reload and search results
+                _page.GotoAsync(string.Format(URL_SEARCH, UrlProvider.Application, career.NameUs)).GetAwaiter().GetResult();
+                WaitForCareerCreating(career);
+            }
+        }
+
+        [When(@"User scrolls down to the end of the page")]
+        public void UserScrollsDownToTheEndOfThePage()
+        {
+            _page.Keyboard.DownAsync("End").GetAwaiter().GetResult();
+        }
+
+        [Then(@"'([^']*)' website is opened in popup window")]
+        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        {
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
 
         public void WaitForTagsCreating()
@@ -112,20 +136,17 @@ namespace PlaywrightAutomation.Steps
             }
         }
 
-        public void WaitForCareerCreating()
+        public void WaitForCareerCreating(Career career)
         {
-            foreach (var career in _createdCareer.Value)
+            try
             {
-                try
-                {
-                    var careerElement = _page.Component<Card>(career.NameUs);
-                    _page.WaiterWithReloadPage(careerElement);
-                    careerElement.Count().Should().NotBe(0);
-                }
-                catch
-                {
-                    throw new Exception($"'{career.NameUs}' career is not displayed");
-                }
+                var careerElement = _page.Component<Card>(career.NameUs);
+                _page.WaiterWithReloadPage(careerElement);
+                careerElement.Count().Should().NotBe(0);
+            }
+            catch
+            {
+                throw new Exception($"'{career.NameUs}' career is not displayed");
             }
         }
     }

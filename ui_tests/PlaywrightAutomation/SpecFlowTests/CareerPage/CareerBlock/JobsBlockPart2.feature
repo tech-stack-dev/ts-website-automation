@@ -1,4 +1,4 @@
-﻿Feature: JobsBlockFeaturePart1
+﻿Feature: JobsBlockPart2
 
 # Added NotRun as this is not stable test. It will be fixed in separate PR (Dan and Asya)
 @Regression @TSWEB146 @Cleanup @NotRun
@@ -57,6 +57,7 @@ Scenario: CheckPaginationOnCareerPage
 	Given User is on career website
 	When User waits careers with mocked data
 	Then Pagination is displayed on Career page
+	When User opens '1' page number via URL
 	Then Pagination navigation button with 'right' direction is displayed
 	When User clicks on 'right' direction button in pagination panel
 	Then '02' pagination button has 'orange yellow' background color in pagination panel
