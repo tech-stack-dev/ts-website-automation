@@ -19,4 +19,5 @@ jobs:
         run: 'echo "No tests execution required"'
       
       - name: Status step
-        run: 'echo "${{ steps.NoTestsRequired.outcome }}"'
+        if: steps.NoTestsRequired.outcome != 'success'
+        run: 'echo "passed ${{ steps.NoTestsRequired.outcome }}"'
