@@ -16,7 +16,7 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
 @Regression @TSWEB133 @Cleanup
@@ -40,5 +40,5 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 		| Test3Tag{SRND} |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel

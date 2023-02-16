@@ -3,6 +3,7 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Utils;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -20,22 +21,11 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [When(@"User clicks on '([^']*)' button on '([^']*)' container")]
-        public void WhenUserClicksOnButtonOnContainer(string button, string container)
+        [When(@"User clicks '([^']*)' button on '([^']*)' container")]
+        public void WhenUserClicksButtonOnContainer(string button, string container)
         {
             _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .ClickAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
-        }
-
-        [When(@"User clicks on '([^']*)' button with '([^']*)' text on '([^']*)' container")]
-        public void WhenUserClicksOnButtonWithTextOnContainer(string button, string buttonText, string container)
-        {
-            var buttons = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                 .AllAsync().GetAwaiter().GetResult().ToList();
-
-            buttons.First(x => x.TextContentAsync().GetAwaiter().GetResult().Equals(buttonText))
-            .ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
@@ -57,18 +47,15 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             buttonTextState.Should().BeTrue();
         }
 
-        [Then(@"'([^']*)' button with '([^']*)' text is active on '([^']*)' container")]
-        public void ThenButtonWithTextIsActiveOnContainer(string button, string buttonText, string container)
+        [Then(@"'([^']*)' button is active on '([^']*)' container")]
+        public void ThenButtonIsActiveOnContainer(string button, string container)
         {
-            // Playwright works pretty much faster than DOM is updating on TSWebSite at this current place.
-            Task.Delay(1000).GetAwaiter().GetResult();
-            var buttons = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .AllAsync().GetAwaiter().GetResult().ToList();
+            var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
 
-            var neededButton =
-                buttons.First(x => x.TextContentAsync().GetAwaiter().GetResult().Equals(buttonText));
-            var selectedLanguage = neededButton.GetAttributeAsync("class").GetAwaiter().GetResult();
-            selectedLanguage.Should().Contain("active");
+            _page.ExecuteFunc(() =>
+            {
+                buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
+            });
         }
     }
 }

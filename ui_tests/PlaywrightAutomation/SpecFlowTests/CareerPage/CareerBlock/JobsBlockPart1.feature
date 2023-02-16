@@ -10,9 +10,9 @@ Scenario: CheckNavigationHeaderInCareerPage
 		| About us   |
 		| Reviews    |
 		| Contact us |
-	Then 'Locale' button with 'En' text is active on 'HeaderPage' container
-	When User clicks on 'Locale' button with 'Ua' text on 'HeaderPage' container
-	Then 'Locale' button with 'Ua' text is active on 'HeaderPage' container
+	Then 'En' button is active on 'HeaderPage' container
+	When User clicks 'Ua' button on 'HeaderPage' container
+	Then 'Ua' button is active on 'HeaderPage' container
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
@@ -48,9 +48,9 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| About us   |
 		| Reviews    |
 		| Contact us |
-	Then 'Locale' button with 'En' text is active on 'NavigationHeader' container
-	When User clicks on 'Locale' button with 'Ua' text on 'NavigationHeader' container
-	Then 'Locale' button with 'Ua' text is active on 'NavigationHeader' container
+	Then 'En' button is active on 'NavigationHeader' container
+	When User clicks 'Ua' button on 'NavigationHeader' container
+	Then 'Ua' button is active on 'NavigationHeader' container
 
 @Regression @TSWEB146 @Cleanup
 Scenario: CheckLocalizationOnJobPage
@@ -72,8 +72,8 @@ Scenario: CheckLocalizationOnJobPage
 		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
-	When User clicks on 'Locale' button with 'Ua' text on 'NavigationHeader' container
-	Then 'Locale' button with 'Ua' text is active on 'NavigationHeader' container
+	When User clicks 'Ua' button on 'NavigationHeader' container
+	Then 'Ua' button is active on 'NavigationHeader' container
 	Then 'NameUa_1_{SRND}' job title is displayed on job page
 	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |

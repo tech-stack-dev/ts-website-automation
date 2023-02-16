@@ -44,7 +44,7 @@ Scenario: CheckJobDescriptionOnJobPage
 		| We will:           |
 		| We:                |
 	Then 'Would you like to be a part of our team?' text is displayed on Apply Container on job page
-	When User clicks on 'Apply now vacancy' button on 'JobPage' container
+	When User clicks 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
 
 @Regression @TSWEB146 @Cleanup
@@ -57,7 +57,7 @@ Scenario: CheckPaginationOnCareerPage
 	Given User is on career website
 	When User waits careers with mocked data
 	Then Pagination is displayed on Career page
-	When User opens '1' page number via URL
+	When User opens page with '1' index via URL
 	Then Pagination navigation button with 'right' direction is displayed
 	When User clicks on 'right' direction button in pagination panel
 	Then '02' pagination button has 'orange yellow' background color in pagination panel

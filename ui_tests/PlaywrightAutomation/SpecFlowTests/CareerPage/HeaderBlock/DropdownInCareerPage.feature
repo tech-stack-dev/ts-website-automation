@@ -11,7 +11,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	When User selects tag from 'Direction' dropdown
 		| Tag            |
 		| Test1Tag{SRND} |
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then Search results equal to selected tag
 		| Tag            |
 		| Test1Tag{SRND} |
@@ -46,7 +46,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 	When User clicks on 'Direction' dropdown
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then Search results equal to selected tag
 		| Tag            |
 		| Test1Tag{SRND} |
@@ -87,7 +87,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	When User selects tag from 'Seniority Level' dropdown
 		| Tag            |
 		| Test1Tag{SRND} |
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag            |
 		| Test1Tag{SRND} |

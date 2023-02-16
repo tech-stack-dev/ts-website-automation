@@ -4,7 +4,7 @@ Feature: SearchBlock
 Scenario: CheckThatUserSeesMessageAboutFailSearchResults
 	Given User is on career website
 	When User set 'wrongString' text to 'Search' input on 'HeaderPage' container
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
 @Regression @TSWEB133 @Cleanup
@@ -19,7 +19,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	When User selects tag from 'Direction' dropdown
 		| Tag            |
 		| Test1Tag{SRND} |
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then Search results contain 'Test1Career{SRND}'
 	Then Search results equal to selected tag
 		| Tag            |
@@ -55,7 +55,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 	When User selects tag from 'Seniority Level' dropdown
 		| Tag            |
 		| Test1Tag{SRND} |
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
 		| Tag            |
 		| Test1Tag{SRND} |
@@ -72,5 +72,5 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyNameAndSelecte
 @Regression @TSWEB133
 Scenario: CheckThatUserRedirectsToJobsBlockWhenClickingSearchButton
 	Given User is on career website
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then User in on the 'Jobs' tab on 'NavigationHeader' container
