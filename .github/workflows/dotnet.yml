@@ -69,7 +69,7 @@ jobs:
         SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_CHANNEL: test_slack_notifications
-        SLACK_ICON_EMOJI: :warning:
+        SLACK_ICON_EMOJI: ':warning:'
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         SLACK_TITLE: .Net Unit tests
