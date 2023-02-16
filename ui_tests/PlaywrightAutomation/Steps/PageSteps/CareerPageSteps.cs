@@ -71,6 +71,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         {
             _page.ExecuteFunc(() =>
             {
+                _page.WaitForLoadStateAsync(state: LoadState.Load);
                 _page.Component<Card>().Title.AllAsync().GetAwaiter().GetResult().First().IsVisibleAsync().GetAwaiter().GetResult();
             }, PageExtensions.AmountOfTime.Medium);
 
