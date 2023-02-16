@@ -16,3 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No tests execution required"'
+      
+      - name: Status step
+        status: ${{ job.status }}
