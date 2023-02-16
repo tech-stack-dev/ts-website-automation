@@ -71,41 +71,6 @@ namespace PlaywrightAutomation.Extensions
 
         #endregion
 
-        public static T ExecuteFunc<T>(this IPage page, Func<T> actionToDo, AmountOfTime amountOfTime = AmountOfTime.Short)
-        {
-            for (int i = 0; i < (int)amountOfTime; i++)
-            {
-                try
-                {
-                    return (T)actionToDo.Invoke();
-                }
-                catch (Exception)
-                {
-                    Thread.Sleep(1000);
-                }
-            }
-
-            throw new Exception("Unable to execute Function for Page");
-        }
-
-        public static void ExecuteFunc(this IPage page, Action actionToDo, AmountOfTime amountOfTime = AmountOfTime.Short)
-        {
-            for (int i = 0; i < (int)amountOfTime; i++)
-            {
-                try
-                {
-                    actionToDo.Invoke();
-                    return;
-                }
-                catch (Exception)
-                {
-                    Thread.Sleep(1000);
-                }
-            }
-
-            throw new Exception("Unable to execute Action for Page");
-        }
-
         #region Waiters
 
         public static void WaiterWithReloadPage(this IPage page, ILocator locator, AmountOfTime amountOfTime = AmountOfTime.Medium)
