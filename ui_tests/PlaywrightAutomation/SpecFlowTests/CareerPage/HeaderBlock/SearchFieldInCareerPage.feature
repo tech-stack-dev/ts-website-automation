@@ -8,7 +8,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	Given User is on career website
 	When User expects tags and careers on the page
 	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1Career{SRND}'
 
@@ -20,7 +20,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	Given User is on career website
 	When User expects tags and careers on the page
 	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
-	When User clicks on 'Search' button on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1Career{SRND}'
 

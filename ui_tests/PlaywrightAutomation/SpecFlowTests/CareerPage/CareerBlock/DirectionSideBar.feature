@@ -80,5 +80,5 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
-	When User clicks on 'Reset' button on 'CareerPage' container
+	When User clicks 'Reset' button on 'CareerPage' container
 	Then All selected tags was cancel
