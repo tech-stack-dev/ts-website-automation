@@ -15,7 +15,8 @@ jobs:
     name: Unit and UI tests
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo "No tests execution required"'
+      - name: NoTestsRequired
+        run: 'echo "No tests execution required"'
       
       - name: Status step
-        run: 'echo "${{ job.status }}"'
+        run: 'echo "${{ steps.NoTestsRequired.outcome }}"'
