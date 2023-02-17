@@ -5,7 +5,7 @@ import { BrowsersEnum } from "./BrowsersEnum";
 class Driver extends BaseDriver {
     public browser: Browser;
     public focusedDriver: BaseDriver;
-    public listOfDrivers: BaseDriver[] = [];
+    public listOfDrivers: BaseDriver[] = []; 
 
     public async createBrowser(browserName: BrowsersEnum) {
         driver.focusedDriver = new BaseDriver();
