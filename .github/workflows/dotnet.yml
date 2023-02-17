@@ -61,6 +61,10 @@ jobs:
       if: github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
       
+      
+    - name: Debug step
+      run : 'echo "Debug info: ${{ steps.unitTests.outcome }}"'
+      
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
       if: ${{ steps.unitTests.outcome != 'success' && failure() }} 
