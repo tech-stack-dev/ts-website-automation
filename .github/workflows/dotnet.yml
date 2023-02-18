@@ -55,7 +55,7 @@ jobs:
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
-      if: ${{ steps.unitTests.outcome == 'failed' && failure() }} 
+      if: ${{ steps.unitTests.outcome == 'failure' && failure() }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report
