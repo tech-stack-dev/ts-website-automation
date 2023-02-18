@@ -81,7 +81,7 @@ jobs:
     # Prepare Allure history and publish to GitHub pages
     - name: Get Allure history
       uses: actions/checkout@v3
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       continue-on-error: true
       with:
         ref: gh-pages
@@ -89,7 +89,7 @@ jobs:
         
     - name: Compile Allure report
       uses: simple-elf/allure-report-action@master
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       with:
         allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
         allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
@@ -97,21 +97,21 @@ jobs:
           
     - name: Deploy Allure Report to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
         branch: gh-pages
         folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         
     - name: Add Allure report link to Annotations section
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }}
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
         echo "::warning ::$text"
          
     - name: Preparing Slack emoji
       uses: haya14busa/action-cond@v1
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       id: slack_icon_emoji
       with:
         cond: ${{ job.status == 'failure' }}
@@ -119,7 +119,7 @@ jobs:
         if_false: ':aw_yeah:'
           
     - name: Slack Notification for UI tests
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report to QA Service channel
@@ -133,7 +133,7 @@ jobs:
         SLACK_FOOTER: TS website
         
     # - name: Slack Notification for UI tests to Product channel
-      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule') }} 
+      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }} 
       # uses: rtCamp/action-slack-notify@v2.2.0
       # env:
         # SLACK_USERNAME: Tests execution report
