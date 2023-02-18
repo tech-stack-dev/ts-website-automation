@@ -43,37 +43,15 @@ jobs:
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
-    - name: Run Playwright installation
-      shell: pwsh
-      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
-      
-    # Jobs to run on each PR
+
     - name: Unit tests
       id: unitTests
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
-      
-    - name: UI tests
-      if: github.event_name == 'pull_request'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
-    
-    # Jobs to run on Schedule
-    - name: UI tests on Schedule
-      if: github.event_name == 'schedule'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
-      
-      
-    - name: Debug step
-      if: always()
-      run : 'echo "Debug info: ${{ steps.unitTests.outcome }}"'
-      
-    - name: Second debug step 
-      if: success() || failure()
-      run : 'echo "Debug info: ${{ steps.unitTests.outcome }}"'
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
-      if: ${{ steps.unitTests.outcome != 'success' && failure() }} 
+      if: ${{ steps.unitTests.outcome == 'failure' && failure() }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report
@@ -85,12 +63,25 @@ jobs:
         SLACK_TITLE: .Net Unit tests
         MSG_MINIMAL: true
         SLACK_FOOTER: TS website
+        
+    - name: Run Playwright installation
+      shell: pwsh
+      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
+      
+    - name: UI tests
+      if: github.event_name == 'pull_request'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
     
+    # Jobs to run on Schedule or Manually
+    - name: UI tests on Schedule or Manual  run
+      if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      
     # Steps to report UI tests execution status
     # Prepare Allure history and publish to GitHub pages
     - name: Get Allure history
       uses: actions/checkout@v3
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       continue-on-error: true
       with:
         ref: gh-pages
@@ -98,7 +89,7 @@ jobs:
         
     - name: Compile Allure report
       uses: simple-elf/allure-report-action@master
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       with:
         allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
         allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
@@ -106,21 +97,21 @@ jobs:
           
     - name: Deploy Allure Report to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
         branch: gh-pages
         folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
         
     - name: Add Allure report link to Annotations section
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }}
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
       run: |
         text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
         echo "::warning ::$text"
          
     - name: Preparing Slack emoji
       uses: haya14busa/action-cond@v1
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       id: slack_icon_emoji
       with:
         cond: ${{ job.status == 'failure' }}
@@ -128,7 +119,7 @@ jobs:
         if_false: ':aw_yeah:'
           
     - name: Slack Notification for UI tests
-      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule') || (github.event_name == 'pull_request' && failure())) }} 
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
         SLACK_USERNAME: Tests execution report to QA Service channel
@@ -142,7 +133,7 @@ jobs:
         SLACK_FOOTER: TS website
         
     # - name: Slack Notification for UI tests to Product channel
-      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule') }} 
+      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }} 
       # uses: rtCamp/action-slack-notify@v2.2.0
       # env:
         # SLACK_USERNAME: Tests execution report
