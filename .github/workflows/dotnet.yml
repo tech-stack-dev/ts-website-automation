@@ -51,7 +51,7 @@ jobs:
       
     - name: Debug steps
       if: always()
-      run: 'echo "${{ steps.unitTests.outcome}} and ${{ failure() }}"'
+      run: 'echo "${{ steps.unitTests.outcome}}"'
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
