@@ -12,7 +12,7 @@ Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
 @Regression
 Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 	When User scrolls down to the end of the page
-	Then 'En1' button is active on 'NavigationHeader' container
+	Then 'En' button is active on 'NavigationHeader' container
 	When User clicks 'Ua' button on 'NavigationHeader' container
 	Then 'Ua' button is active on 'NavigationHeader' container
 
