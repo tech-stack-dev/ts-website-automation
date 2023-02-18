@@ -43,24 +43,15 @@ jobs:
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
-    # Jobs to run on each PR
+
     - name: Unit tests
       id: unitTests
       if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
-    - name: Run Playwright installation
-      shell: pwsh
-      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
-      
-    - name: UI tests
-      if: github.event_name == 'pull_request'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
-    
-    # Jobs to run on Schedule or Manually
-    - name: UI tests on Schedule or Manual  run
-      if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+    - name: Debug steps
+      if: always()
+      run: 'echo "${{ steps.unitTests.outcome}} and ${{ failure() }}"'
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
@@ -76,7 +67,20 @@ jobs:
         SLACK_TITLE: .Net Unit tests
         MSG_MINIMAL: true
         SLACK_FOOTER: TS website
+        
+    - name: Run Playwright installation
+      shell: pwsh
+      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
+      
+    - name: UI tests
+      if: github.event_name == 'pull_request'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
     
+    # Jobs to run on Schedule or Manually
+    - name: UI tests on Schedule or Manual  run
+      if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      
     # Steps to report UI tests execution status
     # Prepare Allure history and publish to GitHub pages
     - name: Get Allure history
