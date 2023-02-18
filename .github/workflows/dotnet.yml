@@ -1,6 +1,7 @@
 name: .NET
 
 on:
+  workflow_dispatch:
   schedule:
   #Run each day at 22:15
     - cron: '15 22 * * *'
