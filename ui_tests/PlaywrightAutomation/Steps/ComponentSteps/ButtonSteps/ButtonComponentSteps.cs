@@ -52,6 +52,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             _page.ExecuteFunc(() =>
             {
+                _page.ReloadAsync().GetAwaiter().GetResult();
                 var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
                 buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
             }, PageExtensions.AmountOfTime.Medium);
