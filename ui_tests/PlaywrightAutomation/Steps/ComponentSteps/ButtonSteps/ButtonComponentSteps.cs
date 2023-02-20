@@ -3,9 +3,6 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Utils;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
 

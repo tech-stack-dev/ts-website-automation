@@ -102,5 +102,12 @@ namespace PlaywrightAutomation.Steps
             var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
             popup.Url.Should().Contain(website.ToLower());
         }
+
+        // Default language is English so it will not be present in URL
+        [Then(@"Check that language is switched to '(.*)' via URL")]
+        public void Then(string switchedLanguage)
+        {
+            _page.Url.Should().Contain(switchedLanguage.ToUpper());
+        }
     }
 }
