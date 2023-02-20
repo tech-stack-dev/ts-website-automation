@@ -151,12 +151,14 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
 
             foreach (var name in tagsName)
             {
-                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
-                tag.WaitForAsync().GetAwaiter().GetResult();
-                var backgroundColor = tag.GetBackgroundColor();
-                var expectedColor = ColorsConvertor.Converter("orange yellow");
 
-                backgroundColor.Should().Be(expectedColor);
+                var tag = _page.Component<Tag>(name, new Properties { Parent = parent });
+                _page.ExecuteFunc(() =>
+                {
+                    var backgroundColor = tag.GetBackgroundColor();
+                    var expectedColor = ColorsConvertor.Converter("orange yellow");
+                    backgroundColor.Should().Be(expectedColor);
+                });
             }
         }
 

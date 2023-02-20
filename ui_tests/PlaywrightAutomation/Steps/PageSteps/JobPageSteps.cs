@@ -52,7 +52,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var actualJobTitle = string.Empty;
             _page.ExecuteFunc(() =>
             {
-                var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+                actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
                 _page.ReloadAsync().GetAwaiter().GetResult();
             });
             actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
