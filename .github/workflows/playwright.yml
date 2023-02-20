@@ -1,6 +1,7 @@
 name: Playwright UI E2E
 
 on:
+  workflow_dispatch:
   schedule:
   #Run each day at 21:10
     - cron: '10 21 * * *'
@@ -17,13 +18,18 @@ jobs:
             working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
+      
       - uses: actions/setup-node@v3
+      
       - name: Install dependencies
         run: npm ci
+        
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-      - name: Run tests
+        
+      - name: Run UI tests
         run: npx playwright test
+        
       - uses: actions/upload-artifact@v3
         if: always()
         with:
