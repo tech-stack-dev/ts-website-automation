@@ -15,16 +15,16 @@ namespace PlaywrightAutomation.Steps
     [Binding]
     internal class GeneralSteps : SpecFlowContext
     {
-        private readonly BrowserFactory _browserFactory;
+        private const string URL_PAGE_NUMBER = "{0}?page={1}";
+
         private IPage _page;
-        private readonly CreatedTags _createdTags;
+        private readonly BrowserFactory _browserFactory;
         private readonly CreatedCareer _createdCareer;
 
-        public GeneralSteps(BrowserFactory browserFactory, CreatedTags createdTags, CreatedCareer createdCareer)
+        public GeneralSteps(BrowserFactory browserFactory, CreatedCareer createdCareer)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
-            _createdTags = createdTags;
             _createdCareer = createdCareer;
         }
 
@@ -46,11 +46,13 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
-        [Then(@"'([^']*)' website is opened in popup window")]
-        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        [When(@"User opens page with '([^']*)' index via URL")]
+        public void WhenUserOpensPageWithIndexViaURL(int number)
         {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
+            // Open a specific page according to the pagination in the staging
+            _page.GotoAsync(string.Format(URL_PAGE_NUMBER, UrlProvider.Application, number))
+             .GetAwaiter()
+             .GetResult();
         }
 
         [When(@"User expects tag and vacancy created in 'Contentful' on the page")]
@@ -83,50 +85,22 @@ namespace PlaywrightAutomation.Steps
         [When(@"User waits careers with mocked data")]
         public void WhenUserWaitsCareersWithMockedData()
         {
-            var careers = _createdCareer.Value.Select(x=>x.NameUs).ToList();
+            var careers = _createdCareer.Value.Select(x => x.NameUs).ToList();
             _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
         }
 
-        [When(@"User expects tags and careers on the page")]
-        public void WhenUserExpectsTagsAndCareersOnThePage()
+        [When(@"User scrolls down to the end of the page")]
+        public void UserScrollsDownToTheEndOfThePage()
         {
-            WaitForTagsCreating();
-            WaitForCareerCreating();
+            _page.Keyboard.DownAsync("End").GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
-        public void WaitForTagsCreating()
+        [Then(@"'([^']*)' website is opened in popup window")]
+        public void ThenWebsiteIsOpenedInPopupWindow(string website)
         {
-            foreach (var tag in _createdTags.Value)
-            {
-                try
-                {
-                    tag.Name = tag.Name.Split("_").ToList().First();
-                    var tagElement = _page.Component<Tag>(tag.Name);
-                    _page.WaiterWithReloadPage(tagElement);
-                    tagElement.Count().Should().NotBe(0);
-                }
-                catch
-                {
-                    throw new Exception($"'{tag.Prefix}' element with '{tag.Name}' name is not displayed");
-                }
-            }
-        }
-
-        public void WaitForCareerCreating()
-        {
-            foreach (var career in _createdCareer.Value)
-            {
-                try
-                {
-                    var careerElement = _page.Component<Card>(career.NameUs);
-                    _page.WaiterWithReloadPage(careerElement);
-                    careerElement.Count().Should().NotBe(0);
-                }
-                catch
-                {
-                    throw new Exception($"'{career.NameUs}' career is not displayed");
-                }
-            }
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
     }
 }

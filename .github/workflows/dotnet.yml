@@ -1,9 +1,13 @@
 name: .NET
 
 on:
+  workflow_dispatch:
+  schedule:
+  #Run each day at 22:15
+    - cron: '15 22 * * *'
   pull_request:
     paths:
-      - "ui_tests/**"
+      - 'ui_tests/**'
 
 jobs:
   tests_unitTests:
@@ -20,7 +24,7 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
-      
+
     - name: Override config parameters
       shell: pwsh
       run: |
@@ -35,16 +39,110 @@ jobs:
           {
             throw "$_.Exception.ToString()"
           }
-          
+
     - name: Build
       run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
       
+
+    - name: Unit tests
+      id: unitTests
+      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      
+    # Slack message of Unit tests fail  
+    - name: Slack Notification for Unit tests
+      if: ${{ steps.unitTests.outcome == 'failure' && failure() }} 
+      uses: rtCamp/action-slack-notify@v2.2.0
+      env:
+        SLACK_USERNAME: Tests execution report
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: ts_website_automation
+        SLACK_ICON_EMOJI: ':warning:'
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        SLACK_TITLE: .Net Unit tests
+        MSG_MINIMAL: true
+        SLACK_FOOTER: TS website
+        
     - name: Run Playwright installation
       shell: pwsh
       run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
       
-    - name: Unit tests
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
-      
     - name: UI tests
+      if: github.event_name == 'pull_request'
       run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
+    
+    # Jobs to run on Schedule or Manually
+    - name: UI tests on Schedule or Manual  run
+      if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      
+    # Steps to report UI tests execution status
+    # Prepare Allure history and publish to GitHub pages
+    - name: Get Allure history
+      uses: actions/checkout@v3
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+        
+    - name: Compile Allure report
+      uses: simple-elf/allure-report-action@master
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      with:
+        allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
+        allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        keep_reports: 30
+          
+    - name: Deploy Allure Report to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
+        
+    - name: Add Allure report link to Annotations section
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
+      run: |
+        text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+        echo "::warning ::$text"
+         
+    - name: Preparing Slack emoji
+      uses: haya14busa/action-cond@v1
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      id: slack_icon_emoji
+      with:
+        cond: ${{ job.status == 'failure' }}
+        if_true: ':finnadie:'
+        if_false: ':aw_yeah:'
+          
+    - name: Slack Notification for UI tests
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      uses: rtCamp/action-slack-notify@v2.2.0
+      env:
+        SLACK_USERNAME: Tests execution report to QA Service channel
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: ts_website_automation
+        SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+        SLACK_TITLE: .Net UI tests
+        MSG_MINIMAL: true
+        SLACK_FOOTER: TS website
+        
+    # - name: Slack Notification for UI tests to Product channel
+      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }} 
+      # uses: rtCamp/action-slack-notify@v2.2.0
+      # env:
+        # SLACK_USERNAME: Tests execution report
+        # SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        # SLACK_CHANNEL: ts_website
+        # SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+        # SLACK_COLOR: ${{ job.status }}
+        # SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+        # SLACK_TITLE: .Net UI tests
+        # MSG_MINIMAL: true
+        # SLACK_FOOTER: TS website
+        
