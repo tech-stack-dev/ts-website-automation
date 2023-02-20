@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   schedule:
   #Run each day at 22:15
-    - cron: '15 22 * * *'
+    #- cron: '15 22 * * *'
+    # Run each 5 minutes just to test UI tests stability
+    - cron: '*/15 * * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
@@ -124,7 +126,7 @@ jobs:
       env:
         SLACK_USERNAME: Tests execution report to QA Service channel
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: ts_website_automation
+        SLACK_CHANNEL: test_slack_notifications
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
