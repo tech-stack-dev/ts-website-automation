@@ -23,11 +23,15 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"Breadcrumbs has '([^']*)' text")]
         public void ThenBreadcrumbsHasText(string expectedBreadcrumbs)
         {
-            var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
-            var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter().GetResult();
-            var actualBreadcrumbs = string.Concat(tabPart, jobTitlePart);
+            _page.ExecuteFunc(() =>
+            {
+                var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
+                var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter()
+                    .GetResult();
+                var actualBreadcrumbs = string.Concat(tabPart, jobTitlePart);
 
-            actualBreadcrumbs.Should().Be(expectedBreadcrumbs.AddRandom(_sessionRandom));
+                actualBreadcrumbs.Should().Be(expectedBreadcrumbs.AddRandom(_sessionRandom));
+            }, PageExtensions.AmountOfTime.Medium);
         }
     }
 }

@@ -158,7 +158,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                     var backgroundColor = tag.GetBackgroundColor();
                     var expectedColor = ColorsConvertor.Converter("orange yellow");
                     backgroundColor.Should().Be(expectedColor);
-                });
+                }, PageExtensions.AmountOfTime.Medium);
             }
         }
 

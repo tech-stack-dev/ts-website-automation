@@ -54,7 +54,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
                 actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
                 _page.ReloadAsync().GetAwaiter().GetResult();
-            });
+            }, PageExtensions.AmountOfTime.Medium);
         }
 
         [Then(@"Tags are displayed on job page")]

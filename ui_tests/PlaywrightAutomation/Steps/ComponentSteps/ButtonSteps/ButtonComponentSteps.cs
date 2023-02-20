@@ -50,10 +50,9 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' button is active on '([^']*)' container")]
         public void ThenButtonIsActiveOnContainer(string button, string container)
         {
-            var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
-
             _page.ExecuteFunc(() =>
             {
+                var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
                 buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
             }, PageExtensions.AmountOfTime.Medium);
         }
