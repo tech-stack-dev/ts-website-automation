@@ -4,9 +4,7 @@ on:
   workflow_dispatch:
   schedule:
   #Run each day at 22:15
-    #- cron: '15 22 * * *'
-    # Run each 5 minutes just to test UI tests stability
-    - cron: '*/15 * * * *'
+    - cron: '15 22 * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
