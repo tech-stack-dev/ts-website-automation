@@ -25,6 +25,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             _page.ExecuteFunc(() =>
             {
+                _page.ReloadAsync().GetAwaiter().GetResult();
                 var tabPart = _page.Component<Breadcrumbs>().SharedJobsPart.TextContentAsync().GetAwaiter().GetResult();
                 var jobTitlePart = _page.Component<Breadcrumbs>().JobTitlePart.TextContentAsync().GetAwaiter()
                     .GetResult();

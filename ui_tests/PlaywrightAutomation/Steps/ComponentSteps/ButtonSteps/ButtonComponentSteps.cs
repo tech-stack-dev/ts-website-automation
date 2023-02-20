@@ -23,8 +23,17 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         {
             var buttonElement = _page.Component<Button>(button,
                 new Properties { ParentSelector = WebContainer.GetLocator(container) });
-            buttonElement.WaitForAsync().GetAwaiter().GetResult();
-            buttonElement.ClickAsync().GetAwaiter().GetResult();
+            if (buttonElement.IsEnabledAsync().GetAwaiter().GetResult())
+            {
+                buttonElement.ClickAsync().GetAwaiter().GetResult();
+            }
+            else
+            {
+                _page.ReloadAsync().GetAwaiter().GetResult();
+                buttonElement.WaitForAsync().GetAwaiter().GetResult();
+                buttonElement.ClickAsync().GetAwaiter().GetResult();
+            }
+
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
