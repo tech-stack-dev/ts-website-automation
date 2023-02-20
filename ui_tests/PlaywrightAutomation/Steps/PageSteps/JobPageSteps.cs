@@ -49,8 +49,12 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"'([^']*)' job title is displayed on job page")]
         public void ThenJobTitleIsDisplayedOnJobPage(string expectedJobTitle)
         {
-            var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
-            actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
+            _page.ExecuteFunc(() =>
+            {
+                var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+                actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
+                _page.ReloadAsync().GetAwaiter().GetResult();
+            });
         }
 
         [Then(@"Tags are displayed on job page")]

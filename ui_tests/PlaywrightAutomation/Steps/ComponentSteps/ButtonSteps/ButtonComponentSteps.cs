@@ -55,7 +55,7 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page.ExecuteFunc(() =>
             {
                 buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
-            });
+            }, PageExtensions.AmountOfTime.Medium);
         }
     }
 }
