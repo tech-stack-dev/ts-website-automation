@@ -24,16 +24,19 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [When(@"User clicks '([^']*)' button on '([^']*)' container")]
         public void WhenUserClicksButtonOnContainer(string button, string container)
         {
-            _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-                .ClickAsync().GetAwaiter().GetResult();
+            var buttonElement = _page.Component<Button>(button,
+                new Properties { ParentSelector = WebContainer.GetLocator(container) });
+            buttonElement.WaitForAsync().GetAwaiter().GetResult();
+            buttonElement.ClickAsync().GetAwaiter().GetResult();
             _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
         }
 
         [Then(@"'([^']*)' button is displayed on '([^']*)' container")]
         public void ThenButtonIsDisplayedOnContainer(string buttonText, string container)
         {
-            var buttonVisibleState = _page.Component<Button>(buttonText, new Properties { ParentSelector = WebContainer.GetLocator(container) })
-              .IsVisibleAsync().GetAwaiter().GetResult();
+            var buttonVisibleState = _page.Component<Button>(buttonText,
+                    new Properties { ParentSelector = WebContainer.GetLocator(container) })
+                .IsVisibleAsync().GetAwaiter().GetResult();
 
             buttonVisibleState.Should().BeTrue();
         }
@@ -41,7 +44,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
         [Then(@"'([^']*)' button with '([^']*)' text is displayed on '([^']*)' container")]
         public void ThenButtonWithTextIsDisplayedOnContainer(string button, string buttonText, string container)
         {
-            var buttonTextState = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
+            var buttonTextState = _page.Component<Button>(button,
+                    new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .InnerTextAsync().GetAwaiter().GetResult().Equals(buttonText);
 
             buttonTextState.Should().BeTrue();
@@ -53,7 +57,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page.ExecuteFunc(() =>
             {
                 _page.ReloadAsync().GetAwaiter().GetResult();
-                var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
+                var buttonComponent = _page.Component<Button>(button,
+                    new Properties { ParentSelector = WebContainer.GetLocator(container) });
                 buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
             }, PageExtensions.AmountOfTime.Medium);
         }
