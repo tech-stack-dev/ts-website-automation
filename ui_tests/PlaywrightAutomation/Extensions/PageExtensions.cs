@@ -32,7 +32,10 @@ namespace PlaywrightAutomation.Extensions
                 Page = page,
                 Identifier = identifier
             };
-            obj.Build();
+            ExecuteFunc(page, () =>
+            {
+                obj.Build();
+            }, AmountOfTime.Medium);
             return obj;
         }
 
@@ -42,7 +45,10 @@ namespace PlaywrightAutomation.Extensions
             {
                 Page = page
             };
-            obj.Build();
+            ExecuteFunc(page, () =>
+            {
+                obj.Build();
+            }, AmountOfTime.Medium);
             return obj;
         }
 
@@ -53,7 +59,10 @@ namespace PlaywrightAutomation.Extensions
                 Page = page,
                 Props = props
             };
-            obj.Build();
+            ExecuteFunc(page, () =>
+            {
+                obj.Build();
+            }, AmountOfTime.Medium);
             return obj;
         }
 
@@ -65,7 +74,10 @@ namespace PlaywrightAutomation.Extensions
                 Identifier = identifier,
                 Props = props
             };
-            obj.Build();
+            ExecuteFunc(page, () =>
+            {
+                obj.Build();
+            }, AmountOfTime.Medium);
             return obj;
         }
 
