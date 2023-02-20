@@ -31,8 +31,32 @@ jobs:
         run: npx playwright test
         
       - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
         if: always()
         with:
             name: playwright-report
             path: ui_tests_playwright/playwright-report/
             retention-days: 30
+            
+      - name: Preparing Slack emoji
+        uses: haya14busa/action-cond@v1
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        id: slack_icon_emoji
+        with:
+            cond: ${{ job.status == 'failure' }}
+            if_true: ':finnadie:'
+            if_false: ':aw_yeah:'
+            
+      - name: Slack Notification for UI tests
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+            SLACK_USERNAME: Tests execution report
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_CHANNEL: test_slack_notifications
+            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            SLACK_TITLE: TypeScript UI tests
+            MSG_MINIMAL: true
+            SLACK_FOOTER: TS website
