@@ -107,6 +107,7 @@ namespace PlaywrightAutomation.Steps
         [Then(@"Check that language is switched to '(.*)' via URL")]
         public void Then(string switchedLanguage)
         {
+            _page.WaitForLoadStateAsync().GetAwaiter().GetResult();
             _page.Url.Should().Contain(switchedLanguage.ToUpper());
         }
     }
