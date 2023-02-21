@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   schedule:
   #Run each day at 22:15
-    - cron: '15 22 * * *'
+    #- cron: '15 22 * * *'
+    - cron: '*/15 * * * *'
   pull_request:
     paths:
       - 'ui_tests/**'
