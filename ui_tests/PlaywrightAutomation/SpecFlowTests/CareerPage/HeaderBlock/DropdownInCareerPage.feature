@@ -1,6 +1,6 @@
 Feature: DropdownInCareerPage
 
-@Regression @TSWEB133 @Cleanup
+@Regression @FilterBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 	# Precondition
 	Given User creates Career with default value
@@ -29,7 +29,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @TSWEB133 @Cleanup
+@Regression @FilterBlock @TSWEB133 @Cleanup @FilterBlock
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	# Precondition
 	Given User creates '2' Tags
@@ -70,7 +70,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	Then '2' tags are selected in 'Direction' dropdown
 	Then Number of selected tags equals to '2'
 
-@Regression @TSWEB133 @Cleanup
+@Regression @FilterBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 	# Precondition
 	Given User creates Tags
@@ -101,7 +101,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityLevelDropdown
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @TSWEB133 @Cleanup
+@Regression @FilterBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityLevelDropdown
 	# Precondition
 	Given User creates Tags

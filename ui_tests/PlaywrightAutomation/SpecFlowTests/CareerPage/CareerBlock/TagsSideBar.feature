@@ -1,6 +1,7 @@
 Feature: TagsSideSideBar
 
-@Regression @TSWEB145 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB145 @Cleanup @NotRun
 Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -28,8 +29,9 @@ Scenario: CheckThatUserSeesVacancySelectedFromTagBlockInSideBar
 	Then Selected tags from 'Tags' filter side bar has correctly color on 'CareerPage' container
 		| Tag            |
 		| Test1Tag{SRND} |
-
-@Regression @TSWEB145 @Cleanup
+		
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB145 @Cleanup @NotRun
 Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -67,7 +69,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromTagBlockInSideBar
 	When User clicks on header 'Tags' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Tags' side bar on 'CareerPage' container equals to '2'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromTagSideBarClickingResetButton
 	# Precondition
 	Given User creates Tags

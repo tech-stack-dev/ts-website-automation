@@ -1,6 +1,6 @@
 Feature: SearchFieldInCareerPage
 
-@Regression @TSWEB133 @Cleanup
+@Regression @SearchBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	# Precondition
 	Given User creates Career with default value
@@ -12,7 +12,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1Career{SRND}'
 
-@Regresiion @TSWEB133 @Cleanup
+@Regresiion @SearchBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	# Precondition
 	Given User creates Career with default value
@@ -24,7 +24,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1Career{SRND}'
 
-@Regression @TSWEB133
+@Regression @SearchBlock @TSWEB133
 Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInput
 	Given User is on career website
 	When User remembers vacancy names from Job page
