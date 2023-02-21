@@ -13,6 +13,9 @@ jobs:
   tests_unitTests:
     name: Unit and UI tests
     runs-on: ubuntu-latest
+    defaults:
+        run:
+            working-directory: ./ui_tests
 
     steps:
     - uses: actions/checkout@v3
@@ -23,14 +26,14 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore ./ui_tests/PlaywrightAutomation.sln
+      run: dotnet restore ./PlaywrightAutomation.sln
 
     - name: Override config parameters
       shell: pwsh
       run: |
         Try
           {
-            $configPath = './ui_tests/PlaywrightAutomation/appsettings.json'
+            $configPath = './PlaywrightAutomation/appsettings.json'
             $jsonConfig = Get-Content $configPath | Out-String | ConvertFrom-Json
             $jsonConfig.Browser_Headless = 'true'
             $jsonConfig | ConvertTo-Json -depth 100 | Out-File $configPath
@@ -41,13 +44,13 @@ jobs:
           }
 
     - name: Build
-      run: dotnet build ./ui_tests/PlaywrightAutomation.sln --no-restore
+      run: dotnet build ./PlaywrightAutomation.sln --no-restore
       
 
     - name: Unit tests
       id: unitTests
       if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
+      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
@@ -66,16 +69,16 @@ jobs:
         
     - name: Run Playwright installation
       shell: pwsh
-      run: pwsh -Command "./ui_tests/PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
+      run: pwsh -Command "./PlaywrightAutomation/bin/Debug/net6.0/playwright.ps1 install"
       
     - name: UI tests
       if: github.event_name == 'pull_request'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
+      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory=Smoke&TestCategory!=NotRun"
     
     # Jobs to run on Schedule or Manually
     - name: UI tests on Schedule or Manual  run
       if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-      run: dotnet test ./ui_tests/PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
+      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
       
     # Steps to report UI tests execution status
     # Prepare Allure history and publish to GitHub pages
@@ -124,7 +127,7 @@ jobs:
       env:
         SLACK_USERNAME: Tests execution report to QA Service channel
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: ts_website_automation
+        SLACK_CHANNEL: test_slack_notifications
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
