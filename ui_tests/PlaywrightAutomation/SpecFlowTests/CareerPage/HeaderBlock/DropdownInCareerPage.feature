@@ -29,7 +29,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionDropdown
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @FilterBlock @TSWEB133 @Cleanup @FilterBlock
+@Regression @FilterBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionDropdown
 	# Precondition
 	Given User creates '2' Tags
