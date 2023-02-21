@@ -16,8 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      with:
-          ref: Fix_tests_Dan
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -58,7 +56,7 @@ jobs:
       env:
         SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: ts_website_automation
+        SLACK_CHANNEL: test_slack_notifications
         SLACK_ICON_EMOJI: ':warning:'
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
