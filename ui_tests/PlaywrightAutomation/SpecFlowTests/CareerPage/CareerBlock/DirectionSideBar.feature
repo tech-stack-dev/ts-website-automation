@@ -1,6 +1,6 @@
 ﻿Feature: DirectionSideBar
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 	# Precondition
 	Given User creates Career with default value
@@ -26,7 +26,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromDirectionBlockInSideBar
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	# Precondition
 	Given User creates '2' Tags
@@ -65,7 +65,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromDirectionBlockInSideBar
 	When User clicks on header 'Direction' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Direction' side bar on 'CareerPage' container equals to '2'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionSideBarClickingResetButton
 	# Precondition
 	Given User creates '2' Tags

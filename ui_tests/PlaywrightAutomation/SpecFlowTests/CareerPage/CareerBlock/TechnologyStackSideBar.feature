@@ -1,6 +1,7 @@
 Feature: TechnologyStackSideBar
 
-@Regression @TSWEB145 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB145 @Cleanup @NotRun
 Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -29,7 +30,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromStackBlockInSideBar
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -67,7 +68,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromStackBlockInSideBar
 	When User clicks on header 'Technology stack' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Technology stack' side bar on 'CareerPage' container equals to '2'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromStackSideBarClickingResetButton
 	# Precondition
 	Given User creates Tags
