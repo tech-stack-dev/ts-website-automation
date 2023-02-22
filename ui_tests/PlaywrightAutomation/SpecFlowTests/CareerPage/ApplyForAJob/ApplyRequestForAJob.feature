@@ -1,6 +1,6 @@
 ﻿Feature: ApplyRequestForAJob
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesErrorMessagesUnderRequiredFieldsWhenClickingSendAMessageButton
 	# Preconditions
 	Given User creates Career with default value
