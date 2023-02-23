@@ -3,7 +3,7 @@
 Background:
 	Given User is on 'https://tech-stack.com/' page
 
-@Regression @OurServices @TSWEB302
+@Regression @GoogleAnalytics @TSWEB302
 Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User accept cookie
 	When User clicks menu button
@@ -19,7 +19,7 @@ Scenario: CheckThatAllCaseStudiesCardsOnTheQaAsServicePageHasGoogleAnalyticsEven
 	When User clicks card with 'On Demand Regression Testing' header text from Case studies section
 	Then User sees 'QAasAServPage' event category and 'QAasAServCase' event action
 	
-@Regression @OurServices @TSWEB302
+@Regression @GoogleAnalytics @TSWEB302
 Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User accept cookie
 	When User clicks menu button
@@ -34,7 +34,7 @@ Scenario: CheckThatAllButtonsOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks Open Source arrow
 	Then User sees 'QAasAServPage' event category and 'QAasAServAchiveOpenSource' event action
 	
-@Regression @OurServices @TSWEB302
+@Regression @GoogleAnalytics @TSWEB302
 Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User accept cookie
 	When User clicks menu button
@@ -57,7 +57,8 @@ Scenario: CheckThatAllFAQWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User clicks arrow wrapper for 'Should we hire a' field in FAQ section
 	Then User sees 'QAasAServPage' event category and 'QAasAServFaq4More' event action
 	
-@Regression @OurServices @TSWEB302
+# Test should be unmuted when TSWEB-538 fix will be uploaded to the prod env
+@Regression @GoogleAnalytics @TSWEB302 @NotRun
 Scenario: CheckThatAllServicesWrappersOnTheQaAsServicePageHasGoogleAnalyticsEvent
 	When User accept cookie
 	When User clicks menu button
