@@ -1,4 +1,6 @@
 ﻿using ChoETL;
+using PlaywrightAutomation.Extensions;
+using PlaywrightAutomation.RuntimeVariables;
 using System;
 
 namespace PlaywrightAutomation.Models.Contentful
@@ -20,18 +22,16 @@ namespace PlaywrightAutomation.Models.Contentful
             Version = 1;
         }
 
-        public Career FillWithDefaultData(string randomValue = null)
+        public void FillWithDefaultData(SessionRandomValue sessionRandom, int index = 1)
         {
-            randomValue ??= Guid.NewGuid().ToString("N");
+            var randomValue = sessionRandom.RandomString;
            
-            this.NameUs = this.NameUs.IsNullOrEmpty() ? $"NameUs{randomValue}" : this.NameUs;
-            this.NameUa = this.NameUa.IsNullOrEmpty() ? $"NameUa{randomValue}" : this.NameUa;
-            this.DescriptionUs = this.DescriptionUs.IsNullOrEmpty() ? $"DescriptionUs{randomValue}" : this.DescriptionUs;
-            this.DescriptionUa = this.DescriptionUa.IsNullOrEmpty() ? $"DescriptionUa{randomValue}" : this.DescriptionUa;
+            this.NameUs = this.NameUs.IsNullOrEmpty() ? $"Test{index}Career{randomValue}" : this.NameUs.AddRandom(sessionRandom);
+            this.NameUa = this.NameUa.IsNullOrEmpty() ? $"NameUa_{index}_{randomValue}" : this.NameUa.AddRandom(sessionRandom);
+            this.DescriptionUs = this.DescriptionUs.IsNullOrEmpty() ? $"DescriptionUs_{index}_{randomValue}" : this.DescriptionUs.AddRandom(sessionRandom);
+            this.DescriptionUa = this.DescriptionUa.IsNullOrEmpty() ? $"DescriptionUa_{index}_{randomValue}" : this.DescriptionUa.AddRandom(sessionRandom);
             this.Type = "Link";
             this.LinkType = "Entry";
-
-            return this;
         }
     }
 }

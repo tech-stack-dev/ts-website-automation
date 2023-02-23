@@ -1,48 +1,30 @@
 Feature: SearchFieldInCareerPage
 
-@Regression @TSWEB133 @Cleanup
+@Regression @SearchBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringVacancyName
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                              |
-		| Direction | TestingDirectionOfSearch_ТестовийПошукЗаНапрямком |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                  | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsDirectionOfSearch |        |               |               | Link | Entry    |
+	Given User creates Career with default value
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                     |
-		| Vacancy | TestUsDirectionOfSearch  |
-		| Tag     | TestingDirectionOfSearch |
-	When User set 'TestUsDirectionOfSearch' text to 'Search' input on 'HeaderPage' container
-	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'TestUsDirectionOfSearch'
+	When User expects tags and careers on the page
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
-@Regresiion @TSWEB133 @Cleanup
+@Regresiion @SearchBlock @TSWEB133 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancy
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                                    |
-		| Direction | TestingDirectionPartOfText_ТестовийНапрямокЧастинаНазви |
-	Given User creates and publishes new Career Description with default values
-		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                    | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsDirectionPartOfText |        |               |               | Link | Entry    |
+	Given User creates Career with default value
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                       |
-		| Vacancy | TestUsDirectionPartOfText  |
-		| Tag     | TestingDirectionPartOfText |
-	When User set 'Test' text to 'Search' input on 'HeaderPage' container
-	When User clicks on 'Search' button on 'HeaderPage' container
-	Then Search results contain 'Test'
+	When User expects tags and careers on the page
+	When User set 'Test1Career{SRND}' text to 'Search' input on 'HeaderPage' container
+	When User clicks 'Search' button on 'HeaderPage' container
+	Then User sees 'Test1Career{SRND}' search value and '1' count of results
+	Then Search results contain 'Test1Career{SRND}'
 
-@Regression @TSWEB133
+@Regression @SearchBlock @TSWEB133
 Scenario: CheckThatUserSeesStartPageAfterDeletedTextFromSearchInput
 	Given User is on career website
 	When User remembers vacancy names from Job page

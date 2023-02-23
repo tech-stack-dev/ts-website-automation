@@ -15,11 +15,13 @@ namespace PlaywrightAutomation.Steps.PageSteps
     {
         private readonly IPage _page;
         private readonly VacancyList _position;
+        private readonly SessionRandomValue _sessionRandom;
 
-        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position)
+        public CareerPageSteps(BrowserFactory browserFactory, VacancyList position, SessionRandomValue sessionRandom)
         {
             _page = browserFactory.Page;
             _position = position;
+            _sessionRandom = sessionRandom;
         }
 
         [When(@"User remembers vacancy names from Job page")]
@@ -29,16 +31,29 @@ namespace PlaywrightAutomation.Steps.PageSteps
                 .ToList();
         }
 
+        [Then(@"User sees '(.*)' search value and '(.*)' count of results")]
+        public void ThenUserSeesSearchValueAndCountOfResults(string expectedSearchValue, int expectedCountOfResults)
+        {
+            _page.WaitForLoadStateAsync(state: LoadState.Load);
+            var actualSearchValue = _page.Init<JobPage>().SearchValue.TextContentAsync().GetAwaiter().GetResult();
+            var actualCountOfResults = int.Parse(_page.Init<JobPage>().CountOfResults.TextContentAsync()
+                .GetAwaiter().GetResult()
+                .Replace(" Job", string.Empty));
+            actualSearchValue.Should().BeEquivalentTo(expectedSearchValue.AddRandom(_sessionRandom));
+            actualCountOfResults.Should().Be(expectedCountOfResults);
+        }
+
         [Then(@"Search results contain '([^']*)'")]
         public void ThenSearchResultsContain(string text)
         {
-            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(state: LoadState.Load);
+            _page.Init<JobPage>().SearchValue.IsVisibleAsync().GetAwaiter().GetResult();
             var texts = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             texts.Should().NotBeNullOrEmpty();
 
             foreach (var roleText in texts)
             {
-                roleText.ToLower().Should().Contain(text.ToLower());
+                roleText.ToLower().Should().Contain(text.AddRandom(_sessionRandom).ToLower());
             }
         }
 
@@ -54,6 +69,8 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"The page has not changed after removed terms from search field")]
         public void ThePageHasNotChangedAfterRemovedTermsFromSearchField()
         {
+            _page.Component<Card>().Title.AllAsync().GetAwaiter().GetResult()
+                .First().IsVisibleAsync().GetAwaiter().GetResult();
             var actualListNames = _page.Component<Card>().Title.AllTextContentsAsync().GetAwaiter().GetResult();
             var expectedListNames = _position.Value;
             actualListNames.Should().IntersectWith(expectedListNames);
@@ -62,7 +79,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
         [Then(@"Search results equal to selected tag")]
         public void ThenSearchResultsEqualToSelectedTag(Table table)
         {
-            var tags = table.Rows.SelectMany(x => x.Values).ToList();
+            var tags = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
             var texts = _page.Component<Card>()
                 .DirectionTitle.AllInnerTextsAsync().GetAwaiter().GetResult();
 
@@ -78,7 +95,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
 
             var actualListTabs = _page.Component<NavigationTabs>().AllInnerTextsAsync().GetAwaiter().GetResult();
-                
+
             actualListTabs.Should().Equal(expectedListTabs);
         }
 

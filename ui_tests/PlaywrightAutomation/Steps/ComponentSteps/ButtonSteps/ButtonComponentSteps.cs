@@ -3,6 +3,9 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Components.Button;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Utils;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using static PlaywrightAutomation.Components.BaseWebComponent;
 
@@ -18,8 +21,8 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
             _page = browserFactory.Page;
         }
 
-        [When(@"User clicks on '([^']*)' button on '([^']*)' container")]
-        public void WhenUserClicksOnButtonOnContainer(string button, string container)
+        [When(@"User clicks '([^']*)' button on '([^']*)' container")]
+        public void WhenUserClicksButtonOnContainer(string button, string container)
         {
             _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .ClickAsync().GetAwaiter().GetResult();
@@ -42,6 +45,17 @@ namespace PlaywrightAutomation.Steps.ComponentSteps
                 .InnerTextAsync().GetAwaiter().GetResult().Equals(buttonText);
 
             buttonTextState.Should().BeTrue();
+        }
+
+        [Then(@"'([^']*)' button is active on '([^']*)' container")]
+        public void ThenButtonIsActiveOnContainer(string button, string container)
+        {
+            var buttonComponent = _page.Component<Button>(button, new Properties { ParentSelector = WebContainer.GetLocator(container) });
+
+            _page.ExecuteFunc(() =>
+            {
+                buttonComponent.GetAttributeAsync("class").GetAwaiter().GetResult().Should().Contain("active");
+            }, PageExtensions.AmountOfTime.Medium);
         }
     }
 }

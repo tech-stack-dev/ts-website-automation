@@ -37,17 +37,18 @@ public abstract class BaseWebComponent : ILocator
 
         #region Parent element
 
-        if (Props.ParentSelector is not null)
-        {
-            if (Page.Locator(ParentSelector).ElementHandlesAsync().Result.Count > 0)
+            if (Props.ParentSelector is not null)
             {
-                Parent = Page.Locator(ParentSelector);
+                Page.Locator(ParentSelector).WaitForAsync().GetAwaiter().GetResult();
+                if (Page.Locator(ParentSelector).ElementHandlesAsync().Result.Count > 0)
+                {
+                    Parent = Page.Locator(ParentSelector);
+                }
+                else
+                {
+                    throw new Exception($"Parent element with '{ParentSelector}' locator is not present");
+                }
             }
-            else
-            {
-                throw new Exception($"Parent element with '{ParentSelector}' locator is not present");
-            }
-        }
 
         try
         {

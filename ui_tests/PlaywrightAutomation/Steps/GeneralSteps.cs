@@ -4,7 +4,7 @@ using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Pages;
 using PlaywrightAutomation.Providers;
-using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
@@ -15,15 +15,17 @@ namespace PlaywrightAutomation.Steps
     [Binding]
     internal class GeneralSteps : SpecFlowContext
     {
-        private readonly BrowserFactory _browserFactory;
-        private IPage _page;
-        private readonly DefaultCareersList _defaultCareersList;
+        private const string URL_PAGE_NUMBER = "{0}?page={1}";
 
-        public GeneralSteps(BrowserFactory browserFactory, DefaultCareersList defaultCareersList)
+        private IPage _page;
+        private readonly BrowserFactory _browserFactory;
+        private readonly CreatedCareer _createdCareer;
+
+        public GeneralSteps(BrowserFactory browserFactory, CreatedCareer createdCareer)
         {
             _page = browserFactory.Page;
             _browserFactory = browserFactory;
-            _defaultCareersList = defaultCareersList;
+            _createdCareer = createdCareer;
         }
 
         [Given(@"User is on career website")]
@@ -44,18 +46,13 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
-        [When(@"User click back button in the browser")]
-        public void WhenUserClickBackButtonInTheBrowser()
+        [When(@"User opens page with '([^']*)' index via URL")]
+        public void WhenUserOpensPageWithIndexViaURL(int number)
         {
-            _page.GoBackAsync().GetAwaiter().GetResult();
-            _page.WaitForLoadStateAsync(state: LoadState.Load);
-        }
-
-        [Then(@"'([^']*)' website is opened in popup window")]
-        public void ThenWebsiteIsOpenedInPopupWindow(string website)
-        {
-            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
-            popup.Url.Should().Contain(website.ToLower());
+            // Open a specific page according to the pagination in the staging
+            _page.GotoAsync(string.Format(URL_PAGE_NUMBER, UrlProvider.Application, number))
+             .GetAwaiter()
+             .GetResult();
         }
 
         [When(@"User expects tag and vacancy created in 'Contentful' on the page")]
@@ -88,8 +85,22 @@ namespace PlaywrightAutomation.Steps
         [When(@"User waits careers with mocked data")]
         public void WhenUserWaitsCareersWithMockedData()
         {
-            var careers = _defaultCareersList.Value;
+            var careers = _createdCareer.Value.Select(x => x.NameUs).ToList();
             _page.Init<CareerMainPage>().WaitForMockedCareers(careers);
+        }
+
+        [When(@"User scrolls down to the end of the page")]
+        public void UserScrollsDownToTheEndOfThePage()
+        {
+            _page.Keyboard.DownAsync("End").GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync(LoadState.NetworkIdle).GetAwaiter().GetResult();
+        }
+
+        [Then(@"'([^']*)' website is opened in popup window")]
+        public void ThenWebsiteIsOpenedInPopupWindow(string website)
+        {
+            var popup = _page.WaitForPopupAsync().GetAwaiter().GetResult();
+            popup.Url.Should().Contain(website.ToLower());
         }
     }
 }

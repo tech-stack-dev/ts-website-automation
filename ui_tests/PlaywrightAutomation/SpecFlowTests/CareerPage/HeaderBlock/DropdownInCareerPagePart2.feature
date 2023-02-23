@@ -1,58 +1,46 @@
 Feature: DropdownInCareerPagePart2
 
-@Regression @TSWEB133 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB133 @Cleanup @NotRun
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                               |
-		| Direction | TestingResetDirection 1_ТестовийВидалитиНапрямок 1 |
-		| Direction | TestingResetDirection 2_ТестовийВидалитиНапрямок 2 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates '2' Tags
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs               | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsResetDirection |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                      |
-		| Vacancy | TestUsResetDirection      |
-		| Tag     | Testing Reset Direction 1 |
-		| Tag     | Testing Reset Direction 2 |
+	When User expects tags and careers on the page
 	When User clicks on 'Direction' dropdown
 	When User selects tag from 'Direction' dropdown
-		| Tag                       |
-		| Testing Reset Direction 1 |
-		| Testing Reset Direction 2 |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
-@Regression @TSWEB133 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB133 @Cleanup @NotRun
 Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                             |
-		| Seniority | TestingResetSeniority 1_ТестовийВидалитиРівень 1 |
-		| Seniority | TestingResetSeniority 2_ТестовийВидалитиРівень 2 |
-		| Seniority | TestingResetSeniority 3_ТестовийВидалитиРівень 3 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates Tags
+		| Prefix    | Name           |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
+		| Seniority | Test3Tag{SRND} |
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs               | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsResetSeniority |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                      |
-		| Vacancy | TestUsResetSeniority      |
-		| Tag     | Testing Reset Seniority 1 |
-		| Tag     | Testing Reset Seniority 2 |
-		| Tag     | Testing Reset Seniority 3 |
-	When User clicks on 'SeniorityLevel' dropdown
-	When User selects tag from 'SeniorityLevel' dropdown
-		| Tag                       |
-		| Testing Reset Seniority 1 |
-		| Testing Reset Seniority 2 |
-		| Testing Reset Seniority 3 |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+	When User expects tags and careers on the page
+	When User clicks on 'Seniority Level' dropdown
+	When User selects tag from 'Seniority Level' dropdown
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
+		| Test3Tag{SRND} |
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel

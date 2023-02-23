@@ -1,6 +1,10 @@
 name: Playwright UI E2E
 
 on:
+  workflow_dispatch:
+  schedule:
+  #Run each day at 21:10
+    - cron: '10 21 * * *'
   pull_request:
     paths:
       - "ui_tests_playwright/**"
@@ -14,16 +18,45 @@ jobs:
             working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
+      
       - uses: actions/setup-node@v3
+      
       - name: Install dependencies
         run: npm ci
+        
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-      - name: Run tests
+        
+      - name: Run UI tests
         run: npx playwright test
+        
       - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
         if: always()
         with:
             name: playwright-report
             path: ui_tests_playwright/playwright-report/
             retention-days: 30
+            
+      - name: Preparing Slack emoji
+        uses: haya14busa/action-cond@v1
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        id: slack_icon_emoji
+        with:
+            cond: ${{ job.status == 'failure' }}
+            if_true: ':finnadie:'
+            if_false: ':aw_yeah:'
+            
+      - name: Slack Notification for UI tests
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+            SLACK_USERNAME: Tests execution report
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_CHANNEL: test_slack_notifications
+            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            SLACK_TITLE: TypeScript UI tests
+            MSG_MINIMAL: true
+            SLACK_FOOTER: TS website

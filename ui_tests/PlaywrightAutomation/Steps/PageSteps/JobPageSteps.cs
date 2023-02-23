@@ -3,7 +3,11 @@ using Microsoft.Playwright;
 using PlaywrightAutomation.Components;
 using PlaywrightAutomation.Extensions;
 using PlaywrightAutomation.Helpers;
+using PlaywrightAutomation.Models.Contentful;
 using PlaywrightAutomation.Pages;
+using PlaywrightAutomation.Providers;
+using PlaywrightAutomation.RuntimeVariables;
+using PlaywrightAutomation.RuntimeVariables.Contentful;
 using PlaywrightAutomation.Utils;
 using System;
 using System.Linq;
@@ -15,24 +19,48 @@ namespace PlaywrightAutomation.Steps.PageSteps
     [Binding]
     internal class JobPageSteps : SpecFlowContext
     {
-        private readonly IPage _page;
+        private const string URL_SEARCH = "{0}?searchValue={1}";
 
-        public JobPageSteps(BrowserFactory browserFactory)
+        private readonly IPage _page;
+        private readonly SessionRandomValue _sessionRandom;
+        private readonly CreatedTags _createdTags;
+        private readonly CreatedCareer _createdCareer;
+
+        public JobPageSteps(BrowserFactory browserFactory, SessionRandomValue sessionRandom, CreatedTags createdTags, CreatedCareer createdCareer)
         {
             _page = browserFactory.Page;
+            _sessionRandom = sessionRandom;
+            _createdTags = createdTags;
+            _createdCareer = createdCareer;
+        }
+
+        [When(@"User expects tags and careers on the page")]
+        public void WhenUserExpectsTagsAndCareersOnThePage()
+        {
+            WaitForTagsCreating();
+            foreach (var career in _createdCareer.Value)
+            {
+                // Application URL used to guarantee page reload and search results
+                _page.GotoAsync(string.Format(URL_SEARCH, UrlProvider.Application, career.NameUs)).GetAwaiter().GetResult();
+                WaitForCareerCreating(career);
+            }
         }
 
         [Then(@"'([^']*)' job title is displayed on job page")]
         public void ThenJobTitleIsDisplayedOnJobPage(string expectedJobTitle)
         {
-            var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
-            actualJobTitle.Should().Be(expectedJobTitle);
+            _page.ExecuteFunc(() =>
+            {
+                var actualJobTitle = _page.Init<JobPage>().Title.TextContentAsync().GetAwaiter().GetResult();
+                actualJobTitle.Should().Be(expectedJobTitle.AddRandom(_sessionRandom));
+                _page.ReloadAsync().GetAwaiter().GetResult();
+            });
         }
 
         [Then(@"Tags are displayed on job page")]
         public void ThenTagsAreDisplayedOnJobPage(Table table)
         {
-            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList();
+            var expectedListTags = table.Rows.SelectMany(x => x.Values).ToList().Select(x => x.AddRandom(_sessionRandom));
             var actualListTags = _page.Init<JobPage>().Tags.AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTags.Should().Equal(expectedListTags);
@@ -65,7 +93,7 @@ namespace PlaywrightAutomation.Steps.PageSteps
             }
 
             var actualTag = tags.GetByText(expectedTag);
-            
+
             actualTag.GetBackgroundColor().Should().Be(ColorsConvertor.Converter(expectedColor));
         }
 
@@ -113,10 +141,42 @@ namespace PlaywrightAutomation.Steps.PageSteps
         public void ThenJobsBlockOnContainerOnJobPageHasTabs(string container, Table table)
         {
             var expectedListTabs = table.Rows.SelectMany(x => x.Values).ToList();
-            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container)})
+            var actualListTabs = _page.Component<NavigationTabs>(new Properties { ParentSelector = WebContainer.GetLocator(container) })
                 .AllInnerTextsAsync().GetAwaiter().GetResult();
 
             actualListTabs.Should().Equal(expectedListTabs);
+        }
+
+        public void WaitForTagsCreating()
+        {
+            foreach (var tag in _createdTags.Value)
+            {
+                try
+                {
+                    tag.Name = tag.Name.Split("_").ToList().First();
+                    var tagElement = _page.Component<Tag>(tag.Name);
+                    _page.WaiterWithReloadPage(tagElement);
+                    tagElement.Count().Should().NotBe(0);
+                }
+                catch
+                {
+                    throw new Exception($"'{tag.Prefix}' element with '{tag.Name}' name is not displayed");
+                }
+            }
+        }
+
+        public void WaitForCareerCreating(Career career)
+        {
+            try
+            {
+                var careerElement = _page.Component<Card>(career.NameUs);
+                _page.WaiterWithReloadPage(careerElement);
+                careerElement.Count().Should().NotBe(0);
+            }
+            catch
+            {
+                throw new Exception($"'{career.NameUs}' career is not displayed");
+            }
         }
     }
 }

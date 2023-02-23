@@ -1,103 +1,90 @@
 Feature: SeniorityLevelSideBar
 
-@Regression @TSWEB145 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB145 @Cleanup @NotRun
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                                  |
-		| Seniority | TestingSideSeniorityOnlyOne_ТестовийРівеньБоковийОдин |
-	Given User creates and publishes new Career Description with default values
+	Given User creates Tags
+		| Prefix    | Name           |
+		| Seniority | Test1Tag{SRND} |
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                     | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideSeniorityOnlyOne |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                        |
-		| Vacancy | TestUsSideSeniorityOnlyOne  |
-		| Tag     | TestingSideSeniorityOnlyOne |
+	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
-		| Tag                         |
-		| TestingSideSeniorityOnlyOne |
+		| Tag            |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Tag            |
+		| Test1Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Tag            |
+		| Test1Tag{SRND} |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Tag            |
+		| Test1Tag{SRND} |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
-		| Tag                             |
-		| Testing Side Seniority Only One |
+		| Tag            |
+		| Test1Tag{SRND} |
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                         |
-		| Seniority | TestingSideSeniority1_ТестовийРівеньБоковий1 |
-		| Seniority | TestingSideSeniority2_ТестовийРівеньБоковий2 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates Tags
+		| Prefix    | Name           |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs              | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsSideSeniority |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                  |
-		| Vacancy | TestUsSideSeniority   |
-		| Tag     | TestingSideSeniority1 |
-		| Tag     | TestingSideSeniority2 |
+	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
-		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags are displayed as active in Filters list on 'CareerPage' container
-		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags has correct color in Filters list on 'CareerPage' container
-		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags are displayed in 'Seniority levels' filter side bar on 'CareerPage' container
-		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then Selected tags from 'Seniority levels' filter side bar has correctly color on 'CareerPage' container
-		| Tag                   |
-		| TestingSideSeniority1 |
-		| TestingSideSeniority2 |
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
 	Then '2' tags are selected in 'Seniority levels' sider bar on 'CareerPage' container
 	When User clicks on header 'Seniority levels' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	# Precondition
-	Given User creates tag with default values
-		| Prefix    | Name                                                       |
-		| Seniority | TestingResetSideSeniority1_ТестовийВидалитиБоковийРівень 1 |
-		| Seniority | TestingResetSideSeniority2_ТестовийВидалитиБоковийРівень 2 |
-	Given User creates and publishes new Career Description with default values
+	Given User creates Tags
+		| Prefix    | Name           |
+		| Seniority | Test1Tag{SRND} |
+		| Seniority | Test2Tag{SRND} |
+	Given User creates Career Description
 		| Field | Value |
-	Given User creates default Career with career description and tag
-		| NameUs                   | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
-		| TestUsResetSideSeniority |        |               |               | Link | Entry    |
+	Given User creates Career
+		| NameUs | NameUa | DescriptionUs | DescriptionUa | Type | LinkType |
 	# Scenario
 	Given User is on career website
-	When User expects tag and vacancy created in 'Contentful' on the page
-		| Type    | Name                       |
-		| Vacancy | TestUsResetSideSeniority   |
-		| Tag     | TestingResetSideSeniority1 |
-		| Tag     | TestingResetSideSeniority2 |
+	When User expects tags and careers on the page
 	When User selects tags in 'Seniority levels' filter side bar on 'CareerPage' container
-		| Tag                           |
-		| Testing Reset Side Seniority1 |
-		| Testing Reset Side Seniority2 |
-	When User clicks on 'Reset' button on 'CareerPage' container
+		| Tag            |
+		| Test1Tag{SRND} |
+		| Test2Tag{SRND} |
+	When User clicks 'Reset' button on 'CareerPage' container
 	Then All selected tags was cancel
