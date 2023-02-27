@@ -7,12 +7,14 @@ class Driver extends BaseDriver {
     public focusedDriver: BaseDriver;
     public listOfDrivers: BaseDriver[] = [];
 
+    private headless: boolean = true;
+
     public async createBrowser(browserName: BrowsersEnum) {
         driver.focusedDriver = new BaseDriver();
 
         if (driver.browser === undefined) {
             // Uncomment if List of Chromium Commands needed
-            driver.browser = await chromium.launch({ headless: true /*, args: driver.driver.args*/ });
+            driver.browser = await chromium.launch({ headless: this.headless /*, args: driver.driver.args*/ });
         }
 
         driver.focusedDriver.DriverName = browserName;
@@ -27,8 +29,9 @@ class Driver extends BaseDriver {
     }
 
     public async closeDrivers() {
-        for (const driver of this.listOfDrivers) {
-            await driver.DriverContext.close()
+        for (let driverToClose of this.listOfDrivers) {
+            driver.focusedDriver = driverToClose;
+            await this.DriverContext.close();
         }
 
         driver.listOfDrivers = [];

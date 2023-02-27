@@ -1,6 +1,10 @@
 import { ClientsEnum } from "../base/client/ClientsEnum";
 
 export default class UrlProvider {
+    public static stagingCareerUrl(): string {
+        return <string>process.env.STAGING_CAREER_URL;
+    }
+    
     public static webSiteUrl(): string {
         return <string>process.env.WEB_SITE_URL;
     }
