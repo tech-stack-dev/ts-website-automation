@@ -86,6 +86,10 @@ export default class BaseDriver {
         }
     }
 
+    public getByTestId(testId: string, nth: number = 0): Locator {
+        return driver.Page.getByTestId(testId).nth(nth);
+    }
+
     public async getPage<T>(type: { new(page: Page): T; }) {
         return await new type(driver.focusedDriver.Page);
     }

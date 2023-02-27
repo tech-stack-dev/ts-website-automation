@@ -337,17 +337,19 @@ export default class BaseComponent implements Locator {
         return this.Element.isEnabled(options);
     }
 
-    isHidden(
+    async isHidden(
         options?: {
             timeout?: number | undefined;
         } | undefined): Promise<boolean> {
+        await this.Element.waitFor({ state: 'hidden', timeout: options?.timeout });
         return this.Element.isHidden(options);
     }
 
-    isVisible(
+    async isVisible(
         options?: {
             timeout?: number | undefined;
         } | undefined): Promise<boolean> {
+        await this.Element.waitFor({ state: 'visible', timeout: options?.timeout });
         return this.Element.isVisible(options);
     }
 
