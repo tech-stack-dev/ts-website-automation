@@ -1,6 +1,6 @@
-Feature: JobsBlockFeature
+Feature: JobsBlockPart1
 
-@Regression @TSWEB146
+@Regression @JobsBlock @TSWEB146
 Scenario: CheckNavigationHeaderInCareerPage
 	Given User is on career website
 	Then Techstack logo is displayed on main page
@@ -10,11 +10,12 @@ Scenario: CheckNavigationHeaderInCareerPage
 		| About us   |
 		| Reviews    |
 		| Contact us |
-	Then 'En' language is selected 'HeaderPage' on container
-	When User selects 'Ua' language on 'HeaderPage' container
-	Then 'Ua' language is selected 'HeaderPage' on container
-
-@Regression @TSWEB146 @Cleanup
+	Then 'En' button is active on 'HeaderPage' container
+	When User clicks 'Ua' button on 'HeaderPage' container
+	Then 'Ua' button is active on 'HeaderPage' container
+	
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	# Preconditions
 	Given User creates Career with default value
@@ -29,7 +30,7 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Then Breadcrumbs has 'Jobs / Test1Career{SRND}' text
 	Then 'Apply Now' button is displayed on 'BreadcrumbsHeader' container
 
-@Regression @TSWEB146 @Cleanup
+@Regression @JobsBlock @TSWEB146 @Cleanup
 Scenario: CheckNavigationHeaderOnJobPage
 	# Preconditions
 	Given User creates Career with default value
@@ -48,11 +49,12 @@ Scenario: CheckNavigationHeaderOnJobPage
 		| About us   |
 		| Reviews    |
 		| Contact us |
-	Then 'En' language is selected 'NavigationHeader' on container
-	When User selects 'Ua' language on 'NavigationHeader' container
-	Then 'Ua' language is selected 'NavigationHeader' on container
+	Then 'En' button is active on 'NavigationHeader' container
+	When User clicks 'Ua' button on 'NavigationHeader' container
+	Then 'Ua' button is active on 'NavigationHeader' container
 
-@Regression @TSWEB146 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckLocalizationOnJobPage
 	# Preconditions
 	Given User creates Tags
@@ -72,8 +74,8 @@ Scenario: CheckLocalizationOnJobPage
 		| Tag            |
 		| Test1Tag{SRND} |
 	When User clicks on 'Test1Career{SRND}' card title
-	When User selects 'Ua' language on 'NavigationHeader' container
-	Then 'Ua' language is selected 'NavigationHeader' on container
+	When User clicks 'Ua' button on 'NavigationHeader' container
+	Then 'Ua' button is active on 'NavigationHeader' container
 	Then 'NameUa_1_{SRND}' job title is displayed on job page
 	Then Jobs block on 'NavigationHeader' container on job page has tabs
 		| Tab               |

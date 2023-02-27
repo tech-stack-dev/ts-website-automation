@@ -1,6 +1,7 @@
 Feature: DropdownInCareerPagePart2
 
-@Regression @TSWEB133 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB133 @Cleanup @NotRun
 Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButton
 	# Precondition
 	Given User creates '2' Tags
@@ -16,10 +17,11 @@ Scenario: CheckThatUserDeleteSelectedTagsFromDirectionDropdownClickingResetButto
 		| Tag            |
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel
 
-@Regression @TSWEB133 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB133 @Cleanup @NotRun
 Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingResetButton
 	# Precondition
 	Given User creates Tags
@@ -40,5 +42,5 @@ Scenario: CheckThatUserDeleteSelectedTagsFromSeniorityLevelDropdownClickingReset
 		| Test1Tag{SRND} |
 		| Test2Tag{SRND} |
 		| Test3Tag{SRND} |
-	When User clicks on 'Reset' button on 'HeaderPage' container
+	When User clicks 'Reset' button on 'HeaderPage' container
 	Then All selected tags was cancel

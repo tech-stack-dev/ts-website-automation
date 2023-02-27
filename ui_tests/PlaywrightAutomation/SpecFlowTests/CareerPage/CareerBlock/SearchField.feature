@@ -1,6 +1,6 @@
 Feature: SearchField
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCareerBlock
 	# Precondition
 	Given User creates Career with default value
@@ -11,7 +11,7 @@ Scenario: CheckThatUserSeesCorrectResultsWhenEnteringVacancyInSearchInputInCaree
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1Career{SRND}'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSearchInputInCareerBlock
 	# Precondition
 	Given User creates Career with default value
@@ -22,7 +22,7 @@ Scenario: CheckThatUserSeesCorrectSearchResultsWhenEnteringPartOfNameVacancyInSe
 	Then User sees 'Test1Career{SRND}' search value and '1' count of results
 	Then Search results contain 'Test1'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock
 	Given User is on career website
 	When User remembers vacancy names from Job page
@@ -31,13 +31,13 @@ Scenario: CheckThatUserSeesStartPageAfterClearedTextFromSearchInputInCareerBlock
 	Then '' text is displayed in 'Search' input on 'CareerMainPage' container
 	Then The page has not changed after removed terms from search field
 
-@Regession @TSWEB145
+@Regession @FilterBlock @TSWEB145
 Scenario: CheckThatUserSeesMessageAboutFailSearchResultsAfterClearedSearchInputInCareerBlock
 	Given User is on career website
 	When User set 'wrongString' text to 'Search' input on 'CareerMainPage' container
 	Then 'Sorry, no matching jobs found :( Please refine your search criteria and try again' message is displayed
 
-@Regession @TSWEB145
+@Regession @FilterBlock @TSWEB145
 Scenario: CheckThatAllDropdownsAreExpandedByDefault
 	Given User is on career website
 	Then Dropdowns are expanded on 'CareerPage' container
