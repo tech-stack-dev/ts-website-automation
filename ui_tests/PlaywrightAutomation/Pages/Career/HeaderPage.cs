@@ -1,12 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutomationUtils.Utils;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Playwright;
-using PlaywrightAutomation.Components;
-using PlaywrightAutomation.Components.Button;
-using PlaywrightAutomation.Extensions;
-using PlaywrightAutomation.Utils;
 
 namespace PlaywrightAutomation.Pages
 {
