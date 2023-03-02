@@ -1,0 +1,42 @@
+{
+    "Staging": {
+        "Site": "https://staging.tech-stack.com",
+
+        "OurServices": "https://staging.tech-stack.com/services",
+        "CustomDev": "https://staging.tech-stack.com/services/custom-software-development",
+        "CloudAndDev": "https://staging.tech-stack.com/services/cloud-and-devops",
+        "BigData": "https://staging.tech-stack.com/services/big-data-and-analytics",
+        "InternetOfThings": "https://staging.tech-stack.com/services/internet-of-things",
+        "MobileDev": "https://staging.tech-stack.com/services/mobile-development",
+        "UiUxDesign": "https://staging.tech-stack.com/services/ui-ux-design",
+        "QaAsAServ": "https://staging.tech-stack.com/services/qa-as-a-service",
+        "ConsultingServ": "https://staging.tech-stack.com/services/consulting-service",
+
+        "AboutUs": "https://staging.tech-stack.com/about-us",
+        "HowWeWork": "https://staging.tech-stack.com/how-we-work",
+        "Career": "https://staging-career.tech-stack.com",
+        "CaseStudies": "https://staging.tech-stack.com/case-studies",
+        "Blog": "https://staging.tech-stack.com/blog",
+        "ContactUs": "https://staging.tech-stack.com/contact-us"
+    }, 
+    "Production": {
+        "Site": "https://tech-stack.com",
+
+        "OurServices": "https://tech-stack.com/services",
+        "CustomDev": "https://tech-stack.com/services/custom-software-development",
+        "CloudAndDev": "https://tech-stack.com/services/cloud-and-devops",
+        "BigData": "https://tech-stack.com/services/big-data-and-analytics",
+        "InternetOfThings": "https://tech-stack.com/services/internet-of-things",
+        "MobileDev": "https://tech-stack.com/services/mobile-development",
+        "UiUxDesign": "https://tech-stack.com/services/ui-ux-design",
+        "QaAsAServ": "https://tech-stack.com/services/qa-as-a-service",
+        "ConsultingServ": "https://tech-stack.com/services/consulting-service",
+
+        "AboutUs": "https://tech-stack.com/about-us",
+        "HowWeWork": "https://tech-stack.com/how-we-work",
+        "Career": "https://career.tech-stack.com",
+        "CaseStudies": "https://tech-stack.com/case-studies",
+        "Blog": "https://tech-stack.com/blog",
+        "ContactUs": "https://tech-stack.com/contact-us"        
+    }
+}
