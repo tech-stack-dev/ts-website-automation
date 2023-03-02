@@ -8,7 +8,7 @@ test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check 'Contact Us' button from 'Services' section", async () => {
+test("Check 'Contact Us' button from 'Services' section @ContactUs", async () => {
     await baseDriverSteps.goToUrl(urlProvider.getUrl().ourServicesUrl);
     await driver.getByTestId(Button.ContactUs).click();
     await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
@@ -46,7 +46,7 @@ test("Check 'Contact Us' button from 'Services' section", async () => {
     await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
 });
 
-test("Check 'Contact Us' button from 'Company' section", async () => {
+test("Check 'Contact Us' button from 'Company' section @ContactUs", async () => {
     await baseDriverSteps.goToUrl(urlProvider.getUrl().aboutUs);
     await driver.getByTestId(Button.ContactUs).click();
     await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
@@ -64,7 +64,7 @@ test("Check 'Contact Us' button from 'Company' section", async () => {
     await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
 });
 
-test("Check 'Contact Us' button from 'Contact Us' section and from main page", async () => {
+test("Check 'Contact Us' button from 'Contact Us' section and from main page @ContactUs", async () => {
     await baseDriverSteps.goToUrl(urlProvider.getUrl().contactUs);
     await driver.getByTestId(Button.ContactUs).click();
     await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
