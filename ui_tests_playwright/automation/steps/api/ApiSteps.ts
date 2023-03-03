@@ -3,23 +3,27 @@ import { client } from "../../base/client/Client";
 import RequestOptions from "../../base/client/RequestOptions";
 import { responseVariable } from "../../runtimeVariables/dto/ResponseVariable";
 
-export default class ApiSteps {
-    public static async executeGetRequest(urlPath: string, requestOptions?: RequestOptions, statusCode: number = 200) {
+class ApiSteps {
+    public async executeGetRequest(urlPath: string, requestOptions?: RequestOptions, statusCode: number = 200) {
         responseVariable.value = await client.get(urlPath, requestOptions);
 
         expect(responseVariable.value.status()).toEqual(statusCode);
     }
 
-    public static async executePostRequest(urlPath: string, requestOptions?: RequestOptions, statusCode: number = 200) {
+    public async executePostRequest(urlPath: string, requestOptions?: RequestOptions, statusCode: number = 200) {
         responseVariable.value = await client.post(urlPath, requestOptions);
 
         expect(responseVariable.value.status()).toEqual(statusCode);
     }
 
-    public static async checkPropertyValue(property: string, expectedValue: any) {
+    public async checkPropertyValue(property: string, expectedValue: any) {
         let responseJson = await responseVariable.value.json();
         let actualValue = await responseJson[property];
 
         expect(actualValue).toBe(expectedValue);
     }
 }
+
+var apiSteps = new ApiSteps();
+
+export { apiSteps };

@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { driver } from "../../base/driver/Driver";
-import BaseDriverSteps from "../../base/step/BaseDriverSteps";
+import { baseDriverSteps } from "../../base/step/BaseDriverSteps";
 import ButtonByDataId from "../../components/Button/ButtonByDataId";
 import AboutUs from "../../identifiers/AboutUs";
 import Button from "../../identifiers/Button";
@@ -11,9 +11,9 @@ import CarouselSteps from "../../steps/components/Carousel/CarouselSteps";
 import InfoBlockSteps from "../../steps/components/StyledComponents/InfoBlockSteps";
 
 test.beforeEach(async () => {
-    await BaseDriverSteps.createsNewBrowser();
-    await BaseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
-    await ButtonSteps.clickButton(ButtonByDataId, Button.NavigationTab_AboutUs);
+    await baseDriverSteps.createsNewBrowser();
+    await baseDriverSteps.goToUrl(UrlProvider.stagingCareerUrl());
+    await buttonSteps.clickButton(ButtonByDataId, Button.NavigationTab_AboutUs);
 });
 
 test("Check that all the required sections are displayed on the AboutUs page", async () => {

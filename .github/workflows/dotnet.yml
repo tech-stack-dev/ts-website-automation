@@ -121,31 +121,31 @@ jobs:
         if_true: ':finnadie:'
         if_false: ':aw_yeah:'
           
-    - name: Slack Notification for UI tests
+    - name: Slack Notification for UI tests to QA service channel
       if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
-        SLACK_USERNAME: Tests execution report to QA Service channel
+        SLACK_USERNAME: Tests execution report
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: test_slack_notifications
+        SLACK_CHANNEL: ts_website_automation
         SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
         SLACK_TITLE: .Net UI tests
         MSG_MINIMAL: true
         SLACK_FOOTER: TS website
-        
-    # - name: Slack Notification for UI tests to Product channel
-      # if: ${{ (steps.unitTests.outcome == 'success') && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }} 
-      # uses: rtCamp/action-slack-notify@v2.2.0
-      # env:
-        # SLACK_USERNAME: Tests execution report
-        # SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        # SLACK_CHANNEL: ts_website
-        # SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-        # SLACK_COLOR: ${{ job.status }}
-        # SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
-        # SLACK_TITLE: .Net UI tests
-        # MSG_MINIMAL: true
-        # SLACK_FOOTER: TS website
+      
+    - name: Slack Notification for UI tests to Product channel
+      if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+      uses: rtCamp/action-slack-notify@v2.2.0
+      env:
+        SLACK_USERNAME: Tests execution report
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: ts_website
+        SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}
+        SLACK_TITLE: .Net UI tests
+        MSG_MINIMAL: true
+        SLACK_FOOTER: TS website
         

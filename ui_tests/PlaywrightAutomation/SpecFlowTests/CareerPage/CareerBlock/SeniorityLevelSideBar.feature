@@ -1,6 +1,7 @@
 Feature: SeniorityLevelSideBar
 
-@Regression @TSWEB145 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @FilterBlock @TSWEB145 @Cleanup @NotRun
 Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -29,7 +30,7 @@ Scenario: CheckThatUserSeesVacancySelectedFromSeniorityBlockInSideBar
 		| Tag            |
 		| Test1Tag{SRND} |
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	# Precondition
 	Given User creates Tags
@@ -67,7 +68,7 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	When User clicks on header 'Seniority levels' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
 
-@Regression @TSWEB145 @Cleanup
+@Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	# Precondition
 	Given User creates Tags

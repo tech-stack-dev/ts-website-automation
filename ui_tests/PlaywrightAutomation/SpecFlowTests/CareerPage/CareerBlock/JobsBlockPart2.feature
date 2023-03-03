@@ -1,7 +1,7 @@
 ﻿Feature: JobsBlockPart2
 
 # Added NotRun as this is not stable test. It will be fixed in separate PR (Dan and Asya)
-@Regression @TSWEB146 @Cleanup @NotRun
+@Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckJobDescriptionOnJobPage
 	# Preconditions
 	Given User creates Tags
@@ -47,7 +47,7 @@ Scenario: CheckJobDescriptionOnJobPage
 	When User clicks 'Apply now vacancy' button on 'JobPage' container
 	Then 'Apply for a Job' title is displayed on Apply For A Job page
 
-@Regression @TSWEB146 @Cleanup
+@Regression @JobsBlock @TSWEB146 @Cleanup
 Scenario: CheckPaginationOnCareerPage
 	# Preconditions
 	Given User creates '12' Tags
