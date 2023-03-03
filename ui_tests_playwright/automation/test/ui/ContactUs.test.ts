@@ -9,69 +9,51 @@ test.beforeEach(async () => {
 });
 
 test("Check 'Contact Us' button from 'Services' section @ContactUs", async () => {
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().ourServicesUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    let urlList: Array<string> = [
+        urlProvider.getUrl().ourServicesUrl,
+        urlProvider.getUrl().customDevUrl,
+        urlProvider.getUrl().cloudAndDevUrl,
+        urlProvider.getUrl().bigDataUrl,
+        urlProvider.getUrl().internetOfThingsUrl,
+        urlProvider.getUrl().mobileDevUrl,
+        urlProvider.getUrl().uiUxDesignUrl,
+        urlProvider.getUrl().qaAsAServUrl,
+        urlProvider.getUrl().consultingServUrl
+    ];
 
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().customDevUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().cloudAndDevUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().bigDataUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().internetOfThingsUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().mobileDevUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().uiUxDesignUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().qaAsAServUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().consultingServUrl);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    for (let url of urlList) {
+        await baseDriverSteps.goToUrl(url);
+        await driver.getByTestId(Button.ContactUs).click();
+        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    }
 });
 
 test("Check 'Contact Us' button from 'Company' section @ContactUs", async () => {
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().aboutUs);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    let urlList: Array<string> = [
+        urlProvider.getUrl().aboutUs,
+        urlProvider.getUrl().howWeWork,
+        urlProvider.getUrl().caseStudies,
+        urlProvider.getUrl().blog
+    ];
 
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().howWeWork);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().caseStudies);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
-
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().blog);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    for (let url of urlList) {
+        await baseDriverSteps.goToUrl(url);
+        await driver.getByTestId(Button.ContactUs).click();
+        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    }
 });
 
 test("Check 'Contact Us' button from 'Contact Us' section and from main page @ContactUs", async () => {
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().contactUs);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    let urlList: Array<string> = [
+        urlProvider.getUrl().contactUs,
+        urlProvider.getUrl().site
+    ];
 
-    await baseDriverSteps.goToUrl(urlProvider.getUrl().site);
-    await driver.getByTestId(Button.ContactUs).click();
-    await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    for (let url of urlList) {
+        await baseDriverSteps.goToUrl(url);
+        await driver.getByTestId(Button.ContactUs).click();
+        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+    }
 });
 
 test.afterEach(async () => {
