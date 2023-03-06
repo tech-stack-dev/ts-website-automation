@@ -24,11 +24,11 @@ class ContentfulUtils {
         await createdCareerDescriptionEntry.publish();
     }
 
-    async CreateAndPublishCareer(careerId: string, descriptionId: string, tagId?: string) {
+    async CreateAndPublishCareer(careerId: string, descriptionId: string, tagId: string = "direction_longSoftwareDataManager") {
         var environment = await this.GetEnvironment();
         var careerFieldsWithDescriptionAndTag = this.careerFields;
         careerFieldsWithDescriptionAndTag.fields.careerDescription["en-US"].sys.id = descriptionId;
-        tagId ? careerFieldsWithDescriptionAndTag.metadata.tags[0].sys.id = "direction_longSoftwareDataManager" : tagId;
+        careerFieldsWithDescriptionAndTag.metadata.tags[0].sys.id = tagId;
         await environment.createEntryWithId('career', careerId, this.careerFields);
         var createdCareer = await environment.getEntry(careerId);
         await createdCareer.publish();
