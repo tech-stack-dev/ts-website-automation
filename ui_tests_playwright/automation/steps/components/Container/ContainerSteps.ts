@@ -3,8 +3,8 @@ import { driver } from "../../../base/driver/Driver";
 import ContainerById from "../../../components/Container/ContainerById";
 
 class ContainerSteps {
-    public async getContainer(identifier: string) {
-        await driver.component(ContainerById, identifier);
+    public async getContainer(type: any, identifier: string) {
+        return await driver.component(type, identifier);
     }
 
     public async checkContainerNumber(identifier: string, expectedNumber: string) {
