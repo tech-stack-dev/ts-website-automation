@@ -7,6 +7,11 @@ class BaseDriverSteps {
         await driver.createBrowser(browserName);
     }
 
+    public async createsNewBrowserAndGoToUrl(url: string, browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
+        await driver.createBrowser(browserName);
+        await driver.Page.goto(url);
+    }
+
     public async createNewPage() {
         let newPage = await driver.DriverContext.newPage();
         driver.Page = newPage;
