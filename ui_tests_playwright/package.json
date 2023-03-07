@@ -19,7 +19,10 @@
     "@playwright/test": "^1.29.2"
   },
   "dependencies": {
+    "contentful": "^9.3.3",
+    "contentful-management": "^10.30.0",
     "dotenv": "^16.0.1",
-    "playwright-core": "^1.27.1"
+    "playwright-core": "^1.27.1",
+    "randomstring": "^1.2.3"
   }
 }
