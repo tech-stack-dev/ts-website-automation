@@ -2,7 +2,8 @@ import { test } from "@playwright/test";
 import { driver } from "../../base/driver/Driver";
 import { baseDriverSteps } from "../../base/step/BaseDriverSteps";
 import Button from "../../identifiers/Button";
-import { urlProvider } from "../../providers/UrlProvider";
+import UrlPath from "../../providers/UrlPath";
+import UrlProvider from "../../providers/UrlProvider";
 
 test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
@@ -10,49 +11,49 @@ test.beforeEach(async () => {
 
 test("Check 'Contact Us' button from 'Services' section @ContactUs", async () => {
     let urlList: Array<string> = [
-        urlProvider.getUrl().ourServicesUrl,
-        urlProvider.getUrl().customDevUrl,
-        urlProvider.getUrl().cloudAndDevUrl,
-        urlProvider.getUrl().bigDataUrl,
-        urlProvider.getUrl().internetOfThingsUrl,
-        urlProvider.getUrl().mobileDevUrl,
-        urlProvider.getUrl().uiUxDesignUrl,
-        urlProvider.getUrl().qaAsAServUrl,
-        urlProvider.getUrl().consultingServUrl
+        UrlProvider.urlBilder(UrlPath.OurServices),
+        UrlProvider.urlBilder(UrlPath.CustomDev),
+        UrlProvider.urlBilder(UrlPath.CloudAndDev),
+        UrlProvider.urlBilder(UrlPath.BigData),
+        UrlProvider.urlBilder(UrlPath.InternetOfThings),
+        UrlProvider.urlBilder(UrlPath.MobileDev),
+        UrlProvider.urlBilder(UrlPath.UiUxDesign),
+        UrlProvider.urlBilder(UrlPath.QaAsAServ),
+        UrlProvider.urlBilder(UrlPath.ConsultingServ)
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
     }
 });
 
 test("Check 'Contact Us' button from 'Company' section @ContactUs", async () => {
     let urlList: Array<string> = [
-        urlProvider.getUrl().aboutUs,
-        urlProvider.getUrl().howWeWork,
-        urlProvider.getUrl().caseStudies,
-        urlProvider.getUrl().blog
+        UrlProvider.urlBilder(UrlPath.AboutUs),
+        UrlProvider.urlBilder(UrlPath.HowWeWork),
+        UrlProvider.urlBilder(UrlPath.CaseStudies),
+        UrlProvider.urlBilder(UrlPath.Blog)
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
     }
 });
 
 test("Check 'Contact Us' button from 'Contact Us' section and from main page @ContactUs", async () => {
     let urlList: Array<string> = [
-        urlProvider.getUrl().contactUs,
-        urlProvider.getUrl().site
+        UrlProvider.urlBilder(UrlPath.ContactUs),
+        UrlProvider.webSiteUrl()
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(urlProvider.getUrl().contactUs);
+        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
     }
 });
 
