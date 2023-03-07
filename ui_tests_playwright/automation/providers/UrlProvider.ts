@@ -3,8 +3,8 @@ import appsetting from "../../appsetting.json";
 import EnvProvider, { Environment } from "./EnvProvider";
 
 export default class UrlProvider {
-    public static urlBilder(urlPath: string) {
-        return `${UrlProvider.webSiteUrl()}${urlPath}`;
+    public static urlBuilder(urlPath: string) {
+        return `${UrlProvider.webSiteUrl()}/${urlPath}`;
     }
 
     public static webSiteUrl(environment: Environment = EnvProvider.Environment) {

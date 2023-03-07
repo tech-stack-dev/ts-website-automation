@@ -11,49 +11,49 @@ test.beforeEach(async () => {
 
 test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
-        UrlProvider.urlBilder(UrlPath.OurServices),
-        UrlProvider.urlBilder(UrlPath.CustomDev),
-        UrlProvider.urlBilder(UrlPath.CloudAndDev),
-        UrlProvider.urlBilder(UrlPath.BigData),
-        UrlProvider.urlBilder(UrlPath.InternetOfThings),
-        UrlProvider.urlBilder(UrlPath.MobileDev),
-        UrlProvider.urlBilder(UrlPath.UiUxDesign),
-        UrlProvider.urlBilder(UrlPath.QaAsAServ),
-        UrlProvider.urlBilder(UrlPath.ConsultingServ)
+        UrlProvider.urlBuilder(UrlPath.OurServices),
+        UrlProvider.urlBuilder(UrlPath.CustomDev),
+        UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+        UrlProvider.urlBuilder(UrlPath.BigData),
+        UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+        UrlProvider.urlBuilder(UrlPath.MobileDev),
+        UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+        UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+        UrlProvider.urlBuilder(UrlPath.ConsultingServ)
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
+        await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
     }
 });
 
 test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
-        UrlProvider.urlBilder(UrlPath.AboutUs),
-        UrlProvider.urlBilder(UrlPath.HowWeWork),
-        UrlProvider.urlBilder(UrlPath.CaseStudies),
-        UrlProvider.urlBilder(UrlPath.Blog)
+        UrlProvider.urlBuilder(UrlPath.AboutUs),
+        UrlProvider.urlBuilder(UrlPath.HowWeWork),
+        UrlProvider.urlBuilder(UrlPath.CaseStudies),
+        UrlProvider.urlBuilder(UrlPath.Blog)
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
+        await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
     }
 });
 
 test("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
-        UrlProvider.urlBilder(UrlPath.ContactUs),
+        UrlProvider.urlBuilder(UrlPath.ContactUs),
         UrlProvider.webSiteUrl()
     ];
 
     for (let url of urlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
-        await baseDriverSteps.checkUrl(UrlProvider.urlBilder(UrlPath.ContactUs));
+        await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
     }
 });
 
