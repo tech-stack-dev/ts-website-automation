@@ -1,14 +1,14 @@
-export enum Environment { Stg, Prod }
+export enum Environment { Staging, Production }
 
 export default class EnvProvider {
 
-    public static get Env(): Environment {
+    public static get Environment(): Environment {
         switch (process.env.TEST_ENV) {
             case "staging": {
-                return Environment.Stg;
+                return Environment.Staging;
             }
             case "production": {
-                return Environment.Prod;
+                return Environment.Production;
             }
             default: {
                 throw new Error(`Unknown environment. Environment: ${process.env.TEST_ENV}`);
