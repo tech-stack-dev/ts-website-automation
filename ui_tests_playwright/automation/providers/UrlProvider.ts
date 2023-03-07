@@ -35,7 +35,7 @@ export default class UrlProvider {
         }
     }
 
-    public clientUrl(clientName: ClientsEnum): string {
+    public static clientUrl(clientName: ClientsEnum): string {
         switch (clientName) {
             case ClientsEnum.Client_1: {
                 return <string>process.env.CLIENT_1_URL;

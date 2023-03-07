@@ -1,5 +1,5 @@
 import { request } from "@playwright/test";
-import { urlProvider } from "../../providers/UrlProvider";
+import UrlProvider from "../../providers/UrlProvider";
 import BaseClient from "./BaseClient";
 import { ClientsEnum } from "./ClientsEnum";
 import ContextOptions from "./ContextOptions";
@@ -9,7 +9,7 @@ class Client extends BaseClient {
     public listOfClients: BaseClient[] = [];
 
     public async createClient(clientName: ClientsEnum, contextOptions: ContextOptions) {
-        contextOptions.baseURL = urlProvider.clientUrl(clientName);
+        contextOptions.baseURL = UrlProvider.clientUrl(clientName);
         client.focusedClient = new BaseClient();
         client.focusedClient.ClientName = clientName;
         client.ClientContext = await request.newContext(contextOptions);
