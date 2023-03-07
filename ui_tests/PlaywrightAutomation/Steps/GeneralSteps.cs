@@ -46,6 +46,13 @@ namespace PlaywrightAutomation.Steps
                 .GetResult();
         }
 
+        [When(@"User click back button in the browser")]
+        public void WhenUserClickBackButtonInTheBrowser()
+        {
+            _page.GoBackAsync().GetAwaiter().GetResult();
+            _page.WaitForLoadStateAsync().GetAwaiter().GetResult();
+        }
+
         [When(@"User opens page with '([^']*)' index via URL")]
         public void WhenUserOpensPageWithIndexViaURL(int number)
         {
