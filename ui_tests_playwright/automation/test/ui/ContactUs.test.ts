@@ -9,7 +9,7 @@ test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check 'Contact Us' button from 'Services' section @ContactUs", async () => {
+test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
         UrlProvider.urlBilder(UrlPath.OurServices),
         UrlProvider.urlBilder(UrlPath.CustomDev),
@@ -29,7 +29,7 @@ test("Check 'Contact Us' button from 'Services' section @ContactUs", async () =>
     }
 });
 
-test("Check 'Contact Us' button from 'Company' section @ContactUs", async () => {
+test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
         UrlProvider.urlBilder(UrlPath.AboutUs),
         UrlProvider.urlBilder(UrlPath.HowWeWork),
@@ -44,7 +44,7 @@ test("Check 'Contact Us' button from 'Company' section @ContactUs", async () => 
     }
 });
 
-test("Check 'Contact Us' button from 'Contact Us' section and from main page @ContactUs", async () => {
+test("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532", async () => {
     let urlList: Array<string> = [
         UrlProvider.urlBilder(UrlPath.ContactUs),
         UrlProvider.webSiteUrl()
