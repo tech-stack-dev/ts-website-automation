@@ -1,7 +1,6 @@
 export enum Environment { Staging, Production }
 
 export default class EnvProvider {
-
     public static get Environment(): Environment {
         switch (process.env.TEST_ENV) {
             case "staging": {
