@@ -1,30 +1,32 @@
 import { Locator, expect } from "@playwright/test";
 import { driver } from "../../../base/driver/Driver";
-import CarouselInfoItem from "../../../components/Carousel/CarouselInfoItem";
-import CarouselPhotoItem from "../../../components/Carousel/CarouselPhotoItem";
 import ContainerById from "../../../components/Container/ContainerById";
+import InfoCarouselIds from "../../../identifiers/InfoCarousel";
+import PhotoCarousel from "../../../identifiers/PhotoCarousel";
 
-export default class CarouselSteps {
+export class CarouselSteps {
 
-    public static async checkInfoCarouselItem(order:string, title:string, carouselIdentifier: string) {
+    public async checkInfoCarouselItem(order:string, title:string, carouselIdentifier: string) {
         let section = await driver.component(ContainerById, carouselIdentifier);
-        let infoCarousel = await driver.component(CarouselInfoItem, "", section.Element);
-        let infoCarouselItems = await infoCarousel.components() as Array<CarouselInfoItem>;
+        let infoCarouselItems = await section.getByTestId(InfoCarouselIds.CrouselItem).all();
         let index = Number(order) - 1;
-        expect(infoCarouselItems[index].order).toHaveText(order);
-        expect(infoCarouselItems[index].title).toHaveText(title);
+        expect(await infoCarouselItems[index].locator(InfoCarouselIds.Order).textContent()).toContain(order);
+        expect(await infoCarouselItems[index].locator(InfoCarouselIds.Title).textContent()).toContain(title);
     } 
 
-    public static async checkPhotosAmountInPhotoCarousel(amount:number, sectionIdentifier: string, carouselIdentifier: string) {
+    public async checkPhotosAmountInPhotoCarousel(amount:number, sectionIdentifier: string, carouselIdentifier: string) {
         let section = await driver.component(ContainerById, sectionIdentifier);
-        let photos =await( await driver.component(CarouselPhotoItem, carouselIdentifier, section.Element)).blockList();
+        let photos =await section.getByTestId(PhotoCarousel.CrouselItem).all();
         expect( photos.length).toEqual(amount);
     }
 
-    public static async getCarousel(carouselIdentifier: string){
-        return await (await driver.component(CarouselPhotoItem, carouselIdentifier)).Element;
+    public async getCarousel(carouselIdentifier: string){
+        return await driver.component(ContainerById, carouselIdentifier);
     }
 
-    public static async checkPhotoImageInCarousel(carouselIdentifier: string, filename: string){}
-
+    public async checkPhotoImageInCarousel(carouselIdentifier: string, filename: string){}
 }
+
+var carouselSteps = new CarouselSteps();
+
+export { carouselSteps };
