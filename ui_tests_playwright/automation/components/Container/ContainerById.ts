@@ -7,11 +7,15 @@ export default class ContainerById extends BaseComponent {
     }
 
     public get title() {
-        return this.Element.locator("//div[contains(@class, 'paragraph-title')]");
+        return this.Element.locator("//div[contains(@class, 'paragraph-title') or contains(@class, 'section-title')]");
     }
 
+    public get block_title() {
+        return this.Element.locator("//div[contains(@class,'block-title')]");
+    }
+    
     constructor(page: Page, identifier: string, parent?: Locator) {
         super(page, identifier, parent);
-        this.ComponentContext = `//div[@id="${identifier}"]`;
+        this.ComponentContext = `//div[@id="${identifier}" or @data-id="${identifier}"]`;
     }
 }
