@@ -1,14 +1,15 @@
 import { test } from "@playwright/test";
-import { driver } from "../../base/driver/Driver";
-import { baseDriverSteps } from "../../base/step/BaseDriverSteps";
-import ButtonByDataId from "../../components/Button/ButtonByDataId";
-import AboutUs from "../../identifiers/AboutUs";
-import Button from "../../identifiers/Button";
-import UrlProvider from "../../providers/UrlProvider";
-import { buttonSteps } from "../../steps/components/Button/ButtonSteps";
-import { containerSteps } from "../../steps/components/Container/ContainerSteps";
-import{ carouselSteps } from "../../steps/components/Carousel/CarouselSteps";
-import ContainerBySelector from "../../components/Container/ContainerBySelector";
+import { driver } from "../../../base/driver/Driver";
+import { baseDriverSteps } from "../../../base/step/BaseDriverSteps";
+import ButtonByDataId from "../../../components/Button/ButtonByDataId";
+import AboutUs from "../../../identifiers/AboutUs";
+import Button from "../../../identifiers/Button";
+import UrlProvider from "../../../providers/UrlProvider";
+import { buttonSteps } from "../../../steps/components/Button/ButtonSteps";
+import { containerSteps } from "../../../steps/components/Container/ContainerSteps";
+import { carouselSteps } from "../../../steps/components/Carousel/CarouselSteps";
+import ContainerBySelector from "../../../components/Container/ContainerBySelector";
+import ContainerById from "../../../components/Container/ContainerById";
 
 test.beforeEach(async (page) => {
     await baseDriverSteps.createsNewBrowser();
@@ -16,7 +17,7 @@ test.beforeEach(async (page) => {
     await buttonSteps.clickButton(ContainerBySelector, Button.NavigationTab_AboutUs);
 });
 
-test("Check that all the required sections are displayed on the AboutUs page", async () => {
+test("Check that all the required sections are displayed on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.WeAreTechstackId, "01");
     await containerSteps.checkContainerTitle(AboutUs.WeAreTechstackId, "We are Techstack");
     await containerSteps.checkContainerNumber(AboutUs.OurHistory, "02");
@@ -35,7 +36,7 @@ test("Check that all the required sections are displayed on the AboutUs page", a
     await containerSteps.checkContainerTitle(AboutUs.CandidatePath, "Candidate Path");
 });
 
-test("Check that 'Our History' info carousel is displayed with content on the AboutUs page", async () => {
+test("Check that 'Our History' info carousel is displayed with content on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.OurHistory, "02");
     await containerSteps.checkContainerTitle(AboutUs.OurHistory, "Our History");
     await carouselSteps.checkInfoCarouselItem( "01","2014", AboutUs.OurHistory);
@@ -48,7 +49,7 @@ test("Check that 'Our History' info carousel is displayed with content on the Ab
     await carouselSteps.checkInfoCarouselItem( "08","2021", AboutUs.OurHistory);
 });
 
-test("Check that 'Candidate Path' info carousel is displayed with content on the AboutUs page", async () => {
+test("Check that 'Candidate Path' info carousel is displayed with content on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.CandidatePath, "08");
     await carouselSteps.checkInfoCarouselItem( "01", "CV", AboutUs.CandidatePath);
     await carouselSteps.checkInfoCarouselItem( "02", "Pre-screening", AboutUs.CandidatePath);
@@ -58,7 +59,7 @@ test("Check that 'Candidate Path' info carousel is displayed with content on the
     await carouselSteps.checkInfoCarouselItem( "06", "Product owner interview", AboutUs.CandidatePath);
 });
 
-test("Check 'Engineering Culture' photo carousel on the AboutUs page", async () => {
+test("Check 'Engineering Culture' photo carousel on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.EngineeringCulture, "06");
     await carouselSteps.checkPhotosAmountInPhotoCarousel(5, AboutUs.EngineeringCulture, AboutUs.EngineeringCultureCarousel);
   
@@ -74,37 +75,37 @@ test("Check 'Engineering Culture' photo carousel on the AboutUs page", async () 
     await buttonSteps.isEnabled(ButtonByDataId,Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
 });
 
-test("Check 'Techstack roles' contains required sections on the AboutUs page", async () => {
+test("Check 'Techstack roles' contains required sections on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.TechstackRoles, "05");
-    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_Mentor, "Mentor", await containerSteps.getContainer(AboutUs.TechstackRoles));
-    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_TechExpert, "Tech Expert", await containerSteps.getContainer(AboutUs.TechstackRoles));
-    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_PreSaleExpert, "Pre-Sale Expert", await containerSteps.getContainer(AboutUs.TechstackRoles));
-    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_TeamLead, "Team Lead", await containerSteps.getContainer(AboutUs.TechstackRoles));
-    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_VPofFunction, "VP of Function", await containerSteps.getContainer(AboutUs.TechstackRoles));
+    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_Mentor, "Mentor", await containerSteps.getContainer(ContainerById, AboutUs.TechstackRoles));
+    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_TechExpert, "Tech Expert", await containerSteps.getContainer(ContainerById, AboutUs.TechstackRoles));
+    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_PreSaleExpert, "Pre-Sale Expert", await containerSteps.getContainer(ContainerById, AboutUs.TechstackRoles));
+    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_TeamLead, "Team Lead", await containerSteps.getContainer(ContainerById, AboutUs.TechstackRoles));
+    await containerSteps.checkContainerBlockTitle(AboutUs.Roles_VPofFunction, "VP of Function", await containerSteps.getContainer(ContainerById, AboutUs.TechstackRoles));
 });
 
-test("Check 'Engineering Culture' contains required sections on the AboutUs page", async () => {
+test("Check 'Engineering Culture' contains required sections on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.EngineeringCulture, "06");
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TechClubs, "Tech clubs", await containerSteps.getContainer(AboutUs.EngineeringCulture));
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_Meetups, "Meetups", await containerSteps.getContainer(AboutUs.EngineeringCulture));
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TechCompetitions, "Tech Competitions", await containerSteps.getContainer(AboutUs.EngineeringCulture));
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_Library, "Library", await containerSteps.getContainer(AboutUs.EngineeringCulture));
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TraineeCamps, "Trainee Camps", await containerSteps.getContainer(AboutUs.EngineeringCulture));
-    await containerSteps.checkContainerBlockTitle(AboutUs.EC_LoyaltyProgram, "Loyalty Program", await containerSteps.getContainer(AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TechClubs, "Tech clubs", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_Meetups, "Meetups", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TechCompetitions, "Tech Competitions", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_Library, "Library", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_TraineeCamps, "Trainee Camps", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
+    await containerSteps.checkContainerBlockTitle(AboutUs.EC_LoyaltyProgram, "Loyalty Program", await containerSteps.getContainer(ContainerById, AboutUs.EngineeringCulture));
 });
 
-test("Check 'Social Responsibility' contains required sections and carousel on the AboutUs page", async () => {
+test("Check 'Social Responsibility' contains required sections and carousel on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.SocialResponsibility, "07");
-    await containerSteps.checkContainerBlockTitle(AboutUs.SR_Charity, "Charity", await containerSteps.getContainer(AboutUs.SocialResponsibility));
-    await containerSteps.checkContainerBlockTitle(AboutUs.SR_EnvironmentalSafety, "Environmental Safety", await containerSteps.getContainer(AboutUs.SocialResponsibility));
-    await containerSteps.checkContainerBlockTitle(AboutUs.SR_EducationSupport, "Education Support", await containerSteps.getContainer(AboutUs.SocialResponsibility));
+    await containerSteps.checkContainerBlockTitle(AboutUs.SR_Charity, "Charity", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
+    await containerSteps.checkContainerBlockTitle(AboutUs.SR_EnvironmentalSafety, "Environmental Safety", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
+    await containerSteps.checkContainerBlockTitle(AboutUs.SR_EducationSupport, "Education Support", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
     await carouselSteps.checkPhotosAmountInPhotoCarousel(5, AboutUs.SocialResponsibility, AboutUs.EngineeringCultureCarousel);
 });
 
-test("Check 'Apply Proposition' block in 'Candidate Path' section on the AboutUs page", async () => {
+test("Check 'Apply Proposition' block in 'Candidate Path' section on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.CandidatePath, "08");
-    await containerSteps.checkContainerText(AboutUs.ApplyPositions, "Would you like to be a part of our team?Check out our open positions!", await containerSteps.getContainer(AboutUs.CandidatePath));
-    await buttonSteps.clickButton(ButtonByDataId, AboutUs.ApplyNowButton, 1, await containerSteps.getContainer(AboutUs.ApplyPositions));
+    await containerSteps.checkContainerText(AboutUs.ApplyPositions, "Would you like to be a part of our team?Check out our open positions!", await containerSteps.getContainer(ContainerById, AboutUs.CandidatePath));
+    await buttonSteps.clickButton(ButtonByDataId, AboutUs.ApplyNowButton, 1, await containerSteps.getContainer(ContainerById, AboutUs.ApplyPositions));
     await baseDriverSteps.checkUrl(UrlProvider.stagingCareerUrl());
     await buttonSteps.buttonContainsClassProperty(ContainerBySelector, Button.NavigationTab_Jobs, "active-nav-tab");
 });
