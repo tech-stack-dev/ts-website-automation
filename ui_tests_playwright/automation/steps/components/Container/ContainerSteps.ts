@@ -4,8 +4,8 @@ import { Locator } from "@playwright/test";
 import { driver } from "../../../base/driver/Driver";
 
 class ContainerSteps {
-    public  async getContainer(identifier: string) {
-        return await driver.component(ContainerById, identifier);
+    public async getContainer(type: any, identifier: string) {
+        return await driver.component(type, identifier);
     }
 
     public async checkContainerNumber(identifier: string, expectedNumber: string) {
