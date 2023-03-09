@@ -19,7 +19,7 @@ test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @
 });
 
 test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
-    for (let url of ContactUsPreconditions.servicesUrlList) {
+    for (let url of ContactUsPreconditions.companyUrlList) {
         await baseDriverSteps.goToUrl(url);
         await driver.getByTestId(Button.ContactUs).click();
         await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
