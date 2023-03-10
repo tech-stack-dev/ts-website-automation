@@ -1,12 +1,38 @@
 import { ClientsEnum } from "../base/client/ClientsEnum";
+import appsetting from "../../appsetting.json";
+import EnvProvider, { Environment } from "./EnvProvider";
 
 export default class UrlProvider {
-    public static stagingCareerUrl(): string {
-        return <string>process.env.STAGING_CAREER_URL;
+    public static urlBuilder(urlPath: string) {
+        return `${UrlProvider.webSiteUrl()}${urlPath}`;
     }
-    
-    public static webSiteUrl(): string {
-        return <string>process.env.WEB_SITE_URL;
+
+    public static webSiteUrl(environment: Environment = EnvProvider.Environment) {
+        switch (environment) {
+            case Environment.Staging: {
+                return appsetting.Staging;
+            }
+            case Environment.Production: {
+                return appsetting.Production;
+            }
+            default: {
+                throw new Error(`Unknown environment. Environment: ${process.env.TEST_ENV}`);
+            }
+        }
+    }
+
+    public static careerUrl(environment: Environment = EnvProvider.Environment){
+        switch (environment) {
+            case Environment.Staging: {
+                return appsetting.StagingCareer;
+            }
+            case Environment.Production: {
+                return appsetting.ProductionCareer;
+            }
+            default: {
+                throw new Error(`Unknown environment. Environment: ${process.env.TEST_ENV}`);
+            }
+        }
     }
 
     public static clientUrl(clientName: ClientsEnum): string {

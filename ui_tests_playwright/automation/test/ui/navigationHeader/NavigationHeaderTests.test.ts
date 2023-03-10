@@ -8,7 +8,7 @@ import Containers from "../../../identifiers/Containers";
 import Button from "../../../identifiers/Button";
 
 test.beforeEach(async () => {
-    await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.stagingCareerUrl());
+    await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
 test("Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560", async () => {

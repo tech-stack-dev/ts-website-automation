@@ -1,6 +1,6 @@
 import { driver } from "../driver/Driver";
 import { BrowsersEnum } from "../driver/BrowsersEnum";
-import UrlProvider from "../../providers/UrlProvider";
+import { expect } from "@playwright/test";
 
 class BaseDriverSteps {
     public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -36,6 +36,10 @@ class BaseDriverSteps {
 
     public async goToUrl(url: string) {
         await driver.Page.goto(url);
+    }
+
+    public async checkUrl(expectedUrl: string) {
+        await expect(driver.Page.url()).toEqual(expectedUrl);
     }
 }
 

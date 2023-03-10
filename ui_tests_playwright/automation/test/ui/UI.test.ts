@@ -10,7 +10,7 @@ import { containerSteps } from "../../steps/components/Container/ContainerSteps"
 
 test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
-    await baseDriverSteps.goToUrl(UrlProvider.stagingCareerUrl());
+    await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
     await buttonSteps.clickButton(ButtonByDataId, Button.NavigationTab_AboutUs);
 });
 

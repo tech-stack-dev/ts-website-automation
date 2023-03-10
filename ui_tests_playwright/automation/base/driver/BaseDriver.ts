@@ -86,7 +86,7 @@ export default class BaseDriver {
         }
     }
 
-    public getByTestId(testId: string, parent: Locator, nth: number = 0): Locator {
+    public getByTestId(testId: string, parent?: Locator, nth: number = 0): Locator {
         return (parent ? parent : driver.Page).getByTestId(testId).nth(nth);
     }
 
