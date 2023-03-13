@@ -1,25 +1,33 @@
-import { expect } from "@playwright/test";
-import { driver } from "../../../base/driver/Driver";
-import ContainerById from "../../../components/Container/ContainerById";
+import {expect} from '@playwright/test';
+import {driver} from '../../../base/driver/Driver';
+import ContainerById from '../../../components/Container/ContainerById';
 
 class ContainerSteps {
-    public async getContainer(type: any, identifier: string) {
-        return await driver.component(type, identifier);
-    }
+	public async getContainer(type: any, identifier: string) {
+		return await driver.component(type, identifier);
+	}
 
-    public async checkContainerNumber(identifier: string, expectedNumber: string) {
-        let sectionNumber = (await driver.component(ContainerById, identifier)).sectionNumber;
+	public async checkContainerNumber(
+		identifier: string,
+		expectedNumber: string
+	) {
+		const sectionNumber = (
+			await driver.component(ContainerById, identifier)
+		).sectionNumber;
 
-        await expect(sectionNumber).toHaveText(expectedNumber);
-    }
+		await expect(sectionNumber).toHaveText(expectedNumber);
+	}
 
-    public async checkContainerTitle(identifier: string, expectedTitle: string) {
-        let title = (await driver.component(ContainerById, identifier)).title;
+	public async checkContainerTitle(
+		identifier: string,
+		expectedTitle: string
+	) {
+		const title = (await driver.component(ContainerById, identifier)).title;
 
-        await expect(title).toHaveText(expectedTitle);
-    }
+		await expect(title).toHaveText(expectedTitle);
+	}
 }
 
-var containerSteps = new ContainerSteps();
+const containerSteps = new ContainerSteps();
 
-export { containerSteps };
+export {containerSteps};
