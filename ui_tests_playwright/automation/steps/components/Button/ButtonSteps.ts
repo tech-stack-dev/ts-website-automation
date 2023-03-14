@@ -22,6 +22,6 @@ export class ButtonSteps {
   }
 }
 
-var buttonSteps = new ButtonSteps();
+const buttonSteps = new ButtonSteps();
 
-export { buttonSteps };
+export {buttonSteps};

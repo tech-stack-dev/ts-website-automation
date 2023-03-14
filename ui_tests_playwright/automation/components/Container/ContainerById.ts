@@ -1,10 +1,10 @@
-import { Locator, Page } from "@playwright/test";
-import BaseComponent from "../../base/component/BaseComponent";
+import {Locator, Page} from '@playwright/test';
+import BaseComponent from '../../base/component/BaseComponent';
 
 export default class ContainerById extends BaseComponent {
-    public get sectionNumber() {
-        return this.Element.locator("//div[contains(@class, 'SectionNumber')]");
-    }
+	public get sectionNumber() {
+		return this.Element.locator("//div[contains(@class, 'SectionNumber')]");
+	}
 
     public get title() {
         return this.Element.locator("//div[contains(@class, 'paragraph-title') or contains(@class, 'section-title')]");

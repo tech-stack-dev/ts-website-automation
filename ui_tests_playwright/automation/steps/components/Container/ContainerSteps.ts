@@ -4,9 +4,9 @@ import { Locator } from "@playwright/test";
 import { driver } from "../../../base/driver/Driver";
 
 class ContainerSteps {
-    public async getContainer(type: any, identifier: string) {
-        return await driver.component(type, identifier);
-    }
+	public async getContainer(type: any, identifier: string) {
+		return await driver.component(type, identifier);
+	}
 
     public async checkContainerNumber(identifier: string, expectedNumber: string) {
         let sectionNumber = (await driver.component(ContainerById, identifier)).sectionNumber;
@@ -29,6 +29,6 @@ class ContainerSteps {
     }
 }
 
-var containerSteps = new ContainerSteps();
+const containerSteps = new ContainerSteps();
 
-export { containerSteps };
+export {containerSteps};
