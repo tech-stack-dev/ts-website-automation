@@ -111,13 +111,16 @@ export default class BaseDriver {
 	}
 
 	public async executeFunc(func: any, attepmts: number) {
+		let message = '';
 		for (let i = 0; i < attepmts; i++) {
 			try {
 				await func();
-				break;
-			} catch {
+				return;
+			} catch (err) {
 				console.log(`${i} attempt to execute ${func.name}`);
+				message = err;
 			}
 		}
+		console.error(message);
 	}
 }
