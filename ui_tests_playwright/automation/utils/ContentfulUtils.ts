@@ -1,18 +1,23 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
+import * as contentful from 'contentful-management';
 
 class ContentfulUtils {
-	contentful = require('contentful-management');
-
 	async GetEnvironment() {
-		const client = this.contentful.createClient({
-			accessToken: ContentfulProvider.AccessToken,
+		const client = contentful.createClient({
+			accessToken: ContentfulProvider.AccessToken(),
 		});
-		const space = await client.getSpace(ContentfulProvider.SpaceId);
-		const environment = await space.getEnvironment(ContentfulProvider.Env);
+		const space = await client.getSpace(ContentfulProvider.SpaceId());
+		const environment = await space.getEnvironment(
+			ContentfulProvider.Env()
+		);
 		return environment;
 	}
 
-	async CreateTag(tagId: string, tagName: string, publishType = 'public') {
+	async CreateTag(
+		tagId: string,
+		tagName: string,
+		publishType: contentful.TagVisibility = 'public'
+	) {
 		const environment = await this.GetEnvironment();
 		await environment.createTag(tagId, tagName, publishType);
 	}
@@ -32,15 +37,19 @@ class ContentfulUtils {
 
 	async CreateAndPublishCareer(
 		careerId: string,
+		careerName: string,
 		descriptionId: string,
-		tagId = 'direction_longSoftwareDataManager'
+		tagId1 = 'direction_longSoftwareDataManager',
+		tagId2 = 'seniority_trainee'
 	) {
 		const environment = await this.GetEnvironment();
 		const careerFieldsWithDescriptionAndTag = this.careerFields;
 		careerFieldsWithDescriptionAndTag.fields.careerDescription[
 			'en-US'
 		].sys.id = descriptionId;
-		careerFieldsWithDescriptionAndTag.metadata.tags[0].sys.id = tagId;
+		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerName;
+		careerFieldsWithDescriptionAndTag.metadata!.tags[0].sys.id = tagId1;
+		careerFieldsWithDescriptionAndTag.metadata!.tags[1].sys.id = tagId2;
 		await environment.createEntryWithId(
 			'career',
 			careerId,
@@ -50,16 +59,23 @@ class ContentfulUtils {
 		await createdCareer.publish();
 	}
 
-	async UnpublishCareer(careerId: string) {
+	async UnpublishCareerWithDescription(
+		careerId: string,
+		descriptionId: string
+	) {
 		const environment = await this.GetEnvironment();
 		const createdCareer = await environment.getEntry(careerId);
 		createdCareer.unpublish();
+		const createdDescription = await environment.getEntry(descriptionId);
+		createdDescription.unpublish();
 	}
 
-	async DeleteCareer(careerId: string) {
+	async DeleteCareerWithDescription(careerId: string, descriptionId: string) {
 		const environment = await this.GetEnvironment();
 		const createdCareer = await environment.getEntry(careerId);
-		createdCareer.delete();
+		await createdCareer.delete();
+		const createdDescription = await environment.getEntry(descriptionId);
+		await createdDescription.delete();
 	}
 
 	async DeleteTag(tagId: string) {
@@ -68,7 +84,7 @@ class ContentfulUtils {
 		tag.delete();
 	}
 
-	careerFields = {
+	careerFields: contentful.CreateEntryProps<contentful.KeyValueMap> = {
 		fields: {
 			name: {
 				'en-US': 'TypeScript test career',
@@ -97,11 +113,18 @@ class ContentfulUtils {
 						id: 'direction_longSoftwareDataManager',
 					},
 				},
+				{
+					sys: {
+						type: 'Link',
+						linkType: 'Tag',
+						id: 'seniority_junior',
+					},
+				},
 			],
 		},
 	};
 
-	descriptionFields = {
+	descriptionFields: contentful.CreateEntryProps<contentful.KeyValueMap> = {
 		fields: {
 			aboutTheProject: {
 				'en-US': 'TypeScript test',
