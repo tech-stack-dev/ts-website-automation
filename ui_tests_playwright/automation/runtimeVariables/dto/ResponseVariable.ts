@@ -1,9 +1,9 @@
-import {APIResponse} from 'playwright-core';
+import { APIResponse } from "playwright-core";
 
 class ResponseVariable {
-	public value: APIResponse;
+    public value: APIResponse;
 }
 
-const responseVariable = new ResponseVariable();
+var responseVariable = new ResponseVariable();
 
-export {responseVariable};
+export { responseVariable };

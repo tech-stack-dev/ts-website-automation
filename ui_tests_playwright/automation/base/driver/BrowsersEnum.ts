@@ -1,3 +1,3 @@
 export enum BrowsersEnum {
-	DEFAULT_BROWSER,
+    DEFAULT_BROWSER
 }
