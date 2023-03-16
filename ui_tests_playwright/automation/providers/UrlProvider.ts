@@ -1,6 +1,6 @@
-import { ClientsEnum } from "../base/client/ClientsEnum";
+import {ClientsEnum} from "../base/client/ClientsEnum";
 import appsetting from "../../appsetting.json";
-import EnvProvider, { Environment } from "./EnvProvider";
+import EnvProvider, {Environment} from "./EnvProvider";
 
 export default class UrlProvider {
     public static urlBuilder(urlPath: string) {
@@ -21,7 +21,7 @@ export default class UrlProvider {
         }
     }
 
-    public static careerUrl(environment: Environment = EnvProvider.Environment){
+    public static careerUrl(environment: Environment = EnvProvider.Environment) {
         switch (environment) {
             case Environment.Staging: {
                 return appsetting.StagingCareer;
@@ -40,10 +40,10 @@ export default class UrlProvider {
             case ClientsEnum.Client_1: {
                 return <string>process.env.CLIENT_1_URL;
             }
-            case ClientsEnum.Client_1: {
+            case ClientsEnum.Client_2: {
                 return <string>process.env.CLIENT_2_URL;
             }
-            case ClientsEnum.Client_1: {
+            case ClientsEnum.Client_3: {
                 return <string>process.env.CLIENT_3_URL;
             }
             default: {

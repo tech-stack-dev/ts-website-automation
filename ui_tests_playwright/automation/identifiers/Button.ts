@@ -1,6 +1,13 @@
 export default class Button {
     // Navigation tab
-    static NavigationTab_AboutUs: string = "NavigationTab-AboutUs";
+    static NavigationTab_AboutUs = "//a[contains(@class,'button') and @data-id='NavigationTab-AboutUs']";
+    static NavigationTab_Jobs = "//a[contains(@class,'button') and @data-id='NavigationTab-Jobs']";
+
+    // Carousel
+    static Carousel_Prev = "CarouselPrevButton-ControlButtonsPrev";
+    static Carousel_Next = "CarouselNextButton-ControlButtonsNext";
+
+    // Lang switcher
     static EnLanguageSwitcher: string = "LocaleButton-En";
     static UaLanguageSwitcher: string = "LocaleButton-Ua";
 
