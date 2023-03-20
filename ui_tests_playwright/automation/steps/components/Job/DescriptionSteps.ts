@@ -11,7 +11,8 @@ class DescriptionSteps {
 		identifier: string,
 		expectedTitle: string
 	) {
-		const title = (await driver.component(JobDescriptionBlock, identifier)).title;
+		const title = (await driver.component(JobDescriptionBlock, identifier))
+			.title;
 
 		await expect(title).toHaveText(expectedTitle);
 	}

@@ -3,9 +3,9 @@ import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
 import {stringUtils} from '../../utils/StringUtils';
 import ContainerByClass from '../../components/Container/ContainerByClass';
-import { containerSteps } from '../components/Container/ContainerSteps';
+import {containerSteps} from '../components/Container/ContainerSteps';
 import Button from '../../identifiers/Button';
-import { expect } from '@playwright/test';
+import {expect} from '@playwright/test';
 
 class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string) {
@@ -24,24 +24,24 @@ class CareerSteps {
 		}, 5);
 	}
 
-	public async switchLanguageViaHeader(language:string){
+	public async switchLanguageViaHeader(language: string) {
 		const headerContainer = await containerSteps.getContainer(
 			ContainerByClass,
 			Containers.jobPageHeaderWrapper
 		);
-		let switcher:any;
-		switch(language.toLowerCase()){
-			case 'ua': 
-			switcher =  headerContainer.Element.getByTestId(
-				Button.UaLanguageSwitcher
-			);
-			break;
+		let switcher: any;
+		switch (language.toLowerCase()) {
+			case 'ua':
+				switcher = headerContainer.Element.getByTestId(
+					Button.UaLanguageSwitcher
+				);
+				break;
 			case 'en':
-			switcher =  headerContainer.Element.getByTestId(
-				Button.EnLanguageSwitcher
-			);
+				switcher = headerContainer.Element.getByTestId(
+					Button.EnLanguageSwitcher
+				);
 		}
-	
+
 		await switcher.click();
 		await expect(switcher).toHaveClass(/active-locale/);
 	}
