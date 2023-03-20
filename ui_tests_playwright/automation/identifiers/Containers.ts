@@ -1,3 +1,4 @@
 export default class Containers {
-    static navigationHeaderClass: string = "styledComponents__LogoHeaderWrapper";
+	static navigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
+	static careerCardWithoutModifier = 'CardWrapper-';
 }
