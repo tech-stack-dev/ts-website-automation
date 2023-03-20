@@ -5,7 +5,6 @@ import ButtonByDataId from "../../../components/Button/ButtonByDataId";
 import AboutUs from "../../../identifiers/AboutUs";
 import Button from "../../../identifiers/Button";
 import UrlProvider from "../../../providers/UrlProvider";
-import {buttonSteps} from "../../../steps/components/Button/ButtonSteps";
 import {containerSteps} from "../../../steps/components/Container/ContainerSteps";
 import {carouselSteps} from "../../../steps/components/Carousel/CarouselSteps";
 import ContainerBySelector from "../../../components/Container/ContainerBySelector";
@@ -13,32 +12,31 @@ import ContainerById from "../../../components/Container/ContainerById";
 
 test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
-    await baseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
-    await buttonSteps.clickButton(ContainerBySelector, Button.NavigationTab_AboutUs);
+    await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
+    await containerSteps.clickContainer(ContainerBySelector, Button.NavigationTab_AboutUs);
 });
 
 test("Check that all the required sections are displayed on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.WeAreTechstackId, "01");
-    await containerSteps.checkContainerTitle(AboutUs.WeAreTechstackId, "We are Techstack");
+    await containerSteps.checkContainerText(AboutUs.WeAreTechstackTitle, "We are \nTechstack");
     await containerSteps.checkContainerNumber(AboutUs.OurHistory, "02");
-    await containerSteps.checkContainerTitle(AboutUs.OurHistory, "Our History");
+    await containerSteps.checkContainerText(AboutUs.OurHistoryTitle, "Our History");
     await containerSteps.checkContainerNumber(AboutUs.OurAchievements, "03");
-    await containerSteps.checkContainerTitle(AboutUs.OurAchievements, "Our Achievements");
+    await containerSteps.checkContainerText(AboutUs.OurAchievementsTitle, "Our \nAchievements");
     await containerSteps.checkContainerNumber(AboutUs.TechstackInGrows, "04");
-    await containerSteps.checkContainerTitle(AboutUs.TechstackInGrows, "Techstack in Growth");
+    await containerSteps.checkContainerText(AboutUs.TechstackInGrowsTitle, "Techstack \nin Growth");
     await containerSteps.checkContainerNumber(AboutUs.TechstackRoles, "05");
-    await containerSteps.checkContainerTitle(AboutUs.TechstackRoles, "Techstack roles");
+    await containerSteps.checkContainerText(AboutUs.TechstackRolesTitle, "Techstack roles");
     await containerSteps.checkContainerNumber(AboutUs.EngineeringCulture, "06");
-    await containerSteps.checkContainerTitle(AboutUs.EngineeringCulture, "Engineering Culture");
+    await containerSteps.checkContainerText(AboutUs.EngineeringCultureTitle, "Engineering Culture");
     await containerSteps.checkContainerNumber(AboutUs.SocialResponsibility, "07");
-    await containerSteps.checkContainerTitle(AboutUs.SocialResponsibility, "Social Responsibility");
+    await containerSteps.checkContainerText(AboutUs.SocialResponsibilityTitle, "Social Responsibility");
     await containerSteps.checkContainerNumber(AboutUs.CandidatePath, "08");
-    await containerSteps.checkContainerTitle(AboutUs.CandidatePath, "Candidate Path");
+    await containerSteps.checkContainerText(AboutUs.CandidatePathTitle, "Candidate Path");
 });
 
 test("Check that 'Our History' info carousel is displayed with content on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.OurHistory, "02");
-    await containerSteps.checkContainerTitle(AboutUs.OurHistory, "Our History");
     await carouselSteps.checkInfoCarouselItem("01", "2014", AboutUs.OurHistory);
     await carouselSteps.checkInfoCarouselItem("02", "2015", AboutUs.OurHistory);
     await carouselSteps.checkInfoCarouselItem("03", "2016", AboutUs.OurHistory);
@@ -61,18 +59,18 @@ test("Check that 'Candidate Path' info carousel is displayed with content on the
 
 test("Check 'Engineering Culture' photo carousel on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.EngineeringCulture, "06");
-    await carouselSteps.checkPhotosAmountInPhotoCarousel(5, AboutUs.EngineeringCulture, AboutUs.EngineeringCultureCarousel);
+    await carouselSteps.checkPhotosAmountInPhotoCarousel(5,AboutUs.EngineeringCultureCarousel);
 
-    await buttonSteps.isDisabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
-    await buttonSteps.isEnabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
-    await buttonSteps.clickButton(ButtonByDataId, Button.Carousel_Next, 4, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isDisabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isEnabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.clickContainer(ButtonByDataId, Button.Carousel_Next, 4, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
 
-    await buttonSteps.isEnabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
-    await buttonSteps.isDisabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
-    await buttonSteps.clickButton(ButtonByDataId, Button.Carousel_Prev, 4, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isEnabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isDisabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.clickContainer(ButtonByDataId, Button.Carousel_Prev, 4, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
 
-    await buttonSteps.isDisabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
-    await buttonSteps.isEnabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isDisabled(ButtonByDataId, Button.Carousel_Prev, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
+    await containerSteps.isEnabled(ButtonByDataId, Button.Carousel_Next, await carouselSteps.getCarousel(AboutUs.EngineeringCultureCarousel));
 });
 
 test("Check 'Techstack roles' contains required sections on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
@@ -99,15 +97,15 @@ test("Check 'Social Responsibility' contains required sections and carousel on t
     await containerSteps.checkContainerBlockTitle(AboutUs.SR_Charity, "Charity", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
     await containerSteps.checkContainerBlockTitle(AboutUs.SR_EnvironmentalSafety, "Environmental Safety", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
     await containerSteps.checkContainerBlockTitle(AboutUs.SR_EducationSupport, "Education Support", await containerSteps.getContainer(ContainerById, AboutUs.SocialResponsibility));
-    await carouselSteps.checkPhotosAmountInPhotoCarousel(5, AboutUs.SocialResponsibility, AboutUs.EngineeringCultureCarousel);
+    await carouselSteps.checkPhotosAmountInPhotoCarousel(5, AboutUs.EngineeringCultureCarousel);
 });
 
 test("Check 'Apply Proposition' block in 'Candidate Path' section on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
     await containerSteps.checkContainerNumber(AboutUs.CandidatePath, "08");
     await containerSteps.checkContainerText(AboutUs.ApplyPositions, "Would you like to be a part of our team?Check out our open positions!", await containerSteps.getContainer(ContainerById, AboutUs.CandidatePath));
-    await buttonSteps.clickButton(ButtonByDataId, AboutUs.ApplyNowButton, 1, await containerSteps.getContainer(ContainerById, AboutUs.ApplyPositions));
+    await containerSteps.clickContainer(ContainerById, AboutUs.ApplyNowButton);
     await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
-    await buttonSteps.buttonContainsClassProperty(ContainerBySelector, Button.NavigationTab_Jobs, "active-nav-tab");
+    await containerSteps.checkContainerContainsClassProperty(ContainerBySelector, Button.NavigationTab_Jobs, "active-nav-tab");
 });
 
 test.afterEach(async () => {
