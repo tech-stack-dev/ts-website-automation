@@ -7,7 +7,7 @@ class Driver extends BaseDriver {
 	public focusedDriver: BaseDriver;
 	public listOfDrivers: BaseDriver[] = [];
 
-	private headless: boolean = true;
+	private headless: boolean = false;
 
 	public async createBrowser(browserName: BrowsersEnum) {
 		driver.focusedDriver = new BaseDriver();

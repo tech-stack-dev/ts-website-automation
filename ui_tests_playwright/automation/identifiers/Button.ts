@@ -1,9 +1,7 @@
 export default class Button {
 	// Navigation tab
-	static NavigationTab_AboutUs =
-		"//a[contains(@class,'button') and @data-id='NavigationTab-AboutUs']";
-	static NavigationTab_Jobs =
-		"//a[contains(@class,'button') and @data-id='NavigationTab-Jobs']";
+	static NavigationTab_AboutUs = 'NavigationTab-AboutUs';
+	static NavigationTab_Jobs = 'NavigationTab-Jobs';
 
 	// Carousel
 	static Carousel_Prev = 'CarouselPrevButton-ControlButtonsPrev';

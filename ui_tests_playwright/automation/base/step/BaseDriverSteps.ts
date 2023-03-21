@@ -46,7 +46,7 @@ class BaseDriverSteps {
 	}
 
 	public async checkUrl(expectedUrl: string) {
-		await expect(driver.Page.url()).toEqual(expectedUrl);
+		await expect(await driver.Page.url()).toEqual(expectedUrl);
 	}
 }
 
