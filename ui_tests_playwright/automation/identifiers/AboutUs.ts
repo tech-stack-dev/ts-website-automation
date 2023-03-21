@@ -12,8 +12,7 @@ export default class AboutUs {
 	static OurAchievementsNumber: string = 'SectionNumber-03Number';
 
 	static TechstackInGrowsId: string = 'techstackInGrows';
-	static TechstackInGrowsTitle: string =
-		'SectionTitle-TechstackInGrowthTitle';
+	static TechstackInGrowsTitle: string = 'SectionTitle-TechstackInGrowthTitle';
 	static TechstackInGrowsNumber: string = 'SectionNumber-04Number';
 
 	static TechstackRolesId: string = 'techstackRoles';
@@ -53,6 +52,5 @@ export default class AboutUs {
 	static CandidatePathNumber: string = 'SectionNumber-08Number';
 
 	static ApplyPositions = 'apply-title';
-	static ApplyPositionsTitle = 'apply-title';
 	static ApplyNowButton = 'ApplyNowVacancyButton-ProposalMessage';
 }

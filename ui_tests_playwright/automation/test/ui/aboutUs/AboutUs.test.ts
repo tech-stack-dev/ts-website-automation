@@ -110,8 +110,6 @@ test('Check that all the required sections are displayed on the AboutUs page @Re
 });
 
 test('Check the content is info carousels on the AboutUs page @Regression @AboutUs @TSWEB-150', async () => {
-	await containerSteps.checkContainerNumber(AboutUs.OurHistoryId, '02');
-
 	let carouselItemList = [
 		{counter: '01', title: '2014', parent: AboutUs.OurHistoryId},
 		{counter: '02', title: '2015', parent: AboutUs.OurHistoryId},

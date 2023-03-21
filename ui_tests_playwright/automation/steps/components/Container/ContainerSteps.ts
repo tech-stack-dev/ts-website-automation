@@ -26,48 +26,6 @@ class ContainerSteps {
 		await (await driver.component(type, identifier, parent)).isDisabled();
 	}
 
-	public async checkContainerContainsClassProperty(
-		type: any,
-		identifier: string,
-		prop: string,
-		parent?: Locator
-	) {
-		let classValue = await (
-			await driver.component(type, identifier, parent)
-		).getAttribute('class');
-		expect(classValue).toContain(prop);
-	}
-	public async checkContainerNumber(
-		identifier: string,
-		expectedNumber: string
-	) {
-		let sectionNumber = (await driver.component(ContainerById, identifier))
-			.sectionNumber;
-		await expect(sectionNumber).toHaveText(expectedNumber);
-	}
-
-	public async checkContainerTitle(
-		identifier: string,
-		expectedTitle: string,
-		parent?: Locator
-	) {
-		let title = await (
-			await driver.component(ContainerById, identifier, parent)
-		).title;
-		await expect(title).toHaveText(expectedTitle);
-	}
-
-	public async checkContainerSectionTitle(
-		identifier: string,
-		expectedTitle: string,
-		parent?: Locator
-	) {
-		let title = await (
-			await driver.component(ContainerById, identifier, parent)
-		).section_title;
-		await expect(title).toHaveText(expectedTitle);
-	}
-
 	public async checkContainerBlockTitle(
 		identifier: string,
 		expectedTitle: string,
@@ -83,7 +41,6 @@ class ContainerSteps {
 		identifier: string,
 		expectedTitle: string,
 		parent?: Locator,
-		skipLineBrakes = true
 	) {
 		let text = await (
 			await driver.component(ContainerById, identifier, parent)

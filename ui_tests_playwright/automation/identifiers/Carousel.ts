@@ -9,5 +9,4 @@ export default class Carousel {
 	// Photo carousel
 	static PhotoCarousel_Item: string = 'CarouselPhoto-CarouselPhoto';
 	// Item Order selector
-	static PhotoCarousel_Image: string = '//img';
 }
