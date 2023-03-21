@@ -17,86 +17,22 @@ test.beforeEach(async () => {
 
 test('Check that all the required sections are displayed on the AboutUs page @Regression @AboutUs @TSWEB-150', async () => {
 	let sectionList = [
-		{
-			parent: AboutUs.WeAreTechstackId,
-			title: AboutUs.WeAreTechstackTitle,
-			expectedText: 'We are \nTechstack',
-		},
-		{
-			parent: AboutUs.WeAreTechstackId,
-			title: AboutUs.WeAreTechstackNumber,
-			expectedText: '01',
-		},
-		{
-			parent: AboutUs.OurHistoryId,
-			title: AboutUs.OurHistoryTitle,
-			expectedText: 'Our History',
-		},
-		{
-			parent: AboutUs.OurHistoryId,
-			title: AboutUs.OurHistoryNumber,
-			expectedText: '02',
-		},
-		{
-			parent: AboutUs.OurAchievementsId,
-			title: AboutUs.OurAchievementsTitle,
-			expectedText: 'Our \nAchievements',
-		},
-		{
-			parent: AboutUs.OurAchievementsId,
-			title: AboutUs.OurAchievementsNumber,
-			expectedText: '03',
-		},
-		{
-			parent: AboutUs.TechstackInGrowsId,
-			title: AboutUs.TechstackInGrowsTitle,
-			expectedText: 'Techstack \nin Growth',
-		},
-		{
-			parent: AboutUs.TechstackInGrowsId,
-			title: AboutUs.TechstackInGrowsNumber,
-			expectedText: '04',
-		},
-		{
-			parent: AboutUs.TechstackRolesId,
-			title: AboutUs.TechstackRolesTitle,
-			expectedText: 'Techstack roles',
-		},
-		{
-			parent: AboutUs.TechstackRolesId,
-			title: AboutUs.TechstackRolesNumber,
-			expectedText: '05',
-		},
-		{
-			parent: AboutUs.EngineeringCultureId,
-			title: AboutUs.EngineeringCultureTitle,
-			expectedText: 'Engineering Culture',
-		},
-		{
-			parent: AboutUs.EngineeringCultureId,
-			title: AboutUs.EngineeringCultureNumber,
-			expectedText: '06',
-		},
-		{
-			parent: AboutUs.SocialResponsibilityId,
-			title: AboutUs.SocialResponsibilityTitle,
-			expectedText: 'Social Responsibility',
-		},
-		{
-			parent: AboutUs.SocialResponsibilityId,
-			title: AboutUs.SocialResponsibilityNumber,
-			expectedText: '07',
-		},
-		{
-			parent: AboutUs.CandidatePathId,
-			title: AboutUs.CandidatePathTitle,
-			expectedText: 'Candidate Path',
-		},
-		{
-			parent: AboutUs.CandidatePathId,
-			title: AboutUs.CandidatePathNumber,
-			expectedText: '08',
-		},
+		{parent: AboutUs.WeAreTechstackId, title: AboutUs.WeAreTechstackTitle, expectedText: 'We are \nTechstack'},
+		{parent: AboutUs.WeAreTechstackId, title: AboutUs.WeAreTechstackNumber, expectedText: '01'},
+		{parent: AboutUs.OurHistoryId, title: AboutUs.OurHistoryTitle, expectedText: 'Our History'},
+		{parent: AboutUs.OurHistoryId, title: AboutUs.OurHistoryNumber, expectedText: '02'},
+		{parent: AboutUs.OurAchievementsId, title: AboutUs.OurAchievementsTitle, expectedText: 'Our \nAchievements'},
+		{parent: AboutUs.OurAchievementsId, title: AboutUs.OurAchievementsNumber, expectedText: '03'},
+		{parent: AboutUs.TechstackInGrowsId, title: AboutUs.TechstackInGrowsTitle, expectedText: 'Techstack \nin Growth'},
+		{parent: AboutUs.TechstackInGrowsId, title: AboutUs.TechstackInGrowsNumber, expectedText: '04'},
+		{parent: AboutUs.TechstackRolesId, title: AboutUs.TechstackRolesTitle, expectedText: 'Techstack roles'},
+		{parent: AboutUs.TechstackRolesId, title: AboutUs.TechstackRolesNumber, expectedText: '05'},
+		{parent: AboutUs.EngineeringCultureId, title: AboutUs.EngineeringCultureTitle, expectedText: 'Engineering Culture'},
+		{parent: AboutUs.EngineeringCultureId, title: AboutUs.EngineeringCultureNumber, expectedText: '06'},
+		{parent: AboutUs.SocialResponsibilityId, title: AboutUs.SocialResponsibilityTitle, expectedText: 'Social Responsibility'},
+		{parent: AboutUs.SocialResponsibilityId, title: AboutUs.SocialResponsibilityNumber, expectedText: '07'},
+		{parent: AboutUs.CandidatePathId, title: AboutUs.CandidatePathTitle, expectedText: 'Candidate Path'},
+		{parent: AboutUs.CandidatePathId, title: AboutUs.CandidatePathNumber, expectedText: '08'},
 	];
 
 	for (let section of sectionList) {
@@ -121,27 +57,11 @@ test('Check the content is info carousels on the AboutUs page @Regression @About
 		{counter: '08', title: '2021', parent: AboutUs.OurHistoryId},
 
 		{counter: '01', title: 'CV', parent: AboutUs.CandidatePathId},
-		{
-			counter: '02',
-			title: 'Pre-screening',
-			parent: AboutUs.CandidatePathId,
-		},
+		{counter: '02',	title: 'Pre-screening',	parent: AboutUs.CandidatePathId},
 		{counter: '03', title: 'Test task', parent: AboutUs.CandidatePathId},
-		{
-			counter: '04',
-			title: 'Tech expert review',
-			parent: AboutUs.CandidatePathId,
-		},
-		{
-			counter: '05',
-			title: 'Tech expert interview',
-			parent: AboutUs.CandidatePathId,
-		},
-		{
-			counter: '06',
-			title: 'Product owner interview',
-			parent: AboutUs.CandidatePathId,
-		},
+		{counter: '04',	title: 'Tech expert review', parent: AboutUs.CandidatePathId},
+		{counter: '05',	title: 'Tech expert interview',	parent: AboutUs.CandidatePathId},
+		{counter: '06',	title: 'Product owner interview', parent: AboutUs.CandidatePathId}
 	];
 
 	for (let item of carouselItemList) {
@@ -207,78 +127,22 @@ test("Check 'Engineering Culture' photo carousel on the AboutUs page @Regression
 
 test("Check 'Techstack roles' contains required sections on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
 	let expectedItems = [
-		{
-			id: AboutUs.Roles_Mentor,
-			name: 'Mentor',
-			parent: AboutUs.TechstackRolesId,
-		},
-		{
-			id: AboutUs.Roles_TechExpert,
-			name: 'Tech Expert',
-			parent: AboutUs.TechstackRolesId,
-		},
-		{
-			id: AboutUs.Roles_PreSaleExpert,
-			name: 'Pre-Sale Expert',
-			parent: AboutUs.TechstackRolesId,
-		},
-		{
-			id: AboutUs.Roles_TeamLead,
-			name: 'Team Lead',
-			parent: AboutUs.TechstackRolesId,
-		},
-		{
-			id: AboutUs.Roles_VPofFunction,
-			name: 'VP of Function',
-			parent: AboutUs.TechstackRolesId,
-		},
+		{id: AboutUs.Roles_Mentor, name: 'Mentor', parent: AboutUs.TechstackRolesId},
+		{id: AboutUs.Roles_TechExpert, name: 'Tech Expert', parent: AboutUs.TechstackRolesId},
+		{id: AboutUs.Roles_PreSaleExpert, name: 'Pre-Sale Expert', parent: AboutUs.TechstackRolesId},
+		{id: AboutUs.Roles_TeamLead, name: 'Team Lead', parent: AboutUs.TechstackRolesId},
+		{id: AboutUs.Roles_VPofFunction, name: 'VP of Function', parent: AboutUs.TechstackRolesId},
 
-		{
-			id: AboutUs.EC_TechClubs,
-			name: 'Tech clubs',
-			parent: AboutUs.EngineeringCultureId,
-		},
-		{
-			id: AboutUs.EC_Meetups,
-			name: 'Meetups',
-			parent: AboutUs.EngineeringCultureId,
-		},
-		{
-			id: AboutUs.EC_TechCompetitions,
-			name: 'Tech Competitions',
-			parent: AboutUs.EngineeringCultureId,
-		},
-		{
-			id: AboutUs.EC_Library,
-			name: 'Library',
-			parent: AboutUs.EngineeringCultureId,
-		},
-		{
-			id: AboutUs.EC_TraineeCamps,
-			name: 'Trainee Camps',
-			parent: AboutUs.EngineeringCultureId,
-		},
-		{
-			id: AboutUs.EC_LoyaltyProgram,
-			name: 'Loyalty Program',
-			parent: AboutUs.EngineeringCultureId,
-		},
-
-		{
-			id: AboutUs.SR_Charity,
-			name: 'Charity',
-			parent: AboutUs.SocialResponsibilityId,
-		},
-		{
-			id: AboutUs.SR_EnvironmentalSafety,
-			name: 'Environmental Safety',
-			parent: AboutUs.SocialResponsibilityId,
-		},
-		{
-			id: AboutUs.SR_EducationSupport,
-			name: 'Education Support',
-			parent: AboutUs.SocialResponsibilityId,
-		},
+		{id: AboutUs.EC_TechClubs, name: 'Tech clubs', parent: AboutUs.EngineeringCultureId},
+		{id: AboutUs.EC_Meetups, name: 'Meetups', parent: AboutUs.EngineeringCultureId},
+		{id: AboutUs.EC_TechCompetitions, name: 'Tech Competitions', parent: AboutUs.EngineeringCultureId},
+		{id: AboutUs.EC_Library, name: 'Library', parent: AboutUs.EngineeringCultureId},
+		{id: AboutUs.EC_TraineeCamps, name: 'Trainee Camps', parent: AboutUs.EngineeringCultureId},
+		{id: AboutUs.EC_LoyaltyProgram, name: 'Loyalty Program', parent: AboutUs.EngineeringCultureId},
+		
+		{id: AboutUs.SR_Charity, name: 'Charity', parent: AboutUs.SocialResponsibilityId},		
+		{id: AboutUs.SR_EnvironmentalSafety, name: 'Environmental Safety', parent: AboutUs.SocialResponsibilityId},
+		{id: AboutUs.SR_EducationSupport, name: 'Education Support', parent: AboutUs.SocialResponsibilityId},
 	];
 
 	for (let item of expectedItems) {
