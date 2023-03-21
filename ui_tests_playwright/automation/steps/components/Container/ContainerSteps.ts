@@ -40,7 +40,7 @@ class ContainerSteps {
 	public async checkContainerText(
 		identifier: string,
 		expectedTitle: string,
-		parent?: Locator,
+		parent?: Locator
 	) {
 		let text = await (
 			await driver.component(ContainerById, identifier, parent)

@@ -12,7 +12,8 @@ export default class AboutUs {
 	static OurAchievementsNumber: string = 'SectionNumber-03Number';
 
 	static TechstackInGrowsId: string = 'techstackInGrows';
-	static TechstackInGrowsTitle: string = 'SectionTitle-TechstackInGrowthTitle';
+	static TechstackInGrowsTitle: string =
+		'SectionTitle-TechstackInGrowthTitle';
 	static TechstackInGrowsNumber: string = 'SectionNumber-04Number';
 
 	static TechstackRolesId: string = 'techstackRoles';

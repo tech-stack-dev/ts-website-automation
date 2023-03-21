@@ -102,8 +102,8 @@ test('Check that all the required sections are displayed on the AboutUs page @Re
 	for (let section of sectionList) {
 		await expect(
 			await driver.getByTestId(
-				section.title,
-			//	await driver.getByTestId(section.parent)
+				section.title
+				//	await driver.getByTestId(section.parent)
 			)
 		).toHaveText(section.expectedText);
 	}
@@ -121,11 +121,27 @@ test('Check the content is info carousels on the AboutUs page @Regression @About
 		{counter: '08', title: '2021', parent: AboutUs.OurHistoryId},
 
 		{counter: '01', title: 'CV', parent: AboutUs.CandidatePathId},
-		{counter: '02',	title: 'Pre-screening',	parent: AboutUs.CandidatePathId},
+		{
+			counter: '02',
+			title: 'Pre-screening',
+			parent: AboutUs.CandidatePathId,
+		},
 		{counter: '03', title: 'Test task', parent: AboutUs.CandidatePathId},
-		{counter: '04',	title: 'Tech expert review', parent: AboutUs.CandidatePathId},
-		{counter: '05',	title: 'Tech expert interview',	parent: AboutUs.CandidatePathId},
-		{counter: '06',	title: 'Product owner interview',parent: AboutUs.CandidatePathId,}
+		{
+			counter: '04',
+			title: 'Tech expert review',
+			parent: AboutUs.CandidatePathId,
+		},
+		{
+			counter: '05',
+			title: 'Tech expert interview',
+			parent: AboutUs.CandidatePathId,
+		},
+		{
+			counter: '06',
+			title: 'Product owner interview',
+			parent: AboutUs.CandidatePathId,
+		},
 	];
 
 	for (let item of carouselItemList) {
@@ -190,39 +206,91 @@ test("Check 'Engineering Culture' photo carousel on the AboutUs page @Regression
 });
 
 test("Check 'Techstack roles' contains required sections on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
-	
 	let expectedItems = [
-		{id: AboutUs.Roles_Mentor,name:'Mentor',parent: AboutUs.TechstackRolesId},
-		{id: AboutUs.Roles_TechExpert,name:'Tech Expert',parent: AboutUs.TechstackRolesId},
-		{id: AboutUs.Roles_PreSaleExpert,name:'Pre-Sale Expert',parent: AboutUs.TechstackRolesId},
-		{id: AboutUs.Roles_TeamLead,name:'Team Lead',parent: AboutUs.TechstackRolesId},
-		{id: AboutUs.Roles_VPofFunction,name:'VP of Function',parent: AboutUs.TechstackRolesId},
- 
-		{id: AboutUs.EC_TechClubs,name:'Tech clubs', parent: AboutUs.EngineeringCultureId},
-		{id: AboutUs.EC_Meetups,name:'Meetups', parent: AboutUs.EngineeringCultureId},
-		{id: AboutUs.EC_TechCompetitions,name:'Tech Competitions', parent: AboutUs.EngineeringCultureId},
-		{id: AboutUs.EC_Library,name:'Library', parent: AboutUs.EngineeringCultureId},
-		{id: AboutUs.EC_TraineeCamps,name:'Trainee Camps', parent: AboutUs.EngineeringCultureId},
-		{id: AboutUs.EC_LoyaltyProgram,name:'Loyalty Program', parent: AboutUs.EngineeringCultureId},
- 
-		{id: AboutUs.SR_Charity,name:'Charity', parent: AboutUs.SocialResponsibilityId},
-		{id: AboutUs.SR_EnvironmentalSafety,name:'Environmental Safety', parent: AboutUs.SocialResponsibilityId},
-		{id: AboutUs.SR_EducationSupport,name:'Education Support', parent: AboutUs.SocialResponsibilityId},
+		{
+			id: AboutUs.Roles_Mentor,
+			name: 'Mentor',
+			parent: AboutUs.TechstackRolesId,
+		},
+		{
+			id: AboutUs.Roles_TechExpert,
+			name: 'Tech Expert',
+			parent: AboutUs.TechstackRolesId,
+		},
+		{
+			id: AboutUs.Roles_PreSaleExpert,
+			name: 'Pre-Sale Expert',
+			parent: AboutUs.TechstackRolesId,
+		},
+		{
+			id: AboutUs.Roles_TeamLead,
+			name: 'Team Lead',
+			parent: AboutUs.TechstackRolesId,
+		},
+		{
+			id: AboutUs.Roles_VPofFunction,
+			name: 'VP of Function',
+			parent: AboutUs.TechstackRolesId,
+		},
+
+		{
+			id: AboutUs.EC_TechClubs,
+			name: 'Tech clubs',
+			parent: AboutUs.EngineeringCultureId,
+		},
+		{
+			id: AboutUs.EC_Meetups,
+			name: 'Meetups',
+			parent: AboutUs.EngineeringCultureId,
+		},
+		{
+			id: AboutUs.EC_TechCompetitions,
+			name: 'Tech Competitions',
+			parent: AboutUs.EngineeringCultureId,
+		},
+		{
+			id: AboutUs.EC_Library,
+			name: 'Library',
+			parent: AboutUs.EngineeringCultureId,
+		},
+		{
+			id: AboutUs.EC_TraineeCamps,
+			name: 'Trainee Camps',
+			parent: AboutUs.EngineeringCultureId,
+		},
+		{
+			id: AboutUs.EC_LoyaltyProgram,
+			name: 'Loyalty Program',
+			parent: AboutUs.EngineeringCultureId,
+		},
+
+		{
+			id: AboutUs.SR_Charity,
+			name: 'Charity',
+			parent: AboutUs.SocialResponsibilityId,
+		},
+		{
+			id: AboutUs.SR_EnvironmentalSafety,
+			name: 'Environmental Safety',
+			parent: AboutUs.SocialResponsibilityId,
+		},
+		{
+			id: AboutUs.SR_EducationSupport,
+			name: 'Education Support',
+			parent: AboutUs.SocialResponsibilityId,
+		},
 	];
 
-	for(let item of expectedItems){
-
-	await containerSteps.checkContainerBlockTitle(
-		item.id,
-		item.name,
-		await containerSteps.getContainer(
-			ContainerById,
-			item.parent))
+	for (let item of expectedItems) {
+		await containerSteps.checkContainerBlockTitle(
+			item.id,
+			item.name,
+			await containerSteps.getContainer(ContainerById, item.parent)
+		);
 	}
 });
 
 test("Check 'Apply Proposition' block in 'Candidate Path' section on the AboutUs page @Regression @AboutUs @TSWEB-150", async () => {
-	
 	await containerSteps.checkContainerText(
 		AboutUs.ApplyPositions,
 		'Would you like to be a part of our team?Check out our open positions!',
@@ -233,9 +301,10 @@ test("Check 'Apply Proposition' block in 'Candidate Path' section on the AboutUs
 	);
 	await driver.getByTestId(AboutUs.ApplyNowButton).click();
 	await driver.Page.waitForNavigation({url: UrlProvider.careerUrl()});
-	let classValue = await (
-		await driver.getByTestId(Button.NavigationTab_Jobs).getAttribute('class'));
-	expect(classValue).toContain("active-nav-tab");
+	let classValue = await await driver
+		.getByTestId(Button.NavigationTab_Jobs)
+		.getAttribute('class');
+	expect(classValue).toContain('active-nav-tab');
 });
 
 test.afterEach(async () => {
