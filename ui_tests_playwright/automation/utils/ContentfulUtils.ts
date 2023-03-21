@@ -37,8 +37,9 @@ class ContentfulUtils {
 
 	async CreateAndPublishCareer(
 		careerId: string,
-		careerName: string,
+		careerNameEn: string,
 		descriptionId: string,
+		careerNameUa = 'Тестова Вакансія',
 		tagId1 = 'direction_longSoftwareDataManager',
 		tagId2 = 'seniority_trainee'
 	) {
@@ -47,7 +48,8 @@ class ContentfulUtils {
 		careerFieldsWithDescriptionAndTag.fields.careerDescription[
 			'en-US'
 		].sys.id = descriptionId;
-		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerName;
+		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerNameEn;
+		careerFieldsWithDescriptionAndTag.fields.name['uk-UA'] = careerNameUa;
 		careerFieldsWithDescriptionAndTag.metadata!.tags[0].sys.id = tagId1;
 		careerFieldsWithDescriptionAndTag.metadata!.tags[1].sys.id = tagId2;
 		await environment.createEntryWithId(

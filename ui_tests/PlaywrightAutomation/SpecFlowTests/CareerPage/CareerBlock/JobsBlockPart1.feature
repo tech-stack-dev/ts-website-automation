@@ -14,7 +14,7 @@ Scenario: CheckNavigationHeaderInCareerPage
 	When User clicks 'Ua' button on 'HeaderPage' container
 	Then 'Ua' button is active on 'HeaderPage' container
 	
-# Test should be moved to TypeScript solution, details in TSWEB-560
+# Test should be moved to TypeScript solution, details in TSWEB-560 (Done)
 @Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	# Preconditions
@@ -53,7 +53,7 @@ Scenario: CheckNavigationHeaderOnJobPage
 	When User clicks 'Ua' button on 'NavigationHeader' container
 	Then 'Ua' button is active on 'NavigationHeader' container
 
-# Test should be moved to TypeScript solution, details in TSWEB-560
+# Test should be moved to TypeScript solution, details in TSWEB-560 (Done)
 @Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckLocalizationOnJobPage
 	# Preconditions
