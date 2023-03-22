@@ -1,7 +1,7 @@
-import {BrowserContext, Locator, Page} from '@playwright/test';
+import { BrowserContext, Locator, Page } from '@playwright/test';
 import BaseComponent from '../component/BaseComponent';
-import {driver} from './Driver';
-import {BrowsersEnum} from './BrowsersEnum';
+import { driver } from './Driver';
+import { BrowsersEnum } from './BrowsersEnum';
 
 export default class BaseDriver {
 	private _driverContext: BrowserContext;
@@ -65,7 +65,7 @@ export default class BaseDriver {
 
 	public async component<T extends BaseComponent>(
 		type: {
-			new (
+			new(
 				page: Page,
 				identifier: string,
 				parent: Locator | undefined
@@ -102,11 +102,11 @@ export default class BaseDriver {
 		}
 	}
 
-	public getByTestId(testId: string, parent?: Locator, nth = 0): Locator {
+	public getByTestId(testId: string | RegExp, parent?: Locator, nth = 0): Locator {
 		return (parent ? parent : driver.Page).getByTestId(testId).nth(nth);
 	}
 
-	public async getPage<T>(type: {new (page: Page): T}) {
+	public async getPage<T>(type: { new(page: Page): T }) {
 		return await new type(driver.focusedDriver.Page);
 	}
 }
