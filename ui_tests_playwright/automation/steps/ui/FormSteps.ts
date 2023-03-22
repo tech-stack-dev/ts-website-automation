@@ -1,0 +1,56 @@
+import { driver } from '../../base/driver/Driver';
+import Button from '../../identifiers/Button';
+import ApplyForAJobForm from '../../identifiers/Forms/ApplyForAJobForm';
+import ContactUsForm from '../../identifiers/Forms/ContactUsForm';
+import GetInTouchForm from '../../identifiers/Forms/GetInTouchForm';
+import { sessionValue } from '../../runtimeVariables/SessionValue';
+
+class FormSteps {
+    public async sendContactUsMessage() {
+        await driver.getByTestId(ContactUsForm.FullName).fill(`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`);
+        await driver.getByTestId(ContactUsForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+        await driver.getByTestId(ContactUsForm.Phone).fill(sessionValue.numberValue);
+        await driver.getByTestId(ContactUsForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+
+        // TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
+        await driver.getByTestId(Button.SendButton).click();
+        await driver.Page.waitForTimeout(5000);
+        //
+
+        await driver.getByTestId(Button.SendButton).click();
+        await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
+    }
+
+    public async sendApplyForAJob() {
+        await driver.getByTestId(ApplyForAJobForm.FirstName).fill(`Test${sessionValue.stringValue}`);
+        await driver.getByTestId(ApplyForAJobForm.LastName).fill(`Automation${sessionValue.stringValue}`);
+        await driver.getByTestId(ApplyForAJobForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+        await driver.getByTestId(ApplyForAJobForm.Phone).fill(sessionValue.numberValue);
+        await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+
+        await driver.getByTestId(Button.SendButton).click();
+        await driver.Page.getByAltText('Close').waitFor({ state: 'visible' });
+    }
+
+    public async sendGetInTouchMessage() {
+        if (await driver.getByTestId(GetInTouchForm.FullName).isVisible()) {
+            await driver.getByTestId(GetInTouchForm.FullName).fill(`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`);
+        }
+        else {
+            await driver.getByTestId(GetInTouchForm.FirstName).fill(`Test${sessionValue.stringValue}`);
+            await driver.getByTestId(GetInTouchForm.LastName).fill(`Automation${sessionValue.stringValue}`);
+        }
+
+        await driver.getByTestId(GetInTouchForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+        await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+
+        await driver.getByTestId(Button.SendButton).click();
+        await driver.Page.waitForTimeout(5000);
+        // await driver.Page.locator('#close-menu-modal-menu').waitFor({ state: 'visible'});
+        // await driver.getByTestId(Button.SendButton).waitFor({ state: 'hidden'});
+    }
+}
+
+const formSteps = new FormSteps();
+
+export { formSteps };
