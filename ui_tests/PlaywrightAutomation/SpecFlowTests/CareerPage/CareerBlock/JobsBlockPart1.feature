@@ -1,6 +1,7 @@
 Feature: JobsBlockPart1
 
-@Regression @JobsBlock @TSWEB146
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @JobsBlock @TSWEB146 @NotRun
 Scenario: CheckNavigationHeaderInCareerPage
 	Given User is on career website
 	Then Techstack logo is displayed on main page
@@ -30,7 +31,8 @@ Scenario: CheckBreadcrumbsHeaderInJobsBlock
 	Then Breadcrumbs has 'Jobs / Test1Career{SRND}' text
 	Then 'Apply Now' button is displayed on 'BreadcrumbsHeader' container
 
-@Regression @JobsBlock @TSWEB146 @Cleanup
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckNavigationHeaderOnJobPage
 	# Preconditions
 	Given User creates Career with default value
