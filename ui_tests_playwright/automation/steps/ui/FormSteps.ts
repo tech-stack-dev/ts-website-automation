@@ -29,7 +29,7 @@ class FormSteps {
         await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
         await driver.getByTestId(Button.SendButton).click();
-        await driver.Page.getByAltText('Close').waitFor({ state: 'visible' });
+        await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
     }
 
     public async sendGetInTouchMessage() {
@@ -45,9 +45,7 @@ class FormSteps {
         await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
         await driver.getByTestId(Button.SendButton).click();
-        await driver.Page.waitForTimeout(5000);
-        // await driver.Page.locator('#close-menu-modal-menu').waitFor({ state: 'visible'});
-        // await driver.getByTestId(Button.SendButton).waitFor({ state: 'hidden'});
+        await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
     }
 }
 
