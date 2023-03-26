@@ -117,10 +117,12 @@ export default class BaseDriver {
 				await func();
 				return;
 			} catch (err) {
-				console.log(`${i} attempt to execute ${func.name}`);
+				console.log(`${i+1} attempt to execute ${func.name}`);
 				message = err;
 			}
 		}
-		console.error(message);
+		if(!(message === '')){
+			throw new Error(message)
+		}
 	}
 }
