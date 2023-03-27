@@ -14,8 +14,8 @@ jobs:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
     env:
-        AWS_KEY: secrets.AWS_KEY
-        AWS_PASSWORD: secrets.AWS_PASSWORD
+        AWS_KEY: ${{secrets.AWS_KEY}}
+        AWS_PASSWORD: ${{secrets.AWS_PASSWORD}}
     defaults:
         run:
             working-directory: ./ui_tests_playwright
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v3
       
       - name: Debug from secret
-        run: echo "Secret $secrets.AWS_KEY   $secrets.AWS_PASSWORD"
+        run: echo "Secret ${{secrets.AWS_KEY}}   ${{secrets.AWS_PASSWORD}}"
         
       - name: Debug from env
         run: echo "Env $AWS_KEY    $AWS_PASSWORD"
