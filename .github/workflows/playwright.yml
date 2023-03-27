@@ -24,6 +24,12 @@ jobs:
       
       - uses: actions/setup-node@v3
       
+      - name: Debug from secret
+        run: echo "Secret $secrets.AWS_KEY   $secrets.AWS_PASSWORD"
+        
+      - name: Debug from env
+        run: echo "Env $AWS_KEY    $AWS_PASSWORD"
+      
       - name: Install dependencies
         run: npm ci
         
