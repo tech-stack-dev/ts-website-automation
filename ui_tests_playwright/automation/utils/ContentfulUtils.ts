@@ -1,14 +1,15 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
+import { stringUtils } from './StringUtils';
 
 class ContentfulUtils {
 	async GetEnvironment() {
 		const client = contentful.createClient({
-			accessToken: ContentfulProvider.AccessToken(),
+			accessToken: await ContentfulProvider.AccessToken(),
 		});
-		const space = await client.getSpace(ContentfulProvider.SpaceId());
+		const space = await client.getSpace(await ContentfulProvider.SpaceId());
 		const environment = await space.getEnvironment(
-			ContentfulProvider.Env()
+			await ContentfulProvider.Env()
 		);
 		return environment;
 	}
@@ -299,7 +300,7 @@ class ContentfulUtils {
 				],
 			},
 			slug: {
-				'en-US': 'TypeScript_test-v1',
+				'en-US': stringUtils.AddRandom('TypeScript_test{SRND}-v1'),
 			},
 		},
 	};

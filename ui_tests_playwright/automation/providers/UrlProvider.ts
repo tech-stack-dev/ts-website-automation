@@ -1,6 +1,7 @@
 import {ClientsEnum} from '../base/client/ClientsEnum';
 import appsetting from '../../appsetting.json';
 import EnvProvider, {Environment} from './EnvProvider';
+import UrlPath from './UrlPath';
 
 export default class UrlProvider {
 	public static urlBuilder(urlPath: string) {
@@ -19,7 +20,7 @@ export default class UrlProvider {
 			}
 			default: {
 				throw new Error(
-					`Unknown environment. Environment: ${process.env.TEST_ENV}`
+					`Unknown environment. Environment: ${UrlPath.testEnv}`
 				);
 			}
 		}
@@ -37,7 +38,7 @@ export default class UrlProvider {
 			}
 			default: {
 				throw new Error(
-					`Unknown environment. Environment: ${process.env.TEST_ENV}`
+					`Unknown environment. Environment: ${UrlPath.testEnv}`
 				);
 			}
 		}
@@ -46,7 +47,7 @@ export default class UrlProvider {
 	public static clientUrl(clientName: ClientsEnum): string {
 		switch (clientName) {
 			case ClientsEnum.Client_1: {
-				return <string>process.env.CLIENT_1_URL;
+				return UrlPath.client1Url;
 			}
 			case ClientsEnum.Client_2: {
 				return <string>process.env.CLIENT_2_URL;
