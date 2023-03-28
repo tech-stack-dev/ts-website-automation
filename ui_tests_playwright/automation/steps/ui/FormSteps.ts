@@ -12,11 +12,6 @@ class FormSteps {
         await driver.getByTestId(ContactUsForm.Phone).fill(sessionValue.numberValue);
         await driver.getByTestId(ContactUsForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
-        // TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
-        await driver.getByTestId(Button.SendButton).click();
-        await driver.Page.waitForTimeout(5000);
-        //
-
         await driver.getByTestId(Button.SendButton).click();
         await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
     }
@@ -29,7 +24,7 @@ class FormSteps {
         await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
         await driver.getByTestId(Button.SendButton).click();
-        await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
+        await driver.getByTestId(Button.SendButton).waitFor({ state: 'hidden' });
     }
 
     public async sendGetInTouchMessage() {
@@ -45,7 +40,7 @@ class FormSteps {
         await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
         await driver.getByTestId(Button.SendButton).click();
-        await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
+        await driver.getByTestId(Button.Close, undefined, 1).waitFor({ state: 'visible' });
     }
 }
 
