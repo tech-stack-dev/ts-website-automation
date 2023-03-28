@@ -14,8 +14,8 @@ export default class UrlPath {
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog';
 	static ContactUs = 'contact-us';
-	static testEnv = "staging";
-	static client1Url = "https://reqres.in";
-	static client2Url = "NOT_IMPLEMENTED";
-	static client3Url = "NOT_IMPLEMENTED";
+	static testEnv = 'staging';
+	static client1Url = 'https://reqres.in';
+	static client2Url = 'NOT_IMPLEMENTED';
+	static client3Url = 'NOT_IMPLEMENTED';
 }

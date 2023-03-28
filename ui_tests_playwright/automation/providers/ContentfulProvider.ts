@@ -11,7 +11,7 @@ export default class ContentfulProvider {
 		contentfulDto.value = {
 			contentfulAccessToken: jsonObj.contentfulAccessToken,
 			contentfulEnv: jsonObj.contentfulEnv,
-			contentfulSpaceId: jsonObj.contentfulSpaceId
+			contentfulSpaceId: jsonObj.contentfulSpaceId,
 		};
 		return contentfulDto;
 	}

@@ -1,6 +1,6 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
-import { stringUtils } from './StringUtils';
+import {stringUtils} from './StringUtils';
 
 class ContentfulUtils {
 	async GetEnvironment() {

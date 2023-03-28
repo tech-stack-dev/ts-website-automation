@@ -1,4 +1,4 @@
-import { ContentfulDto } from "../../dto/ContentfulDto";
+import {ContentfulDto} from '../../dto/ContentfulDto';
 
 class ContentfulDtoVariable {
 	public value: ContentfulDto;
