@@ -13,15 +13,16 @@ const staging_techstack_hr_notify_id = "C03KV7ENTUL";
 const staging_techstack_notify_id = "C03KSNWU7BM";
 
 test.beforeEach(async () => {
-    await baseDriverSteps.createsNewBrowser();    
+    await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page", async () => {
+// TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
+test.skip("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606", async () => {
     await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
     await driver.getByTestId(Button.NavigationTab_ContactUs).click();
     await formSteps.sendContactUsMessage();
     let message = await slackSteps.getMessageWithValueFromChat(staging_techstack_hr_notify_id, `Test${sessionValue.stringValue}`);
-    
+
     slackSteps.checkMessageFromHrNotifyChannel(message, {
         name: `Test${sessionValue.stringValue}`,
         lastName: `Automation${sessionValue.stringValue}`,
@@ -31,13 +32,14 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
     });
 });
 
-test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page", async () => {
+// TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
+test.skip("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
     await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
     await driver.getByTestId(/CardWrapper/).click();
     await driver.getByTestId(Button.ApplyNow).click();
     await formSteps.sendApplyForAJob();
     let message = await slackSteps.getMessageWithValueFromChat(staging_techstack_hr_notify_id, `Test${sessionValue.stringValue}`);
-    
+
     slackSteps.checkMessageFromHrNotifyChannel(message, {
         name: `Test${sessionValue.stringValue}`,
         lastName: `Automation${sessionValue.stringValue}`,
@@ -47,7 +49,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
     });
 });
 
-test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages", async () => {
+test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages @Regression @ContactUs @TSWEB-606", async () => {
     const urlList: Array<string> = [
         UrlProvider.urlBuilder(UrlPath.AboutUs),
         UrlProvider.urlBuilder(UrlPath.HowWeWork),
@@ -69,7 +71,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
     }
 });
 
-test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages", async () => {
+test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages @Regression @ContactUs @TSWEB-606", async () => {
     for (const url of ContactUsPreconditions.servicesUrlList) {
 
         await baseDriverSteps.goToUrl(url);

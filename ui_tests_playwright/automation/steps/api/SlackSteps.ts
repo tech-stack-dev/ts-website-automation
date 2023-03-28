@@ -2,18 +2,21 @@ import { Message } from '@slack/web-api/dist/response/ConversationsHistoryRespon
 import { WebClient } from '@slack/web-api';
 import { expect } from '@playwright/test';
 import { driver } from '../../base/driver/Driver';
+import SlackProvider from '../../providers/SlackProvider';
 
 class SlackSteps {
-    private token: string = process.env.SLACK_TOKEN!;
-
     public async getMessageWithValueFromChat(chatId: string, value: string): Promise<Message> {
         // Message waiting
         await driver.Page.waitForTimeout(1000);
 
-        let webClient = new WebClient(this.token);
+        let webClient = new WebClient(await this.getSlackToken());
         let messages: Message[] = (await webClient.conversations.history({ channel: chatId })).messages!;
 
         return messages.find(x => x.attachments!.find(x => x.fields!.find(x => x.value === value)))!;
+    }
+
+    private async getSlackToken() {
+        return await SlackProvider.getSlackToken();
     }
 
     public checkMessageFromHrNotifyChannel(actualMessage: Message, expectedMessage: {
@@ -41,14 +44,14 @@ class SlackSteps {
     }) {
         let fields = actualMessage.attachments![0].fields;
 
-        if(expectedMessage.fullName){
+        if (expectedMessage.fullName) {
             expect(fields?.find(x => x.title === 'FullName')?.value).toBe(expectedMessage.fullName);
         }
-        else{
+        else {
             expect(fields?.find(x => x.title === 'FirstName')?.value).toBe(expectedMessage.firstName);
             expect(fields?.find(x => x.title === 'LastName')?.value).toBe(expectedMessage.lastName);
         }
-        
+
         expect(fields?.find(x => x.title === 'Email')?.value).toContain(expectedMessage.email);
         expect(fields?.find(x => x.title === 'Message')?.value).toBe(expectedMessage.messge);
     }
