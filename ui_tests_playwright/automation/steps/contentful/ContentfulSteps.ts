@@ -1,5 +1,5 @@
 import {contentfulUtils} from '../../utils/ContentfulUtils';
-import { stringUtils } from '../../utils/StringUtils';
+import {stringUtils} from '../../utils/StringUtils';
 
 class ContentfulSteps {
 	public async createCareerWithDefaultValue(

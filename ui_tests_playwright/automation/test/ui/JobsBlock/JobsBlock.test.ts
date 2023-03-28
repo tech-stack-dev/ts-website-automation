@@ -10,7 +10,7 @@ import {containerSteps} from '../../../steps/components/Container/ContainerSteps
 import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
-import { stringUtils } from '../../../utils/StringUtils';
+import {stringUtils} from '../../../utils/StringUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -22,14 +22,24 @@ test.beforeEach(async () => {
 });
 
 test('Check that breadcrumbs displays correctly on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	await careerSteps.clickOnCareerCard(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	expect(await careerSteps.getBreadcrumbsText()).toBe(stringUtils.AddRandom('Jobs / JobsBlockTest{SRND}'));
+	await careerSteps.verifyThatCareerWasCreated(
+		stringUtils.AddRandom('JobsBlockTest{SRND}')
+	);
+	await careerSteps.clickOnCareerCard(
+		stringUtils.AddRandom('JobsBlockTest{SRND}')
+	);
+	expect(await careerSteps.getBreadcrumbsText()).toBe(
+		stringUtils.AddRandom('Jobs / JobsBlockTest{SRND}')
+	);
 });
 
 test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	await careerSteps.clickOnCareerCard(stringUtils.AddRandom('JobsBlockTest{SRND}'));
+	await careerSteps.verifyThatCareerWasCreated(
+		stringUtils.AddRandom('JobsBlockTest{SRND}')
+	);
+	await careerSteps.clickOnCareerCard(
+		stringUtils.AddRandom('JobsBlockTest{SRND}')
+	);
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,

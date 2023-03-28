@@ -5,16 +5,16 @@ class StringUtils {
 			.map((w) => `${w.charAt(0).toUpperCase()}${w.slice(1)}`)
 			.join('');
 	}
-	
+
 	public AddRandom(str: string) {
-		return str.replace('{SRND}', this.sessionId)
+		return str.replace('{SRND}', this.sessionId);
 	}
 
-	private CreateSessionRandomString(length:number){
-		const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		let sessionId = "";
+	private CreateSessionRandomString(length: number) {
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		let sessionId = '';
 		for (let i = 0; i < length; i++) {
-		  sessionId += chars.charAt(Math.floor(Math.random() * chars.length));
+			sessionId += chars.charAt(Math.floor(Math.random() * chars.length));
 		}
 		return sessionId;
 	}
