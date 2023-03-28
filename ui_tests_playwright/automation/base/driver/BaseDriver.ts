@@ -109,4 +109,20 @@ export default class BaseDriver {
 	public async getPage<T>(type: { new(page: Page): T }) {
 		return await new type(driver.focusedDriver.Page);
 	}
+
+	public async executeFunc(func: any, attepmts: number) {
+		let message = '';
+		for (let i = 0; i < attepmts; i++) {
+			try {
+				await func();
+				return;
+			} catch (err) {
+				console.log(`${i+1} attempt to execute ${func.name}`);
+				message = err;
+			}
+		}
+		if(!(message === '')){
+			throw new Error(message)
+		}
+	}
 }

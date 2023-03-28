@@ -1,3 +1,5 @@
+import UrlPath from "./UrlPath";
+
 export enum Environment {
 	Staging,
 	Production,
@@ -5,7 +7,7 @@ export enum Environment {
 
 export default class EnvProvider {
 	public static get Environment(): Environment {
-		switch (process.env.TEST_ENV) {
+		switch (UrlPath.testEnv) {
 			case 'staging': {
 				return Environment.Staging;
 			}
@@ -14,7 +16,7 @@ export default class EnvProvider {
 			}
 			default: {
 				throw new Error(
-					`Unknown environment. Environment: ${process.env.TEST_ENV}`
+					`Unknown environment. Environment: ${UrlPath.testEnv}`
 				);
 			}
 		}
