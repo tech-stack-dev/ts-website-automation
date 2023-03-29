@@ -1,8 +1,8 @@
-import {request} from '@playwright/test';
-import UrlProvider from '../../providers/UrlProvider';
-import BaseClient from './BaseClient';
-import {ClientsEnum} from './ClientsEnum';
-import ContextOptions from './ContextOptions';
+import { ClientsEnum } from "./ClientsEnum";
+import { request } from "playwright-core";
+import UrlProvider from "../../providers/UrlProvider";
+import BaseClient from "./BaseClient";
+import ContextOptions from "./ContextOptions";
 
 class Client extends BaseClient {
 	public focusedClient: BaseClient;
