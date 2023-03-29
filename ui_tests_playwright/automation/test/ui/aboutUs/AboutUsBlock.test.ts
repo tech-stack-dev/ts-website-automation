@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { driver } from '../../../base/driver/Driver';
 import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
+import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
@@ -9,6 +10,14 @@ test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
     await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
     await driver.getByTestId(Button.NavigationTab_AboutUs).click();
+});
+
+test("Jira test skip @Regression @AboutUs @TSWEB-150 @BlockedBy-TSWEB-626", async ({page},testInfo) => {
+    if (await jiraApiSteps.isIssueBlocked(testInfo.title)){
+        test.skip();
+    }
+    await expect(driver.getByTestId(AboutUs.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
+    await expect(driver.getByTestId(AboutUs.WeAreTechstackNumber)).toHaveText('01');
 });
 
 test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {

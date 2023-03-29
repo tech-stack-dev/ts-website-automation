@@ -7,7 +7,7 @@ class AWSkms {
 			(process.env.AWS_KEY === undefined,
 			process.env.AWS_PASSWORD === undefined)
 		) {
-			console.error('Credentionals were not found, check your .env file');
+			console.error('AWS credentionals were not found, check your .env file');
 		}
 
 		const secretsManager = new SecretsManager({
