@@ -1,5 +1,5 @@
-import {ClientsEnum} from '../base/client/ClientsEnum';
 import appsetting from '../../appsetting.json';
+import {ClientsEnum} from '../base/client/ClientsEnum';
 import EnvProvider, {Environment} from './EnvProvider';
 import UrlPath from './UrlPath';
 

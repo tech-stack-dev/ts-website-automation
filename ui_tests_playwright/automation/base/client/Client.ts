@@ -15,7 +15,7 @@ class Client extends BaseClient {
 		contextOptions.baseURL = UrlProvider.clientUrl(clientName);
 		client.focusedClient = new BaseClient();
 		client.focusedClient.ClientName = clientName;
-		client.ClientContext = await request.newContext(contextOptions);
+		client.focusedClient.ClientContext = await request.newContext(contextOptions);
 		client.listOfClients.push(client.focusedClient);
 
 		return this;

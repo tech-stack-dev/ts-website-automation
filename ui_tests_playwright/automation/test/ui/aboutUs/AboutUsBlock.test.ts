@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { driver } from '../../../base/driver/Driver';
 import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
-import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
+import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
 
 test.beforeEach(async () => {
     await baseDriverSteps.createsNewBrowser();
