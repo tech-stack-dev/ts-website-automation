@@ -1,9 +1,11 @@
 import appsetting from '../../../../appsetting.json';
-import { JiraClient } from '../../../base/client/JiraClient';
+import ContextOptions from '../../../base/client/ContextOptions';
+import {jiraClient} from '../../../base/client/JiraClient';
 
 class JiraApiSteps {
 		private async getCurrentIssueStatus(issueNumber: string): Promise<string> {
-			return await JiraClient.getClient().findIssue(issueNumber)
+			
+			return jiraClient.findIssue(issueNumber)
 				.then(function (issue) {
 					console.log('Status: ' + issue.fields.status.name);
 					return issue.fields.status.name;
@@ -13,6 +15,8 @@ class JiraApiSteps {
 				});
 	  	}
 		
+		
+
 		async isIssueBlocked(testname: string): Promise<boolean> {
 			const blockingJiras = testname.split("@").filter((tag) =>
 			  tag.includes(appsetting.TestBlockedByJiraTag)

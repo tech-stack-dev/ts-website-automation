@@ -5,7 +5,7 @@
 	"ProductionCareer": "https://career.tech-stack.com/",
 
 	"JiraAuthToken": "Basic cWFfdGVjaHN0YWNrQHRlY2gtc3RhY2suaW86QVRBVFQzeEZmR0YwSDh5UUtYdXBXNXVSOGd2SzBaYW80UW5Tazk5WWpsRjBza0RJQldySVN4aXM5bDY1dnRBT1F2cVVkVVBjai02VmpaTTk1S3NlaGlWbjVsTmxaa1BWaThLdmRPU0p5V0pDUWduamY4ZFFFYlZiYUVFTGRzSmN6VTV2eE1EYkdEU1Y1TXo1WXQyb3ZhZkV2WV9IRUhJNEh4Y1ZqU25DZ0I4MHBCSkNRWjRkVFVvPTlERTc0NzlG",
-	"Host": "ts-website.atlassian.net",
+	"Uri": "ts-website.atlassian.net/rest/api/3",
 	"Username": "qa_techstack@tech-stack.io",
 	"Password": "Techstack2402",
 	"TestBlockedByJiraTag": "BlockedBy-",

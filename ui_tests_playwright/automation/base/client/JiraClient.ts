@@ -1,25 +1,30 @@
+import { APIResponse, request } from '@playwright/test';
 import appsetting from '../../../appsetting.json';
-import JiraApi from 'jira-client';
-import UrlProvider from '../../providers/UrlProvider';
 import BaseClient from './BaseClient';
-import {ClientsEnum} from './ClientsEnum';
 import ContextOptions from './ContextOptions';
 
-class JiraClient {
-	private static JClient: JiraApi;
+class JiraClient extends BaseClient {
+	private JClient: BaseClient;
 
-	static getClient(){
-		return new JiraApi({
-				protocol: 'https',
-				host: appsetting.Host,
-				username: appsetting.Username,
-				password: appsetting.Password,
-				apiVersion: '2',
-				strictSSL: true
-		  });
+	public async GetClient() {
+		if (!this.JClient){
+			const contextOptions = new ContextOptions();
+			contextOptions.baseURL =  appsetting.Uri;
+			contextOptions.extraHTTPHeaders =  {'Authorization': appsetting.JiraAuthToken}
+			this.JClient = new BaseClient();
+			this.JClient.ClientContext = await request.newContext(new ContextOptions());
+		}
+	
+		return this.JClient;
+	}
+
+	public async findIssue(issueId:string):Promise<void>{
+		const resp: APIResponse = await this.JClient.get(
+			`${appsetting.Uri}/issue/${issueId}`
+		)
+		
+		console.log(resp.json);
 	}
 }
 
-const jiraClient = new JiraClient();
-
-export {JiraClient};
+export const jiraClient = new JiraClient();
