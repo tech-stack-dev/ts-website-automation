@@ -1,8 +1,8 @@
-import { ClientsEnum } from "./ClientsEnum";
-import { request } from "playwright-core";
-import UrlProvider from "../../providers/UrlProvider";
-import BaseClient from "./BaseClient";
-import ContextOptions from "./ContextOptions";
+import {request} from '@playwright/test';
+import UrlProvider from '../../providers/UrlProvider';
+import BaseClient from './BaseClient';
+import {ClientsEnum} from './ClientsEnum';
+import ContextOptions from './ContextOptions';
 
 class Client extends BaseClient {
 	public focusedClient: BaseClient;
@@ -15,7 +15,7 @@ class Client extends BaseClient {
 		contextOptions.baseURL = UrlProvider.clientUrl(clientName);
 		client.focusedClient = new BaseClient();
 		client.focusedClient.ClientName = clientName;
-		client.ClientContext = await request.newContext(contextOptions);
+		client.focusedClient.ClientContext = await request.newContext(contextOptions);
 		client.listOfClients.push(client.focusedClient);
 
 		return this;

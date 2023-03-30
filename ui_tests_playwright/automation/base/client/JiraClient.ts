@@ -1,31 +1,21 @@
-// import { request } from '@playwright/test';
-// import appsetting from '../../../appsetting.json';
-// import BaseClient from './BaseClient';
-// import { APIResponse } from '@playwright/test';
-// import ContextOptions from './ContextOptions';
+import { request } from '@playwright/test';
+import BaseClient from './BaseClient';
+import ContextOptions from './ContextOptions';
+import appsetting from '../../../appsetting.json';
 
-class JiraClient {
-// 	private JClient: BaseClient;
+class JiraClient extends BaseClient {
+	private JClient: BaseClient;
 
-// 	public async GetClient() {
-// 		if (!this.JClient){
-// 			const contextOptions = new ContextOptions();
-// 			contextOptions.baseURL =  appsetting.Uri;
-// 			contextOptions.extraHTTPHeaders =  {'Authorization': appsetting.JiraAuthToken}
-// 			this.JClient = new BaseClient();
-// 			this.JClient.ClientContext = await request.newContext(new ContextOptions());
-// 		}
-	
-// 		return this.JClient;
-// 	}
-
-// 	public async findIssue(issueId:string):Promise<void>{
-// 		const resp: APIResponse = await this.JClient.get(
-// 			`${appsetting.Uri}/issue/${issueId}`
-// 		)
-		
-// 		console.log(resp.json);
-// 	}
+	public async GetClient() {
+		if (!jiraClient.JClient){
+			const contextOptions = new ContextOptions();
+			contextOptions.baseURL =  appsetting.Uri;
+			contextOptions.extraHTTPHeaders =  {'Authorization': appsetting.JiraAuthToken}
+			jiraClient.JClient = new BaseClient();
+			jiraClient.JClient.ClientContext = await request.newContext(contextOptions);
+		}
+		return this;
+	}
 }
 
 const jiraClient = new JiraClient();
