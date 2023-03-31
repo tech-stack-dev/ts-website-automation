@@ -1,22 +1,32 @@
-import { APIResponse } from '@playwright/test';
+import { PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, TestType } from '@playwright/test';
 import appsetting from '../../../../appsetting.json';
-import {jiraClient} from '../../../base/client/JiraClient';
+import { ClientsEnum } from '../../../base/client/ClientsEnum';
+import ClientProvider from '../../../providers/ClientProvider';
+import { responseVariable } from '../../../runtimeVariables/dto/ResponseVariable';
 
 class JiraApiSteps {
 
-	
-		private async GetStatusByJiraId(issueId:string):Promise<void>{
-			const resp: APIResponse = await (await jiraClient.GetClient()).get(
-			`${appsetting.Uri}/issue/${issueId}`
-		)
-		
-		
-		console.log(resp.json);
+	public async skipIfTestIsBlockedByJira(testName:string,test:TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>):Promise<void>{
+		if (await jiraApiSteps.isIssueOpened(testName)){
+			test.skip();
 		}
-		
-		async isIssueBlocked(testname: string): Promise<boolean> {
+	}
+	public async GetStatusByJiraId(
+			issueId:string
+		  ) {
+			const client = await ClientProvider.getClient(ClientsEnum.JiraClient);
+			responseVariable.value = await client.get(`${appsetting.JiraUrl}/issue/${issueId}`);
+			
+			console.log((await responseVariable.value.body()).toString());
+
+			const jsonObj = JSON.parse((await responseVariable.value.body()).toString());
+			const status = jsonObj.status["name"];
+			return status
+			};
+
+	public async isIssueOpened(testname: string): Promise<boolean> {
 			const blockingJiras = testname.split("@").filter((tag) =>
-			  tag.includes(appsetting.TestBlockedByJiraTag)
+			  tag.includes("TSWEB-")
 			);
 		  
 			if (blockingJiras.length === 0) {
@@ -24,12 +34,11 @@ class JiraApiSteps {
 			}
 		  
 			for (const jira of blockingJiras) {
-			  const jiraNumber = jira.replace(appsetting.TestBlockedByJiraTag, "");
-			  const status = await this.GetStatusByJiraId(jiraNumber);
+			  const status = await this.GetStatusByJiraId(jira);
 		  
-				// if (appsetting.JiraClosedStatuses.includes(status)) {
-				// 	return false;
-				// }
+				if (appsetting.JiraClosedStatuses.includes(status)) {
+					return false;
+				}
 			}
 		  
 			return true;
