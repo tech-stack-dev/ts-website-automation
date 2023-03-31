@@ -55,6 +55,9 @@ export default class UrlProvider {
 			case ClientsEnum.Client_3: {
 				return <string>process.env.CLIENT_3_URL;
 			}
+			case ClientsEnum.JiraClient: {
+				return appsetting.JiraUrl;
+			}
 			default: {
 				throw Error(
 					`Unable to generate client URL for '${clientName}' brand`
