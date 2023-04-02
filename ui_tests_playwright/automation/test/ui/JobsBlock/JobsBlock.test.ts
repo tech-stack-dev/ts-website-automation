@@ -60,6 +60,25 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	);
 });
 
+test('Check that input fields in "Contact us" form accepst only valid data on job page @Regression @JobsBlock @TSWEB-76', async () => {
+	await careerSteps.verifyThatCareerWasCreated(stringUtils.AddRandom('JobsBlockTest{SRND}'));
+	await careerSteps.clickOnCareerCard(stringUtils.AddRandom('JobsBlockTest{SRND}'));
+	await driver.getByTestId("ApplyNowButton-SharedApplyNow").click();
+
+	const errorLocator = "xpath=/following-sibling::div[@id='error']";
+
+	await driver.getByTestId(Career.firstNameInput).fill("                                         ");
+	await driver.getByTestId(Career.lastNameInput).fill(" ");
+	await driver.getByTestId("SubmitButton-SharedSendMessage").click();
+
+	const actualErrorText_FirstName = await driver.getByTestId(Career.firstNameInput).locator(Career.fieldErrorSelector).textContent();
+	const actualErrorText_LastName = await driver.getByTestId(Career.lastNameInput).locator(Career.fieldErrorSelector).textContent();
+	expect(actualErrorText_FirstName).toEqual("Please enter your name");
+	expect(actualErrorText_LastName).toEqual("Please enter your last name");
+
+});
+
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 	await contentfulSteps.deleteAndUnpublishCareer(
