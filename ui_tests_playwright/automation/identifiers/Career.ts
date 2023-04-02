@@ -9,8 +9,8 @@ export default class Career {
 	static jobHeaderReviewsTabUa = 'NavigationTab-Відгуки';
 	static jobHeaderContactUsTabUa = 'NavigationTab-ЗвязатисьЗНами';
 	// Apply for a Job modal window
-	static firstNameInput = 'CareerInput-Name';
-	static lastNameInput = 'CareerInput-LastName';
-	static sendRequestButton = 'SubmitButton-SharedSendMessage';
-	static fieldErrorSelector = "xpath=/following-sibling::div[@id='error']";
+	static ApplyNowButton = "ApplyNowButton-SharedApplyNow";
+	static Modal_firstNameInput = 'CareerInput-Name';
+	static Modal_lastNameInput = 'CareerInput-LastName';
+	static Modal_sendRequestButton = 'SubmitButton-SharedSendMessage';
 }

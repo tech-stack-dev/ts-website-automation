@@ -180,7 +180,6 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
     await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
 });
 
-
 test.afterEach(async () => {
     await driver.closeDrivers();
 });
