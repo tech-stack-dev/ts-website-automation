@@ -14,8 +14,8 @@ test.beforeEach(async () => {
 
 test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @JobsBlock @TSWEB-76", async () => {
 	const testData: Array<string> = [
-		" ",
-		"                                         " 
+		" ", // One space
+		"                                         " // Many spaces
 	];
 
     for(const data of testData){
