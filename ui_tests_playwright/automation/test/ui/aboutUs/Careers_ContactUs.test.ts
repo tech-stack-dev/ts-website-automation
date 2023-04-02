@@ -12,7 +12,7 @@ test.beforeEach(async () => {
     await driver.getByTestId(Button.NavigationTab_ContactUs).click();
 });
 
-test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @JobsBlock @TSWEB-76", async () => {
+test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
 	const testData: Array<string> = [
 		" ", // One space
 		"                                         " // Many spaces
