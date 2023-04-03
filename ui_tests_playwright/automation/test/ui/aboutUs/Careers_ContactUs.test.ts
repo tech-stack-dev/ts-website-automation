@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
 	const testData: Array<string> = [
 		" ", 
-		" ".repeat(99)
+		" ".repeat(149) // Filed accepts up to 149 characters
 	];
 
     for(const data of testData){
