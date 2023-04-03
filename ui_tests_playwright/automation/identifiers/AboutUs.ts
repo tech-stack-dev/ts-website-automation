@@ -31,7 +31,6 @@ export default class AboutUs {
 	static EC_Meetups = 'Meetups';
 	static EC_TechCompetitions = 'Tech\\ Competitions';
 	static EC_TraineeCamps = 'Trainee\\ Camps';
-	static EC_Library = 'Library';
 	static EC_LoyaltyProgram = 'Loyalty\\ Program';
 
 	static SocialResponsibilityId = 'socialResponsibility';

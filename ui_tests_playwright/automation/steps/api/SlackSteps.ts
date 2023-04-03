@@ -1,29 +1,27 @@
-import {Message} from '@slack/web-api/dist/response/ConversationsHistoryResponse';
-import {WebClient} from '@slack/web-api';
-import {expect} from '@playwright/test';
-import {driver} from '../../base/driver/Driver';
-import SlackProvider from '../../providers/SlackProvider';
+import { Message } from '@slack/web-api/dist/response/ConversationsHistoryResponse';
+import { WebClient } from '@slack/web-api';
+import { expect } from '@playwright/test';
+import { driver } from '../../base/driver/Driver';
+import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
 
 class SlackSteps {
 	public async getMessageWithValueFromChat(
 		chatId: string,
 		value: string
 	): Promise<Message> {
-		// Message waiting
-		await driver.Page.waitForTimeout(1000);
+		let message: Message | undefined;
 
-		const webClient = new WebClient(await this.getSlackToken());
-		const messages: Message[] = (
-			await webClient.conversations.history({channel: chatId})
-		).messages!;
+		await driver.executeFunc(async () => {
+			const webClient = new WebClient(slackDtoVariable.value.token);
+			const messages: Message[] = (
+				await webClient.conversations.history({ channel: chatId })
+			).messages!;
+			message = messages.find((x) =>
+				x.attachments!.find((x) => x.fields!.find((x) => x.value === value)));
+			expect(message).not.toBe(undefined);
+		}, 5);
 
-		return messages.find((x) =>
-			x.attachments!.find((x) => x.fields!.find((x) => x.value === value))
-		)!;
-	}
-
-	private async getSlackToken() {
-		return await SlackProvider.getSlackToken();
+		return message!;
 	}
 
 	public checkMessageFromHrNotifyChannel(
@@ -91,4 +89,4 @@ class SlackSteps {
 
 const slackSteps = new SlackSteps();
 
-export {slackSteps};
+export { slackSteps };
