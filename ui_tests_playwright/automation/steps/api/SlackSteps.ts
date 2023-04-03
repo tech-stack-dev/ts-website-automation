@@ -1,8 +1,8 @@
-import { Message } from '@slack/web-api/dist/response/ConversationsHistoryResponse';
-import { WebClient } from '@slack/web-api';
-import { expect } from '@playwright/test';
-import { driver } from '../../base/driver/Driver';
-import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import {Message} from '@slack/web-api/dist/response/ConversationsHistoryResponse';
+import {WebClient} from '@slack/web-api';
+import {expect} from '@playwright/test';
+import {driver} from '../../base/driver/Driver';
+import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
 
 class SlackSteps {
 	public async getMessageWithValueFromChat(
@@ -14,10 +14,13 @@ class SlackSteps {
 		await driver.executeFunc(async () => {
 			const webClient = new WebClient(slackDtoVariable.value.token);
 			const messages: Message[] = (
-				await webClient.conversations.history({ channel: chatId })
+				await webClient.conversations.history({channel: chatId})
 			).messages!;
 			message = messages.find((x) =>
-				x.attachments!.find((x) => x.fields!.find((x) => x.value === value)));
+				x.attachments!.find((x) =>
+					x.fields!.find((x) => x.value === value)
+				)
+			);
 			expect(message).not.toBe(undefined);
 		}, 5);
 
@@ -89,4 +92,4 @@ class SlackSteps {
 
 const slackSteps = new SlackSteps();
 
-export { slackSteps };
+export {slackSteps};

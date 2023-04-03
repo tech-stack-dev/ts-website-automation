@@ -1,4 +1,4 @@
-import { contentfulUtils } from '../../utils/ContentfulUtils';
+import {contentfulUtils} from '../../utils/ContentfulUtils';
 
 class ContentfulSteps {
 	public async createCareerWithDefaultValue(
@@ -6,9 +6,13 @@ class ContentfulSteps {
 		careerId: string,
 		careerDescriptionId: string
 	) {
-		await contentfulUtils.CreateAndPublishCareerDescription(careerDescriptionId
+		await contentfulUtils.CreateAndPublishCareerDescription(
+			careerDescriptionId
 		);
-		await contentfulUtils.CreateAndPublishCareer(careerId, careerName, careerDescriptionId
+		await contentfulUtils.CreateAndPublishCareer(
+			careerId,
+			careerName,
+			careerDescriptionId
 		);
 	}
 
@@ -16,12 +20,16 @@ class ContentfulSteps {
 		careerId: string,
 		careerDescriptionId: string
 	) {
-		await contentfulUtils.UnpublishCareerWithDescription(careerId,careerDescriptionId
+		await contentfulUtils.UnpublishCareerWithDescription(
+			careerId,
+			careerDescriptionId
 		);
-		await contentfulUtils.DeleteCareerWithDescription(careerId,careerDescriptionId
+		await contentfulUtils.DeleteCareerWithDescription(
+			careerId,
+			careerDescriptionId
 		);
 	}
 }
 
 const contentfulSteps = new ContentfulSteps();
-export { contentfulSteps };
+export {contentfulSteps};
