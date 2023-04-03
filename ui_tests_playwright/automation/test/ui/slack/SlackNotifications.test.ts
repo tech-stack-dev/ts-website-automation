@@ -8,11 +8,11 @@ import {slackSteps} from '../../../steps/api/SlackSteps';
 import {formSteps} from '../../../steps/ui/FormSteps';
 import UrlPath from '../../../providers/UrlPath';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
-
-const staging_techstack_hr_notify_id = 'C03KV7ENTUL';
-const staging_techstack_notify_id = 'C03KSNWU7BM';
+import SlackProvider from '../../../providers/SlackProvider';
+import { slackDtoVariable } from '../../../runtimeVariables/dto/SlackDtoVariable';
 
 test.beforeEach(async () => {
+	await SlackProvider.getSlackSecret();
 	await baseDriverSteps.createsNewBrowser();
 });
 
@@ -21,7 +21,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 	await driver.getByTestId(Button.NavigationTab_ContactUs).click();
 	await formSteps.sendContactUsMessage();
 	const message = await slackSteps.getMessageWithValueFromChat(
-		staging_techstack_hr_notify_id,
+		slackDtoVariable.value.stagingTechstackHrNotifyId,
 		`Test${sessionValue.stringValue}`
 	);
 
@@ -40,7 +40,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
 	await driver.getByTestId(Button.ApplyNow).click();
 	await formSteps.sendApplyForAJob();
 	const message = await slackSteps.getMessageWithValueFromChat(
-		staging_techstack_hr_notify_id,
+		slackDtoVariable.value.stagingTechstackHrNotifyId,
 		`Test${sessionValue.stringValue}`
 	);
 
@@ -64,7 +64,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
 		const message = await slackSteps.getMessageWithValueFromChat(
-			staging_techstack_notify_id,
+			slackDtoVariable.value.stagingTechstackNotifyId,
 			`Test${sessionValue.stringValue}`
 		);
 
@@ -82,7 +82,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from all 
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
 		const message = await slackSteps.getMessageWithValueFromChat(
-			staging_techstack_notify_id,
+			slackDtoVariable.value.stagingTechstackNotifyId,
 			`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`
 		);
 

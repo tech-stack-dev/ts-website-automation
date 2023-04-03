@@ -143,17 +143,14 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
 	);
 
 	await expect(
-		engineeringCulture.locator(`#${AboutUs.EC_TechClubs}`)
-	).toContainText('Tech clubs');
-	await expect(
 		engineeringCulture.locator(`#${AboutUs.EC_Meetups}`)
 	).toContainText('Meetups');
 	await expect(
 		engineeringCulture.locator(`#${AboutUs.EC_TechCompetitions}`)
 	).toContainText('Tech Competitions');
 	await expect(
-		engineeringCulture.locator(`#${AboutUs.EC_Library}`)
-	).toContainText('Library');
+		engineeringCulture.locator(`#${AboutUs.EC_TraineeCamps}`)
+	).toContainText('Trainee Camps');
 	await expect(
 		engineeringCulture.locator(`#${AboutUs.EC_LoyaltyProgram}`)
 	).toContainText('Loyalty Program');
@@ -290,7 +287,7 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 		'false'
 	);
 
-	await ourHistoryNextButton.click({clickCount: 6});
+	await ourHistoryNextButton.click({clickCount: 7});
 
 	await expect(ourHistotyPrevButton).toHaveAttribute(
 		'data-disabled',

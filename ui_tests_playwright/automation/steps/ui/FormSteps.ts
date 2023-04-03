@@ -1,9 +1,9 @@
-import {driver} from '../../base/driver/Driver';
+import { driver } from '../../base/driver/Driver';
 import Button from '../../identifiers/Button';
 import ApplyForAJobForm from '../../identifiers/Forms/ApplyForAJobForm';
 import ContactUsForm from '../../identifiers/Forms/ContactUsForm';
 import GetInTouchForm from '../../identifiers/Forms/GetInTouchForm';
-import {sessionValue} from '../../runtimeVariables/SessionValue';
+import { sessionValue } from '../../runtimeVariables/SessionValue';
 
 class FormSteps {
 	public async sendContactUsMessage() {
@@ -22,10 +22,10 @@ class FormSteps {
 			.getByTestId(ContactUsForm.Message)
 			.fill(`TestMessage${sessionValue.stringValue}`);
 
-		// TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
-		await driver.Page.waitForTimeout(3000);
-		await driver.getByTestId(Button.SendButton).click();
-		await driver.getByTestId(Button.Close).waitFor({state: 'visible'});
+		await driver.executeFunc(async () => {
+			await driver.getByTestId(Button.SendButton).click();
+			await driver.getByTestId(Button.Close).waitFor({ state: 'visible' });
+		}, 5);
 	}
 
 	public async sendApplyForAJob() {
@@ -45,10 +45,11 @@ class FormSteps {
 			.getByTestId(ApplyForAJobForm.Message)
 			.fill(`TestMessage${sessionValue.stringValue}`);
 
-		// TODO: fix with https://ts-website.atlassian.net/browse/TSWEB-600
-		await driver.Page.waitForTimeout(3000);
-		await driver.getByTestId(Button.SendButton).click();
-		await driver.getByTestId(Button.SendButton).waitFor({state: 'hidden'});
+
+		await driver.executeFunc(async () => {
+			await driver.getByTestId(Button.SendButton).click();
+			await driver.getByTestId(Button.SendButton).waitFor({ state: 'hidden' });
+		}, 5);
 	}
 
 	public async sendGetInTouchMessage() {
@@ -77,10 +78,10 @@ class FormSteps {
 		await driver.getByTestId(Button.SendButton).click();
 		await driver
 			.getByTestId(Button.Close, undefined, 1)
-			.waitFor({state: 'visible'});
+			.waitFor({ state: 'visible' });
 	}
 }
 
 const formSteps = new FormSteps();
 
-export {formSteps};
+export { formSteps };
