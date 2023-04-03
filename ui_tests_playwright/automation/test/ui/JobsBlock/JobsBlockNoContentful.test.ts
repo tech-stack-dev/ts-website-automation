@@ -16,7 +16,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	await driver.getByTestId(Career.ApplyNowButton).click();
 
 	await driver.getByTestId(Career.Modal_firstNameInput).fill(" ");
-	await driver.getByTestId(Career.Modal_lastNameInput).fill(" ".repeat(99));
+	await driver.getByTestId(Career.Modal_lastNameInput).fill(" ".repeat(99)); // Filed accepts up to 100 characters
 	await driver.getByTestId(Career.Modal_sendRequestButton).click();
 
 	const actualErrorText_FirstName = await driver
