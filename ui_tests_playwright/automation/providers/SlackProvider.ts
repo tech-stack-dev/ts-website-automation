@@ -1,5 +1,5 @@
 import {awsKms} from '../base/client/AWSkms';
-import { slackDtoVariable } from '../runtimeVariables/dto/SlackDtoVariable';
+import {slackDtoVariable} from '../runtimeVariables/dto/SlackDtoVariable';
 
 export default class SlackProvider {
 	public static async getSlackSecret() {
@@ -8,7 +8,7 @@ export default class SlackProvider {
 		slackDtoVariable.value = {
 			token: jsonObj.Token,
 			stagingTechstackHrNotifyId: jsonObj.StagingTechstackHrNotifyId,
-			stagingTechstackNotifyId: jsonObj.StagingTechstackNotifyId
-		}
+			stagingTechstackNotifyId: jsonObj.StagingTechstackNotifyId,
+		};
 	}
 }

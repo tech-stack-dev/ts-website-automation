@@ -1,6 +1,6 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
-import { sessionValue } from '../runtimeVariables/SessionValue';
+import {sessionValue} from '../runtimeVariables/SessionValue';
 
 class ContentfulUtils {
 	async GetEnvironment() {

@@ -9,7 +9,7 @@ import {formSteps} from '../../../steps/ui/FormSteps';
 import UrlPath from '../../../providers/UrlPath';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import SlackProvider from '../../../providers/SlackProvider';
-import { slackDtoVariable } from '../../../runtimeVariables/dto/SlackDtoVariable';
+import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();

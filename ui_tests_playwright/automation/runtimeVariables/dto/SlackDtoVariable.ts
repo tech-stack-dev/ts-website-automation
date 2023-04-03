@@ -1,4 +1,4 @@
-import { SlackDto } from '../../dto/SlackDto';
+import {SlackDto} from '../../dto/SlackDto';
 
 class SlackDtoVariable {
 	public value: SlackDto;
