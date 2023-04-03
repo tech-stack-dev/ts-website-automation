@@ -15,7 +15,6 @@ Scenario: CheckNavigationHeaderInCareerPage
 	When User clicks 'Ua' button on 'HeaderPage' container
 	Then 'Ua' button is active on 'HeaderPage' container
 
-
 # Test should be moved to TypeScript solution, details in TSWEB-560
 @Regression @JobsBlock @TSWEB146 @Cleanup @NotRun
 Scenario: CheckNavigationHeaderOnJobPage
