@@ -10,7 +10,8 @@ Scenario: CheckThatUserCanSwithedLanguageInHeaderBlock
 	When User clicks 'Ua' button on 'HeaderPage' container
 	Then 'Ua' button is active on 'HeaderPage' container
 
-@Regression @NavigationHeader
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @NavigationHeader @NotRun
 Scenario: CheckThatUserCanSwithedLanguageInNavigationBlock
 	When User scrolls down to the end of the page
 	Then 'En' button is active on 'NavigationHeader' container
