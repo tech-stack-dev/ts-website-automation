@@ -14,8 +14,8 @@ test.beforeEach(async () => {
 
 test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
 	const testData: Array<string> = [
-		" ", // One space
-		"                                         " // Many spaces
+		" ", 
+		" ".repeat(99)
 	];
 
     for(const data of testData){
@@ -24,7 +24,6 @@ test("Check that 'Full Name' input field does not accept only spaces in the 'Con
 		const actualErrorText_FullName = await driver.getByTestId(ContactUs.fullNameInput).locator(Input.fieldErrorSelector).textContent();
 
 		expect(actualErrorText_FullName).toEqual("Please enter your name");
-
 	}
 });
 
