@@ -24,29 +24,26 @@ class JiraApiSteps {
 		for (const jira of blockingJiras) {
 		  const status = await this.GetStatusByJiraId(jira);
 	  
-			if (appsetting.JiraClosedStatuses.includes(status)) {
-				return false;
-			}
+		  if (appsetting.JiraClosedStatuses.includes(status))
+				{continue;}
+				else {return true;}
 		}
-	  
-		return true;
+	  return false;
 	}
 
 	public async GetStatusByJiraId(
 			issueId:string
 		  ) {
 			const client = await ClientProvider.getClient(ClientsEnum.JiraClient);
-			responseVariable.value = await client.get(`${appsetting.JiraUrl}/issue/${issueId}`);
-			
-			console.log((await responseVariable.value.body()).toString());
+			responseVariable.value = await client.get(`rest/api/3/issue/${issueId}`);
 
 			const jsonObj = JSON.parse((await responseVariable.value.body()).toString());
-			const status = jsonObj.status["name"];
+			const status = jsonObj.fields.status.name;
 			return status
 			};
 
 		}
-		
+
 const jiraApiSteps = new JiraApiSteps();
 
 export {jiraApiSteps};
