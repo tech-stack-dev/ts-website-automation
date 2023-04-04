@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 });
 
 test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {
-	await driver.locator(`[data-id*=${Containers.careerCardWithoutModifier}]`).nth(1).click();
+	await driver.getByTestId('/CardWrapper/').click();;
 	await driver.getByTestId(Career.ApplyNowButton).click();
 
 	await driver.getByTestId(Career.Modal_firstNameInput).fill(" ");
@@ -21,14 +21,12 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 
 	const actualErrorText_FirstName = await driver
 		.getByTestId(Career.Modal_firstNameInput)
-		.locator(Input.fieldErrorSelector)
-		.textContent();
+		.locator(Input.fieldErrorSelector);
 	const actualErrorText_LastName = await driver
 		.getByTestId(Career.Modal_lastNameInput)
-		.locator(Input.fieldErrorSelector)
-		.textContent();
-	expect(actualErrorText_FirstName).toEqual('Please enter your name');
-	expect(actualErrorText_LastName).toEqual('Please enter your last name');
+		.locator(Input.fieldErrorSelector);
+	expect(actualErrorText_FirstName).toHaveText('Please enter your name');
+	expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
 test.afterEach(async () => {

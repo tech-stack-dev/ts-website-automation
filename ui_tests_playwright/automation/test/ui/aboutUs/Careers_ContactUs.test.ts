@@ -21,9 +21,9 @@ test("Check that 'Full Name' input field does not accept only spaces in the 'Con
     for(const data of testData){
 		await driver.getByTestId(ContactUs.fullNameInput).fill(data);
 		await driver.getByTestId(ContactUs.sendRequestButton).click();
-		const actualErrorText_FullName = await driver.getByTestId(ContactUs.fullNameInput).locator(Input.fieldErrorSelector).textContent();
+		const actualErrorText_FullName = await driver.getByTestId(ContactUs.fullNameInput).locator(Input.fieldErrorSelector);
 
-		expect(actualErrorText_FullName).toEqual("Please enter your name");
+		expect(actualErrorText_FullName).toHaveText("Please enter your name");
 	}
 });
 
