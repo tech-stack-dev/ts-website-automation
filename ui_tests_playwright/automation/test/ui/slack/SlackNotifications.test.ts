@@ -30,7 +30,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 		lastName: `Automation${sessionValue.stringValue}`,
 		email: `Test${sessionValue.stringValue}@test.com`,
 		tel: sessionValue.numberValue,
-		messge: `TestMessage${sessionValue.stringValue}`,
+		message: `TestMessage${sessionValue.stringValue}`,
 	});
 });
 
@@ -49,7 +49,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
 		lastName: `Automation${sessionValue.stringValue}`,
 		email: `Test${sessionValue.stringValue}@test.com`,
 		tel: sessionValue.numberValue,
-		messge: `TestMessage${sessionValue.stringValue}`,
+		message: `TestMessage${sessionValue.stringValue}`,
 	});
 });
 
@@ -72,7 +72,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
 			firstName: `Test${sessionValue.stringValue}`,
 			lastName: `Automation${sessionValue.stringValue}`,
 			email: `test${sessionValue.stringValue}@test.com`,
-			messge: `TestMessage${sessionValue.stringValue}`,
+			message: `TestMessage${sessionValue.stringValue}`,
 		});
 	}
 });
@@ -89,7 +89,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from all 
 		slackSteps.checkMessageFromNotifyChannel(message, {
 			fullName: `Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`,
 			email: `test${sessionValue.stringValue}@test.com`,
-			messge: `TestMessage${sessionValue.stringValue}`,
+			message: `TestMessage${sessionValue.stringValue}`,
 		});
 	}
 });
