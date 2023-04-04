@@ -5,6 +5,8 @@ import UrlProvider from '../../../providers/UrlProvider';
 import Career from '../../../identifiers/Career';
 import Containers from '../../../identifiers/Containers';
 import Input from '../../../identifiers/Input';
+import Button from '../../../identifiers/Button';
+import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -13,20 +15,20 @@ test.beforeEach(async () => {
 
 test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
-	await driver.getByTestId(Career.ApplyNowButton).click();
+	await driver.getByTestId(Button.ApplyNow).click();
 
-	await driver.getByTestId(Career.Modal_firstNameInput).fill(" ");
-	await driver.getByTestId(Career.Modal_lastNameInput).fill(" ".repeat(99)); // Field accepts up to 100 characters
-	await driver.getByTestId(Career.Modal_sendRequestButton).click();
+	await driver.getByTestId(ApplyForAJobForm.FirstName).fill(" ");
+	await driver.getByTestId(ApplyForAJobForm.LastName).fill(" ".repeat(99)); // Field accepts up to 100 characters
+	await driver.getByTestId(Button.SendButton).click();
 
-	const actualErrorText_FirstName = await driver
-		.getByTestId(Career.Modal_firstNameInput)
+	const actualErrorText_FirstName = driver
+		.getByTestId(ApplyForAJobForm.FirstName)
 		.locator(Input.fieldErrorSelector);
-	const actualErrorText_LastName = await driver
-		.getByTestId(Career.Modal_lastNameInput)
+	const actualErrorText_LastName = driver
+		.getByTestId(ApplyForAJobForm.LastName)
 		.locator(Input.fieldErrorSelector);
-	expect(actualErrorText_FirstName).toHaveText('Please enter your name');
-	expect(actualErrorText_LastName).toHaveText('Please enter your last name');
+	await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
+	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
 test.afterEach(async () => {
