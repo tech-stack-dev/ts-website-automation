@@ -44,12 +44,7 @@ export default class BaseClient implements APIRequestContext {
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		if(options===undefined){
-			return this.ClientContext.get(url);
-		}
-		else{
-			return this.ClientContext.get(url, options);
-		}
+		return this.ClientContext.get(url, options);
 	}
 
 	head(
