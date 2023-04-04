@@ -38,7 +38,7 @@ test("Check the section title and number from the 'AboutUs' block @Regression @A
 });
 
 test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
-    let carousel = driver.getByTestId(AboutUs.OurHistoryCarousel);
+    const carousel = driver.getByTestId(AboutUs.OurHistoryCarousel);
 
     await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(0)).toContainText('01 2014');
     await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(1)).toContainText('02 2015');
@@ -51,7 +51,7 @@ test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @Abo
 });
 
 test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
-    let carousel = driver.getByTestId(AboutUs.CandidateCarousel);
+    const carousel = driver.getByTestId(AboutUs.CandidateCarousel);
 
     await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(0)).toContainText('01 CV');
     await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(1)).toContainText('02 Pre-screening');
@@ -62,7 +62,7 @@ test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @
 });
 
 test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibility' blocks from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
-    let techstackRoles = driver.Page.locator(`#${AboutUs.TechstackRolesId}`);
+    const techstackRoles = driver.Page.locator(`#${AboutUs.TechstackRolesId}`);
 
     await expect(techstackRoles.locator(`#${AboutUs.Roles_Mentor}`)).toContainText('Mentor');
     await expect(techstackRoles.locator(`#${AboutUs.Roles_TechExpert}`)).toContainText('Tech Expert');
@@ -70,7 +70,7 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
     await expect(techstackRoles.locator(`#${AboutUs.Roles_TeamLead}`)).toContainText('Team Lead');
     await expect(techstackRoles.locator(`#${AboutUs.Roles_VPofFunction}`)).toContainText('VP of Function');
 
-    let engineeringCulture = driver.Page.locator(`#${AboutUs.EngineeringCultureId}`);
+    const engineeringCulture = driver.Page.locator(`#${AboutUs.EngineeringCultureId}`);
 
     await expect(engineeringCulture.locator(`#${AboutUs.EC_TechClubs}`)).toContainText('Tech clubs');
     await expect(engineeringCulture.locator(`#${AboutUs.EC_Meetups}`)).toContainText('Meetups');
@@ -78,7 +78,7 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
     await expect(engineeringCulture.locator(`#${AboutUs.EC_Library}`)).toContainText('Library');
     await expect(engineeringCulture.locator(`#${AboutUs.EC_LoyaltyProgram}`)).toContainText('Loyalty Program');
 
-    let socialResponsibility = driver.Page.locator(`#${AboutUs.SocialResponsibilityId}`);
+    const socialResponsibility = driver.Page.locator(`#${AboutUs.SocialResponsibilityId}`);
 
     await expect(socialResponsibility.locator(`#${AboutUs.SR_Charity}`)).toContainText('Charity');
     await expect(socialResponsibility.locator(`#${AboutUs.SR_EnvironmentalSafety}`)).toContainText('Environmental Safety');
@@ -93,9 +93,9 @@ test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSW
 });
 
 test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
-    let engineeringCultureCarousel = driver.getByTestId(AboutUs.EngineeringCultureCarousel);
-    let engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselPrevButton);
-    let engineeringCultureNextButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselNextButton);
+    const engineeringCultureCarousel = driver.getByTestId(AboutUs.EngineeringCultureCarousel);
+    const engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselPrevButton);
+    const engineeringCultureNextButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselNextButton);
 
     await expect(engineeringCulturePrevButton).toHaveAttribute('data-disabled', 'true');
     await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'false');
@@ -114,9 +114,9 @@ test("Check the buttons of the photo carousel from the 'AboutUs' block @Regressi
     await expect(engineeringCulturePrevButton).toHaveAttribute('data-disabled', 'false');
     await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'true');
 
-    let socialResponsibilityCarousel = driver.getByTestId(AboutUs.SocialResponsibilityCarousel);
-    let socialResponsibilityPrevButton = socialResponsibilityCarousel.getByTestId(AboutUs.CarouselPrevButton);
-    let socialResponsibilityNextButton = socialResponsibilityCarousel.getByTestId(AboutUs.CarouselNextButton);
+    const socialResponsibilityCarousel = driver.getByTestId(AboutUs.SocialResponsibilityCarousel);
+    const socialResponsibilityPrevButton = socialResponsibilityCarousel.getByTestId(AboutUs.CarouselPrevButton);
+    const socialResponsibilityNextButton = socialResponsibilityCarousel.getByTestId(AboutUs.CarouselNextButton);
 
     await expect(socialResponsibilityPrevButton).toHaveAttribute('data-disabled', 'true');
     await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'false');
@@ -137,9 +137,9 @@ test("Check the buttons of the photo carousel from the 'AboutUs' block @Regressi
 });
 
 test("Check the buttons of the info carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
-    let ourHistoryCarousel = driver.getByTestId(AboutUs.OurHistoryCarousel);
-    let ourHistotyPrevButton = ourHistoryCarousel.getByTestId(AboutUs.CarouselPrevButton);
-    let ourHistoryNextButton = ourHistoryCarousel.getByTestId(AboutUs.CarouselNextButton);
+    const ourHistoryCarousel = driver.getByTestId(AboutUs.OurHistoryCarousel);
+    const ourHistotyPrevButton = ourHistoryCarousel.getByTestId(AboutUs.CarouselPrevButton);
+    const ourHistoryNextButton = ourHistoryCarousel.getByTestId(AboutUs.CarouselNextButton);
 
     await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'true');
     await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'false');
@@ -158,9 +158,9 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
     await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
     await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'true');
 
-    let candidateCarousel = driver.getByTestId(AboutUs.CandidateCarousel);
-    let candidatePrevButton = candidateCarousel.getByTestId(AboutUs.CarouselPrevButton);
-    let candidateNextButton = candidateCarousel.getByTestId(AboutUs.CarouselNextButton);
+    const candidateCarousel = driver.getByTestId(AboutUs.CandidateCarousel);
+    const candidatePrevButton = candidateCarousel.getByTestId(AboutUs.CarouselPrevButton);
+    const candidateNextButton = candidateCarousel.getByTestId(AboutUs.CarouselNextButton);
 
     await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'true');
     await expect(candidateNextButton).toHaveAttribute('data-disabled', 'false');
