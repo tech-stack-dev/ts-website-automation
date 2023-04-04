@@ -5,7 +5,7 @@ export default class Button {
 
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
-	
+
 	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
 	static SendButton = 'SubmitButton-SharedSendMessage';
 
