@@ -10,45 +10,60 @@ import {containerSteps} from '../../../steps/components/Container/ContainerSteps
 import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
-import { stringUtils } from '../../../utils/StringUtils';
+import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import Input from '../../../identifiers/Input';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await contentfulSteps.createCareerWithDefaultValue(
-		'JobsBlockTest{SRND}',
-		'defaultTestCareer{SRND}',
-		'defaultTestDescription{SRND}'
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 });
 
 test('Check that breadcrumbs displays correctly on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	await careerSteps.clickOnCareerCard(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	expect(await careerSteps.getBreadcrumbsText()).toBe(stringUtils.AddRandom('Jobs / JobsBlockTest{SRND}'));
+	await careerSteps.verifyThatCareerWasCreated(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
+	await careerSteps.clickOnCareerCard(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
+	expect(await careerSteps.getBreadcrumbsText()).toBe(
+		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
 });
 
 test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(stringUtils.AddRandom('JobsBlockTest{SRND}'));
-	await careerSteps.clickOnCareerCard(stringUtils.AddRandom('JobsBlockTest{SRND}'));
+	await careerSteps.verifyThatCareerWasCreated(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
+	await careerSteps.clickOnCareerCard(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.jobPageApplyProposition
 	);
-	expect(await careerSteps.getJobHeaderText()).toBe('Тестова Вакансія');
-	expect(
-		await driver.getByTestId(Career.jobHeaderJobsTabUa).textContent()
-	).toBe('Вакансії');
-	expect(
-		await driver.getByTestId(Career.jobHeaderAboutUsTabUa).textContent()
-	).toBe('Про компанію');
-	expect(
-		await driver.getByTestId(Career.jobHeaderReviewsTabUa).textContent()
-	).toBe('Відгуки');
-	expect(
-		await driver.getByTestId(Career.jobHeaderContactUsTabUa).textContent()
-	).toBe('Зв’язатись з нами');
+
+	await expect(
+		(
+			await driver.component(ContainerByClass, Career.jobHeaderTitle)
+		).Element
+	).toHaveText('Тестова Вакансія');
+	await expect(driver.getByTestId(Career.jobHeaderJobsTabUa)).toHaveText(
+		'Вакансії'
+	);
+	await expect(driver.getByTestId(Career.jobHeaderAboutUsTabUa)).toHaveText(
+		'Про компанію'
+	);
+	await expect(driver.getByTestId(Career.jobHeaderReviewsTabUa)).toHaveText(
+		'Відгуки'
+	);
+	await expect(driver.getByTestId(Career.jobHeaderContactUsTabUa)).toHaveText(
+		'Зв’язатись з нами'
+	);
 
 	for (const header of JobPagePreconditions.descriptionBlocksIdentifiersAndUaHeaders) {
 		await descriptionSteps.checkDescriptionBlockHeader(
@@ -56,7 +71,8 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 			header[1]
 		);
 	}
-	expect(await applyPropositionWrapper.textContent()).toBe(
+
+	await expect(applyPropositionWrapper.Element).toHaveText(
 		'Хочеш стати частиною нашої команди?Подавай заявку!'
 	);
 });
@@ -64,7 +80,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 test.afterEach(async () => {
 	await driver.closeDrivers();
 	await contentfulSteps.deleteAndUnpublishCareer(
-		'defaultTestCareer{SRND}',
-		'defaultTestDescription{SRND}'
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 });

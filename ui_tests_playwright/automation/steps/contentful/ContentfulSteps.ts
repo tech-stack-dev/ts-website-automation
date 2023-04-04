@@ -1,5 +1,4 @@
 import {contentfulUtils} from '../../utils/ContentfulUtils';
-import { stringUtils } from '../../utils/StringUtils';
 
 class ContentfulSteps {
 	public async createCareerWithDefaultValue(
@@ -8,12 +7,12 @@ class ContentfulSteps {
 		careerDescriptionId: string
 	) {
 		await contentfulUtils.CreateAndPublishCareerDescription(
-			stringUtils.AddRandom(careerDescriptionId)
+			careerDescriptionId
 		);
 		await contentfulUtils.CreateAndPublishCareer(
-			stringUtils.AddRandom(careerId),
-			stringUtils.AddRandom(careerName),
-			stringUtils.AddRandom(careerDescriptionId)
+			careerId,
+			careerName,
+			careerDescriptionId
 		);
 	}
 
@@ -22,12 +21,12 @@ class ContentfulSteps {
 		careerDescriptionId: string
 	) {
 		await contentfulUtils.UnpublishCareerWithDescription(
-			stringUtils.AddRandom(careerId),
-			stringUtils.AddRandom(careerDescriptionId)
+			careerId,
+			careerDescriptionId
 		);
 		await contentfulUtils.DeleteCareerWithDescription(
-			stringUtils.AddRandom(careerId),
-			stringUtils.AddRandom(careerDescriptionId)
+			careerId,
+			careerDescriptionId
 		);
 	}
 }
