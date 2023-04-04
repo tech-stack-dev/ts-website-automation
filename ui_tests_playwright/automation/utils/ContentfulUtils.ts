@@ -1,6 +1,6 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
-import { stringUtils } from './StringUtils';
+import {sessionValue} from '../runtimeVariables/SessionValue';
 
 class ContentfulUtils {
 	async GetEnvironment() {
@@ -300,7 +300,7 @@ class ContentfulUtils {
 				],
 			},
 			slug: {
-				'en-US': stringUtils.AddRandom('TypeScript_test{SRND}-v1'),
+				'en-US': `TypeScript_test${sessionValue.stringValue}-v1`,
 			},
 		},
 	};
