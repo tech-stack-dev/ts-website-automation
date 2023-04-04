@@ -67,7 +67,8 @@ Scenario: CheckThatUserSeesVacanciesSelectedFromSeniorityBlockInSideBar
 	Then '2' tags are selected in 'Seniority levels' sider bar on 'CareerPage' container
 	When User clicks on header 'Seniority levels' filter sider bar on 'CareerPage' container
 	Then Number of selected tags in 'Seniority levels' side bar on 'CareerPage' container equals to '2'
-
+	
+# Test should be moved to TypeScript solution, details in TSWEB-560
 @Regression @FilterBlock @TSWEB145 @Cleanup
 Scenario: CheckThatUserDeleteSelectedTagsFromSenioritySideBarClickingResetButton
 	# Precondition
