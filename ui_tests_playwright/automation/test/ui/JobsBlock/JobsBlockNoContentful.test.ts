@@ -12,11 +12,11 @@ test.beforeEach(async () => {
 });
 
 test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {
-	await driver.getByTestId('/CardWrapper/').click();;
+	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(Career.ApplyNowButton).click();
 
 	await driver.getByTestId(Career.Modal_firstNameInput).fill(" ");
-	await driver.getByTestId(Career.Modal_lastNameInput).fill(" ".repeat(99)); // Fieдd accepts up to 100 characters
+	await driver.getByTestId(Career.Modal_lastNameInput).fill(" ".repeat(99)); // Field accepts up to 100 characters
 	await driver.getByTestId(Career.Modal_sendRequestButton).click();
 
 	const actualErrorText_FirstName = await driver
