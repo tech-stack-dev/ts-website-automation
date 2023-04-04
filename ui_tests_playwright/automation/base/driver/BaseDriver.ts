@@ -102,7 +102,11 @@ export default class BaseDriver {
 		}
 	}
 
-	public getByTestId(testId: string, parent?: Locator, nth = 0): Locator {
+	public getByTestId(
+		testId: string | RegExp,
+		parent?: Locator,
+		nth = 0
+	): Locator {
 		return (parent ? parent : driver.Page).getByTestId(testId).nth(nth);
 	}
 
@@ -117,12 +121,12 @@ export default class BaseDriver {
 				await func();
 				return;
 			} catch (err) {
-				console.log(`${i+1} attempt to execute ${func.name}`);
+				console.log(`${i + 1} attempt to execute ${func.name}`);
 				message = err;
 			}
 		}
-		if(!(message === '')){
-			throw new Error(message)
+		if (!(message === '')) {
+			throw new Error(message);
 		}
 	}
 }

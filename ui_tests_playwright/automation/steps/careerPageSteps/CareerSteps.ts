@@ -1,7 +1,6 @@
 import {driver} from '../../base/driver/Driver';
 import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
-import {stringUtils} from '../../utils/StringUtils';
 import ContainerByClass from '../../components/Container/ContainerByClass';
 import {containerSteps} from '../components/Container/ContainerSteps';
 import Button from '../../identifiers/Button';
@@ -16,9 +15,7 @@ class CareerSteps {
 			await driver.getByTestId(Career.searchButton).click();
 			await driver
 				.getByTestId(
-					`${
-						Containers.careerCardWithoutModifier
-					}${stringUtils.convertToPascalCase(careerName)}`
+					`${Containers.careerCardWithoutModifier}${careerName}`
 				)
 				.waitFor();
 		}, 5);
@@ -48,11 +45,7 @@ class CareerSteps {
 
 	public async clickOnCareerCard(careerName: string) {
 		await driver
-			.getByTestId(
-				`${
-					Containers.careerCardWithoutModifier
-				}${stringUtils.convertToPascalCase(careerName)}`
-			)
+			.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`)
 			.click();
 	}
 

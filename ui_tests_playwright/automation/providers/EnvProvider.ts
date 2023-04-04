@@ -1,4 +1,4 @@
-import UrlPath from "./UrlPath";
+import UrlPath from './UrlPath';
 
 export enum Environment {
 	Staging,
