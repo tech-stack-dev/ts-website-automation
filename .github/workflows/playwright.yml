@@ -60,7 +60,7 @@ jobs:
       
       - name: Slack Notification for UI tests
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && job.status == 'failure')) }} 
-        uses: rtCamp/action-slack-notify@v2.2.0 haya14busa/action-cond@v1
+        uses: rtCamp/action-slack-notify@v2.2.0
         env:
             SLACK_USERNAME: Tests execution report
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
