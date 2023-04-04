@@ -56,7 +56,7 @@ jobs:
         env:
             SLACK_USERNAME: Tests execution report
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_CHANNEL: ${{ github.event_name == 'pull_request' && failure() ? test_slack_notifications :ts_website }}
+            SLACK_CHANNEL: ${{ (github.event_name == 'pull_request' && failure()) ? test_slack_notifications :ts_website }}
             SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
             SLACK_COLOR: ${{ job.status }}
             SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
