@@ -1,5 +1,6 @@
 import {APIRequestContext, APIResponse, Request} from '@playwright/test';
 import {ClientsEnum} from './ClientsEnum';
+import {client} from './Client';
 import RequestOptions from './RequestOptions';
 
 export default class BaseClient implements APIRequestContext {
@@ -15,64 +16,65 @@ export default class BaseClient implements APIRequestContext {
 	}
 
 	public get ClientContext(): APIRequestContext {
-		return this._clientContext;
+		return client.focusedClient._clientContext;
 	}
 
 	public set ClientContext(value: APIRequestContext) {
-		this._clientContext = value;
+		client.focusedClient._clientContext = value;
 	}
 
 	delete(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.delete(url, options);
+		return client.ClientContext.delete(url, options);
 	}
 
 	dispose(): Promise<void> {
-		return this.ClientContext.dispose();
+		return client.ClientContext.dispose();
 	}
 
 	fetch(
 		urlOrRequest: string | Request,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.fetch(urlOrRequest, options);
+		return client.ClientContext.fetch(urlOrRequest, options);
 	}
 
 	get(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.get(url, options);
+		
+		return client.ClientContext.get(url, options);
 	}
 
 	head(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.head(url, options);
+		return client.ClientContext.head(url, options);
 	}
 
 	patch(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.patch(url, options);
+		return client.ClientContext.patch(url, options);
 	}
 
 	post(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.post(url, options);
+		return client.ClientContext.post(url, options);
 	}
 
 	put(
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		return this.ClientContext.put(url, options);
+		return client.ClientContext.put(url, options);
 	}
 
 	storageState(options?: {path?: string | undefined} | undefined): Promise<{
@@ -94,6 +96,6 @@ export default class BaseClient implements APIRequestContext {
 			}[];
 		}[];
 	}> {
-		return this.ClientContext.storageState(options);
+		return client.ClientContext.storageState(options);
 	}
 }
