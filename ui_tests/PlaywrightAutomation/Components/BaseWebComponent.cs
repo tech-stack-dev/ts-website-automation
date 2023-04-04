@@ -430,6 +430,11 @@ namespace PlaywrightAutomation.Components
             return Component.EvaluateAsync(expression, arg, options);
         }
 
+        public ILocator Locator(ILocator selectorOrLocator, LocatorLocatorOptions options = null)
+        {
+            return Component.Locator(selectorOrLocator, options);
+        }
+
         #endregion
     }
 }
