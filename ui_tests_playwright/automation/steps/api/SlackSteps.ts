@@ -34,7 +34,7 @@ class SlackSteps {
 			lastName: string;
 			email: string;
 			tel: string;
-			messge: string;
+			message: string;
 		}
 	) {
 		const fields = actualMessage.attachments![0].fields;
@@ -52,7 +52,7 @@ class SlackSteps {
 			expectedMessage.tel
 		);
 		expect(fields?.find((x) => x.title === 'Message')?.value).toBe(
-			expectedMessage.messge
+			expectedMessage.message
 		);
 	}
 
@@ -63,7 +63,7 @@ class SlackSteps {
 			firstName?: string;
 			lastName?: string;
 			email: string;
-			messge: string;
+			message: string;
 		}
 	) {
 		const fields = actualMessage.attachments![0].fields;
@@ -85,7 +85,7 @@ class SlackSteps {
 			expectedMessage.email
 		);
 		expect(fields?.find((x) => x.title === 'Message')?.value).toBe(
-			expectedMessage.messge
+			expectedMessage.message
 		);
 	}
 }
