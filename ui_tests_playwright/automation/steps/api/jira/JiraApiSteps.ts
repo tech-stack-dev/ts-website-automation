@@ -11,6 +11,27 @@ class JiraApiSteps {
 			test.skip();
 		}
 	}
+
+	public async isIssueOpened(testname: string): Promise<boolean> {
+		const blockingJiras = testname.split("@").filter((tag) =>
+		  tag.includes("TSWEB-")
+		);
+	  
+		if (blockingJiras.length === 0) {
+		  return false;
+		}
+	  
+		for (const jira of blockingJiras) {
+		  const status = await this.GetStatusByJiraId(jira);
+	  
+			if (appsetting.JiraClosedStatuses.includes(status)) {
+				return false;
+			}
+		}
+	  
+		return true;
+	}
+
 	public async GetStatusByJiraId(
 			issueId:string
 		  ) {
@@ -24,27 +45,8 @@ class JiraApiSteps {
 			return status
 			};
 
-	public async isIssueOpened(testname: string): Promise<boolean> {
-			const blockingJiras = testname.split("@").filter((tag) =>
-			  tag.includes("TSWEB-")
-			);
-		  
-			if (blockingJiras.length === 0) {
-			  return false;
-			}
-		  
-			for (const jira of blockingJiras) {
-			  const status = await this.GetStatusByJiraId(jira);
-		  
-				if (appsetting.JiraClosedStatuses.includes(status)) {
-					return false;
-				}
-			}
-		  
-			return true;
-		}	  
-	}
-	
+		}
+		
 const jiraApiSteps = new JiraApiSteps();
 
 export {jiraApiSteps};
