@@ -45,7 +45,6 @@ export default class BaseClient implements APIRequestContext {
 		url: string,
 		options?: RequestOptions | undefined
 	): Promise<APIResponse> {
-		
 		return client.ClientContext.get(url, options);
 	}
 
