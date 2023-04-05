@@ -18,16 +18,25 @@ class ContentfulSteps {
 
 	public async deleteAndUnpublishCareer(
 		careerId: string,
-		careerDescriptionId: string
+		careerDescriptionId: string,
+		throwException: bool
 	) {
-		await contentfulUtils.UnpublishCareerWithDescription(
-			careerId,
-			careerDescriptionId
-		);
-		await contentfulUtils.DeleteCareerWithDescription(
-			careerId,
-			careerDescriptionId
-		);
+		try {
+			await contentfulUtils.UnpublishCareerWithDescription(
+				careerId,
+				careerDescriptionId
+			);
+			await contentfulUtils.DeleteCareerWithDescription(
+				careerId,
+				careerDescriptionId
+			);
+		} catch (e) {
+			if (throwException) {
+				console.error(e);
+			} else {
+				console.log(e);
+			}
+		}
 	}
 }
 
