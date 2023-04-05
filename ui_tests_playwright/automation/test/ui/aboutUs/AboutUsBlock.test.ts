@@ -13,7 +13,7 @@ test.beforeEach(async ({page},testInfo) => {
 	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
 });
 
-test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622", async () => {
+test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackTitle)).toHaveText(
 		'We are \nTechstack'
 	);
