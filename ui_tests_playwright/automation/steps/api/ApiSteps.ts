@@ -4,21 +4,13 @@ import RequestOptions from '../../base/client/RequestOptions';
 import {responseVariable} from '../../runtimeVariables/dto/ResponseVariable';
 
 class ApiSteps {
-	public async executeGetRequest(
-		urlPath: string,
-		requestOptions?: RequestOptions,
-		statusCode = 200
-	) {
+	public async executeGetRequest(urlPath: string, requestOptions?: RequestOptions, statusCode = 200) {
 		responseVariable.value = await client.get(urlPath, requestOptions);
 
 		expect(responseVariable.value.status()).toEqual(statusCode);
 	}
 
-	public async executePostRequest(
-		urlPath: string,
-		requestOptions?: RequestOptions,
-		statusCode = 200
-	) {
+	public async executePostRequest(urlPath: string, requestOptions?: RequestOptions, statusCode = 200) {
 		responseVariable.value = await client.post(urlPath, requestOptions);
 
 		expect(responseVariable.value.status()).toEqual(statusCode);

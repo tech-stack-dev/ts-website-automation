@@ -14,13 +14,8 @@ test.beforeEach(async ({page}, testInfo) => {
 });
 
 test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560', async () => {
-	const headerContainer = await containerSteps.getContainer(
-		ContainerByClass,
-		Containers.navigationHeaderClass
-	);
-	const uaButtonSwitcher = headerContainer.Element.getByTestId(
-		Button.UaLanguageSwitcher
-	);
+	const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass);
+	const uaButtonSwitcher = headerContainer.Element.getByTestId(Button.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });

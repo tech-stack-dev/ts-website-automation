@@ -1,26 +1,13 @@
 import {contentfulUtils} from '../../utils/ContentfulUtils';
 
 class ContentfulSteps {
-	public async createCareerWithDefaultValue(
-		careerName: string,
-		careerId: string,
-		careerDescriptionId: string
-	) {
-		await contentfulUtils.CreateAndPublishCareerDescription(
-			careerDescriptionId
-		);
-		await contentfulUtils.CreateAndPublishCareer(
-			careerId,
-			careerName,
-			careerDescriptionId
-		);
+	public async createCareerWithDefaultValue(careerName: string, careerId: string, careerDescriptionId: string) {
+		await contentfulUtils.CreateAndPublishCareerDescription(careerDescriptionId);
+		await contentfulUtils.CreateAndPublishCareer(careerId, careerName, careerDescriptionId);
 	}
 
-	public async deleteAndUnpublishCareer(
-		careerId: string,
-		careerDescriptionId: string,
-		throwException: bool
-	) {
+	public async deleteAndUnpublishCareer(careerId: string, careerDescriptionId: string, throwException: bool) {
+	{
 		try {
 			await contentfulUtils.UnpublishCareerWithDescription(
 				careerId,
@@ -37,6 +24,7 @@ class ContentfulSteps {
 				console.log(e);
 			}
 		}
+	}
 	}
 }
 

@@ -24,58 +24,35 @@ test.beforeEach(async ({page}, testInfo) => {
 });
 
 test('Check that breadcrumbs displays correctly on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
-	await careerSteps.clickOnCareerCard(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
+	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	expect(await careerSteps.getBreadcrumbsText()).toBe(
 		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 });
 
 test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async () => {
-	await careerSteps.verifyThatCareerWasCreated(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
-	await careerSteps.clickOnCareerCard(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
+	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.jobPageApplyProposition
 	);
 
-	await expect(
-		(
-			await driver.component(ContainerByClass, Career.jobHeaderTitle)
-		).Element
-	).toHaveText('Тестова Вакансія');
-	await expect(driver.getByTestId(Career.jobHeaderJobsTabUa)).toHaveText(
-		'Вакансії'
+	await expect((await driver.component(ContainerByClass, Career.jobHeaderTitle)).Element).toHaveText(
+		'Тестова Вакансія'
 	);
-	await expect(driver.getByTestId(Career.jobHeaderAboutUsTabUa)).toHaveText(
-		'Про компанію'
-	);
-	await expect(driver.getByTestId(Career.jobHeaderReviewsTabUa)).toHaveText(
-		'Відгуки'
-	);
-	await expect(driver.getByTestId(Career.jobHeaderContactUsTabUa)).toHaveText(
-		'Зв’язатись з нами'
-	);
+	await expect(driver.getByTestId(Career.jobHeaderJobsTabUa)).toHaveText('Вакансії');
+	await expect(driver.getByTestId(Career.jobHeaderAboutUsTabUa)).toHaveText('Про компанію');
+	await expect(driver.getByTestId(Career.jobHeaderReviewsTabUa)).toHaveText('Відгуки');
+	await expect(driver.getByTestId(Career.jobHeaderContactUsTabUa)).toHaveText('Зв’язатись з нами');
 
 	for (const header of JobPagePreconditions.descriptionBlocksIdentifiersAndUaHeaders) {
-		await descriptionSteps.checkDescriptionBlockHeader(
-			header[0],
-			header[1]
-		);
+		await descriptionSteps.checkDescriptionBlockHeader(header[0], header[1]);
 	}
 
-	await expect(applyPropositionWrapper.Element).toHaveText(
-		'Хочеш стати частиною нашої команди?Подавай заявку!'
-	);
+	await expect(applyPropositionWrapper.Element).toHaveText('Хочеш стати частиною нашої команди?Подавай заявку!');
 });
 
 test.afterEach(async () => {
