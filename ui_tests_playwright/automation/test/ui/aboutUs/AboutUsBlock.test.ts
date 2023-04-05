@@ -4,10 +4,10 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
-import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
+import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 
-test.beforeEach(async ({page},testInfo) => {
-    await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title,test);
+test.beforeEach(async ({page}, testInfo) => {
+	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_AboutUs).click();

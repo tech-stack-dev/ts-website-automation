@@ -10,10 +10,10 @@ import UrlPath from '../../../providers/UrlPath';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
-import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
+import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 
-test.beforeEach(async ({page},testInfo) => {
-    await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title,test);
+test.beforeEach(async ({page}, testInfo) => {
+	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await SlackProvider.getSlackSecret();
 	await baseDriverSteps.createsNewBrowser();
 });

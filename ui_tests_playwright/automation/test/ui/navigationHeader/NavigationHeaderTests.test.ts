@@ -6,10 +6,10 @@ import UrlProvider from '../../../providers/UrlProvider';
 import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Button from '../../../identifiers/Button';
-import { jiraApiSteps } from '../../../steps/api/jira/JiraApiSteps';
+import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 
-test.beforeEach(async ({page},testInfo) => {
-    await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title,test);
+test.beforeEach(async ({page}, testInfo) => {
+	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 

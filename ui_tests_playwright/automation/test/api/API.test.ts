@@ -4,10 +4,10 @@ import {ClientsEnum} from '../../base/client/ClientsEnum';
 import RequestOptions from '../../base/client/RequestOptions';
 import {apiSteps} from '../../steps/api/ApiSteps';
 import {baseApiSteps} from '../../base/step/BaseApiSteps';
-import { jiraApiSteps } from '../../steps/api/jira/JiraApiSteps';
+import {jiraApiSteps} from '../../steps/api/jira/JiraApiSteps';
 
-test.beforeEach(async ({page},testInfo) => {
-    await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title,test);
+test.beforeEach(async ({page}, testInfo) => {
+	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseApiSteps.createClient(ClientsEnum.Client_1);
 });
 
