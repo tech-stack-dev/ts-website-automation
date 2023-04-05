@@ -11,8 +11,10 @@ import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
 import {sessionValue} from '../../../runtimeVariables/SessionValue';
+import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 
-test.beforeEach(async () => {
+test.beforeEach(async ({page}, testInfo) => {
+	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await contentfulSteps.createCareerWithDefaultValue(
 		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -80,6 +82,7 @@ test.afterEach(async () => {
 	await driver.closeDrivers();
 	await contentfulSteps.deleteAndUnpublishCareer(
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
+		false
 	);
 });

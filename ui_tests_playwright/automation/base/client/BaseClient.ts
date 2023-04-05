@@ -1,6 +1,6 @@
 import {APIRequestContext, APIResponse, Request} from '@playwright/test';
-import {client} from './Client';
 import {ClientsEnum} from './ClientsEnum';
+import {client} from './Client';
 import RequestOptions from './RequestOptions';
 
 export default class BaseClient implements APIRequestContext {

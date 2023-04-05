@@ -1,6 +1,6 @@
-import {ClientsEnum} from '../base/client/ClientsEnum';
 import appsetting from '../../appsetting.json';
 import EnvProvider, {Environment} from './EnvProvider';
+import {ClientsEnum} from '../base/client/ClientsEnum';
 import UrlPath from './UrlPath';
 
 export default class UrlProvider {
@@ -54,6 +54,9 @@ export default class UrlProvider {
 			}
 			case ClientsEnum.Client_3: {
 				return <string>process.env.CLIENT_3_URL;
+			}
+			case ClientsEnum.JiraClient: {
+				return appsetting.JiraUrl;
 			}
 			default: {
 				throw Error(
