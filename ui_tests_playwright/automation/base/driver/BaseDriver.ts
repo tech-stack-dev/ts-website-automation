@@ -65,31 +65,19 @@ export default class BaseDriver {
 
 	public async component<T extends BaseComponent>(
 		type: {
-			new (
-				page: Page,
-				identifier: string,
-				parent: Locator | undefined
-			): T;
+			new (page: Page, identifier: string, parent: Locator | undefined): T;
 		},
 		identifier: string,
 		parent?: Locator
 	): Promise<T> {
-		return await this.componentBuild(
-			new type(driver.focusedDriver.Page, identifier, parent)
-		);
+		return await this.componentBuild(new type(driver.focusedDriver.Page, identifier, parent));
 	}
 
-	private async componentBuild<T extends BaseComponent>(
-		component: T
-	): Promise<T> {
+	private async componentBuild<T extends BaseComponent>(component: T): Promise<T> {
 		if (component.Parent) {
-			component.Element = component.Parent.locator(
-				`xpath=${component.ComponentContext}`
-			);
+			component.Element = component.Parent.locator(`xpath=${component.ComponentContext}`);
 		} else {
-			component.Element = component.Page.locator(
-				`xpath=${component.ComponentContext}`
-			);
+			component.Element = component.Page.locator(`xpath=${component.ComponentContext}`);
 		}
 		return component;
 	}
@@ -102,11 +90,7 @@ export default class BaseDriver {
 		}
 	}
 
-	public getByTestId(
-		testId: string | RegExp,
-		parent?: Locator,
-		nth = 0
-	): Locator {
+	public getByTestId(testId: string | RegExp, parent?: Locator, nth = 0): Locator {
 		return (parent ? parent : driver.Page).getByTestId(testId).nth(nth);
 	}
 

@@ -8,9 +8,7 @@ export default class UrlProvider {
 		return `${UrlProvider.webSiteUrl()}${urlPath}`;
 	}
 
-	public static webSiteUrl(
-		environment: Environment = EnvProvider.Environment
-	) {
+	public static webSiteUrl(environment: Environment = EnvProvider.Environment) {
 		switch (environment) {
 			case Environment.Staging: {
 				return appsetting.Staging;
@@ -19,16 +17,12 @@ export default class UrlProvider {
 				return appsetting.Production;
 			}
 			default: {
-				throw new Error(
-					`Unknown environment. Environment: ${UrlPath.testEnv}`
-				);
+				throw new Error(`Unknown environment. Environment: ${UrlPath.testEnv}`);
 			}
 		}
 	}
 
-	public static careerUrl(
-		environment: Environment = EnvProvider.Environment
-	) {
+	public static careerUrl(environment: Environment = EnvProvider.Environment) {
 		switch (environment) {
 			case Environment.Staging: {
 				return appsetting.StagingCareer;
@@ -37,9 +31,7 @@ export default class UrlProvider {
 				return appsetting.ProductionCareer;
 			}
 			default: {
-				throw new Error(
-					`Unknown environment. Environment: ${UrlPath.testEnv}`
-				);
+				throw new Error(`Unknown environment. Environment: ${UrlPath.testEnv}`);
 			}
 		}
 	}
@@ -56,9 +48,7 @@ export default class UrlProvider {
 				return <string>process.env.CLIENT_3_URL;
 			}
 			default: {
-				throw Error(
-					`Unable to generate client URL for '${clientName}' brand`
-				);
+				throw Error(`Unable to generate client URL for '${clientName}' brand`);
 			}
 		}
 	}
