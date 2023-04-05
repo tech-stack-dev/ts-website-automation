@@ -11,7 +11,6 @@ import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
 import {sessionValue} from '../../../runtimeVariables/SessionValue';
-import Input from '../../../identifiers/Input';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
