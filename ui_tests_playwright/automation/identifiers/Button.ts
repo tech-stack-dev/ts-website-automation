@@ -36,4 +36,7 @@ export default class Button {
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
+
+	// Footer
+	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
 }
