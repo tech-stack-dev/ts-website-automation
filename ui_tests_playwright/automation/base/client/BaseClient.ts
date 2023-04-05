@@ -23,10 +23,7 @@ export default class BaseClient implements APIRequestContext {
 		client.focusedClient._clientContext = value;
 	}
 
-	delete(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	delete(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.delete(url, options);
 	}
 
@@ -34,45 +31,27 @@ export default class BaseClient implements APIRequestContext {
 		return client.ClientContext.dispose();
 	}
 
-	fetch(
-		urlOrRequest: string | Request,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	fetch(urlOrRequest: string | Request, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.fetch(urlOrRequest, options);
 	}
 
-	get(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	get(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.get(url, options);
 	}
 
-	head(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	head(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.head(url, options);
 	}
 
-	patch(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	patch(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.patch(url, options);
 	}
 
-	post(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	post(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.post(url, options);
 	}
 
-	put(
-		url: string,
-		options?: RequestOptions | undefined
-	): Promise<APIResponse> {
+	put(url: string, options?: RequestOptions | undefined): Promise<APIResponse> {
 		return client.ClientContext.put(url, options);
 	}
 

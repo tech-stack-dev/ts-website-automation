@@ -3,10 +3,7 @@ import {SecretsManager} from 'aws-sdk';
 class AWSkms {
 	private async createKmsClient() {
 		process.env.AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE = '1';
-		if (
-			(process.env.AWS_KEY === undefined,
-			process.env.AWS_PASSWORD === undefined)
-		) {
+		if ((process.env.AWS_KEY === undefined, process.env.AWS_PASSWORD === undefined)) {
 			console.error('Credentionals were not found, check your .env file');
 		}
 
@@ -20,9 +17,7 @@ class AWSkms {
 
 	public async getSecret(secretName: string) {
 		const client = await this.createKmsClient();
-		const secret = (
-			await client.getSecretValue({SecretId: secretName}).promise()
-		).SecretString;
+		const secret = (await client.getSecretValue({SecretId: secretName}).promise()).SecretString;
 		return secret;
 	}
 }

@@ -21,18 +21,10 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
 	await driver.getByTestId(Button.SendButton).click();
 
-	const actualErrorText_FirstName = driver
-		.getByTestId(ApplyForAJobForm.FirstName)
-		.locator(Input.fieldErrorSelector);
-	const actualErrorText_LastName = driver
-		.getByTestId(ApplyForAJobForm.LastName)
-		.locator(Input.fieldErrorSelector);
-	await expect(actualErrorText_FirstName).toHaveText(
-		'Please enter your name'
-	);
-	await expect(actualErrorText_LastName).toHaveText(
-		'Please enter your last name'
-	);
+	const actualErrorText_FirstName = driver.getByTestId(ApplyForAJobForm.FirstName).locator(Input.fieldErrorSelector);
+	const actualErrorText_LastName = driver.getByTestId(ApplyForAJobForm.LastName).locator(Input.fieldErrorSelector);
+	await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
+	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
 test.afterEach(async () => {

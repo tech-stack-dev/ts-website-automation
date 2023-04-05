@@ -7,9 +7,7 @@ export default class ContainerById extends BaseComponent {
 	}
 
 	public get title() {
-		return this.Element.locator(
-			"//div[contains(@class, 'paragraph-title')]"
-		);
+		return this.Element.locator("//div[contains(@class, 'paragraph-title')]");
 	}
 
 	constructor(page: Page, identifier: string, parent?: Locator) {
