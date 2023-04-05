@@ -36,7 +36,8 @@ export default class AboutUs {
 	static SocialResponsibilityId = 'socialResponsibility';
 	static SocialResponsibilityTitle = 'SectionTitle-SocialResponsibilityTitle';
 	static SocialResponsibilityNumber = 'SectionNumber-07Number';
-	static SocialResponsibilityCarousel = 'CarouselPhotoBlock-SocialResponsibility';
+	static SocialResponsibilityCarousel =
+		'CarouselPhotoBlock-SocialResponsibility';
 
 	static SR_Charity = 'Charity';
 	static SR_EnvironmentalSafety = 'Environmental\\ Safety';
