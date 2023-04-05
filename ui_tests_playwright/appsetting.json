@@ -5,11 +5,5 @@
 	"ProductionCareer": "https://career.tech-stack.com/",
 
 	"JiraUrl": "https://ts-website.atlassian.net",
-	"JiraClosedStatuses": [
-		"Ready for QA",
-		"Testing on Stage",
-		"UI testing",
-		"Done",
-		"Closed"
-	]
+	"JiraClosedStatuses": ["Ready for QA", "Testing on Stage", "UI testing", "Done", "Closed"]
 }

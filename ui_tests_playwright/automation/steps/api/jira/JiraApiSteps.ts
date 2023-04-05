@@ -13,10 +13,7 @@ import {responseVariable} from '../../../runtimeVariables/dto/ResponseVariable';
 class JiraApiSteps {
 	public async skipIfTestIsBlockedByJira(
 		testName: string,
-		test: TestType<
-			PlaywrightTestArgs & PlaywrightTestOptions,
-			PlaywrightWorkerArgs & PlaywrightWorkerOptions
-		>
+		test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
 	): Promise<void> {
 		if (await jiraApiSteps.isIssueOpened(testName)) {
 			test.skip();
@@ -24,9 +21,7 @@ class JiraApiSteps {
 	}
 
 	public async isIssueOpened(testname: string): Promise<boolean> {
-		const blockingJiras = testname
-			.split('@')
-			.filter((tag) => tag.includes('TSWEB-'));
+		const blockingJiras = testname.split('@').filter((tag) => tag.includes('TSWEB-'));
 
 		if (blockingJiras.length === 0) {
 			return false;
@@ -46,22 +41,16 @@ class JiraApiSteps {
 
 	public async GetStatusByJiraId(issueId: string) {
 		const client = await ClientProvider.getClient(ClientsEnum.JiraClient);
-		responseVariable.value = await client.get(
-			`rest/api/3/issue/${issueId}`
-		);
+		responseVariable.value = await client.get(`rest/api/3/issue/${issueId}`);
 
-		const jsonObj = JSON.parse(
-			(await responseVariable.value.body()).toString()
-		);
+		const jsonObj = JSON.parse((await responseVariable.value.body()).toString());
 		if (jsonObj.errorMessages!) {
 			console.log(jsonObj.errorMessages);
 		}
 		try {
 			return jsonObj.fields.status.name;
 		} catch (error) {
-			console.log(
-				`Jira api request returned with error: ${responseVariable.value.body()}`
-			);
+			console.log(`Jira api request returned with error: ${responseVariable.value.body()}`);
 		}
 	}
 }

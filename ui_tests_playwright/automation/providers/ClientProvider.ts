@@ -9,17 +9,12 @@ export default class ClientProvider {
 		const context = new ContextOptions();
 		switch (clientName) {
 			case ClientsEnum.JiraClient: {
-				const jiraSecret = await awsKms.getSecret(
-					'JiraAuthTokenBase64'
-				);
+				const jiraSecret = await awsKms.getSecret('JiraAuthTokenBase64');
 				const jAuthToken = JSON.parse(jiraSecret!).JiraAuthTokenBase64;
 
 				context.baseURL = appsetting.JiraUrl;
 				context.extraHTTPHeaders = {['Authorization']: `${jAuthToken}`};
-				return await client.createClient(
-					ClientsEnum.JiraClient,
-					context
-				);
+				return await client.createClient(ClientsEnum.JiraClient, context);
 			}
 			case ClientsEnum.Client_1: {
 				context.baseURL = appsetting.Staging;
