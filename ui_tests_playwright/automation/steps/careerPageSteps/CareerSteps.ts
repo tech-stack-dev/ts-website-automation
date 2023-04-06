@@ -1,8 +1,8 @@
 import {driver} from '../../base/driver/Driver';
 import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
-import ContainerByClass from '../../components/Container/ContainerByClass';
-import {containerSteps} from '../components/Container/ContainerSteps';
+import ContainerByClass from '../../components/container/ContainerByClass';
+import {containerSteps} from '../components/container/ContainerSteps';
 import Button from '../../identifiers/Button';
 import {expect} from '@playwright/test';
 
