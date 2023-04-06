@@ -1,16 +1,16 @@
-import { expect, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
-import { driver } from '../../../base/driver/Driver';
+import {expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
-import { contentfulSteps } from '../../../steps/contentful/ContentfulSteps';
-import { careerSteps } from '../../../steps/careerPageSteps/CareerSteps';
-import { descriptionSteps } from '../../../steps/components/Job/DescriptionSteps';
+import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
+import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
+import {descriptionSteps} from '../../../steps/components/Job/DescriptionSteps';
 import Career from '../../../identifiers/Career';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
-import { sessionValue } from '../../../runtimeVariables/SessionValue';
+import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 
@@ -60,15 +60,14 @@ test('Check that user can switch language in navigation header in job page @Regr
 
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-	const jobPageHeaderContainer = await containerSteps.getContainer(
-		ContainerByClass,
-		Containers.jobPageHeaderWrapper
+	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
+
+	expect(await careerSteps.getBreadcrumbsText()).toBe(
+		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 
-	expect(await careerSteps.getBreadcrumbsText()).toBe(`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-
 	const logo = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
-	await logo.waitFor({ state: 'visible' });
+	await logo.waitFor({state: 'visible'});
 
 	await expect(driver.getByTestId(Button.NavigationTab_Jobs)).toHaveText('Jobs');
 	await expect(driver.getByTestId(Button.NavigationTab_AboutUs)).toHaveText('About us');
@@ -77,9 +76,9 @@ test('Check that user can switch language in navigation header in job page @Regr
 
 	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
 
-    const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
-    await uaButtonSwitcher.click();
-    await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
+	await uaButtonSwitcher.click();
+	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
 
 test.afterEach(async () => {
