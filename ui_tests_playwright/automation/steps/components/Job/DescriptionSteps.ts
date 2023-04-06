@@ -7,12 +7,8 @@ class DescriptionSteps {
 		return await driver.component(JobDescriptionBlock, identifier);
 	}
 
-	public async checkDescriptionBlockHeader(
-		identifier: string,
-		expectedTitle: string
-	) {
-		const title = (await driver.component(JobDescriptionBlock, identifier))
-			.title;
+	public async checkDescriptionBlockHeader(identifier: string, expectedTitle: string) {
+		const title = (await driver.component(JobDescriptionBlock, identifier)).title;
 
 		await expect(title).toHaveText(expectedTitle);
 	}

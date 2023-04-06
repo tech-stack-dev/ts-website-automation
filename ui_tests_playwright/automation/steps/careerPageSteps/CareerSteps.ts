@@ -13,30 +13,19 @@ class CareerSteps {
 			await driver.getByTestId(Career.searchCareerField).clear();
 			await driver.getByTestId(Career.searchCareerField).fill(careerName);
 			await driver.getByTestId(Career.searchButton).click();
-			await driver
-				.getByTestId(
-					`${Containers.careerCardWithoutModifier}${careerName}`
-				)
-				.waitFor();
+			await driver.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`).waitFor();
 		}, 5);
 	}
 
 	public async switchLanguageViaHeader(language: string) {
-		const headerContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			Containers.jobPageHeaderWrapper
-		);
+		const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
 		let switcher: any;
 		switch (language.toLowerCase()) {
 			case 'ua':
-				switcher = headerContainer.Element.getByTestId(
-					Button.UaLanguageSwitcher
-				);
+				switcher = headerContainer.Element.getByTestId(Button.UaLanguageSwitcher);
 				break;
 			case 'en':
-				switcher = headerContainer.Element.getByTestId(
-					Button.EnLanguageSwitcher
-				);
+				switcher = headerContainer.Element.getByTestId(Button.EnLanguageSwitcher);
 		}
 
 		await switcher.click();
@@ -44,24 +33,16 @@ class CareerSteps {
 	}
 
 	public async clickOnCareerCard(careerName: string) {
-		await driver
-			.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`)
-			.click();
+		await driver.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`).click();
 	}
 
 	public async getBreadcrumbsText() {
-		const breadcrumbs = await driver.component(
-			ContainerByClass,
-			Career.breadcrumbsInCareer
-		);
+		const breadcrumbs = await driver.component(ContainerByClass, Career.breadcrumbsInCareer);
 		return breadcrumbs.textContent();
 	}
 
 	public async getJobHeaderText() {
-		const title = await driver.component(
-			ContainerByClass,
-			Career.jobHeaderTitle
-		);
+		const title = await driver.component(ContainerByClass, Career.jobHeaderTitle);
 		return title.textContent();
 	}
 }

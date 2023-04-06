@@ -1,11 +1,4 @@
-import {
-	ElementHandle,
-	Page,
-	Locator,
-	JSHandle,
-	LocatorScreenshotOptions,
-	FrameLocator,
-} from '@playwright/test';
+import {ElementHandle, Page, Locator, JSHandle, LocatorScreenshotOptions, FrameLocator} from '@playwright/test';
 
 export default class BaseComponent implements Locator {
 	private _element: Locator;
@@ -300,9 +293,7 @@ export default class BaseComponent implements Locator {
 					clickCount?: number | undefined;
 					delay?: number | undefined;
 					force?: boolean | undefined;
-					modifiers?:
-						| ('Alt' | 'Control' | 'Meta' | 'Shift')[]
-						| undefined;
+					modifiers?: ('Alt' | 'Control' | 'Meta' | 'Shift')[] | undefined;
 					noWaitAfter?: boolean | undefined;
 					position?: {x: number; y: number} | undefined;
 					timeout?: number | undefined;
@@ -323,9 +314,7 @@ export default class BaseComponent implements Locator {
 					button?: 'left' | 'right' | 'middle' | undefined;
 					delay?: number | undefined;
 					force?: boolean | undefined;
-					modifiers?:
-						| ('Alt' | 'Control' | 'Meta' | 'Shift')[]
-						| undefined;
+					modifiers?: ('Alt' | 'Control' | 'Meta' | 'Shift')[] | undefined;
 					noWaitAfter?: boolean | undefined;
 					position?:
 						| {
@@ -432,9 +421,7 @@ export default class BaseComponent implements Locator {
 		options?:
 			| {
 					force?: boolean | undefined;
-					modifiers?:
-						| ('Alt' | 'Control' | 'Meta' | 'Shift')[]
-						| undefined;
+					modifiers?: ('Alt' | 'Control' | 'Meta' | 'Shift')[] | undefined;
 					position?:
 						| {
 								x: number;
@@ -584,9 +571,7 @@ export default class BaseComponent implements Locator {
 		return this.Element.press(key, options);
 	}
 
-	screenshot(
-		options?: LocatorScreenshotOptions | undefined
-	): Promise<Buffer> {
+	screenshot(options?: LocatorScreenshotOptions | undefined): Promise<Buffer> {
 		return this.Element.screenshot(options);
 	}
 
@@ -687,9 +672,7 @@ export default class BaseComponent implements Locator {
 		options?:
 			| {
 					force?: boolean | undefined;
-					modifiers?:
-						| ('Alt' | 'Control' | 'Meta' | 'Shift')[]
-						| undefined;
+					modifiers?: ('Alt' | 'Control' | 'Meta' | 'Shift')[] | undefined;
 					noWaitAfter?: boolean | undefined;
 					position?:
 						| {
@@ -750,12 +733,7 @@ export default class BaseComponent implements Locator {
 	waitFor(
 		options?:
 			| {
-					state?:
-						| 'attached'
-						| 'detached'
-						| 'visible'
-						| 'hidden'
-						| undefined;
+					state?: 'attached' | 'detached' | 'visible' | 'hidden' | undefined;
 					timeout?: number | undefined;
 			  }
 			| undefined
