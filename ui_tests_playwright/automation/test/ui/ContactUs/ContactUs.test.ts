@@ -23,6 +23,8 @@ test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @T
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+
+		
 	}
 });
 
