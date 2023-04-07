@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
-import JobDescriptionBlock from '../../../components/descriptionBlock/JobDescriptionBlock';
+import JobDescriptionBlock from '../../../components/DescriptionBlock/JobDescriptionBlock';
 
 class DescriptionSteps {
 	public async getDescriptionBlock(identifier: string) {

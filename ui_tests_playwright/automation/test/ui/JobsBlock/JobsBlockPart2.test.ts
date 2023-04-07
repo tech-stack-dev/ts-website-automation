@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../providers/UrlProvider';
 import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
-import ContainerByClass from '../../../components/container/ContainerByClass';
+import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';

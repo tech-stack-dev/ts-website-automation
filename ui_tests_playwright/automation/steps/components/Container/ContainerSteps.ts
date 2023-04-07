@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
-import ContainerById from '../../../components/container/ContainerById';
+import ContainerById from '../../../components/Container/ContainerById';
 
 class ContainerSteps {
 	public async getContainer(type: any, identifier: string) {

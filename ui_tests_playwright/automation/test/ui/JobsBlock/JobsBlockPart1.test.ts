@@ -5,7 +5,7 @@ import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
 import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
-import ContainerByClass from '../../../components/container/ContainerByClass';
+import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Career from '../../../identifiers/Career';
 import {driver} from '../../../base/driver/Driver';

@@ -4,7 +4,7 @@ import Button from '../../identifiers/Button';
 import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
 import {containerSteps} from '../components/Container/ContainerSteps';
-import ContainerByClass from '../../components/container/ContainerByClass';
+import ContainerByClass from '../../components/Container/ContainerByClass';
 
 class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string) {
