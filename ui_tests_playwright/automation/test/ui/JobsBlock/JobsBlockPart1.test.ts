@@ -4,15 +4,15 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
-import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
 import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Career from '../../../identifiers/Career';
 import {driver} from '../../../base/driver/Driver';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
-import {descriptionSteps} from '../../../steps/components/Job/DescriptionSteps';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
+import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import { descriptionSteps } from '../../../steps/components/job/DescriptionSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
