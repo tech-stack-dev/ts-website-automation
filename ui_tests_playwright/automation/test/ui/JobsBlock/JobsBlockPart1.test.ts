@@ -1,16 +1,16 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
-import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
+import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
-import {descriptionSteps} from '../../../steps/components/Job/DescriptionSteps';
-import Career from '../../../identifiers/Career';
+import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
 import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
+import Career from '../../../identifiers/Career';
+import {driver} from '../../../base/driver/Driver';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
-import {sessionValue} from '../../../runtimeVariables/SessionValue';
+import {descriptionSteps} from '../../../steps/components/Job/DescriptionSteps';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 

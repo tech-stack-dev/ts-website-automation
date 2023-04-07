@@ -1,11 +1,11 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
-import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import UrlProvider from '../../../providers/UrlProvider';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Button from '../../../identifiers/Button';
+import {driver} from '../../../base/driver/Driver';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
