@@ -4,7 +4,7 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
-import {containerSteps} from '../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Career from '../../../identifiers/Career';
