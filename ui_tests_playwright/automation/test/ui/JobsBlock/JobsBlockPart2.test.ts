@@ -6,7 +6,7 @@ import Containers from '../../../identifiers/Containers';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 import {driver} from '../../../base/driver/Driver';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import { containerSteps } from '../../../steps/components/containers/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

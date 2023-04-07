@@ -11,8 +11,8 @@ import {driver} from '../../../base/driver/Driver';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
 import { descriptionSteps } from '../../../steps/components/job/DescriptionSteps';
+import { containerSteps } from '../../../steps/components/containers/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
