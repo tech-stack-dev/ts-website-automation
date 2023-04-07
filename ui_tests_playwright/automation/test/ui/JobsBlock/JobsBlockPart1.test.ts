@@ -4,14 +4,14 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
-import ContainerByClass from '../../../components/Container/ContainerByClass';
+import ContainerByClass from '../../../components/containers/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Career from '../../../identifiers/Career';
 import {driver} from '../../../base/driver/Driver';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
-import { descriptionSteps } from '../../../steps/components/job/DescriptionSteps';
+import { descriptionSteps } from '../../../steps/components/jobs/DescriptionSteps';
 import { containerSteps } from '../../../steps/components/containers/ContainerSteps';
 
 test.beforeEach(async () => {
