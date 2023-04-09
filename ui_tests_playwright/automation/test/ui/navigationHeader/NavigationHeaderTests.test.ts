@@ -8,8 +8,7 @@ import Containers from '../../../identifiers/Containers';
 import Button from '../../../identifiers/Button';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
 test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560', async () => {
@@ -31,7 +30,7 @@ test('Check the the "Stand with Ukraine" block with localization @Regression @St
 	await buttonSwitcher.click();
 	expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)).Element).toHaveText(
 		'Відповідь Techstack на війну в Україні',
-		{timeout: 5000}
+		{timeout: 1000}
 	);
 	expect(await driver.getByTestId('LearnMoreButton-SharedLearnMore2')).toHaveText('Ознайомитися');
 

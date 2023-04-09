@@ -8,8 +8,6 @@ export default class UrlPath {
 	static UiUxDesign = 'services/ui-ux-design';
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';
-	// Blog
-	static TsStandsWithUkraine = 'blog/techstack-stands-with-ukraine/';
 
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
