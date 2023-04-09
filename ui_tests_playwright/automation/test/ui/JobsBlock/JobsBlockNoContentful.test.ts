@@ -25,7 +25,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
-test('Check that jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82', async () => {
+test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(Button.Breadcrumbs_Jobs).click();
 
