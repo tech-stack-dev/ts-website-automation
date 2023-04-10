@@ -1,4 +1,4 @@
-import UrlPath from "./UrlPath";
+import UrlPath from './UrlPath';
 
 export enum Environment {
 	Staging,
@@ -15,9 +15,7 @@ export default class EnvProvider {
 				return Environment.Production;
 			}
 			default: {
-				throw new Error(
-					`Unknown environment. Environment: ${UrlPath.testEnv}`
-				);
+				throw new Error(`Unknown environment. Environment: ${UrlPath.testEnv}`);
 			}
 		}
 	}

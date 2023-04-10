@@ -3,16 +3,11 @@ import {BrowsersEnum} from '../driver/BrowsersEnum';
 import {expect} from '@playwright/test';
 
 class BaseDriverSteps {
-	public async createsNewBrowser(
-		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
-	) {
+	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
 	}
 
-	public async createsNewBrowserAndGoToUrl(
-		url: string,
-		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
-	) {
+	public async createsNewBrowserAndGoToUrl(url: string, browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url);
 	}
@@ -24,9 +19,7 @@ class BaseDriverSteps {
 	}
 
 	public async switchToBrowser(browserName: BrowsersEnum) {
-		driver.focusedDriver = driver.listOfDrivers.find(
-			(x) => x.DriverName === browserName
-		)!;
+		driver.focusedDriver = driver.listOfDrivers.find((x) => x.DriverName === browserName)!;
 	}
 
 	public async switchToBrowserTab(tabNumber: number) {

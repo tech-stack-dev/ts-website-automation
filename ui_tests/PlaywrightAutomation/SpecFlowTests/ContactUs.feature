@@ -1,6 +1,7 @@
 ﻿Feature: ContactUs
 
-@Regression @ContactUsForm @TSWEB149
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @ContactUsForm @TSWEB149 @NotRun
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
 	When User clicks on 'Contact us' tab on 'NavigationHeader' container
@@ -79,4 +80,4 @@ Scenario: CheckErrorMessageForInvalidFormatAttachedFileOnContactForm
 	When User set 'test' text to message field on Contact Us form
 	When User attaches 'test.jpg' file on Contact Us form
 	When User clicks 'Submit' button on 'ContactUsPage' container
-	Then 'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text and *.log extensions' error message is displayed under attach files input
+	Then 'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text, and *.log extensions' error message is displayed under attach files input

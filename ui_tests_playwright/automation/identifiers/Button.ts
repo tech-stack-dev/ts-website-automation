@@ -1,12 +1,18 @@
 export default class Button {
 	// Navigation tab
 	static NavigationTab_AboutUs = 'NavigationTab-AboutUs';
+	static NavigationTab_ContactUs = 'NavigationTab-ContactUs';
+
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
+
+	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
+	static SendButton = 'SubmitButton-SharedSendMessage';
 
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
 	static ContactUs = 'Button-ContactUs';
+	static Close = 'CloseButton-Close';
 
 	// Menu components
 	static Menu_Services = 'ServicesHeader-ServicesHeader';
@@ -30,4 +36,7 @@ export default class Button {
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
+
+	// Footer
+	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
 }

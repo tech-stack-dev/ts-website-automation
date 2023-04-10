@@ -1,56 +1,55 @@
 export default class AboutUs {
-	static WeAreTechstackTitle: string = 'SectionTitle-WeAreTechstackTitle';
-	static WeAreTechstackNumber: string = 'SectionNumber-01Number';
+	static WeAreTechstackTitle = 'SectionTitle-WeAreTechstackTitle';
+	static WeAreTechstackNumber = 'SectionNumber-01Number';
 
-	static OurHistoryTitle: string = 'SectionTitle-OurHistoryTitle';
-	static OurHistoryNumber: string = 'SectionNumber-02Number';
-	static OurHistoryCarousel: string = 'CarouselInfoLineBlock-OurHistory';
+	static OurHistoryTitle = 'SectionTitle-OurHistoryTitle';
+	static OurHistoryNumber = 'SectionNumber-02Number';
+	static OurHistoryCarousel = 'CarouselInfoLineBlock-OurHistory';
 
-	static OurAchievementsTitle: string = 'SectionTitle-OurAchievementsTitle';
-	static OurAchievementsNumber: string = 'SectionNumber-03Number';
+	static OurAchievementsTitle = 'SectionTitle-OurAchievementsTitle';
+	static OurAchievementsNumber = 'SectionNumber-03Number';
 
-	static TechstackInGrowsTitle: string = 'SectionTitle-TechstackInGrowthTitle';
-	static TechstackInGrowsNumber: string = 'SectionNumber-04Number';
+	static TechstackInGrowsTitle = 'SectionTitle-TechstackInGrowthTitle';
+	static TechstackInGrowsNumber = 'SectionNumber-04Number';
 
-	static TechstackRolesId: string = 'techstackRoles';
-	static TechstackRolesTitle: string = 'SectionTitle-TechstackRolesTitle';
-	static TechstackRolesNumber: string = 'SectionNumber-05Number';
+	static TechstackRolesId = 'techstackRoles';
+	static TechstackRolesTitle = 'SectionTitle-TechstackRolesTitle';
+	static TechstackRolesNumber = 'SectionNumber-05Number';
 
-	static Roles_Mentor: string = 'Mentor';
-	static Roles_TechExpert: string = 'Tech\\ Expert';
-	static Roles_PreSaleExpert: string = 'Pre-Sale\\ Expert';
-	static Roles_TeamLead: string = 'Team\\ Lead';
-	static Roles_VPofFunction: string = 'VP\\ of\\ Function';
+	static Roles_Mentor = 'Mentor';
+	static Roles_TechExpert = 'Tech\\ Expert';
+	static Roles_PreSaleExpert = 'Pre-Sale\\ Expert';
+	static Roles_TeamLead = 'Team\\ Lead';
+	static Roles_VPofFunction = 'VP\\ of\\ Function';
 
-	static EngineeringCultureId: string = 'engineeringCulture';
-	static EngineeringCultureTitle: string = 'SectionTitle-EngineeringCultureTitle';
-	static EngineeringCultureNumber: string = 'SectionNumber-06Number';
-	static EngineeringCultureCarousel: string = 'CarouselPhotoBlock-EngineeringCulture';
+	static EngineeringCultureId = 'engineeringCulture';
+	static EngineeringCultureTitle = 'SectionTitle-EngineeringCultureTitle';
+	static EngineeringCultureNumber = 'SectionNumber-06Number';
+	static EngineeringCultureCarousel = 'CarouselPhotoBlock-EngineeringCulture';
 
-	static EC_TechClubs: string = 'Tech\\ clubs';
-	static EC_Meetups: string = 'Meetups';
-	static EC_TechCompetitions: string = 'Tech\\ Competitions';
-	static EC_TraineeCamps: string = 'Trainee\\ Camps';
-	static EC_Library: string = 'Library';
-	static EC_LoyaltyProgram: string = 'Loyalty\\ Program';
+	static EC_TechClubs = 'Tech\\ clubs';
+	static EC_Meetups = 'Meetups';
+	static EC_TechCompetitions = 'Tech\\ Competitions';
+	static EC_TraineeCamps = 'Trainee\\ Camps';
+	static EC_LoyaltyProgram = 'Loyalty\\ Program';
 
-	static SocialResponsibilityId: string = 'socialResponsibility';
-	static SocialResponsibilityTitle: string = 'SectionTitle-SocialResponsibilityTitle';
-	static SocialResponsibilityNumber: string = 'SectionNumber-07Number';
-	static SocialResponsibilityCarousel: string = 'CarouselPhotoBlock-SocialResponsibility';
+	static SocialResponsibilityId = 'socialResponsibility';
+	static SocialResponsibilityTitle = 'SectionTitle-SocialResponsibilityTitle';
+	static SocialResponsibilityNumber = 'SectionNumber-07Number';
+	static SocialResponsibilityCarousel = 'CarouselPhotoBlock-SocialResponsibility';
 
 	static SR_Charity = 'Charity';
 	static SR_EnvironmentalSafety = 'Environmental\\ Safety';
 	static SR_EducationSupport = 'Education\\ Support';
 
-	static CandidatePathTitle: string = 'SectionTitle-CandidatePathTitle';
-	static CandidatePathNumber: string = 'SectionNumber-08Number';
-	static CandidateCarousel: string = 'CarouselInfoLineBlock-CandidatePath';
+	static CandidatePathTitle = 'SectionTitle-CandidatePathTitle';
+	static CandidatePathNumber = 'SectionNumber-08Number';
+	static CandidateCarousel = 'CarouselInfoLineBlock-CandidatePath';
 
-	static CarouselBlock: string = 'ContentLineBlock-ContentLineBlock';
-	static CarouselPrevButton: string = 'CarouselPrevButton-ControlButtonsPrev';
-	static CarouselNextButton: string = 'CarouselNextButton-ControlButtonsNext';
+	static CarouselBlock = 'ContentLineBlock-ContentLineBlock';
+	static CarouselPrevButton = 'CarouselPrevButton-ControlButtonsPrev';
+	static CarouselNextButton = 'CarouselNextButton-ControlButtonsNext';
 
-	static ApplyTitle: string = 'apply-title';
+	static ApplyTitle = 'apply-title';
 	static ApplyNowButton = 'ApplyNowVacancyButton-ProposalMessage';
 }

@@ -1,8 +1,5 @@
 export default class JobPagePreconditions {
-	public static descriptionBlocksIdentifiersAndUaHeaders: Map<
-		string,
-		string
-	> = new Map([
+	public static descriptionBlocksIdentifiersAndUaHeaders: Map<string, string> = new Map([
 		['role', 'Про роль:'],
 		['skills', 'Ти маєш:'],
 		['about_us', 'Ми маємо:'],

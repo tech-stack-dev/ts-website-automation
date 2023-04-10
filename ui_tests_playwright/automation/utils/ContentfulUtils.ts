@@ -1,6 +1,6 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
-import { stringUtils } from './StringUtils';
+import {sessionValue} from '../runtimeVariables/SessionValue';
 
 class ContentfulUtils {
 	async GetEnvironment() {
@@ -8,31 +8,19 @@ class ContentfulUtils {
 			accessToken: await ContentfulProvider.AccessToken(),
 		});
 		const space = await client.getSpace(await ContentfulProvider.SpaceId());
-		const environment = await space.getEnvironment(
-			await ContentfulProvider.Env()
-		);
+		const environment = await space.getEnvironment(await ContentfulProvider.Env());
 		return environment;
 	}
 
-	async CreateTag(
-		tagId: string,
-		tagName: string,
-		publishType: contentful.TagVisibility = 'public'
-	) {
+	async CreateTag(tagId: string, tagName: string, publishType: contentful.TagVisibility = 'public') {
 		const environment = await this.GetEnvironment();
 		await environment.createTag(tagId, tagName, publishType);
 	}
 
 	async CreateAndPublishCareerDescription(descriptionId: string) {
 		const environment = await this.GetEnvironment();
-		await environment.createEntryWithId(
-			'careerDescription',
-			descriptionId,
-			this.descriptionFields
-		);
-		const createdCareerDescriptionEntry = await environment.getEntry(
-			descriptionId
-		);
+		await environment.createEntryWithId('careerDescription', descriptionId, this.descriptionFields);
+		const createdCareerDescriptionEntry = await environment.getEntry(descriptionId);
 		await createdCareerDescriptionEntry.publish();
 	}
 
@@ -46,26 +34,17 @@ class ContentfulUtils {
 	) {
 		const environment = await this.GetEnvironment();
 		const careerFieldsWithDescriptionAndTag = this.careerFields;
-		careerFieldsWithDescriptionAndTag.fields.careerDescription[
-			'en-US'
-		].sys.id = descriptionId;
+		careerFieldsWithDescriptionAndTag.fields.careerDescription['en-US'].sys.id = descriptionId;
 		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerNameEn;
 		careerFieldsWithDescriptionAndTag.fields.name['uk-UA'] = careerNameUa;
 		careerFieldsWithDescriptionAndTag.metadata!.tags[0].sys.id = tagId1;
 		careerFieldsWithDescriptionAndTag.metadata!.tags[1].sys.id = tagId2;
-		await environment.createEntryWithId(
-			'career',
-			careerId,
-			this.careerFields
-		);
+		await environment.createEntryWithId('career', careerId, this.careerFields);
 		const createdCareer = await environment.getEntry(careerId);
 		await createdCareer.publish();
 	}
 
-	async UnpublishCareerWithDescription(
-		careerId: string,
-		descriptionId: string
-	) {
+	async UnpublishCareerWithDescription(careerId: string, descriptionId: string) {
 		const environment = await this.GetEnvironment();
 		const createdCareer = await environment.getEntry(careerId);
 		createdCareer.unpublish();
@@ -294,13 +273,10 @@ class ContentfulUtils {
 				},
 			},
 			technologyStack: {
-				'en-US': [
-					'TypeScript test',
-					'Create this via ts is challenge for me',
-				],
+				'en-US': ['TypeScript test', 'Create this via ts is challenge for me'],
 			},
 			slug: {
-				'en-US': stringUtils.AddRandom('TypeScript_test{SRND}-v1'),
+				'en-US': `TypeScript_test${sessionValue.stringValue}-v1`,
 			},
 		},
 	};

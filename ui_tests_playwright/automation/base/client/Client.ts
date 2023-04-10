@@ -8,10 +8,7 @@ class Client extends BaseClient {
 	public focusedClient: BaseClient;
 	public listOfClients: BaseClient[] = [];
 
-	public async createClient(
-		clientName: ClientsEnum,
-		contextOptions: ContextOptions
-	) {
+	public async createClient(clientName: ClientsEnum, contextOptions: ContextOptions) {
 		contextOptions.baseURL = UrlProvider.clientUrl(clientName);
 		client.focusedClient = new BaseClient();
 		client.focusedClient.ClientName = clientName;
