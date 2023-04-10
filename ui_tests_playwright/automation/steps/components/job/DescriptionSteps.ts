@@ -15,5 +15,4 @@ class DescriptionSteps {
 }
 
 const descriptionSteps = new DescriptionSteps();
-
 export {descriptionSteps};

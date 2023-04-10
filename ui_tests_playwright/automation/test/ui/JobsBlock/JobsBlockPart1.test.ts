@@ -55,11 +55,9 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await expect(applyPropositionWrapper.Element).toHaveText('Хочеш стати частиною нашої команди?Подавай заявку!');
 });
 
-test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-560 @TSWEB146', async () => {
+test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-
 	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
 
 	expect(await careerSteps.getBreadcrumbsText()).toBe(
