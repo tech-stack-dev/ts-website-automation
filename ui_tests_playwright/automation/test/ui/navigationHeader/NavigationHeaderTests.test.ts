@@ -15,7 +15,7 @@ test('Check that user can switch language in navigation header @Regression @Navi
 	const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass);
 	const uaButtonSwitcher = headerContainer.Element.getByTestId(Button.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
-	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+	await expect(uaButtonSwitcher).toHaveClass(/FAIL/);
 });
 
 test.afterEach(async () => {
