@@ -1,7 +1,7 @@
 export default class Containers {
 	static navigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
 	static standWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
-	static standWithUkraineTitleClass = 'stand-title';
+	static standWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
 	static careerCardWithoutModifier = 'CardWrapper-';
 
 	// Blog
