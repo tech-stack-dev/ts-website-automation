@@ -29,9 +29,7 @@ test('Check the the "Stand with Ukraine" block with localization @Regression @St
 	await expect(driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
 	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
 
-	const buttonSwitcher = await (
-		await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass)
-	).Element.getByTestId(Button.UaLanguageSwitcher);
+	const buttonSwitcher = (await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass)).Element.getByTestId(Button.UaLanguageSwitcher);
 	await buttonSwitcher.click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
