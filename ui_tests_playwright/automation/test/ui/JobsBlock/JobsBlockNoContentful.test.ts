@@ -28,7 +28,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
-test('Check search field style after seach a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {
+test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {
 	// Check that input size is not changed after searching
 	const textData = 'L0ngTe$tD@ta'.repeat(10);
 	const expectedInputBoxProps = await driver.getByTestId(Career.searchCareerField).boundingBox();
