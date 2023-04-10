@@ -14,9 +14,14 @@ test.beforeEach(async () => {
 
 test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
 	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
-	const logo = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
+	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
 
-	await logo.waitFor({state: 'visible'});
+	// A footer element creates to navigate to it and to  appearing a navigation panel 
+	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.footerWrapper);
+	const logoFooter = footerContainer.Element.getByTestId(Link.Logo);
+	logoFooter.focus();
+
+	await logoHeader.waitFor({state: 'visible'});
 	await expect(driver.getByTestId(Button.NavigationTab_Jobs)).toHaveText('Jobs');
 	await expect(driver.getByTestId(Button.NavigationTab_AboutUs)).toHaveText('About us');
 	await expect(driver.getByTestId(Button.NavigationTab_Reviews)).toHaveText('Reviews');
