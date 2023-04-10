@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
   #Run each day at 21:10
-    - cron: '10 21 * * *'
+    - cron: '30 09 * * *'
   pull_request:
     paths:
       - "ui_tests_playwright/**"
@@ -56,7 +56,7 @@ jobs:
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
             if_true: 'test_slack_notifications'
-            if_false: 'ts_website'
+            if_false: 'test_slack_notifications'
       
       - name: Debug job status
         run: echo "job status:${{ job.status }}"
