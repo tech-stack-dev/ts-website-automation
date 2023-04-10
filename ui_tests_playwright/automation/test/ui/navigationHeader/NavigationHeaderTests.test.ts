@@ -22,10 +22,10 @@ test('Check that user can switch language in navigation header @Regression @Navi
 
 test('Check the the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
 	await expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)).Element).toBeVisible();
-	await expect(await driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText(
+	await expect(driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText(
 		'Techstack stands with Ukraine'
 	);
-	await expect(await driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
+	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
 
 	const buttonSwitcher = await (
 		await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass)
@@ -33,14 +33,13 @@ test('Check the the "Stand with Ukraine" block with localization @Regression @St
 	await buttonSwitcher.click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
-	await expect(await driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText(
+	await expect(driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText(
 		'Відповідь Techstack на війну в Україні',
 		{timeout: 1000}
 	);
-	await expect(await driver.getByTestId(Button.LearnMoreButton)).toHaveText('Ознайомитися');
-
+	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Ознайомитися');
+	
 	await driver.getByTestId(Button.LearnMoreButton).click();
-
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine, Environment.Production));
 	// Uncomment when the data-id is added for the title element
 	// await expect((await containerSteps.getContainer(ContainerByClass, Containers.breadcrumbChilds)).Element).toContainText(
