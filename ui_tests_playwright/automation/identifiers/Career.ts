@@ -4,8 +4,8 @@ export default class Career {
 	// Job Header
 	static breadcrumbsInCareer = 'breadcrumbs-block';
 	static jobHeaderTitle = 'career-title';
-	static jobHeaderJobsTabUa = 'NavigationTab-Вакансії';
-	static jobHeaderAboutUsTabUa = 'NavigationTab-ПроКомпанію';
-	static jobHeaderReviewsTabUa = 'NavigationTab-Відгуки';
-	static jobHeaderContactUsTabUa = 'NavigationTab-ЗвязатисьЗНами';
+	static jobHeaderJobsTabUa = 'NavigationTab-Jobs';
+	static jobHeaderAboutUsTabUa = 'NavigationTab-AboutUs';
+	static jobHeaderReviewsTabUa = 'NavigationTab-Rev';
+	static jobHeaderContactUsTabUa = 'NavigationTab-ContactUs';
 }
