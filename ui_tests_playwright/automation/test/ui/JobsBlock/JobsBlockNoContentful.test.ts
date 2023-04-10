@@ -5,6 +5,7 @@ import UrlProvider from '../../../providers/UrlProvider';
 import Input from '../../../identifiers/Input';
 import Button from '../../../identifiers/Button';
 import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
+import Link from '../../../identifiers/Link';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -27,10 +28,10 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 
 test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
-	await driver.getByTestId(Button.Breadcrumbs_Jobs).click();
+	await driver.getByTestId(Link.Breadcrumbs_Jobs).click();
 
 	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
-	expect(await driver.getByTestId(/CardWrapper/)).toBeVisible();
+	await expect(driver.getByTestId(/CardWrapper/)).toBeVisible();
 });
 
 test.afterEach(async () => {
