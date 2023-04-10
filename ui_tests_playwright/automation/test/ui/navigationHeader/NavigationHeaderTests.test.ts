@@ -19,26 +19,30 @@ test('Check that user can switch language in navigation header @Regression @Navi
 });
 
 test('Check the the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
+	await expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)).Element).toBeVisible();
+	await expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineTitleClass)).Element).toHaveText(
+		'Techstack stands with Ukraine'
+	);
+	await expect(await driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
+
 	const buttonSwitcher = await (
 		await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass)
 	).Element.getByTestId(Button.UaLanguageSwitcher);
-	expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)).Element).toHaveText(
-		'Techstack stands with Ukraine'
-	);
-	expect(await driver.getByTestId('LearnMoreButton-SharedLearnMore2')).toHaveText('Learn More');
-
 	await buttonSwitcher.click();
-	expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)).Element).toHaveText(
+
+	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
+	await expect((await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineTitleClass)).Element).toHaveText(
 		'Відповідь Techstack на війну в Україні',
 		{timeout: 1000}
 	);
-	expect(await driver.getByTestId('LearnMoreButton-SharedLearnMore2')).toHaveText('Ознайомитися');
+	await expect(await driver.getByTestId(Button.LearnMoreButton)).toHaveText('Ознайомитися');
 
-	await driver.getByTestId('LearnMoreButton-SharedLearnMore2').click();
+	await driver.getByTestId(Button.LearnMoreButton).click();
 	await baseDriverSteps.checkUrl('https://tech-stack.com/blog/techstack-stands-with-ukraine/');
-	expect((await containerSteps.getContainer(ContainerByClass, Containers.postTitileClass)).Element).toHaveText(
-		'Techstack Stands with Ukraine'
-	);
+	// Uncomment when the data-id is added for the title element
+	// await expect((await containerSteps.getContainer(ContainerByClass, Containers.breadcrumbChilds)).Element).toContainText(
+	// 	'Techstack Stands with Ukraine'
+	// );
 });
 
 test.afterEach(async () => {
