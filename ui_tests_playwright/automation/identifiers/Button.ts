@@ -13,7 +13,7 @@ export default class Button {
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
 	static ContactUs = 'Button-ContactUs';
 	static Close = 'CloseButton-Close';
-	static LearnMoreButton = 'LearnMoreButton-SharedLearnMore2'
+	static LearnMoreButton = 'LearnMoreButton-SharedLearnMore2';
 
 	// Menu components
 	static Menu_Services = 'ServicesHeader-ServicesHeader';
