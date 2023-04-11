@@ -33,12 +33,6 @@ jobs:
       - name: Run UI tests
         run: npx playwright test
         
-      - name: Debug job status
-        run: echo "job status:${{ job.status }}"
-        
-      - name: Debug event name
-        run: echo "event name:${{ github.event_name }}"
-        
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
         if: always()
