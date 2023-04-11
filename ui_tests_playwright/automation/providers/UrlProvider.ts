@@ -4,7 +4,7 @@ import EnvProvider, {Environment} from './EnvProvider';
 import UrlPath from './UrlPath';
 
 export default class UrlProvider {
-	public static urlBuilder(urlPath: string, urlWebSite : string = UrlProvider.webSiteUrl()) {
+	public static urlBuilder(urlPath: string, urlWebSite: string = UrlProvider.webSiteUrl()) {
 		return `${urlWebSite}${urlPath}`;
 	}
 
