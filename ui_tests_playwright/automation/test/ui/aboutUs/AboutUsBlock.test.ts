@@ -6,8 +6,7 @@ import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
 });
 

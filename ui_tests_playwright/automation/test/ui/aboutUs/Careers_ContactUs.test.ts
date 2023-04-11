@@ -7,8 +7,7 @@ import UrlProvider from '../../../providers/UrlProvider';
 import ContactUs from '../../../identifiers/Forms/ContactUsForm';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_ContactUs).click();
 });
 

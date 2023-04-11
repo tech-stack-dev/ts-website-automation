@@ -1,18 +1,5 @@
 ﻿Feature: ContactUs
 
-# Test should be moved to TypeScript solution, details in TSWEB-560
-@Regression @ContactUsForm @TSWEB149 @NotRun
-Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
-	Given User is on career website
-	When User clicks on 'Contact us' tab on 'NavigationHeader' container
-	Then 'Contact us' title is displayed on Contact Us form
-	When User clicks 'Submit' button on 'ContactUsPage' container
-	Then Error messages are displayed under fields
-		| Input     | ErrorMessage                   |
-		| Full name | Please enter your name         |
-		| Email     | Please enter your email        |
-		| Tel       | Please enter your phone number |
-
 @Regression @ContactUsForm @TSWEB149
 Scenario: CheckErrorMessagesForRequiredFieldsWithSpacesOnContactForm
 	Given User is on 'https://staging-career.tech-stack.io/contact-us' page
