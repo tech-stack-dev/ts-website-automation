@@ -43,10 +43,10 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await expect((await driver.component(ContainerByClass, Career.jobHeaderTitle)).Element).toHaveText(
 		'Тестова Вакансія'
 	);
-	await expect(driver.getByTestId(Career.jobHeaderJobsTabUa)).toHaveText('Вакансії');
-	await expect(driver.getByTestId(Career.jobHeaderAboutUsTabUa)).toHaveText('Про компанію');
-	await expect(driver.getByTestId(Career.jobHeaderReviewsTabUa)).toHaveText('Відгуки');
-	await expect(driver.getByTestId(Career.jobHeaderContactUsTabUa)).toHaveText('Зв’язатись з нами');
+	await expect(driver.getByTestId(Career.jobHeaderJobsTab)).toHaveText('Вакансії');
+	await expect(driver.getByTestId(Career.jobHeaderAboutUsTab)).toHaveText('Про компанію');
+	await expect(driver.getByTestId(Career.jobHeaderReviewsTab)).toHaveText('Відгуки');
+	await expect(driver.getByTestId(Career.jobHeaderContactUsTab)).toHaveText('Зв’язатись з нами');
 
 	for (const header of JobPagePreconditions.descriptionBlocksIdentifiersAndUaHeaders) {
 		await descriptionSteps.checkDescriptionBlockHeader(header[0], header[1]);
