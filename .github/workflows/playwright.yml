@@ -62,20 +62,22 @@ jobs:
         id: slack_channel
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-            if_true: 'test_slack_notifications'
+            if_true: 'test_slack_notifications,ts_website_automation'
             if_false: 'test_slack_notifications'
       
       - name: Slack Notification for UI tests
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-            SLACK_USERNAME: Tests execution report
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_CHANNEL: ${{ steps.slack_channel.outputs.value }}
-            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            SLACK_TITLE: TypeScript UI tests
-            MSG_MINIMAL: true
-            SLACK_FOOTER: TS website
-    
+        run: |
+          for channel in $(echo "${{ steps.slack_channel.outputs.value }}" | tr ',' ' '); do
+            env:
+                SLACK_USERNAME: Tests execution report \
+                SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} \
+                SLACK_CHANNEL: "$channel" \
+                SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }} \
+                SLACK_COLOR: ${{ job.status }} \
+                SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
+                SLACK_TITLE: TypeScript UI tests \
+                MSG_MINIMAL: true \
+                SLACK_FOOTER: TS website \
+                node_modules/.bin/slack-notify
+          done
