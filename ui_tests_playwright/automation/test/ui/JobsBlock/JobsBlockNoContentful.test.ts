@@ -2,8 +2,6 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
-import Career from '../../../identifiers/Career';
-import Containers from '../../../identifiers/Containers';
 import Input from '../../../identifiers/Input';
 import Button from '../../../identifiers/Button';
 import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
