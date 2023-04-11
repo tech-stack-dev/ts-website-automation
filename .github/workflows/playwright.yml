@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Install slack-notify
+        run: npm i slack-notify
+  
       - name: Install playwright browsers
         run: npx playwright install --with-deps
         
@@ -73,5 +76,5 @@ jobs:
             export SLACK_TITLE="TypeScript UI tests"
             export MSG_MINIMAL=true
             export SLACK_FOOTER="TS website"
-            node_modules/.bin/slack-notify
+            node node_modules/.bin/slack-notify
           done
