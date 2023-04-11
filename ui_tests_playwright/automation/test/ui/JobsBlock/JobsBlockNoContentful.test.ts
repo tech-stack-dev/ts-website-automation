@@ -6,6 +6,8 @@ import Input from '../../../identifiers/Input';
 import Button from '../../../identifiers/Button';
 import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
 import ContainerByClass from '../../../components/Container/ContainerByClass';
+import Career from '../../../identifiers/Career';
+import Containers from '../../../identifiers/Containers';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
