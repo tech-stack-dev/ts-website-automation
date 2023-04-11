@@ -48,5 +48,4 @@ class CareerSteps {
 }
 
 const careerSteps = new CareerSteps();
-
 export {careerSteps};

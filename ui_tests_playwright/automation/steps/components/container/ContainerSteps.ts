@@ -9,13 +9,11 @@ class ContainerSteps {
 
   public async checkContainerNumber(identifier: string, expectedNumber: string) {
     const sectionNumber = (await driver.component(ContainerById, identifier)).sectionNumber;
-
     await expect(sectionNumber).toHaveText(expectedNumber);
   }
 
   public async checkContainerTitle(identifier: string, expectedTitle: string) {
     const title = (await driver.component(ContainerById, identifier)).title;
-
     await expect(title).toHaveText(expectedTitle);
   }
 }

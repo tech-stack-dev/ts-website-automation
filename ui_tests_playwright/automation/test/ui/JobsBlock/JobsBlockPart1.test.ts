@@ -71,7 +71,6 @@ test('Check that user can switch language in navigation header in job page @Regr
 	await expect(driver.getByTestId(Button.NavigationTab_AboutUs)).toHaveText('About us');
 	await expect(driver.getByTestId(Button.NavigationTab_Reviews)).toHaveText('Reviews');
 	await expect(driver.getByTestId(Button.NavigationTab_ContactUs)).toHaveText('Contact us');
-
 	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
 
 	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
