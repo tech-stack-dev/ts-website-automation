@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import Button from '../../../identifiers/Button';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
-import ContactUs from '../../../identifiers/Forms/ContactUsForm';
+import ContactUsForm from '../../../identifiers/forms/ContactUsForm';
 import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
@@ -20,9 +20,9 @@ test("Check that 'Full Name' input field does not accept only spaces in the 'Con
 	];
 
 	for (const data of testData) {
-		await driver.getByTestId(ContactUs.FullName).fill(data);
+		await driver.getByTestId(ContactUsForm.FullName).fill(data);
 		await driver.getByTestId(Button.SendButton).click();
-		const actualErrorText_FullName = driver.getByTestId(ContactUs.FullName).locator(Input.fieldErrorSelector);
+		const actualErrorText_FullName = driver.getByTestId(ContactUsForm.FullName).locator(Input.fieldErrorSelector);
 
 		await expect(actualErrorText_FullName).toHaveText('Please enter your name');
 	}

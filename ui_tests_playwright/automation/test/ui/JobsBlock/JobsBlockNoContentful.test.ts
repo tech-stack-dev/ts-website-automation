@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import Button from '../../../identifiers/Button';
-import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
+import ApplyForAJobForm from '../../../identifiers/forms/ApplyForAJobForm';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';

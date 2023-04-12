@@ -5,5 +5,10 @@ export default class Containers {
 	static jobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
 	static jobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
 
+	// Side Bar
+	static activeTagsGroupWrapper = 'styledComponents__ActiveTagsGroupWrapper';
+	static filterGroupWrapper = 'styledComponents__FilterGroupWrapper';
+
+	// Footer
 	static footerWrapper = 'styledComponents__FooterWrapper';
 }
