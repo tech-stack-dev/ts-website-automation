@@ -3,5 +3,4 @@ export default class Link {
     
 	// Breadcrumbs links
 	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
-
 }
