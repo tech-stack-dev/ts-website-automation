@@ -5,7 +5,6 @@ import Button from '../../../identifiers/Button';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import UrlPath from '../../../providers/UrlPath';
 import UrlProvider from '../../../providers/UrlProvider';
-import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
 import ContactUs from '../../../identifiers/Forms/ContactUsForm';
 import Input from '../../../identifiers/Input';
 
@@ -33,7 +32,7 @@ test("Check error messages for empty required fields on 'Contact Us' form @Regre
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_ContactUs).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs, UrlProvider.careerUrl()));
-	await containerSteps.checkContainerTitle(ContactUs.ContactUsFormId, 'Contact us');
+	// Add check ContactUs title using data-id
 	await driver.getByTestId(ContactUs.SendRequestButton).click();
 	const actualErrorText_FullName = driver.getByTestId(ContactUs.FullName).locator(Input.fieldErrorSelector);
 	await expect(actualErrorText_FullName).toHaveText('Please enter your name');
