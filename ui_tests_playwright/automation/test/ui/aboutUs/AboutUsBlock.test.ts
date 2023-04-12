@@ -4,9 +4,9 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
-import { PlaywrightExtentions } from '../../../utils/PlaywightExtentions';
+import {PlaywrightExtentions} from '../../../utils/PlaywightExtentions';
 
-PlaywrightExtentions.myBeforeEach(async ({page},testInfo) => {
+PlaywrightExtentions.myBeforeEach(async ({page}, testInfo) => {
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
