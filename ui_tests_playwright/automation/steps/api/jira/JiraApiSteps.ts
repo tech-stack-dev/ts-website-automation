@@ -15,7 +15,7 @@ class JiraApiSteps {
 		testName: string,
 		test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
 	): Promise<void> {
-		if (await jiraApiSteps.isIssueOpened(testName)) {
+		if (process.env.SKIP_JIRA==='true' && await jiraApiSteps.isIssueOpened(testName)) {
 			test.skip();
 		}
 	}
