@@ -2,6 +2,7 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import Button from '../../../identifiers/Button';
 import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
+import Link from '../../../identifiers/Link';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
@@ -27,6 +28,14 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	const actualErrorText_LastName = driver.getByTestId(ApplyForAJobForm.LastName).locator(Input.fieldErrorSelector);
 	await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
 	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
+});
+
+test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82', async () => {
+	await driver.getByTestId(/CardWrapper/).click();
+	await driver.getByTestId(Link.Breadcrumbs_Jobs).click();
+
+	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
+	await expect(driver.getByTestId(/CardWrapper/)).toBeVisible();
 });
 
 test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {

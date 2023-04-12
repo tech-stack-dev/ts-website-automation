@@ -15,6 +15,9 @@ export default class Button {
 	static Menu_Company = 'CompanyHeader-CompanyHeader';
 	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
 
+	// Breadcrumbs links
+	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
+
 	// Services section
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
