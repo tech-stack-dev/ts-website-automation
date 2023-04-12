@@ -4,16 +4,15 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
-import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
+import { PlaywrightExtentions } from '../../../utils/PlaywightExtentions';
 
-test.beforeEach(async ({page}, testInfo) => {
-	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
+PlaywrightExtentions.myBeforeEach(async ({page},testInfo) => {
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
 });
 
-test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622", async () => {
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackNumber)).toHaveText('01');
 
