@@ -8,6 +8,7 @@ import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
 import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Career from '../../../identifiers/Career';
 import Containers from '../../../identifiers/Containers';
+import randomstring from 'randomstring';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -30,7 +31,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 
 test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {
 	// Check that input size is not changed after searching
-	const textData = 'L0ngTe$tD@ta'.repeat(10);
+	const textData = randomstring.generate(50);
 	const expectedInputBoxProps = await driver.getByTestId(Career.searchCareerField).boundingBox();
 	await driver.getByTestId(Career.searchCareerField).fill(textData);
 	await expect((await driver.component(ContainerByClass, Containers.searchResultsTextContainer)).Element).toHaveText(
