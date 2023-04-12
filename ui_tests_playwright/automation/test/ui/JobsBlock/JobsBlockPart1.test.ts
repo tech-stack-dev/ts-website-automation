@@ -10,8 +10,8 @@ import {driver} from '../../../base/driver/Driver';
 import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
-import { descriptionSteps } from '../../../steps/components/job/DescriptionSteps';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import {descriptionSteps} from '../../../steps/components/job/DescriptionSteps';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Navigation from '../../../identifiers/Navigation';
 
@@ -47,7 +47,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Вакансії');
 	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('Про компанію');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Відгуки');
-	await expect(driver.getByTestId(Navigation .NavigationTab_ContactUs)).toHaveText('Зв’язатись з нами');
+	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Зв’язатись з нами');
 
 	for (const header of JobPagePreconditions.descriptionBlocksIdentifiersAndUaHeaders) {
 		await descriptionSteps.checkDescriptionBlockHeader(header[0], header[1]);

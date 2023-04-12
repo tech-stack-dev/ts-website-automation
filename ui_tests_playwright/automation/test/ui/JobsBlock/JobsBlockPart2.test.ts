@@ -1,12 +1,12 @@
-import { expect, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
+import {expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../providers/UrlProvider';
 import ContainerByClass from '../../../components/container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
-import { driver } from '../../../base/driver/Driver';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import {driver} from '../../../base/driver/Driver';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
@@ -22,7 +22,7 @@ test('Check that user can switch language in navigation header in career page @R
 	const logoFooter = footerContainer.Element.getByTestId(Link.Logo);
 	logoFooter.focus();
 
-	await logoHeader.waitFor({ state: 'visible' });
+	await logoHeader.waitFor({state: 'visible'});
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
 	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');

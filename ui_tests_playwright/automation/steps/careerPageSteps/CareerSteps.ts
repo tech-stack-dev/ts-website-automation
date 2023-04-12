@@ -3,7 +3,7 @@ import {driver} from '../../base/driver/Driver';
 import Button from '../../identifiers/Button';
 import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
-import { containerSteps } from '../components/container/ContainerSteps';
+import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
 
 class CareerSteps {
