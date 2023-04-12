@@ -62,5 +62,4 @@ class SlackSteps {
 }
 
 const slackSteps = new SlackSteps();
-
 export {slackSteps};

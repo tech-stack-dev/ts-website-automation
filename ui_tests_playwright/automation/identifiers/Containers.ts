@@ -5,4 +5,6 @@ export default class Containers {
 	// Job page
 	static jobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
 	static jobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
+
+	static footerWrapper = 'styledComponents__FooterWrapper';
 }
