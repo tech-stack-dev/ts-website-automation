@@ -1,8 +1,4 @@
 export default class Button {
-	// Navigation tab
-	static NavigationTab_AboutUs = 'NavigationTab-AboutUs';
-	static NavigationTab_ContactUs = 'NavigationTab-ContactUs';
-
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
 

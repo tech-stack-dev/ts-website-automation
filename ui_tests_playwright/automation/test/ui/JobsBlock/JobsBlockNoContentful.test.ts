@@ -1,10 +1,10 @@
 import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import {driver} from '../../../base/driver/Driver';
-import UrlProvider from '../../../providers/UrlProvider';
-import Input from '../../../identifiers/Input';
 import Button from '../../../identifiers/Button';
 import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
+import Input from '../../../identifiers/Input';
+import UrlProvider from '../../../providers/UrlProvider';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
