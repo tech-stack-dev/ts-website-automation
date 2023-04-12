@@ -2,12 +2,12 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
-import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
+import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
+	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
 test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
