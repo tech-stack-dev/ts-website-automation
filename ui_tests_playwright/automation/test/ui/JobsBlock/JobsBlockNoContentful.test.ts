@@ -5,10 +5,10 @@ import ApplyForAJobForm from '../../../identifiers/Forms/ApplyForAJobForm';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Career from '../../../identifiers/Career';
 import Containers from '../../../identifiers/Containers';
 import randomstring from 'randomstring';
+import ContainerByClass from '../../../components/container/ContainerByClass';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
