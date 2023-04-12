@@ -13,6 +13,7 @@ import Button from '../../../identifiers/Button';
 import { descriptionSteps } from '../../../steps/components/job/DescriptionSteps';
 import { containerSteps } from '../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../components/container/ContainerByClass';
+import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -43,10 +44,10 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await expect((await driver.component(ContainerByClass, Career.jobHeaderTitle)).Element).toHaveText(
 		'Тестова Вакансія'
 	);
-	await expect(driver.getByTestId(Career.jobHeaderJobsTab)).toHaveText('Вакансії');
-	await expect(driver.getByTestId(Career.jobHeaderAboutUsTab)).toHaveText('Про компанію');
-	await expect(driver.getByTestId(Career.jobHeaderReviewsTab)).toHaveText('Відгуки');
-	await expect(driver.getByTestId(Career.jobHeaderContactUsTab)).toHaveText('Зв’язатись з нами');
+	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Вакансії');
+	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('Про компанію');
+	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Відгуки');
+	await expect(driver.getByTestId(Navigation .NavigationTab_ContactUs)).toHaveText('Зв’язатись з нами');
 
 	for (const header of JobPagePreconditions.descriptionBlocksIdentifiersAndUaHeaders) {
 		await descriptionSteps.checkDescriptionBlockHeader(header[0], header[1]);
@@ -67,10 +68,10 @@ test('Check that user can switch language in navigation header in job page @Regr
 	const logo = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
 	await logo.waitFor({state: 'visible'});
 
-	await expect(driver.getByTestId(Button.NavigationTab_Jobs)).toHaveText('Jobs');
-	await expect(driver.getByTestId(Button.NavigationTab_AboutUs)).toHaveText('About us');
-	await expect(driver.getByTestId(Button.NavigationTab_Reviews)).toHaveText('Reviews');
-	await expect(driver.getByTestId(Button.NavigationTab_ContactUs)).toHaveText('Contact us');
+	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
+	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
+	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
+	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
 
 	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
