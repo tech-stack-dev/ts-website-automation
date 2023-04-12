@@ -6,6 +6,10 @@ import Link from '../../../identifiers/Link';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import Career from '../../../identifiers/Career';
+import Containers from '../../../identifiers/Containers';
+import randomstring from 'randomstring';
+import ContainerByClass from '../../../components/container/ContainerByClass';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -32,6 +36,23 @@ test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page
 
 	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
 	await expect(driver.getByTestId(/CardWrapper/)).toBeVisible();
+});
+
+test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {
+	// Check that input size is not changed after searching
+	const textData = randomstring.generate(50);
+	const expectedInputBoxProps = await driver.getByTestId(Career.searchCareerField).boundingBox();
+	await driver.getByTestId(Career.searchCareerField).fill(textData);
+	await expect((await driver.component(ContainerByClass, Containers.searchResultsTextContainer)).Element).toHaveText(
+		`${textData},0`
+	);
+	const actualInputBoxProps = await driver.getByTestId(Career.searchCareerField).boundingBox();
+	await expect(actualInputBoxProps?.width).toEqual(expectedInputBoxProps?.width);
+	await expect(actualInputBoxProps?.height).toEqual(expectedInputBoxProps?.height);
+	// Check that input is not covered by another element after searching
+	(await driver.component(ContainerByClass, Containers.searchResultsTextContainer)).click();
+	await driver.getByTestId(Career.searchCareerField).click();
+	await expect(driver.getByTestId(Career.searchCareerField)).toBeFocused();
 });
 
 test.afterEach(async () => {
