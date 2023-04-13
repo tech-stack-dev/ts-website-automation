@@ -20,6 +20,10 @@ jobs:
     defaults:
         run:
             working-directory: ./ui_tests_playwright
+    strategy:
+      matrix:
+        slack_channels_production: [ts_website, ts_website_automation]
+        
     steps:
       - uses: actions/checkout@v3
       
@@ -57,8 +61,8 @@ jobs:
         id: slack_channel
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-            if_true: "test_slack_notifications, ts_website_automation"
-            if_false: "test_slack_notifications, ts_website_automation"
+            if_true: "test_slack_notifications"
+            if_false: matrix.slack_channels_production
       
       - name: Slack Notification for UI tests
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
@@ -66,7 +70,7 @@ jobs:
         env:
             SLACK_USERNAME: Tests execution report
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_CHANNEL: test_slack_notifications,ts_website_automation
+            SLACK_CHANNEL: ${{ steps.slack_channel.outputs.value }}
             SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
             SLACK_COLOR: ${{ job.status }}
             SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
