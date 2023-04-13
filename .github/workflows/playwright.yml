@@ -57,8 +57,8 @@ jobs:
         id: slack_channel
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-            if_true: "test_slack_notifications,ts_website_automation"
-            if_false: "test_slack_notifications,ts_website_automation"
+            if_true: "test_slack_notifications, ts_website_automation"
+            if_false: "test_slack_notifications, ts_website_automation"
       
       - name: Slack Notification for UI tests
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
