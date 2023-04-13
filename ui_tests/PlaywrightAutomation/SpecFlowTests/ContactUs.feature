@@ -1,6 +1,7 @@
 ﻿Feature: ContactUs
 
-@Regression @ContactUsForm @TSWEB149
+# Test should be moved to TypeScript solution, details in TSWEB-560
+@Regression @ContactUsForm @TSWEB149 @NotRun
 Scenario: CheckErrorMessagesForEmptyRequiredFieldsOnContactForm
 	Given User is on career website
 	When User clicks on 'Contact us' tab on 'NavigationHeader' container

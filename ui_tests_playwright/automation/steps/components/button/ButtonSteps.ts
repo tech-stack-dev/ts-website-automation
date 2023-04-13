@@ -8,5 +8,4 @@ class ButtonSteps {
 }
 
 const buttonSteps = new ButtonSteps();
-
 export {buttonSteps};

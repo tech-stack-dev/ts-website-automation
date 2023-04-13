@@ -1,15 +1,14 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import {driver} from '../../../base/driver/Driver';
-import {containerSteps} from '../../../steps/components/Container/ContainerSteps';
 import UrlProvider from '../../../providers/UrlProvider';
-import ContainerByClass from '../../../components/Container/ContainerByClass';
 import Containers from '../../../identifiers/Containers';
 import Button from '../../../identifiers/Button';
-import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
+import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import ContainerByClass from '../../../components/container/ContainerByClass';
 
 test.beforeEach(async ({page}, testInfo) => {
-	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
+	// await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 

@@ -2,15 +2,15 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
-import Button from '../../../identifiers/Button';
 import UrlProvider from '../../../providers/UrlProvider';
 import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
+import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async ({page}, testInfo) => {
 	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Button.NavigationTab_AboutUs).click();
+	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
 test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622", async () => {

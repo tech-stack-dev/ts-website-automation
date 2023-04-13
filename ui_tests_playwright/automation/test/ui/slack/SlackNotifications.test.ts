@@ -11,6 +11,7 @@ import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/C
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
+import Navigation from '../../../identifiers/Navigation';
 
 test.beforeEach(async ({page}, testInfo) => {
 	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
@@ -20,7 +21,7 @@ test.beforeEach(async ({page}, testInfo) => {
 
 test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606", async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Button.NavigationTab_ContactUs).click();
+	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 	await formSteps.sendContactUsMessage();
 	const message = await slackSteps.getMessageWithValueFromChat(
 		slackDtoVariable.value.stagingTechstackHrNotifyId,

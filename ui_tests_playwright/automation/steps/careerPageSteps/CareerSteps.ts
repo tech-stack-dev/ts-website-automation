@@ -1,10 +1,10 @@
+import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
+import Button from '../../identifiers/Button';
 import Career from '../../identifiers/Career';
 import Containers from '../../identifiers/Containers';
-import ContainerByClass from '../../components/Container/ContainerByClass';
-import {containerSteps} from '../components/Container/ContainerSteps';
-import Button from '../../identifiers/Button';
-import {expect} from '@playwright/test';
+import {containerSteps} from '../components/container/ContainerSteps';
+import ContainerByClass from '../../components/container/ContainerByClass';
 
 class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string) {
@@ -48,5 +48,4 @@ class CareerSteps {
 }
 
 const careerSteps = new CareerSteps();
-
 export {careerSteps};

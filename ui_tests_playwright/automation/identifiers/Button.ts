@@ -1,8 +1,4 @@
 export default class Button {
-	// Navigation tab
-	static NavigationTab_AboutUs = 'NavigationTab-AboutUs';
-	static NavigationTab_ContactUs = 'NavigationTab-ContactUs';
-
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
 
@@ -18,6 +14,9 @@ export default class Button {
 	static Menu_Services = 'ServicesHeader-ServicesHeader';
 	static Menu_Company = 'CompanyHeader-CompanyHeader';
 	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
+
+	// Breadcrumbs links
+	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
 
 	// Services section
 	static Services_OurServices = 'Services-OurServices';
