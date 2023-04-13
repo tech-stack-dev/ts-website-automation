@@ -1,6 +1,7 @@
 import type {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+import globalSetup from './global-setup';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -25,7 +26,10 @@ const config: PlaywrightTestConfig = {
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: 'retain-on-failure',
 		testIdAttribute: 'data-id',
+		
 	},
+	globalSetup: require.resolve('./global-setup'),
+	testIgnore: '**/test-assets/**',
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.
@@ -46,6 +50,16 @@ const config: PlaywrightTestConfig = {
 
 	/* Configure projects for major browsers */
 	projects: [
+		{
+			name: 'setup',
+			testMatch: /global.setup\.ts/,
+		},
+		{
+			name: 'Google Chrome',
+			use: {
+				channel: 'chrome',
+			},
+		},
 		// {
 		//   name: 'chromium',
 		//   use: {
@@ -96,12 +110,6 @@ const config: PlaywrightTestConfig = {
 		//   },
 		//   grep: [new RegExp("@desktop")],
 		// },
-		{
-			name: 'Google Chrome',
-			use: {
-				channel: 'chrome',
-			},
-		},
 	],
 
 	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
