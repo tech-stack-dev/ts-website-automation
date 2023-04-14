@@ -20,7 +20,7 @@ test('Check that user can switch language in navigation header in career page @R
 	// A footer element is created to navigate to it and make the navigation bar appear.
 	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.footerWrapper);
 	const logoFooter = footerContainer.Element.getByTestId(Link.Logo);
-	logoFooter.focus();
+	await logoFooter.focus();
 
 	await logoHeader.waitFor({state: 'visible'});
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');

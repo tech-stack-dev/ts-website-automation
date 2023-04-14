@@ -1,5 +1,6 @@
 export default class Containers {
 	static navigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
+	static careerMainBody = 'styledComponents__CareerMainBody';
 	static careerCardWithoutModifier = 'CardWrapper-';
 	// Job page
 	static jobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';

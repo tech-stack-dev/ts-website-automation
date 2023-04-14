@@ -1,8 +1,12 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
 import {sessionValue} from '../runtimeVariables/SessionValue';
+import {SeniorityLevelsEnum} from '../enum/tag/SeniorityLevelsEnum';
+import {DirectionsEnum} from '../enum/tag/DirectionsEnum';
 
 class ContentfulUtils {
+	private tagJson: any[] = [];
+
 	async GetEnvironment() {
 		const client = contentful.createClient({
 			accessToken: await ContentfulProvider.AccessToken(),
@@ -17,6 +21,35 @@ class ContentfulUtils {
 		await environment.createTag(tagId, tagName, publishType);
 	}
 
+	async AddDefaultTags(directionsTag: DirectionsEnum, seniorityLevelsTag: SeniorityLevelsEnum) {
+		const tagList = [await this.GetTagJsonBody(directionsTag), await this.GetTagJsonBody(seniorityLevelsTag)];
+
+		tagList.forEach(async (tag) => {
+			this.tagJson.push(tag);
+		});
+	}
+
+	async AddTagsToCareerBody(tagList: any[]) {
+		tagList.forEach(async (tag) => {
+			if (this.tagJson.indexOf(tag) !== -1) {
+				return;
+			}
+			this.tagJson.push(await this.GetTagJsonBody(tag));
+		});
+	}
+
+	async GetTagJsonBody(tag: any) {
+		const tagJsonBody = {
+			sys: {
+				type: 'Link',
+				linkType: 'Tag',
+				id: tag,
+			},
+		};
+
+		return tagJsonBody;
+	}
+
 	async CreateAndPublishCareerDescription(descriptionId: string) {
 		const environment = await this.GetEnvironment();
 		await environment.createEntryWithId('careerDescription', descriptionId, this.descriptionFields);
@@ -29,16 +62,15 @@ class ContentfulUtils {
 		careerNameEn: string,
 		descriptionId: string,
 		careerNameUa = 'Тестова Вакансія',
-		tagId1 = 'direction_longSoftwareDataManager',
-		tagId2 = 'seniority_trainee'
+		directionsTag = DirectionsEnum.LongSoftwareDataManager,
+		seniorityLevelsTag = SeniorityLevelsEnum.Trainee
 	) {
 		const environment = await this.GetEnvironment();
+		await this.AddDefaultTags(directionsTag, seniorityLevelsTag);
 		const careerFieldsWithDescriptionAndTag = this.careerFields;
 		careerFieldsWithDescriptionAndTag.fields.careerDescription['en-US'].sys.id = descriptionId;
 		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerNameEn;
 		careerFieldsWithDescriptionAndTag.fields.name['uk-UA'] = careerNameUa;
-		careerFieldsWithDescriptionAndTag.metadata!.tags[0].sys.id = tagId1;
-		careerFieldsWithDescriptionAndTag.metadata!.tags[1].sys.id = tagId2;
 		await environment.createEntryWithId('career', careerId, this.careerFields);
 		const createdCareer = await environment.getEntry(careerId);
 		await createdCareer.publish();
@@ -87,22 +119,7 @@ class ContentfulUtils {
 			},
 		},
 		metadata: {
-			tags: [
-				{
-					sys: {
-						type: 'Link',
-						linkType: 'Tag',
-						id: 'direction_longSoftwareDataManager',
-					},
-				},
-				{
-					sys: {
-						type: 'Link',
-						linkType: 'Tag',
-						id: 'seniority_junior',
-					},
-				},
-			],
+			tags: this.tagJson,
 		},
 	};
 

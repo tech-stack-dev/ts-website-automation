@@ -27,7 +27,7 @@ export default class Button {
 	static Services_ConsultingServ = 'Services-ConsultingServ';
 
 	// Side bar
-	static resetButton ='ResetButton-Reset';
+	static resetButton = 'ResetButton-Reset';
 
 	// Tag
 	static tagWithoutModifier = 'Tag-';
