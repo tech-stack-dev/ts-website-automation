@@ -58,7 +58,7 @@ jobs:
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
             if_true: ts_website_automation
-            if_false: ts_website_automation
+            if_false: ts_website
             
       - name: Set Slack Channel automation
         uses: haya14busa/action-cond@v1
@@ -67,7 +67,7 @@ jobs:
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
             if_true: test_slack_notifications
-            if_false: test_slack_notifications
+            if_false: ts_website_automation
       
       - name: Slack Notification for UI tests production
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
