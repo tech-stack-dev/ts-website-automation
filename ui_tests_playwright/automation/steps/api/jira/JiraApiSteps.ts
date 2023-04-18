@@ -15,9 +15,17 @@ class JiraApiSteps {
 		testName: string,
 		test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
 	): Promise<void> {
-		if (process.env.SKIP_JIRA==='true' && await jiraApiSteps.isIssueOpened(testName)) {
+		if (process.env.CI==='true' && await jiraApiSteps.isIssueOpened(testName)) {
 			test.skip();
 		}
+	}
+
+	public async getTicketsAttachedToTest(testname: string){
+		const ticketsAttached = testname.split('@').filter((tag) => tag.includes('TSWEB-'));
+		if (ticketsAttached.length === 0) {
+			return [];
+		}
+		return ticketsAttached;
 	}
 
 	public async isIssueOpened(testname: string): Promise<boolean> {
