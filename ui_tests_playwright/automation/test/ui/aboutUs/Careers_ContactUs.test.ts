@@ -5,7 +5,7 @@ import Button from '../../../identifiers/Button';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import Navigation from '../../../identifiers/Navigation';
-import ContactUsForm from '../../../identifiers/forms/ContactUsForm';
+import ContactUsForm from '../../../identifiers/form/ContactUsForm';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();

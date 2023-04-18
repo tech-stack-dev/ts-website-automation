@@ -1,8 +1,8 @@
 import {driver} from '../../base/driver/Driver';
 import Button from '../../identifiers/Button';
-import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
-import ContactUsForm from '../../identifiers/forms/ContactUsForm';
-import GetInTouchForm from '../../identifiers/forms/GetInTouchForm';
+import ApplyForAJobForm from '../../identifiers/form/ApplyForAJobForm';
+import ContactUsForm from '../../identifiers/form/ContactUsForm';
+import GetInTouchForm from '../../identifiers/form/GetInTouchForm';
 import {sessionValue} from '../../runtimeVariables/SessionValue';
 
 class FormSteps {
