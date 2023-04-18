@@ -1,17 +1,17 @@
-import { ElementHandle, expect, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import {ElementHandle, expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Button from '../../../../identifiers/Button';
 import UrlProvider from '../../../../providers/UrlProvider';
-import { sessionValue } from '../../../../runtimeVariables/SessionValue';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import {sessionValue} from '../../../../runtimeVariables/SessionValue';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Containers from '../../../../identifiers/Containers';
-import { driver } from '../../../../base/driver/Driver';
-import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
-import { contentfulUtils } from '../../../../utils/ContentfulUtils';
-import { ColorEnum } from '../../../../enum/ColorEnum';
-import { SeniorityLevelsEnum } from '../../../../enum/tag/SeniorityLevelsEnum';
-import { careerSteps } from '../../../../steps/careerPageSteps/CareerSteps';
+import {driver} from '../../../../base/driver/Driver';
+import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
+import {contentfulUtils} from '../../../../utils/ContentfulUtils';
+import {ColorEnum} from '../../../../enum/ColorEnum';
+import {SeniorityLevelsEnum} from '../../../../enum/tag/SeniorityLevelsEnum';
+import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -37,9 +37,11 @@ test('Check that user sees vacancy selected from seniority block in side bar @Re
 	await driver.executeFunc(async () => {
 		await expect(filterTag).toHaveClass(/active-tag/);
 
-		expect(await filterTag.evaluate(async (el) => {
-			return getComputedStyle(el).backgroundColor
-		})).toBe(ColorEnum.OrangeYellow);
+		expect(
+			await filterTag.evaluate(async (el) => {
+				return getComputedStyle(el).backgroundColor;
+			})
+		).toBe(ColorEnum.OrangeYellow);
 	}, 5);
 
 	const activeTagsGroupContainer = await containerSteps.getContainer(
@@ -90,7 +92,6 @@ test('Check that user can reset selected tags from seniority side bar @Regressio
 	await driver.executeFunc(async () => {
 		await activeTagsGroupContainer.Element.getByTestId(Button.resetButton).click();
 	}, 5);
-
 
 	tagList.forEach(async (tag) => {
 		const tagDataId = Button.tagWithoutModifier.concat(tag);
