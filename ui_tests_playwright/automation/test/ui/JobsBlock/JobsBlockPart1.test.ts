@@ -12,8 +12,6 @@ import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 import {descriptionSteps} from '../../../steps/components/job/DescriptionSteps';
 import Navigation from '../../../identifiers/Navigation';
-import { containerSteps } from '../../../steps/components/Container/ContainerSteps';
-import ContainerByClass from '../../../components/Container/ContainerByClass';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -56,7 +54,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await expect(applyPropositionWrapper.Element).toHaveText('Хочеш стати частиною нашої команди?Подавай заявку!');
 });
 
-test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146 @TSWEB-574', async () => {
+test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
@@ -83,7 +81,6 @@ test.afterEach(async () => {
 	await driver.closeDrivers();
 	await contentfulSteps.deleteAndUnpublishCareer(
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
-	true
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 });

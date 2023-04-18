@@ -6,11 +6,8 @@ import Link from '../../../identifiers/Link';
 import Input from '../../../identifiers/Input';
 import UrlProvider from '../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
-import Career from '../../../identifiers/Career';
-import Containers from '../../../identifiers/Containers';
 import randomstring from 'randomstring';
-import ContainerByClass from '../../../components/container/ContainerByClass';
+import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 
 test.beforeEach(async ({page}, testInfo) => {
 	await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);

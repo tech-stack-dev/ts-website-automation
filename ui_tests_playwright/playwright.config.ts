@@ -2,7 +2,6 @@ import type {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 import globalSetup from './global-setup';
-import { value } from './automation/runtimeVariables/JiraTags';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -30,7 +29,7 @@ const config: PlaywrightTestConfig = {
 		
 	},
 	globalSetup: require.resolve('./global-setup'),
-	testIgnore: Array.from(value.value),
+	testIgnore: '**/test-assets/**',
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.

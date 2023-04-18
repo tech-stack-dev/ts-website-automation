@@ -6,7 +6,7 @@ class ContentfulSteps {
 		await contentfulUtils.CreateAndPublishCareer(careerId, careerName, careerDescriptionId);
 	}
 
-	public async deleteAndUnpublishCareer(careerId: string, careerDescriptionId: string, throwException: boolean) {
+	public async deleteAndUnpublishCareer(careerId: string, careerDescriptionId: string, throwException: bool) {
 		{
 			try {
 				await contentfulUtils.UnpublishCareerWithDescription(careerId, careerDescriptionId);
