@@ -30,15 +30,15 @@ test('Check that user sees vacancy by tags that were selected in seniority filte
 	const filterGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.FilterGroupWrapper,
-		careerMainContainer.Element
+		careerMainContainer
 	);
-	const filterTag = filterGroupContainer.Element.getByTestId(Tag.TraineeTag);
+	const filterTag = filterGroupContainer.getByTestId(Tag.TraineeTag);
 	const activeTagsGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.ActiveTagsGroupWrapper,
-		careerMainContainer.Element
+		careerMainContainer
 	);
-	const activeTag = activeTagsGroupContainer.Element.getByTestId(Tag.TraineeTag);
+	const activeTag = activeTagsGroupContainer.getByTestId(Tag.TraineeTag);
 
 	await filterTag.click();
 	await driver.executeFunc(async () => {
@@ -59,16 +59,16 @@ test('Check that user can reset selected tags from seniority side bar @Regressio
 	const filterGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.FilterGroupWrapper,
-		careerMainContainer.Element
+		careerMainContainer
 	);
 	const activeTagsGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
 		Containers.ActiveTagsGroupWrapper,
-		careerMainContainer.Element
+		careerMainContainer
 	);
 
 	for (const tag of tagList) {
-		const filterTag = filterGroupContainer.Element.getByTestId(tag);
+		const filterTag = filterGroupContainer.getByTestId(tag);
 		await filterTag.click();
 		await expect(filterTag).toHaveClass(/active-tag/);
 		const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
@@ -77,7 +77,7 @@ test('Check that user can reset selected tags from seniority side bar @Regressio
 
 	await activeTagsGroupContainer.Element.getByTestId(Button.ResetButton).click();
 	tagList.forEach(async (tag) => {
-		const filterTag = filterGroupContainer.Element.getByTestId(tag);
+		const filterTag = filterGroupContainer.getByTestId(tag);
 		await expect(filterTag).not.toHaveClass(/active-tag/);
 	});
 });

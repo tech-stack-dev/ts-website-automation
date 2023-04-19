@@ -19,7 +19,7 @@ test('Check that user can switch language in navigation header in career page @R
 
 	// A footer element is created to navigate to it and make the navigation bar appear.
 	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.FooterWrapper);
-	const logoFooter = footerContainer.Element.getByTestId(Link.Logo);
+	const logoFooter = footerContainer.getByTestId(Link.Logo);
 	await logoFooter.focus();
 
 	await logoHeader.waitFor({state: 'visible'});

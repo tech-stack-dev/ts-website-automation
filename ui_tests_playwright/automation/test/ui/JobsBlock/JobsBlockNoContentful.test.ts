@@ -50,7 +50,7 @@ test('Check search field styling after search a long jobname on careers page @Re
 	expect(actualInputBoxProps?.width).toEqual(expectedInputBoxProps?.width);
 	expect(actualInputBoxProps?.height).toEqual(expectedInputBoxProps?.height);
 	// Check that input is not covered by another element after searching
-	(await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).click();
+	await (await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).click();
 	await driver.getByTestId(Career.SarchCareerField).click();
 	await expect(driver.getByTestId(Career.SarchCareerField)).toBeFocused();
 });
