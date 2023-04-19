@@ -24,8 +24,7 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         with: 
-          name: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa
-
+          run: cd ui_tests_playwright/ | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
       - uses: actions/checkout@v3
       
       - uses: actions/setup-node@v3
@@ -37,7 +36,7 @@ jobs:
         run: npx playwright install --with-deps
         
       - name: Run UI tests
-        run: npx playwright test --grep-invert "$((Get-Content jira_tags_qwerty1.txt | Out-String).Trim().Replace("`n", "|"))"
+        run: npx playwright test --grep-invert "$((Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace("`n", "|"))"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
