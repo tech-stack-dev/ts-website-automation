@@ -30,10 +30,7 @@ export default class Button {
 	static Services_ConsultingServ = 'Services-ConsultingServ';
 
 	// Side bar
-	static resetButton = 'ResetButton-Reset';
-
-	// Tag
-	static tagWithoutModifier = 'Tag-';
+	static ResetButton = 'ResetButton-Reset';
 
 	// Company section
 	static Company_AboutUs = 'Company-AboutUs';

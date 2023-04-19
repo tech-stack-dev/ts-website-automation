@@ -1,4 +1,4 @@
-import {ElementHandle, expect, test} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Button from '../../../../identifiers/Button';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -9,93 +9,75 @@ import Containers from '../../../../identifiers/Containers';
 import {driver} from '../../../../base/driver/Driver';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../utils/ContentfulUtils';
-import {ColorEnum} from '../../../../enum/ColorEnum';
+import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {SeniorityLevelsEnum} from '../../../../enum/tag/SeniorityLevelsEnum';
 import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
+import Tag from '../../../../identifiers/Tag';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-});
-
-test('Check that user sees vacancy selected from seniority block in side bar @Regression @FilterBlock @TSWEB-145', async () => {
+	contentfulUtils.AddTagsToCareerBody([SeniorityLevelsEnum.Junior]);
 	await contentfulSteps.createCareerWithDefaultValue(
 		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
 		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+});
 
-	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.careerMainBody);
+test('Check that user sees vacancy by tags that were selected in seniority filter in side bar @Regression @FilterBlock @TSWEB-145', async () => {
+	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
 	const filterGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.filterGroupWrapper,
+		Containers.FilterGroupWrapper,
 		careerMainContainer.Element
 	);
-	const tagDataId = Button.tagWithoutModifier.concat('Trainee');
-	const filterTag = filterGroupContainer.Element.getByTestId(tagDataId);
+	const filterTag = filterGroupContainer.Element.getByTestId(Tag.TraineeTag);
+	const activeTagsGroupContainer = await containerSteps.getContainer(
+		ContainerByClass,
+		Containers.ActiveTagsGroupWrapper,
+		careerMainContainer.Element
+	);
+	const activeTag = activeTagsGroupContainer.Element.getByTestId(Tag.TraineeTag);
+
 	await filterTag.click();
 	await driver.executeFunc(async () => {
 		await expect(filterTag).toHaveClass(/active-tag/);
-
 		expect(
 			await filterTag.evaluate(async (el) => {
 				return getComputedStyle(el).backgroundColor;
 			})
-		).toBe(ColorEnum.OrangeYellow);
+		).toBe(ColorsEnum.OrangeYellow);
 	}, 5);
-
-	const activeTagsGroupContainer = await containerSteps.getContainer(
-		ContainerByClass,
-		Containers.activeTagsGroupWrapper,
-		careerMainContainer.Element
-	);
-	const activeTag = activeTagsGroupContainer.Element.getByTestId(tagDataId);
 	await expect(activeTag).toHaveClass(/active-tag/);
-	expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorEnum.OrangeYellow);
+	expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorsEnum.OrangeYellow);
 });
 
 test('Check that user can reset selected tags from seniority side bar @Regression @FilterBlock @TSWEB-145', async () => {
-	await contentfulUtils.AddTagsToCareerBody([SeniorityLevelsEnum.Junior]);
-	await contentfulSteps.createCareerWithDefaultValue(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
-	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-
-	const tagList: Array<string> = [`Junior`, `Trainee`];
-	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.careerMainBody);
+	const tagList: Array<string> = [Tag.JuniorTag, Tag.TraineeTag];
+	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
 	const filterGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.filterGroupWrapper,
+		Containers.FilterGroupWrapper,
 		careerMainContainer.Element
 	);
 	const activeTagsGroupContainer = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.activeTagsGroupWrapper,
+		Containers.ActiveTagsGroupWrapper,
 		careerMainContainer.Element
 	);
 
-	tagList.forEach(async (tag) => {
-		const tagDataId = Button.tagWithoutModifier.concat(tag);
-
-		await driver.executeFunc(async () => {
-			const filterTag = filterGroupContainer.Element.getByTestId(tagDataId);
-			await filterTag.click();
-			await expect(filterTag).toHaveClass(/active-tag/);
-		}, 5);
-
-		const activeTag = activeTagsGroupContainer.Element.getByTestId(tagDataId);
+	for (const tag of tagList) {
+		const filterTag = filterGroupContainer.Element.getByTestId(tag);
+		await filterTag.click();
+		await expect(filterTag).toHaveClass(/active-tag/);
+		const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
 		await expect(activeTag).toHaveClass(/active-tag/);
-	});
+	}
 
-	await driver.executeFunc(async () => {
-		await activeTagsGroupContainer.Element.getByTestId(Button.resetButton).click();
-	}, 5);
-
+	await activeTagsGroupContainer.Element.getByTestId(Button.ResetButton).click();
 	tagList.forEach(async (tag) => {
-		const tagDataId = Button.tagWithoutModifier.concat(tag);
-		const filterTag = filterGroupContainer.Element.getByTestId(tagDataId);
+		const filterTag = filterGroupContainer.Element.getByTestId(tag);
 		await expect(filterTag).not.toHaveClass(/active-tag/);
 	});
 });

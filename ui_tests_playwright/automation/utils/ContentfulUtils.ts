@@ -3,9 +3,10 @@ import * as contentful from 'contentful-management';
 import {sessionValue} from '../runtimeVariables/SessionValue';
 import {SeniorityLevelsEnum} from '../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../enum/tag/DirectionsEnum';
+import {TagsEnum} from '../enum/tag/TagsEnum';
 
 class ContentfulUtils {
-	private tagJson: any[] = [];
+	private tagJson: contentful.Link<'Tag'>[] = [];
 
 	async GetEnvironment() {
 		const client = contentful.createClient({
@@ -21,24 +22,24 @@ class ContentfulUtils {
 		await environment.createTag(tagId, tagName, publishType);
 	}
 
-	async AddDefaultTags(directionsTag: DirectionsEnum, seniorityLevelsTag: SeniorityLevelsEnum) {
-		const tagList = [await this.GetTagJsonBody(directionsTag), await this.GetTagJsonBody(seniorityLevelsTag)];
-
-		tagList.forEach(async (tag) => {
+	private AddDefaultTags(directionsTag: DirectionsEnum, seniorityLevelsTag: SeniorityLevelsEnum) {
+		const tagList = [this.GetTagJsonBody(directionsTag), this.GetTagJsonBody(seniorityLevelsTag)];
+		tagList.forEach((tag) => {
+			const currentTag = this.tagJson.find((item) => item.sys.id === tag.sys.id);
+			if (currentTag) return;
 			this.tagJson.push(tag);
 		});
 	}
 
-	async AddTagsToCareerBody(tagList: any[]) {
-		tagList.forEach(async (tag) => {
-			if (this.tagJson.indexOf(tag) !== -1) {
-				return;
-			}
-			this.tagJson.push(await this.GetTagJsonBody(tag));
+	AddTagsToCareerBody(tagList: DirectionsEnum[] | SeniorityLevelsEnum[] | TagsEnum[]) {
+		tagList.forEach((tag) => {
+			const currentTag = this.tagJson.find((item) => item.sys.id === tag);
+			if (currentTag) return;
+			this.tagJson.push(this.GetTagJsonBody(tag));
 		});
 	}
 
-	async GetTagJsonBody(tag: any) {
+	private GetTagJsonBody(tag: DirectionsEnum | SeniorityLevelsEnum | TagsEnum) {
 		const tagJsonBody = {
 			sys: {
 				type: 'Link',
@@ -47,7 +48,7 @@ class ContentfulUtils {
 			},
 		};
 
-		return tagJsonBody;
+		return <contentful.Link<'Tag'>>tagJsonBody;
 	}
 
 	async CreateAndPublishCareerDescription(descriptionId: string) {
@@ -66,7 +67,7 @@ class ContentfulUtils {
 		seniorityLevelsTag = SeniorityLevelsEnum.Trainee
 	) {
 		const environment = await this.GetEnvironment();
-		await this.AddDefaultTags(directionsTag, seniorityLevelsTag);
+		this.AddDefaultTags(directionsTag, seniorityLevelsTag);
 		const careerFieldsWithDescriptionAndTag = this.careerFields;
 		careerFieldsWithDescriptionAndTag.fields.careerDescription['en-US'].sys.id = descriptionId;
 		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerNameEn;

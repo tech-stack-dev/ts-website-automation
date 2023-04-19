@@ -10,15 +10,15 @@ class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string) {
 		await driver.executeFunc(async () => {
 			await driver.Page.reload();
-			await driver.getByTestId(Career.searchCareerField).clear();
-			await driver.getByTestId(Career.searchCareerField).fill(careerName);
-			await driver.getByTestId(Career.searchButton).click();
-			await driver.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`).waitFor();
+			await driver.getByTestId(Career.SarchCareerField).clear();
+			await driver.getByTestId(Career.SarchCareerField).fill(careerName);
+			await driver.getByTestId(Career.SearchButton).click();
+			await driver.getByTestId(`${Containers.CareerCardWithoutModifier}${careerName}`).waitFor();
 		}, 5);
 	}
 
 	public async switchLanguageViaHeader(language: string) {
-		const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
+		const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
 		let switcher: any;
 		switch (language.toLowerCase()) {
 			case 'ua':
@@ -33,16 +33,16 @@ class CareerSteps {
 	}
 
 	public async clickOnCareerCard(careerName: string) {
-		await driver.getByTestId(`${Containers.careerCardWithoutModifier}${careerName}`).click();
+		await driver.getByTestId(`${Containers.CareerCardWithoutModifier}${careerName}`).click();
 	}
 
 	public async getBreadcrumbsText() {
-		const breadcrumbs = await driver.component(ContainerByClass, Career.breadcrumbsInCareer);
+		const breadcrumbs = await driver.component(ContainerByClass, Career.BreadcrumbsInCareer);
 		return breadcrumbs.textContent();
 	}
 
 	public async getJobHeaderText() {
-		const title = await driver.component(ContainerByClass, Career.jobHeaderTitle);
+		const title = await driver.component(ContainerByClass, Career.JobHeaderTitle);
 		return title.textContent();
 	}
 }
