@@ -25,35 +25,7 @@ test.beforeEach(async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 });
 
-test('Check that user sees vacancy by tags that were selected in seniority filter in side bar @Regression @FilterBlock @TSWEB-145', async () => {
-	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
-	const filterGroupContainer = await containerSteps.getContainer(
-		ContainerByClass,
-		Containers.FilterGroupWrapper,
-		careerMainContainer
-	);
-	const filterTag = filterGroupContainer.getByTestId(Tag.TraineeTag);
-	const activeTagsGroupContainer = await containerSteps.getContainer(
-		ContainerByClass,
-		Containers.ActiveTagsGroupWrapper,
-		careerMainContainer
-	);
-	const activeTag = activeTagsGroupContainer.getByTestId(Tag.TraineeTag);
-
-	await filterTag.click();
-	await driver.executeFunc(async () => {
-		await expect(filterTag).toHaveClass(/active-tag/);
-		expect(
-			await filterTag.evaluate(async (el) => {
-				return getComputedStyle(el).backgroundColor;
-			})
-		).toBe(ColorsEnum.OrangeYellow);
-	}, 5);
-	await expect(activeTag).toHaveClass(/active-tag/);
-	expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorsEnum.OrangeYellow);
-});
-
-test('Check that user can reset selected tags from seniority side bar @Regression @FilterBlock @TSWEB-145', async () => {
+test('Check that user can reset selected tags from seniority filter in side bar @Regression @FilterBlock @TSWEB-145', async () => {
 	const tagList: Array<string> = [Tag.JuniorTag, Tag.TraineeTag];
 	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
 	const filterGroupContainer = await containerSteps.getContainer(
