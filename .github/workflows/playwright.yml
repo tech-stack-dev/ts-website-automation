@@ -23,8 +23,7 @@ jobs:
 
       - name: Generate SkipJira tags
         if: always()
-        with: 
-          run: cd ui_tests_playwright/ | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
+        run: cd ui_tests_playwright/ | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
       - uses: actions/checkout@v3
       
       - uses: actions/setup-node@v3
