@@ -1,14 +1,14 @@
 import type {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import globalSetup from './global-setup';
-import { value } from './automation/runtimeVariables/JiraTags';
+import * as fs from 'fs';
 
 // Read from default ".env" file.
 dotenv.config();
 
 // Alternatively, read from "../my.env" file.
 dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
+//const JiraSkipTags = fs.readFileSync("./jira_tags_qwerty1.txt", "utf-8").split('\n').map(str=>new RegExp(str));
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -30,7 +30,7 @@ const config: PlaywrightTestConfig = {
 		
 	},
 	globalSetup: require.resolve('./global-setup'),
-	testIgnore: Array.from(value.value),
+	//grepInvert: JiraSkipTags,
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.

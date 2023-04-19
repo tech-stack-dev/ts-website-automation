@@ -20,6 +20,12 @@ jobs:
         run:
             working-directory: ./ui_tests_playwright
     steps:
+
+      - name: Generate SkipJira tags
+        if: always()
+        with: 
+          name: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa
+
       - uses: actions/checkout@v3
       
       - uses: actions/setup-node@v3
@@ -31,7 +37,7 @@ jobs:
         run: npx playwright install --with-deps
         
       - name: Run UI tests
-        run: npx playwright test
+        run: npx playwright test --grep-invert "$((Get-Content jira_tags_qwerty1.txt | Out-String).Trim().Replace("`n", "|"))"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
