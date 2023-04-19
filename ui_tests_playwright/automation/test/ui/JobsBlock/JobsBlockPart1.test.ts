@@ -38,10 +38,10 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.jobPageApplyProposition
+		Containers.JobPageApplyProposition
 	);
 
-	await expect((await driver.component(ContainerByClass, Career.jobHeaderTitle)).Element).toHaveText(
+	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
 		'Тестова Вакансія'
 	);
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Вакансії');
@@ -59,7 +59,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.jobPageHeaderWrapper);
+	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
 
 	expect(await careerSteps.getBreadcrumbsText()).toBe(
 		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
