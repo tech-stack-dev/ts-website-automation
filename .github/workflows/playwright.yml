@@ -37,10 +37,10 @@ jobs:
         if: '! github.event.pull_request.draft'
         run: echo "NON DRAFT"
         
-      - name: Generate SkipJira tags
-        if: always()
-        shell: bash
-        run: GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
+      # - name: Generate SkipJira tags
+      #   if: always()
+      #   shell: bash
+      #   run: GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
