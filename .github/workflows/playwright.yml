@@ -39,7 +39,7 @@ jobs:
         
       - name: Run UI tests
         shell: bash
-        run: tags="$(cat jira_tags_${{github.run_number}}.txt)" | echo $tags | npx playwright test --grep-invert 
+        run: tags="$(cat jira_tags_${{github.run_number}}.txt)" | echo $tags | npx playwright test --grep-invert "${{tags}}"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
