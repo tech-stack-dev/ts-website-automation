@@ -32,12 +32,16 @@ jobs:
       - name: Draft echo
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "DRAFT"
+        uses: haya14busa/action-cond@v1
+        id: slack_icon_emoji
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && 'github.event.pull_request.draft' }}
             if_true: ts_website_automation
             if_false: ts_website
 
       - name: NON Draft echo
+        uses: haya14busa/action-cond@v1
+        id: slack_icon_emoji
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "NON DRAFT"
         with:
