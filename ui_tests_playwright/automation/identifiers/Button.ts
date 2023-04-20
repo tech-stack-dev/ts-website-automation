@@ -16,6 +16,9 @@ export default class Button {
 	static Menu_Company = 'CompanyHeader-CompanyHeader';
 	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
 
+	// Breadcrumbs links
+	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
+
 	// Services section
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
@@ -26,6 +29,9 @@ export default class Button {
 	static Services_UiUxDesign = 'Services-UiUxDesign';
 	static Services_QaAsAServ = 'Services-QaAsAServ';
 	static Services_ConsultingServ = 'Services-ConsultingServ';
+
+	// Side bar
+	static ResetButton = 'ResetButton-Reset';
 
 	// Company section
 	static Company_AboutUs = 'Company-AboutUs';

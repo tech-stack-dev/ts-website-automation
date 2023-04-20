@@ -1,7 +1,7 @@
 export default class Career {
-	static searchCareerField = 'SearchFieldInput-SearchMessage';
-	static searchButton = 'SearchButton-HeroSectionSearchButton';
+	static SarchCareerField = 'SearchFieldInput-SearchMessage';
+	static SearchButton = 'SearchButton-HeroSectionSearchButton';
 	// Job Header
-	static breadcrumbsInCareer = 'breadcrumbs-block';
-	static jobHeaderTitle = 'career-title';
+	static BreadcrumbsInCareer = 'breadcrumbs-block';
+	static JobHeaderTitle = 'career-title';
 }
