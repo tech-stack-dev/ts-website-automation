@@ -40,7 +40,7 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: bash GenerateOpenedJiraList.sh ${{github.JIRA_TOKEN}} "${{github.run_number}}"
+        run: bash GenerateOpenedJiraList.sh ${{env.JIRA_TOKEN}} "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
