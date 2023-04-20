@@ -13,7 +13,7 @@ test.beforeEach(async ({page}, testInfo) => {
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
-test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622 @smoke", async () => {
+test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-560 @TSWEB-150 @TSWEB-622 @smoke", async () => {
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackNumber)).toHaveText('01');
 
@@ -39,7 +39,7 @@ test("Check the section title and number from the 'AboutUs' block @Regression @A
 	await expect(driver.getByTestId(AboutUs.CandidatePathNumber)).toHaveText('08');
 });
 
-test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-560 @TSWEB-150", async () => {
 	const carousel = driver.getByTestId(AboutUs.OurHistoryCarousel);
 
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(0)).toContainText('01 2014');
@@ -52,7 +52,7 @@ test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @Abo
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(7)).toContainText('08 2021');
 });
 
-test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-560 @TSWEB-150", async () => {
 	const carousel = driver.getByTestId(AboutUs.CandidateCarousel);
 
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(0)).toContainText('01 CV');
@@ -63,7 +63,7 @@ test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(5)).toContainText('06 Product owner interview');
 });
 
-test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibility' blocks from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibility' blocks from the 'AboutUs' block @Regression @AboutUs @TSWEB-560 @TSWEB-150", async () => {
 	const techstackRoles = driver.Page.locator(`#${AboutUs.TechstackRolesId}`);
 
 	await expect(techstackRoles.locator(`#${AboutUs.Roles_Mentor}`)).toContainText('Mentor');
