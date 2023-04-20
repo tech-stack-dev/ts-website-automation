@@ -33,7 +33,7 @@ jobs:
         shell: bash
         env:
           JIRA_AUTH_TOKEN: ${{secrets.JIRA_AUTH_TOKEN_BASE64}}
-        run: bash GenerateOpenedJiraList.sh "JIRA_AUTH_TOKEN$" "${{github.run_number}}"
+        run: bash GenerateOpenedJiraList.sh "$JIRA_AUTH_TOKEN" "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
