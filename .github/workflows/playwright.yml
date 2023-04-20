@@ -37,13 +37,13 @@ jobs:
         shell: bash
         run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}"
 
-      - name: listTTTTT
+      - name: settt
         shell: bash
-        run: ls
+        run: env.LIST_OF_TESTS=$(<jira_tags_${{github.run_number}}.txt)       
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep '$(<jira_tags_${{github.run_number}}.txt)'
+        run: npx playwright test --grep "$env.LIST_OF_TESTS)"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
