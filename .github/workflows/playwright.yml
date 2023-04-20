@@ -29,6 +29,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
   
+      - name: Draft echo
+        if: ${{ ('github.event.pull_request.draft' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        run: echo "DRAFT"
+        
+      - name: NON Draft echo
+        if: ${{ ('github.event.pull_request.draft' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        run: echo "NON DRAFT"
+        
       # - name: Generate SkipJira tags
       #   if: always()
       #   shell: bash
