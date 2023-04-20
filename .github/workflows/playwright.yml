@@ -40,8 +40,9 @@ jobs:
       - name: Run UI tests
         #shell: bash
         # run: npx playwright test --grep-invert "$(Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace(\"\`n\", \"|\")"
-        run: a="$(Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace(\"\`n\", \"|\")" |
-          npx playwright test --grep-invert "$a"
+        run: a="$(Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace(\"\`n\", \"|\")" | cat jira_tags_${{github.run_number}}.txt
+
+              npx playwright test --grep-invert "$a"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
