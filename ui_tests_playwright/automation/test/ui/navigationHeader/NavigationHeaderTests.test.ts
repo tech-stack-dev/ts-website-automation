@@ -8,6 +8,7 @@ import UrlPath from '../../../providers/UrlPath';
 import {Environment} from '../../../providers/EnvProvider';
 import {driver} from '../../../base/driver/Driver';
 import {containerSteps} from '../../../steps/components/container/ContainerSteps';
+import Blog from '../../../identifiers/Blog';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -41,10 +42,9 @@ test('Check the the "Stand with Ukraine" block with localization @Regression @St
 
 	await driver.getByTestId(Button.LearnMoreButton).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine, Environment.Production));
-	// Uncomment when the data-id is added for the title element
-	// await expect((await containerSteps.getContainer(ContainerByClass, Containers.breadcrumbChilds)).Element).toContainText(
-	// 	'Techstack Stands with Ukraine'
-	// );
+	await expect((await driver.getByTestId(Blog.Blog_StandWithUkraineTitile))).toContainText(
+		'Techstack Stands with Ukraine'
+	);
 });
 
 test.afterEach(async () => {
