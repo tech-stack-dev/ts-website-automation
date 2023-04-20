@@ -48,6 +48,13 @@ jobs:
             path: ui_tests_playwright/playwright-report/
             retention-days: 30
             
+      - name: Draft echo
+        if: 'github.event.pull_request.draft'
+        run: echo "DRAFT"
+        
+      - name: NON Draft echo
+        if: '! github.event.pull_request.draft'
+        run: echo "NON DRAFT"
       # - name: Preparing Slack emoji
       #   uses: haya14busa/action-cond@v1
       #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
