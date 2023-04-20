@@ -1,10 +1,16 @@
 export default class Containers {
-	static navigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
-	static careerCardWithoutModifier = 'CardWrapper-';
-	static searchResultsTextContainer = 'searchValueWrapper';
+	static NavigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
+	static CareerMainBody = 'styledComponents__CareerMainBody';
+	static CareerCardWithoutModifier = 'CardWrapper-';
+	static SearchResultsTextContainer = 'searchValueWrapper';
 	// Job page
-	static jobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
-	static jobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
+	static JobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
+	static JobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
 
-	static footerWrapper = 'styledComponents__FooterWrapper';
+	// Side Bar
+	static ActiveTagsGroupWrapper = 'styledComponents__ActiveTagsGroupWrapper';
+	static FilterGroupWrapper = 'styledComponents__FilterGroupWrapper';
+
+	// Footer
+	static FooterWrapper = 'styledComponents__FooterWrapper';
 }

@@ -29,6 +29,9 @@ export default class Button {
 	static Services_QaAsAServ = 'Services-QaAsAServ';
 	static Services_ConsultingServ = 'Services-ConsultingServ';
 
+	// Side bar
+	static ResetButton = 'ResetButton-Reset';
+
 	// Company section
 	static Company_AboutUs = 'Company-AboutUs';
 	static Company_HowWeWork = 'Company-HowWeWork';
