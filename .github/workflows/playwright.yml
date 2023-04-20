@@ -28,7 +28,8 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
+        run: ls 
+        # run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
 
       - uses: actions/checkout@v3
       
