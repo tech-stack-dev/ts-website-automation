@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
-test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
+test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146 @TSWEB-560', async () => {
 	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
 	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
 
