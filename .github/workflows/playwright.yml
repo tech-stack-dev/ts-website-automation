@@ -30,17 +30,17 @@ jobs:
         run: npm ci
   
       - name: Draft echo
-        if: 'github.event.pull_request.draft'
+        if: ${{ ('github.event.pull_request.draft' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "DRAFT"
         
       - name: NON Draft echo
         if: '! github.event.pull_request.draft'
         run: echo "NON DRAFT"
         
-      # - name: Generate SkipJira tags
-      #   if: always()
-      #   shell: bash
-      #   run: GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
+      - name: Generate SkipJira tags
+        if: always()
+        shell: bash
+        run: GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
