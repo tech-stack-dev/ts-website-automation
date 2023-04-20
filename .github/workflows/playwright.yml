@@ -40,17 +40,17 @@ jobs:
 
       - name: NON Draft echo
         uses: haya14busa/action-cond@v1
-        id: slack_icon_emoji
+        id: slack_icon_emoji1
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! 'github.event.pull_request.draft' }}
             if_true: ts_website_automation
             if_false: aaNotExist
-            
-      # - name: Generate SkipJira tags
-      #   if: always()
-      #   shell: bash
-      #   run: GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
+
+      - name: Generate SkipJira tags
+        if: always()
+        shell: bash
+        run: GenerateOpenedJiraList.sh ${{github.JIRA_TOKEN}} "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
