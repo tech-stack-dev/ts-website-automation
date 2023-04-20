@@ -38,6 +38,7 @@ jobs:
         run: npx playwright install --with-deps
         
       - name: Run UI tests
+        shell: bash
         run: npx playwright test --grep-invert "$((Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace("`n", "|"))"
         
       - uses: actions/upload-artifact@v3
