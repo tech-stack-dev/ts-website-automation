@@ -30,13 +30,20 @@ jobs:
         run: npm ci
   
       - name: Draft echo
-        if: ${{ ('github.event.pull_request.draft' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "DRAFT"
-        
+        with:
+            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && 'github.event.pull_request.draft' }}
+            if_true: ts_website_automation
+            if_false: ts_website
+
       - name: NON Draft echo
-        if: ${{ ('github.event.pull_request.draft' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "NON DRAFT"
-        
+        with:
+            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! 'github.event.pull_request.draft' }}
+            if_true: ts_website_automation
+            if_false: ts_website
       # - name: Generate SkipJira tags
       #   if: always()
       #   shell: bash
