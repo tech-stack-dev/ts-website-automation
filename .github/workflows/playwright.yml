@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Delete previously generated SkipJira tags
         if: always()
-        run: rm jira_tags*.txt
+        run: rm -f jira_tags*.txt
         
       - name: Generate SkipJira tags
         if: always()
