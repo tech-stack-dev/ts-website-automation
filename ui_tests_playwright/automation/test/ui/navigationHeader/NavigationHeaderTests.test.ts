@@ -21,30 +21,28 @@ test('Check that user can switch language in navigation header @Regression @Navi
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
 
-test('Check the the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
+test('Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
 	await expect(
 		(
 			await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass)
 		).Element
 	).toBeVisible();
 	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
-	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
+	await expect(driver.getByTestId(Button.LearnMoreButton2)).toHaveText('Learn More');
 
-	const buttonSwitcher = (await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass)).Element.getByTestId(Button.UaLanguageSwitcher);
-	await buttonSwitcher.click();
+	(await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass)).Element.getByTestId(
+		Button.UaLanguageSwitcher
+	).click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
 	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText(
-		'Відповідь Techstack на війну в Україні',
-		{timeout: 1000}
+		'Відповідь Techstack на війну в Україні'
 	);
-	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Ознайомитися');
+	await expect(driver.getByTestId(Button.LearnMoreButton2)).toHaveText('Ознайомитися');
 
-	await driver.getByTestId(Button.LearnMoreButton).click();
+	await driver.getByTestId(Button.LearnMoreButton2).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine, Environment.Production));
-	await expect((await driver.getByTestId(Blog.Blog_StandWithUkraineTitile))).toContainText(
-		'Techstack Stands with Ukraine'
-	);
+	await expect(driver.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText('Techstack Stands with Ukraine');
 });
 
 test.afterEach(async () => {

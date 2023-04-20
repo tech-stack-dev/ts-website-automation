@@ -1,3 +1,3 @@
-export default class Blog{
-    static Blog_StandWithUkraineTitile = 'PostTitle-TechstackStandsWithUkraine';
+export default class Blog {
+	static Blog_StandWithUkraineTitile = 'PostTitle-TechstackStandsWithUkraine';
 }
