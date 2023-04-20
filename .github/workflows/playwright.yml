@@ -21,12 +21,6 @@ jobs:
         run:
             working-directory: ./ui_tests_playwright
     steps:
-      - name: Generate SkipJira tags
-        if: always()
-        shell: bash
-        run: echo "whathtehack"
-        # run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
-
       - uses: actions/checkout@v3
       
       - uses: actions/setup-node@v3
@@ -34,6 +28,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
   
+      - name: Generate SkipJira tags
+        if: always()
+        shell: bash
+        run: echo "whathtehack"
+        # run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
+
       - name: Install playwright browsers
         run: npx playwright install --with-deps
         
