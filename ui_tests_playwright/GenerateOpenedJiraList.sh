@@ -1,9 +1,6 @@
 #!/bin/bash
 sudo apt-get update && sudo apt-get install jq
 
-# Delete the previously generated tag files
-find . -name 'jira_tags_*.txt' #-delete
-
 #JiraAuthToken="Basic cWFfdGVjaHN0YWNrQHRlY2gtc3RhY2suaW86QVRBVFQzeEZmR0YwRTVvb01vd1RXVW1DVFYxNF93 bFR4ZmtwYTdleWV0VmNrel82aXNOczJvMk9aLV8tUFNYN2kxekVUb3dFVUdUUTdyT1dQOHNZdjNz Q3JNVV8zODlEMDhZS1QyWWxheVRNOU4wMnJQbDVyTThYZllHYXBhTF84UVdYckMxZ0stbTlsZFNP RzhIaGNpSXhDY0dmc1RCbjBLU2dqU1kyUVB6WkE0UXBkSDRPUVVZPUY4Q0Q5RUND"
 JiraAuthToken=$1
 allowed_statuses=("Ready for QA" "Testing on Stage" "UI testing" "Done" "Closed")

@@ -16,6 +16,7 @@ jobs:
     env:
         AWS_KEY: ${{secrets.AWS_KEY}}
         AWS_PASSWORD: ${{secrets.AWS_PASSWORD}}
+        JIRA_TOKEN: ${{secrets.JiraAuthTokenBase64}}
         CI: true
     defaults:
         run:
@@ -31,7 +32,7 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
+        run: bash GenerateOpenedJiraList.sh ${{JIRA_TOKEN}} "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
