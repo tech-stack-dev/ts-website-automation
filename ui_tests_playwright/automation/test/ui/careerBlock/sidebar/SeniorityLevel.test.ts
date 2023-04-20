@@ -25,7 +25,7 @@ test.beforeEach(async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 });
 
-test('Check that user can reset selected tags from seniority filter in side bar @Regression @FilterBlock @TSWEB-145', async () => {
+test('Check that user can reset selected tags from seniority filter in side bar @Regression @FilterBlock @TSWEB-145 @TSWEB-560', async () => {
 	const tagList: Array<string> = [Tag.JuniorTag, Tag.TraineeTag];
 	const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
 	const filterGroupContainer = await containerSteps.getContainer(
