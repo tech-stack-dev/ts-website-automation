@@ -37,6 +37,10 @@ jobs:
         shell: bash
         run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}"
 
+      - name: listTTTTT
+        shell: bash
+        run: ls
+        
       - name: Run UI tests
         shell: bash
         run: npx playwright test --grep "$(<jira_tags_${{github.run_number}}.txt)"
