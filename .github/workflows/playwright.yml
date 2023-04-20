@@ -33,21 +33,20 @@ jobs:
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         uses: haya14busa/action-cond@v1
         id: slack_icon_emoji
-        run: echo "DRAFT"
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && 'github.event.pull_request.draft' }}
             if_true: ts_website_automation
-            if_false: ts_website
+            if_false: aaNotExist
 
       - name: NON Draft echo
         uses: haya14busa/action-cond@v1
         id: slack_icon_emoji
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-        run: echo "NON DRAFT"
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! 'github.event.pull_request.draft' }}
             if_true: ts_website_automation
-            if_false: ts_website
+            if_false: aaNotExist
+            
       # - name: Generate SkipJira tags
       #   if: always()
       #   shell: bash
