@@ -10,17 +10,26 @@ envBuildStep=$2
 
 # Dive through the test files and extract the Jira test tags
 files=$(find . -name "*.test.ts")
-jira_tags=()
-for file in $files; do
-  echo "Processing file: $file"
-  while read -r line; do
-    if [[ $line =~ TSWEB-[0-9]{1,8} ]]; then
-      tag="${BASH_REMATCH[0]}"
+# jira_tags=()
+# for file in $files; do
+#   echo "Processing file: $file"
+#   while read -r line; do
+#     if [[ $line =~ TSWEB-[0-9]{1,8} ]]; then
+#       tag="${BASH_REMATCH[0]}"
 
-      jira_tags+=("$tag")
-    fi
-  done < "$file"
-done
+#       jira_tags+=("$tag")
+#     fi
+#   done < "$file"
+# done
+
+
+jira_tags=()
+while read -r line; do
+  tags=$(echo "$line" | grep -o 'TSWEB-[0-9]\{1,8\}')
+  for tag in $tags; do
+    jira_tags+=("$tag")
+  done
+done < <(echo "$files" | xargs cat | grep -E 'test\("[^"]+"' -o)
 # Remove duplicates from the list
 jira_tags=($(echo "${jira_tags[@]}" | tr ' ' '\n' | sort -u))
 
