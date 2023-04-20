@@ -3,17 +3,15 @@ import {driver} from '../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import AboutUs from '../../../identifiers/AboutUs';
 import UrlProvider from '../../../providers/UrlProvider';
-import {jiraApiSteps} from '../../../steps/api/jira/JiraApiSteps';
 import Navigation from '../../../identifiers/Navigation';
 
-test.beforeEach(async ({page}, testInfo) => {
-	//await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
+test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
-test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-560 @TSWEB-150 @TSWEB-622 @smoke", async () => {
+test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @smoke", async () => {
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
 	await expect(driver.getByTestId(AboutUs.WeAreTechstackNumber)).toHaveText('01');
 
