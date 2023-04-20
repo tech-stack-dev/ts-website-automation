@@ -30,22 +30,12 @@ jobs:
         run: npm ci
   
       - name: Draft echo
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-        uses: haya14busa/action-cond@v1
-        id: slack_icon_emoji
-        with:
-            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && 'github.event.pull_request.draft' }}
-            if_true: ts_website_automation
-            if_false: aaNotExist
+        if: ${{ ('github.event.pull_request.draft'&&(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        run: echo "Draft PR"
 
       - name: NON Draft echo
-        uses: haya14busa/action-cond@v1
-        id: slack_icon_emoji1
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-        with:
-            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! '! github.event.pull_request.draft' }}
-            if_true: ts_website_automation
-            if_false: aaNotExist
+        if: ${{ ('! github.event.pull_request.draft'&&(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        run: echo "USUSAL PR"
 
       - name: Generate SkipJira tags
         if: always()
