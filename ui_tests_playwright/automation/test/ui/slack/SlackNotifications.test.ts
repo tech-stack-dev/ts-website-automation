@@ -19,7 +19,7 @@ test.beforeEach(async ({page}, testInfo) => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606", async () => {
+test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606 @TSWEB-560", async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 	await formSteps.sendContactUsMessage();
@@ -37,7 +37,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 	});
 });
 
-test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
+test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606 @TSWEB-560", async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(Button.ApplyNow).click();
@@ -56,7 +56,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
 	});
 });
 
-test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages @Regression @ContactUs @TSWEB-606", async () => {
+test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages @Regression @ContactUs @TSWEB-606 @TSWEB-560", async () => {
 	const urlList: Array<string> = [
 		UrlProvider.urlBuilder(UrlPath.AboutUs),
 		UrlProvider.urlBuilder(UrlPath.HowWeWork),
@@ -80,7 +80,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
 	}
 });
 
-test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages @Regression @ContactUs @TSWEB-606", async () => {
+test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages @Regression @ContactUs @TSWEB-606 @TSWEB-560", async () => {
 	for (const url of ContactUsPreconditions.servicesUrlList) {
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
