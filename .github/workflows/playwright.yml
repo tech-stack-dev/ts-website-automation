@@ -39,7 +39,8 @@ jobs:
         
       - name: Run UI tests
         #shell: bash
-        run: npx playwright test --grep-invert "$(Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace(\"\`n\", \"|\")"
+        # run: npx playwright test --grep-invert "$(Get-Content jira_tags_${{github.run_number}}.txt | Out-String).Trim().Replace(\"\`n\", \"|\")"
+        run: npx playwright test --grep-invert "@smoke"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
