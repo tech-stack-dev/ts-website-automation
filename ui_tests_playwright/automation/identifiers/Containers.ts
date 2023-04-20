@@ -1,12 +1,9 @@
 export default class Containers {
-	static navigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
-	static standWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
-	static standWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
-	static careerMainBody = 'styledComponents__CareerMainBody';
+	static NavigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
+	static StandWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
+	static StandWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
+	static CareerMainBody = 'styledComponents__CareerMainBody';
 	static CareerCardWithoutModifier = 'CardWrapper-';
-
-	// Blog
-	static breadcrumbChilds = 'breadcrumbs-text';
 
 	static SearchResultsTextContainer = 'searchValueWrapper';
 	// Job page

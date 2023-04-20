@@ -24,17 +24,17 @@ test('Check that user can switch language in navigation header @Regression @Navi
 test('Check the the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
 	await expect(
 		(
-			await containerSteps.getContainer(ContainerByClass, Containers.standWithUkraineClass)
+			await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass)
 		).Element
 	).toBeVisible();
-	await expect(driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
+	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
 	await expect(driver.getByTestId(Button.LearnMoreButton)).toHaveText('Learn More');
 
-	const buttonSwitcher = (await containerSteps.getContainer(ContainerByClass, Containers.navigationHeaderClass)).Element.getByTestId(Button.UaLanguageSwitcher);
+	const buttonSwitcher = (await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass)).Element.getByTestId(Button.UaLanguageSwitcher);
 	await buttonSwitcher.click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
-	await expect(driver.getByTestId(Containers.standWithUkraineTitle)).toHaveText(
+	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText(
 		'Відповідь Techstack на війну в Україні',
 		{timeout: 1000}
 	);
