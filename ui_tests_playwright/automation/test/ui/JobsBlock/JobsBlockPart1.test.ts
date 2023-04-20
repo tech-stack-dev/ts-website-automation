@@ -12,8 +12,8 @@ import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 import {descriptionSteps} from '../../../steps/components/job/DescriptionSteps';
 import Navigation from '../../../identifiers/Navigation';
-import { containerSteps } from '../../../steps/components/Container/ContainerSteps';
-import ContainerByClass from '../../../components/Container/ContainerByClass';
+import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import ContainerByClass from '../../../components/container/ContainerByClass';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

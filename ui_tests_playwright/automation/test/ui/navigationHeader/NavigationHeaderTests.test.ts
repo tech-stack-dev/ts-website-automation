@@ -8,7 +8,6 @@ import { containerSteps } from '../../../steps/components/container/ContainerSte
 import ContainerByClass from '../../../components/container/ContainerByClass';
 
 test.beforeEach(async ({page}, testInfo) => {
-	// await jiraApiSteps.skipIfTestIsBlockedByJira(testInfo.title, test);
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
