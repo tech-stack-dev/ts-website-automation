@@ -43,7 +43,7 @@ jobs:
         id: slack_icon_emoji1
         if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         with:
-            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! 'github.event.pull_request.draft' }}
+            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' && ! '! github.event.pull_request.draft' }}
             if_true: ts_website_automation
             if_false: aaNotExist
 
