@@ -40,10 +40,10 @@ jobs:
       - name: listTTTTT
         shell: bash
         run: ls
-        
+
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep "$(<jira_tags_${{github.run_number}}.txt)"
+        run: npx playwright test --grep '$(<jira_tags_${{github.run_number}}.txt)'
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
