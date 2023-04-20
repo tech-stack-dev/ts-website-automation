@@ -5,7 +5,7 @@ JiraAuthToken=$1
 allowed_statuses=("Ready for QA" "Testing on Stage" "UI testing" "Done" "Closed")
 
 echo $JiraAuthToken
-envBuildStep=$2
+envBuildId=$2
 
 # Dive through the test files and extract the Jira test tags
 files=$(find . -name "*.test.ts")
@@ -48,6 +48,7 @@ echo "Opened jiras:"
 printf '%s\n' "${ready_tags[@]}"
 
 # Save the tags to a file with a unique filename
-filename="jira_tags_${envBuildStep}.txt"
+filename="jira_tags_${envBuildId}.txt"
 echo "Saving tags to $filename"
-printf '%s\n' "${ready_tags[@]}" > "$filename"
+printf '%s^|' "${ready_tags[@]:0:${#ready_tags[@]}-1}" > "$filename"
+printf '%s' "${ready_tags[${#ready_tags[@]}-1]}" >> "$filename"
