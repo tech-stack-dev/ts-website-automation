@@ -21,14 +21,10 @@ jobs:
         run:
             working-directory: ./ui_tests_playwright
     steps:
-      # - name: Delete previously generated SkipJira tags
-      #   if: always()
-      #   run: rm -f jira_tags*.txt
-        
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: ls 
+        run: echo "whathtehack"
         # run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
 
       - uses: actions/checkout@v3
