@@ -31,8 +31,7 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: echo "whathtehack"
-        # run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
+        run: ls | bash GenerateOpenedJiraList.sh "${{github.run_number}}"
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
