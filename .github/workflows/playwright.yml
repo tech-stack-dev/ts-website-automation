@@ -35,9 +35,8 @@ jobs:
       - name: Generate SkipJira tags
         if: always()
         shell: bash
-        run: |
-        bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}"
-        cat jira_tags_${{github.run_number}}.txt
+        run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
+             cat jira_tags_${{github.run_number}}.txt
         
 
       - name: Run UI tests
