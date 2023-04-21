@@ -27,7 +27,7 @@ jira_tags=($(echo "${jira_tags[@]}" | tr ' ' '\n' | sort -u))
 echo "Checking Jira status for the following tags:"
 printf '%s\n' "${jira_tags[@]}"
 echo
-ready_tags=()
+tags_to_skip=()
 for tag in "${jira_tags[@]}"; do
     url="https://ts-website.atlassian.net/rest/api/3/issue/${tag}"
     echo "Making request to $url"
@@ -39,16 +39,29 @@ for tag in "${jira_tags[@]}"; do
     fi
     echo "Status for $tag: $status"
     if [[ ! "${allowed_statuses[@]}" =~ "$status" ]]; then
-        ready_tags+=("@$tag")
+        tags_to_skip+=("@$tag")
         echo "THE TAG ADDED: $tag"
     fi
 done
 
 echo "Opened jiras:"
-printf '%s\n' "${ready_tags[@]}"
+printf '%s\n' "${tags_to_skip[@]}"
 
 # Save the tags to a file with a unique filename
 filename="jira_tags_${envBuildId}.txt"
 echo "Saving tags to $filename"
-printf '%s^|' "${ready_tags[@]:0:${#ready_tags[@]}-1}" > "$filename"
-printf '%s' "${ready_tags[${#ready_tags[@]}-1]}" >> "$filename"
+
+if [ ${#tags_to_skip[@]} -eq 1 ]; then
+  echo "One Tag to Skip"
+  printf "${tags_to_skip[@]}" > "$filename"
+
+elif [ ${#tags_to_skip[@]} -gt 1 ]; then
+  echo "Following tags will be skipped"
+  printf '%s^|' "${tags_to_skip[@]:0:${#tags_to_skip[@]}-1}" > "$filename"
+  printf '%s' "${tags_to_skip[${#tags_to_skip[@]}-1]}" >> "$filename"
+else
+  echo "No tags to skip"
+  printf '%s' "@NO_TESTS_TO_SKIP" > "$filename"
+fi
+# Print file content
+cat $filename
