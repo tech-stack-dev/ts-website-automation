@@ -36,7 +36,6 @@ jobs:
         if: always()
         shell: bash
         run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
-             cat jira_tags_${{github.run_number}}.txt
         
       - name: Run UI tests
         shell: bash
