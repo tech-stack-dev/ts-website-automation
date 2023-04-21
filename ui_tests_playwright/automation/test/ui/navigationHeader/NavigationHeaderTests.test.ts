@@ -11,7 +11,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
-test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560', async () => {
+test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560 @TSWEB-622', async () => {
 	const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass);
 	const uaButtonSwitcher = headerContainer.Element.getByTestId(Button.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();

@@ -10,7 +10,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532 @TSWEB-622", async () => {
 	for (const url of ContactUsPreconditions.servicesUrlList) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
@@ -18,7 +18,7 @@ test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @
 	}
 });
 
-test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532 @TSWEB-622", async () => {
 	for (const url of ContactUsPreconditions.companyUrlList) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
@@ -26,7 +26,7 @@ test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @T
 	}
 });
 
-test("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532 @TSWEB-622", async () => {
 	const urlList: Array<string> = [UrlProvider.urlBuilder(UrlPath.ContactUs), UrlProvider.webSiteUrl()];
 
 	for (const url of urlList) {

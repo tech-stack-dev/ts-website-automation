@@ -16,7 +16,7 @@ test("Check the header from the 'QA as a Service' block @Regression @QaAsAServic
 	await expect(info.getByTestId(Container.Title)).toHaveText('QA as a Service — Vetted Experts Available on Demand');
 });
 
-test("Check the container title and number from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+test("Check the container title and number from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603 @TSWEB-622", async () => {
 	await expect(driver.getByTestId(QaAsAService.WhatIsQaAsAService).getByTestId(Container.ContainerTitle)).toHaveText(
 		'What is QA \nas a Service?'
 	);
@@ -66,7 +66,7 @@ test("Check the container title and number from the 'QA as a Service' block @Reg
 	);
 });
 
-test("Check the sections of the containers from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+test("Check the sections of the containers from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603 @TSWEB-622", async () => {
 	const whoIsThisServiceFor = driver.getByTestId(QaAsAService.WhoIsThisServiceFor);
 	expect(await whoIsThisServiceFor.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
 		'01',
@@ -109,7 +109,7 @@ test("Check the sections of the containers from the 'QA as a Service' block @Reg
 	]);
 });
 
-test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603 @TSWEB-622", async () => {
 	const services = driver.getByTestId(QaAsAService.Services);
 	const containerBlocks = await services.getByTestId(Container.ContainerBlock).all();
 
