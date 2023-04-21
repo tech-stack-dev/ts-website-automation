@@ -43,7 +43,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep "$env.LIST_OF_TESTS)"
+        run: npx playwright test --grep "$(cat jira_tags_${{github.run_number}}.txt)"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report

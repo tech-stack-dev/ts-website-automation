@@ -93,7 +93,7 @@ test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSW
 	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
 });
 
-test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622 @TSWEB-672", async () => {
 	const engineeringCultureCarousel = driver.getByTestId(AboutUs.EngineeringCultureCarousel);
 	const engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselPrevButton);
 	const engineeringCultureNextButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselNextButton);
