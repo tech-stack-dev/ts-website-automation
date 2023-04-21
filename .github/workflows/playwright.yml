@@ -38,10 +38,9 @@ jobs:
         run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
              cat jira_tags_${{github.run_number}}.txt
         
-
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "$(cat jira_tags_${{github.run_number}}.txt)"
+        run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
