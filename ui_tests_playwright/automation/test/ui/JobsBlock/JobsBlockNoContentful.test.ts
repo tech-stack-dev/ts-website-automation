@@ -16,7 +16,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 });
 
-test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76 @TSWEB-622', async () => {
+test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(Button.ApplyNow).click();
 
@@ -30,7 +30,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });
 
-test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82 @TSWEB-622', async () => {
+test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page @Regression @JobsBlock @TSWEB-142 @TSWEB-82', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(Link.Breadcrumbs_Jobs).click();
 
@@ -38,7 +38,7 @@ test('Check that Jobs link from breadcrumbs leads the user to the main Jobs page
 	await expect(driver.getByTestId(/CardWrapper/)).toBeVisible();
 });
 
-test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116 @TSWEB-622', async () => {
+test('Check search field styling after search a long jobname on careers page @Regression @JobsBlock @TSWEB-75 @TSWEB-116', async () => {
 	// Check that input size is not changed after searching
 	const textData = randomstring.generate(50);
 	const expectedInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();

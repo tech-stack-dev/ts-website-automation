@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
-test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @ContactUs @TSWEB-76 @TSWEB-622", async () => {
+test("Check that 'Full Name' input field does not accept only spaces in the 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
 	const testData: Array<string> = [
 		' ',
 		' '.repeat(149), // Field accepts up to 149 characters
