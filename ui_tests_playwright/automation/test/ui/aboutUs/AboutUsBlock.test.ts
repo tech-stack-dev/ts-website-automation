@@ -86,14 +86,14 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
 	await expect(socialResponsibility.locator(`#${AboutUs.SR_EducationSupport}`)).toContainText('Education Support');
 });
 
-test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-672 @TSWEB-622", async () => {
+test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622", async () => {
 	await expect(driver.locator(`#${AboutUs.ApplyTitle}`)).toContainText('Would you like to be a part of our team?');
 
 	await driver.getByTestId(AboutUs.ApplyNowButton).click();
 	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
 });
 
-test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-672 @TSWEB-622", async () => {
+test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150 @TSWEB-622", async () => {
 	const engineeringCultureCarousel = driver.getByTestId(AboutUs.EngineeringCultureCarousel);
 	const engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselPrevButton);
 	const engineeringCultureNextButton = engineeringCultureCarousel.getByTestId(AboutUs.CarouselNextButton);
