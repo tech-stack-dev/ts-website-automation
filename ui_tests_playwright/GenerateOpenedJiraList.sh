@@ -2,10 +2,8 @@
 sudo apt-get update && sudo apt-get install jq
 
 JiraAuthToken=$1
-allowed_statuses=("Ready for QA" "Testing on Stage" "UI testing" "Done" "Closed")
-
-echo $JiraAuthToken
 envBuildId=$2
+allowed_statuses=("Ready for QA" "Testing on Stage" "UI testing" "Done" "Closed")
 
 # Dive through the test files and extract the Jira test tags
 files=$(find . -name "*.test.ts")
@@ -29,7 +27,7 @@ printf '%s\n' "${jira_tags[@]}"
 echo
 tags_to_skip=()
 for tag in "${jira_tags[@]}"; do
-    url="https://ts-website.atlassian.net/rest/api/3/issue/${tag}"
+    url="https://ts-website.atlassian.net/rest/api/3/issue/${tag}ggg"
     echo "Making request to $url"
     status=$(curl "$url" --silent --show-error -H "Authorization: $JiraAuthToken" | jq -r '.fields.status.name')
     # Check that 
