@@ -22,25 +22,21 @@ test('Check that user can switch language in navigation header @Regression @Navi
 });
 
 test('Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
-	await expect(
-		(
-			await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass)
-		).Element
-	).toBeVisible();
-	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
-	await expect(driver.getByTestId(Button.LearnMoreButton2)).toHaveText('Learn More');
+	const SWUFrame= await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass);
+	await expect(SWUFrame.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
+	await expect(SWUFrame.getByTestId(Button.LearnMoreButton2)).toHaveText('Learn More');
 
 	(await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass)).Element.getByTestId(
 		Button.UaLanguageSwitcher
 	).click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
-	await expect(driver.getByTestId(Containers.StandWithUkraineTitle)).toHaveText(
+	await expect(SWUFrame.getByTestId(Containers.StandWithUkraineTitle)).toHaveText(
 		'Відповідь Techstack на війну в Україні'
 	);
-	await expect(driver.getByTestId(Button.LearnMoreButton2)).toHaveText('Ознайомитися');
+	await expect(SWUFrame.getByTestId(Button.LearnMoreButton2)).toHaveText('Ознайомитися');
 
-	await driver.getByTestId(Button.LearnMoreButton2).click();
+	await SWUFrame.getByTestId(Button.LearnMoreButton2).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine, Environment.Production));
 	await expect(driver.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText('Techstack Stands with Ukraine');
 });
