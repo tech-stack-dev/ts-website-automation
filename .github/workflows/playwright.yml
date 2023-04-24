@@ -37,13 +37,15 @@ jobs:
       #   run: npm run lint
       
       - name: CHHHHEck
-        if: "${{((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))}}"
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "DRAFT"
       
       - name: CHHHHEck22222222
-        if: "${{((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))}}"
+        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
         run: echo "NOT DRFAT"
-      
+       # github.event.pull_request.draft && 
+
+
       # - name: Generate SkipJira tags
       #   if: always()
       #   shell: bash
