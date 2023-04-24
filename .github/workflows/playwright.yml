@@ -33,7 +33,12 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Linter Check
+        if: always()
         run: npm run lint
+      
+      - name: CHHHHEck
+        if: always()
+        run: echo "${{github.event.pull_request.draft}}"
       
       # - name: Generate SkipJira tags
       #   if: always()
