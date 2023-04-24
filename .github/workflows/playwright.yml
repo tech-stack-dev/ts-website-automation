@@ -29,32 +29,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
   
-      # - name: Install playwright browsers
-      #   run: npx playwright install --with-deps
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
       
       - name: Linter Check
         if: always()
         run: npm run lint
       
-      - name: CHHHHEEEEEK
-        run: echo  $"{{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}"
-
-      # - name: Generate SkipJira tags
-      #   if: always()
-      #   shell: bash
-      #   run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
+      - name: Generate SkipJira tags
+        if: always()
+        shell: bash
+        run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
         
-      # - name: Run UI tests
-      #   shell: bash
-      #   run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
+      - name: Run UI tests
+        shell: bash
+        run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
         
-      # - uses: actions/upload-artifact@v3
-      #   name: Upload Playwright report
-      #   if: always()
-      #   with:
-      #       name: playwright-report
-      #       path: ui_tests_playwright/playwright-report/
-      #       retention-days: 30
+      - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
+        if: always()
+        with:
+            name: playwright-report
+            path: ui_tests_playwright/playwright-report/
+            retention-days: 30
             
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
