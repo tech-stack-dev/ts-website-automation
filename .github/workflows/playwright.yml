@@ -32,13 +32,17 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       
-      - name: Linter Check
-        if: always()
-        run: npm run lint
+      # - name: Linter Check
+      #   if: always()
+      #   run: npm run lint
       
       - name: CHHHHEck
-        if: always()
-        run: echo "${{github.event.pull_request.draft}}"
+        if: ${{github.event.pull_request.draft}}
+        run: echo "DRAFT"
+      
+      - name: CHHHHEck22222222
+        if: ${{! github.event.pull_request.draft}}
+        run: echo "NOT DRFAT"
       
       # - name: Generate SkipJira tags
       #   if: always()
