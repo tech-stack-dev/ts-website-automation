@@ -29,92 +29,81 @@ jobs:
       - name: Install dependencies
         run: npm ci
   
-      # - name: Install playwright browsers
-      #   run: npx playwright install --with-deps
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
       
       - name: Linter Check
         if: always()
         run: npm run lint
       
-      - name: CHHHHEck
-        if: ${{ (github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }} 
-        run: echo "DRAFT"
-      
-      - name: CHHHHEck22222222
-        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }} 
-        run: echo "NOT DRFAT"
-       
-        # github.event.pull_request.draft && 
-
-
-      # - name: Generate SkipJira tags
-      #   if: always()
-      #   shell: bash
-      #   run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
+      - name: Generate SkipJira tags
+        if: always()
+        shell: bash
+        run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
         
-      # - name: Run UI tests
-      #   shell: bash
-      #   run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
+      - name: Run UI tests
+        shell: bash
+        run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
         
-      # - uses: actions/upload-artifact@v3
-      #   name: Upload Playwright report
-      #   if: always()
-      #   with:
-      #       name: playwright-report
-      #       path: ui_tests_playwright/playwright-report/
-      #       retention-days: 30
+      - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
+        if: always()
+        with:
+            name: playwright-report
+            path: ui_tests_playwright/playwright-report/
+            retention-days: 30
             
-      # - name: Preparing Slack emoji
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   id: slack_icon_emoji
-      #   with:
-      #       cond: ${{ job.status == 'failure' }}
-      #       if_true: ':finnadie:'
-      #       if_false: ':aw_yeah:'
+      - name: Preparing Slack emoji
+        uses: haya14busa/action-cond@v1
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_icon_emoji
+        with:
+            cond: ${{ job.status == 'failure' }}
+            if_true: ':finnadie:'
+            if_false: ':aw_yeah:'
       
-      # - name: Set Slack Channel production
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   id: slack_channel_production
-      #   with:
-      #       cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-      #       if_true: ts_website_automation
-      #       if_false: ts_website
+      - name: Set Slack Channel production
+        uses: haya14busa/action-cond@v1
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_channel_production
+        with:
+            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+            if_true: ts_website_automation
+            if_false: ts_website
             
-      # - name: Set Slack Channel automation
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   id: slack_channel_automation
-      #   with:
-      #       cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-      #       if_true: test_slack_notifications
-      #       if_false: ts_website_automation
+      - name: Set Slack Channel automation
+        uses: haya14busa/action-cond@v1
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_channel_automation
+        with:
+            cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+            if_true: test_slack_notifications
+            if_false: ts_website_automation
       
-      # - name: Slack Notification for UI tests production
-      #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   uses: rtCamp/action-slack-notify@v2.2.0
-      #   env:
-      #       SLACK_USERNAME: Tests execution report
-      #       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      #       SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
-      #       SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-      #       SLACK_COLOR: ${{ job.status }}
-      #       SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      #       SLACK_TITLE: TypeScript UI tests
-      #       MSG_MINIMAL: true
-      #       SLACK_FOOTER: TS website
+      - name: Slack Notification for UI tests production
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+            SLACK_USERNAME: Tests execution report
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
+            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            SLACK_TITLE: TypeScript UI tests
+            MSG_MINIMAL: true
+            SLACK_FOOTER: TS website
             
-      # - name: Slack Notification for UI tests automation
-      #   if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   uses: rtCamp/action-slack-notify@v2.2.0
-      #   env:
-      #       SLACK_USERNAME: Tests execution report
-      #       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      #       SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
-      #       SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-      #       SLACK_COLOR: ${{ job.status }}
-      #       SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      #       SLACK_TITLE: TypeScript UI tests
-      #       MSG_MINIMAL: true
-      #       SLACK_FOOTER: TS website
+      - name: Slack Notification for UI tests automation
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+            SLACK_USERNAME: Tests execution report
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
+            SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            SLACK_TITLE: TypeScript UI tests
+            MSG_MINIMAL: true
+            SLACK_FOOTER: TS website
