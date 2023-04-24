@@ -1,6 +1,6 @@
-import { ClientsEnum } from '../base/client/ClientsEnum';
+import {ClientsEnum} from '../base/client/ClientsEnum';
 import appsetting from '../../appsetting.json';
-import EnvProvider, { Environment } from './EnvProvider';
+import EnvProvider, {Environment} from './EnvProvider';
 import UrlPath from './UrlPath';
 
 export default class UrlProvider {
