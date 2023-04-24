@@ -26,7 +26,7 @@ class Driver extends BaseDriver {
 		driver.focusedDriver.Page = await driver.focusedDriver.DriverContext.newPage();
 		driver.focusedDriver.ListOfPages.push(driver.focusedDriver.Page);
 		driver.listOfDrivers.push(driver.focusedDriver);
-		var dddddddd = 5;
+		// var dddddddd = 5;
 		return this;
 	}
 
