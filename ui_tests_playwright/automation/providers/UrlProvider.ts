@@ -1,11 +1,15 @@
-import {ClientsEnum} from '../base/client/ClientsEnum';
+import { ClientsEnum } from '../base/client/ClientsEnum';
 import appsetting from '../../appsetting.json';
-import EnvProvider, {Environment} from './EnvProvider';
+import EnvProvider, { Environment } from './EnvProvider';
 import UrlPath from './UrlPath';
 
 export default class UrlProvider {
-	public static urlBuilder(urlPath: string) {
-		return `${UrlProvider.webSiteUrl()}${urlPath}`;
+	public static urlBuilder(urlPath: string, environment: Environment = EnvProvider.Environment) {
+		return `${UrlProvider.webSiteUrl(environment)}${urlPath}`;
+	}
+
+	public static careerUrlBuilder(urlPath: string, environment: Environment = EnvProvider.Environment) {
+		return `${UrlProvider.careerUrl(environment)}${urlPath}`;
 	}
 
 	public static webSiteUrl(environment: Environment = EnvProvider.Environment) {
