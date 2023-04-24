@@ -1,7 +1,10 @@
 export default class Containers {
 	static NavigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
+	static StandWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
+	static StandWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
 	static CareerMainBody = 'styledComponents__CareerMainBody';
 	static CareerCardWithoutModifier = 'CardWrapper-';
+
 	static SearchResultsTextContainer = 'searchValueWrapper';
 	// Job page
 	static JobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
