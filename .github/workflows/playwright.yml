@@ -32,16 +32,16 @@ jobs:
       # - name: Install playwright browsers
       #   run: npx playwright install --with-deps
       
-      # - name: Linter Check
-      #   if: always()
-      #   run: npm run lint
+      - name: Linter Check
+        if: always()
+        run: npm run lint
       
       - name: CHHHHEck
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }} 
         run: echo "DRAFT"
       
       - name: CHHHHEck22222222
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }} 
         run: echo "NOT DRFAT"
        # github.event.pull_request.draft && 
 
