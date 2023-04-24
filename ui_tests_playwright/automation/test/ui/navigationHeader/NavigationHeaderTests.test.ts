@@ -22,7 +22,7 @@ test('Check that user can switch language in navigation header @Regression @Navi
 });
 
 test('Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
-	const SWUFrame= await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass);
+	const SWUFrame = await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass);
 	await expect(SWUFrame.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
 	await expect(SWUFrame.getByTestId(Button.LearnMoreButton2)).toHaveText('Learn More');
 
