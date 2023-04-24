@@ -36,6 +36,10 @@ jobs:
         if: always()
         run: npm run lint
       
+      - name: CHHHHEEEEEK
+        run: echo  $"{{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}"
+
+
       - name: Generate SkipJira tags
         if: always()
         shell: bash
