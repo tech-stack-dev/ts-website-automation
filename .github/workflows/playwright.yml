@@ -32,6 +32,10 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       
+      - name: Linter Check
+        if: always()
+        run: npm run lint
+      
       - name: Generate SkipJira tags
         if: always()
         shell: bash
@@ -51,7 +55,7 @@ jobs:
             
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_icon_emoji
         with:
             cond: ${{ job.status == 'failure' }}
@@ -60,7 +64,7 @@ jobs:
       
       - name: Set Slack Channel production
         uses: haya14busa/action-cond@v1
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_channel_production
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
@@ -69,7 +73,7 @@ jobs:
             
       - name: Set Slack Channel automation
         uses: haya14busa/action-cond@v1
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_channel_automation
         with:
             cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
@@ -77,7 +81,7 @@ jobs:
             if_false: ts_website_automation
       
       - name: Slack Notification for UI tests production
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
             SLACK_USERNAME: Tests execution report
@@ -91,7 +95,7 @@ jobs:
             SLACK_FOOTER: TS website
             
       - name: Slack Notification for UI tests automation
-        if: ${{ ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        if: ${{ (! github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
             SLACK_USERNAME: Tests execution report
