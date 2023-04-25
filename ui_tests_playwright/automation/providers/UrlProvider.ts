@@ -8,6 +8,10 @@ export default class UrlProvider {
 		return `${UrlProvider.webSiteUrl(environment)}${urlPath}`;
 	}
 
+	public static careerUrlBuilder(urlPath: string, environment: Environment = EnvProvider.Environment) {
+		return `${UrlProvider.careerUrl(environment)}${urlPath}`;
+	}
+
 	public static webSiteUrl(environment: Environment = EnvProvider.Environment) {
 		switch (environment) {
 			case Environment.Staging: {
