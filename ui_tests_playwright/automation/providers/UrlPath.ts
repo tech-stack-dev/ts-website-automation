@@ -24,4 +24,8 @@ export default class UrlPath {
 	static Terms = 'terms';
 	static CookiesPolicy = 'cookies-policy';
 	static Reviews = 'reviews';
+
+	static OpenCase = 'case-studies/test-case';
+	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
+	static AuthorPage = 'blog/author/aleksey/';
 }

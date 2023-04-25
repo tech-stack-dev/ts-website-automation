@@ -11,7 +11,12 @@ import {Environment} from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
 
 let footer: Locator;
-const testDataProvider = [UrlProvider.webSiteUrl(), UrlProvider.urlBuilder(UrlPath.ContactUs)]
+const testDataProvider = [
+	UrlProvider.webSiteUrl(), 
+	UrlProvider.urlBuilder(UrlPath.ContactUs), 
+	UrlProvider.urlBuilder(UrlPath.OpenCase), 
+	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription), 
+	UrlProvider.urlBuilder(UrlPath.AuthorPage)]
 	.concat(ContactUsPreconditions.servicesUrlList)
 	.concat(ContactUsPreconditions.companyUrlList);
 
