@@ -17,6 +17,7 @@ jobs:
         AWS_KEY: ${{secrets.AWS_KEY}}
         AWS_PASSWORD: ${{secrets.AWS_PASSWORD}}
         JIRA_AUTH_TOKEN: ${{secrets.JIRA_AUTH_TOKEN_BASE64}}
+        CI: true
     defaults:
         run:
             working-directory: ./ui_tests_playwright
