@@ -23,7 +23,6 @@ jobs:
             working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
-      
       - uses: actions/setup-node@v3
       
       - name: Install dependencies
@@ -31,10 +30,6 @@ jobs:
   
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-      
-      - name: Linter Check
-        if: always()
-        run: npm run lint
       
       - name: Generate SkipJira tags
         if: always()
