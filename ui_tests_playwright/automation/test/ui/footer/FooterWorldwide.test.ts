@@ -9,14 +9,16 @@ import Container from '../../../identifiers/Container';
 import Link from '../../../identifiers/Link';
 import {Environment} from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
 const testDataProvider = [
-	UrlProvider.webSiteUrl(), 
-	UrlProvider.urlBuilder(UrlPath.ContactUs), 
-	UrlProvider.urlBuilder(UrlPath.OpenCase), 
-	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription), 
-	UrlProvider.urlBuilder(UrlPath.AuthorPage)]
+	UrlProvider.webSiteUrl(),
+	UrlProvider.urlBuilder(UrlPath.ContactUs),
+	UrlProvider.urlBuilder(UrlPath.OpenCase),
+	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
+	UrlProvider.urlBuilder(UrlPath.AuthorPage),
+]
 	.concat(ContactUsPreconditions.servicesUrlList)
 	.concat(ContactUsPreconditions.companyUrlList);
 
@@ -29,9 +31,17 @@ for (const url of testDataProvider) {
 	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
-		const contactBlock = (await footer.getByTestId(Container.ContainerBlock).all())[0];
-		const servicesBlock = (await footer.getByTestId(Container.ContainerBlock).all())[1];
-		const companyBlock = (await footer.getByTestId(Container.ContainerBlock).all())[2];
+		const contactBlock = (await containerSteps.getContainerBlockByTitle(
+			footer,
+			Container.SectionTitle,
+			'Contacts'
+		))!;
+		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
+			footer,
+			Container.BlockTitle,
+			'Services'
+		))!;
+		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const year = new Date().getFullYear();
 
 		await expect(footer.getByTestId(Link.Logo)).toBeVisible();
@@ -65,7 +75,11 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the Services block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		const servicesBlock = (await footer.getByTestId(Container.ContainerBlock).all())[1];
+		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
+			footer,
+			Container.BlockTitle,
+			'Services'
+		))!;
 		const servicesList = await servicesBlock.getByTestId(Container.SectionTitle).all();
 
 		for (let index = 0; index < servicesList.length; index++) {
@@ -85,7 +99,7 @@ for (const url of testDataProvider) {
 		];
 
 		await baseDriverSteps.goToUrl(url);
-		const companyBlock = (await footer.getByTestId(Container.ContainerBlock).all())[2];
+		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const companyList = await companyBlock.getByTestId(Container.SectionTitle).all();
 
 		for (let index = 0; index < companyList.length; index++) {
