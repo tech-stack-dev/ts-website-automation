@@ -1,15 +1,15 @@
-import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
+import { expect, Locator, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
+import { driver } from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import Footer from '../../../identifiers/Footer';
 import Container from '../../../identifiers/Container';
 import Link from '../../../identifiers/Link';
-import {Environment} from '../../../providers/EnvProvider';
+import { Environment } from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
-import {containerSteps} from '../../../steps/components/container/ContainerSteps';
+import { containerSteps } from '../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
 const testDataProvider = [
@@ -110,10 +110,8 @@ for (const url of testDataProvider) {
 	});
 
 	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
-		await baseDriverSteps.goToUrl(url);
-
 		const linkMap = new Map([
-			[Footer.LinkedIn, 'https://www.linkedin.com/company/techstack-limited/'],
+			[Footer.LinkedIn, 'https://www.linkedin.com'],
 			[Footer.Facebook, 'https://www.facebook.com'],
 			[Footer.Instagram, 'https://www.instagram.com'],
 			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
@@ -122,6 +120,8 @@ for (const url of testDataProvider) {
 			[Footer.GoodFirms, 'https://www.goodfirms.co/company/techstack-ltd'],
 			[Footer.Clutch, 'https://clutch.co/profile/techstack'],
 		]);
+
+		await baseDriverSteps.goToUrl(url);
 
 		for (const entries of linkMap.entries()) {
 			const [newPage] = await Promise.all([
