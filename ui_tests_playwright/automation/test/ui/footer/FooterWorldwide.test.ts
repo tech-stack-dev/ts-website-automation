@@ -1,15 +1,15 @@
-import { expect, Locator, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
-import { driver } from '../../../base/driver/Driver';
+import {expect, Locator, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import Footer from '../../../identifiers/Footer';
 import Container from '../../../identifiers/Container';
 import Link from '../../../identifiers/Link';
-import { Environment } from '../../../providers/EnvProvider';
+import {Environment} from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
 const testDataProvider = [
