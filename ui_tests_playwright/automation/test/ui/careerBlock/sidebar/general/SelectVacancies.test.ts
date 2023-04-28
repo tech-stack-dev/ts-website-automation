@@ -1,31 +1,30 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Containers from '../../../../identifiers/Containers';
-import UrlProvider from '../../../../providers/UrlProvider';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {contentfulUtils} from '../../../../utils/ContentfulUtils';
-import {ColorsEnum} from '../../../../enum/ColorsEnum';
-import {TagsEnum} from '../../../../enum/tag/TagsEnum';
-import Tag from '../../../../identifiers/Tag';
-import {SeniorityLevelsEnum} from '../../../../enum/tag/SeniorityLevelsEnum';
-
-test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-});
+import { expect, test } from '@playwright/test';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import ContainerByClass from '../../../../../components/container/ContainerByClass';
+import Containers from '../../../../../identifiers/Containers';
+import UrlProvider from '../../../../../providers/UrlProvider';
+import { sessionValue } from '../../../../../runtimeVariables/SessionValue';
+import { careerSteps } from '../../../../../steps/careerPageSteps/CareerSteps';
+import { containerSteps } from '../../../../../steps/components/container/ContainerSteps';
+import { contentfulSteps } from '../../../../../steps/contentful/ContentfulSteps';
+import { contentfulUtils } from '../../../../../utils/ContentfulUtils';
+import { ColorsEnum } from '../../../../../enum/ColorsEnum';
+import { TagsEnum } from '../../../../../enum/tag/TagsEnum';
+import Tag from '../../../../../identifiers/Tag';
+import { SeniorityLevelsEnum } from '../../../../../enum/tag/SeniorityLevelsEnum';
+import { DirectionsEnum } from '../../../../../enum/tag/DirectionsEnum';
 
 const testDataProvider = [
-	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag},
-	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: Tag.JavaTag},
-	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: Tag.RemoteAllowedTag},
+	{ filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag },
+	{ filterBlock: 'direction', createTag: [DirectionsEnum.LongSoftwareDataManager], tagName: Tag.LongSoftwareDataManager },
+	{ filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: Tag.JavaTag },
+	{ filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: Tag.RemoteAllowedTag },
 ];
 
 for (const testData of testDataProvider) {
 	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 		contentfulUtils.AddTagsToCareerBody(testData.createTag);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
