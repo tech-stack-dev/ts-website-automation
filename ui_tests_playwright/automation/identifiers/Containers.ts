@@ -3,7 +3,7 @@ export default class Containers {
 	static StandWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
 	static StandWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
 	static SearchResultsTextContainer = 'searchValueWrapper';
-	
+
 	// Job page
 	static JobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
 	static JobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
