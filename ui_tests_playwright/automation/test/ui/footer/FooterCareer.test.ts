@@ -7,6 +7,7 @@ import Footer from '../../../identifiers/Footer';
 import Container from '../../../identifiers/Container';
 import Link from '../../../identifiers/Link';
 import {Environment} from '../../../providers/EnvProvider';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
 const testDataProvider = [
@@ -25,8 +26,8 @@ for (const url of testDataProvider) {
 	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
-		const companyBlock = (await footer.getByTestId(Container.ContainerBlock).all())[0];
-		const careerBlock = (await footer.getByTestId(Container.ContainerBlock).all())[1];
+		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
+		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
 		const year = new Date().getFullYear();
 
 		await expect(footer.getByTestId(Link.Logo)).toBeVisible();
@@ -56,7 +57,7 @@ for (const url of testDataProvider) {
 		];
 
 		await baseDriverSteps.goToUrl(url);
-		const companyBlock = (await footer.getByTestId(Container.ContainerBlock).all())[0];
+		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const companyList = await companyBlock.getByTestId(Container.SectionTitle).all();
 
 		for (let index = 0; index < companyList.length; index++) {
@@ -75,7 +76,7 @@ for (const url of testDataProvider) {
 		];
 
 		await baseDriverSteps.goToUrl(url);
-		const careerBlock = (await footer.getByTestId(Container.ContainerBlock).all())[1];
+		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
 		const careerList = await careerBlock.getByTestId(Container.SectionTitle).all();
 
 		for (let index = 0; index < careerList.length; index++) {
@@ -88,7 +89,7 @@ for (const url of testDataProvider) {
 	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
-			[Footer.LinkedIn, 'https://www.linkedin.com/company/techstack-limited/'],
+			[Footer.LinkedIn, 'https://www.linkedin.com'],
 			[Footer.Facebook, 'https://www.facebook.com'],
 			[Footer.Instagram, 'https://www.instagram.com'],
 		]);
