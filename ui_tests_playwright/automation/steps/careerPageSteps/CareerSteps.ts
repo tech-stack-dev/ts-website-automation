@@ -13,7 +13,7 @@ class CareerSteps {
 			await driver.getByTestId(Career.SarchCareerField).clear();
 			await driver.getByTestId(Career.SarchCareerField).fill(careerName);
 			await driver.getByTestId(Career.SearchButton).click();
-			await driver.getByTestId(`${Containers.CareerCardWithoutModifier}${careerName}`).waitFor();
+			await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).waitFor();
 		}, 5);
 	}
 
@@ -33,7 +33,7 @@ class CareerSteps {
 	}
 
 	public async clickOnCareerCard(careerName: string) {
-		await driver.getByTestId(`${Containers.CareerCardWithoutModifier}${careerName}`).click();
+		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click();
 	}
 
 	public async getBreadcrumbsText() {

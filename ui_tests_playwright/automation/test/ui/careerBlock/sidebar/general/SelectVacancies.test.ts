@@ -14,6 +14,7 @@ import { TagsEnum } from '../../../../../enum/tag/TagsEnum';
 import Tag from '../../../../../identifiers/Tag';
 import { SeniorityLevelsEnum } from '../../../../../enum/tag/SeniorityLevelsEnum';
 import { DirectionsEnum } from '../../../../../enum/tag/DirectionsEnum';
+import Career from '../../../../../identifiers/Career';
 
 const testDataProvider = [
 	{ filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag },
@@ -33,7 +34,7 @@ for (const testData of testDataProvider) {
 		);
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
+		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
 			Containers.FilterGroupWrapper,
