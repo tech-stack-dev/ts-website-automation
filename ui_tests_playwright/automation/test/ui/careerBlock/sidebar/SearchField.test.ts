@@ -5,7 +5,6 @@ import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import {driver} from '../../../../base/driver/Driver';
-import Containers from '../../../../identifiers/Containers';
 import Career from '../../../../identifiers/Career';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
@@ -23,7 +22,7 @@ test(`Check that user sees correct results when entering vacancy in 'Search' inp
 	const careerName = `JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`;
 	await careerSteps.verifyThatCareerWasCreated(careerName);
 	const careerCard = driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`);
-	expect((await careerCard.all()).length).toBe(1);
+	expect(careerCard).toHaveCount(1);
 });
 
 test(`Check that user sees correct results when entering part of name vacancy in 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`, async () => {
@@ -36,7 +35,7 @@ test(`Check that user sees correct results when entering part of name vacancy in
 		await driver.getByTestId(career).waitFor();
 	}, 5);
 
-	expect((await driver.getByTestId(career).all()).length).toBe(1);
+	expect(driver.getByTestId(career)).toHaveCount(1);
 });
 
 test(`Check that user sees failed search result message after clearing 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`, async () => {
