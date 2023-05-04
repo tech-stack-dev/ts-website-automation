@@ -101,7 +101,7 @@ for (const url of testDataProvider) {
 				driver.DriverContext.waitForEvent('page'),
 				await footer.getByTestId(entries[0]).nth(0).click(),
 			]);
-			expect(newPage.url()).toContain(entries[1]);
+			expect(newPage.url().includes(entries[1])).toBeTruthy();
 			await newPage.close();
 		}
 
