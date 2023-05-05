@@ -16,6 +16,10 @@ import Career from '../../../../../identifiers/Career';
 import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../utils/ContentfulUtils';
 
+test.beforeEach(async () => {
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+});
+
 const testDataProvider = [
 	{
 		filterBlock: 'seniority level',
@@ -41,7 +45,6 @@ const testDataProvider = [
 
 for (const testData of testDataProvider) {
 	test(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
-		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 		contentfulUtils.AddTagsToCareerBody(testData.createTags);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
