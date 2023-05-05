@@ -13,10 +13,19 @@ export default class UrlPath {
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
 	static CaseStudies = 'case-studies';
-	static Blog = 'blog';
+	static Blog = 'blog/';
+	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
 	static ContactUs = 'contact-us';
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';
 	static client2Url = 'NOT_IMPLEMENTED';
 	static client3Url = 'NOT_IMPLEMENTED';
+
+	static Terms = 'terms';
+	static CookiesPolicy = 'cookies-policy';
+	static Reviews = 'reviews';
+
+	static OpenCase = 'case-studies/test-case';
+	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
+	static AuthorPage = 'blog/author/aleksey/';
 }

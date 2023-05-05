@@ -7,6 +7,7 @@ export default class ContactUsPreconditions {
 		UrlProvider.urlBuilder(UrlPath.CustomDev),
 		UrlProvider.urlBuilder(UrlPath.CloudAndDev),
 		UrlProvider.urlBuilder(UrlPath.BigData),
+		UrlProvider.urlBuilder(UrlPath.AiMl),
 		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
 		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
