@@ -28,7 +28,7 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
@@ -66,10 +66,10 @@ for (const url of testDataProvider) {
 		]);
 		expect(await companyBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'About Us',
-			'Case Studies',
-			'Blog',
 			'How we work',
 			'Career',
+			'Case Studies',
+			'Blog',
 		]);
 	});
 
@@ -89,13 +89,13 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
 		const companyUrlList = [
 			UrlProvider.urlBuilder(UrlPath.AboutUs),
-			UrlProvider.urlBuilder(UrlPath.CaseStudies),
-			UrlProvider.urlBuilder(UrlPath.Blog),
 			UrlProvider.urlBuilder(UrlPath.HowWeWork),
 			UrlProvider.careerUrl(Environment.Production),
+			UrlProvider.urlBuilder(UrlPath.CaseStudies),
+			UrlProvider.urlBuilder(UrlPath.Blog),
 		];
 
 		await baseDriverSteps.goToUrl(url);
@@ -128,7 +128,7 @@ for (const url of testDataProvider) {
 				driver.DriverContext.waitForEvent('page'),
 				await footer.getByTestId(entries[0]).click(),
 			]);
-			expect(newPage.url()).toContain(entries[1]);
+			expect(newPage.url().includes(entries[1])).toBeTruthy();
 			await newPage.close();
 		}
 	});

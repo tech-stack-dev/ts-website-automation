@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
 	/* Retry on CI only */
 	retries: 2,
 	/* Opt out of parallel tests on CI. */
-	workers: 8,
+	workers: 4,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [['html', {open: 'never'}]],
 
