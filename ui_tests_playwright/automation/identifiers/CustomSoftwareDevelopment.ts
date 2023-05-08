@@ -29,11 +29,21 @@ export default class CustomSoftwareDevelopent {
 	static ContentSectionItem = 'ContentSectionItem';
 
 	static LineSection = 'LineSection';
+	// Carousel
 	static Controls = 'Controls';
 	static ControlLeftButton = 'ControlLeftButton';
 	static ControlRightButton = 'ControlRightButton';
+	static InfoBlock = 'InfoBlock';
+	static InfoBlockItemContent = 'InfoBlockItemContent';
+	static InfoBlockItemTitle = 'InfoBlockItemTitle';
+	static InfoBlockNumber = 'InfoBlockNumber';
+	static LeftActiveButtonImageId = 'left-active-timeline-control';
+	static LeftInactiveButtonImageId = 'left-inactive-timeline-control';
+	static RightActiveButtonImageId = 'right-active-timeline-control';
+	static RightInactiveButtonImageId = 'right-inactive-timeline-control';
 
 	static MemberItem = 'MemberItem';
+	static MemberPhoto = 'MemberPhoto';
 	static MemberDescription = 'MemberDescription';
 	static MemberData = 'MemberData';
 	static MemberName = 'MemberName';
