@@ -55,8 +55,8 @@ if [ ${#tags_to_skip[@]} -eq 1 ]; then
 
 elif [ ${#tags_to_skip[@]} -gt 1 ]; then
   echo "Following tags will be skipped"
-  printf '%s|' "${tags_to_skip[@]:0:${#tags_to_skip[@]}-1}" > "$filename"
-  printf '%s' "${tags_to_skip[${#tags_to_skip[@]}-1]}" >> "$filename"
+  printf '/%s|' "${tags_to_skip[@]:0:${#tags_to_skip[@]}-1}" > "$filename"
+  printf '%s' "${tags_to_skip[${#tags_to_skip[@]}-1]}/" >> "$filename"
 else
   echo "No tags to skip"
   printf '%s' "@NO_TESTS_TO_SKIP" > "$filename"
