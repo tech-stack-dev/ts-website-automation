@@ -16,10 +16,6 @@ import {SeniorityLevelsEnum} from '../../../../../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../identifiers/Career';
 
-test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-});
-
 const testDataProvider = [
 	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag},
 	{
@@ -33,6 +29,7 @@ const testDataProvider = [
 
 for (const testData of testDataProvider) {
 	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 		contentfulUtils.AddTagsToCareerBody(testData.createTag);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
