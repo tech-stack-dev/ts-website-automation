@@ -181,11 +181,15 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click();
+	await carouselButtonPrev.click({delay: 500});
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click({clickCount: 10, delay: 500});
+
+	const clickCount = 10;
+	for (let i = 0; i < clickCount; i++) {
+		await carouselButtonNext.click({delay: 500});
+	}
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
