@@ -8,6 +8,9 @@ export default class Container {
 	static SectionNumber = 'SectionNumber';
 	static SectionTitle = 'SectionTitle';
 	static SectionName = 'SectionName';
+	static SectionContainer = 'SectionContainer';
+	static SectionContent = 'SectionContent';
+	static SectionDescription = 'SectionDescription';
 
 	static ContainerBlock = 'ContainerBlock';
 	static BlockTitle = 'BlockTitle';

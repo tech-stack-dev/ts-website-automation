@@ -14,71 +14,53 @@ export default class CustomSoftwareDevelopent {
 	static MobileDevelopmentCard = 'MobileDevelopmentCard';
 	static CardNumber = 'CardNumber';
 	static CardTitle = 'CardTitle';
-	static CardDescription = 'CardDescription';
 
 	static ContentSwitcher = 'ContentSwitcher';
-	static ContentSwitcherButtonPlaceholder = 'ContentSwitcherButton';
 	static ContentSwitcherButton_BackEnd = 'ContentSwitcherButton-BackEnd';
 	static ContentSwitcherButton_FrontEnd = 'ContentSwitcherButton-FrontEnd';
 	static ContentSwitcherButton_AiMlDataScience = 'ContentSwitcherButton-AiMlDataScience';
 	static ContentSwitcherContent = 'ContentSwitcherContent';
+	static ContentSwitcherContent_BackEnd = 'ContentSwitcherContent-BackEnd';
+	static ContentSwitcherContent_AiMlDataScience = 'ContentSwitcherContent-AiMlDataScience';
+	static ContentSwitcherContent_FrontEnd = 'ContentSwitcherContent-FrontEnd';
 	static ContentSection = 'ContentSection';
 	static ContentSectionTitle = 'ContentSectionTitle';
-	static ContentSectionContent = 'ContentSectionContent';
 	static ContentSectionList = 'ContentSectionList';
 	static ContentSectionItem = 'ContentSectionItem';
 
-	static LineSection = 'LineSection';
 	// Carousel
 	static Controls = 'Controls';
 	static ControlLeftButton = 'ControlLeftButton';
 	static ControlRightButton = 'ControlRightButton';
 	static InfoBlock = 'InfoBlock';
-	static InfoBlockItemContent = 'InfoBlockItemContent';
 	static InfoBlockItemTitle = 'InfoBlockItemTitle';
 	static InfoBlockNumber = 'InfoBlockNumber';
-	static LeftActiveButtonImageId = 'left-active-timeline-control';
-	static LeftInactiveButtonImageId = 'left-inactive-timeline-control';
-	static RightActiveButtonImageId = 'right-active-timeline-control';
-	static RightInactiveButtonImageId = 'right-inactive-timeline-control';
 
 	static MemberItem = 'MemberItem';
 	static MemberPhoto = 'MemberPhoto';
 	static MemberDescription = 'MemberDescription';
-	static MemberData = 'MemberData';
 	static MemberName = 'MemberName';
-	static MemberSocialLinks = 'MemberSocialLinks';
 	static MemberLinkLinkedin = 'MemberLinkLinkedin';
 	static MemberLinkBlog = 'MemberLinkBlog';
 
-	static ContainerCaseList = 'ContainerCaseList';
 	static CaseCard = 'CaseCard';
 	static CaseDomainName = 'CaseDomainName';
 	static CaseName = 'CaseName';
 
-	static WeMakeImpactAwardsCards = 'WeMakeImpactAwardsCards';
 	static AwardCard = 'AwardCard';
 	static AwardCardImage = 'AwardCardImage';
-	static OurReviews = 'CustomSoftwareDevelopmentForYourProduct';
 	static ReviewContainer = 'ReviewContainer';
 	static ReviewText = 'ReviewText';
 	static ReviewLink = 'ReviewLink';
 	static ReviewAuthor = 'ReviewAuthor';
-	static ReviewAuthorInfo = 'ReviewAuthorInfo';
 	static ReviewAuthorName = 'ReviewAuthorName';
 	static ReviewAuthorPosition = 'ReviewAuthorPosition';
 
-	static SectionContainer = 'SectionContainer';
-	static SectionTitle = 'SectionTitle';
-	static SectionContent = 'SectionContent';
-	static SectionDescription = 'SectionDescription';
-
-	static SectionAnswerWrapper = 'SectionAnswerWrapper';
 	static SectionShortAnswer = 'SectionShortAnswer';
 	static SectionFullAnswer = 'SectionFullAnswer';
 
 	static ArticleItem = 'ArticleItem';
-	static ArticleLeftInfo = 'ArticleLeftInfo';
+	static ArticleLeftInfo= 'ArticleLeftInfo';
 	static ArticleRightInfo = 'ArticleRightInfo';
 	static ArticleTitle = 'ArticleTitle';
 }
