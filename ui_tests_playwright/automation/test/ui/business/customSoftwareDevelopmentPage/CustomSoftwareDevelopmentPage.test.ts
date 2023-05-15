@@ -6,10 +6,33 @@ import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import Button from '../../../../identifiers/Button';
 import CustomSoftwareDevelopent from '../../../../identifiers/CustomSoftwareDevelopment';
-import { UserTeam } from '@slack/web-api/dist/response/SearchAllResponse';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+});
+
+test("Check the section title and number from the 'Custom software development' block @Regression @CustomSoftwareDevelopent @TSWEB-672", async () => {
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentForYourProduct).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('01');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentForYourProduct).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Custom software development for your product');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentServicesWeProvide).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('02');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentServicesWeProvide).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Custom\ndevelopment\nservices we provide');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.TechnologyStack).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('03');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.TechnologyStack).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Technology\nstack');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentBenefits).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('04');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentBenefits).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Custom software development benefits');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentProcess).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('05');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentProcess).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Custom software development process');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentExperts).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('06');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentExperts).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Custom software\ndevelopment experts');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CaseStudies).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('07');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.CaseStudies).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Case studies');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.OurApproachToSoftwareDevelopment).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('08');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.OurApproachToSoftwareDevelopment).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Our approach \nto software \ndevelopment');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.Faq).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('09');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.Faq).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('FAQ');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.RelatedArticles).getByTestId(Container.ContainerNumber).nth(0)).toHaveText('10');
+	await expect(driver.getByTestId(CustomSoftwareDevelopent.RelatedArticles).getByTestId(Container.ContainerTitle).nth(0)).toHaveText('Related \narticles');
+	
 });
 
 test(`Check page title and 'Request a quote' buttons on the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
@@ -316,8 +339,8 @@ test(`Check the member cards in the 'Custom software development experts' sectio
 		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toBeVisible();
 		
 		await sections.nth(4).getByTestId(Button.ArrowButton).click();
-		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs...');
-		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs. They are committed to delivering quality code that is well-tested and scalable. In addition, our developers are always up-to-date on the latest technology trends, so you can be confident that your solution will be built using the best possible tools and techniques. As a result, you can focus on running your business, while we handle the development process.');
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toHaveText(' Software development is a process of creating, testing, and maintaining software. The custom software development process is a bit different from the traditional one as it is tailored according...');
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toHaveText(" Software development is a process of creating, testing, and maintaining software. The custom software development process is a bit different from the traditional one as it is tailored according to the client's specific needs. In this type of development, a team of experts works closely with the client to understand their requirements and develop a solution that fits their needs. Then, we set up a team and processes to deliver the custom solution. We seamlessly monitor the product and team’s health weekly within a unique framework and analyze problem zones to drive a constant improvement process.");
 
 		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).not.toBeVisible();
 		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toBeVisible();
@@ -329,8 +352,6 @@ test(`Check the member cards in the 'Custom software development experts' sectio
 		await sections.nth(4).getByTestId(Button.ArrowButton).click();
 		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toBeVisible();
 		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).not.toBeVisible();
-
-		
 	});
 	
 test.afterEach(async () => {
