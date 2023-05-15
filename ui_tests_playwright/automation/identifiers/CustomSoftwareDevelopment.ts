@@ -78,7 +78,7 @@ export default class CustomSoftwareDevelopent {
 	static SectionFullAnswer = 'SectionFullAnswer';
 
 	static ArticleItem = 'ArticleItem';
-	static ArticleLeftInfo= 'ArticleLeftInfo';
+	static ArticleLeftInfo = 'ArticleLeftInfo';
 	static ArticleRightInfo = 'ArticleRightInfo';
 	static ArticleTitle = 'ArticleTitle';
 }
