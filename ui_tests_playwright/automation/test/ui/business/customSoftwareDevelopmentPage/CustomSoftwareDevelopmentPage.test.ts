@@ -6,6 +6,7 @@ import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import Button from '../../../../identifiers/Button';
 import CustomSoftwareDevelopent from '../../../../identifiers/CustomSoftwareDevelopment';
+import { UserTeam } from '@slack/web-api/dist/response/SearchAllResponse';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
@@ -159,7 +160,7 @@ test(`Check the carousel in the 'Custom software development process' section of
 		{number: '04', title: 'Analysis'}
 	]
 	const parent = driver.getByTestId(CustomSoftwareDevelopent.CustomSoftwareDevelopmentProcess);
-	const infoItems = parent.getByTestId(CustomSoftwareDevelopent.InfoBlock);
+	const infoItems = await parent.getByTestId(CustomSoftwareDevelopent.InfoBlock);
 	// Check content
 	expect(infoItems).toHaveCount(4);
 
@@ -170,15 +171,23 @@ test(`Check the carousel in the 'Custom software development process' section of
 		await expect(item.getByTestId(CustomSoftwareDevelopent.InfoBlockNumber)).toHaveText(value.number);
 	});
 
+	const leftButton = parent.getByTestId(CustomSoftwareDevelopent.ControlLeftButton);
+	const rightButton = parent.getByTestId(CustomSoftwareDevelopent.ControlRightButton);
 	// Check buttons logic
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlLeftButton)).toHaveAttribute('data-disabled', 'true');
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlRightButton)).toHaveAttribute('data-disabled', 'false');
-	// await parent.getByTestId(CustomSoftwareDevelopent.ControlRightButton).click({clickCount:3});
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlRightButton)).toHaveAttribute('data-disabled', 'true');
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlLeftButton)).toHaveAttribute('data-disabled', 'false');
-	// await parent.getByTestId(CustomSoftwareDevelopent.ControlLeftButton).click({clickCount:3});
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlLeftButton)).toHaveAttribute('data-disabled', 'true');
-	// await expect(parent.getByTestId(CustomSoftwareDevelopent.ControlRightButton)).toHaveAttribute('data-disabled', 'false');
+	await expect(leftButton).toHaveAttribute('data-disabled', 'true');
+	await expect(rightButton).toHaveAttribute('data-disabled', 'false');
+	await driver.getByTestId(CustomSoftwareDevelopent.ControlRightButton).click({clickCount:10, timeout:3000, force:true});
+	
+
+	// await expect(rightButton).toHaveAttribute('data-disabled', 'false');
+	// await expect(leftButton).toHaveAttribute('data-disabled', 'false');
+	
+	await expect(rightButton).toHaveAttribute('data-disabled', 'true');
+	await expect(leftButton).toHaveAttribute('data-disabled', 'false');
+	
+	await leftButton.click({clickCount:3});
+	await expect(leftButton).toHaveAttribute('data-disabled', 'true');
+	await expect(rightButton).toHaveAttribute('data-disabled', 'false');
 	
 });
 
@@ -214,6 +223,116 @@ test(`Check the member cards in the 'Custom software development experts' sectio
 	}
 	});
 
+	test(`Check the 'Case Studies' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
+		const testData = [
+			{id:0, сaseDomainName:'Application software', сaseName:' Consulting test 1 (1) '},
+			{id:1, сaseDomainName:'Business automation', сaseName:' Some case study (1) '},
+			{id:2, сaseDomainName:'Application software', сaseName:' Consulting test 1 '},
+		];
+		const caseCards = driver.getByTestId(CustomSoftwareDevelopent.CaseStudies).getByTestId(CustomSoftwareDevelopent.CaseCard);
+
+		for(const caseStudy of testData){
+			const actualCard = caseCards.nth(caseStudy.id);
+			await expect(actualCard.getByTestId(CustomSoftwareDevelopent.CaseDomainName)).toHaveText(caseStudy.сaseDomainName);
+			await expect(actualCard.getByTestId(CustomSoftwareDevelopent.CaseName)).toHaveText(caseStudy.сaseName);
+		}
+	});
+
+	test(`Check the award cards in 'Our approach to software development' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
+		const testData = [
+			{id:0, alt:'Award-1', src:'img/awards-logos-yellow/upwork.png'},
+			{id:5, alt:'Award-6', src:'img/awards-logos-yellow/software-testing-companies.png'},
+		];
+		const actualAwardCardImages = driver.getByTestId(CustomSoftwareDevelopent.OurApproachToSoftwareDevelopment).getByTestId(CustomSoftwareDevelopent.AwardCardImage);
+
+		for(const awardCardImage of testData){
+			const actualCard = actualAwardCardImages.nth(awardCardImage.id);
+			await expect(actualCard).toHaveAttribute('alt',awardCardImage.alt);
+			await expect(actualCard).toHaveAttribute('src',awardCardImage.src);
+		}
+	});
+	
+	test(`Check the award cards and reviews in 'Our approach to software development' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
+		const expectedAwards = [
+			{id:0, alt:'Award-1', src:'img/awards-logos-yellow/upwork.png'},
+			{id:5, alt:'Award-6', src:'img/awards-logos-yellow/software-testing-companies.png'},
+		];
+		const parent = driver.getByTestId(CustomSoftwareDevelopent.OurApproachToSoftwareDevelopment);
+		const actualAwardCardImages = parent.getByTestId(CustomSoftwareDevelopent.AwardCardImage);
+		
+		await expect(actualAwardCardImages).toHaveCount(6);
+		for(const awardCardImage of expectedAwards){
+			const actualCard = actualAwardCardImages.nth(awardCardImage.id);
+			await expect(actualCard).toHaveAttribute('alt',awardCardImage.alt);
+			await expect(actualCard).toHaveAttribute('src',awardCardImage.src);
+		}
+
+		const reviewContainer = parent.getByTestId(CustomSoftwareDevelopent.ReviewContainer)
+		await expect(reviewContainer).toHaveCount(2);
+		await expect(reviewContainer.nth(0).getByTestId(CustomSoftwareDevelopent.ReviewAuthorName)).toHaveText('CPO');
+		await expect(reviewContainer.nth(0).getByTestId(CustomSoftwareDevelopent.ReviewAuthorPosition)).toHaveText('Bunking');
+		await expect(reviewContainer.nth(0).getByTestId(CustomSoftwareDevelopent.ReviewText)).toHaveText('Techstack Ltd\'s efforts have helped streamline the development process, allowing them to launch the project earlier than projected.')
+		
+		await expect(reviewContainer.nth(1).getByTestId(CustomSoftwareDevelopent.ReviewAuthorName)).toHaveText('Executive');
+		await expect(reviewContainer.nth(1).getByTestId(CustomSoftwareDevelopent.ReviewAuthorPosition)).toHaveText('Peer-to-Peer Rental Marketplace');
+		await expect(reviewContainer.nth(1).getByTestId(CustomSoftwareDevelopent.ReviewText)).toHaveText('Their willingness to help and involvement in the project were also key features to the project\'s success.')
+		
+		await expect(reviewContainer.nth(0).getByTestId(CustomSoftwareDevelopent.ReviewLink)).toHaveText('Clutch Review');
+		const [newLIPage] = await Promise.all([
+			driver.DriverContext.waitForEvent('page'),
+			await reviewContainer.nth(0).getByTestId(CustomSoftwareDevelopent.ReviewLink).click(),
+		]);
+		expect(newLIPage.url()).toContain('https://clutch.co/profile/techstack#reviews');
+		newLIPage.close();
+
+	});
+
+	test(`Check the 'Related artiles' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
+		const expectedAwards = [
+			{id:0,articleLeftInfo:'Software Development',articleRightInfo:'Mar 20', articleTitle:'Using GraalVM in a Real-world Scenario: Techstack’s Experience'},
+			{id:1,articleLeftInfo:'Processes Architecture',articleRightInfo:'Feb 22', articleTitle:'The Best Practices and Impact of Code Review on Productivity and Timelines'},
+			{id:2,articleLeftInfo:'Software Development',articleRightInfo:'Feb 13', articleTitle:'The Big Data Benefits for Businesses: How to Make Your Company More Competitive'},
+			
+		];
+		const actualArticles =  driver.getByTestId(CustomSoftwareDevelopent.RelatedArticles).getByTestId(CustomSoftwareDevelopent.ArticleItem);
+		for(const award of expectedAwards){
+			await expect(actualArticles.nth(award.id).getByTestId(CustomSoftwareDevelopent.ArticleLeftInfo)).toContainText(award.articleLeftInfo);
+			await expect(actualArticles.nth(award.id).getByTestId(CustomSoftwareDevelopent.ArticleRightInfo)).toContainText(award.articleRightInfo);
+			await expect(actualArticles.nth(award.id).getByTestId(CustomSoftwareDevelopent.ArticleTitle)).toHaveText(award.articleTitle);
+		}
+	});
+
+	test(`Check the 'FAQ' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
+		const sections = driver.getByTestId(CustomSoftwareDevelopent.Faq).getByTestId(CustomSoftwareDevelopent.SectionContainer);
+		await expect(sections).toHaveCount(5);
+		await expect(sections.nth(0).getByTestId(Container.SectionTitle)).toHaveText('Why choose Techstack for custom software development?');
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs...');
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toBeVisible();
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs. They are committed to delivering quality code that is well-tested and scalable. In addition, our developers are always up-to-date on the latest technology trends, so you can be confident that your solution will be built using the best possible tools and techniques. As a result, you can focus on running your business, while we handle the development process.');
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).not.toBeVisible();
+
+		await sections.nth(0).getByTestId(Button.ArrowButton).click();
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).not.toBeVisible();
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toBeVisible();
+		
+		await sections.nth(4).getByTestId(Button.ArrowButton).click();
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs...');
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toHaveText(' Our developers, QA engineers, and managers work closely with your team to ensure that the software solution meets your specific business needs. They are committed to delivering quality code that is well-tested and scalable. In addition, our developers are always up-to-date on the latest technology trends, so you can be confident that your solution will be built using the best possible tools and techniques. As a result, you can focus on running your business, while we handle the development process.');
+
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).not.toBeVisible();
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).toBeVisible();
+
+		await sections.nth(0).getByTestId(Button.ArrowButton).click();
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toBeVisible();
+		await expect(sections.nth(0).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).not.toBeVisible();
+		
+		await sections.nth(4).getByTestId(Button.ArrowButton).click();
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionShortAnswer)).toBeVisible();
+		await expect(sections.nth(4).getByTestId(CustomSoftwareDevelopent.SectionFullAnswer)).not.toBeVisible();
+
+		
+	});
+	
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

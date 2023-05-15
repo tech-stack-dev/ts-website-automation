@@ -61,7 +61,7 @@ export default class CustomSoftwareDevelopent {
 	static AwardCardImage = 'AwardCardImage';
 	static OurReviews = 'CustomSoftwareDevelopmentForYourProduct';
 	static ReviewContainer = 'ReviewContainer';
-	static ReviewTextWrapper = 'ReviewText';
+	static ReviewText = 'ReviewText';
 	static ReviewLink = 'ReviewLink';
 	static ReviewAuthor = 'ReviewAuthor';
 	static ReviewAuthorInfo = 'ReviewAuthorInfo';
@@ -76,4 +76,9 @@ export default class CustomSoftwareDevelopent {
 	static SectionAnswerWrapper = 'SectionAnswerWrapper';
 	static SectionShortAnswer = 'SectionShortAnswer';
 	static SectionFullAnswer = 'SectionFullAnswer';
+
+	static ArticleItem = 'ArticleItem';
+	static ArticleLeftInfo= 'ArticleLeftInfo';
+	static ArticleRightInfo = 'ArticleRightInfo';
+	static ArticleTitle = 'ArticleTitle';
 }
