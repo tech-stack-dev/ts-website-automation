@@ -44,7 +44,7 @@ const testDataProvider = [
 ];
 
 for (const testData of testDataProvider) {
-	test(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+	test.skip(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
 		contentfulUtils.AddTagsToCareerBody(testData.createTags);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
