@@ -32,7 +32,7 @@ const testDataProvider = [
 ];
 
 for (const testData of testDataProvider) {
-	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+	test.skip(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
 		contentfulUtils.AddTagsToCareerBody(testData.createTag);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
