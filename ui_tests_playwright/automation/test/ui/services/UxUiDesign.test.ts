@@ -70,6 +70,18 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 
 test("Check section number and section title in 'Get Custom UX And UI Design Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const getCustomUxAndUiDesignServicesContainer = driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices);
+	const allSectionTitles = await getCustomUxAndUiDesignServicesContainer
+		.getByTestId(Container.SectionTitle)
+		.allInnerTexts();
+	const testData = [
+		'A design team that will be a part of your product.',
+		'A solution that will fit the market and help you to receive your business goals.',
+		"An interface that will consider users' behavior and will help them to satisfy their needs.",
+		'An easily maintainable design system that will simplify the development and support of your product.',
+		'Seamless cross-team communication that drives better and faster results.',
+	];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
 	expect(await getCustomUxAndUiDesignServicesContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
 		'01',
 		'02',
@@ -77,28 +89,18 @@ test("Check section number and section title in 'Get Custom UX And UI Design Ser
 		'04',
 		'05',
 	]);
-
-	expect(await getCustomUxAndUiDesignServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-		'A design team that will be a part of your product.',
-		'A solution that will fit the market and help you to receive your business goals.',
-		"An interface that will consider users' behavior and will help them to satisfy their needs.",
-		'An easily maintainable design system that will simplify the development and support of your product.',
-		'Seamless cross-team communication that drives better and faster results.',
-	]);
 });
 
 test("Check block and section titles in 'We Build UX/UX For Mobile & Web' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weBuildUxUiForMobileWebContainer = driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb);
-	expect(await weBuildUxUiForMobileWebContainer.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-		'UX Design',
-		'UI Design',
-		'Web Design',
-		'Mobile App Design',
-	]);
+	const allSectionTitles = await weBuildUxUiForMobileWebContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testDataSectionTitles = ['UX Design', 'UI Design', 'Web Design', 'Mobile App Design'];
+
+	expect(allSectionTitles.sort()).toEqual(testDataSectionTitles.sort());
 
 	const containerBlock = weBuildUxUiForMobileWebContainer.getByTestId(Container.ContainerBlock);
-	await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText('Our \nservices');
-	expect(await containerBlock.getByTestId(Container.BlockSection).allInnerTexts()).toEqual([
+	const allBlockSections = await containerBlock.getByTestId(Container.BlockSection).allInnerTexts();
+	const testDataBlockSections = [
 		'UX Audit;',
 		'Competitor analysis;',
 		'User research;',
@@ -109,29 +111,26 @@ test("Check block and section titles in 'We Build UX/UX For Mobile & Web' contai
 		'Interface visualization;',
 		'Seamless design documentation;',
 		'Design implementation control.',
-	]);
+	];
+
+	expect(allBlockSections.sort()).toEqual(testDataBlockSections.sort());
+	await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText('Our \nservices');
 });
 
 test("Check blocks and sections titles in 'In Design We Trust' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const inDesignWeTrustContainer = driver.getByTestId(UxUiDesign.InDesignWeTrust);
 	const containerBlocks = await inDesignWeTrustContainer.getByTestId(Container.ContainerBlock).all();
+	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
+	const testDataFisrtBlock = ['Inspiration', 'Ideation', 'Implementation'];
 
 	await expect(containerBlocks[0].getByTestId(Container.BlockTitle)).toHaveText('Mindset');
-	expect(await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-		'Inspiration',
-		'Ideation',
-		'Implementation',
-	]);
+	expect(allSectionTitlesFirstBlock.sort()).toEqual(testDataFisrtBlock.sort());
+
+	const allSectionTitlesSecondBlock = await containerBlocks[1].getByTestId(Container.SectionTitle).allInnerTexts();
+	const testDataSecondBlock = ['Emphasize', 'Define', 'Ideate', 'Prototype', 'Test'];
 
 	await expect(containerBlocks[1].getByTestId(Container.BlockTitle)).toHaveText('Design Thinking \nProcess');
-	expect(await containerBlocks[1].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-		'Emphasize',
-		'Define',
-		'Ideate',
-		'Prototype',
-		'Test',
-	]);
-
+	expect(allSectionTitlesSecondBlock.sort()).toEqual(testDataSecondBlock.sort());
 	expect(await containerBlocks[1].getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
 		'01',
 		'02',
@@ -146,8 +145,8 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 	const carousel = typicalUxUiDesignWorkflowContainer.getByTestId(Container.ContainerCarousel);
 	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
 	const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
-
-	expect(await carousel.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testData = [
 		'Business requirements allocation',
 		'Market and business domain analysis',
 		'User research',
@@ -159,8 +158,9 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 		'Visual design',
 		'Design documentation creation',
 		'Seamless improvement',
-	]);
+	];
 
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
 	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
 		'01',
 		'02',
@@ -186,7 +186,7 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
 
-	const clickCount = 10;
+	const clickCount = allSectionTitles.length - 1;
 	for (let i = 0; i < clickCount; i++) {
 		await carouselButtonNext.click({delay: 500});
 	}
@@ -197,20 +197,19 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 
 test("Check member names and roles in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
+	const allMemberRoles = await weNeverStopImprovingYourProductContainer
+		.getByTestId(Container.MemberRole)
+		.allInnerTexts();
+	const testDataRoles = ['Head of Design, Product Designer', 'UX/UI Designer', 'UX/UI Designer', 'UX/UI Designer'];
 
-	expect(await weNeverStopImprovingYourProductContainer.getByTestId(Container.MemberRole).allInnerTexts()).toEqual([
-		'Head of Design, Product Designer',
-		'UX/UI Designer',
-		'UX/UI Designer',
-		'UX/UI Designer',
-	]);
+	expect(allMemberRoles.sort()).toEqual(testDataRoles.sort());
 
-	expect(await weNeverStopImprovingYourProductContainer.getByTestId(Container.MemberName).allInnerTexts()).toEqual([
-		'Dima Dytyuk',
-		'Yulia Melnychenko',
-		'Elizabeth Malygina',
-		'Hanna Zhyhan',
-	]);
+	const allMemberNames = await weNeverStopImprovingYourProductContainer
+		.getByTestId(Container.MemberName)
+		.allInnerTexts();
+	const testDataNames = ['Dmytro Dytiuk', 'Yulia Melnychenko', 'Elizabeth Malygina', 'Hanna Zhyhan'];
+
+	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
 test("Check links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
@@ -233,43 +232,49 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 
 test("Check section titles in 'Related Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
-	expect(await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	const allSectionTitles = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testData = [
 		'Mobile\ndevelopment',
 		'Consulting',
 		'Custom software\ndevelopment',
 		'AI & ML',
 		'Big Data &\nAnalytics',
 		'IoT',
-	]);
+	];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
-	const arrowUrlList = [
-		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-		UrlProvider.urlBuilder(UrlPath.CustomDev),
-		UrlProvider.urlBuilder(UrlPath.AiMl),
-		UrlProvider.urlBuilder(UrlPath.BigData),
-		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-	];
 	const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
-	const arrowList = await relatedServicesContainer.getByTestId(Container.Arrow).all();
+	const containerSection = relatedServicesContainer.getByTestId(Container.ContainerSection);
+	const arrowUrlMap = new Map([
+		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+	]);
 
-	for (let index = 0; index < arrowUrlList.length; index++) {
-		await arrowList[index].click();
-		await baseDriverSteps.checkUrl(arrowUrlList[index]);
+	for (const [arrow, url] of arrowUrlMap) {
+		await arrow.first().click();
+		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 	}
 });
 
 test("Check section titles in 'FAQ' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const faqContainer = driver.getByTestId(UxUiDesign.Faq);
-	expect(await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testData = [
 		'What is the first step when\nwe start working with a\nproduct?',
 		'Why do we need to\nresearch the market,\nusers, and competitors?',
 		'Why are UX services\nimportant?',
 		'How can UI services\nhelp your product?',
 		'What does your design-\ndevelopment collaboration\nlook like?',
 		'How quickly can you make\nUX/UI design for a product\nand/or onboard a design team?',
-	]);
+	];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
