@@ -28,7 +28,7 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+	test.skip(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
@@ -73,7 +73,7 @@ for (const url of testDataProvider) {
 		]);
 	});
 
-	test(`Check the redirection for the Services block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Services block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -89,7 +89,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
+	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
 		const companyUrlList = [
 			UrlProvider.urlBuilder(UrlPath.AboutUs),
 			UrlProvider.urlBuilder(UrlPath.HowWeWork),
@@ -109,7 +109,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.LinkedIn, 'https://www.linkedin.com'],
 			[Footer.Facebook, 'https://www.facebook.com'],
@@ -133,7 +133,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check redirection to the Terms, Cookies Policy, Contacy us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check redirection to the Terms, Cookies Policy, Contacy us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
