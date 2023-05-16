@@ -1,18 +1,20 @@
 import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Containers from '../../../../identifiers/Containers';
-import UrlProvider from '../../../../providers/UrlProvider';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {contentfulUtils} from '../../../../utils/ContentfulUtils';
-import {ColorsEnum} from '../../../../enum/ColorsEnum';
-import {TagsEnum} from '../../../../enum/tag/TagsEnum';
-import Tag from '../../../../identifiers/Tag';
-import {SeniorityLevelsEnum} from '../../../../enum/tag/SeniorityLevelsEnum';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import ContainerByClass from '../../../../../components/container/ContainerByClass';
+import Containers from '../../../../../identifiers/Containers';
+import UrlProvider from '../../../../../providers/UrlProvider';
+import {sessionValue} from '../../../../../runtimeVariables/SessionValue';
+import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
+import {containerSteps} from '../../../../../steps/components/container/ContainerSteps';
+import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
+import {contentfulUtils} from '../../../../../utils/ContentfulUtils';
+import {ColorsEnum} from '../../../../../enum/ColorsEnum';
+import {TagsEnum} from '../../../../../enum/tag/TagsEnum';
+import Tag from '../../../../../identifiers/Tag';
+import {SeniorityLevelsEnum} from '../../../../../enum/tag/SeniorityLevelsEnum';
+import {DirectionsEnum} from '../../../../../enum/tag/DirectionsEnum';
+import Career from '../../../../../identifiers/Career';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -20,6 +22,11 @@ test.beforeEach(async () => {
 
 const testDataProvider = [
 	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag},
+	{
+		filterBlock: 'direction',
+		createTag: [DirectionsEnum.LongSoftwareDataManager],
+		tagName: Tag.LongSoftwareDataManager,
+	},
 	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: Tag.JavaTag},
 	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: Tag.RemoteAllowedTag},
 ];
@@ -34,7 +41,7 @@ for (const testData of testDataProvider) {
 		);
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Containers.CareerMainBody);
+		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
 			Containers.FilterGroupWrapper,
