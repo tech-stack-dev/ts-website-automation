@@ -31,14 +31,15 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       
-      - name: Generate SkipJira tags
-        if: always()
-        shell: bash
-        run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
+      # - name: Generate SkipJira tags
+      #   if: always()
+      #   shell: bash
+      #   run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
         
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
+        # run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
+        run: npx playwright test
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
