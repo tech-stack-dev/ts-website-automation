@@ -221,13 +221,14 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 		[Container.MemberCard, 'https://www.behance.net/dimadityuk'],
 		[Container.MemberName, 'https://www.behance.net/dimadityuk'],
 	]);
-
+	 
 	for (const entries of linkMap.entries()) {
 		await weNeverStopImprovingYourProductContainer.getByTestId(entries[0]).first().click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url().includes(entries[1])).toBeTruthy();
+		await newPage.waitForLoadState('load'); // wait for the new page to load
+		expect(newPage.url()).toContain(entries[1]); 
 		await newPage.close();
-	}
+	  }
 });
 
 test("Check section titles in 'Related Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
