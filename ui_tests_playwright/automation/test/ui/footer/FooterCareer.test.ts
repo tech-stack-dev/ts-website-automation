@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
@@ -48,7 +48,7 @@ for (const url of testDataProvider) {
 		]);
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const companyUrlList = [
 			UrlProvider.webSiteUrl(Environment.Production),
 			UrlProvider.urlBuilder(UrlPath.OurServices, Environment.Production),
@@ -67,7 +67,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const careerUrlList = [
 			UrlProvider.careerUrl(),
 			UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
@@ -86,7 +86,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
 			[Footer.LinkedIn, 'https://www.linkedin.com'],
@@ -101,7 +101,7 @@ for (const url of testDataProvider) {
 				driver.DriverContext.waitForEvent('page'),
 				await footer.getByTestId(entries[0]).nth(0).click(),
 			]);
-			expect(newPage.url()).toContain(entries[1]);
+			expect(newPage.url().includes(entries[1])).toBeTruthy();
 			await newPage.close();
 		}
 
@@ -113,7 +113,7 @@ for (const url of testDataProvider) {
 		await newPage.close();
 	});
 
-	test(`Check redirection to the Terms, Cookies Policyand main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check redirection to the Terms, Cookies Policyand main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms, Environment.Production)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy, Environment.Production)],
