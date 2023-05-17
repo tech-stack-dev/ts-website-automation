@@ -215,20 +215,19 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 test("Check links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkMap = new Map([
-		[UxUiDesign.Instagram, 'https://www.instagram.com/techstack.design/'],
+		[UxUiDesign.Instagram, 'https://www.instagram.com/techstack.design'],
 		[UxUiDesign.Tiktok, 'https://www.tiktok.com/@techstack.design'],
 		[UxUiDesign.Behance, 'https://www.behance.net/dimadityuk'],
 		[Container.MemberCard, 'https://www.behance.net/dimadityuk'],
 		[Container.MemberName, 'https://www.behance.net/dimadityuk'],
 	]);
-	 
+
 	for (const entries of linkMap.entries()) {
 		await weNeverStopImprovingYourProductContainer.getByTestId(entries[0]).first().click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		await newPage.waitForLoadState('load'); // wait for the new page to load
-		expect(newPage.url()).toContain(entries[1]); 
+		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
-	  }
+	}
 });
 
 test("Check section titles in 'Related Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
