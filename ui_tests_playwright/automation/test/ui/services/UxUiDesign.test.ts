@@ -225,7 +225,6 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 	for (const entries of linkMap.entries()) {
 		await weNeverStopImprovingYourProductContainer.getByTestId(entries[0]).first().click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		await newPage.waitForLoadState('networkidle');
 		expect(newPage.url().includes(entries[1])).toBeTruthy();
 		await newPage.close();
 	}
