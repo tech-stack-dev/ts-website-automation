@@ -51,17 +51,36 @@ class ContentfulUtils {
 		return <contentful.Link<'Tag'>>tagJsonBody;
 	}
 
-	async CreateAndPublishCareerDescription(descriptionId: string) {
+	async CreateAndPublishCareerDescription(descriptionId: string, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
 		await environment.createEntryWithId('careerDescription', descriptionId, this.descriptionFields);
 		const createdCareerDescriptionEntry = await environment.getEntry(descriptionId);
-		await createdCareerDescriptionEntry.publish();
+		// иф выполняется слева на право, можно хендлить есть ли какое-то свойство и тд
+		let retryCount = 0;
+		let isPublished = false;
+		// Retry publishing up to 3 times
+		while (!isPublished && retryCount < attempts) {
+			try {
+				await createdCareerDescriptionEntry.publish();
+				isPublished = createdCareerDescriptionEntry.isPublished();
+			} catch (error) {
+				console.error('Error publishing entry:', error);
+				retryCount++;
+				console.log(`Retrying publish (${retryCount})...`);
+			}
+		}
+
+		if (!isPublished) {
+			console.log('Entry could not be published after multiple retries.');
+			throw new Error('Entry could not be published.'); // Throw an error to fail the test run and stop execution
+		}
 	}
 
 	async CreateAndPublishCareer(
 		careerId: string,
 		careerNameEn: string,
 		descriptionId: string,
+		attempts = 3,
 		careerNameUa = 'Тестова Вакансія',
 		directionsTag = DirectionsEnum.LongSoftwareDataManager,
 		seniorityLevelsTag = SeniorityLevelsEnum.Trainee
@@ -74,15 +93,52 @@ class ContentfulUtils {
 		careerFieldsWithDescriptionAndTag.fields.name['uk-UA'] = careerNameUa;
 		await environment.createEntryWithId('career', careerId, this.careerFields);
 		const createdCareer = await environment.getEntry(careerId);
-		await createdCareer.publish();
+		let retryCount = 0;
+		let isPublished = false;
+		// Retry publishing up to 3 times
+		while (!isPublished && retryCount < attempts) {
+			try {
+				await createdCareer.publish();
+				isPublished = createdCareer.isPublished();
+				console.log('Entry published successfully.');
+			} catch (error) {
+				console.error('Error publishing entry:', error);
+				retryCount++;
+				console.log(`Retrying publish (${retryCount})...`);
+			}
+		}
+
+		if (!isPublished) {
+			console.log('Entry could not be published after multiple retries.');
+			throw new Error('Entry could not be published.'); // Throw an error to fail the test run and stop execution
+		}
 	}
 
-	async UnpublishCareerWithDescription(careerId: string, descriptionId: string) {
+	async UnpublishCareerWithDescription(careerId: string, descriptionId: string, attempts = 3) {
 		const environment = await this.GetEnvironment();
 		const createdCareer = await environment.getEntry(careerId);
-		createdCareer.unpublish();
+		await createdCareer.unpublish();
 		const createdDescription = await environment.getEntry(descriptionId);
-		createdDescription.unpublish();
+		await createdDescription.unpublish();
+		let retryCount = 0;
+		let isPublished = false;
+		// Retry publishing up to 3 times
+		while (isPublished && retryCount < attempts) {
+			try {
+				await createdCareer.unpublish();
+				isPublished = createdCareer.isPublished();
+				console.log('Entry published successfully.');
+			} catch (error) {
+				console.error('Error publishing entry:', error);
+				retryCount++;
+				console.log(`Retrying publish (${retryCount})...`);
+			}
+		}
+
+		if (!isPublished) {
+			console.log('Entry could not be published after multiple retries.');
+			throw new Error('Entry could not be published.'); // Throw an error to fail the test run and stop execution
+		}
 	}
 
 	async DeleteCareerWithDescription(careerId: string, descriptionId: string) {
