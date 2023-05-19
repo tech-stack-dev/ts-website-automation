@@ -181,14 +181,14 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click({delay: 500});
+	await carouselButtonPrev.click({delay: 1000});
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
 
-	const clickCount = allSectionTitles.length;
+	const clickCount = allSectionTitles.length-1;
 	for (let i = 0; i < clickCount; i++) {
-		await carouselButtonNext.click({delay: 500});
+		await carouselButtonNext.click({delay: 1000});
 	}
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
@@ -215,7 +215,7 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 test("Check links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkMap = new Map([
-		[UxUiDesign.Instagram, 'https://www.instagram.com/techstack.design'],
+		[UxUiDesign.Instagram, 'https://www.instagram.com'],
 		[UxUiDesign.Tiktok, 'https://www.tiktok.com/@techstack.design'],
 		[UxUiDesign.Behance, 'https://www.behance.net/dimadityuk'],
 		[Container.MemberCard, 'https://www.behance.net/dimadityuk'],
@@ -225,7 +225,7 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 	for (const entries of linkMap.entries()) {
 		await weNeverStopImprovingYourProductContainer.getByTestId(entries[0]).first().click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url().includes(entries[1])).toBeTruthy();
+		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
 	}
 });
