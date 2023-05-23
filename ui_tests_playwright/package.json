@@ -5,10 +5,6 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint . --ext .ts",
-		"pretty-quick": "pretty-quick",
-		"postinstall": "husky install",
-		"build": "rimraf dist && tsc",
-		"prelint": "tsc --noemit",
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
 	},
 	"repository": {
@@ -24,8 +20,15 @@
 	"homepage": "https://github.com/anastasiia-liashova/playwright-architecture#readme",
 	"husky": {
 		"hooks": {
-			"pre-commit": "pretty-quick --staged"
+			"pre-commit": "lint-staged"
 		}
+	},
+	"lint-staged": {
+		"./**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+			"prettier --write",
+			"yarn lint",
+			"git add"
+		]
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.32.2",
