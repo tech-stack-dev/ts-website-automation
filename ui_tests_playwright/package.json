@@ -23,13 +23,6 @@
 			"pre-commit": "npm run lint"
 		}
 	},
-	"lint-staged": {
-		"./**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-			"prettier --write",
-			"yarn lint",
-			"git add"
-		]
-	},
 	"devDependencies": {
 		"@playwright/test": "^1.32.2",
 		"@types/randomstring": "^1.1.8",
