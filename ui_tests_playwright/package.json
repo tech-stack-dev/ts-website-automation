@@ -20,7 +20,7 @@
 	"homepage": "https://github.com/anastasiia-liashova/playwright-architecture#readme",
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "npm run lint"
 		}
 	},
 	"lint-staged": {
