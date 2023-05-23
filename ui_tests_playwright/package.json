@@ -5,6 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint . --ext .ts",
+		"pretty-quick": "pretty-quick",
+		"postinstall": "husky install",
+		"build": "rimraf dist && tsc",
+		"prelint": "tsc --noemit",
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
 	},
 	"repository": {

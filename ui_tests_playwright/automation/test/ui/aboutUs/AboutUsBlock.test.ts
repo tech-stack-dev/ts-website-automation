@@ -161,7 +161,7 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 
 	await candidateNextButton.click({clickCount: 4});
 
-	             await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
+	await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
 });
 
