@@ -8,16 +8,9 @@
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
 		"pre-commit": "lint-staged"
 	},
-	"lint-staged": {
-		"*": [
-			"npm run format",
-			"npm run lint",
-			"git add"
-		]
-	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "npm run pre-commit"
 		}
 	},
 	"repository": {
