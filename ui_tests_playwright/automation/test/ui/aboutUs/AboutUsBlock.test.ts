@@ -147,7 +147,7 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 	await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'true');
 
-	const candidateCarousel = driver.getByTestId(AboutUs.CandidateCarousel);
+	const candidateCarousel = driver.getBysssTestId(AboutUs.CandidateCarousel);
 	const candidatePrevButton = candidateCarousel.getByTestId(AboutUs.CarouselPrevButton);
 	const candidateNextButton = candidateCarousel.getByTestId(AboutUs.CarouselNextButton);
 
