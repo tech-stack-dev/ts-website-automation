@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "pre-commit-action": "cd ui_tests_playwright && npm run lint && npm run format"
+  }
+}
