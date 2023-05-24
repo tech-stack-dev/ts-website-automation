@@ -14,6 +14,11 @@ class CareerSteps {
 			     await driver.getByTestId(Career.SarchCareerField).fill(searchString);
 
 
+
+
+
+
+
 				 
 			await driver.getByTestId(Career.SearchButton).click();
 			await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).waitFor();
