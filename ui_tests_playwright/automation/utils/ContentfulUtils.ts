@@ -62,11 +62,7 @@ class ContentfulUtils {
 	//#region EntriesInteractions
 	async CreateAndPublishCareerDescription(descriptionId: string, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
-		await environment.createEntryWithId(
-			'careerDescription',
-			descriptionId,
-			this.descriptionFields
-		);
+		await environment.createEntryWithId('careerDescription', descriptionId, this.descriptionFields);
 		await this.publishEntryWithRetry(environment, descriptionId, attempts);
 	}
 
