@@ -301,9 +301,9 @@ test(`Check the member cards in the 'Custom software development experts' sectio
 
 	test(`Check the 'Related artiles' section of the 'Custom software development' page @Regression @CustomSoftwareDevelopent @TSWEB-672`, async () => {
 		const expectedAwards = [
-			{id:0,articleLeftInfo:'Software Development',articleRightInfo:'Mar 20', articleTitle:'Using GraalVM in a Real-world Scenario: Techstack’s Experience'},
-			{id:1,articleLeftInfo:'Processes Architecture',articleRightInfo:'Feb 22', articleTitle:'The Best Practices and Impact of Code Review on Productivity and Timelines'},
-			{id:2,articleLeftInfo:'Software Development',articleRightInfo:'Feb 13', articleTitle:'The Big Data Benefits for Businesses: How to Make Your Company More Competitive'},
+			{id:0,articleLeftInfo:'Internet of Things',articleRightInfo:'May 24', articleTitle:'The Benefits & Challenges of Integrating Digital Twins with IoT'},
+			{id:1,articleLeftInfo:'Software Development',articleRightInfo:'Mar 20', articleTitle:'Using GraalVM in a Real-world Scenario: Techstack’s Experience'},
+			{id:2,articleLeftInfo:'Processes Architecture',articleRightInfo:'Feb 22', articleTitle:'The Best Practices and Impact of Code Review on Productivity and Timelines'},
 			
 		];
 		const actualArticles =  driver.getByTestId(CustomSoftwareDevelopent.RelatedArticles).getByTestId(CustomSoftwareDevelopent.ArticleItem);
