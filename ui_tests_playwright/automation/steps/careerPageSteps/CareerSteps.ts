@@ -12,7 +12,13 @@ class CareerSteps {
 			await driver.Page.reload();
 
 
+
+
+
+
+
 			
+
 			    await driver.getByTestId(Career.SarchCareerField).clear();
 			await driver.getByTestId(Career.SarchCareerField).fill(searchString);
 			await driver.getByTestId(Career.SearchButton).click();
