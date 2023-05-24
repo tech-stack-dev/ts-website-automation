@@ -10,6 +10,8 @@ class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
 		await driver.executeFunc(async () => {
 
+
+
 			
 			                           await driver.Page.reload();
 			await driver.getByTestId(Career.SarchCareerField).clear();
