@@ -5,8 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint . --ext .ts",
-		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-		"prepare": "husky install"
+		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
 	},
 	"repository": {
 		"type": "git",
