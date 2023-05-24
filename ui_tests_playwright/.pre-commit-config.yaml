@@ -1,0 +1,15 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+default_stages: [commit, merge-commit, push, manual] # this is the default stages to run the hooks on, can be overriden in the hooks, means that the hooks will run on commit, merge-commit, push and manual
+default_install_hook_types: [pre-commit, pre-push]
+repos:
+    - repo: local # this is the type of the repo, local means that the repo is in the local machine
+      hooks:
+          - id: lint-and-format-hook # this is the name of the hook, can be use to run specific hook only
+            entry: sh .git/hooks/pre-commit # this is the command to run on the hook
+            name: lint-and-format-hook # this is the name of the hook, that will be displayed in the console
+            language: system # this is the language of the hook, system means that the hook is a shell script
+            files: ui_tests_playwright/ # this is the regex to match the changed files location to run the hook on, means that the hook will run only if the changed files are in the front-end/src folder
+            types_or: [ts, tsx] # this is the types of changed files to run the hook on
+            require_serial: true # this is to run the hooks in serial, means that the hooks will run one after the other
+            verbose: true # this is to display the output of the hooks
