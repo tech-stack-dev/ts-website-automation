@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. "ui_tests_playwright/.husky/_/husky.sh"
+npm run format
+npm run lint
