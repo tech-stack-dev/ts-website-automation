@@ -9,6 +9,8 @@ import ContainerByClass from '../../components/container/ContainerByClass';
 class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
 		await driver.executeFunc(async () => {
+
+			
 			                           await driver.Page.reload();
 			await driver.getByTestId(Career.SarchCareerField).clear();
 			                await driver.getByTestId(Career.SarchCareerField).fill(searchString);

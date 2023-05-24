@@ -1,3 +1,4 @@
 #!/bin/sh
+. "ui_tests_playwright/.husky/_/husky.sh"
 echo 'pre-commit starts...'
-npm run format && npm run lint
+npx run format
