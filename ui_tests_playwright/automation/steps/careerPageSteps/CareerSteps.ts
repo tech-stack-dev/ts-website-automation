@@ -15,9 +15,12 @@ class CareerSteps {
 
 
 
-
-
 			
+
+
+
+
+
 
 			    await driver.getByTestId(Career.SarchCareerField).clear();
 			await driver.getByTestId(Career.SarchCareerField).fill(searchString);
