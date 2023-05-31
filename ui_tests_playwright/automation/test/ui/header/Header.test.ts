@@ -1,13 +1,15 @@
-import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
+import { expect, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
+import { driver } from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
-import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import Link from '../../../identifiers/Link';
-import {Environment} from '../../../providers/EnvProvider';
+import { Environment } from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
-import Colors from '../../../preconditionsData/uiPreconditions/Colors';
+import Colors from '../../../preconditionsData/Colors';
+import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
+import { ServicesEnum } from '../../../enum/ServicesEnum';
+import { CompanyEnum } from '../../../enum/CompanyEnum';
 
 const testDataProvider = [
 	UrlProvider.webSiteUrl(),
@@ -16,15 +18,15 @@ const testDataProvider = [
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
 	UrlProvider.urlBuilder(UrlPath.AuthorPage),
 ]
-	.concat(ContactUsPreconditions.servicesUrlList)
-	.concat(ContactUsPreconditions.companyUrlList);
+	.concat(Object.values(serviceUrl))
+	.concat(Object.values(companyUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
 for (const url of testDataProvider) {
-	test(`Check the redirect to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Link.HeaderLogo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
@@ -52,51 +54,43 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		const servicesList = [
-			Button.Services_OurServices,
-			Button.Services_CustomDev,
-			Button.Services_CloudAndDev,
-			Button.Services_BigData,
-			Button.Services_AiMl,
-			Button.Services_InternetOfThings,
-			Button.Services_MobileDev,
-			Button.Services_UiUxDesign,
-			Button.Services_QaAsAServ,
-			Button.Services_ConsultingServ,
-		];
+		const servicesList = new Map([
+			[Button.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
+			[Button.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
+			[Button.Services_CloudAndDev, serviceUrl[ServicesEnum.CloudAndDev]],
+			[Button.Services_BigData, serviceUrl[ServicesEnum.BigData]],
+			[Button.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
+			[Button.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
+			[Button.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
+			[Button.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
+			[Button.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
+			[Button.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]]
+		]);
 
-		for (let index = 0; index < servicesList.length; index++) {
+		for (const [element, serviceUrl] of servicesList) {
 			await driver.getByTestId(Button.Menu).click();
 			await driver.getByTestId(Button.Menu_Services).click();
-			await driver.getByTestId(servicesList[index]).click();
-			await baseDriverSteps.checkUrl(ContactUsPreconditions.servicesUrlList[index]);
+			await driver.getByTestId(element).click();
+			await baseDriverSteps.checkUrl(serviceUrl);
 			await baseDriverSteps.goToUrl(url);
 		}
 	});
 
 	test(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		const companyUrlList: Array<string> = [
-			UrlProvider.urlBuilder(UrlPath.AboutUs),
-			UrlProvider.urlBuilder(UrlPath.HowWeWork),
-			UrlProvider.careerUrl(Environment.Production),
-			UrlProvider.urlBuilder(UrlPath.CaseStudies),
-			UrlProvider.urlBuilder(UrlPath.Blog),
-		];
+		const companyList = new Map([
+			[Button.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
+			[Button.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
+			[Button.Company_Career, UrlProvider.careerUrl(Environment.Production)],
+			[Button.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
+			[Button.Company_Blog, companyUrl[CompanyEnum.Blog]]
+		]);
 
-		const companyList = [
-			Button.Company_AboutUs,
-			Button.Company_HowWeWork,
-			Button.Company_Career,
-			Button.Company_CaseStudies,
-			Button.Company_Blog,
-		];
-
-		for (let index = 0; index < companyList.length; index++) {
+		for (const [element, companyUrl] of companyList) {
 			await driver.getByTestId(Button.Menu).click();
 			await driver.getByTestId(Button.Menu_Company).click();
-			await driver.getByTestId(companyList[index]).click();
-			await baseDriverSteps.checkUrl(companyUrlList[index]);
+			await driver.getByTestId(element).click();
+			await baseDriverSteps.checkUrl(companyUrl);
 			await baseDriverSteps.goToUrl(url);
 		}
 	});

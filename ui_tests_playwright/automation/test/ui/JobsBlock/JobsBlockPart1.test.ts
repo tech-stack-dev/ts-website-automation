@@ -7,7 +7,7 @@ import {contentfulSteps} from '../../../steps/contentful/ContentfulSteps';
 import Containers from '../../../identifiers/Containers';
 import Career from '../../../identifiers/Career';
 import {driver} from '../../../base/driver/Driver';
-import JobPagePreconditions from '../../../preconditionsData/uiPreconditions/JobPagePreconditions';
+import JobPagePreconditions from '../../../preconditionsData/JobPagePreconditions';
 import Link from '../../../identifiers/Link';
 import Button from '../../../identifiers/Button';
 import {descriptionSteps} from '../../../steps/components/job/DescriptionSteps';

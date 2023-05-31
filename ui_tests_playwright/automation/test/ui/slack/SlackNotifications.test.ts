@@ -7,10 +7,10 @@ import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {slackSteps} from '../../../steps/api/SlackSteps';
 import {formSteps} from '../../../steps/ui/FormSteps';
 import UrlPath from '../../../providers/UrlPath';
-import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../identifiers/Navigation';
+import { serviceUrl } from '../../../preconditionsData/UrlPreconditions';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -79,7 +79,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
 });
 
 test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages @Regression @ContactUs @TSWEB-606", async () => {
-	for (const url of ContactUsPreconditions.servicesUrlList) {
+	for (const url of Object.values(serviceUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
 		const message = await slackSteps.getMessageWithValueFromChat(
