@@ -13,7 +13,7 @@ import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditi
 import { CompanyEnum } from '../../../enum/CompanyEnum';
 
 let footer: Locator;
-const testDataProvider = [
+const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
@@ -91,7 +91,7 @@ for (const url of testDataProvider) {
 	});
 
 	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
-		const companyUrlList = [
+		const companyUrlList: string[] = [
 			companyUrl[CompanyEnum.AboutUs],
 			companyUrl[CompanyEnum.HowWeWork],
 			UrlProvider.careerUrl(Environment.Production),

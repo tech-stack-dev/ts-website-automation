@@ -10,7 +10,7 @@ import {Environment} from '../../../providers/EnvProvider';
 import {containerSteps} from '../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
-const testDataProvider = [
+const testDataProvider: string[] = [
 	UrlProvider.careerUrl(),
 	UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
 	UrlProvider.careerUrlBuilder(UrlPath.Reviews),
@@ -49,7 +49,7 @@ for (const url of testDataProvider) {
 	});
 
 	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
-		const companyUrlList = [
+		const companyUrlList: string[] = [
 			UrlProvider.webSiteUrl(Environment.Production),
 			UrlProvider.urlBuilder(UrlPath.OurServices, Environment.Production),
 			UrlProvider.urlBuilder(UrlPath.CaseStudies, Environment.Production),
@@ -68,7 +68,7 @@ for (const url of testDataProvider) {
 	});
 
 	test.skip(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
-		const careerUrlList = [
+		const careerUrlList: string[] = [
 			UrlProvider.careerUrl(),
 			UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
 			UrlProvider.careerUrlBuilder(UrlPath.Reviews),

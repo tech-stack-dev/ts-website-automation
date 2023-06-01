@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { Locator, expect, test } from '@playwright/test';
 import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
 import { driver } from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
@@ -11,7 +11,7 @@ import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditi
 import { ServicesEnum } from '../../../enum/ServicesEnum';
 import { CompanyEnum } from '../../../enum/CompanyEnum';
 
-const testDataProvider = [
+const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
@@ -35,7 +35,7 @@ for (const url of testDataProvider) {
 	test(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.Menu).click();
-		const menuHeaderslist = [
+		const menuHeaderslist: Locator[] = [
 			driver.getByTestId(Button.Menu_Services),
 			driver.getByTestId(Button.Menu_Company),
 			driver.getByTestId(Button.Menu_ContactUs).getByText('Contact Us'),
