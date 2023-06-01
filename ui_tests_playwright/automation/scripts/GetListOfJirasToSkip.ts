@@ -3,7 +3,7 @@ import * as path from 'path';
 import axios from 'axios';
 
 const jiraBaseUrl = 'https://ts-website.atlassian.net';
-const token = process.env.JIRA_AUTH_TOKEN!;
+const token = process.env.JIRA_AUTH_TOKEN;
 const jiraUsername = 'qa_techstack@tech-stack.io';
 
 async function getTicketStatus(ticketKey: string): Promise<string | null> {
@@ -63,6 +63,9 @@ async function run() {
 		}
 	}
 
+	const ticketStatusesJson = JSON.stringify(ticketStatuses);
+	fs.writeFileSync('ticketStatuses.json', ticketStatusesJson);
+	
 	console.log('Tickets with status not in "Ready for QA", "Testing on Stage", "UI testing", "Done", "Closed":');
 	console.log(ticketStatuses);
 }
