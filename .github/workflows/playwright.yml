@@ -16,7 +16,7 @@ jobs:
     env:
         AWS_KEY: ${{secrets.AWS_KEY}}
         AWS_PASSWORD: ${{secrets.AWS_PASSWORD}}
-        JIRA_AUTH_TOKEN: ${{secrets.JIRA_AUTH_TOKEN_BASE64}}
+        JIRA_AUTH_TOKEN: ${{secrets.JIRA_AUTH_TOKEN}}
         CI: true
     defaults:
         run:
