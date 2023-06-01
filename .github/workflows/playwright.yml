@@ -31,15 +31,16 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       
-      # - name: Generate SkipJira tags
-      #   if: always()
-      #   shell: bash
-      #   run: bash GenerateOpenedJiraList.sh "${{env.JIRA_AUTH_TOKEN}}" "${{github.run_number}}" 
+      - name: Run Search and Collect Ticket Statuses
+        id: jira_skip
+        run: |
+          npm run search-strings
+          ticketStatuses=$(node -p "JSON.stringify(require('./strings.txt'))")
+          echo "::set-output name=ticketStatuses::$ticketStatuses"
         
       - name: Run UI tests
         shell: bash
-        # run: npx playwright test --grep-invert $(<jira_tags_${{github.run_number}}.txt)
-        run: npx playwright test
+        run: npx playwright test --grep-invert ${{ steps.search.outputs.ticketStatuses }}
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
