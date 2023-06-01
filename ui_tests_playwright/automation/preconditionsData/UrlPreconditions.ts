@@ -19,7 +19,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.AboutUs]: UrlProvider.urlBuilder(UrlPath.AboutUs),
 	[CompanyEnum.HowWeWork]: UrlProvider.urlBuilder(UrlPath.HowWeWork),
-	[CompanyEnum.Career]: UrlProvider.careerUrlBuilder(UrlProvider.careerUrl()),
+	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
 };

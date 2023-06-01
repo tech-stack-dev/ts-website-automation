@@ -17,9 +17,12 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
 	UrlProvider.urlBuilder(UrlPath.AuthorPage),
+	companyUrl[CompanyEnum.AboutUs],
+	companyUrl[CompanyEnum.HowWeWork],
+	companyUrl[CompanyEnum.CaseStudies],
+	companyUrl[CompanyEnum.Blog],
 ]
-	.concat(Object.values(serviceUrl))
-	.concat(Object.values(companyUrl));
+	.concat(Object.values(serviceUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
