@@ -36,18 +36,18 @@ jobs:
         run: npm install -g typescript ts-node
 
       - name: Run Search and Collect Ticket Statuses
-        id: get_ticket_statuses
+        id: ticket-statuses
         run: |
           npx ts-node automation/scripts/GetListOfJirasToSkip.ts
           ticketStatuses=$(cat ticketStatuses.json)
-          echo "::set-output name=ticketStatuses::$ticketStatuses"
-
+          echo "::set-output name=ticketStatuses::$(echo $ticketStatuses | jq -R -s 'split("\n") | map(select(. != ""))')"
+        
       - name: Install playwright browsers
         run: npx playwright install --with-deps
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "${{ steps.get_ticket_statuses.outputs.ticketStatuses }}"
+        run: npx playwright test --grep-invert "$((echo ${{ steps.ticket-statuses.outputs.ticketStatuses }}) | jq -r 'join("|"))'"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
