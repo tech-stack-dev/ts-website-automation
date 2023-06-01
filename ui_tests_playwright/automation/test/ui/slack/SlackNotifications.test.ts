@@ -10,7 +10,8 @@ import UrlPath from '../../../providers/UrlPath';
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../identifiers/Navigation';
-import { serviceUrl } from '../../../preconditionsData/UrlPreconditions';
+import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
+import { CompanyEnum } from '../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -55,9 +56,9 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
 });
 
 test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages @Regression @ContactUs @TSWEB-606", async () => {
-	const urlList: Array<string> = [
-		UrlProvider.urlBuilder(UrlPath.AboutUs),
-		UrlProvider.urlBuilder(UrlPath.HowWeWork),
+	const urlList: string[] = [
+		companyUrl[CompanyEnum.AboutUs],
+		companyUrl[CompanyEnum.HowWeWork],
 		UrlProvider.urlBuilder(UrlPath.ContactUs),
 	];
 
