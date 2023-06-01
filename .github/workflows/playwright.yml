@@ -34,7 +34,7 @@ jobs:
       - name: Run Search and Collect Ticket Statuses
         id: jira_skip
         run: |
-          npm run search-strings
+          npm run jira-skip
           ticketStatuses=$(node -p "JSON.stringify(require('./strings.txt'))")
           echo "::set-output name=ticketStatuses::$ticketStatuses"
         
