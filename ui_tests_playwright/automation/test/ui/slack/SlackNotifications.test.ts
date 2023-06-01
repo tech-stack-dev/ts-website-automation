@@ -10,8 +10,8 @@ import UrlPath from '../../../providers/UrlPath';
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../identifiers/Navigation';
-import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
-import { CompanyEnum } from '../../../enum/CompanyEnum';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {CompanyEnum} from '../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();

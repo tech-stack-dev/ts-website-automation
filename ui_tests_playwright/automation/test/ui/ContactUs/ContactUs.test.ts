@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import Button from '../../../identifiers/Button';
 import UrlPath from '../../../providers/UrlPath';
 import UrlProvider from '../../../providers/UrlProvider';
-import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();

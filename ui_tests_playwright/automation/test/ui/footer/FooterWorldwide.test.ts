@@ -1,16 +1,16 @@
-import { expect, Locator, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
-import { driver } from '../../../base/driver/Driver';
+import {expect, Locator, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import Footer from '../../../identifiers/Footer';
 import Container from '../../../identifiers/Container';
 import Link from '../../../identifiers/Link';
-import { Environment } from '../../../providers/EnvProvider';
+import {Environment} from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
-import { containerSteps } from '../../../steps/components/container/ContainerSteps';
-import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
-import { CompanyEnum } from '../../../enum/CompanyEnum';
+import {containerSteps} from '../../../steps/components/container/ContainerSteps';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {CompanyEnum} from '../../../enum/CompanyEnum';
 
 let footer: Locator;
 const testDataProvider: string[] = [
@@ -96,7 +96,7 @@ for (const url of testDataProvider) {
 			companyUrl[CompanyEnum.HowWeWork],
 			UrlProvider.careerUrl(Environment.Production),
 			companyUrl[CompanyEnum.CaseStudies],
-			companyUrl[CompanyEnum.Blog]
+			companyUrl[CompanyEnum.Blog],
 		];
 
 		await baseDriverSteps.goToUrl(url);

@@ -1,5 +1,5 @@
-import { CompanyEnum } from '../enum/CompanyEnum';
-import { ServicesEnum } from '../enum/ServicesEnum';
+import {CompanyEnum} from '../enum/CompanyEnum';
+import {ServicesEnum} from '../enum/ServicesEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
 
@@ -14,7 +14,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 	[ServicesEnum.QaAsAServ]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-}
+};
 
 export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.AboutUs]: UrlProvider.urlBuilder(UrlPath.AboutUs),
@@ -22,4 +22,4 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.Career]: UrlProvider.careerUrlBuilder(UrlProvider.careerUrl()),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
-}
+};

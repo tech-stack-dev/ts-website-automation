@@ -1,7 +1,7 @@
 export enum CompanyEnum {
-    AboutUs,
-    HowWeWork,
-    Career,
-    CaseStudies,
-    Blog
+	AboutUs,
+	HowWeWork,
+	Career,
+	CaseStudies,
+	Blog,
 }

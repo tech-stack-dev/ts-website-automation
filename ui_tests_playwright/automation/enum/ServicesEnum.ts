@@ -1,12 +1,12 @@
 export enum ServicesEnum {
-    OurServices,
-    CustomDev,
-    CloudAndDev,
-    BigData,
-    AiMl,
-    InternetOfThings,
-    MobileDev,
-    UiUxDesign,
-    QaAsAServ,
-    ConsultingServ
+	OurServices,
+	CustomDev,
+	CloudAndDev,
+	BigData,
+	AiMl,
+	InternetOfThings,
+	MobileDev,
+	UiUxDesign,
+	QaAsAServ,
+	ConsultingServ,
 }

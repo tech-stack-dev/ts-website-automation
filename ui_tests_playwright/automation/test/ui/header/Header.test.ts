@@ -1,15 +1,15 @@
-import { Locator, expect, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../base/step/BaseDriverSteps';
-import { driver } from '../../../base/driver/Driver';
+import {Locator, expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import {driver} from '../../../base/driver/Driver';
 import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import Link from '../../../identifiers/Link';
-import { Environment } from '../../../providers/EnvProvider';
+import {Environment} from '../../../providers/EnvProvider';
 import Button from '../../../identifiers/Button';
 import Colors from '../../../preconditionsData/Colors';
-import { companyUrl, serviceUrl } from '../../../preconditionsData/UrlPreconditions';
-import { ServicesEnum } from '../../../enum/ServicesEnum';
-import { CompanyEnum } from '../../../enum/CompanyEnum';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../enum/ServicesEnum';
+import {CompanyEnum} from '../../../enum/CompanyEnum';
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -64,7 +64,7 @@ for (const url of testDataProvider) {
 			[Button.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
 			[Button.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
 			[Button.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
-			[Button.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]]
+			[Button.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
 		]);
 
 		for (const [element, serviceUrl] of servicesList) {
@@ -83,7 +83,7 @@ for (const url of testDataProvider) {
 			[Button.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
 			[Button.Company_Career, UrlProvider.careerUrl(Environment.Production)],
 			[Button.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			[Button.Company_Blog, companyUrl[CompanyEnum.Blog]]
+			[Button.Company_Blog, companyUrl[CompanyEnum.Blog]],
 		]);
 
 		for (const [element, companyUrl] of companyList) {

@@ -5,8 +5,8 @@ import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import Container from '../../../identifiers/Container';
 import UxUiDesign from '../../../identifiers/UxUiDesign';
-import { serviceUrl } from '../../../preconditionsData/UrlPreconditions';
-import { ServicesEnum } from '../../../enum/ServicesEnum';
+import {serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../enum/ServicesEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.UiUxDesign]);

@@ -3,8 +3,8 @@ import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import {driver} from '../../../base/driver/Driver';
 import QaAsAService from '../../../identifiers/QaAsAService';
 import Container from '../../../identifiers/Container';
-import { serviceUrl } from '../../../preconditionsData/UrlPreconditions';
-import { ServicesEnum } from '../../../enum/ServicesEnum';
+import {serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../enum/ServicesEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.QaAsAServ]);
