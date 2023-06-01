@@ -54,20 +54,14 @@ async function run() {
 	const rootDirectory = process.cwd();
 	const foundStrings = await searchStrings(rootDirectory);
 
-	const ticketStatuses: {[key: string]: string} = {};
+	const ticketStatuses: string[] = [];
 
 	for (const ticket of foundStrings) {
 		const status = await getTicketStatus(ticket);
 		if (status && !['Ready for QA', 'Testing on Stage', 'UI testing', 'Done', 'Closed'].includes(status)) {
-			ticketStatuses[ticket] = status;
+			ticketStatuses.push(ticket);
 		}
 	}
-
-	const ticketStatusesJson = JSON.stringify(ticketStatuses);
-	fs.writeFileSync('ticketStatuses.json', ticketStatusesJson);
-	
-	console.log('Tickets with status not in "Ready for QA", "Testing on Stage", "UI testing", "Done", "Closed":');
-	console.log(ticketStatuses);
 }
 
 run().catch((error) => {
