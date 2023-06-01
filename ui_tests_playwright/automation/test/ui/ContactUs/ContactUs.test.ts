@@ -10,7 +10,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532 @TSWEB-672", async () => {
 	for (const url of ContactUsPreconditions.servicesUrlList) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
