@@ -37,15 +37,13 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Run Search and Collect Ticket Statuses
-        id: jira_skip
-        run: |
-          npm run jira-skip
-          ticketStatuses=$(node -p "JSON.stringify(require('./strings.txt'))")
-          echo "::set-output name=ticketStatuses::$ticketStatuses"
+        run: npm run jira-skip
         
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert ${{ steps.search.outputs.ticketStatuses }}
+        run: |
+          ticketStatuses=$(cat ticketStatuses.json)
+          npx playwright test --grep-invert "$ticketStatuses"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
