@@ -36,6 +36,7 @@ jobs:
         run: npm install -g typescript ts-node
 
       - name: Run Search and Collect Ticket Statuses
+        id: get_ticket_statuses
         run: |
           npx ts-node automation/scripts/GetListOfJirasToSkip.ts
           ticketStatuses=$(cat ticketStatuses.json)
@@ -46,7 +47,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "$ticketStatuses"
+        run: npx playwright test --grep-invert "${{ steps.get_ticket_statuses.outputs.ticketStatuses }}"
         
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
