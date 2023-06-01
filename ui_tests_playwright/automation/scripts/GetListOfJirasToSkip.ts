@@ -2,16 +2,16 @@ import * as fs from 'fs';
 import * as path from 'path';
 import axios from 'axios';
 
-const searchPattern = /TSWEB-[0-9]{1,8}/;
 const jiraBaseUrl = 'https://ts-website.atlassian.net';
-const jiraAuth = process.env.JIRA_AUTH_TOKEN!;
+const token = process.env.JIRA_AUTH_TOKEN!;
+const jiraUsername = 'qa_techstack@tech-stack.io';
 
 async function getTicketStatus(ticketKey: string): Promise<string | null> {
 	try {
+		const authToken = Buffer.from(`${jiraUsername}:${token}`).toString('base64');
 		const response = await axios.get(`${jiraBaseUrl}/rest/api/3/issue/${ticketKey}`, {
 			headers: {
-				Authorization: `Basic ${jiraAuth}`,
-				Accept: 'application/json',
+				Authorization: `Basic ${authToken}`,
 			},
 		});
 
@@ -23,8 +23,8 @@ async function getTicketStatus(ticketKey: string): Promise<string | null> {
 	}
 }
 
-async function searchStrings(rootDir: string): Promise<string[]> {
-	const foundStrings: string[] = [];
+async function searchStrings(rootDir: string): Promise<Set<string>> {
+	const foundStrings: Set<string> = new Set();
 
 	function searchFiles(directory: string) {
 		const files = fs.readdirSync(directory);
@@ -37,10 +37,10 @@ async function searchStrings(rootDir: string): Promise<string[]> {
 				searchFiles(filePath);
 			} else if (stat.isFile()) {
 				const content = fs.readFileSync(filePath, 'utf-8');
-				const matches = content.match(searchPattern);
+				const matches = content.matchAll(/TSWEB-[0-9]{1,8}/g);
 
-				if (matches) {
-					foundStrings.push(...matches);
+				for (const match of matches) {
+					foundStrings.add(match[0]);
 				}
 			}
 		}
