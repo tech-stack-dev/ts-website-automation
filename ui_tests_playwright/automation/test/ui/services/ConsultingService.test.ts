@@ -143,7 +143,7 @@ test("Check section titles in 'Consulting benefits' container from the 'Consulti
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles  in 'Development process audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test("Check section titles in 'Development process audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
 	const allSectionTitles = await developmentProcessAuditContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -157,7 +157,7 @@ test("Check section titles  in 'Development process audit' container from the 'C
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles  in 'Software audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test("Check section titles in 'Software audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
 	const allSectionTitles = await softwareAuditContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -201,9 +201,8 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-
-	const clickCount = allSectionTitles.length - 1;
-	for (let i = 0; i < clickCount; i++) {
+	
+	for (let i = 0; i < allSectionTitles.length - 1; i++) {
 		await carouselButtonNext.click({delay: 1000});
 	}
 
