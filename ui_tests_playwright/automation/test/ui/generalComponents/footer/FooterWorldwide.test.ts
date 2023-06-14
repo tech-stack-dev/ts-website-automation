@@ -3,13 +3,12 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import ContactUsPreconditions from '../../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import Footer from '../../../../identifiers/Footer';
+import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
 import Container from '../../../../identifiers/Container';
-import Link from '../../../../identifiers/Link';
-import {Environment} from '../../../../providers/EnvProvider';
+import { Environment } from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import Link from '../../../../identifiers/Link';
 
 let footer: Locator;
 const testDataProvider = [
@@ -19,8 +18,8 @@ const testDataProvider = [
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
 	UrlProvider.urlBuilder(UrlPath.AuthorPage),
 ]
-	.concat(ContactUsPreconditions.servicesUrlList)
-	.concat(ContactUsPreconditions.companyUrlList);
+	.concat(UrlPreconditions.servicesUrlList)
+	.concat(UrlPreconditions.companyUrlList);
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
