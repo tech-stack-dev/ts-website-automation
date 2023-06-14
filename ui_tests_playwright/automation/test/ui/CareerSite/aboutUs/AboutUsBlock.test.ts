@@ -1,9 +1,9 @@
 import {expect, test} from '@playwright/test';
-import {driver} from '../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import AboutUs from '../../../identifiers/AboutUs';
-import UrlProvider from '../../../providers/UrlProvider';
-import Navigation from '../../../identifiers/Navigation';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import AboutUs from '../../../../identifiers/AboutUs';
+import UrlProvider from '../../../../providers/UrlProvider';
+import Navigation from '../../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();

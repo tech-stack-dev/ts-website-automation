@@ -1,13 +1,13 @@
 import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import UrlProvider from '../../../providers/UrlProvider';
-import ContainerByClass from '../../../components/container/ContainerByClass';
-import Containers from '../../../identifiers/Containers';
-import Link from '../../../identifiers/Link';
-import Button from '../../../identifiers/Button';
-import {driver} from '../../../base/driver/Driver';
-import {containerSteps} from '../../../steps/components/container/ContainerSteps';
-import Navigation from '../../../identifiers/Navigation';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import UrlProvider from '../../../../providers/UrlProvider';
+import ContainerByClass from '../../../../components/container/ContainerByClass';
+import Containers from '../../../../identifiers/Containers';
+import Link from '../../../../identifiers/Link';
+import Button from '../../../../identifiers/Button';
+import {driver} from '../../../../base/driver/Driver';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import Navigation from '../../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
