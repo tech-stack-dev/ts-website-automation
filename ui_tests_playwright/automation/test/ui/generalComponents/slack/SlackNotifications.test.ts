@@ -1,17 +1,17 @@
 import {test} from '@playwright/test';
-import {driver} from '../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import UrlProvider from '../../../providers/UrlProvider';
-import Button from '../../../identifiers/Button';
-import {sessionValue} from '../../../runtimeVariables/SessionValue';
-import {slackSteps} from '../../../steps/api/SlackSteps';
-import {formSteps} from '../../../steps/ui/FormSteps';
-import UrlPath from '../../../providers/UrlPath';
-import SlackProvider from '../../../providers/SlackProvider';
-import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
-import Navigation from '../../../identifiers/Navigation';
-import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
-import {CompanyEnum} from '../../../enum/CompanyEnum';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import UrlProvider from '../../../../providers/UrlProvider';
+import Button from '../../../../identifiers/Button';
+import {sessionValue} from '../../../../runtimeVariables/SessionValue';
+import {slackSteps} from '../../../../steps/api/SlackSteps';
+import {formSteps} from '../../../../steps/ui/FormSteps';
+import UrlPath from '../../../../providers/UrlPath';
+import SlackProvider from '../../../../providers/SlackProvider';
+import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
+import Navigation from '../../../../identifiers/Navigation';
+import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();

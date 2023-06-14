@@ -1,15 +1,15 @@
 import {expect, test} from '@playwright/test';
-import {driver} from '../../../base/driver/Driver';
-import Button from '../../../identifiers/Button';
-import ApplyForAJobForm from '../../../identifiers/forms/ApplyForAJobForm';
-import Link from '../../../identifiers/Link';
-import Input from '../../../identifiers/Input';
-import UrlProvider from '../../../providers/UrlProvider';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import Career from '../../../identifiers/Career';
-import Containers from '../../../identifiers/Containers';
+import {driver} from '../../../../base/driver/Driver';
+import Button from '../../../../identifiers/Button';
+import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
+import Link from '../../../../identifiers/Link';
+import Input from '../../../../identifiers/Input';
+import UrlProvider from '../../../../providers/UrlProvider';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import Career from '../../../../identifiers/Career';
+import Containers from '../../../../identifiers/Containers';
 import randomstring from 'randomstring';
-import ContainerByClass from '../../../components/container/ContainerByClass';
+import ContainerByClass from '../../../../components/container/ContainerByClass';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

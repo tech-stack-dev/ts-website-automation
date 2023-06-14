@@ -1,14 +1,14 @@
 import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import UrlProvider from '../../../../providers/UrlProvider';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {driver} from '../../../../base/driver/Driver';
-import Career from '../../../../identifiers/Career';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Containers from '../../../../identifiers/Containers';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import UrlProvider from '../../../../../providers/UrlProvider';
+import {sessionValue} from '../../../../../runtimeVariables/SessionValue';
+import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
+import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
+import {driver} from '../../../../../base/driver/Driver';
+import Career from '../../../../../identifiers/Career';
+import {containerSteps} from '../../../../../steps/components/container/ContainerSteps';
+import ContainerByClass from '../../../../../components/container/ContainerByClass';
+import Containers from '../../../../../identifiers/Containers';
 import randomstring from 'randomstring';
 
 test.beforeEach(async () => {

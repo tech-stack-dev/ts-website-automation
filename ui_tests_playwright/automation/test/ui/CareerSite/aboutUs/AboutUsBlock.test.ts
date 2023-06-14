@@ -1,11 +1,11 @@
 import {test} from '@playwright/test';
-import {driver} from '../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import Button from '../../../identifiers/Button';
-import UrlPath from '../../../providers/UrlPath';
-import UrlProvider from '../../../providers/UrlProvider';
-import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
-import { CompanyEnum } from '../../../enum/CompanyEnum';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import Button from '../../../../identifiers/Button';
+import UrlPath from '../../../../providers/UrlPath';
+import UrlProvider from '../../../../providers/UrlProvider';
+import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();

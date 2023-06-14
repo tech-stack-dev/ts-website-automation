@@ -1,15 +1,13 @@
 import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
-import UrlProvider from '../../../providers/UrlProvider';
-import UrlPath from '../../../providers/UrlPath';
-import Container from '../../../identifiers/Container';
-import UxUiDesign from '../../../identifiers/UxUiDesign';
-import {serviceUrl} from '../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../enum/ServicesEnum';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
+import UrlProvider from '../../../../providers/UrlProvider';
+import UrlPath from '../../../../providers/UrlPath';
+import Container from '../../../../identifiers/Container';
+import UxUiDesign from '../../../../identifiers/UxUiDesign';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.UiUxDesign]);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
 
 test("Check the header from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {

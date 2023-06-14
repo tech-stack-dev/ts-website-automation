@@ -1,16 +1,16 @@
 import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import {driver} from '../../../base/driver/Driver';
-import UrlProvider from '../../../providers/UrlProvider';
-import UrlPath from '../../../providers/UrlPath';
-import Footer from '../../../identifiers/Footer';
-import Container from '../../../identifiers/Container';
-import Link from '../../../identifiers/Link';
-import {Environment} from '../../../providers/EnvProvider';
-import {containerSteps} from '../../../steps/components/container/ContainerSteps';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
+import UrlProvider from '../../../../providers/UrlProvider';
+import UrlPath from '../../../../providers/UrlPath';
+import Footer from '../../../../identifiers/Footer';
+import Container from '../../../../identifiers/Container';
+import Link from '../../../../identifiers/Link';
+import {Environment} from '../../../../providers/EnvProvider';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 
 let footer: Locator;
-const testDataProvider: string[] = [
+const testDataProvider = [
 	UrlProvider.careerUrl(),
 	UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
 	UrlProvider.careerUrlBuilder(UrlPath.Reviews),
@@ -49,7 +49,7 @@ for (const url of testDataProvider) {
 	});
 
 	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
-		const companyUrlList: string[] = [
+		const companyUrlList = [
 			UrlProvider.webSiteUrl(Environment.Production),
 			UrlProvider.urlBuilder(UrlPath.OurServices, Environment.Production),
 			UrlProvider.urlBuilder(UrlPath.CaseStudies, Environment.Production),
@@ -68,7 +68,7 @@ for (const url of testDataProvider) {
 	});
 
 	test.skip(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
-		const careerUrlList: string[] = [
+		const careerUrlList = [
 			UrlProvider.careerUrl(),
 			UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
 			UrlProvider.careerUrlBuilder(UrlPath.Reviews),
