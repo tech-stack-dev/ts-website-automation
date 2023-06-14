@@ -17,7 +17,7 @@ const testDataProvider = [
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
-	UrlProvider.urlBuilder(UrlPath.AuthorPage),
+	UrlProvider.urlBuilder(UrlPath.AuthorPage + 'aleksey/'),
 ]
 	.concat(ContactUsPreconditions.servicesUrlList)
 	.concat(ContactUsPreconditions.companyUrlList);
