@@ -4,22 +4,24 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
 import Container from '../../../../identifiers/Container';
-import { Environment } from '../../../../providers/EnvProvider';
-import Button from '../../../../identifiers/Button';
 import Link from '../../../../identifiers/Link';
+import {Environment} from '../../../../providers/EnvProvider';
+import Button from '../../../../identifiers/Button';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
 let footer: Locator;
-const testDataProvider = [
+const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
 	UrlProvider.urlBuilder(UrlPath.AuthorPage),
 ]
-	.concat(UrlPreconditions.servicesUrlList)
-	.concat(UrlPreconditions.companyUrlList);
+	.concat(Object.values(serviceUrl))
+	.concat(Object.values(companyUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -83,18 +85,18 @@ for (const url of testDataProvider) {
 
 		for (let index = 0; index < servicesList.length; index++) {
 			await servicesList[index].click();
-			await baseDriverSteps.checkUrl(ContactUsPreconditions.servicesUrlList[index]);
+			await baseDriverSteps.checkUrl(Object.values(serviceUrl)[index]);
 			await baseDriverSteps.goToUrl(url);
 		}
 	});
 
 	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
-		const companyUrlList = [
-			UrlProvider.urlBuilder(UrlPath.AboutUs),
-			UrlProvider.urlBuilder(UrlPath.HowWeWork),
+		const companyUrlList: string[] = [
+			companyUrl[CompanyEnum.AboutUs],
+			companyUrl[CompanyEnum.HowWeWork],
 			UrlProvider.careerUrl(Environment.Production),
-			UrlProvider.urlBuilder(UrlPath.CaseStudies),
-			UrlProvider.urlBuilder(UrlPath.Blog),
+			companyUrl[CompanyEnum.CaseStudies],
+			companyUrl[CompanyEnum.Blog],
 		];
 
 		await baseDriverSteps.goToUrl(url);
