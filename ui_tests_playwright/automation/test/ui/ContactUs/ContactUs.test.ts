@@ -2,16 +2,17 @@ import {test} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import Button from '../../../identifiers/Button';
-import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import UrlPath from '../../../providers/UrlPath';
 import UrlProvider from '../../../providers/UrlProvider';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import { CompanyEnum } from '../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
 test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
-	for (const url of ContactUsPreconditions.servicesUrlList) {
+	for (const url of Object.values(serviceUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
@@ -19,7 +20,13 @@ test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @
 });
 
 test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
-	for (const url of ContactUsPreconditions.companyUrlList) {
+	const urlList: string[]=[
+		companyUrl[CompanyEnum.AboutUs],
+		companyUrl[CompanyEnum.HowWeWork],
+		companyUrl[CompanyEnum.CaseStudies],
+		companyUrl[CompanyEnum.Blog],
+	]
+	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));

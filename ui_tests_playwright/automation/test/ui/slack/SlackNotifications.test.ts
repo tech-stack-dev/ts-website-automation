@@ -7,10 +7,11 @@ import {sessionValue} from '../../../runtimeVariables/SessionValue';
 import {slackSteps} from '../../../steps/api/SlackSteps';
 import {formSteps} from '../../../steps/ui/FormSteps';
 import UrlPath from '../../../providers/UrlPath';
-import ContactUsPreconditions from '../../../preconditionsData/uiPreconditions/ContactUsPreconditions';
 import SlackProvider from '../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../identifiers/Navigation';
+import {companyUrl, serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {CompanyEnum} from '../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -55,9 +56,9 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from A
 });
 
 test("Check Slack notification from 'staging_techstack_notify' channel from 'About Us', 'How We Work' and 'Contact Us' pages @Regression @ContactUs @TSWEB-606", async () => {
-	const urlList: Array<string> = [
-		UrlProvider.urlBuilder(UrlPath.AboutUs),
-		UrlProvider.urlBuilder(UrlPath.HowWeWork),
+	const urlList: string[] = [
+		companyUrl[CompanyEnum.AboutUs],
+		companyUrl[CompanyEnum.HowWeWork],
 		UrlProvider.urlBuilder(UrlPath.ContactUs),
 	];
 
@@ -79,7 +80,7 @@ test("Check Slack notification from 'staging_techstack_notify' channel from 'Abo
 });
 
 test("Check Slack notification from 'staging_techstack_notify' channel from all 'Services' pages @Regression @ContactUs @TSWEB-606", async () => {
-	for (const url of ContactUsPreconditions.servicesUrlList) {
+	for (const url of Object.values(serviceUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
 		const message = await slackSteps.getMessageWithValueFromChat(
