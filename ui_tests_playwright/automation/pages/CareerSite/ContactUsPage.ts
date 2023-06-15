@@ -9,7 +9,7 @@ export default class ContactUsPage extends BasePage {
 		return this.page.locator("//div[@class='invalid files']");
 	}
 
-    public successModalMessage(){
-       return this.page.locator("//div[contains(@class,'MessageWrapper')]/div/span")
-    }
+	public successModalMessage() {
+		return this.page.locator("//div[contains(@class,'MessageWrapper')]/div/span");
+	}
 }

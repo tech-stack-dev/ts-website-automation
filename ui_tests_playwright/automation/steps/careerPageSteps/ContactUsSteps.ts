@@ -3,7 +3,7 @@ import {driver} from '../../base/driver/Driver';
 import Button from '../../identifiers/Button';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
 import ContactUsPage from '../../pages/CareerSite/ContactUsPage';
-import { formSteps } from '../ui/FormSteps';
+import {formSteps} from '../ui/FormSteps';
 
 class ContactUsSteps {
 	public async sendDataToFieldsAndCheckErrorMessages(
@@ -15,10 +15,7 @@ class ContactUsSteps {
 		await driver.getByTestId(ContactUsForm.Phone).fill(phone);
 		await driver.getByTestId(Button.SendButton).click();
 
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([
-			ContactUsForm.Email,
-			ContactUsForm.Phone,
-		]);
+		const listOfMessages = await formSteps.getErrorMessagesFromFields([ContactUsForm.Email, ContactUsForm.Phone]);
 
 		return Object.values(testData).every((message) => listOfMessages.includes(message));
 	}

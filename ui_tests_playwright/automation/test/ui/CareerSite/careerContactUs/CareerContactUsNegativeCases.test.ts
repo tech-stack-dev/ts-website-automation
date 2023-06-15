@@ -6,7 +6,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
 import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
-import { formSteps } from '../../../../steps/ui/FormSteps';
+import {formSteps} from '../../../../steps/ui/FormSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
