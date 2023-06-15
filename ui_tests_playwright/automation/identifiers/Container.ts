@@ -22,5 +22,5 @@ export default class Container {
 	static CarouselButtonPrev = 'CarouselButtonPrev';
 	static CarouselButtonNext = 'CarouselButtonNext';
 
-	static AwardCard = 'AwardCard'
+	static AwardCard = 'AwardCard';
 }

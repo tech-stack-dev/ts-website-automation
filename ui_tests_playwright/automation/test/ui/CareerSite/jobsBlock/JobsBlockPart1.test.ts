@@ -7,11 +7,11 @@ import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import Containers from '../../../../identifiers/Containers';
 import Career from '../../../../identifiers/Career';
 import {driver} from '../../../../base/driver/Driver';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Navigation from '../../../../identifiers/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
-import { descriptionSteps } from '../../../../steps/components/job/DescriptionSteps';
+import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
 import Link from '../../../../identifiers/Link';
 import Button from '../../../../identifiers/Button';
 

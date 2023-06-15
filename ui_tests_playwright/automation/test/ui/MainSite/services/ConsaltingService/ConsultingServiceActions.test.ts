@@ -7,8 +7,8 @@ import Container from '../../../../../identifiers/Container';
 import ConsultingService from '../../../../../identifiers/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import { Environment } from '../../../../../providers/EnvProvider';
-import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import {Environment} from '../../../../../providers/EnvProvider';
+import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);

@@ -21,8 +21,7 @@ const testDataProvider: string[] = [
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
 	companyUrl[CompanyEnum.Blog],
-]
-	.concat(Object.values(serviceUrl));
+].concat(Object.values(serviceUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();

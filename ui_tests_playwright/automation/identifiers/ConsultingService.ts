@@ -13,8 +13,4 @@ export default class ConsultingService {
 	static RelatedServices = 'Container-RelatedServices';
 	static Faq = 'Container-Faq';
 	static RelatedArticles = 'Container-RelatedArticles';
-
-	// Button
-	static Linkedin = 'Button-LinekedIn';
-	static Blog = 'Button-Blog';
 }

@@ -45,4 +45,8 @@ export default class Button {
 
 	// Footer
 	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
+
+	// Services
+	static Linkedin = 'Button-LinekedIn';
+	static Blog = 'Button-Blog';
 }

@@ -11,7 +11,7 @@ import Button from '../../../../identifiers/Button';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
+import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 
 let footer: Locator;
 const testDataProvider: string[] = [
