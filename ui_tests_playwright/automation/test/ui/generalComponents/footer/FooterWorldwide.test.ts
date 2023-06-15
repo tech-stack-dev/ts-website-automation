@@ -11,6 +11,7 @@ import Button from '../../../../identifiers/Button';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
 
 let footer: Locator;
 const testDataProvider: string[] = [
@@ -18,7 +19,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
-	UrlProvider.urlBuilder(UrlPath.AuthorPage),
+	UrlProvider.urlBuilder(UrlPath.AuthorPage + AuthorsEnum.VitaliiDolotov),
 ]
 	.concat(Object.values(serviceUrl))
 	.concat(Object.values(companyUrl));

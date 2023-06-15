@@ -27,5 +27,5 @@ export default class UrlPath {
 
 	static OpenCase = 'case-studies/test-case';
 	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
-	static AuthorPage = 'blog/author/vitaliidolotov/';
+	static AuthorPage = 'blog/author/';
 }
