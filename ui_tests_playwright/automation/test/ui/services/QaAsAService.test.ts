@@ -1,13 +1,13 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import {driver} from '../../../base/driver/Driver';
-import UrlProvider from '../../../providers/UrlProvider';
-import UrlPath from '../../../providers/UrlPath';
 import QaAsAService from '../../../identifiers/QaAsAService';
 import Container from '../../../identifiers/Container';
+import {serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../enum/ServicesEnum';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.QaAsAServ));
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.QaAsAServ]);
 });
 
 test("Check the header from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {

@@ -5,11 +5,12 @@ import UrlProvider from '../../../providers/UrlProvider';
 import UrlPath from '../../../providers/UrlPath';
 import Container from '../../../identifiers/Container';
 import ConsultingService from '../../../identifiers/ConsultingService';
-import {Environment} from '../../../providers/EnvProvider';
+import {serviceUrl} from '../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../enum/ServicesEnum';
 import Button from '../../../identifiers/Button';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ConsultingServ));
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
 });
 
 test("Check the header from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {

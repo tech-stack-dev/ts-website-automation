@@ -26,6 +26,7 @@ export default class Button {
 	static Services_CustomDev = 'Services-CustomDev';
 	static Services_CloudAndDev = 'Services-CloudAndDev';
 	static Services_BigData = 'Services-BigData';
+	static Services_AiMl = 'Services-AIML';
 	static Services_InternetOfThings = 'Services-InternetOfThings';
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_UiUxDesign = 'Services-UiUxDesign';
