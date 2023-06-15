@@ -29,7 +29,7 @@ for (const file of files) {
 		await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 		await driver.getByTestId(ContactUsForm.Phone).fill('12345');
 		await contactUsSteps.attachFileToContactUsForm(file);
-		await driver.getByTestId(Button.SendButton).click({delay: 1000}); // Delay because of form that cant catch all the fields at this moment
+		await driver.getByTestId(Button.SendButton).click({delay: 1000}); // Delay because of form that can't catch all the fields at this moment
 		await contactUsSteps.checkSuccessModalMessage('Thanks for your message. We will contact you shortly.');
 	});
 }
