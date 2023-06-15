@@ -18,7 +18,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
-	UrlProvider.urlBuilder(UrlPath.AuthorPage + 'aleksey/'),
+	UrlProvider.urlBuilder(UrlPath.AuthorPage + 'vitaliidolotov/'),
 ]
 	.concat(Object.values(serviceUrl))
 	.concat(Object.values(companyUrl));
