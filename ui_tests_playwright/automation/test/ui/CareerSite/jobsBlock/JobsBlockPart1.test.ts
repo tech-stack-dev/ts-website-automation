@@ -7,13 +7,15 @@ import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import Containers from '../../../../identifiers/Containers';
 import Career from '../../../../identifiers/Career';
 import {driver} from '../../../../base/driver/Driver';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Navigation from '../../../../identifiers/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
-import { descriptionSteps } from '../../../../steps/components/job/DescriptionSteps';
+import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
 import Link from '../../../../identifiers/Link';
 import Button from '../../../../identifiers/Button';
+import {formSteps} from '../../../../steps/ui/FormSteps';
+import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -77,6 +79,28 @@ test('Check that user can switch language in navigation header in job page @Regr
 	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+});
+
+test('Check error messages related to empty fields in "Apply for a job" form @Regression @JobsBlock @TSWEB-145', async () => {
+	const testData: Record<string, string> = {
+		PleaseEntryFirstName: 'Please enter your name',
+		PleaseEntryLastName: 'Please enter your last name',
+		PleaseEntryEmail: 'Please enter your phone number',
+		PleaseEntryPhone: 'Please enter your email',
+	};
+
+	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await driver.getByTestId(Career.ApplyNowButton).click();
+	await driver.getByTestId(ApplyForAJobForm.SendRequestButtom).click();
+	const listOfMessages = await formSteps.getErrorMessagesFromFields([
+		ApplyForAJobForm.FirstName,
+		ApplyForAJobForm.LastName,
+		ApplyForAJobForm.Email,
+		ApplyForAJobForm.Phone,
+	]);
+	const messagesExistState = Object.values(testData).every((message) => listOfMessages.includes(message));
+	expect(messagesExistState).toBeTruthy();
 });
 
 test.afterEach(async () => {

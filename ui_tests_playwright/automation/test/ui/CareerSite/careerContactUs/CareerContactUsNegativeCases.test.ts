@@ -6,6 +6,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
 import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
+import { formSteps } from '../../../../steps/ui/FormSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -25,7 +26,7 @@ test("Check error messages related to fields filled with spaces on 'Contact Us' 
 	await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces);
 	await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces);
 	await driver.getByTestId(Button.SendButton).click();
-	const listOfMessages = await contactUsSteps.getErrorMessagesFromFields([
+	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,
 		ContactUsForm.Phone,
@@ -78,7 +79,7 @@ test("Check error messages related to empty fields on 'Contact Us' form @Regress
 		PleaseEntryPhone: 'Please enter your phone number',
 	};
 	await driver.getByTestId(Button.SendButton).click();
-	const listOfMessages = await contactUsSteps.getErrorMessagesFromFields([
+	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,
 		ContactUsForm.Phone,
@@ -87,7 +88,7 @@ test("Check error messages related to empty fields on 'Contact Us' form @Regress
 	expect(messagesExistState).toBeTruthy();
 });
 
-test('Check error messages related to incorrect file format @Regression @ContactUs @TSWEB149', async () => {
+test('Check error message related to incorrect file format @Regression @ContactUs @TSWEB149', async () => {
 	await driver.getByTestId(ContactUsForm.FullName).fill('Test Name');
 	await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 	await driver.getByTestId(ContactUsForm.Phone).fill('12345');
