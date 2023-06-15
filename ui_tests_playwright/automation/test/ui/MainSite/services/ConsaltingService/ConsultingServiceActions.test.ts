@@ -9,6 +9,7 @@ import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
+import Button from '../../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -55,59 +56,59 @@ test("Check redirects by buttons in 'Consulting experts' container from the 'Con
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(0),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(0),
 			'https://www.linkedin.com/in/ivan-ieremenko/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(0),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(1),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(1),
 			'https://ua.linkedin.com/in/aleksey-svistun',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(1),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(2),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(2),
 			'https://www.linkedin.com/in/yevhenii-karachevtsev-372749236/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(2),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(3),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(3),
 			'https://www.linkedin.com/in/vitalii-dolotov/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(3),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(3),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.VitaliiDolotov,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(4),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(4),
 			'https://www.linkedin.com/in/ivan-yeremenko-a464125a/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(4),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(4),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(5),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(5),
 			'https://www.linkedin.com/in/dima-dityuk/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(5),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(5),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Linkedin).nth(6),
+			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(6),
 			'https://www.linkedin.com/in/shtapauk/',
 		],
 		[
-			consultingExpertsContainer.getByTestId(ConsultingService.Blog).nth(6),
+			consultingExpertsContainer.getByTestId(Button.Blog).nth(6),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,
 		],
 	]);
