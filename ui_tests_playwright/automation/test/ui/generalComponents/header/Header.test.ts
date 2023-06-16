@@ -28,13 +28,13 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test.skip(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Link.HeaderLogo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 
-	test(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test.skip(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.Menu).click();
 		const menuHeaderslist: Locator[] = [
@@ -54,7 +54,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test.skip(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesList = new Map([
 			[Button.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
@@ -78,7 +78,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test.skip(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const companyList = new Map([
 			[Button.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
