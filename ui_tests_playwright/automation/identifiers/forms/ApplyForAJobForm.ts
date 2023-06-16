@@ -4,4 +4,5 @@ export default class ApplyForAJobForm {
 	static Email = 'CareerInput-Email';
 	static Phone = 'CareerInput-Tel';
 	static Message = 'CareerInput-Message';
+	static SendRequestButtom = 'SubmitButton-SharedSendMessage';
 }
