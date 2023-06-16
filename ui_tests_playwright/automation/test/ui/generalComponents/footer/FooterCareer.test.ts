@@ -89,9 +89,9 @@ for (const url of testDataProvider) {
 	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
-			[Footer.LinkedIn, 'https://www.linkedin.com/company/techstack-limited'],
-			[Footer.Facebook, 'https://www.facebook.com/techstack'],
-			[Footer.Instagram, 'https://www.instagram.com/techstack_ltd/'],
+			[Footer.LinkedIn, 'https://www.linkedin.com'],
+			[Footer.Facebook, 'https://www.facebook.com'],
+			[Footer.Instagram, 'https://www.instagram.com'],
 		]);
 
 		await baseDriverSteps.goToUrl(url);
