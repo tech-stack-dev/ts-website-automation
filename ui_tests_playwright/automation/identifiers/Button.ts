@@ -5,6 +5,8 @@ export default class Button {
 	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
 	static SendButton = 'SubmitButton-SharedSendMessage';
 
+	static RequestAQuote = 'ButtonRequestAQuote';
+
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
 	static ContactUs = 'Button-ContactUs';
@@ -43,4 +45,8 @@ export default class Button {
 
 	// Footer
 	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
+
+	// Services
+	static Linkedin = 'Button-LinekedIn';
+	static Blog = 'Button-Blog';
 }
