@@ -1,5 +1,6 @@
 import {driver} from '../../base/driver/Driver';
 import Button from '../../identifiers/Button';
+import Input from '../../identifiers/Input';
 import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
 import GetInTouchForm from '../../identifiers/forms/GetInTouchForm';
@@ -48,6 +49,16 @@ class FormSteps {
 
 		await driver.getByTestId(Button.SendButton).click();
 		await driver.getByTestId(Button.Close, undefined, 1).waitFor({state: 'visible'});
+	}
+
+	public async getErrorMessagesFromFields(necessaryFields: string[]): Promise<string[]> {
+		const listOfMessages: any[] = await Promise.all(
+			necessaryFields.map(async (field) => {
+				const element = driver.getByTestId(field).locator(Input.FieldErrorSelector);
+				if (element !== null && element !== undefined) return element.textContent();
+			})
+		);
+		return listOfMessages;
 	}
 }
 
