@@ -59,6 +59,13 @@ class SlackSteps {
 		expect(fields?.find((x) => x.title === 'Email')?.value).toContain(expectedMessage.email);
 		expect(fields?.find((x) => x.title === 'Message')?.value).toBe(expectedMessage.message);
 	}
+
+	public async postMessageInSlackChannel(chatId: string, value: string){
+		const webClient = new WebClient(slackDtoVariable.value.token);
+		let response = (await webClient.chat.postMessage({channel: chatId, text: value}));
+		
+		expect(response.ok).toBe(true);
+	}
 }
 
 const slackSteps = new SlackSteps();

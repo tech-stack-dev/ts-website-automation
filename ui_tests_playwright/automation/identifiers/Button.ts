@@ -1,9 +1,12 @@
 export default class Button {
+	static AcceptCookies = '//div[@id="btn-accept-container"]';
+
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
 
 	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
 	static SendButton = 'SubmitButton-SharedSendMessage';
+	static RequestAQuote = 'Button-RequestAQuote';
 
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
@@ -18,6 +21,7 @@ export default class Button {
 
 	// Breadcrumbs links
 	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
+	static BreadcrumbsPrev = "//a[@id='bredcrumbs-prev']"
 
 	// Services section
 	static Services_OurServices = 'Services-OurServices';
