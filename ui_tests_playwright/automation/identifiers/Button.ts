@@ -5,7 +5,7 @@ export default class Button {
 	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
 	static SendButton = 'SubmitButton-SharedSendMessage';
 
-	static RequestAQuote = 'ButtonRequestAQuote';
+	static RequestAQuote = 'Button-RequestAQuote';
 
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
