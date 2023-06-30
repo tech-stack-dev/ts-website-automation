@@ -121,7 +121,7 @@ for (const url of testDataProvider) {
 			[Footer.Instagram, 'https://www.instagram.com'],
 			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
 			[Footer.Dribbble, 'https://dribbble.com/techstackdesign'],
-			[Footer.Twitter, 'https://twitter.com/techstack_io'],
+			[Footer.Twitter, 'https://twitter.com'],
 			[Footer.GoodFirms, 'https://www.goodfirms.co/company/techstack-ltd'],
 			[Footer.Clutch, 'https://clutch.co/profile/techstack'],
 		]);
