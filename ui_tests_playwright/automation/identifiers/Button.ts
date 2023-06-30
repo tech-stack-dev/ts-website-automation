@@ -7,6 +7,8 @@ export default class Button {
 	static RequestAQuoteButton = 'ButtonRequestAQuote';
 	static ArrowButton = 'ArrowButton';
 
+	static RequestAQuote = 'Button-RequestAQuote';
+
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
 	static ContactUs = 'Button-ContactUs';
@@ -26,6 +28,7 @@ export default class Button {
 	static Services_CustomDev = 'Services-CustomDev';
 	static Services_CloudAndDev = 'Services-CloudAndDev';
 	static Services_BigData = 'Services-BigData';
+	static Services_AiMl = 'Services-AIML';
 	static Services_InternetOfThings = 'Services-InternetOfThings';
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_UiUxDesign = 'Services-UiUxDesign';
@@ -44,4 +47,8 @@ export default class Button {
 
 	// Footer
 	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
+
+	// Services
+	static Linkedin = 'Button-LinekedIn';
+	static Blog = 'Button-Blog';
 }

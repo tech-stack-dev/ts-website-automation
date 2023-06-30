@@ -49,6 +49,14 @@ export default class BaseComponent implements Locator {
 		return this.Element.all();
 	}
 
+	and(locator: Locator): Locator {
+		return this.and(locator);
+	}
+
+	or(locator: Locator): Locator {
+		return this.or(locator);
+	}
+
 	blur(
 		options?:
 			| {
