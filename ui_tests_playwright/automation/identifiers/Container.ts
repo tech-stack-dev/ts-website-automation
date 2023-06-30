@@ -17,7 +17,11 @@ export default class Container {
 	static BlockTitle = 'BlockTitle';
 	static BlockSection = 'BlockSection';
 
+	// Remove after fix on UI
+	static MemberItem = 'MemberItem';
+	// Remove after fix on UI
 	static MemberCard = 'MemberCard';
+	static MemberPhoto = 'MemberPhoto';
 	static MemberRole = 'MemberRole';
 	static MemberName = 'MemberName';
 
@@ -27,4 +31,5 @@ export default class Container {
 	static CarouselButtonNext = 'CarouselButtonNext';
 
 	static AwardCard = 'AwardCard';
+	static AwardCardImage = 'AwardCardImage';
 }

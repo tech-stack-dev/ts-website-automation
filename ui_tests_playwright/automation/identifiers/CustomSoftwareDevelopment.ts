@@ -12,8 +12,6 @@ export default class CustomSoftwareDevelopent {
 	static RelatedArticles = 'Container-RelatedArticles';
 
 	static MobileDevelopmentCard = 'MobileDevelopmentCard';
-	static CardNumber = 'CardNumber';
-	static CardTitle = 'CardTitle';
 
 	static ContentSwitcher = 'ContentSwitcher';
 	static ContentSwitcherButton_BackEnd = 'ContentSwitcherButton-BackEnd';
@@ -23,35 +21,10 @@ export default class CustomSoftwareDevelopent {
 	static ContentSwitcherContent_BackEnd = 'ContentSwitcherContent-BackEnd';
 	static ContentSwitcherContent_AiMlDataScience = 'ContentSwitcherContent-AiMlDataScience';
 	static ContentSwitcherContent_FrontEnd = 'ContentSwitcherContent-FrontEnd';
-	static ContentSection = 'ContentSection';
-	static ContentSectionTitle = 'ContentSectionTitle';
-	static ContentSectionList = 'ContentSectionList';
-	static ContentSectionItem = 'ContentSectionItem';
 
-	// Carousel
-	static Controls = 'Controls';
-	static ControlLeftButton = 'ControlLeftButton';
-	static ControlRightButton = 'ControlRightButton';
-	static InfoBlock = 'InfoBlock';
-	static InfoBlockItemTitle = 'InfoBlockItemTitle';
-	static InfoBlockNumber = 'InfoBlockNumber';
-
-	static MemberItem = 'MemberItem';
-	static MemberPhoto = 'MemberPhoto';
-	static MemberDescription = 'MemberDescription';
-	static MemberName = 'MemberName';
-	static MemberLinkLinkedin = 'MemberLinkLinkedin';
-	static MemberLinkBlog = 'MemberLinkBlog';
-
-	static CaseCard = 'CaseCard';
-	static CaseDomainName = 'CaseDomainName';
-	static CaseName = 'CaseName';
-
-	static AwardCard = 'AwardCard';
-	static AwardCardImage = 'AwardCardImage';
 	static ReviewContainer = 'ReviewContainer';
 	static ReviewText = 'ReviewText';
-	static ReviewLink = 'ReviewLink';
+	static ReviewLink = 'ClutchReviewLink';
 	static ReviewAuthor = 'ReviewAuthor';
 	static ReviewAuthorName = 'ReviewAuthorName';
 	static ReviewAuthorPosition = 'ReviewAuthorPosition';
@@ -60,7 +33,7 @@ export default class CustomSoftwareDevelopent {
 	static SectionFullAnswer = 'SectionFullAnswer';
 
 	static ArticleItem = 'ArticleItem';
-	static ArticleLeftInfo= 'ArticleLeftInfo';
+	static ArticleLeftInfo = 'ArticleLeftInfo';
 	static ArticleRightInfo = 'ArticleRightInfo';
 	static ArticleTitle = 'ArticleTitle';
 }

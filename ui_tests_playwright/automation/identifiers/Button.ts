@@ -50,5 +50,7 @@ export default class Button {
 
 	// Services
 	static Linkedin = 'Button-LinekedIn';
+	// remove after fix
+	static Linkedin2 = 'Button-Linkedin';
 	static Blog = 'Button-Blog';
 }
