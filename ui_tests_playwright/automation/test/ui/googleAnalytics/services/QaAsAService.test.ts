@@ -1,4 +1,5 @@
 import { Locator, expect, test } from '@playwright/test';
+import { startCase } from 'lodash';
 import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -9,6 +10,7 @@ import { googleAnalyticsSteps } from '../../../../steps/api/GoogleAnalyticsSteps
 import Button from '../../../../identifiers/Button';
 import SlackProvider from '../../../../providers/SlackProvider';
 import { Environment } from '../../../../providers/EnvProvider';
+import CaseStudies from '../../../../identifiers/CaseStudies';
 
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.QaAsAServ, Environment.Production);
 
@@ -43,7 +45,19 @@ test("Check google analitics for 'QA as a Service' page @Regression @GoogleAnaly
 	// 	await googleAnalyticsSteps.checkGoogleAnalytics(arrow, servicesBlockEvents[index], "GET", testInfo.title);
 	// }
 
+	const caseStudies = driver.getByTestId(QaAsAService.CaseStudies);
+	const caseCardList = await caseStudies.getByTestId(CaseStudies.CaseCard).all();
+	const caseNameList = await caseStudies.getByTestId(CaseStudies.CaseName).allTextContents();
+	const baseCaseStudiesEvent = 'QAasAServCase';
+	const caseEventsList = caseNameList.map((name)=>{
+		return `${baseCaseStudiesEvent}${startCase(name).replace(/\s/g, "")}`;
+	})
 
+	for (let index = 0; index < caseCardList.length; index++) {
+		const caseCard = caseCardList[index];
+		await googleAnalyticsSteps.checkGoogleAnalytics(caseCard, caseEventsList[index], "GET", testInfo.title);
+		await baseDriverSteps.goToUrl(pageUrl);
+	}
 
 	// const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 	// const ourApproachRequestQuoteButton: Locator = ourApproachAndAchievements.getByTestId(Button.RequestAQuote);

@@ -17,7 +17,6 @@ class GoogleAnalyticsSteps {
 
             const racePromise = Promise.race([
                 driver.Page.waitForRequest((request: Request) =>
-                    // request.url().includes('https://www.google-analytics.com') &&
                     request.url().includes(event) &&
                     request.method() === method
                 ),
