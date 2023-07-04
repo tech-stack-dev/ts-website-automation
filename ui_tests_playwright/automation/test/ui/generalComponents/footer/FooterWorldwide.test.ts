@@ -9,7 +9,7 @@ import Link from '../../../../identifiers/Link';
 import {Environment} from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 
@@ -23,9 +23,10 @@ const testDataProvider: string[] = [
 	companyUrl[CompanyEnum.AboutUs],
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
-	companyUrl[CompanyEnum.Blog]
+	companyUrl[CompanyEnum.Blog],
 ]
-	.concat(Object.values(serviceUrl));
+	.concat(Object.values(serviceUrl))
+	.concat(Object.values(industryUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -33,13 +34,18 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674 @TSWEB-775`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
 			Container.SectionTitle,
 			'Contacts'
+		))!;
+		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
+			footer,
+			Container.BlockTitle,
+			'Industries'
 		))!;
 		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -57,6 +63,12 @@ for (const url of testDataProvider) {
 		await expect(contactBlock.getByTestId(Footer.Phone)).toContainText('Phone number:');
 		await expect(contactBlock.getByTestId(Footer.Phone)).toContainText('+1-312-442-0823');
 		await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
+
+		expect(await industriesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+			'Healthcare',
+			'Transportation and Logistics',
+			'Renewable Energy',
+		]);
 		expect(await servicesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'Our Services',
 			'Custom Software Development',
@@ -76,6 +88,22 @@ for (const url of testDataProvider) {
 			'Case Studies',
 			'Blog',
 		]);
+	});
+
+	test(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-774 @TSWEB-775`, async () => {
+		await baseDriverSteps.goToUrl(url);
+		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
+			footer,
+			Container.BlockTitle,
+			'Industries'
+		))!;
+		const industriesList = await industriesBlock.getByTestId(Container.SectionTitle).all();
+
+		for (let index = 0; index < industriesList.length; index++) {
+			await industriesList[index].click();
+			await baseDriverSteps.checkUrl(Object.values(industryUrl)[index]);
+			await baseDriverSteps.goToUrl(url);
+		}
 	});
 
 	test(`Check the redirection for the Services block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
@@ -138,7 +166,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check redirection to the Terms, Cookies Policy, Contacy us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check redirection to the Terms, Cookies Policy, Contact us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],

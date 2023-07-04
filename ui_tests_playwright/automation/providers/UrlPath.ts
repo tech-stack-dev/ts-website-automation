@@ -1,4 +1,8 @@
 export default class UrlPath {
+	static Healthcare = 'industries/healthcare';
+	static TransportAndLogist = 'industries/transportation-and-logistics';
+	static RenewableEnergy = 'industries/renewable-energy';
+
 	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
 	static CloudAndDev = 'services/cloud-and-devops';
