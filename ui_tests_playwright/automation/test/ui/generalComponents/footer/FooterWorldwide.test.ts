@@ -90,7 +90,7 @@ for (const url of testDataProvider) {
 		]);
 	});
 
-	test(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-774`, async () => {
+	test(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-833`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
