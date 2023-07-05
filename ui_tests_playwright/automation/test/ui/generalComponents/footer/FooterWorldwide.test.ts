@@ -34,7 +34,7 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674 @TSWEB-775`, async () => {
+	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
@@ -90,7 +90,7 @@ for (const url of testDataProvider) {
 		]);
 	});
 
-	test(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-774 @TSWEB-775`, async () => {
+	test(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-774`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
