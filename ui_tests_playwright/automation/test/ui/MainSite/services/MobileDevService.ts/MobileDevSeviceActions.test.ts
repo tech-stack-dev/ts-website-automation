@@ -18,8 +18,8 @@ test("Check redirects by buttons in 'Our approach' container from the 'Mobile Ap
 	const clutchButtons = await ourApproachContainer.getByTestId(Button.Clutch).all();
 
 	const buttonMap = new Map([
-		[clutchButtons[0], 'https://clutch.co/profile/techstack#review'],
-		[clutchButtons[1], 'https://clutch.co/profile/techstack#review'],
+		[clutchButtons[0], 'https://clutch.co/profile/techstack#review-1820220'],
+		[clutchButtons[1], 'https://clutch.co/profile/techstack#review-1939515'],
 	]);
 
 	for (const [button, url] of buttonMap) {
