@@ -49,4 +49,5 @@ export default class Button {
 	// Services
 	static Linkedin = 'Button-LinekedIn';
 	static Blog = 'Button-Blog';
+	static Clutch = 'Button-Clutch';
 }

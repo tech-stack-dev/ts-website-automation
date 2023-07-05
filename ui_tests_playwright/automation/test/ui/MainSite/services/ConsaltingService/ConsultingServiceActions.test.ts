@@ -55,18 +55,12 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 test("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([
-		[
-			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(0),
-			'https://www.linkedin.com/in/ivan-ieremenko/',
-		],
+		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(0), 'https://www.linkedin.com/in/ivan-ieremenko/'],
 		[
 			consultingExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
 		],
-		[
-			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(1),
-			'https://ua.linkedin.com/in/aleksey-svistun',
-		],
+		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(1), 'https://ua.linkedin.com/in/aleksey-svistun'],
 		[
 			consultingExpertsContainer.getByTestId(Button.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
@@ -95,18 +89,12 @@ test("Check redirects by buttons in 'Consulting experts' container from the 'Con
 			consultingExpertsContainer.getByTestId(Button.Blog).nth(4),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
-		[
-			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(5),
-			'https://www.linkedin.com/in/dima-dityuk/',
-		],
+		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(5), 'https://www.linkedin.com/in/dima-dityuk/'],
 		[
 			consultingExpertsContainer.getByTestId(Button.Blog).nth(5),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
 		],
-		[
-			consultingExpertsContainer.getByTestId(Button.Linkedin).nth(6),
-			'https://www.linkedin.com/in/shtapauk/',
-		],
+		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(6), 'https://www.linkedin.com/in/shtapauk/'],
 		[
 			consultingExpertsContainer.getByTestId(Button.Blog).nth(6),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,
