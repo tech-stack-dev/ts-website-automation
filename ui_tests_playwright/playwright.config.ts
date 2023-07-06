@@ -1,4 +1,4 @@
-import type {PlaywrightTestConfig} from '@playwright/test';
+import {PlaywrightTestConfig, devices} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -61,12 +61,12 @@ const config: PlaywrightTestConfig = {
 		//   },
 		// },
 
-		// {
-		//   name: 'webkit',
-		//   use: {
-		//     ...devices['Desktop Safari'],
-		//   },
-		// },
+		{
+		  name: 'webkit',
+		  use: {
+		    ...devices['Desktop Safari'],
+		  },
+		},
 
 		/* Test against mobile viewports. */
 		// {
