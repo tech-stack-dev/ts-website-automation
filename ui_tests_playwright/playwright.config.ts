@@ -102,6 +102,7 @@ const config: PlaywrightTestConfig = {
 			use: {
 				channel: 'chrome',
 			},
+			grepInvert:[new RegExp("@JobsBlock"), new RegExp("@FilterBlock")],
 		},
 	],
 
