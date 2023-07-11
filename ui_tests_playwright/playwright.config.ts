@@ -1,4 +1,4 @@
-import {PlaywrightTestConfig, devices} from '@playwright/test';
+import {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -102,6 +102,7 @@ const config: PlaywrightTestConfig = {
 			use: {
 				channel: 'chrome',
 			},
+			// Delete after https://ts-website.atlassian.net/browse/TSWEB-847
 			grepInvert:[new RegExp("@JobsBlock"), new RegExp("@FilterBlock")],
 		},
 	],
