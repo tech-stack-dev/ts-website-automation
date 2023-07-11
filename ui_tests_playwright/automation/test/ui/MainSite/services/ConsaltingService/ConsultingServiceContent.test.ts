@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 test("Check the header from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const info = driver.getByTestId(ConsultingService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
-	await expect(info.getByTestId(Container.Title)).toHaveText('Get an expert review of your software systems');
+	await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
 });
 
 test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regression @ConsultingService @TSWEB-697", async () => {
