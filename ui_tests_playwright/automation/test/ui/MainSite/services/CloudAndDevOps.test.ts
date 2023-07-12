@@ -6,10 +6,10 @@ import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import CloudAndDevOps from '../../../../identifiers/CloudAndDevOps';
 import Button from '../../../../identifiers/Button';
-import ExpertsLinkedInLinks from '../../../../../testData/ExpertsLinkedInLinks';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {Environment} from '../../../../providers/EnvProvider';
-import ClutchReviewLinks from '../../../../../testData/ClutchReviewLinks';
+import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudAndDev));
