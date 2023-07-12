@@ -5,6 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import UxUiDesign from '../../../../identifiers/UxUiDesign';
+import Button from '../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -14,6 +15,14 @@ test("Check the header from the 'UX/UI Design' block @Regression @UxUiDesign @TS
 	const info = driver.getByTestId(UxUiDesign.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 	await expect(info.getByTestId(Container.Title)).toHaveText('We provide neoteric\nUX/UI design\nservices');
+});
+
+test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
+	const containers = [UxUiDesign.Info, UxUiDesign.WeNeverStopImprovingYourProduct];
+
+	for (const container of containers) {
+		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+	}
 });
 
 test("Check the container title and number from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
