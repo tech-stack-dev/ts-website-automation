@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 test("Check the header from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const info = driver.getByTestId(UxUiDesign.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
-	await expect(info.getByTestId(Container.Title)).toHaveText('We provide neoteric\nUX/UI design\nservices');
+	await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');
 });
 
 test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
