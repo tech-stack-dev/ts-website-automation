@@ -103,7 +103,7 @@ const config: PlaywrightTestConfig = {
 				channel: 'chrome',
 			},
 			// Delete after https://ts-website.atlassian.net/browse/TSWEB-847
-			grepInvert:[new RegExp("@JobsBlock"), new RegExp("@FilterBlock")],
+			grepInvert: [new RegExp('@JobsBlock'), new RegExp('@FilterBlock')],
 		},
 	],
 

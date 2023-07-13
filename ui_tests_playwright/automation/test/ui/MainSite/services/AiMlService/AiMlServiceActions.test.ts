@@ -6,8 +6,8 @@ import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/AiMlService';
 import Button from '../../../../../identifiers/Button';
-import { Environment } from '../../../../../providers/EnvProvider';
-import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import {Environment} from '../../../../../providers/EnvProvider';
+import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -16,10 +16,19 @@ test.beforeEach(async () => {
 test("Check redirect by links in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	const linkMap = new Map([
-		[Button.Forbes, 'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14'],
+		[
+			Button.Forbes,
+			'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14',
+		],
 		[Button.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
-		[Button.Deloitte, 'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html'],
-		[Button.McKinsey, 'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy'],
+		[
+			Button.Deloitte,
+			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
+		],
+		[
+			Button.McKinsey,
+			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
+		],
 	]);
 
 	for (const entries of linkMap.entries()) {
@@ -45,13 +54,7 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-	]);
+	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual(['01', '02', '03', '04', '05']);
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
@@ -64,8 +67,7 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
 
-	const clickCount = allSectionTitles.length - 1;
-	for (let i = 0; i < clickCount; i++) {
+	for (let i = 0; i < allSectionTitles.length - 1; i++) {
 		await carouselButtonNext.click({delay: 1000});
 	}
 
@@ -75,7 +77,7 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 
 test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourApproachContainer = driver.getByTestId(AiMlService.OurApproach);
-	
+
 	await ourApproachContainer.getByTestId(Button.Clutch).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	expect(newPage.url()).toContain('https://clutch.co/profile/techstack#review-1961618');
@@ -84,9 +86,22 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 test("Check buttons in 'Our experts' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), 'https://www.linkedin.com/in/yevhenii-karachevtsev-372749236/'],
-		[ourExpertsContainer.getByTestId(Button.Blog), UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(1), 'https://www.linkedin.com/in/oleksandr-bezrukov-568852213/'],
+		[
+			ourExpertsContainer.getByTestId(Button.Linkedin).nth(0),
+			'https://www.linkedin.com/in/yevhenii-karachevtsev-372749236/',
+		],
+		[
+			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
+			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
+		],
+		[
+			ourExpertsContainer.getByTestId(Button.Linkedin).nth(1),
+			'https://www.linkedin.com/in/oleksandr-bezrukov-568852213/',
+		],
+		[
+			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
+			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,
+		],
 	]);
 
 	for (const [button, url] of buttonUrlMap.entries()) {
@@ -111,7 +126,7 @@ test("Check redirects by arrows in 'Related services' container from the 'AI&ML 
 	for (const [arrow, url] of arrowUrlMap) {
 		await arrow.first().click();
 		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
+		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
 	}
 });
 

@@ -6,8 +6,8 @@ export default class AiMlService {
 	static TheWayWeWork = 'Container-TheWayWeWork';
 	static OurApproach = 'Container-OurApproach';
 	static TechnologyStack = 'Container-TechnologyStack';
-    static OurExperts = 'Container-OurExperts';
-    static RelatedServices = 'Container-RelatedServices';
+	static OurExperts = 'Container-OurExperts';
+	static RelatedServices = 'Container-RelatedServices';
 	static Faq = 'Container-Faq';
-    static RelatedArticles = 'Container-RelatedArticles';
+	static RelatedArticles = 'Container-RelatedArticles';
 }

@@ -5,6 +5,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/AiMlService';
+import Button from '../../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -14,6 +15,7 @@ test("Check the header from the 'AI&ML Sevice' block @Regression @AiMlService @T
 	const info = driver.getByTestId(AiMlService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI & ML');
 	await expect(info.getByTestId(Container.Title)).toHaveText('AI & ML Application Development Services');
+	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
@@ -34,37 +36,31 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 	await expect(driver.getByTestId(AiMlService.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
 		'Case studies'
 	);
-	await expect(driver.getByTestId(AiMlService.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText(
-		'03'
-	);
+	await expect(driver.getByTestId(AiMlService.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText('03');
 
 	await expect(driver.getByTestId(AiMlService.TheWayWeWork).getByTestId(Container.ContainerTitle)).toHaveText(
 		'The Way \nWe work'
 	);
 	await expect(driver.getByTestId(AiMlService.TheWayWeWork).getByTestId(Container.ContainerNumber)).toHaveText('04');
 
-	await expect(
-		driver.getByTestId(AiMlService.OurApproach).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our approach');
-	await expect(
-		driver.getByTestId(AiMlService.OurApproach).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
+	await expect(driver.getByTestId(AiMlService.OurApproach).getByTestId(Container.ContainerTitle)).toHaveText(
+		'Our approach'
+	);
+	await expect(driver.getByTestId(AiMlService.OurApproach).getByTestId(Container.ContainerNumber)).toHaveText('05');
 
-	await expect(
-		driver.getByTestId(AiMlService.TechnologyStack).getByTestId(Container.ContainerTitle)
-	).toHaveText('Technology \nstack');
-	await expect(
-		driver.getByTestId(AiMlService.TechnologyStack).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
+	await expect(driver.getByTestId(AiMlService.TechnologyStack).getByTestId(Container.ContainerTitle)).toHaveText(
+		'Technology \nstack'
+	);
+	await expect(driver.getByTestId(AiMlService.TechnologyStack).getByTestId(Container.ContainerNumber)).toHaveText(
+		'06'
+	);
 
 	await expect(driver.getByTestId(AiMlService.OurExperts).getByTestId(Container.ContainerTitle)).toHaveText(
 		'Our experts'
 	);
-	await expect(driver.getByTestId(AiMlService.OurExperts).getByTestId(Container.ContainerNumber)).toHaveText(
-		'07'
-	);
+	await expect(driver.getByTestId(AiMlService.OurExperts).getByTestId(Container.ContainerNumber)).toHaveText('07');
 
-    await expect(driver.getByTestId(AiMlService.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
+	await expect(driver.getByTestId(AiMlService.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
 		'Related \nservices'
 	);
 	await expect(driver.getByTestId(AiMlService.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
@@ -74,7 +70,7 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 	await expect(driver.getByTestId(AiMlService.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
 	await expect(driver.getByTestId(AiMlService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
 
-    await expect(driver.getByTestId(AiMlService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
+	await expect(driver.getByTestId(AiMlService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
 		'Related articles'
 	);
 	await expect(driver.getByTestId(AiMlService.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
@@ -84,14 +80,11 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 
 test("Check statistic images in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
-    const allSectionTitles = await aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = await aiBeneficialImpactOnIndustriesContainer
+		.getByTestId(Container.SectionTitle)
+		.allInnerTexts();
 
-	const testData = [
-		'69\n%',
-		'73\n%',
-		'82\n%',
-		'$\n13\ntrillion',
-	];
+	const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
@@ -100,7 +93,7 @@ test("Check blocks and sections titles in 'Our AI & ML Development Services' con
 	const containerBlocks = await ourAiMlDevelopmentServicesContainer.getByTestId(Container.ContainerBlock).all();
 	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Overview', 'Implementation\nin the real world'];
-	
+
 	await expect(containerBlocks[0].getByTestId(Container.BlockTitle)).toHaveText('ML models');
 	expect(allSectionTitlesFirstBlock.sort()).toEqual(testData.sort());
 
@@ -108,8 +101,8 @@ test("Check blocks and sections titles in 'Our AI & ML Development Services' con
 
 	await expect(containerBlocks[1].getByTestId(Container.BlockTitle)).toHaveText('Deep learning');
 	expect(allSectionTitlesSecondBlock.sort()).toEqual(testData.sort());
-	
-	const allSectionTitlesThirdBlock = await containerBlocks[1].getByTestId(Container.SectionTitle).allInnerTexts();
+
+	const allSectionTitlesThirdBlock = await containerBlocks[2].getByTestId(Container.SectionTitle).allInnerTexts();
 
 	await expect(containerBlocks[2].getByTestId(Container.BlockTitle)).toHaveText('Computer Vision');
 	expect(allSectionTitlesThirdBlock.sort()).toEqual(testData.sort());
@@ -163,7 +156,7 @@ test("Check sections titles in 'Technology stack' container from the 'AI&ML Sevi
 		'QA',
 		'Data Visualization',
 		'CI/CD',
-		'Development\nEnvironment'
+		'Development\nEnvironment',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
@@ -171,16 +164,15 @@ test("Check sections titles in 'Technology stack' container from the 'AI&ML Sevi
 
 test("Check member names and roles in 'Our experts' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
-	const allMemberRoles = await ourExpertsContainer
-		.getByTestId(Container.MemberRole)
-		.allInnerTexts();
-	const testDataRoles = ['R&D Engineer, Software Engineering Lead,\nFinds answers for challenges related to business', 'Data Scientist,\nIdentifies actionable insights through data analysis'];
+	const allMemberRoles = await ourExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
+	const testDataRoles = [
+		'R&D Engineer, Software Engineering Lead,\nFinds answers for challenges related to business',
+		'Data Scientist,\nIdentifies actionable insights through data analysis',
+	];
 
 	expect(allMemberRoles.sort()).toEqual(testDataRoles.sort());
 
-	const allMemberNames = await ourExpertsContainer
-		.getByTestId(Container.MemberName)
-		.allInnerTexts();
+	const allMemberNames = await ourExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
 	const testDataNames = ['Yevhenii Karachevtsev', 'Oleksandr Bezrukov'];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
@@ -215,7 +207,3 @@ test("Check section titles in 'FAQ' container from the 'AI&ML Sevice' block @Reg
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });
-
-
-
-
