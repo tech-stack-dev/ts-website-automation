@@ -8,6 +8,7 @@ export default class UxUiDesign {
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static RelatedServices = 'Container-RelatedServices';
 	static Faq = 'Container-Faq';
+	static RelatedArticles = 'Container-RelatedArticles';
 
 	// Button
 	static Behance = 'Button-Behance';

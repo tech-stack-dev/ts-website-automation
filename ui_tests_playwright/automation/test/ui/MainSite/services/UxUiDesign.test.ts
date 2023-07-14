@@ -5,6 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import UxUiDesign from '../../../../identifiers/UxUiDesign';
+import Button from '../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -14,6 +15,14 @@ test("Check the header from the 'UX/UI Design' block @Regression @UxUiDesign @TS
 	const info = driver.getByTestId(UxUiDesign.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 	await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');
+});
+
+test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
+	const containers = [UxUiDesign.Info, UxUiDesign.WeNeverStopImprovingYourProduct];
+
+	for (const container of containers) {
+		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+	}
 });
 
 test("Check the container title and number from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
@@ -66,6 +75,13 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 
 	await expect(driver.getByTestId(UxUiDesign.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
 	await expect(driver.getByTestId(UxUiDesign.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
+
+	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
+		'Related \narticles'
+	);
+	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
+		'09'
+	);
 });
 
 test("Check section number and section title in 'Get Custom UX And UI Design Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
@@ -234,11 +250,11 @@ test("Check section titles in 'Related Services' container from the 'UX/UI Desig
 	const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
 	const allSectionTitles = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
-		'Mobile\ndevelopment',
+		'Mobile \ndevelopment',
 		'Consulting',
-		'Custom software\ndevelopment',
+		'Custom software \ndevelopment',
 		'AI & ML',
-		'Big Data &\nAnalytics',
+		'Big Data & \nAnalytics',
 		'IoT',
 	];
 
