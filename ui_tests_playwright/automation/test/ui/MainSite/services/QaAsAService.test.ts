@@ -5,6 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import QaAsAService from '../../../../identifiers/QaAsAService';
 import Container from '../../../../identifiers/Container';
+import Button from '../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.QaAsAServ));
@@ -14,6 +15,14 @@ test("Check the header from the 'QA as a Service' block @Regression @QaAsAServic
 	const info = driver.getByTestId(QaAsAService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nQA as a Service');
 	await expect(info.getByTestId(Container.Title)).toHaveText('QA as a Service — Vetted Experts Available on Demand');
+});
+
+test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
+	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
+
+	for (const container of containers) {
+		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+	}
 });
 
 test("Check the container title and number from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {

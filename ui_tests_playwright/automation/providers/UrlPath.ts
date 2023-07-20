@@ -1,4 +1,8 @@
 export default class UrlPath {
+	static Healthcare = 'industries/healthcare';
+	static TransportAndLogist = 'industries/transportation-and-logistics';
+	static RenewableEnergy = 'industries/renewable-energy';
+
 	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
 	static CloudAndDev = 'services/cloud-and-devops';
@@ -27,5 +31,5 @@ export default class UrlPath {
 
 	static OpenCase = 'case-studies/test-case';
 	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
-	static AuthorPage = 'blog/author/vitaliidolotov/';
+	static AuthorPage = 'blog/author/';
 }
