@@ -6,10 +6,10 @@ export default class Job {
 	static YouWillBlock = 'SectionBlock-YouWill';
 	static YouBlock = 'SectionBlock-You';
 	static WeWillBlock = 'SectionBlock-WeWill';
-    static WeBlock = 'SectionBlock-We';
+	static WeBlock = 'SectionBlock-We';
 
-    // Social media sharing
-    static FacebookShare = 'FacebookShareButton-FacebookShareButton';
-    static LinkedInShare = 'LinkedinShareButton-LinkedinShareButton';
-    static TwitterShare = 'TwitterShareButton-TwitterShareButton';
+	// Social media sharing
+	static FacebookShare = 'FacebookShareButton-FacebookShareButton';
+	static LinkedInShare = 'LinkedinShareButton-LinkedinShareButton';
+	static TwitterShare = 'TwitterShareButton-TwitterShareButton';
 }

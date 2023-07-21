@@ -5,7 +5,7 @@ import {containerSteps} from '../../steps/components/container/ContainerSteps';
 
 export default class JobsPage extends BasePage {
 	public applyJobBlock() {
-		return  this.page.locator('//div[contains(@class, "styledComponents__ApplyPropositionWrapper")]');
+		return this.page.locator('//div[contains(@class, "styledComponents__ApplyPropositionWrapper")]');
 	}
 
 	public async getDropdownByName(name: string) {

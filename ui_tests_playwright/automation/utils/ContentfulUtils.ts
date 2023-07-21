@@ -172,11 +172,7 @@ class ContentfulUtils {
 
 	descriptionFields: contentful.CreateEntryProps<contentful.KeyValueMap> = {
 		fields: {
-			aboutTheProject: {
-				'en-US': 'TypeScript test',
-				'uk-UA': 'Тайпскріпт тест',
-			},
-			aboutTheRole: {
+			aboutTheProduct: {
 				'en-US': 'TypeScript test',
 				'uk-UA': 'Тайпскріпт тест',
 			},
@@ -184,7 +180,11 @@ class ContentfulUtils {
 				'en-US': 'TypeScript test',
 				'uk-UA': 'Тайпскріпт тест',
 			},
-			youWill: {
+			ifYouThinkItsNotForYou: {
+				'en-US': 'TypeScript test',
+				'uk-UA': 'Тайпскріпт тест',
+			},
+			yourTeam: {
 				'en-US': {
 					data: {},
 					content: [
@@ -222,7 +222,7 @@ class ContentfulUtils {
 					nodeType: 'document',
 				},
 			},
-			youAre: {
+			culture: {
 				'en-US': {
 					data: {},
 					content: [
@@ -260,7 +260,7 @@ class ContentfulUtils {
 					nodeType: 'document',
 				},
 			},
-			weWill: {
+			yourResponsibilities: {
 				'en-US': {
 					data: {},
 					content: [
@@ -298,7 +298,121 @@ class ContentfulUtils {
 					nodeType: 'document',
 				},
 			},
-			weAre: {
+			itsAboutYou: {
+				'en-US': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'TypeScript test',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+				'uk-UA': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'Тайпскріпт тест',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+			},
+			whatWeHaveForYou: {
+				'en-US': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'TypeScript test',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+				'uk-UA': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'Тайпскріпт тест',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+			},
+			howToJoin: {
+				'en-US': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'TypeScript test',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+				'uk-UA': {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: 'Тайпскріпт тест',
+									nodeType: 'text',
+								},
+							],
+							nodeType: 'paragraph',
+						},
+					],
+					nodeType: 'document',
+				},
+			},
+			aboutUs: {
 				'en-US': {
 					data: {},
 					content: [

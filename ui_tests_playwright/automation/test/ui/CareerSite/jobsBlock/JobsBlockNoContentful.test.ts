@@ -10,7 +10,7 @@ import Career from '../../../../identifiers/Career';
 import Containers from '../../../../identifiers/Containers';
 import randomstring from 'randomstring';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Navigation from '../../../../identifiers/Navigation';
 
 test.beforeEach(async () => {

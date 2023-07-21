@@ -29,10 +29,17 @@ class ContentfulSteps {
 		await contentfulUtils.DeleteCareerWithDescription(careerId, careerDescriptionId);
 	}
 
-	public async deleteAndUnpublishManyCareersCareer(careerId: string, careerDescriptionId: string, countOfCareers: number) {
+	public async deleteAndUnpublishManyCareersCareer(
+		careerId: string,
+		careerDescriptionId: string,
+		countOfCareers: number
+	) {
 		const indexes = Array.from({length: countOfCareers}, (_, index) => index + 1);
 		for (const index of indexes) {
-			await contentfulUtils.UnpublishCareerWithDescription(`${careerId}${index}`, `${careerDescriptionId}${index}`);
+			await contentfulUtils.UnpublishCareerWithDescription(
+				`${careerId}${index}`,
+				`${careerDescriptionId}${index}`
+			);
 			await contentfulUtils.DeleteCareerWithDescription(`${careerId}${index}`, `${careerDescriptionId}${index}`);
 		}
 	}

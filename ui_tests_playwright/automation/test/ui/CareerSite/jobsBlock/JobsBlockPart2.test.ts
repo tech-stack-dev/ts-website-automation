@@ -30,8 +30,12 @@ test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () 
 		await careerSteps.checkSocialMediaButtonRedirect(Job.LinkedInShare, SocialMediaLinksEnum.LinkedId)
 	).toBeTruthy();
 
-	expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual('About the product:TypeScript test');
-	expect(await driver.getByTestId(Job.TechnologyStackBlock).textContent()).toEqual('Technology stack:TypeScript testTS');
+	expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual(
+		'About the product:TypeScript test'
+	);
+	expect(await driver.getByTestId(Job.TechnologyStackBlock).textContent()).toEqual(
+		'Technology stack:TypeScript testTS'
+	);
 	expect(await driver.getByTestId(Job.AboutTheRoleBlock).textContent()).toEqual('About the role:TypeScript test');
 	expect(await driver.getByTestId(Job.YouWillBlock).textContent()).toEqual('You will:TypeScript test');
 	expect(await driver.getByTestId(Job.YouBlock).textContent()).toEqual('You:TypeScript test');
@@ -53,7 +57,7 @@ test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', asyn
 		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 		12
 	);
-// wtf
+	// wtf
 	await contentfulSteps.deleteAndUnpublishManyCareersCareer(
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
 		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,

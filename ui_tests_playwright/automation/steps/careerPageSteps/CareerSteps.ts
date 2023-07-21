@@ -22,7 +22,7 @@ class CareerSteps {
 	public async verifyThatManyCareersWasCreated(
 		careerName: string,
 		countOfCareers: number,
-		searchString: string = careerName,
+		searchString: string = careerName
 	) {
 		const indexes = Array.from({length: countOfCareers}, (_, index) => index + 1);
 		for (const index of indexes) {
