@@ -1,40 +1,70 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Containers from '../../../../identifiers/Containers';
-import Link from '../../../../identifiers/Link';
-import Button from '../../../../identifiers/Button';
+import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
+import {sessionValue} from '../../../../runtimeVariables/SessionValue';
+import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
+import Job from '../../../../identifiers/Job';
+import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import Navigation from '../../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await contentfulSteps.createCareerWithDefaultValue(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
 });
 
-test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
-	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
-	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
+test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
+	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	expect(
+		await careerSteps.checkSocialMediaButtonRedirect(Job.TwitterShare, SocialMediaLinksEnum.Twitter)
+	).toBeTruthy();
+	expect(
+		await careerSteps.checkSocialMediaButtonRedirect(Job.FacebookShare, SocialMediaLinksEnum.Facebook)
+	).toBeTruthy();
+	expect(
+		await careerSteps.checkSocialMediaButtonRedirect(Job.LinkedInShare, SocialMediaLinksEnum.LinkedId)
+	).toBeTruthy();
 
-	// A footer element is created to navigate to it and make the navigation bar appear.
-	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.FooterWrapper);
-	const logoFooter = footerContainer.getByTestId(Link.Logo);
-	await logoFooter.focus();
+	expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual('About the product:TypeScript test');
+	expect(await driver.getByTestId(Job.TechnologyStackBlock).textContent()).toEqual('Technology stack:TypeScript testTS');
+	expect(await driver.getByTestId(Job.AboutTheRoleBlock).textContent()).toEqual('About the role:TypeScript test');
+	expect(await driver.getByTestId(Job.YouWillBlock).textContent()).toEqual('You will:TypeScript test');
+	expect(await driver.getByTestId(Job.YouBlock).textContent()).toEqual('You:TypeScript test');
+	expect(await driver.getByTestId(Job.WeWillBlock).textContent()).toEqual('We will:TypeScript test');
+	expect(await driver.getByTestId(Job.WeBlock).textContent()).toEqual('We:TypeScript test');
+	const applyJobText = await careerSteps.getApplyJobContent();
+	expect(applyJobText).toEqual('Would you like to be a part of our team?Apply now!');
+});
 
-	await logoHeader.waitFor({state: 'visible'});
-	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
-	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
-	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
-	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
-
-	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
-
-	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
-	await uaButtonSwitcher.click();
-	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', async () => {
+	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await contentfulSteps.createManyCareersWithDefaultValue(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
+		12
+	);
+	await careerSteps.verifyThatManyCareersWasCreated(
+		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+		12
+	);
+// wtf
+	await contentfulSteps.deleteAndUnpublishManyCareersCareer(
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
+		12
+	);
 });
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
+	await contentfulSteps.deleteAndUnpublishCareer(
+		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+	);
 });

@@ -10,6 +10,8 @@ import Career from '../../../../identifiers/Career';
 import Containers from '../../../../identifiers/Containers';
 import randomstring from 'randomstring';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
+import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import Navigation from '../../../../identifiers/Navigation';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -52,6 +54,28 @@ test('Check search field styling after search a long jobname on careers page @Re
 	await (await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).click();
 	await driver.getByTestId(Career.SarchCareerField).click();
 	await expect(driver.getByTestId(Career.SarchCareerField)).toBeFocused();
+});
+
+test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
+	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
+	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
+
+	// A footer element is created to navigate to it and make the navigation bar appear.
+	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.FooterWrapper);
+	const logoFooter = footerContainer.getByTestId(Link.Logo);
+	await logoFooter.focus();
+
+	await logoHeader.waitFor({state: 'visible'});
+	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
+	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
+	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
+	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
+
+	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
+
+	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
+	await uaButtonSwitcher.click();
+	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
 
 test.afterEach(async () => {

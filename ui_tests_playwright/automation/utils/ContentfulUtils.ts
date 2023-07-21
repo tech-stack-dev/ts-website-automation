@@ -337,7 +337,7 @@ class ContentfulUtils {
 				},
 			},
 			technologyStack: {
-				'en-US': ['TypeScript test', 'Create this via ts is challenge for me'],
+				'en-US': ['TypeScript test', 'TS'],
 			},
 			slug: {
 				'en-US': `TypeScript_test${sessionValue.stringValue}-v1`,
