@@ -8,6 +8,7 @@ import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Button from '../../../../../identifiers/Button';
 import MobileDevService from '../../../../../identifiers/MobileDevService';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
@@ -76,23 +77,23 @@ test("Check section titles and redirects by buttons in 'We never stop improving 
 	const buttonUrlMap = new Map([
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(0),
-			'https://www.linkedin.com/in/yevhenii-karachevtsev-372749236/',
+			ExpertsLinkedInLinks.YevheniiKarachevtsev,
 		],
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(1),
-			'https://www.linkedin.com/in/ivan-yeremenko-a464125a/',
+			ExpertsLinkedInLinks.IvanYeremenko,
 		],
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(2),
-			'https://www.linkedin.com/in/maria-darmanian-8349458a/',
+			ExpertsLinkedInLinks.MariaDarmanian,
 		],
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(3),
-			'https://www.linkedin.com/in/shtapauk/',
+			ExpertsLinkedInLinks.DmytroShtapauk,
 		],
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(4),
-			'https://www.linkedin.com/in/vitalii-dolotov/',
+			ExpertsLinkedInLinks.VitaliiDolotov,
 		],
 	]);
 
