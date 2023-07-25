@@ -26,65 +26,76 @@ test("Check the header from the 'Big Data & Analytics' block @Regression @BigDat
 test("Check the container title and number from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou).getByTestId(Container.ContainerTitle)
-	).toHaveText('How Big Data\nwill help you');
+	).toHaveText('How Big Data\nWill Help You');
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou).getByTestId(Container.ContainerNumber)
 	).toHaveText('01');
 
 	await expect(
-		driver.getByTestId(BigDataAndAnalytics.BigDataWithTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('Big Data\nwith Techstack');
+		driver
+			.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
+			.getByTestId(Container.ContainerTitle)
+	).toHaveText('Big Data Software Development With Techstack');
 	await expect(
-		driver.getByTestId(BigDataAndAnalytics.BigDataWithTechstack).getByTestId(Container.ContainerNumber)
+		driver
+			.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
+			.getByTestId(Container.ContainerNumber)
 	).toHaveText('02');
 
 	await expect(
-		driver.getByTestId(BigDataAndAnalytics.BigDataTechnologyStack).getByTestId(Container.ContainerTitle)
-	).toHaveText('Big Data\ntechnology stack');
+		driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack).getByTestId(Container.ContainerTitle)
+	).toHaveText('Big Data Solutions\nTechnology Stack');
 	await expect(
-		driver.getByTestId(BigDataAndAnalytics.BigDataTechnologyStack).getByTestId(Container.ContainerNumber)
+		driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack).getByTestId(Container.ContainerNumber)
 	).toHaveText('03');
 
-	await expect(driver.getByTestId(BigDataAndAnalytics.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Case studies'
-	);
-	await expect(driver.getByTestId(BigDataAndAnalytics.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText(
-		'04'
-	);
+	await expect(
+		driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies).getByTestId(Container.ContainerTitle)
+	).toHaveText('Big Data Case Studies');
+	await expect(
+		driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies).getByTestId(Container.ContainerNumber)
+	).toHaveText('04');
+
+	await expect(
+		driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions).getByTestId(Container.ContainerTitle)
+	).toHaveText('Industry-specific Big Data Solutions');
+	await expect(
+		driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions).getByTestId(Container.ContainerNumber)
+	).toHaveText('05');
 
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Why choose\nTechstack’s\nBig Data\nservices?');
+	).toHaveText('Why Choose Techstack’s Big Data Software Development Services?');
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
+	).toHaveText('06');
 
 	await expect(driver.getByTestId(BigDataAndAnalytics.OurExperts).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our experts'
+		'Our Experts'
 	);
 	await expect(driver.getByTestId(BigDataAndAnalytics.OurExperts).getByTestId(Container.ContainerNumber)).toHaveText(
-		'06'
+		'07'
 	);
 
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.RelatedServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related services');
+	).toHaveText('Related Services');
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.RelatedServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
+	).toHaveText('08');
 
 	await expect(driver.getByTestId(BigDataAndAnalytics.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(BigDataAndAnalytics.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
+	await expect(driver.getByTestId(BigDataAndAnalytics.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
 
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.RelatedArticles).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related\narticles');
+	).toHaveText('Related\nArticles');
 	await expect(
 		driver.getByTestId(BigDataAndAnalytics.RelatedArticles).getByTestId(Container.ContainerNumber)
-	).toHaveText('09');
+	).toHaveText('10');
 });
 
-test("Check section number and section title in 'How Big Data will help you' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check section number and section title in 'How Big Data Will Help You' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const howBigDataWillHelpYouContainer = driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou);
 	const allSectionTitles = await howBigDataWillHelpYouContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Monetize data', 'Personalize experiences', 'Improve efficiency', 'Evaluate opportunities'];
@@ -98,8 +109,10 @@ test("Check section number and section title in 'How Big Data will help you' con
 	]);
 });
 
-test("Check section title in 'Big Data with Techstack' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
-	const bigDataWithTechstackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataWithTechstack);
+test("Check section title in 'Big Data Software Development With Techstack' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+	const bigDataWithTechstackContainer = driver.getByTestId(
+		BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack
+	);
 	const allSectionTitles = await bigDataWithTechstackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'Data infrastructure\nand engineering',
@@ -108,14 +121,14 @@ test("Check section title in 'Big Data with Techstack' container from the 'Big D
 		'Task\nAutomation',
 		'Data\nvisualization',
 		'Analytics\nintegration',
-		'Consulting',
+		'Consulting Services',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section title in 'Big Data technology stack' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
-	const bigDataTechnologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataTechnologyStack);
+test("Check section title in 'Big Data Solutions Technology Stack' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+	const bigDataTechnologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
 	const allSectionTitles = await bigDataTechnologyStackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'Computer vision',
@@ -130,7 +143,7 @@ test("Check section title in 'Big Data technology stack' container from the 'Big
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section title and award cards in 'Why choose Techstack’s Big Data services?' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check section title and award cards in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const whyChooseTechstackBigDataServicesContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
@@ -153,7 +166,7 @@ test("Check section title and award cards in 'Why choose Techstack’s Big Data 
 	}
 });
 
-test("Check redirect to clutch in 'Why choose Techstack’s Big Data services?' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const whyChooseTechstackBigDataServicesContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
@@ -166,7 +179,7 @@ test("Check redirect to clutch in 'Why choose Techstack’s Big Data services?' 
 	await newPage.close();
 });
 
-test("Check member names and roles in 'Our experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check member names and roles in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const allMemberRoles = await ourExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
 	const testDataRoles = [
@@ -189,7 +202,7 @@ test("Check member names and roles in 'Our experts' container from the 'Big Data
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
-test("Check redirects by buttons in 'Our experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
 		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],

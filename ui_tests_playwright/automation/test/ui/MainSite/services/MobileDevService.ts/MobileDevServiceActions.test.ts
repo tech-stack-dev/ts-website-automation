@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 });
 
 test("Check redirects by buttons in 'Our approach' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
-	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
+	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
 	const clutchButtons = await ourApproachContainer.getByTestId(Button.Clutch).all();
 
 	const buttonMap = new Map([

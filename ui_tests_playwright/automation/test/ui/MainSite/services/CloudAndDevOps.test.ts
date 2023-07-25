@@ -66,7 +66,7 @@ test("Check the container title and number from the 'Cloud & DevOps' block @Regr
 	).toHaveText('06');
 
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nservices'
+		'Related \nServices'
 	);
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
 		'07'
@@ -76,7 +76,7 @@ test("Check the container title and number from the 'Cloud & DevOps' block @Regr
 	await expect(driver.getByTestId(CloudAndDevOps.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
 
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \narticles'
+		'Related Articles'
 	);
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
 		'09'
