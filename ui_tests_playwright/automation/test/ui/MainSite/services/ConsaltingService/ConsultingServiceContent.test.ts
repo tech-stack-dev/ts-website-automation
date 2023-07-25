@@ -96,7 +96,7 @@ test("Check the container title and number from the 'Consulting Service' block @
 
 	await expect(
 		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related \nservices');
+	).toHaveText('Related \nServices');
 	await expect(
 		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(Container.ContainerNumber)
 	).toHaveText('09');
@@ -106,7 +106,7 @@ test("Check the container title and number from the 'Consulting Service' block @
 
 	await expect(
 		driver.getByTestId(ConsultingService.RelatedArticles).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related articles');
+	).toHaveText('Related Articles');
 	await expect(
 		driver.getByTestId(ConsultingService.RelatedArticles).getByTestId(Container.ContainerNumber)
 	).toHaveText('11');
