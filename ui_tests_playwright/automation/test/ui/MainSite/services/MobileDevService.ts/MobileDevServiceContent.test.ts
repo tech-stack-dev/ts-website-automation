@@ -85,8 +85,7 @@ test("Check the container titles and numbers from the 'Mobile App Development Se
 	).toHaveText('08');
 
 	await expect(
-		// remove first() after solving the problem with two data-id="ContainerTitle" in headers in 09 block
-		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(Container.ContainerTitle).first()
+		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(Container.ContainerTitle)
 	).toHaveText('The Cost of Mobile\nApp Development');
 	await expect(
 		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(Container.ContainerNumber)
