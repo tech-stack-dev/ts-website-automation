@@ -162,7 +162,7 @@ test("Check section titles and images in 'Our Approach to Mobile App Development
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	// Fix checks of these elements in scope of TSWEB-897
+	// should be fixed and uncommented as a part of @TSWEB-897
 
 	/* const imageCards = ourApproachContainer.getByTestId(Container.BlockSection);
 	const imageCardsData = [
