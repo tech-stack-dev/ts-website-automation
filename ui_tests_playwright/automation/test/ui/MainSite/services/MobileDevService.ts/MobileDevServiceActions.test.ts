@@ -9,18 +9,19 @@ import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Button from '../../../../../identifiers/Button';
 import MobileDevService from '../../../../../identifiers/MobileDevService';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
 });
 
-test("Check redirects by buttons in 'Our approach' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test("Check redirects by buttons in 'Our Approach to Mobile App Development Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
 	const clutchButtons = await ourApproachContainer.getByTestId(Button.Clutch).all();
 
 	const buttonMap = new Map([
-		[clutchButtons[0], 'https://clutch.co/profile/techstack#review-1820220'],
-		[clutchButtons[1], 'https://clutch.co/profile/techstack#review-1939515'],
+		[clutchButtons[0], ClutchReviewLinks.AnonymousPeerToPeer],
+		[clutchButtons[1], ClutchReviewLinks.AnonymousMedicalDevice],
 	]);
 
 	for (const [button, url] of buttonMap) {
@@ -63,7 +64,7 @@ test("Check carousel sections and arrows in 'Mobile App Development Process' con
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 });
 
-test("Check section titles and redirects by buttons in 'We never stop improving your product' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test("Check section titles and redirects by buttons in 'We Never Stop Improving Your Product' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(
 		MobileDevService.WeNeverStopImprovingYourProduct
 	);
