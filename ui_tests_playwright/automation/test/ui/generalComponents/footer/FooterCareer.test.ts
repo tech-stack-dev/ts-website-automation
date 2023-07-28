@@ -18,6 +18,7 @@ const testDataProvider = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	// should be fixed after adding data-id
 	await driver.locator('//div[@id="btn-accept-container"]').click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
