@@ -115,12 +115,12 @@ test("Check section title in 'Big Data Software Development With Techstack' cont
 	);
 	const allSectionTitles = await bigDataWithTechstackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
-		'Data infrastructure\nand engineering',
-		'Real-time\ndata analytics',
-		'Predictive\nanalytics',
-		'Task\nAutomation',
-		'Data\nvisualization',
-		'Analytics\nintegration',
+		'Data infrastructure and engineering',
+		'Real-time data analytics',
+		'Predictive analytics',
+		'Task Automation',
+		'Data visualization',
+		'Analytics integration',
 		'Consulting Services',
 	];
 
