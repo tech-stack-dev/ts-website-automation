@@ -17,7 +17,8 @@ const testDataProvider = [
 ];
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await driver.locator('//div[@id="btn-accept-container"]').click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
@@ -93,8 +94,6 @@ for (const url of testDataProvider) {
 			[Footer.Instagram, 'https://www.instagram.com'],
 		]);
 
-		await baseDriverSteps.goToUrl(url);
-
 		for (const entries of linkMap.entries()) {
 			const [newPage] = await Promise.all([
 				driver.DriverContext.waitForEvent('page'),
@@ -118,7 +117,6 @@ for (const url of testDataProvider) {
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
 			[Link.Logo, UrlProvider.careerUrl()],
 		]);
-
 		for (const entries of linkMap.entries()) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(entries[0]).click();
