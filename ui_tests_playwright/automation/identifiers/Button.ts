@@ -50,4 +50,7 @@ export default class Button {
 	static Linkedin = 'Button-LinekedIn';
 	static Blog = 'Button-Blog';
 	static Clutch = 'Button-Clutch';
+
+	// Cookies message
+	static AcceptCookies = 'Button-AcceptCookie';
 }
