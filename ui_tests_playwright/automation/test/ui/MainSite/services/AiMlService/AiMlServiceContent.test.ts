@@ -56,12 +56,12 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 	);
 
 	await expect(driver.getByTestId(AiMlService.OurExperts).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our experts'
+		'Our Experts'
 	);
 	await expect(driver.getByTestId(AiMlService.OurExperts).getByTestId(Container.ContainerNumber)).toHaveText('07');
 
 	await expect(driver.getByTestId(AiMlService.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nservices'
+		'Related Services'
 	);
 	await expect(driver.getByTestId(AiMlService.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
 		'08'
@@ -71,7 +71,7 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 	await expect(driver.getByTestId(AiMlService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
 
 	await expect(driver.getByTestId(AiMlService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related articles'
+		'Related Articles'
 	);
 	await expect(driver.getByTestId(AiMlService.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
 		'10'
