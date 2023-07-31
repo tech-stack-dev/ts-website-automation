@@ -8,7 +8,7 @@ import AiMlService from '../../../../../identifiers/AiMlService';
 import Button from '../../../../../identifiers/Button';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -87,18 +87,12 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 test("Check buttons in 'Our Experts' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
-		[
-			ourExpertsContainer.getByTestId(Button.Linkedin).nth(0),
-			ExpertsLinkedInLinks.YevheniiKarachevtsev,
-		],
+		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
-		[
-			ourExpertsContainer.getByTestId(Button.Linkedin).nth(1),
-			ExpertsLinkedInLinks.OleksandrBezrukov,
-		],
+		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.OleksandrBezrukov],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,
