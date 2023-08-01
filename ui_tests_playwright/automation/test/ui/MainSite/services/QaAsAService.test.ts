@@ -68,7 +68,7 @@ test("Check the container title and number from the 'QA as a Service' block @Reg
 	await expect(driver.getByTestId(QaAsAService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('07');
 
 	await expect(driver.getByTestId(QaAsAService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related articles'
+		'Related Articles'
 	);
 	await expect(driver.getByTestId(QaAsAService.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
 		'08'

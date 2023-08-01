@@ -60,13 +60,13 @@ test("Check the container title and number from the 'Cloud & DevOps' block @Regr
 
 	await expect(
 		driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Cloud / \nDevOps experts');
+	).toHaveText('Our Leading Cloud Experts');
 	await expect(
 		driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts).getByTestId(Container.ContainerNumber)
 	).toHaveText('06');
 
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nservices'
+		'Related \nServices'
 	);
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
 		'07'
@@ -76,7 +76,7 @@ test("Check the container title and number from the 'Cloud & DevOps' block @Regr
 	await expect(driver.getByTestId(CloudAndDevOps.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
 
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \narticles'
+		'Related Articles'
 	);
 	await expect(driver.getByTestId(CloudAndDevOps.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
 		'09'
@@ -255,7 +255,7 @@ test("Check section titles in 'FAQ' container from the 'Cloud & DevOps' block @R
 	const testData = [
 		'How do I develop a cloud\nstrategy?',
 		'What do I need to do to\nprepare for the cloud?',
-		'How can I ensure the cloud is\nsecure?',
+		'How can I ensure the cloud is secure?',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
