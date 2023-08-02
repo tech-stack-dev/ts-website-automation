@@ -9,7 +9,7 @@ export default class UrlPath {
 	static BigData = 'services/big-data-and-analytics';
 	static AiMl = 'services/artificial-intelligence';
 	static InternetOfThings = 'services/internet-of-things';
-	static MobileDev = 'services/mobile-development';
+	static MobileDev = 'services/mobile-app-development';
 	static UiUxDesign = 'services/ui-ux-design';
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';

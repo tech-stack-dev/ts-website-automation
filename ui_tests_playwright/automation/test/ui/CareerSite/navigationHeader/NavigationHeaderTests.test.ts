@@ -5,7 +5,6 @@ import ContainerByClass from '../../../../components/container/ContainerByClass'
 import Containers from '../../../../identifiers/Containers';
 import Button from '../../../../identifiers/Button';
 import UrlPath from '../../../../providers/UrlPath';
-import {Environment} from '../../../../providers/EnvProvider';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Blog from '../../../../identifiers/Blog';
@@ -37,8 +36,10 @@ test('Check that the "Stand with Ukraine" block with localization @Regression @S
 	await expect(SWUFrame.getByTestId(Button.LearnMoreButton2)).toHaveText('Ознайомитися');
 
 	await SWUFrame.getByTestId(Button.LearnMoreButton2).click();
-	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine, Environment.Production));
-	await expect(driver.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText('Techstack Stands with Ukraine');
+
+	const newPage = await driver.DriverContext.waitForEvent('page');
+	await expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
+	await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText('Techstack Stands with Ukraine');
 });
 
 test.afterEach(async () => {
