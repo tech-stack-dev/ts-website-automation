@@ -29,7 +29,8 @@ const testDataProvider: string[] = [
 	.concat(Object.values(industryUrl));
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
+	await driver.getByTestId(Button.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
