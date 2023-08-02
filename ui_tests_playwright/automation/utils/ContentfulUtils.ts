@@ -60,9 +60,9 @@ class ContentfulUtils {
 	//#endregion
 
 	//#region EntriesInteractions
-	async CreateAndPublishCareerDescription(descriptionId: string, attempts = 3): Promise<void> {
+	async CreateAndPublishCareerDescription(descriptionId: string, index = 1, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
-		await environment.createEntryWithId('careerDescription', descriptionId, this.descriptionFields);
+		await environment.createEntryWithId('careerDescription', descriptionId, this.getDescriptionBody(index));
 		await this.publishEntryWithRetry(environment, descriptionId, attempts);
 	}
 
@@ -169,6 +169,297 @@ class ContentfulUtils {
 			tags: this.tagJson,
 		},
 	};
+
+	private getDescriptionBody(index: number) {
+		return {
+			fields: {
+				aboutTheProduct: {
+					'en-US': `TypeScript test_${index}`,
+					'uk-UA': 'Тайпскріпт тест',
+				},
+				title: {
+					'en-US': `TypeScript test_${index}`,
+					'uk-UA': 'Тайпскріпт тест',
+				},
+				ifYouThinkItsNotForYou: {
+					'en-US': `TypeScript test_${index}`,
+					'uk-UA': 'Тайпскріпт тест',
+				},
+				yourTeam: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				culture: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `Тайпскріпт тест_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				yourResponsibilities: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'TypeScript test',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				itsAboutYou: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				whatWeHaveForYou: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				howToJoin: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				aboutUs: {
+					'en-US': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: `TypeScript test_${index}`,
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+					'uk-UA': {
+						data: {},
+						content: [
+							{
+								data: {},
+								content: [
+									{
+										data: {},
+										marks: [],
+										value: 'Тайпскріпт тест',
+										nodeType: 'text',
+									},
+								],
+								nodeType: 'paragraph',
+							},
+						],
+						nodeType: 'document',
+					},
+				},
+				technologyStack: {
+					'en-US': [`TypeScript test_${index}`, 'TS'],
+				},
+				slug: {
+					'en-US': `TypeScript_test_${index}_${sessionValue.stringValue}-v1`,
+				},
+			},
+		};
+	}
 
 	descriptionFields: contentful.CreateEntryProps<contentful.KeyValueMap> = {
 		fields: {

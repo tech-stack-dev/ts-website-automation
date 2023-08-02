@@ -14,8 +14,7 @@ class ContentfulSteps {
 	) {
 		const indexes = Array.from({length: countOfCareers}, (_, index) => index + 1);
 		for (const index of indexes) {
-			const asd = careerDescriptionId.slice(0, -1) + '1';
-			await contentfulUtils.CreateAndPublishCareerDescription(asd);
+			await contentfulUtils.CreateAndPublishCareerDescription(`${careerDescriptionId}${index}`, index);
 			await contentfulUtils.CreateAndPublishCareer(
 				`${careerId}${index}`,
 				`${careerName}${index}`,

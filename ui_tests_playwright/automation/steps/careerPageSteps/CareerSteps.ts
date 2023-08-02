@@ -29,7 +29,7 @@ class CareerSteps {
 			await driver.executeFunc(async () => {
 				await driver.Page.reload();
 				await driver.getByTestId(Career.SarchCareerField).clear();
-				await driver.getByTestId(Career.SarchCareerField).fill(searchString);
+				await driver.getByTestId(Career.SarchCareerField).fill(`${searchString}${index}`);
 				await driver.getByTestId(Career.SearchButton).click();
 				await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}${index}`).waitFor();
 			}, 5);
@@ -55,6 +55,14 @@ class CareerSteps {
 		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click();
 	}
 
+	public async getPaginationNumberButton(pageNumber: number) {
+		return driver.getByTestId(Button.paginationNumberButton(pageNumber));
+	}
+
+	public async getPaginationNavigationArrowButton(direction: 'Next' | 'Prev') {
+		return driver.getByTestId(Button.paginationNavigatinArrowButton(direction));
+	}
+
 	public async getBreadcrumbsText() {
 		const breadcrumbs = await driver.component(ContainerByClass, Career.BreadcrumbsInCareer);
 		return breadcrumbs.textContent();
@@ -76,9 +84,13 @@ class CareerSteps {
 		socialMediaShareIdentifier: string,
 		socialMedia: SocialMediaLinksEnum
 	): Promise<boolean> {
-		await driver.getByTestId(socialMediaShareIdentifier).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
+		const [newPage] = await Promise.all([
+			driver.DriverContext.waitForEvent('page'),
+			await driver.getByTestId(socialMediaShareIdentifier).click(),
+		]);
+		await newPage.waitForLoadState('domcontentloaded');
 		const openedUrl = newPage.url();
+		await newPage.close();
 		return openedUrl.includes(socialMedia);
 	}
 

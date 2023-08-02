@@ -50,4 +50,12 @@ export default class Button {
 	static Linkedin = 'Button-LinekedIn';
 	static Blog = 'Button-Blog';
 	static Clutch = 'Button-Clutch';
+
+	// Pagination
+	static paginationNumberButton(pageNumber: number) {
+		return `PageNumberButton-Page${pageNumber}Button`;
+	}
+	static paginationNavigatinArrowButton(navigation: 'Next' | 'Prev') {
+		return `Pagination${navigation}Button-${navigation}Button`;
+	}
 }

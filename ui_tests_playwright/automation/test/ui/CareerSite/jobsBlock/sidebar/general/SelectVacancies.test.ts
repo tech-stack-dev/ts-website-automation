@@ -15,6 +15,7 @@ import Tag from '../../../../../../identifiers/Tag';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/Career';
+import { locatorUtils } from '../../../../../../utils/LocatorUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -32,7 +33,7 @@ const testDataProvider = [
 ];
 
 for (const testData of testDataProvider) {
-	test.skip(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
 		contentfulUtils.AddTagsToCareerBody(testData.createTag);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -58,11 +59,7 @@ for (const testData of testDataProvider) {
 		await filterTag.click();
 		await driver.executeFunc(async () => {
 			await expect(filterTag).toHaveClass(/active-tag/);
-			expect(
-				await filterTag.evaluate(async (el) => {
-					return getComputedStyle(el).backgroundColor;
-				})
-			).toBe(ColorsEnum.OrangeYellow);
+			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
 		}, 5);
 		await expect(activeTag).toHaveClass(/active-tag/);
 		expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorsEnum.OrangeYellow);

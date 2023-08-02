@@ -7,68 +7,100 @@ import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 import Job from '../../../../identifiers/Job';
 import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
+import {ColorsEnum} from '../../../../enum/ColorsEnum';
+import {locatorUtils} from '../../../../utils/LocatorUtils';
 
-test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await contentfulSteps.createCareerWithDefaultValue(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
+test.describe('With one precondition vacancy', () => {
+	test.beforeEach(async () => {
+		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+		await contentfulSteps.createCareerWithDefaultValue(
+			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
+	});
+
+	test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
+		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+		const twitter = await careerSteps.checkSocialMediaButtonRedirect(
+			Job.TwitterShare,
+			SocialMediaLinksEnum.Twitter
+		);
+		const facebook = await careerSteps.checkSocialMediaButtonRedirect(
+			Job.FacebookShare,
+			SocialMediaLinksEnum.Facebook
+		);
+		const linked = await careerSteps.checkSocialMediaButtonRedirect(
+			Job.LinkedInShare,
+			SocialMediaLinksEnum.LinkedId
+		);
+		expect(twitter).toBeTruthy();
+		expect(facebook).toBeTruthy();
+		expect(linked).toBeTruthy();
+		expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual(
+			'About the productIntroTypeScript test'
+		);
+		expect(await driver.getByTestId(Job.YourTeam).textContent()).toEqual('Your teamTypeScript test');
+		expect(await driver.getByTestId(Job.Culture).textContent()).toEqual('CultureTypeScript test');
+		expect(await driver.getByTestId(Job.YourResponsibilities).textContent()).toEqual(
+			'Your responsibilitiesTypeScript test'
+		);
+		expect(await driver.getByTestId(Job.ItsAboutYou).textContent()).toEqual("It's about youTypeScript test");
+		expect(await driver.getByTestId(Job.WhatWeHaveForYou).textContent()).toEqual(
+			'What we have\nfor youTypeScript test'
+		);
+		expect(await driver.getByTestId(Job.HowToJoinTechstack).textContent()).toEqual(
+			'How to join\nTechstackTypeScript test'
+		);
+		expect(await driver.getByTestId(Job.AboutUs).textContent()).toEqual('About usTypeScript test');
+		const applyJobText = await careerSteps.getApplyJobContent();
+		expect(applyJobText).toEqual("Want to make an impact?You're in the right place. Apply for a position!");
+	});
+
+	test.afterEach(async () => {
+		await driver.closeDrivers();
+		await contentfulSteps.deleteAndUnpublishCareer(
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
+	});
 });
 
-test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
-	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	expect(
-		await careerSteps.checkSocialMediaButtonRedirect(Job.TwitterShare, SocialMediaLinksEnum.Twitter)
-	).toBeTruthy();
-	expect(
-		await careerSteps.checkSocialMediaButtonRedirect(Job.FacebookShare, SocialMediaLinksEnum.Facebook)
-	).toBeTruthy();
-	expect(
-		await careerSteps.checkSocialMediaButtonRedirect(Job.LinkedInShare, SocialMediaLinksEnum.LinkedId)
-	).toBeTruthy();
+test.describe('with many precondition vacancy', () => {
+	test.beforeEach(async () => {
+		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+		await contentfulSteps.createManyCareersWithDefaultValue(
+			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
+			12
+		);
+		await careerSteps.verifyThatManyCareersWasCreated(
+			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+			12
+		);
+	});
 
-	expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual(
-		'About the product:TypeScript test'
-	);
-	expect(await driver.getByTestId(Job.TechnologyStackBlock).textContent()).toEqual(
-		'Technology stack:TypeScript testTS'
-	);
-	expect(await driver.getByTestId(Job.AboutTheRoleBlock).textContent()).toEqual('About the role:TypeScript test');
-	expect(await driver.getByTestId(Job.YouWillBlock).textContent()).toEqual('You will:TypeScript test');
-	expect(await driver.getByTestId(Job.YouBlock).textContent()).toEqual('You:TypeScript test');
-	expect(await driver.getByTestId(Job.WeWillBlock).textContent()).toEqual('We will:TypeScript test');
-	expect(await driver.getByTestId(Job.WeBlock).textContent()).toEqual('We:TypeScript test');
-	const applyJobText = await careerSteps.getApplyJobContent();
-	expect(applyJobText).toEqual('Would you like to be a part of our team?Apply now!');
-});
+	test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', async () => {
+		await baseDriverSteps.goToUrl(UrlProvider.careerUrl())
+		const nextButton = await careerSteps.getPaginationNavigationArrowButton('Next');
+		expect(await nextButton.isVisible()).toBeTruthy();
+		const firstPageButton = await careerSteps.getPaginationNumberButton(1);
+		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		await nextButton.click();
+		const secondPageButton = await careerSteps.getPaginationNumberButton(2);
+		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		const prevButton = await careerSteps.getPaginationNavigationArrowButton('Prev');
+		expect(await prevButton.isVisible()).toBeTruthy();
+	});
 
-test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', async () => {
-	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	await contentfulSteps.createManyCareersWithDefaultValue(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
-		12
-	);
-	await careerSteps.verifyThatManyCareersWasCreated(
-		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-		12
-	);
-	// wtf
-	await contentfulSteps.deleteAndUnpublishManyCareersCareer(
-		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
-		12
-	);
-});
-
-test.afterEach(async () => {
-	await driver.closeDrivers();
-	await contentfulSteps.deleteAndUnpublishCareer(
-		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-		`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
-	);
+	test.afterEach(async () => {
+		await driver.closeDrivers();
+		await contentfulSteps.deleteAndUnpublishManyCareersCareer(
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`,
+			12
+		);
+	});
 });
