@@ -1,5 +1,4 @@
 import {Locator} from '@playwright/test';
-import Colors from '../preconditionsData/Colors';
 import { ColorsEnum } from '../enum/ColorsEnum';
 
 class LocatorUtils {
