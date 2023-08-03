@@ -6,6 +6,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/AiMlService';
 import Button from '../../../../../identifiers/Button';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -173,7 +174,7 @@ test("Check member names and roles in 'Our experts' container from the 'AI&ML Se
 	expect(allMemberRoles.sort()).toEqual(testDataRoles.sort());
 
 	const allMemberNames = await ourExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
-	const testDataNames = ['Yevhenii Karachevtsev', 'Oleksandr Bezrukov'];
+	const testDataNames = [ExpertNames.YevheniiKarachevtsev, ExpertNames.OleksandrBezrukov];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
