@@ -1,42 +1,44 @@
-import { Locator, expect, test, Request } from '@playwright/test';
+import {Locator, expect, test, Request} from '@playwright/test';
 
-
-import { driver } from '../../base/driver/Driver';
-import { slackSteps } from './SlackSteps';
-import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import {driver} from '../../base/driver/Driver';
+import {slackSteps} from './SlackSteps';
+import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
+import {promisify} from 'util';
 
 class GoogleAnalyticsSteps {
-    public async checkGoogleAnalytics(element: Locator, event: string, method: string, testName: string) {
-        try {
-            const clickPromise = element.click();
-            const timeoutPromise = new Promise((_, reject) => {
-                setTimeout(() => {
-                    reject(new Error("Timeout exception"));
-                }, 5000);
-            });
+	public async checkGoogleAnalytics(
+		element: Locator,
+		event: string,
+		method: string,
+		testName: string
+	): Promise<void> {
+		const wait = promisify(setTimeout);
+		const result = await Promise.race([
+			element.click(),
+			driver.Page.waitForRequest(
+				(request: Request) => request.url().includes(event) && request.method() === method
+			),
+			wait(10000),
+		]);
+		const test1 = async () => {
+			await slackSteps.postMessageInSlackChannel(
+				slackDtoVariable.value.tsGoogleAnalyticsId,
+				`Test: ${testName}\nEvent: ${event}\nMethod: ${method}\n`
+			);
+		};
+		if (!result) {
+			await test1();
+			return;
+		}
+		const request = result as Request;
+		const url = request.url();
 
-            const racePromise = Promise.race([
-                driver.Page.waitForRequest((request: Request) =>
-                    request.url().includes(event) &&
-                    request.method() === method
-                ),
-                timeoutPromise
-            ]);
-
-            const result = await Promise.race([racePromise, clickPromise]);
-
-            if (result === timeoutPromise) {
-                console.warn("Timeout exception");
-            } else {
-                const request = result as Request;
-                expect(request.url()).toContain('https://www.google-analytics.com');
-                expect(request.url()).toContain(event);
-            }
-        } catch (error) {
-            await slackSteps.postMessageInSlackChannel(slackDtoVariable.value.tsGoogleAnalyticsId, `Test: ${testName}\nEvent: ${event}\nMethod: ${method}\n`);
-        }
-    }
+		if (!url.includes('https://www.google-analytics.com') || !url.includes(event)) {
+			await test1();
+			return;
+		}
+	}
 }
 
 const googleAnalyticsSteps = new GoogleAnalyticsSteps();
-export { googleAnalyticsSteps };
+export {googleAnalyticsSteps};

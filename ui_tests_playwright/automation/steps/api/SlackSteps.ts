@@ -60,10 +60,10 @@ class SlackSteps {
 		expect(fields?.find((x) => x.title === 'Message')?.value).toBe(expectedMessage.message);
 	}
 
-	public async postMessageInSlackChannel(chatId: string, value: string){
+	public async postMessageInSlackChannel(chatId: string, value: string) {
 		const webClient = new WebClient(slackDtoVariable.value.token);
-		let response = (await webClient.chat.postMessage({channel: chatId, text: value}));
-		
+		const response = await webClient.chat.postMessage({channel: chatId, text: value});
+
 		expect(response.ok).toBe(true);
 	}
 }
