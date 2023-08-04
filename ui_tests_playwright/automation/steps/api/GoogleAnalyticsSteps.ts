@@ -1,5 +1,4 @@
-import {Locator, expect, test, Request} from '@playwright/test';
-
+import {Locator, Request} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
 import {slackSteps} from './SlackSteps';
 import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
