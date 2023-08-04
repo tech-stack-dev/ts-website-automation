@@ -20,21 +20,21 @@ class GoogleAnalyticsSteps {
 			),
 			wait(10000),
 		]);
-		const test1 = async () => {
+		const postMessage = async () => {
 			await slackSteps.postMessageInSlackChannel(
 				slackDtoVariable.value.tsGoogleAnalyticsId,
 				`Test: ${testName}\nEvent: ${event}\nMethod: ${method}\n`
 			);
 		};
 		if (!result) {
-			await test1();
+			await postMessage();
 			return;
 		}
 		const request = result as Request;
 		const url = request.url();
 
 		if (!url.includes('https://www.google-analytics.com') || !url.includes(event)) {
-			await test1();
+			await postMessage();
 			return;
 		}
 	}
