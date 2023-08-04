@@ -9,6 +9,7 @@ import Button from '../../../../../identifiers/Button';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -81,7 +82,7 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 
 	await ourApproachContainer.getByTestId(Button.Clutch).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain('https://clutch.co/profile/techstack#review-1961618');
+	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
 });
 
 test("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {

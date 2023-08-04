@@ -9,6 +9,8 @@ export default class Footer {
 	static TermsOfUse = 'Button-TermsOfUses';
 	static CookiesPolicy = 'Button-CookiesPolicy';
 	static LinkedIn = 'Button-LinkedIn';
+	static Sitemap = 'Button-Sitemap';
+
 	static Facebook = 'Button-Facebook';
 	static Instagram = 'Button-Instagram';
 	static Behance = 'Button-Behance';

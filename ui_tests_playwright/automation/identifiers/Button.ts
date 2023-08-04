@@ -55,6 +55,6 @@ export default class Button {
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-McKinsey';
 
-	// Cookies message
+	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';
 }
