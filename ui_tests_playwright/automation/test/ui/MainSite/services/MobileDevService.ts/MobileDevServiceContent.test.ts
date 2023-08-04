@@ -20,7 +20,7 @@ test("Check the header from the 'Mobile App Development Service' block @Regressi
 test("Check 'Request a Quote' buttons on the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const containers = [
 		MobileDevService.Info,
-		MobileDevService.TechnologyStack,
+		MobileDevService.MobileApplicationDevTechStack,
 		MobileDevService.WeNeverStopImprovingYourProduct,
 	];
 
@@ -31,71 +31,85 @@ test("Check 'Request a Quote' buttons on the 'Mobile App Development Service' bl
 
 test("Check the container titles and numbers from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	await expect(driver.getByTestId(MobileDevService.WhatYouGet).getByTestId(Container.ContainerTitle)).toHaveText(
-		'What you get'
+		'What You Get'
 	);
 	await expect(driver.getByTestId(MobileDevService.WhatYouGet).getByTestId(Container.ContainerNumber)).toHaveText(
 		'01'
 	);
 
 	await expect(driver.getByTestId(MobileDevService.WhatWeDo).getByTestId(Container.ContainerTitle)).toHaveText(
-		'What we do'
+		'What We Do'
 	);
 	await expect(driver.getByTestId(MobileDevService.WhatWeDo).getByTestId(Container.ContainerNumber)).toHaveText('02');
 
-	await expect(driver.getByTestId(MobileDevService.TechnologyStack).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Technology Stack'
-	);
 	await expect(
-		driver.getByTestId(MobileDevService.TechnologyStack).getByTestId(Container.ContainerNumber)
+		driver.getByTestId(MobileDevService.MobileApplicationDevTechStack).getByTestId(Container.ContainerTitle)
+	).toHaveText('Mobile Application\nDevelopment\nTechnology Stack');
+	await expect(
+		driver.getByTestId(MobileDevService.MobileApplicationDevTechStack).getByTestId(Container.ContainerNumber)
 	).toHaveText('03');
 
-	await expect(driver.getByTestId(MobileDevService.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Case studies: mobile app development'
-	);
-	await expect(driver.getByTestId(MobileDevService.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText(
-		'04'
-	);
+	await expect(
+		driver.getByTestId(MobileDevService.IndustrySpecificSolution).getByTestId(Container.ContainerTitle)
+	).toHaveText('Industry-Specific Solution');
+	await expect(
+		driver.getByTestId(MobileDevService.IndustrySpecificSolution).getByTestId(Container.ContainerNumber)
+	).toHaveText('04');
 
-	await expect(driver.getByTestId(MobileDevService.OurApproach).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our approach'
-	);
-	await expect(driver.getByTestId(MobileDevService.OurApproach).getByTestId(Container.ContainerNumber)).toHaveText(
-		'05'
-	);
+	await expect(
+		driver.getByTestId(MobileDevService.WhatIndustriesWeServe).getByTestId(Container.ContainerTitle)
+	).toHaveText('What Industries\nWe Serve');
+	await expect(
+		driver.getByTestId(MobileDevService.WhatIndustriesWeServe).getByTestId(Container.ContainerNumber)
+	).toHaveText('05');
+
+	await expect(
+		driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices).getByTestId(Container.ContainerTitle)
+	).toHaveText('Our Approach\nto Mobile App\nDevelopment\nServices');
+	await expect(
+		driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices).getByTestId(Container.ContainerNumber)
+	).toHaveText('06');
 
 	await expect(
 		driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess).getByTestId(Container.ContainerTitle)
 	).toHaveText('Mobile App Development Process');
 	await expect(
 		driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
+	).toHaveText('07');
 
 	await expect(
 		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct).getByTestId(Container.ContainerTitle)
-	).toHaveText('We never stop improving your product');
+	).toHaveText('We Never Stop Improving Your Product');
 	await expect(
 		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
+	).toHaveText('08');
+
+	await expect(
+		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(Container.ContainerTitle)
+	).toHaveText('The Cost of Mobile\nApp Development');
+	await expect(
+		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(Container.ContainerNumber)
+	).toHaveText('09');
 
 	await expect(driver.getByTestId(MobileDevService.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related services'
+		'Related Services'
 	);
 	await expect(
 		driver.getByTestId(MobileDevService.RelatedServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('08');
+	).toHaveText('10');
 
 	await expect(driver.getByTestId(MobileDevService.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(MobileDevService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
+	await expect(driver.getByTestId(MobileDevService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('11');
 
 	await expect(driver.getByTestId(MobileDevService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related articles'
+		'Related Articles'
 	);
 	await expect(
 		driver.getByTestId(MobileDevService.RelatedArticles).getByTestId(Container.ContainerNumber)
-	).toHaveText('10');
+	).toHaveText('12');
 });
 
-test("Check section numbers and section titles in 'What you get' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test("Check section numbers and section titles in 'What You Get' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const whatYouGetContainer = driver.getByTestId(MobileDevService.WhatYouGet);
 	const allSectionTitles = await whatYouGetContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -108,7 +122,7 @@ test("Check section numbers and section titles in 'What you get' container from 
 	expect(await whatYouGetContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual(['01', '02', '03']);
 });
 
-test("Check block and section titles in 'What we do' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test("Check block and section titles in 'What We Do' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const whatWeDo = driver.getByTestId(MobileDevService.WhatWeDo);
 	const containerBlocks = await whatWeDo.getByTestId(Container.ContainerBlock).all();
 	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
@@ -129,22 +143,22 @@ test("Check block and section titles in 'What we do' container from the 'Mobile 
 	const allSectionTitlesThirdBlock = await containerBlocks[2].getByTestId(Container.SectionTitle).allInnerTexts();
 	const testDataThirdBlock = ['Android', 'iOS'];
 
-	await expect(containerBlocks[2].getByTestId(Container.BlockTitle)).toHaveText('Native app development services');
+	await expect(containerBlocks[2].getByTestId(Container.BlockTitle)).toHaveText('Native mobile app development');
 	expect(allSectionTitlesThirdBlock.sort()).toEqual(testDataThirdBlock.sort());
 });
 
-test("Check section titles in 'Technology Stack' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
-	const technologyStackContainer = driver.getByTestId(MobileDevService.TechnologyStack);
+test("Check section titles in 'Mobile Application Development Technology Stack' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+	const technologyStackContainer = driver.getByTestId(MobileDevService.MobileApplicationDevTechStack);
 	const allSectionTitles = await technologyStackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS'];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles and images in 'Our approach' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
-	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
+test("Check section titles and images in 'Our Approach to Mobile App Development Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
 	const allSectionTitles = await ourApproachContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = ['Domain\nproficiency', 'Be a part of the\nteam', 'Data-driven\ndecisions'];
+	const testData = ['Domain\nproficiency', 'Be a part\nof the team', 'Data-driven\ndecisions'];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
@@ -202,7 +216,7 @@ test("Check section titles in 'Related Services' container from the 'Mobile App 
 		'Custom software development',
 		'AI & ML',
 		'Big Data & Analytics',
-		'IoT',
+		'Internet of Things',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
@@ -213,8 +227,9 @@ test("Check section titles in 'FAQ' container from the 'Mobile App Development S
 	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'What technology stack\nworks best for a mobile\napplication?',
-		'What does the UX\nbuilding process\nlook like?',
-		'Can you build or\nintegrate AR/VR\nsolutions?',
+		'What does the UX building\nprocess look like?',
+		'Can you build or integrate AR/VR solutions?',
+		'Do your mobile app services include app maintenance and support after development?',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());

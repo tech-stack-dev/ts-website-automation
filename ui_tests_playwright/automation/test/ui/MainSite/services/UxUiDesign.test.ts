@@ -67,7 +67,7 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 	).toHaveText('06');
 
 	await expect(driver.getByTestId(UxUiDesign.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nservices'
+		'Related \nServices'
 	);
 	await expect(driver.getByTestId(UxUiDesign.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
 		'07'
@@ -77,7 +77,7 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 	await expect(driver.getByTestId(UxUiDesign.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
 
 	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \narticles'
+		'Related \nArticles'
 	);
 	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
 		'09'
