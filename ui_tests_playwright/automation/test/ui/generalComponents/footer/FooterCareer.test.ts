@@ -6,8 +6,8 @@ import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Link from '../../../../identifiers/Link';
-import {Environment} from '../../../../providers/EnvProvider';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import Button from '../../../../identifiers/Button';
 
 let footer: Locator;
 const testDataProvider = [
@@ -18,7 +18,8 @@ const testDataProvider = [
 ];
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await driver.getByTestId(Button.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
@@ -50,10 +51,10 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const companyUrlList = [
-			UrlProvider.webSiteUrl(Environment.Production),
-			UrlProvider.urlBuilder(UrlPath.OurServices, Environment.Production),
-			UrlProvider.urlBuilder(UrlPath.CaseStudies, Environment.Production),
-			UrlProvider.urlBuilder(UrlPath.Blog, Environment.Production),
+			UrlProvider.webSiteUrl(),
+			UrlProvider.urlBuilder(UrlPath.OurServices),
+			UrlProvider.urlBuilder(UrlPath.CaseStudies),
+			UrlProvider.urlBuilder(UrlPath.Blog),
 		];
 
 		await baseDriverSteps.goToUrl(url);
@@ -94,8 +95,6 @@ for (const url of testDataProvider) {
 			[Footer.Instagram, 'https://www.instagram.com'],
 		]);
 
-		await baseDriverSteps.goToUrl(url);
-
 		for (const entries of linkMap.entries()) {
 			const [newPage] = await Promise.all([
 				driver.DriverContext.waitForEvent('page'),
@@ -113,13 +112,12 @@ for (const url of testDataProvider) {
 		await newPage.close();
 	});
 
-	test(`Check redirection to the Terms, Cookies Policyand main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check redirection to the Terms, Cookies Policy and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
-			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms, Environment.Production)],
-			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy, Environment.Production)],
+			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
+			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
 			[Link.Logo, UrlProvider.careerUrl()],
 		]);
-
 		for (const entries of linkMap.entries()) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(entries[0]).click();

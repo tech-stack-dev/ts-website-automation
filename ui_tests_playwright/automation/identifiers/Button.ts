@@ -52,4 +52,11 @@ export default class Button {
 	static Linkedin = 'Button-LinekedIn';
 	static Blog = 'Button-Blog';
 	static Clutch = 'Button-Clutch';
+	static Forbes = 'Button-Forbes';
+	static Salesforce = 'Button-Salesforce';
+	static Deloitte = 'Button-Deloitte';
+	static McKinsey = 'Button-McKinsey';
+
+	// Cookies message
+	static AcceptCookies = 'Button-AcceptCookie';
 }

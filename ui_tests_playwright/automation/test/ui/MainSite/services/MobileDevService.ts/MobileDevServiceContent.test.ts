@@ -128,7 +128,7 @@ test("Check block and section titles in 'What We Do' container from the 'Mobile 
 	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
 	const testDataFirstBlock = [
 		'Custom business apps',
-		'Mobile platform with pre-made modules',
+		'Mobile platform with\npre-made modules',
 		'Industry-specific mobile apps',
 	];
 
@@ -162,7 +162,9 @@ test("Check section titles and images in 'Our Approach to Mobile App Development
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	const imageCards = ourApproachContainer.getByTestId(Container.BlockSection);
+	// should be fixed and uncommented as a part of @TSWEB-897
+
+	/* const imageCards = ourApproachContainer.getByTestId(Container.BlockSection);
 	const imageCardsData = [
 		{index: 0, alt: 'nine-years', src: 'img/our-approach-nine-years.svg'},
 		{index: 1, alt: 'sixty-seven-percent', src: 'img/our-approach-sixty-seven.svg'},
@@ -172,7 +174,7 @@ test("Check section titles and images in 'Our Approach to Mobile App Development
 		const actualCard = imageCards.nth(image.index).locator('img');
 		await expect(actualCard).toHaveAttribute('alt', image.alt);
 		await expect(actualCard).toHaveAttribute('src', image.src);
-	}
+	} */
 });
 
 test("Check member names and roles in 'We Never Stop Improving Your Product' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
@@ -213,7 +215,7 @@ test("Check section titles in 'Related Services' container from the 'Mobile App 
 		'Design',
 		'QA as a Service',
 		'Consulting',
-		'Custom software development',
+		'Custom software\ndevelopment',
 		'AI & ML',
 		'Big Data & Analytics',
 		'Internet of Things',

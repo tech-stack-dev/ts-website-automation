@@ -60,7 +60,7 @@ test("Check the container title and number from the 'Cloud & DevOps' block @Regr
 
 	await expect(
 		driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Cloud / \nDevOps experts');
+	).toHaveText('Our Leading Cloud Experts');
 	await expect(
 		driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts).getByTestId(Container.ContainerNumber)
 	).toHaveText('06');
@@ -167,7 +167,7 @@ test("Check redirect to clutch in 'Our approach to cloud app development' contai
 	await newPage.close();
 });
 
-test("Check member names and roles in 'Our Cloud / DevOps experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
+test("Check member names and roles in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const allMemberRoles = await ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
 	const testDataRoles = [
@@ -185,7 +185,7 @@ test("Check member names and roles in 'Our Cloud / DevOps experts' container fro
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
-test("Check redirects by buttons in 'Our Cloud / DevOps experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
+test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const buttonUrlMap = new Map([
 		[ourCloudDevOpsExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
@@ -255,7 +255,7 @@ test("Check section titles in 'FAQ' container from the 'Cloud & DevOps' block @R
 	const testData = [
 		'How do I develop a cloud\nstrategy?',
 		'What do I need to do to\nprepare for the cloud?',
-		'How can I ensure the cloud is\nsecure?',
+		'How can I ensure the cloud is secure?',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
