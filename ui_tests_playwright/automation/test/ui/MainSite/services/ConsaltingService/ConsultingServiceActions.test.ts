@@ -36,7 +36,7 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click();
+	await carouselButtonNext.click({delay: 1000});
 
 	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
