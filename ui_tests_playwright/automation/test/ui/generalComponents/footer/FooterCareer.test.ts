@@ -7,6 +7,7 @@ import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Link from '../../../../identifiers/Link';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import Button from '../../../../identifiers/Button';
 
 let footer: Locator;
 const testDataProvider = [
@@ -18,8 +19,7 @@ const testDataProvider = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	// should be fixed after adding data-id
-	await driver.locator('//div[@id="btn-accept-container"]').click();
+	await driver.getByTestId(Button.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 

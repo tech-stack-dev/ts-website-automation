@@ -6,19 +6,20 @@ import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/AiMlService';
 import Button from '../../../../../identifiers/Button';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
 });
 
-test("Check the header from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check the header from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const info = driver.getByTestId(AiMlService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI & ML');
 	await expect(info.getByTestId(Container.Title)).toHaveText('AI & ML Application Development Services');
 	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
 });
 
-test("Check the container title and number from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check the container title and number from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	await expect(
 		driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries).getByTestId(Container.ContainerTitle)
 	).toHaveText('AI’s Beneficial \nImpact on \nIndustries');
@@ -78,7 +79,7 @@ test("Check the container title and number from the 'AI&ML Sevice' block @Regres
 	);
 });
 
-test("Check statistic images in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check statistic images in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	const allSectionTitles = await aiBeneficialImpactOnIndustriesContainer
 		.getByTestId(Container.SectionTitle)
@@ -88,7 +89,7 @@ test("Check statistic images in 'AI’s Beneficial Impact on Industries' contain
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check blocks and sections titles in 'Our AI & ML Development Services' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check blocks and sections titles in 'Our AI & ML Development Services' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourAiMlDevelopmentServicesContainer = driver.getByTestId(AiMlService.OurAiMlDevelopmentServices);
 	const containerBlocks = await ourAiMlDevelopmentServicesContainer.getByTestId(Container.ContainerBlock).all();
 	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
@@ -131,7 +132,7 @@ test("Check blocks and sections titles in 'Our AI & ML Development Services' con
 	expect(allSectionTitlesSeventhBlock.sort()).toEqual(testDataSeventhBlock.sort());
 });
 
-test("Check sections titles in 'Our approach' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check sections titles in 'Our approach' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourApproachContainer = driver.getByTestId(AiMlService.OurApproach);
 	const allSectionTitles = await ourApproachContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -144,7 +145,7 @@ test("Check sections titles in 'Our approach' container from the 'AI&ML Sevice' 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check sections titles in 'Technology stack' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check sections titles in 'Technology stack' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const technologyStackContainer = driver.getByTestId(AiMlService.TechnologyStack);
 	const allSectionTitles = await technologyStackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -162,7 +163,7 @@ test("Check sections titles in 'Technology stack' container from the 'AI&ML Sevi
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check member names and roles in 'Our experts' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check member names and roles in 'Our experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const allMemberRoles = await ourExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
 	const testDataRoles = [
@@ -173,12 +174,12 @@ test("Check member names and roles in 'Our experts' container from the 'AI&ML Se
 	expect(allMemberRoles.sort()).toEqual(testDataRoles.sort());
 
 	const allMemberNames = await ourExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
-	const testDataNames = ['Yevhenii Karachevtsev', 'Oleksandr Bezrukov'];
+	const testDataNames = [ExpertNames.YevheniiKarachevtsev, ExpertNames.OleksandrBezrukov];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
-test("Check section titles in 'Related Services' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check section titles in 'Related Services' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const relatedServicesContainer = driver.getByTestId(AiMlService.RelatedServices);
 	const allSectionTitles = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -192,7 +193,7 @@ test("Check section titles in 'Related Services' container from the 'AI&ML Sevic
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles in 'FAQ' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check section titles in 'FAQ' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const faqContainer = driver.getByTestId(AiMlService.Faq);
 	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [

@@ -62,4 +62,7 @@ export default class Button {
 	static paginationNavigatinArrowButton(navigation: 'Next' | 'Prev') {
 		return `Pagination${navigation}Button-${navigation}Button`;
 	}
+
+	// Cookies
+	static AcceptCookies = 'Button-AcceptCookie';
 }

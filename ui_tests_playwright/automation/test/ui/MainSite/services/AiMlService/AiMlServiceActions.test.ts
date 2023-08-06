@@ -9,12 +9,13 @@ import Button from '../../../../../identifiers/Button';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
 });
 
-test("Check redirect by links in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check redirect by links in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	const linkMap = new Map([
 		[
@@ -40,7 +41,7 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 	}
 });
 
-test("Check carousel sections and arrows in 'The Way We work' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check carousel sections and arrows in 'The Way We work' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const theWayWeWorkContainer = driver.getByTestId(AiMlService.TheWayWeWork);
 	const carousel = theWayWeWorkContainer.getByTestId(Container.ContainerCarousel);
 	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
@@ -76,15 +77,15 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 });
 
-test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourApproachContainer = driver.getByTestId(AiMlService.OurApproach);
 
 	await ourApproachContainer.getByTestId(Button.Clutch).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain('https://clutch.co/profile/techstack#review-1961618');
+	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
 });
 
-test("Check buttons in 'Our Experts' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
 		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
@@ -107,7 +108,7 @@ test("Check buttons in 'Our Experts' container from the 'AI&ML Sevice' block @Re
 	}
 });
 
-test("Check redirects by arrows in 'Related services' container from the 'AI&ML Sevice' block @Regression @AiMlService @TSWEB-694", async () => {
+test("Check redirects by arrows in 'Related services' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const relatedServicesContainer = driver.getByTestId(AiMlService.RelatedServices);
 	const containerSection = relatedServicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([

@@ -29,7 +29,8 @@ const testDataProvider: string[] = [
 	.concat(Object.values(industryUrl));
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
+	await driver.getByTestId(Button.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
@@ -166,10 +167,11 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check redirection to the Terms, Cookies Policy, Contact us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check redirection to the Terms, Cookies Policy, Sitemap, Contact us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
+			[Footer.Sitemap, UrlProvider.urlBuilder(UrlPath.Sitemap)],
 			[Button.ContactUs, UrlProvider.urlBuilder(UrlPath.ContactUs)],
 			[Link.Logo, UrlProvider.webSiteUrl()],
 		]);

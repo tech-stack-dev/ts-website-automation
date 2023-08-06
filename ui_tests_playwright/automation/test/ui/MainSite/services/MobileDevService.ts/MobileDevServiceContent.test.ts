@@ -128,7 +128,7 @@ test("Check block and section titles in 'What We Do' container from the 'Mobile 
 	const allSectionTitlesFirstBlock = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
 	const testDataFirstBlock = [
 		'Custom business apps',
-		'Mobile platform with pre-made modules',
+		'Mobile platform with\npre-made modules',
 		'Industry-specific mobile apps',
 	];
 
