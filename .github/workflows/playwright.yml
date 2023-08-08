@@ -62,15 +62,17 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      # - name: Set Report Link
-      #   run: echo "REPORT_LINK=${{ steps.upload-report.outputs.artifact_url }}" >> $GITHUB_ENV
+      - name: Set Report Link
+        run: echo "::set-output name=report_link::${{ steps.upload-report.outputs.artifact_url }}"
 
       - uses: actions/github-script@v4
         name: Print Report Link
         if: always()
         with:
-          name: playwright-link
-          path: ui_tests_playwright/playwright-report/index.html
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+           github.context.workflowRunId
+           console.log("Playwright Report: " + `${{ steps.upload-report.outputs.report_link }}`);
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
