@@ -65,8 +65,9 @@ jobs:
       # - name: Set Report Link
       #   run: echo "REPORT_LINK=${{ steps.upload-report.outputs.artifact_url }}" >> $GITHUB_ENV
 
-      - name: Print Report Link
-        uses: actions/github-script@v4
+      - uses: actions/github-script@v4
+        name: Print Report Link
+        if: always()
         with:
           name: playwright-link
           path: ui_tests_playwright/playwright-report/index.html
