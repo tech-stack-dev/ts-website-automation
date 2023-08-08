@@ -62,6 +62,9 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
+      - name: Print Report Link
+        run: echo "Playwright Report: ui_tests_playwright/playwright-report/index.html"
+
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
