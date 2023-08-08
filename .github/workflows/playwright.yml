@@ -62,16 +62,19 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Extract HTML from ZIP
-        run: |
-          unzip ui_tests_playwright/playwright-report.zip index.html -d extracted-html
+      - name: Print Report Link
+        run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}\""
 
-      - uses: actions/upload-artifact@v3
-        name: Upload Extracted HTML to External Service
-        if: always()
-        with:
-          name: extracted-html
-          path: extracted-html/index.html
+      # - name: Extract HTML from ZIP
+      #   run: |
+      #     unzip ui_tests_playwright/playwright-report.zip index.html -d extracted-html
+
+      # - uses: actions/upload-artifact@v3
+      #   name: Upload Extracted HTML to External Service
+      #   if: always()
+      #   with:
+      #     name: extracted-html
+      #     path: extracted-html/index.html
 
 
       # - name: Set Report Link
