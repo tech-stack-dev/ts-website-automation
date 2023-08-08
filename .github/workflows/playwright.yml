@@ -62,15 +62,28 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
+      - name: Extract HTML from ZIP
+        run: |
+          unzip ui_tests_playwright/playwright-report.zip index.html -d extracted-html
+
+      - uses: actions/upload-artifact@v3
+        name: Upload Extracted HTML to External Service
+        if: always()
+        with:
+          name: extracted-html
+          path: extracted-html/index.html
+
+
       # - name: Set Report Link
       #   run: echo "::set-output name=report_link::${{ steps.upload-report.outputs.artifact_url }}"
 
-      - uses: actions/upload-artifact@v3
-        name: Print Report Link
-        if: always()
-        with:
-          name: playwright-link
-          path: ui_tests_playwright/playwright-report/index.html
+      # - uses: actions/upload-artifact@v3
+      #   name: Print Report Link
+      #   if: always()
+      #   with:
+      #     name: playwright-link
+      #     path: ui_tests_playwright/playwright-report/index.html
+
 
       # - name: Preparing Slack emoji
       #   uses: haya14busa/action-cond@v1
