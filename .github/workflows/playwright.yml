@@ -66,7 +66,8 @@ jobs:
         run: echo "REPORT_LINK=${{ steps.upload-report.outputs.artifact_url }}" >> $GITHUB_ENV
 
       - name: Print Report Link
-        run: echo "Playwright Report: $REPORT_LINK"
+        run: |
+        echo "Playwright Report: $REPORT_LINK"
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
