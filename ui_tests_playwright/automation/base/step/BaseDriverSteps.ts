@@ -1,6 +1,7 @@
 import {driver} from '../driver/Driver';
 import {BrowsersEnum} from '../driver/BrowsersEnum';
-import {expect} from '@playwright/test';
+import {Locator, expect} from '@playwright/test';
+import Container from '../../identifiers/MainSite/Container';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -40,6 +41,33 @@ class BaseDriverSteps {
 
 	public async checkUrl(expectedUrl: string) {
 		await expect(driver.Page).toHaveURL(expectedUrl);
+	}
+
+	public async checkCarouselArrowsClick(ContainerName: Locator, clicksCount?: number) {
+		const carousel = ContainerName.getByTestId(Container.ContainerCarousel);
+		const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
+		const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
+		const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
+
+		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
+		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+		await carouselButtonNext.click({delay: 1000});
+
+		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
+		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+		await carouselButtonPrev.click({delay: 1000});
+
+		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
+		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+
+		const clickAmount = clicksCount ? clicksCount : allSectionTitles.length - 1;
+
+		for (let i = 0; i < clickAmount; i++) {
+			await carouselButtonNext.click({delay: 1000});
+		}
+
+		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
+		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 	}
 }
 

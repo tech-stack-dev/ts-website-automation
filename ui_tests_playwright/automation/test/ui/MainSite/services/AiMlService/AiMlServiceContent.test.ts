@@ -3,9 +3,9 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
-import Container from '../../../../../identifiers/Container';
-import AiMlService from '../../../../../identifiers/AiMlService';
-import Button from '../../../../../identifiers/Button';
+import Container from '../../../../../identifiers/MainSite/Container';
+import AiMlService from '../../../../../identifiers/MainSite/pages/services/AiMlService';
+import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
@@ -16,7 +16,7 @@ test("Check the header from the 'AI&ML Service' block @Regression @AiMlService @
 	const info = driver.getByTestId(AiMlService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI & ML');
 	await expect(info.getByTestId(Container.Title)).toHaveText('AI & ML Application Development Services');
-	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {

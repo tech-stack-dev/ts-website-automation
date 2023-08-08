@@ -4,10 +4,10 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
-import Container from '../../../../identifiers/Container';
-import Link from '../../../../identifiers/Link';
+import Container from '../../../../identifiers/MainSite/Container';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Button from '../../../../identifiers/Button';
+import Links from '../../../../preconditionsData/Links';
 
 let footer: Locator;
 const testDataProvider = [
@@ -31,7 +31,7 @@ for (const url of testDataProvider) {
 		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
 		const year = new Date().getFullYear();
 
-		await expect(footer.getByTestId(Link.Logo)).toBeVisible();
+		await expect(footer.getByTestId(Button.Logo)).toBeVisible();
 		await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
 		await expect(careerBlock.getByTestId(Container.BlockTitle)).toHaveText('Career');
 		await expect(footer.getByTestId(Footer.Info).nth(0)).toHaveText(`© ${year} Techstack. All rights reserved.`);
@@ -89,10 +89,10 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
-			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
-			[Footer.LinkedIn, 'https://www.linkedin.com'],
-			[Footer.Facebook, 'https://www.facebook.com'],
-			[Footer.Instagram, 'https://www.instagram.com'],
+			[Button.Behance, Links.Behance],
+			[Button.LinkedIn, Links.LinkedIn],
+			[Button.Facebook, Links.Facebook],
+			[Button.Instagram, Links.Instagram],
 		]);
 
 		for (const entries of linkMap.entries()) {
@@ -106,9 +106,9 @@ for (const url of testDataProvider) {
 
 		const [newPage] = await Promise.all([
 			driver.DriverContext.waitForEvent('page'),
-			await footer.getByTestId(Footer.Clutch).nth(1).click(),
+			await footer.getByTestId(Button.Clutch).nth(1).click(),
 		]);
-		expect(newPage.url()).toContain('https://clutch.co/profile/techstack');
+		expect(newPage.url()).toContain(Links.Clutch);
 		await newPage.close();
 	});
 
@@ -116,7 +116,7 @@ for (const url of testDataProvider) {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
-			[Link.Logo, UrlProvider.careerUrl()],
+			[Button.Logo, UrlProvider.careerUrl()],
 		]);
 		for (const entries of linkMap.entries()) {
 			await baseDriverSteps.goToUrl(url);

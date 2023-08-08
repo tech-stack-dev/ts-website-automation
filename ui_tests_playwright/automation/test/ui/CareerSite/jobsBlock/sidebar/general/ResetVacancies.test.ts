@@ -3,16 +3,16 @@ import {driver} from '../../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
-import Containers from '../../../../../../identifiers/Containers';
+import Containers from '../../../../../../identifiers/Career/Containers';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
-import Tag from '../../../../../../identifiers/Tag';
-import Button from '../../../../../../identifiers/Button';
+import Tag from '../../../../../../identifiers/Career/Tag';
+import CareerButton from '../../../../../../identifiers/Career/CareerButton';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
 import {containerSteps} from '../../../../../../steps/components/container/ContainerSteps';
-import Career from '../../../../../../identifiers/Career';
+import Career from '../../../../../../identifiers/Career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 
@@ -73,7 +73,7 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await activeTagsGroupContainer.Element.getByTestId(Button.ResetButton).click();
+		await activeTagsGroupContainer.Element.getByTestId(CareerButton.ResetButton).click();
 		testData.tagList.forEach(async (tag) => {
 			const filterTag = filterGroupContainer.getByTestId(tag);
 			await expect(filterTag).not.toHaveClass(/active-tag/);

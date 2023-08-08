@@ -3,14 +3,15 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import Container from '../../../../identifiers/Container';
-import BigDataAndAnalytics from '../../../../identifiers/BigDataAndAnalytics';
+import Container from '../../../../identifiers/MainSite/Container';
+import BigDataAndAnalytics from '../../../../identifiers/MainSite/pages/services/BigDataAndAnalytics';
 import Button from '../../../../identifiers/Button';
 import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -20,7 +21,7 @@ test("Check the header from the 'Big Data & Analytics' block @Regression @BigDat
 	const info = driver.getByTestId(BigDataAndAnalytics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');
-	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
@@ -205,10 +206,10 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,

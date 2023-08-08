@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
-import Button from '../../identifiers/Button';
+import CareerButton from '../../identifiers/Career/CareerButton';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
 import ContactUsPage from '../../pages/CareerSite/ContactUsPage';
 import {formSteps} from '../ui/FormSteps';
@@ -13,7 +13,7 @@ class ContactUsSteps {
 	): Promise<boolean> {
 		await driver.getByTestId(ContactUsForm.Email).fill(email);
 		await driver.getByTestId(ContactUsForm.Phone).fill(phone);
-		await driver.getByTestId(Button.SendButton).click();
+		await driver.getByTestId(CareerButton.SendButton).click();
 
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([ContactUsForm.Email, ContactUsForm.Phone]);
 

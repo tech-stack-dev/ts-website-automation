@@ -3,13 +3,14 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
-import Container from '../../../../../identifiers/Container';
-import AiMlService from '../../../../../identifiers/AiMlService';
-import Button from '../../../../../identifiers/Button';
+import Container from '../../../../../identifiers/MainSite/Container';
+import AiMlService from '../../../../../identifiers/MainSite/pages/services/AiMlService';
+import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
+import Button from '../../../../../identifiers/Button';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -19,16 +20,16 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	const linkMap = new Map([
 		[
-			Button.Forbes,
+			MainSiteButton.Forbes,
 			'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14',
 		],
-		[Button.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
+		[MainSiteButton.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
 		[
-			Button.Deloitte,
+			MainSiteButton.Deloitte,
 			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
 		],
 		[
-			Button.McKinsey,
+			MainSiteButton.McKinsey,
 			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
 		],
 	]);
@@ -44,8 +45,6 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 test("Check carousel sections and arrows in 'The Way We work' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const theWayWeWorkContainer = driver.getByTestId(AiMlService.TheWayWeWork);
 	const carousel = theWayWeWorkContainer.getByTestId(Container.ContainerCarousel);
-	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
-	const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
 	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'Discovery\nand Research',
@@ -58,23 +57,7 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual(['01', '02', '03', '04', '05']);
 
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click();
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-
-	for (let i = 0; i < allSectionTitles.length - 1; i++) {
-		await carouselButtonNext.click({delay: 1000});
-	}
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
+	await baseDriverSteps.checkCarouselArrowsClick(theWayWeWorkContainer);
 });
 
 test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
@@ -88,12 +71,12 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 test("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksandrBezrukov],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,

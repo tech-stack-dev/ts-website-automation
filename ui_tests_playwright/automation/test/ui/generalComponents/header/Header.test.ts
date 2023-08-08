@@ -3,7 +3,6 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import Link from '../../../../identifiers/Link';
 import {Environment} from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
 import Colors from '../../../../preconditionsData/Colors';
@@ -30,7 +29,7 @@ test.beforeEach(async () => {
 for (const url of testDataProvider) {
 	test.skip(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Link.HeaderLogo).click();
+		await driver.getByTestId(Button.HeaderLogo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 

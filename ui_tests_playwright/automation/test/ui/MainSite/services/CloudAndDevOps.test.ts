@@ -3,13 +3,14 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import Container from '../../../../identifiers/Container';
-import CloudAndDevOps from '../../../../identifiers/CloudAndDevOps';
+import Container from '../../../../identifiers/MainSite/Container';
+import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
 import Button from '../../../../identifiers/Button';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {Environment} from '../../../../providers/EnvProvider';
 import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
+import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudAndDev));
@@ -19,7 +20,7 @@ test("Check the header from the 'Cloud & DevOps' block @Regression @CloudAndDevO
 	const info = driver.getByTestId(CloudAndDevOps.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud & DevOps');
 	await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services &\nCloud Solutions');
-	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
@@ -188,10 +189,10 @@ test("Check member names and roles in 'Our Leading Cloud Experts' container from
 test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const buttonUrlMap = new Map([
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.Linkedin).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.Linkedin).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
 		[
 			ourCloudDevOpsExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,

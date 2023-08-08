@@ -1,11 +1,12 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
-import Container from '../../../../../identifiers/Container';
-import ConsultingService from '../../../../../identifiers/ConsultingService';
+import Container from '../../../../../identifiers/MainSite/Container';
+import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import Button from '../../../../../identifiers/Button';
+import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -21,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regressi
 	const containers = [ConsultingService.Info, ConsultingService.ConsultingProcess, ConsultingService.RelatedServices];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -189,13 +190,13 @@ test("Check member names and roles in 'Consulting experts' container from the 'C
 
 	const allMemberNames = await consultingExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
 	const testDataNames = [
-		'Ivan Ieremenko',
-		'Oleksii Svystun',
-		'Yevhenii Karachevtsev',
-		'Vitalii Dolotov',
-		'Ivan Yeremenko',
-		'Dmytro Dytiuk',
-		'Dmytro Shtapauk',
+		ExpertNames.IvanIeremenko,
+		ExpertNames.OleksiiSvystun,
+		ExpertNames.YevheniiKarachevtsev,
+		ExpertNames.VitaliiDolotov,
+		ExpertNames.IvanYeremenko,
+		ExpertNames.DmytroDytiuk,
+		ExpertNames.DmytroShtapauk,
 	];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
