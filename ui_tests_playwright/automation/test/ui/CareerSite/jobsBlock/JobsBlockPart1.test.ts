@@ -12,7 +12,7 @@ import ContainerByClass from '../../../../components/container/ContainerByClass'
 import Navigation from '../../../../identifiers/Career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
 import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
-import CareerButton from '../../../../identifiers/Career/CareerButton';
+import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
@@ -74,11 +74,11 @@ test('Check that user can switch language in navigation header in job page @Regr
 	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
-	await expect(jobPageHeaderContainer.Element.getByTestId(CareerButton.EnLanguageSwitcher)).toHaveClass(
+	await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
 		/active-locale/
 	);
 
-	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButton.UaLanguageSwitcher);
+	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });

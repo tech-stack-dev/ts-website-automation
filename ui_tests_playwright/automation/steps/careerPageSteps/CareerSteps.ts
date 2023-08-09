@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
-import CareerButton from '../../identifiers/Career/CareerButton';
+import CareerButtons from '../../identifiers/Career/CareerButtons';
 import Career from '../../identifiers/Career/pages/Career';
 import Containers from '../../identifiers/Career/Containers';
 import {containerSteps} from '../components/container/ContainerSteps';
@@ -22,10 +22,10 @@ class CareerSteps {
 		let switcher: any;
 		switch (language.toLowerCase()) {
 			case 'ua':
-				switcher = headerContainer.Element.getByTestId(CareerButton.UaLanguageSwitcher);
+				switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 				break;
 			case 'en':
-				switcher = headerContainer.Element.getByTestId(CareerButton.EnLanguageSwitcher);
+				switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
 		}
 
 		await switcher.click();

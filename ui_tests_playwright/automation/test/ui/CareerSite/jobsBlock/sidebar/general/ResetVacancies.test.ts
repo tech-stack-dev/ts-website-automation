@@ -7,7 +7,7 @@ import Containers from '../../../../../../identifiers/Career/Containers';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
 import Tag from '../../../../../../identifiers/Career/Tag';
-import CareerButton from '../../../../../../identifiers/Career/CareerButton';
+import CareerButtons from '../../../../../../identifiers/Career/CareerButtons';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
@@ -73,7 +73,7 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await activeTagsGroupContainer.Element.getByTestId(CareerButton.ResetButton).click();
+		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click();
 		testData.tagList.forEach(async (tag) => {
 			const filterTag = filterGroupContainer.getByTestId(tag);
 			await expect(filterTag).not.toHaveClass(/active-tag/);

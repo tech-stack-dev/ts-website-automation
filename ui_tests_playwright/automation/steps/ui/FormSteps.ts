@@ -1,5 +1,5 @@
 import {driver} from '../../base/driver/Driver';
-import CareerButton from '../../identifiers/Career/CareerButton';
+import CareerButtons from '../../identifiers/Career/CareerButtons';
 import Buttons from '../../identifiers/Buttons';
 import Input from '../../identifiers/Input';
 import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
@@ -17,7 +17,7 @@ class FormSteps {
 		await driver.getByTestId(ContactUsForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
-			await driver.getByTestId(CareerButton.SendButton).click();
+			await driver.getByTestId(CareerButtons.SendButton).click();
 			await driver.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
@@ -30,8 +30,8 @@ class FormSteps {
 		await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
-			await driver.getByTestId(CareerButton.SendButton).click();
-			await driver.getByTestId(CareerButton.SendButton).waitFor({state: 'hidden'});
+			await driver.getByTestId(CareerButtons.SendButton).click();
+			await driver.getByTestId(CareerButtons.SendButton).waitFor({state: 'hidden'});
 		}, 5);
 	}
 
@@ -48,7 +48,7 @@ class FormSteps {
 		await driver.getByTestId(GetInTouchForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
 		await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
-		await driver.getByTestId(CareerButton.SendButton).click();
+		await driver.getByTestId(CareerButtons.SendButton).click();
 		await driver.getByTestId(Buttons.Close, undefined, 1).waitFor({state: 'visible'});
 	}
 

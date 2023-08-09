@@ -1,4 +1,4 @@
-export default class CareerButton {
+export default class CareerButtons {
 	static EnLanguageSwitcher = 'LocaleButton-En';
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
 

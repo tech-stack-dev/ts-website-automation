@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import CareerButton from '../../../../identifiers/Career/CareerButton';
+import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
@@ -25,7 +25,7 @@ test("Check error messages related to fields filled with spaces on 'Contact Us' 
 	await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces);
 	await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces);
 	await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces);
-	await driver.getByTestId(CareerButton.SendButton).click();
+	await driver.getByTestId(CareerButtons.SendButton).click();
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,
@@ -78,7 +78,7 @@ test("Check error messages related to empty fields on 'Contact Us' form @Regress
 		PleaseEntryEmail: 'Please enter your email',
 		PleaseEntryPhone: 'Please enter your phone number',
 	};
-	await driver.getByTestId(CareerButton.SendButton).click();
+	await driver.getByTestId(CareerButtons.SendButton).click();
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,
