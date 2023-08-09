@@ -29,6 +29,7 @@ export default class Button {
 
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';
+	static LinkedIn2 = 'Button-LinekedIn'; // should be fixed after adding data-id for Logistic page
 	static Facebook = 'Button-Facebook';
 	static Instagram = 'Button-Instagram';
 	static Behance = 'Button-Behance';

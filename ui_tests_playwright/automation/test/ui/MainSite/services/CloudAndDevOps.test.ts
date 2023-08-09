@@ -189,10 +189,10 @@ test("Check member names and roles in 'Our Leading Cloud Experts' container from
 test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const buttonUrlMap = new Map([
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
 		[
 			ourCloudDevOpsExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,

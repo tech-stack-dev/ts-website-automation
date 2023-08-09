@@ -206,10 +206,10 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 		[
 			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
