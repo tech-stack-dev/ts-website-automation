@@ -2,7 +2,7 @@ import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
 import CareerButtons from '../../identifiers/Career/CareerButtons';
 import Career from '../../identifiers/Career/pages/Career';
-import Containers from '../../identifiers/Career/Containers';
+import ContainersCareer from '../../identifiers/Career/ContainersCareer';
 import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
 
@@ -18,7 +18,10 @@ class CareerSteps {
 	}
 
 	public async switchLanguageViaHeader(language: string) {
-		const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
+		const headerContainer = await containerSteps.getContainer(
+			ContainerByClass,
+			ContainersCareer.JobPageHeaderWrapper
+		);
 		let switcher: any;
 		switch (language.toLowerCase()) {
 			case 'ua':

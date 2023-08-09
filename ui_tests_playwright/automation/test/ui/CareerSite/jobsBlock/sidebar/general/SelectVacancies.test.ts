@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
-import Containers from '../../../../../../identifiers/Career/Containers';
+import ContainersCareer from '../../../../../../identifiers/Career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
@@ -44,13 +44,13 @@ for (const testData of testDataProvider) {
 		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.FilterGroupWrapper,
+			ContainersCareer.FilterGroupWrapper,
 			careerMainContainer
 		);
 		const filterTag = filterGroupContainer.getByTestId(testData.tagName);
 		const activeTagsGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.ActiveTagsGroupWrapper,
+			ContainersCareer.ActiveTagsGroupWrapper,
 			careerMainContainer
 		);
 		const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);

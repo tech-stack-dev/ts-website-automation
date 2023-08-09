@@ -4,7 +4,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import Containers from '../../../../identifiers/Career/Containers';
+import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
 import Career from '../../../../identifiers/Career/pages/Career';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
@@ -40,7 +40,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.JobPageApplyProposition
+		ContainersCareer.JobPageApplyProposition
 	);
 
 	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
@@ -61,7 +61,10 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
+	const jobPageHeaderContainer = await containerSteps.getContainer(
+		ContainerByClass,
+		ContainersCareer.JobPageHeaderWrapper
+	);
 
 	expect(await careerSteps.getBreadcrumbsText()).toBe(
 		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`

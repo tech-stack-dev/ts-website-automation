@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Containers from '../../../../identifiers/Career/Containers';
+import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
 import UrlPath from '../../../../providers/UrlPath';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
@@ -14,23 +14,25 @@ test.beforeEach(async () => {
 });
 
 test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560', async () => {
-	const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass);
+	const headerContainer = await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass);
 	const uaButtonSwitcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
 
 test('Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
-	const SWUFrame = await containerSteps.getContainer(ContainerByClass, Containers.StandWithUkraineClass);
-	await expect(SWUFrame.getByTestId(Containers.StandWithUkraineTitle)).toHaveText('Techstack stands with Ukraine');
+	const SWUFrame = await containerSteps.getContainer(ContainerByClass, ContainersCareer.StandWithUkraineClass);
+	await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
+		'Techstack stands with Ukraine'
+	);
 	await expect(SWUFrame.getByTestId(CareerButtons.LearnMoreButton2)).toHaveText('Learn More');
 
-	(await containerSteps.getContainer(ContainerByClass, Containers.NavigationHeaderClass)).Element.getByTestId(
+	(await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass)).Element.getByTestId(
 		CareerButtons.UaLanguageSwitcher
 	).click();
 
 	await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
-	await expect(SWUFrame.getByTestId(Containers.StandWithUkraineTitle)).toHaveText(
+	await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
 		'Відповідь Techstack на війну в Україні'
 	);
 	await expect(SWUFrame.getByTestId(CareerButtons.LearnMoreButton2)).toHaveText('Ознайомитися');

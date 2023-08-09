@@ -6,7 +6,7 @@ import Input from '../../../../identifiers/Input';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Career from '../../../../identifiers/Career/pages/Career';
-import Containers from '../../../../identifiers/Career/Containers';
+import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
 import randomstring from 'randomstring';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 
@@ -41,14 +41,16 @@ test('Check search field styling after search a long jobname on careers page @Re
 	const textData = randomstring.generate(50);
 	const expectedInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();
 	await driver.getByTestId(Career.SarchCareerField).fill(textData);
-	await expect((await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).Element).toHaveText(
-		`${textData},0`
-	);
+	await expect(
+		(
+			await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)
+		).Element
+	).toHaveText(`${textData},0`);
 	const actualInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();
 	expect(actualInputBoxProps?.width).toEqual(expectedInputBoxProps?.width);
 	expect(actualInputBoxProps?.height).toEqual(expectedInputBoxProps?.height);
 	// Check that input is not covered by another element after searching
-	await (await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).click();
+	await (await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)).click();
 	await driver.getByTestId(Career.SarchCareerField).click();
 	await expect(driver.getByTestId(Career.SarchCareerField)).toBeFocused();
 });

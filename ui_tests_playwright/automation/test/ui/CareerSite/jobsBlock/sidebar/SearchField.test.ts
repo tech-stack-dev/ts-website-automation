@@ -8,7 +8,7 @@ import {driver} from '../../../../../base/driver/Driver';
 import Career from '../../../../../identifiers/Career/pages/Career';
 import {containerSteps} from '../../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../../components/container/ContainerByClass';
-import Containers from '../../../../../identifiers/Career/Containers';
+import ContainersCareer from '../../../../../identifiers/Career/ContainersCareer';
 import randomstring from 'randomstring';
 
 test.beforeEach(async () => {
@@ -42,9 +42,11 @@ test(`Check that user sees failed search result message after clearing 'Search' 
 	await driver.getByTestId(Career.SearchButton).click();
 	const careerList = (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).Element;
 
-	await expect((await driver.component(ContainerByClass, Containers.SearchResultsTextContainer)).Element).toHaveText(
-		`${textData},0`
-	);
+	await expect(
+		(
+			await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)
+		).Element
+	).toHaveText(`${textData},0`);
 	await expect(careerList).toHaveText(
 		'Sorry, no matching jobs found :( Please refine your search criteria and try again'
 	);
