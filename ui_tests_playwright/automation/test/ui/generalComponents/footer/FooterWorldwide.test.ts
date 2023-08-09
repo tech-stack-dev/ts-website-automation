@@ -123,7 +123,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655  @TSWEB-674`, async () => {
+	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		const companyUrlList: string[] = [
 			companyUrl[CompanyEnum.AboutUs],
 			companyUrl[CompanyEnum.HowWeWork],

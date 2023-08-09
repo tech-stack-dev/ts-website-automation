@@ -157,8 +157,8 @@ test("Check section title and award cards in 'Why Choose Techstack’s Big Data 
 
 	const awardCards = whyChooseTechstackBigDataServicesContainer.getByTestId(Container.AwardCard);
 	const awardCardsData = [
-		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.png'},
-		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.png'},
+		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.webp'},
+		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.webp'},
 	];
 	for (const awardCardImage of awardCardsData) {
 		const actualCard = awardCards.nth(awardCardImage.index).locator('img');

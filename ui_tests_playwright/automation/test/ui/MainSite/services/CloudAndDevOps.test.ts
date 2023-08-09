@@ -144,8 +144,8 @@ test("Check award cards in 'Our approach to cloud app development' container fro
 
 	const awardCards = ourApproachToCloudAppDevelopmentContainer.getByTestId(Container.AwardCard);
 	const awardCardsData = [
-		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.png'},
-		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.png'},
+		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.webp'},
+		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.webp'},
 	];
 	for (const awardCardImage of awardCardsData) {
 		const actualCard = awardCards.nth(awardCardImage.index).locator('img');
