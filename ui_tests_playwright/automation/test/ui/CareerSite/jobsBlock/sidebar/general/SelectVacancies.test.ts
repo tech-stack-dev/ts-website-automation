@@ -11,7 +11,7 @@ import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulStep
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 import {ColorsEnum} from '../../../../../../enum/ColorsEnum';
 import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
-import Tag from '../../../../../../identifiers/Career/Tag';
+import TagsCareer from '../../../../../../identifiers/Career/TagsCareer';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/Career/pages/Career';
@@ -21,14 +21,14 @@ test.beforeEach(async () => {
 });
 
 const testDataProvider = [
-	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag},
+	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: TagsCareer.TraineeTag},
 	{
 		filterBlock: 'direction',
 		createTag: [DirectionsEnum.LongSoftwareDataManager],
-		tagName: Tag.LongSoftwareDataManager,
+		tagName: TagsCareer.LongSoftwareDataManager,
 	},
-	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: Tag.JavaTag},
-	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: Tag.RemoteAllowedTag},
+	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: TagsCareer.JavaTag},
+	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: TagsCareer.RemoteAllowedTag},
 ];
 
 for (const testData of testDataProvider) {

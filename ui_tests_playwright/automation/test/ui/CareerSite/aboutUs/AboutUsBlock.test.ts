@@ -86,7 +86,7 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 	await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
 });
-
+// locator should be updated with getByTestId
 test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibility' blocks from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
 	const techstackRoles = driver.Page.locator(`#${AboutUs.TechstackRolesId}`);
 
@@ -158,7 +158,7 @@ test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(4)).toContainText('05 Tech expert interview');
 	await expect(carousel.getByTestId(AboutUs.CarouselBlock).nth(5)).toContainText('06 Product owner interview');
 });
-
+// locator should be updated with getByTestId
 test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
 	await expect(driver.locator(`#${AboutUs.ApplyTitle}`)).toContainText(
 		`Want to make an impact?You're in the right place.Check out our open positions!`

@@ -6,7 +6,7 @@ import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
 import ContainersCareer from '../../../../../../identifiers/Career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
-import Tag from '../../../../../../identifiers/Career/Tag';
+import TagsCareer from '../../../../../../identifiers/Career/TagsCareer';
 import CareerButtons from '../../../../../../identifiers/Career/CareerButtons';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
@@ -24,22 +24,22 @@ const testDataProvider = [
 	{
 		filterBlock: 'seniority level',
 		createTags: [SeniorityLevelsEnum.Trainee, SeniorityLevelsEnum.Junior],
-		tagList: [Tag.JuniorTag, Tag.TraineeTag],
+		tagList: [TagsCareer.JuniorTag, TagsCareer.TraineeTag],
 	},
 	{
 		filterBlock: 'direction',
 		createTags: [DirectionsEnum.LongSoftwareDataManager, DirectionsEnum.SoftwareDevelopment],
-		tagList: [Tag.LongSoftwareDataManager, Tag.SoftwareDevelopment],
+		tagList: [TagsCareer.LongSoftwareDataManager, TagsCareer.SoftwareDevelopment],
 	},
 	{
 		filterBlock: 'technology stack',
 		createTags: [TagsEnum.StackJava, TagsEnum.DevOps],
-		tagList: [Tag.JavaTag, Tag.DevOpsTag],
+		tagList: [TagsCareer.JavaTag, TagsCareer.DevOpsTag],
 	},
 	{
 		filterBlock: 'tags',
 		createTags: [TagsEnum.RemoteAllowed, TagsEnum.PartTime],
-		tagList: [Tag.RemoteAllowedTag, Tag.PartTimeTag],
+		tagList: [TagsCareer.RemoteAllowedTag, TagsCareer.PartTimeTag],
 	},
 ];
 
