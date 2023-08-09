@@ -4,7 +4,7 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
-import Container from '../../../../identifiers/MainSite/Container';
+import Container from '../../../../identifiers/Container';
 import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 import Links from '../../../../preconditionsData/Links/Links';
 

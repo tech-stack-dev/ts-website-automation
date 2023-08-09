@@ -3,7 +3,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
-import Container from '../../../../../identifiers/MainSite/Container';
+import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/MainSite/pages/services/AiMlService';
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import {Environment} from '../../../../../providers/EnvProvider';

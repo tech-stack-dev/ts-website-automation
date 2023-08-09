@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
-import Container from '../../../../../identifiers/MainSite/Container';
+import Container from '../../../../../identifiers/Container';
 import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';

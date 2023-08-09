@@ -1,7 +1,7 @@
 import {driver} from '../driver/Driver';
 import {BrowsersEnum} from '../driver/BrowsersEnum';
 import {Locator, expect} from '@playwright/test';
-import Container from '../../identifiers/MainSite/Container';
+import Container from '../../identifiers/Container';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {

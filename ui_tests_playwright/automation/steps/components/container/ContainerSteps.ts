@@ -1,7 +1,7 @@
 import {Locator, expect} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import ContainerById from '../../../components/container/ContainerById';
-import Container from '../../../identifiers/MainSite/Container';
+import Container from '../../../identifiers/Container';
 
 class ContainerSteps {
 	public async getContainer(type: any, identifier: string, parent?: Locator) {

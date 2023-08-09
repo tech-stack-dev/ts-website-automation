@@ -3,7 +3,7 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import Container from '../../../../identifiers/MainSite/Container';
+import Container from '../../../../identifiers/Container';
 import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
 import Buttons from '../../../../identifiers/Buttons';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';

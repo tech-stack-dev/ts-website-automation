@@ -3,7 +3,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Container from '../../../../../identifiers/MainSite/Container';
+import Container from '../../../../../identifiers/Container';
 import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
