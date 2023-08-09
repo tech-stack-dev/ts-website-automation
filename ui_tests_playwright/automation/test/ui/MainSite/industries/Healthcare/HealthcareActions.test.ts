@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../../identifiers/Buttons';
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';

@@ -11,7 +11,5 @@ export default class Links {
 	static InstagramDesign = 'https://www.instagram.com/techstack.design/';
 	static TikTokDesign = 'https://www.tiktok.com/@techstack.design';
 
-	static BehanceDimaDityuk = 'https://www.behance.net/dimadityuk';
-
 	static nuget = 'https://www.nuget.org/profiles/VitaliiDolotov';
 }

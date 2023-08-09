@@ -10,8 +10,8 @@ import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
-import Links from '../../../../../preconditionsData/Links';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import Links from '../../../../../preconditionsData/Links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);

@@ -8,8 +8,8 @@ import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/Clou
 import Buttons from '../../../../identifiers/Buttons';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {Environment} from '../../../../providers/EnvProvider';
-import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
-import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 
 test.beforeEach(async () => {

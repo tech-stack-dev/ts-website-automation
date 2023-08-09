@@ -7,8 +7,8 @@ import Container from '../../../../../identifiers/MainSite/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
 
 test.beforeEach(async () => {

@@ -8,8 +8,8 @@ import AiMlService from '../../../../../identifiers/MainSite/pages/services/AiMl
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import Buttons from '../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {

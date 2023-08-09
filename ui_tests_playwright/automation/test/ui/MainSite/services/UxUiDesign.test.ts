@@ -7,8 +7,9 @@ import Container from '../../../../identifiers/MainSite/Container';
 import UxUiDesign from '../../../../identifiers/MainSite/pages/services/UxUiDesign';
 import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
-import Links from '../../../../preconditionsData/Links';
+import Links from '../../../../preconditionsData/Links/Links';
 import Buttons from '../../../../identifiers/Buttons';
+import ExpertsBehanceLinks from '../../../../preconditionsData/Links/ExpertsBehanceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -222,9 +223,9 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 	const linkMap = new Map([
 		[MainSiteButton.Instagram, Links.Instagram],
 		[MainSiteButton.Tiktok, Links.TikTokDesign],
-		[Buttons.Behance, Links.BehanceDimaDityuk],
-		[Container.MemberCard, Links.BehanceDimaDityuk],
-		[Container.MemberName, Links.BehanceDimaDityuk],
+		[Buttons.Behance, ExpertsBehanceLinks.DmytroDytuk],
+		[Container.MemberCard, ExpertsBehanceLinks.DmytroDytuk],
+		[Container.MemberName, ExpertsBehanceLinks.DmytroDytuk],
 	]);
 
 	for (const entries of linkMap.entries()) {
