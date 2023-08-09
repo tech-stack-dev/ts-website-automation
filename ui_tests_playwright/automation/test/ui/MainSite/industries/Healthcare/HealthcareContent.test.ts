@@ -96,7 +96,7 @@ test("Check block titles in 'What Makes Our Team Different' container from the '
 	expect(allBlockTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles and CTA button in 'Our Expertise' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check section titles and 'Schedule a meeting now!' button in 'Our Expertise' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
 	const allSectionTitles = await ourExpertiseContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
@@ -111,7 +111,7 @@ test("Check section titles and CTA button in 'Our Expertise' container from the 
 	await expect(ourExpertiseContainer.getByTestId(MainSiteButton.ScheduleAMeetingNow)).toBeVisible();
 });
 
-test("Check section titles, image and CTA button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check section titles, image and 'Read the full Case Study' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 	const allSectionTitles = await beatsScreeningModuleContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];

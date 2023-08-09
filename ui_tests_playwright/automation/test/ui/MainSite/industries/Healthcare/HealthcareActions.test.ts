@@ -15,14 +15,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test("Check redirect by Breadcrumbs in header from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check redirect by 'Home' breadcrumbs button in header from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const info = driver.getByTestId(Healthcare.Info);
 	await info.getByTestId(Container.BreadcrumbsPrev).click();
 
 	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 });
 
-test("Check redirect by Clutch button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
 	await beatsScreeningModuleContainer.getByTestId(Buttons.Clutch).click();
@@ -30,7 +30,7 @@ test("Check redirect by Clutch button in 'Beats Screening Module by Techstack' c
 	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousMedicalDevice);
 });
 
-test("Check redirect by 'Read the full Case Study button' in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
 	await beatsScreeningModuleContainer.getByTestId(MainSiteButton.ReadTheFullCaseStudy).click();
@@ -61,7 +61,7 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 	}
 });
 
-test("Check carousel sections, arrows and CTA button in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check carousel sections, arrows and 'Schedule a meeting' button in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
 	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 
@@ -88,7 +88,6 @@ test("Check carousel sections, arrows and CTA button in 'How We Operate' contain
 
 test("Check redirects by arrows in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
-
 	const containerSection = corePracticesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
 		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],

@@ -94,7 +94,7 @@ test("Check section titles and redirects in 'Our approach' container from the 'C
 	ourApproachContainer.getByTestId(Container.Arrow).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 
-	expect(newPage.url()).toContain(Links.nuget);
+	expect(newPage.url()).toContain(Links.Nuget);
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {

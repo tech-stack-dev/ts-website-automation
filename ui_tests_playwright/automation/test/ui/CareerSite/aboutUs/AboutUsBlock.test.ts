@@ -5,6 +5,8 @@ import AboutUs from '../../../../identifiers/Career/pages/AboutUs';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 
+let clicksAmountToDisableNextButton;
+
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
@@ -64,7 +66,8 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 	await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'false');
 
-	await ourHistoryNextButton.click({clickCount: 7});
+	clicksAmountToDisableNextButton = 7;
+	await ourHistoryNextButton.click({clickCount: clicksAmountToDisableNextButton});
 
 	await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'true');
@@ -81,7 +84,8 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 	await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(candidateNextButton).toHaveAttribute('data-disabled', 'false');
 
-	await candidateNextButton.click({clickCount: 4});
+	clicksAmountToDisableNextButton = 4;
+	await candidateNextButton.click({clickCount: clicksAmountToDisableNextButton});
 
 	await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
@@ -125,7 +129,8 @@ test("Check the buttons of the photo carousel from the 'AboutUs' block @Regressi
 	await expect(engineeringCulturePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'false');
 
-	await engineeringCultureNextButton.click({clickCount: 3});
+	clicksAmountToDisableNextButton = 3;
+	await engineeringCultureNextButton.click({clickCount: clicksAmountToDisableNextButton});
 
 	await expect(engineeringCulturePrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'true');
@@ -142,7 +147,8 @@ test("Check the buttons of the photo carousel from the 'AboutUs' block @Regressi
 	await expect(socialResponsibilityPrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'false');
 
-	await socialResponsibilityNextButton.click({clickCount: 3});
+	clicksAmountToDisableNextButton = 3;
+	await socialResponsibilityNextButton.click({clickCount: clicksAmountToDisableNextButton});
 
 	await expect(socialResponsibilityPrevButton).toHaveAttribute('data-disabled', 'false');
 	await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'true');

@@ -60,9 +60,9 @@ class BaseDriverSteps {
 		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
 		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
 
-		const clickAmount = clicksCount ? clicksCount : allSectionTitles.length - 1;
+		clicksCount = clicksCount ? clicksCount : allSectionTitles.length - 1;
 
-		for (let i = 0; i < clickAmount; i++) {
+		for (let i = 0; i < clicksCount; i++) {
 			await carouselButtonNext.click({delay: 1000});
 		}
 

@@ -11,5 +11,5 @@ export default class Links {
 	static InstagramDesign = 'https://www.instagram.com/techstack.design/';
 	static TikTokDesign = 'https://www.tiktok.com/@techstack.design';
 
-	static nuget = 'https://www.nuget.org/profiles/VitaliiDolotov';
+	static Nuget = 'https://www.nuget.org/profiles/VitaliiDolotov';
 }
