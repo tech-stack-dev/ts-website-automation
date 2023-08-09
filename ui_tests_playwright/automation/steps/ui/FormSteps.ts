@@ -1,6 +1,6 @@
 import {driver} from '../../base/driver/Driver';
 import CareerButton from '../../identifiers/Career/CareerButton';
-import Button from '../../identifiers/Button';
+import Buttons from '../../identifiers/Buttons';
 import Input from '../../identifiers/Input';
 import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
@@ -18,7 +18,7 @@ class FormSteps {
 
 		await driver.executeFunc(async () => {
 			await driver.getByTestId(CareerButton.SendButton).click();
-			await driver.getByTestId(Button.Close).waitFor({state: 'visible'});
+			await driver.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
 
@@ -49,7 +49,7 @@ class FormSteps {
 		await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.getByTestId(CareerButton.SendButton).click();
-		await driver.getByTestId(Button.Close, undefined, 1).waitFor({state: 'visible'});
+		await driver.getByTestId(Buttons.Close, undefined, 1).waitFor({state: 'visible'});
 	}
 
 	public async getErrorMessagesFromFields(necessaryFields: string[]): Promise<string[]> {

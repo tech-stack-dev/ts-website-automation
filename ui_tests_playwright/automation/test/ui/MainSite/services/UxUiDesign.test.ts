@@ -8,7 +8,7 @@ import UxUiDesign from '../../../../identifiers/MainSite/pages/services/UxUiDesi
 import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Links from '../../../../preconditionsData/Links';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -222,7 +222,7 @@ test("Check links in 'We Never Stop Improving Your Product' container from the '
 	const linkMap = new Map([
 		[MainSiteButton.Instagram, Links.Instagram],
 		[MainSiteButton.Tiktok, Links.TikTokDesign],
-		[Button.Behance, Links.BehanceDimaDityuk],
+		[Buttons.Behance, Links.BehanceDimaDityuk],
 		[Container.MemberCard, Links.BehanceDimaDityuk],
 		[Container.MemberName, Links.BehanceDimaDityuk],
 	]);

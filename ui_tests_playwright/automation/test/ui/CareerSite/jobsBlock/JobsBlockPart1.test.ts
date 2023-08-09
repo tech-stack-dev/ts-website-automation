@@ -15,7 +15,7 @@ import {descriptionSteps} from '../../../../steps/components/job/DescriptionStep
 import CareerButton from '../../../../identifiers/Career/CareerButton';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -67,7 +67,7 @@ test('Check that user can switch language in navigation header in job page @Regr
 		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 
-	const logo = jobPageHeaderContainer.Element.getByTestId(Button.Logo);
+	const logo = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 	await logo.waitFor({state: 'visible'});
 
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');

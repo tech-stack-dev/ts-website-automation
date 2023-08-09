@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import Button from '../../../../../identifiers/Button';
+import Buttons from '../../../../../identifiers/Buttons';
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
 import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
@@ -25,7 +25,7 @@ test("Check redirect by Breadcrumbs in header from the 'Healthcare' block @Regre
 test("Check redirect by Clutch button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
-	await beatsScreeningModuleContainer.getByTestId(Button.Clutch).click();
+	await beatsScreeningModuleContainer.getByTestId(Buttons.Clutch).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousMedicalDevice);
 });

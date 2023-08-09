@@ -5,7 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/MainSite/Container';
 import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {Environment} from '../../../../providers/EnvProvider';
 import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
@@ -158,7 +158,7 @@ test("Check redirect to clutch in 'Our approach to cloud app development' contai
 	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(
 		CloudAndDevOps.OurApproachToCloudAppDevelopment
 	);
-	const clutchButton = await ourApproachToCloudAppDevelopmentContainer.getByTestId(Button.Clutch);
+	const clutchButton = await ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch);
 
 	await clutchButton.hover();
 	await clutchButton.click();
@@ -189,20 +189,20 @@ test("Check member names and roles in 'Our Leading Cloud Experts' container from
 test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const buttonUrlMap = new Map([
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
-		[ourCloudDevOpsExpertsContainer.getByTestId(Button.LinkedIn2).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(2), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourCloudDevOpsExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(3), ExpertsLinkedInLinks.DmytroGamanenko],
 		[
-			ourCloudDevOpsExpertsContainer.getByTestId(Button.Blog).nth(0),
+			ourCloudDevOpsExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
 		],
 		[
-			ourCloudDevOpsExpertsContainer.getByTestId(Button.Blog).nth(1),
+			ourCloudDevOpsExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
 		[
-			ourCloudDevOpsExpertsContainer.getByTestId(Button.Blog).nth(2),
+			ourCloudDevOpsExpertsContainer.getByTestId(Buttons.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
 	]);

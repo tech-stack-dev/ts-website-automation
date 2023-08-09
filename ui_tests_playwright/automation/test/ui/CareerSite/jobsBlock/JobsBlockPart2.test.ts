@@ -7,7 +7,7 @@ import CareerButton from '../../../../identifiers/Career/CareerButton';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Navigation from '../../../../identifiers/Career/Navigation';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -15,11 +15,11 @@ test.beforeEach(async () => {
 
 test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
 	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
-	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Button.Logo);
+	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 
 	// A footer element is created to navigate to it and make the navigation bar appear.
 	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.FooterWrapper);
-	const logoFooter = footerContainer.getByTestId(Button.Logo);
+	const logoFooter = footerContainer.getByTestId(Buttons.Logo);
 	await logoFooter.focus();
 
 	await logoHeader.waitFor({state: 'visible'});

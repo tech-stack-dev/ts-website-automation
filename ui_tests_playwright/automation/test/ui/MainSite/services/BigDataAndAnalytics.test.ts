@@ -5,7 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/MainSite/Container';
 import BigDataAndAnalytics from '../../../../identifiers/MainSite/pages/services/BigDataAndAnalytics';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
@@ -171,7 +171,7 @@ test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software De
 	const whyChooseTechstackBigDataServicesContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
-	const clutchButton = await whyChooseTechstackBigDataServicesContainer.getByTestId(Button.Clutch);
+	const clutchButton = await whyChooseTechstackBigDataServicesContainer.getByTestId(Buttons.Clutch);
 
 	await clutchButton.click();
 
@@ -206,24 +206,24 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(2),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(3),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(3),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
 	]);

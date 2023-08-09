@@ -6,7 +6,7 @@ import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/MainSite/Container';
 import {Environment} from '../../../../providers/EnvProvider';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
@@ -30,7 +30,7 @@ const testDataProvider: string[] = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
-	await driver.getByTestId(Button.AcceptCookies).click();
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
@@ -56,7 +56,7 @@ for (const url of testDataProvider) {
 		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const year = new Date().getFullYear();
 
-		await expect(footer.getByTestId(Button.Logo)).toBeVisible();
+		await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 		await expect(contactBlock.getByTestId(Container.SectionTitle)).toHaveText('Contacts');
 		await expect(contactBlock.getByTestId(Footer.Headquarters)).toContainText('Headquarters:');
 		await expect(contactBlock.getByTestId(Footer.Headquarters)).toContainText('Poland, Wroclaw,');
@@ -145,14 +145,14 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
-			[Button.LinkedIn, Links.LinkedIn],
-			[Button.Facebook, Links.Facebook],
-			[Button.Instagram, Links.Instagram],
-			[Button.Behance, Links.Behance],
-			[Button.Dribbble, Links.Dribbble],
-			[Button.Twitter, Links.Twitter],
-			[Button.GoodFirms, Links.GoodFirms],
-			[Button.Clutch, Links.Clutch],
+			[Buttons.LinkedIn, Links.LinkedIn],
+			[Buttons.Facebook, Links.Facebook],
+			[Buttons.Instagram, Links.Instagram],
+			[Buttons.Behance, Links.Behance],
+			[Buttons.Dribbble, Links.Dribbble],
+			[Buttons.Twitter, Links.Twitter],
+			[Buttons.GoodFirms, Links.GoodFirms],
+			[Buttons.Clutch, Links.Clutch],
 		]);
 
 		await baseDriverSteps.goToUrl(url);
@@ -172,8 +172,8 @@ for (const url of testDataProvider) {
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
 			[Footer.Sitemap, UrlProvider.urlBuilder(UrlPath.Sitemap)],
-			[Button.ContactUs, UrlProvider.urlBuilder(UrlPath.ContactUs)],
-			[Button.Logo, UrlProvider.webSiteUrl()],
+			[Buttons.ContactUs, UrlProvider.urlBuilder(UrlPath.ContactUs)],
+			[Buttons.Logo, UrlProvider.webSiteUrl()],
 		]);
 
 		for (const entries of linkMap.entries()) {

@@ -6,7 +6,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/MainSite/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import Button from '../../../../../identifiers/Button';
+import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
 import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 
 test("Check redirects by buttons in 'Our Approach to Mobile App Development Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
-	const clutchButtons = await ourApproachContainer.getByTestId(Button.Clutch).all();
+	const clutchButtons = await ourApproachContainer.getByTestId(Buttons.Clutch).all();
 
 	const buttonMap = new Map([
 		[clutchButtons[0], ClutchReviewLinks.AnonymousPeerToPeer],
@@ -58,23 +58,23 @@ test("Check section titles and redirects by buttons in 'We Never Stop Improving 
 
 	const buttonUrlMap = new Map([
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.LinkedIn2).nth(0),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(0),
 			ExpertsLinkedInLinks.YevheniiKarachevtsev,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.LinkedIn2).nth(1),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(1),
 			ExpertsLinkedInLinks.IvanYeremenko,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.LinkedIn2).nth(2),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(2),
 			ExpertsLinkedInLinks.MariaDarmanian,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.LinkedIn2).nth(3),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(3),
 			ExpertsLinkedInLinks.DmytroShtapauk,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.LinkedIn2).nth(4),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(4),
 			ExpertsLinkedInLinks.VitaliiDolotov,
 		],
 	]);

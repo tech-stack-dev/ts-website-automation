@@ -1,4 +1,4 @@
-export default class Button {
+export default class Buttons {
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
 	static HeaderLogo = 'HeaderLogo-HeaderLogo';

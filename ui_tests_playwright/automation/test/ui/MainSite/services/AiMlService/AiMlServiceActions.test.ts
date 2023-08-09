@@ -10,7 +10,7 @@ import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
-import Button from '../../../../../identifiers/Button';
+import Buttons from '../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -63,7 +63,7 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourApproachContainer = driver.getByTestId(AiMlService.OurApproach);
 
-	await ourApproachContainer.getByTestId(Button.Clutch).click();
+	await ourApproachContainer.getByTestId(Buttons.Clutch).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
 });
@@ -71,14 +71,14 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 test("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
-		[ourExpertsContainer.getByTestId(Button.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksandrBezrukov],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,
 		],
 	]);

@@ -3,7 +3,6 @@ export default class Footer {
 
 	static Headquarters = 'Headquarters';
 	static Phone = 'Phone';
-
 	static Info = 'Info';
 
 	// Button
