@@ -1,4 +1,4 @@
-export default class MainSiteButton {
+export default class MainSiteButtons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';

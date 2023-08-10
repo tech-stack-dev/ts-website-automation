@@ -10,7 +10,7 @@ import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {Environment} from '../../../../providers/EnvProvider';
 import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudAndDev));
@@ -20,7 +20,7 @@ test("Check the header from the 'Cloud & DevOps' block @Regression @CloudAndDevO
 	const info = driver.getByTestId(CloudAndDevOps.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud & DevOps');
 	await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services &\nCloud Solutions');
-	await expect(info.getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {

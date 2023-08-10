@@ -5,7 +5,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import AiMlService from '../../../../../identifiers/MainSite/pages/services/AiMlService';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
@@ -20,16 +20,16 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	const linkMap = new Map([
 		[
-			MainSiteButton.Forbes,
+			MainSiteButtons.Forbes,
 			'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14',
 		],
-		[MainSiteButton.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
+		[MainSiteButtons.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
 		[
-			MainSiteButton.Deloitte,
+			MainSiteButtons.Deloitte,
 			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
 		],
 		[
-			MainSiteButton.McKinsey,
+			MainSiteButtons.McKinsey,
 			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
 		],
 	]);
