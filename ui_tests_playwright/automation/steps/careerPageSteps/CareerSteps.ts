@@ -1,8 +1,8 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
-import Button from '../../identifiers/Button';
-import Career from '../../identifiers/Career';
-import Containers from '../../identifiers/Containers';
+import CareerButtons from '../../identifiers/Career/CareerButtons';
+import Career from '../../identifiers/Career/pages/Career';
+import ContainersCareer from '../../identifiers/Career/ContainersCareer';
 import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
 
@@ -18,14 +18,17 @@ class CareerSteps {
 	}
 
 	public async switchLanguageViaHeader(language: string) {
-		const headerContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
+		const headerContainer = await containerSteps.getContainer(
+			ContainerByClass,
+			ContainersCareer.JobPageHeaderWrapper
+		);
 		let switcher: any;
 		switch (language.toLowerCase()) {
 			case 'ua':
-				switcher = headerContainer.Element.getByTestId(Button.UaLanguageSwitcher);
+				switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 				break;
 			case 'en':
-				switcher = headerContainer.Element.getByTestId(Button.EnLanguageSwitcher);
+				switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
 		}
 
 		await switcher.click();

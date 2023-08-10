@@ -4,18 +4,18 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import Containers from '../../../../identifiers/Containers';
-import Career from '../../../../identifiers/Career';
+import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
+import Career from '../../../../identifiers/Career/pages/Career';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
-import Navigation from '../../../../identifiers/Navigation';
+import Navigation from '../../../../identifiers/Career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
 import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
-import Link from '../../../../identifiers/Link';
-import Button from '../../../../identifiers/Button';
+import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -40,7 +40,7 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
-		Containers.JobPageApplyProposition
+		ContainersCareer.JobPageApplyProposition
 	);
 
 	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
@@ -61,22 +61,27 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
+	const jobPageHeaderContainer = await containerSteps.getContainer(
+		ContainerByClass,
+		ContainersCareer.JobPageHeaderWrapper
+	);
 
 	expect(await careerSteps.getBreadcrumbsText()).toBe(
 		`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 	);
 
-	const logo = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
+	const logo = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 	await logo.waitFor({state: 'visible'});
 
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
 	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
-	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
+	await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
+		/active-locale/
+	);
 
-	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
+	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });

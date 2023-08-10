@@ -1,4 +1,4 @@
-export default class Tag {
+export default class TagsCareer {
 	// Direction block
 	static LongSoftwareDataManager = 'Tag-LongSoftwareDataManager';
 	static SoftwareDevelopment = 'Tag-SoftwareDevelopment';

@@ -1,4 +1,4 @@
-export default class Containers {
+export default class ContainersCareer {
 	static NavigationHeaderClass = 'styledComponents__LogoHeaderWrapper';
 	static StandWithUkraineClass = 'styledComponents__StandWithUkraineWrapper';
 	static StandWithUkraineTitle = 'StandWithUkraineTitle-TechstackStandsWithUkraine';
