@@ -56,6 +56,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
+        id: upload-report
         if: always()
         with:
           name: playwright-report
@@ -63,7 +64,7 @@ jobs:
           retention-days: 30
 
       - name: Print Report Link
-        run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}\""
+        run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}/index.html\""
 
       # - name: Extract HTML from ZIP
       #   run: |
