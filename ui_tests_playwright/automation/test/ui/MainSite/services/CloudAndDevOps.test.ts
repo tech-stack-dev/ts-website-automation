@@ -261,3 +261,7 @@ test("Check section titles in 'FAQ' container from the 'Cloud & DevOps' block @R
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
+
+test.afterEach(async () => {
+	await driver.closeDrivers();
+});

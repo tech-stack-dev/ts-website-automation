@@ -197,3 +197,7 @@ test("Check section titles in 'FAQ' container from the 'AI&ML Service' block @Re
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
+
+test.afterEach(async () => {
+	await driver.closeDrivers();
+});
