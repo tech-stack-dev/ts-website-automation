@@ -54,17 +54,29 @@ jobs:
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
 
-      - uses: actions/upload-artifact@v3
-        name: Upload Playwright report
-        id: upload-report
+      # - uses: actions/upload-artifact@v3
+      #   name: Upload Playwright report
+      #   id: upload-report
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: ui_tests_playwright/playwright-report/
+      #     retention-days: 30
+
+      # - name: Print Report Link
+      #   run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}/index.html\""
+
+      - name: Upload Index HTML
+        uses: actions/upload-artifact@v3
+        id: upload-index-html
         if: always()
         with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30
+          name: index-html
+          path: ui_tests_playwright/playwright-report/index.html
 
-      - name: Print Report Link
-        run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}/index.html\""
+      - name: Display HTML Link
+        run: |
+          echo "Index HTML: ${{ steps.upload-index-html.outputs.artifact_url }}"
 
       # - name: Extract HTML from ZIP
       #   run: |
