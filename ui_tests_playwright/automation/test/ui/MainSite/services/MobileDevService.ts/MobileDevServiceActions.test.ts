@@ -58,23 +58,23 @@ test("Check section titles and redirects by buttons in 'We Never Stop Improving 
 
 	const buttonUrlMap = new Map([
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(0),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(0),
 			ExpertsLinkedInLinks.YevheniiKarachevtsev,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(1),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(1),
 			ExpertsLinkedInLinks.IvanYeremenko,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(2),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(2),
 			ExpertsLinkedInLinks.MariaDarmanian,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(3),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(3),
 			ExpertsLinkedInLinks.DmytroShtapauk,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn2).nth(4),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(4),
 			ExpertsLinkedInLinks.VitaliiDolotov,
 		],
 	]);

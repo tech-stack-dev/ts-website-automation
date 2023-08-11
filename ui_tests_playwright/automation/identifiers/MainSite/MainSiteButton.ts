@@ -10,8 +10,7 @@ export default class MainSiteButton {
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
-	static McKinsey = 'Button-McKinsey';
-	static McKinseyHealthcare = 'Button-Mckinsey'; // should be fixed after adding data-id for Logistic page
+	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 
