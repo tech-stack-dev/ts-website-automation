@@ -48,7 +48,7 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 		],
 		[MainSiteButton.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
 		[
-			MainSiteButton.McKinseyHealthcare,
+			MainSiteButton.McKinsey,
 			'https://www.mckinsey.com/industries/healthcare/our-insights/what-to-expect-in-us-healthcare-in-2023-and-beyond#/',
 		],
 	]);
