@@ -39,37 +39,37 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 test("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(3), ExpertsLinkedInLinks.VitaliiDolotov],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.VitaliiDolotov],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(3),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.VitaliiDolotov,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(4), ExpertsLinkedInLinks.IvanYeremenko],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(4), ExpertsLinkedInLinks.IvanYeremenko],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(4),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(5),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
 		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn2).nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
 		[
 			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(6),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,

@@ -172,7 +172,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 test("Check redirect by arrow in 'Our Approach and Achievements' block  from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
 	const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 
-	await ourApproachContainer.locator('//img[@class="arrow"]').click(); // should be fixed after adding data-id for Logistic page
+	await ourApproachContainer.getByTestId(Container.Arrow).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 
 	expect(newPage.url()).toContain(Links.Nuget);
