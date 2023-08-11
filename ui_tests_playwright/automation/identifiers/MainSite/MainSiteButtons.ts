@@ -3,8 +3,11 @@ export default class MainSiteButtons {
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
-	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
+	static LetsDiscuss = 'Button-LetsDiscuss';
+
+	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
+	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 
 	// Services
 	static Forbes = 'Button-Forbes';
