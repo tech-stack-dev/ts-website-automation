@@ -86,7 +86,8 @@ jobs:
       - name: Display HTML Link
         if: always()
         run: |
-          echo "Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
+          echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+          
       
       
       
