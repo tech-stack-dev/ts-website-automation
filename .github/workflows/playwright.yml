@@ -54,6 +54,36 @@ jobs:
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
 
+      # Steps to report UI tests execution status
+      - name: Get Playwright Report
+        uses: actions/checkout@v3
+        if: ${{ steps.uiTests.outcome == 'success' }} 
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+      
+      - name: Deploy Playwright Report to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: ui_tests_playwright/playwright-report/index.html
+
+      - name: Add Playwright report link to Annotations section
+        if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
+        run: |
+          text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+          echo "::warning ::$text"
+      
+      
+      
+      
+      
+      
+      
+      
       # - uses: actions/upload-artifact@v3
       #   name: Upload Playwright report
       #   id: upload-report
