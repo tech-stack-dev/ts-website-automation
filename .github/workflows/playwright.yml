@@ -57,11 +57,13 @@ jobs:
       # Steps to report UI tests execution status
       - name: Checkout Repository
         uses: actions/checkout@v3
+        if: always()
         with:
           ref: gh-pages
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ui_tests_playwright/playwright-report/index.html
@@ -82,6 +84,7 @@ jobs:
       #     echo "::warning ::$text"
 
       - name: Display HTML Link
+        if: always()
         run: |
           echo "Index HTML: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/index.html"
       
