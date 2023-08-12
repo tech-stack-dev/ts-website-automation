@@ -66,7 +66,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report/index.html
+          publish_dir: ui_tests_playwright/playwright-report
           publish_branch: gh-pages
       
       # - name: Deploy Playwright Report to GitHub Pages
@@ -86,7 +86,7 @@ jobs:
       - name: Display HTML Link
         if: always()
         run: |
-          echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+          echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
           
       
       
