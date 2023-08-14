@@ -60,18 +60,18 @@ jobs:
         run: |
           ls -la ui_tests_playwright/playwright-report      
       
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        if: always()
-        with:
-          ref: gh-pages
+      # - name: Checkout Repository
+      #   uses: actions/checkout@v3
+      #   if: always()
+      #   with:
+      #     ref: gh-pages
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ github.workspace }}/ui_tests_playwright/playwright-report
+          publish_dir: /ui_tests_playwright/playwright-report
           publish_branch: gh-pages
       
       # - name: Deploy Playwright Report to GitHub Pages
