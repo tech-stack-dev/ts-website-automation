@@ -52,27 +52,60 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=/ui_tests_playwright/playwright-report/
+        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=ui_tests_playwright/playwright-report/
 
       # Steps to report UI tests execution status
-      - name: Debug Directory Contents
+      - name: Upload Playwright report
+        id: upload-report
+        uses: actions/upload-artifact@v3
         if: always()
-        run: |
-          ls -la ui_tests_playwright/playwright-report      
+        with:
+          name: playwright-report
+          path: ui_tests_playwright/playwright-report/
+          retention-days: 30
+
+      - name: Display Playwright Report Link
+        uses: actions/github-script@v4
+        if: always()
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const reportUrl = `${{ steps.upload-report.outputs.artifact_url }}/index.html`;
+            const payload = {
+              sha: context.sha,
+              event: 'check_run',
+              name: 'Playwright Report',
+              head_sha: context.sha,
+              conclusion: 'success',
+              output: {
+                title: 'Playwright Test Report',
+                summary: `View Playwright report [here](${reportUrl})`,
+              },
+            };
+            github.checks.create(payload);
       
-      # - name: Checkout Repository
+      
+      # - name: Get Playwright history
+      #   uses: actions/checkout@v3
+      #   if: always()
+      #   continue-on-error: true
+      #   with:
+      #     ref: gh-pages
+      #     path: gh-pages    
+      
+          # - name: Checkout Repository
       #   uses: actions/checkout@v3
       #   if: always()
       #   with:
       #     ref: gh-pages
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /ui_tests_playwright/playwright-report
-          publish_branch: gh-pages
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: always()
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: /ui_tests_playwright/playwright-report
+      #     publish_branch: gh-pages
       
       # - name: Deploy Playwright Report to GitHub Pages
       #   uses: JamesIves/github-pages-deploy-action@v4.4.1
@@ -88,10 +121,10 @@ jobs:
       #     text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
       #     echo "::warning ::$text"
 
-      - name: Display HTML Link
-        if: always()
-        run: |
-          echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
+      # - name: Display HTML Link
+      #   if: always()
+      #   run: |
+      #     echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
           
       
       
