@@ -70,7 +70,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const reportUrl = `${{ steps.upload-report.outputs.artifact_url }}/index.html`;
+            const reportUrl = "${{ steps.upload-report.outputs.artifact_url }}/index.html";
             const payload = {
               sha: context.sha,
               event: 'check_run',
