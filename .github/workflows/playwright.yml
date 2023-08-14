@@ -66,7 +66,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report
+          publish_dir: ui_tests_playwright/playwright-report/
           publish_branch: gh-pages
       
       # - name: Deploy Playwright Report to GitHub Pages
@@ -108,17 +108,17 @@ jobs:
       # - name: Print Report Link
       #   run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}/index.html\""
 
-      - name: Upload Index HTML
-        uses: actions/upload-artifact@v3
-        id: upload-index-html
-        if: always()
-        with:
-          name: index-html
-          path: ui_tests_playwright/playwright-report/index.html
+      # - name: Upload Index HTML
+      #   uses: actions/upload-artifact@v3
+      #   id: upload-index-html
+      #   if: always()
+      #   with:
+      #     name: index-html
+      #     path: ui_tests_playwright/playwright-report/index.html
 
-      - name: Display HTML Link
-        run: |
-          echo "Index HTML: ${{ steps.upload-index-html.outputs.artifact_url }}"
+      # - name: Display HTML Link
+      #   run: |
+      #     echo "Index HTML: ${{ steps.upload-index-html.outputs.artifact_url }}"
 
       # - name: Extract HTML from ZIP
       #   run: |
