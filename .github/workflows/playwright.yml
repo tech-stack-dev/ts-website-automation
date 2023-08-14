@@ -52,7 +52,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=ui_tests_playwright/playwright-report/
+        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=/ui_tests_playwright/playwright-report/
 
       # Steps to report UI tests execution status
       - name: Debug Directory Contents
