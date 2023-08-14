@@ -55,13 +55,10 @@ jobs:
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
 
       # Steps to report UI tests execution status
-      - uses: actions/upload-artifact@v3
-        name: Upload Playwright report
+      - name: Debug Directory Contents
         if: always()
-        with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30      
+        run: |
+          ls -la ui_tests_playwright/playwright-report      
       
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -74,7 +71,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report
+          publish_dir: ${{ github.workspace }}/ui_tests_playwright/playwright-report
           publish_branch: gh-pages
       
       # - name: Deploy Playwright Report to GitHub Pages
