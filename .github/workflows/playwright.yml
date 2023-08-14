@@ -55,9 +55,13 @@ jobs:
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
 
       # Steps to report UI tests execution status
-      - name: Debug Directory Contents
-        run: |
-          ls -la ui_tests_playwright/playwright-report
+      - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
+        if: always()
+        with:
+          name: playwright-report
+          path: ui_tests_playwright/playwright-report/
+          retention-days: 30      
       
       - name: Checkout Repository
         uses: actions/checkout@v3
