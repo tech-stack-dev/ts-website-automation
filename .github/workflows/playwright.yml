@@ -56,28 +56,27 @@ jobs:
         working-directory: ui_tests_playwright
 
       # Steps to report UI tests execution status
-      - name: Commit Playwright Report Files
+      - name: Get Playwright report
+        uses: actions/checkout@v3
+        if: always() 
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /ui_tests_playwright/playwright-report
+          publish_branch: gh-pages
+
+      - name: Add Playwright report link to Annotations section
         if: always()
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git checkout -B gh-pages
-          git add ui_tests_playwright/playwright-report
-          git commit -m "Add Playwright report files"
-          git push origin gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      
-
-
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: always()
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: /ui_tests_playwright/playwright-report
-      #     publish_branch: gh-pages
+          text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+          echo "::warning ::$text"
       
       
       
