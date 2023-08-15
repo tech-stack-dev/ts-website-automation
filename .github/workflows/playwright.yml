@@ -68,23 +68,23 @@ jobs:
         run: |
           mkdir -p extracted_report
           unzip -q playwright-report -d extracted_report
-        working-directory: /ui_tests_playwright/
+        working-directory: ts-website-automation/ui_tests_playwright/playwright-report/
 
       - name: Debug Directory Contents
         if: always()
         run: |
           echo "Contents of ui_tests_playwright/:"
-          ls -la ui_tests_playwright/
+          ls -la ts-website-automation/ui_tests_playwright/
 
           echo "Contents of extracted_report:"
-          ls -la ui_tests_playwright/extracted_report
+          ls -la ts-website-automation/ui_tests_playwright/playwright-report
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /ui_tests_playwright/extracted_report
+          publish_dir: ts-website-automation/ui_tests_playwright/playwright-report/extracted_report
           publish_branch: gh-pages
 
       - name: Add Playwright report link to Annotations section
