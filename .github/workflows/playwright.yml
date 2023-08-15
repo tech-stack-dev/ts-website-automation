@@ -57,6 +57,7 @@ jobs:
 
       # Steps to report UI tests execution status
       - name: Commit Playwright Report Files
+        if: always()
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -70,13 +71,13 @@ jobs:
       
 
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /ui_tests_playwright/playwright-report
-          publish_branch: gh-pages
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: always()
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: /ui_tests_playwright/playwright-report
+      #     publish_branch: gh-pages
       
       
       
