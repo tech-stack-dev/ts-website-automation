@@ -1,27 +1,15 @@
-export default class Button {
-	static EnLanguageSwitcher = 'LocaleButton-En';
-	static UaLanguageSwitcher = 'LocaleButton-Ua';
-
-	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
-	static SendButton = 'SubmitButton-SharedSendMessage';
-
-	static RequestAQuote = 'Button-RequestAQuote';
-
+export default class Buttons {
 	// Header components
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
+	static HeaderLogo = 'HeaderLogo-HeaderLogo';
 	static ContactUs = 'Button-ContactUs';
-	static Close = 'CloseButton-Close';
-	static LearnMoreButton2 = 'LearnMoreButton-SharedLearnMore2';
 
 	// Menu components
+	static Close = 'CloseButton-Close';
 	static Menu_Services = 'ServicesHeader-ServicesHeader';
 	static Menu_Company = 'CompanyHeader-CompanyHeader';
 	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
 
-	// Breadcrumbs links
-	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
-
-	// Services section
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
 	static Services_CloudAndDev = 'Services-CloudAndDev';
@@ -33,22 +21,20 @@ export default class Button {
 	static Services_QaAsAServ = 'Services-QaAsAServ';
 	static Services_ConsultingServ = 'Services-ConsultingServ';
 
-	// Side bar
-	static ResetButton = 'ResetButton-Reset';
-
-	// Company section
 	static Company_AboutUs = 'Company-AboutUs';
 	static Company_HowWeWork = 'Company-HowWeWork';
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
 
-	// Footer
-	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';
-
-	// Services
-	static Linkedin = 'Button-LinekedIn';
-	static Blog = 'Button-Blog';
+	// Social links
+	static LinkedIn = 'Button-LinkedIn';
+	static Facebook = 'Button-Facebook';
+	static Instagram = 'Button-Instagram';
+	static Behance = 'Button-Behance';
+	static Dribbble = 'Button-Dribbble';
+	static Twitter = 'Button-Twitter';
+	static GoodFirms = 'Button-GoodFirms';
 	static Clutch = 'Button-Clutch';
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
@@ -65,4 +51,8 @@ export default class Button {
 
 	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';
+
+	// Other
+	static Logo = 'Logo-Techstack';
+	static Blog = 'Button-Blog';
 }

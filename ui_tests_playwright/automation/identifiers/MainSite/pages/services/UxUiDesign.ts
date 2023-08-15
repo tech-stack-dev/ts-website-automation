@@ -9,11 +9,4 @@ export default class UxUiDesign {
 	static RelatedServices = 'Container-RelatedServices';
 	static Faq = 'Container-Faq';
 	static RelatedArticles = 'Container-RelatedArticles';
-
-	// Button
-	static Behance = 'Button-Behance';
-
-	// Link
-	static Tiktok = 'Link-TikTok';
-	static Instagram = 'Link-Instagram';
 }

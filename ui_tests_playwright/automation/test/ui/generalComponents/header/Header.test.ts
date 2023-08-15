@@ -3,9 +3,8 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import Link from '../../../../identifiers/Link';
 import {Environment} from '../../../../providers/EnvProvider';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 import Colors from '../../../../preconditionsData/Colors';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../enum/ServicesEnum';
@@ -30,17 +29,17 @@ test.beforeEach(async () => {
 for (const url of testDataProvider) {
 	test.skip(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Link.HeaderLogo).click();
+		await driver.getByTestId(Buttons.HeaderLogo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 
 	test.skip(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Button.Menu).click();
+		await driver.getByTestId(Buttons.Menu).click();
 		const menuHeaderslist: Locator[] = [
-			driver.getByTestId(Button.Menu_Services),
-			driver.getByTestId(Button.Menu_Company),
-			driver.getByTestId(Button.Menu_ContactUs).getByText('Contact Us'),
+			driver.getByTestId(Buttons.Menu_Services),
+			driver.getByTestId(Buttons.Menu_Company),
+			driver.getByTestId(Buttons.Menu_ContactUs).getByText('Contact Us'),
 		];
 
 		for (const header of menuHeaderslist) {
@@ -57,21 +56,21 @@ for (const url of testDataProvider) {
 	test.skip(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesList = new Map([
-			[Button.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
-			[Button.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
-			[Button.Services_CloudAndDev, serviceUrl[ServicesEnum.CloudAndDev]],
-			[Button.Services_BigData, serviceUrl[ServicesEnum.BigData]],
-			[Button.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
-			[Button.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
-			[Button.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
-			[Button.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
-			[Button.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
-			[Button.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
+			[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
+			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
+			[Buttons.Services_CloudAndDev, serviceUrl[ServicesEnum.CloudAndDev]],
+			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
+			[Buttons.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
+			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
+			[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
+			[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
+			[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
+			[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
 		]);
 
 		for (const [element, serviceUrl] of servicesList) {
-			await driver.getByTestId(Button.Menu).click();
-			await driver.getByTestId(Button.Menu_Services).click();
+			await driver.getByTestId(Buttons.Menu).click();
+			await driver.getByTestId(Buttons.Menu_Services).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(serviceUrl);
 			await baseDriverSteps.goToUrl(url);
@@ -81,16 +80,16 @@ for (const url of testDataProvider) {
 	test.skip(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const companyList = new Map([
-			[Button.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
-			[Button.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Button.Company_Career, UrlProvider.careerUrl(Environment.Production)],
-			[Button.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			[Button.Company_Blog, companyUrl[CompanyEnum.Blog]],
+			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
+			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
+			[Buttons.Company_Career, UrlProvider.careerUrl(Environment.Production)],
+			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
+			[Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]],
 		]);
 
 		for (const [element, companyUrl] of companyList) {
-			await driver.getByTestId(Button.Menu).click();
-			await driver.getByTestId(Button.Menu_Company).click();
+			await driver.getByTestId(Buttons.Menu).click();
+			await driver.getByTestId(Buttons.Menu_Company).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(companyUrl);
 			await baseDriverSteps.goToUrl(url);

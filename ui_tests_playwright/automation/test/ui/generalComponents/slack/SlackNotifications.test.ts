@@ -2,14 +2,14 @@ import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import Button from '../../../../identifiers/Button';
+import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {slackSteps} from '../../../../steps/api/SlackSteps';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
-import Navigation from '../../../../identifiers/Navigation';
+import Navigation from '../../../../identifiers/Career/Navigation';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
@@ -39,7 +39,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(/CardWrapper/).click();
-	await driver.getByTestId(Button.ApplyNow).click();
+	await driver.getByTestId(CareerButtons.ApplyNow).click();
 	await formSteps.sendApplyForAJob();
 	const message = await slackSteps.getMessageWithValueFromChat(
 		slackDtoVariable.value.stagingTechstackHrNotifyId,
