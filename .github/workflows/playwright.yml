@@ -94,16 +94,19 @@ jobs:
       - name: Extract Playwright Report Archive
         if: always()
         run: |
+          echo "Current working directory: $(pwd)"
+          ls -la .
+        
           mkdir -p extracted_report
           unzip -q playwright-report -d extracted_report
-        working-directory: playwright-report
+        working-directory: ui_tests_playwright/playwright-report/
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: playwright-report/extracted_report
+          publish_dir: ui_tests_playwright/playwright-report/extracted_report
           publish_branch: gh-pages
 
       - name: Add Playwright report link to Annotations section
