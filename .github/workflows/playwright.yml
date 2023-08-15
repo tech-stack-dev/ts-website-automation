@@ -53,7 +53,6 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
-        working-directory: ui_tests_playwright
 
       # Steps to report UI tests execution status
       - name: Get Playwright report
@@ -68,7 +67,7 @@ jobs:
         if: always()
         run: |
           mkdir -p extracted_report
-          unzip -q playwright-report.zip -d extracted_report
+          unzip -q playwright-report -d extracted_report
         working-directory: ui_tests_playwright
 
       - name: Debug Directory Contents
