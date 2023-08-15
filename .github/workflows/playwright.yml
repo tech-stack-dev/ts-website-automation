@@ -68,16 +68,18 @@ jobs:
         run: |
           mkdir -p extracted_report
           unzip -q playwright-report -d extracted_report
-        working-directory: ts-website-automation/ui_tests_playwright/playwright-report/
+        working-directory: ui_tests_playwright/playwright-report/
 
       - name: Debug Directory Contents
         if: always()
         run: |
+          cd ui_tests_playwright
+
           echo "Contents of ui_tests_playwright/:"
-          ls -la ts-website-automation/ui_tests_playwright/
+          ls -la .
 
           echo "Contents of extracted_report:"
-          ls -la ts-website-automation/ui_tests_playwright/playwright-report
+          ls -la ui_tests_playwright
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
