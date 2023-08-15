@@ -68,13 +68,13 @@ jobs:
         run: |
           mkdir -p extracted_report
           unzip -q playwright-report -d extracted_report
-        working-directory: ui_tests_playwright
+        working-directory: /ui_tests_playwright/
 
       - name: Debug Directory Contents
         if: always()
         run: |
-          echo "Contents of ui_tests_playwright/playwright-report:"
-          ls -la ui_tests_playwright/playwright-report
+          echo "Contents of ui_tests_playwright/:"
+          ls -la ui_tests_playwright/
 
           echo "Contents of extracted_report:"
           ls -la ui_tests_playwright/extracted_report
@@ -84,7 +84,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /ui_tests_playwright/playwright-report/extracted_report
+          publish_dir: /ui_tests_playwright/extracted_report
           publish_branch: gh-pages
 
       - name: Add Playwright report link to Annotations section
