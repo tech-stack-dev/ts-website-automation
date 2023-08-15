@@ -1,10 +1,12 @@
 export default class JobPagePreconditions {
 	public static descriptionBlocksIdentifiersAndUaHeaders: Map<string, string> = new Map([
-		['role', 'Про роль:'],
-		['skills', 'Ти маєш:'],
-		['about_us', 'Ми маємо:'],
-		['description', 'Про продукт:'],
-		['responsibilities', 'Ти будеш:'],
-		['our_benefits', 'Ми будемо:'],
+		['product', 'Про продукт'],
+		['team', 'Твоя команда'],
+		['culture', 'Культура'],
+		['responsibilities', 'Твої обов’язки'],
+		['requirements', 'Це про тебе'],
+		['benefits', 'Що у нас є для тебе'],
+		['candidate_path', 'Етапи приєднання до Techstack'],
+		['company', 'Про нас'],
 	]);
 }

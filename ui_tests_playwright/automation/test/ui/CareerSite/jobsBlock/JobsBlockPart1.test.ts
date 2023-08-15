@@ -55,7 +55,9 @@ test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async (
 		await descriptionSteps.checkDescriptionBlockHeader(header[0], header[1]);
 	}
 
-	await expect(applyPropositionWrapper.Element).toHaveText('Хочеш стати частиною нашої команди?Подавай заявку!');
+	await expect(applyPropositionWrapper.Element).toHaveText(
+		'Хочеш зробити свій внесок?Ти у правильному місці.Подавай заявку на вакансію!'
+	);
 });
 
 test('Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146', async () => {

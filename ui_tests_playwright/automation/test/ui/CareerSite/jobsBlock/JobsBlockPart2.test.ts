@@ -39,21 +39,21 @@ test.describe('With one precondition vacancy', () => {
 		expect(facebook).toBeTruthy();
 		expect(linked).toBeTruthy();
 		expect(await driver.getByTestId(Job.AboutTheProductBlock).textContent()).toEqual(
-			'About the productIntroTypeScript test'
+			'About the productIntroTypeScript test_1'
 		);
-		expect(await driver.getByTestId(Job.YourTeam).textContent()).toEqual('Your teamTypeScript test');
-		expect(await driver.getByTestId(Job.Culture).textContent()).toEqual('CultureTypeScript test');
+		expect(await driver.getByTestId(Job.YourTeam).textContent()).toEqual('Your teamTypeScript test_1');
+		expect(await driver.getByTestId(Job.Culture).textContent()).toEqual('CultureTypeScript test_1');
 		expect(await driver.getByTestId(Job.YourResponsibilities).textContent()).toEqual(
 			'Your responsibilitiesTypeScript test'
 		);
-		expect(await driver.getByTestId(Job.ItsAboutYou).textContent()).toEqual("It's about youTypeScript test");
+		expect(await driver.getByTestId(Job.ItsAboutYou).textContent()).toEqual("It's about youTypeScript test_1");
 		expect(await driver.getByTestId(Job.WhatWeHaveForYou).textContent()).toEqual(
-			'What we have\nfor youTypeScript test'
+			'What we have\nfor youTypeScript test_1'
 		);
 		expect(await driver.getByTestId(Job.HowToJoinTechstack).textContent()).toEqual(
-			'How to join\nTechstackTypeScript test'
+			'How to join\nTechstackTypeScript test_1'
 		);
-		expect(await driver.getByTestId(Job.AboutUs).textContent()).toEqual('About usTypeScript test');
+		expect(await driver.getByTestId(Job.AboutUs).textContent()).toEqual('About usTypeScript test_1');
 		const applyJobText = await careerSteps.getApplyJobContent();
 		expect(applyJobText).toEqual("Want to make an impact?You're in the right place. Apply for a position!");
 	});
