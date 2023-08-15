@@ -63,6 +63,31 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Verify catalog
+        if: always()
+        run: |
+          echo "Current working directory: $(pwd)"
+          ls -la .
+
+      - name: Navigate to Previous Directory
+        if: always()
+        run: |
+          cd ..
+          echo "Current working directory: $(pwd)"
+          ls -la
+
+      - name: Debug Directory Contents
+        if: always()
+        run: |
+          cd ui_tests_playwright
+  
+          echo "Contents of ui_tests_playwright/:"
+          ls -la .
+  
+          echo "Contents of extracted_report:"
+          ls -la ui_tests_playwright
+  
+      
       - name: Extract Playwright Report Archive
         if: always()
         run: |
