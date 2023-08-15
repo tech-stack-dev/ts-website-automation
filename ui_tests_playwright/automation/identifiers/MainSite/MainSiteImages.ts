@@ -1,5 +1,5 @@
 export default class MainSiteImages {
 	static BeatsScreening = 'Img-BeatsScreening';
 	static CompleteMap = 'Map-CompleteMap';
-	static Cargo = 'Img-Cargo';
+	static CaseStudy = 'Img-CaseStudy';
 }

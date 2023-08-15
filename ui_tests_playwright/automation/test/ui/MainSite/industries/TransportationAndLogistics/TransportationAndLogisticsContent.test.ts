@@ -29,7 +29,7 @@ test("Check the container title and number from the 'Transportation and Logistic
 
 	await expect(
 		driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Expertise');
+	).toHaveText('Who We Serve');
 	await expect(
 		driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(Container.ContainerNumber)
 	).toHaveText('02');
@@ -157,11 +157,11 @@ test("Check section titles, image and CTA button in 'Case Study by Techstack' co
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
 
 	const allSectionTitles = await caseStudyByTechstackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = ['Web-based\nbidding process', 'Bid processing\nand validation', 'Determination\nof winning bids'];
+	const testData = ['Web-based bidding process', 'Bid processing and validation', 'Determination of winning bids'];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.Cargo)).toBeVisible();
+	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
 	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toBeVisible();
 });
 
@@ -174,9 +174,9 @@ test("Check section titles in 'Our Expertise in Logistics Software Development S
 		.getByTestId(Container.SectionTitle)
 		.allInnerTexts();
 	const testData = [
-		'Predictive analytics\nand big data',
+		'Predictive analytics and big data',
 		'AI and ML',
-		'Cloud-based\nsolutions',
+		'Cloud-based solutions',
 		'IoT',
 		'DevSecOps',
 		'Mobile Apps',

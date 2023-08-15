@@ -43,15 +43,35 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 	const OurExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
 		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
 	);
-	const containerSection = OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(0),
+			UrlProvider.urlBuilder(UrlPath.BigData),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(1),
+			UrlProvider.urlBuilder(UrlPath.AiMl),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(2),
+			UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(3),
+			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(4),
+			UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(5),
+			UrlProvider.urlBuilder(UrlPath.MobileDev),
+		],
+		[
+			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(6),
+			UrlProvider.urlBuilder(UrlPath.CustomDev),
+		],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
