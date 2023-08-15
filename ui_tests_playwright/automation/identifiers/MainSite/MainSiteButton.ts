@@ -5,6 +5,7 @@ export default class MainSiteButton {
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
+	static BookAMeeting = 'Button-BookAMeeting';
 
 	// Services
 	static Forbes = 'Button-Forbes';
@@ -13,6 +14,7 @@ export default class MainSiteButton {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
+	static DelloiteSurvey = 'Button-DelloiteSurvey';
 
 	// Links
 	static Tiktok = 'Link-TikTok';
