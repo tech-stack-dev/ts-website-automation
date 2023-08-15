@@ -40,38 +40,19 @@ test("Check redirect by 'Read Full Case Study' button in 'Case Study by Techstac
 });
 
 test("Check redirects by arrows in 'Our Expertise in Logistics Software Development Solutions' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
-	const OurExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
+	const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
 		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
 	);
+	const containerSection = ourExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.ContainerSection);
+
 	const arrowUrlMap = new Map([
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(0),
-			UrlProvider.urlBuilder(UrlPath.BigData),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(1),
-			UrlProvider.urlBuilder(UrlPath.AiMl),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(2),
-			UrlProvider.urlBuilder(UrlPath.CloudAndDev),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(3),
-			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(4),
-			UrlProvider.urlBuilder(UrlPath.CloudAndDev),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(5),
-			UrlProvider.urlBuilder(UrlPath.MobileDev),
-		],
-		[
-			OurExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.Arrow).nth(6),
-			UrlProvider.urlBuilder(UrlPath.CustomDev),
-		],
+		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
+		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
+		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
