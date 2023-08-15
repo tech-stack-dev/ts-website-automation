@@ -68,9 +68,6 @@ jobs:
         run: |
           echo "Current working directory: $(pwd)"
           ls -la .
-          
-          cd playwright-report
-          ls -la .
 
       # - name: Navigate to Previous Directory
       #   if: always()
@@ -106,7 +103,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report/index.html
+          publish_dir: ui_tests_playwright/playwright-report
           publish_branch: gh-pages
 
       - name: Add Playwright report link to Annotations section
