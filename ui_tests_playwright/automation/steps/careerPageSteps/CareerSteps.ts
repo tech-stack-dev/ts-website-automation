@@ -7,6 +7,7 @@ import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import JobsPage from '../../pages/CareerSite/JobsPage';
 import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
+import Buttons from '../../identifiers/Buttons';
 
 class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
@@ -59,11 +60,11 @@ class CareerSteps {
 	}
 
 	public async getPaginationNumberButton(pageNumber: number) {
-		return driver.getByTestId(Button.paginationNumberButton(pageNumber));
+		return driver.getByTestId(Buttons.paginationNumberButton(pageNumber));
 	}
 
 	public async getPaginationNavigationArrowButton(direction: 'Next' | 'Prev') {
-		return driver.getByTestId(Button.paginationNavigatinArrowButton(direction));
+		return driver.getByTestId(Buttons.paginationNavigatinArrowButton(direction));
 	}
 
 	public async getBreadcrumbsText() {

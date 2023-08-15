@@ -15,7 +15,7 @@ import TagsCareer from '../../../../../../identifiers/Career/TagsCareer';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/Career/pages/Career';
-import { locatorUtils } from '../../../../../../utils/LocatorUtils';
+import {locatorUtils} from '../../../../../../utils/LocatorUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

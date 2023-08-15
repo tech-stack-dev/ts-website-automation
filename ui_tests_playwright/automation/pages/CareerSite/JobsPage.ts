@@ -1,6 +1,6 @@
 import BasePage from '../../base/page/BasePage';
 import ContainerByClass from '../../components/container/ContainerByClass';
-import Career from '../../identifiers/Career';
+import Career from '../../identifiers/Career/pages/Career';
 import {containerSteps} from '../../steps/components/container/ContainerSteps';
 
 export default class JobsPage extends BasePage {

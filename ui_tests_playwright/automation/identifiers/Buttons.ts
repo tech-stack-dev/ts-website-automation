@@ -40,7 +40,7 @@ export default class Buttons {
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-McKinsey';
-  
+
 	// Pagination
 	static paginationNumberButton(pageNumber: number) {
 		return `PageNumberButton-Page${pageNumber}Button`;

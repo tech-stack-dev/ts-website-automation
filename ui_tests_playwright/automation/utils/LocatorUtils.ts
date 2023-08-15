@@ -1,5 +1,5 @@
 import {Locator} from '@playwright/test';
-import { ColorsEnum } from '../enum/ColorsEnum';
+import {ColorsEnum} from '../enum/ColorsEnum';
 
 class LocatorUtils {
 	public async getMessagesFromLocators(locators: Locator[]): Promise<string[]> {

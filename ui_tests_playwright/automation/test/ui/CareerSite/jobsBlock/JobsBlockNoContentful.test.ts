@@ -10,7 +10,8 @@ import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
 import randomstring from 'randomstring';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import Navigation from '../../../../identifiers/Navigation';
+import Navigation from '../../../../identifiers/Career/Navigation';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -58,12 +59,15 @@ test('Check search field styling after search a long jobname on careers page @Re
 });
 
 test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
-	const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, Containers.JobPageHeaderWrapper);
-	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Link.Logo);
+	const jobPageHeaderContainer = await containerSteps.getContainer(
+		ContainerByClass,
+		ContainersCareer.JobPageHeaderWrapper
+	);
+	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 
 	// A footer element is created to navigate to it and make the navigation bar appear.
-	const footerContainer = await containerSteps.getContainer(ContainerByClass, Containers.FooterWrapper);
-	const logoFooter = footerContainer.getByTestId(Link.Logo);
+	const footerContainer = await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterWrapper);
+	const logoFooter = footerContainer.getByTestId(Buttons.Logo);
 	await logoFooter.focus();
 
 	await logoHeader.waitFor({state: 'visible'});
@@ -72,9 +76,11 @@ test('Check that user can switch language in navigation header in career page @R
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 
-	await expect(jobPageHeaderContainer.Element.getByTestId(Button.EnLanguageSwitcher)).toHaveClass(/active-locale/);
+	await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
+		/active-locale/
+	);
 
-	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(Button.UaLanguageSwitcher);
+	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
