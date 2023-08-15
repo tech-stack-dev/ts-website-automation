@@ -52,39 +52,65 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=ui_tests_playwright/playwright-report/
+        run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
+        working-directory: ui_tests_playwright
 
       # Steps to report UI tests execution status
-      - name: Upload Playwright report
-        id: upload-report
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30
+      - name: Commit Playwright Report Files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout -B gh-pages
+          git add ui_tests_playwright/playwright-report
+          git commit -m "Add Playwright report files"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Display Playwright Report Link
-        uses: actions/github-script@v4
+      
+
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const reportUrl = "${{ steps.upload-report.outputs.artifact_url }}/index.html";
-            console.log(reportUrl);
-            console.log(context);
-            const payload = {
-              sha: context.sha,
-              event: 'check_run',
-              name: 'Playwright Report',
-              head_sha: context.sha,
-              conclusion: 'success',
-              output: {
-                title: 'Playwright Test Report',
-                summary: `View Playwright report [here](${reportUrl})`,
-              },
-            };
-            github.checks.create(payload);
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /ui_tests_playwright/playwright-report
+          publish_branch: gh-pages
+      
+      
+      
+      
+      # - name: Upload Playwright report
+      #   id: upload-report
+      #   uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: ui_tests_playwright/playwright-report/
+      #     retention-days: 30
+
+      # - name: Display Playwright Report Link
+      #   uses: actions/github-script@v4
+      #   if: always()
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const reportUrl = "${{ steps.upload-report.outputs.artifact_url }}/index.html";
+      #       console.log(reportUrl);
+      #       console.log(context);
+      #       const payload = {
+      #         sha: context.sha,
+      #         event: 'check_run',
+      #         name: 'Playwright Report',
+      #         head_sha: context.sha,
+      #         conclusion: 'success',
+      #         output: {
+      #           title: 'Playwright Test Report',
+      #           summary: `View Playwright report [here](${reportUrl})`,
+      #         },
+      #       };
+      #       github.checks.create(payload);
       
       
       # - name: Get Playwright history
@@ -95,7 +121,7 @@ jobs:
       #     ref: gh-pages
       #     path: gh-pages    
       
-          # - name: Checkout Repository
+      # - name: Checkout Repository
       #   uses: actions/checkout@v3
       #   if: always()
       #   with:
@@ -127,60 +153,6 @@ jobs:
       #   if: always()
       #   run: |
       #     echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
-          
-      
-      
-      
-      
-      
-      
-      
-      
-      # - uses: actions/upload-artifact@v3
-      #   name: Upload Playwright report
-      #   id: upload-report
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: ui_tests_playwright/playwright-report/
-      #     retention-days: 30
-
-      # - name: Print Report Link
-      #   run: "echo \"Playwright Report: ${{ steps.upload-report.outputs.artifact_url }}/index.html\""
-
-      # - name: Upload Index HTML
-      #   uses: actions/upload-artifact@v3
-      #   id: upload-index-html
-      #   if: always()
-      #   with:
-      #     name: index-html
-      #     path: ui_tests_playwright/playwright-report/index.html
-
-      # - name: Display HTML Link
-      #   run: |
-      #     echo "Index HTML: ${{ steps.upload-index-html.outputs.artifact_url }}"
-
-      # - name: Extract HTML from ZIP
-      #   run: |
-      #     unzip ui_tests_playwright/playwright-report.zip index.html -d extracted-html
-
-      # - uses: actions/upload-artifact@v3
-      #   name: Upload Extracted HTML to External Service
-      #   if: always()
-      #   with:
-      #     name: extracted-html
-      #     path: extracted-html/index.html
-
-
-      # - name: Set Report Link
-      #   run: echo "::set-output name=report_link::${{ steps.upload-report.outputs.artifact_url }}"
-
-      # - uses: actions/upload-artifact@v3
-      #   name: Print Report Link
-      #   if: always()
-      #   with:
-      #     name: playwright-link
-      #     path: ui_tests_playwright/playwright-report/index.html
 
 
       # - name: Preparing Slack emoji
