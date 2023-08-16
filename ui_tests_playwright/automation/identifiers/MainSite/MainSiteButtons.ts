@@ -1,13 +1,12 @@
-export default class MainSiteButton {
+export default class MainSiteButtons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
-	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
-	static BookAMeeting = 'Button-BookAMeeting';
-	static CheckOutHowWeBuiltIt = 'CheckOutHowWeBuildIt'; // Replace with Button-CheckOutHowWeBuildIt
-	static TalkToAnExpert = 'Button-TalkToAnExpert';
+	static LetsDiscuss = 'Button-LetsDiscuss';
+	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
+	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 
 	// Services
 	static Forbes = 'Button-Forbes';
@@ -16,7 +15,6 @@ export default class MainSiteButton {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
-	static DelloiteSurvey = 'Button-DelloiteSurvey';
 
 	// Links
 	static Tiktok = 'Link-TikTok';

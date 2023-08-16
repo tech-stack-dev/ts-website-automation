@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../../identifiers/Buttons';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
@@ -33,7 +33,7 @@ test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Tec
 test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
-	await beatsScreeningModuleContainer.getByTestId(MainSiteButton.ReadTheFullCaseStudy).click();
+	await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
 		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.BeatsScreeningModule, Environment.Production)
 	);
@@ -42,14 +42,13 @@ test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Mo
 test("Check redirect by links in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	const linkMap = new Map([
-		// Should be uncommented and fixed after fixing the link on the site
-		// [
-		// 	MainSiteButton.Statista,
-		// 	'https://www.statista.com/outlook/dmo/ecommerce/beauty-health-personal-household-care/health-care/worldwide',
-		// ],
-		[MainSiteButton.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
 		[
-			MainSiteButton.McKinsey,
+			MainSiteButtons.Statista,
+			'https://www.statista.com/outlook/dmo/ecommerce/beauty-health-personal-household-care/health-care/worldwide',
+		],
+		[MainSiteButtons.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
+		[
+			MainSiteButtons.McKinsey,
 			'https://www.mckinsey.com/industries/healthcare/our-insights/what-to-expect-in-us-healthcare-in-2023-and-beyond#/',
 		],
 	]);
@@ -84,7 +83,7 @@ test("Check carousel sections, arrows and 'Schedule a meeting' button in 'How We
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
 
-	await expect(howWeOperateContainer.getByTestId(MainSiteButton.ScheduleAMeeting)).toBeVisible();
+	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toBeVisible();
 });
 
 test("Check redirects by arrows in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {

@@ -5,7 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
 import Container from '../../../../identifiers/Container';
-import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import Links from '../../../../preconditionsData/Links/Links';
 
 test.beforeEach(async () => {
@@ -22,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 

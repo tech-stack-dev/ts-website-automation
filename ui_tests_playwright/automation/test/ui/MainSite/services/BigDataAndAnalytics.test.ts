@@ -11,7 +11,7 @@ import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -21,7 +21,7 @@ test("Check the header from the 'Big Data & Analytics' block @Regression @BigDat
 	const info = driver.getByTestId(BigDataAndAnalytics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');
-	await expect(info.getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
