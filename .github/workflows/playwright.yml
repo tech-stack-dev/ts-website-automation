@@ -116,6 +116,20 @@ jobs:
         run: |
           report_url="https://tech-stack-dev.github.io/ts-website-automation/index.html"
           echo "::warning file=playwright-report::Click to view Playwright report::${report_url}"
+
+      - name: Add Playwright report link as comment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const reportUrl = 'https://tech-stack-dev.github.io/ts-website-automation/index.html';
+            const comment = `Click to view the Playwright report: [Playwright Report](${reportUrl})`;
+            github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
       
       - name: Display Playwright Report Link
         uses: actions/github-script@v4
