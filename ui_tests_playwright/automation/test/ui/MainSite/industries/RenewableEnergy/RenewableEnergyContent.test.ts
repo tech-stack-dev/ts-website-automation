@@ -6,6 +6,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import Container from '../../../../../identifiers/Container';
 import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
 import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -91,7 +92,6 @@ test("Check block titles in 'Techstack in Numbers' container from the 'Renewable
 
 test("Check section titles and numbers in 'Who We Serve' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const whoWeServeContainer = driver.getByTestId(RenewableEnergy.WhoWeServe);
-	const allSectionTitles = await whoWeServeContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 
 	expect(await whoWeServeContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
 		'01',
@@ -100,6 +100,7 @@ test("Check section titles and numbers in 'Who We Serve' container from the 'Ren
 		'04',
 	]);
 
+	const allSectionTitles = await whoWeServeContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'Industry service companies',
 		'Renewable energy producers and distributors',
@@ -110,22 +111,96 @@ test("Check section titles and numbers in 'Who We Serve' container from the 'Ren
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
-test("Check section titles and CTA button in 'Renewable Energy Software Development Services' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test("Check block titles, section titles and CTA button in 'Renewable Energy Software Development Services' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const renewableEnergySoftDevServContainer = driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ);
-	const allSectionTitles = await renewableEnergySoftDevServContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
-	// Check
+	const allBlockTitles = await renewableEnergySoftDevServContainer.getByTestId(Container.BlockTitle).allInnerTexts();
+	const testDataBlockTitles = [
+		'Domain-Specific Software for the Renewable Energy Industry',
+		'Energy Management Systems',
+		'Energy Infrastructure\nand Analysis',
+	];
+	expect(allBlockTitles.sort()).toEqual(testDataBlockTitles.sort());
+
+	const containerBlocks = await renewableEnergySoftDevServContainer.getByTestId(Container.ContainerBlock).all();
+	const testDataSectionTitles = ['Overview', 'Implementation\nin the real world'];
+
+	for (const block of containerBlocks) {
+		const sectionTitles = await block.getByTestId(Container.SectionTitle).allInnerTexts();
+		expect(sectionTitles.sort()).toEqual(testDataSectionTitles.sort());
+	}
+
+	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButton.BookAMeeting)).toBeVisible();
+});
+
+test("Check section titles, block title, image and CTA button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
+	const allSectionTitles = await theSolarEnergyContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
+
+	const blockTitle = await theSolarEnergyContainer.getByTestId(Container.BlockTitle).innerText();
+	expect(blockTitle).toEqual('Solar energy data portal scheme');
+
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteButton.CheckOutHowWeBuiltIt)).toBeVisible();
+});
+
+test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
+	const allSectionTitles = await ourKeyAreasOfExpertiseContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+
 	const testData = [
-		'Industry service codfsgmpanies',
-		'Renewable energy producers and distributors',
-		'EV charging\nproviders',
-		'Industrial\nmanufacturers',
+		'Predictive analytics and big data',
+		'Artificial\nIntelligence',
+		'Cloud-based\nsolutions',
+		'Internet of Things',
+		'Digital Twins',
+		'Mobile Apps',
+		'Web Apps',
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
+});
 
-	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButton.BookAMeeting)).toBeVisible();
+test("Check section titles in 'Why Choose Us?' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
+	const allSectionTitles = await whyChooseUsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+
+	const testData = ['Product-oriented approach', 'Cross-domain expertise', 'Multifaceted technology experts'];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
+});
+
+test("Check section titles and numbers in 'Our Workflow' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const ourWorkflowContainer = driver.getByTestId(RenewableEnergy.OurWorkflow);
+
+	expect(await ourWorkflowContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+	]);
+
+	const allSectionTitles = await ourWorkflowContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
+});
+
+test("Check section titles in 'FAQ' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
+	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+
+	const testData = [
+		'What processes are involved in developing software for renewable energy providers?',
+		'What software development tools and technologies are commonly used for renewable energy software development at Techstack?',
+		'What are some of the unique challenges faced by renewable energy software engineers?',
+		'What trends are happening in renewable energy software development?',
+		'How can software development help renewable energy providers meet their goals?',
+	];
+
+	expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
 
 test.afterEach(async () => {

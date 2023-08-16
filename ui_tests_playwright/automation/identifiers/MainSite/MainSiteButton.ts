@@ -6,6 +6,8 @@ export default class MainSiteButton {
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static BookAMeeting = 'Button-BookAMeeting';
+	static CheckOutHowWeBuiltIt = 'CheckOutHowWeBuildIt'; // Replace with Button-CheckOutHowWeBuildIt
+	static TalkToAnExpert = 'Button-TalkToAnExpert';
 
 	// Services
 	static Forbes = 'Button-Forbes';
