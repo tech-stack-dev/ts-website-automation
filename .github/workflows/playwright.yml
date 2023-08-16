@@ -115,8 +115,15 @@ jobs:
         if: always()
         run: |
           report_url="https://tech-stack-dev.github.io/ts-website-automation/index.html"
-          echo "::warning file=playwright-report::Click to view Playwright report::${report_url}"
+          echo "::notice file=playwright-report::Click to view Playwright report::${report_url}"
 
+      - name: Debug Issue Number
+        run: |
+          echo "Issue Number: ${{ github.event.issue.number }}"
+        if: always()
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      
       - name: Add Playwright report link as comment
         if: always()
         uses: actions/github-script@v4
@@ -132,25 +139,25 @@ jobs:
               body: comment
             });
       
-      - name: Display Playwright Report Link
-        uses: actions/github-script@v4
-        if: always()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const reportUrl = `https://${process.env.GITHUB_REPOSITORY.split('/')[0]}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/playwright-report/index.html`;
-            const payload = {
-              sha: context.sha,
-              event: 'check_run',
-              name: 'Playwright Report',
-              head_sha: context.sha,
-              conclusion: 'success',
-              output: {
-                title: 'Playwright Test Report',
-                summary: `View Playwright report [here](${reportUrl})`,
-              },
-            };
-            github.checks.create(payload);
+      # - name: Display Playwright Report Link
+      #   uses: actions/github-script@v4
+      #   if: always()
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const reportUrl = `https://${process.env.GITHUB_REPOSITORY.split('/')[0]}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/playwright-report/index.html`;
+      #       const payload = {
+      #         sha: context.sha,
+      #         event: 'check_run',
+      #         name: 'Playwright Report',
+      #         head_sha: context.sha,
+      #         conclusion: 'success',
+      #         output: {
+      #           title: 'Playwright Test Report',
+      #           summary: `View Playwright report [here](${reportUrl})`,
+      #         },
+      #       };
+      #       github.checks.create(payload);
       
       
       # - name: Upload Playwright report
