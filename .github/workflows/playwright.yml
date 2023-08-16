@@ -55,19 +55,19 @@ jobs:
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
 
       # Steps to report UI tests execution status
-      - name: Get Playwright report
-        uses: actions/checkout@v3
-        if: always() 
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+      # - name: Get Playwright report
+      #   uses: actions/checkout@v3
+      #   if: always() 
+      #   continue-on-error: true
+      #   with:
+      #     ref: gh-pages
+      #     path: gh-pages
 
-      - name: Verify catalog
-        if: always()
-        run: |
-          echo "Current working directory: $(pwd)"
-          ls -la .
+      # - name: Verify catalog
+      #   if: always()
+      #   run: |
+      #     echo "Current working directory: $(pwd)"
+      #     ls -la .
 
       # - name: Navigate to Previous Directory
       #   if: always()
@@ -109,10 +109,28 @@ jobs:
       - name: Add Playwright report link to Annotations section
         if: always()
         run: |
-          text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
+          text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
           echo "::warning ::$text"
       
-      
+      - name: Display Playwright Report Link
+        uses: actions/github-script@v4
+        if: always()
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const reportUrl = `https://${process.env.GITHUB_REPOSITORY.split('/')[0]}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/playwright-report/index.html`;
+            const payload = {
+              sha: context.sha,
+              event: 'check_run',
+              name: 'Playwright Report',
+              head_sha: context.sha,
+              conclusion: 'success',
+              output: {
+                title: 'Playwright Test Report',
+                summary: `View Playwright report [here](${reportUrl})`,
+              },
+            };
+            github.checks.create(payload);
       
       
       # - name: Upload Playwright report
