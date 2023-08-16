@@ -118,6 +118,7 @@ jobs:
           echo "::warning file=playwright-report::Click to view Playwright report::${report_url}"
 
       - name: Add Playwright report link as comment
+        if: always()
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
