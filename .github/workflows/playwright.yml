@@ -106,11 +106,16 @@ jobs:
           publish_dir: ui_tests_playwright/playwright-report
           publish_branch: gh-pages
 
+      # - name: Add Playwright report link to Annotations section
+      #   if: always()
+      #   run: |
+      #     text="https://tech-stack-dev.github.io/ts-website-automation/index.html"
+      #     echo "::warning ::$text"
       - name: Add Playwright report link to Annotations section
         if: always()
         run: |
-          text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
-          echo "::warning ::$text"
+          report_url="https://tech-stack-dev.github.io/ts-website-automation/index.html"
+          echo "::warning file=playwright-report::Click to view Playwright report::${report_url}"
       
       - name: Display Playwright Report Link
         uses: actions/github-script@v4
