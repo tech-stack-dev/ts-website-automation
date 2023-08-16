@@ -4,7 +4,7 @@ import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
@@ -26,7 +26,7 @@ test("Check 'Request a Quote' buttons on the 'Mobile App Development Service' bl
 	];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 

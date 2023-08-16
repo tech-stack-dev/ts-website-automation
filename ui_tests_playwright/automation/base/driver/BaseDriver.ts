@@ -98,9 +98,9 @@ export default class BaseDriver {
 		return await new type(driver.focusedDriver.Page);
 	}
 
-	public async executeFunc(func: any, attepmts: number) {
+	public async executeFunc(func: any, attempts: number) {
 		let message = '';
-		for (let i = 0; i < attepmts; i++) {
+		for (let i = 0; i < attempts; i++) {
 			try {
 				await func();
 				return;
