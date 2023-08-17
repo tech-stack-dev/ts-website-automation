@@ -1,12 +1,12 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
+import Container from '../../../../../identifiers/Container';
+import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Container from '../../../../../identifiers/Container';
-import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -18,7 +18,7 @@ test("Check the header from the 'Renewable Energy' block @Regression @RenewableE
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nfor the Renewable\nEnergy Industry'
 	);
-	await expect(info.getByTestId(MainSiteButton.GetInTouch)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -129,7 +129,7 @@ test("Check block titles, section titles and CTA button in 'Renewable Energy Sof
 		expect(sectionTitles.sort()).toEqual(testDataSectionTitles.sort());
 	}
 
-	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButton.BookAMeeting)).toBeVisible();
+	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toBeVisible();
 });
 
 test("Check section titles, block title, image and CTA button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -142,7 +142,7 @@ test("Check section titles, block title, image and CTA button in 'The Solar Ener
 	expect(blockTitle).toEqual('Solar energy data portal scheme');
 
 	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
-	await expect(theSolarEnergyContainer.getByTestId(MainSiteButton.CheckOutHowWeBuiltIt)).toBeVisible();
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toBeVisible();
 });
 
 test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {

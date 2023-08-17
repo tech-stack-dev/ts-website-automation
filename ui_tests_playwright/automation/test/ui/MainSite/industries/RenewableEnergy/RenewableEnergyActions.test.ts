@@ -2,14 +2,14 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
+import Buttons from '../../../../../identifiers/Buttons';
 import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
-import CaseStudyPath from '../../../../../providers/CaseStudyPath';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
-import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -25,7 +25,7 @@ test("Check redirect by 'Home' breadcrumbs button in header from the 'Renewable 
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 
-	await techstackInNumbersContainer.getByTestId(MainSiteButton.DelloiteSurvey).click();
+	await techstackInNumbersContainer.getByTestId(MainSiteButtons.DelloitteSurvey).click();
 
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	await newPage.waitForLoadState('networkidle');
@@ -38,7 +38,7 @@ test("Check redirect by source link in 'Techstack in Numbers' container from the
 test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
 
-	await theSolarEnergyContainer.getByTestId(MainSiteButton.CheckOutHowWeBuiltIt).click();
+	await theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
 	await baseDriverSteps.checkUrl(
 		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.SolarEnergyDataPortal, Environment.Production)
 	);
@@ -114,7 +114,7 @@ test("Check carousel sections, arrows and CTA button in 'How We Operate at Techs
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
 
-	await expect(howWeOperateContainer.getByTestId(MainSiteButton.TalkToAnExpert)).toBeVisible();
+	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toBeVisible();
 });
 
 test.afterEach(async () => {
