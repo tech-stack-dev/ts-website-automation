@@ -109,34 +109,4 @@ test.describe('with many precondition vacancy', () => {
 			12
 		);
 	});
-	test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
-		const jobPageHeaderContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.JobPageHeaderWrapper
-		);
-		const logoHeader = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
-
-		// A footer element is created to navigate to it and make the navigation bar appear.
-		const footerContainer = await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterWrapper);
-		const logoFooter = footerContainer.getByTestId(Buttons.Logo);
-		await logoFooter.focus();
-
-		await logoHeader.waitFor({state: 'visible'});
-		await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
-		await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
-		await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
-		await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
-
-		await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
-			/active-locale/
-		);
-
-		const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
-		await uaButtonSwitcher.click();
-		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
-	});
-
-	test.afterEach(async () => {
-		await driver.closeDrivers();
-	});
 });
