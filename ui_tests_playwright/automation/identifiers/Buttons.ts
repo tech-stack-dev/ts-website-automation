@@ -36,6 +36,18 @@ export default class Buttons {
 	static Twitter = 'Button-Twitter';
 	static GoodFirms = 'Button-GoodFirms';
 	static Clutch = 'Button-Clutch';
+	static Forbes = 'Button-Forbes';
+	static Salesforce = 'Button-Salesforce';
+	static Deloitte = 'Button-Deloitte';
+	static McKinsey = 'Button-McKinsey';
+
+	// Pagination
+	static paginationNumberButton(pageNumber: number) {
+		return `PageNumberButton-Page${pageNumber}Button`;
+	}
+	static paginationNavigatinArrowButton(navigation: 'Next' | 'Prev') {
+		return `Pagination${navigation}Button-${navigation}Button`;
+	}
 
 	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';

@@ -10,7 +10,7 @@ class BaseDriverSteps {
 
 	public async createsNewBrowserAndGoToUrl(url: string, browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
-		await driver.Page.goto(url);
+		await driver.Page.goto(url, {timeout: 30000});
 	}
 
 	public async createNewPage() {
@@ -36,7 +36,7 @@ class BaseDriverSteps {
 	}
 
 	public async goToUrl(url: string) {
-		await driver.Page.goto(url);
+		await driver.Page.goto(url, {timeout: 30000});
 	}
 
 	public async checkUrl(expectedUrl: string) {

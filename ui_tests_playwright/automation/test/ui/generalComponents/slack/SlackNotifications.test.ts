@@ -36,8 +36,7 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 	});
 });
 
-// Unskip after https://ts-website.atlassian.net/browse/TSWEB-847
-test.skip("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
+test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(CareerButtons.ApplyNow).click();
