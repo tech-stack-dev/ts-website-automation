@@ -5,7 +5,7 @@ import Container from '../../../../../identifiers/Container';
 import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
@@ -22,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regressi
 	const containers = [ConsultingService.Info, ConsultingService.ConsultingProcess, ConsultingService.RelatedServices];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 

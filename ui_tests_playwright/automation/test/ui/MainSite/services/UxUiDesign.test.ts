@@ -5,7 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import UxUiDesign from '../../../../identifiers/MainSite/pages/services/UxUiDesign';
-import MainSiteButton from '../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Links from '../../../../preconditionsData/Links/Links';
 import Buttons from '../../../../identifiers/Buttons';
@@ -25,7 +25,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [UxUiDesign.Info, UxUiDesign.WeNeverStopImprovingYourProduct];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButton.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -221,8 +221,8 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 test("Check links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkMap = new Map([
-		[MainSiteButton.Instagram, Links.Instagram],
-		[MainSiteButton.Tiktok, Links.TikTokDesign],
+		[MainSiteButtons.Instagram, Links.Instagram],
+		[MainSiteButtons.Tiktok, Links.TikTokDesign],
 		[Buttons.Behance, ExpertsBehanceLinks.DmytroDytuk],
 		[Container.MemberCard, ExpertsBehanceLinks.DmytroDytuk],
 		[Container.MemberName, ExpertsBehanceLinks.DmytroDytuk],

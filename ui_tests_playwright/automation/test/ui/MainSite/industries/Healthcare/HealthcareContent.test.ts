@@ -5,7 +5,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Container from '../../../../../identifiers/Container';
 import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
-import MainSiteButton from '../../../../../identifiers/MainSite/MainSiteButton';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 
 test.beforeEach(async () => {
@@ -18,7 +18,7 @@ test("Check the header from the 'Healthcare' block @Regression @Healthcare @TSWE
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nSolutions For\nthe Healthcare Industry'
 	);
-	await expect(info.getByTestId(MainSiteButton.GetInTouch)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -108,7 +108,7 @@ test("Check section titles and CTA button in 'Our Expertise' container from the 
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	await expect(ourExpertiseContainer.getByTestId(MainSiteButton.ScheduleAMeetingNow)).toBeVisible();
+	await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toBeVisible();
 });
 
 test("Check section titles, image and CTA button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -119,7 +119,7 @@ test("Check section titles, image and CTA button in 'Beats Screening Module by T
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
 	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
-	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButton.ReadTheFullCaseStudy)).toBeVisible();
+	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toBeVisible();
 });
 
 test("Check section numbers and section titles in 'Patient-Centered Strategy' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
