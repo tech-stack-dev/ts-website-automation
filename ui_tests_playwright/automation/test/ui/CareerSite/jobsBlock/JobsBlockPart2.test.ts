@@ -90,7 +90,7 @@ test.describe('with many precondition vacancy', () => {
 		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
 		await nextButton.click();
 		const secondPageButton = await careerSteps.getPaginationNumberButton(2);
-		await driver.Page.waitForTimeout(1000);
+		await driver.Page.waitForTimeout(1000); // Timeout for page reloading and getting correct button background
 		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
 		const prevButton = await careerSteps.getPaginationNavigationArrowButton('Prev');
 		expect(await prevButton.isVisible()).toBeTruthy();
