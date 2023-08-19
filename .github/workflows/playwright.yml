@@ -135,10 +135,17 @@ jobs:
             github.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              # issue_number: context.issue.number,
               body: comment
             });
       
+
+
+
+      - name: test gh link
+        if: always()
+        run: |
+          echo '::error file=README.md,line=1,title=testing links::wiki https://tech-stack-dev.github.io/ts-website-automation/index.html'
       # - name: Display Playwright Report Link
       #   uses: actions/github-script@v4
       #   if: always()
