@@ -145,7 +145,7 @@ jobs:
       - name: Add Playwright report link to Annotations section
         if: always()
         run: |
-          echo "::error file=playwright-report::Click [here](https://tech-stack-dev.github.io/ts-website-automation/index.html) to view the Playwright report."
+          "echo "\"::error file=playwright-report::Click [here](https://tech-stack-dev.github.io/ts-website-automation/index.html) to view the Playwright report.\""
       # - name: Display Playwright Report Link
       #   uses: actions/github-script@v4
       #   if: always()
