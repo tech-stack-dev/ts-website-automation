@@ -14,9 +14,10 @@ export default class Button {
 	static LearnMoreButton2 = 'LearnMoreButton-SharedLearnMore2';
 
 	// Menu components
-	static Menu_Services = 'ServicesHeader-ServicesHeader';
-	static Menu_Company = 'CompanyHeader-CompanyHeader';
-	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
+	static Menu_Industries = 'Header-Industries';
+	static Menu_Services = 'Header-Services';
+	static Menu_Company = 'Header-Company';
+	static Menu_ContactUs = 'Header-ContactUs';
 
 	// Breadcrumbs links
 	static Breadcrumbs_Jobs = 'BreadcrumbsLink-SharedJobs';
@@ -31,10 +32,7 @@ export default class Button {
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_UiUxDesign = 'Services-UiUxDesign';
 	static Services_QaAsAServ = 'Services-QaAsAServ';
-	static Services_ConsultingServ = 'Services-ConsultingServ';
-
-	// Side bar
-	static ResetButton = 'ResetButton-Reset';
+	static Services_ConsultingServ = 'Services-ConsultingServ';	
 
 	// Company section
 	static Company_AboutUs = 'Company-AboutUs';
@@ -42,6 +40,14 @@ export default class Button {
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
+
+	// Industries section
+	static Industries_Healthcare = 'Industries_Healthcare';
+	static Industries_TransportationAndLogistics = 'Industries_TransportationAndLogistics';
+	static Industries_RenewableEnergy = 'Industries_RenewableEnergy';
+
+	// Side bar
+	static ResetButton = 'ResetButton-Reset';
 
 	// Footer
 	static Footer_ContactUs = 'CareerFooterLink-RefsCareerContactUs';

@@ -4,7 +4,7 @@ import {ServicesEnum} from '../enum/ServicesEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
 
-export const industryUrl: Record<IndustriesEnum, string> = {
+export const industriesUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
 	[IndustriesEnum.TransportAndLogist]: UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 	[IndustriesEnum.RenewableEnergy]: UrlProvider.urlBuilder(UrlPath.RenewableEnergy),

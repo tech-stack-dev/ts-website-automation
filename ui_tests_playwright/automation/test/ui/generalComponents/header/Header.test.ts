@@ -1,22 +1,24 @@
-import {Locator, expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { Locator, expect, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Link from '../../../../identifiers/Link';
-import {Environment} from '../../../../providers/EnvProvider';
+import { Environment } from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
 import Colors from '../../../../preconditionsData/Colors';
-import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../enum/ServicesEnum';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import { companyUrl, industriesUrl, serviceUrl } from '../../../../preconditionsData/UrlPreconditions';
+import { ServicesEnum } from '../../../../enum/ServicesEnum';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
+import { IndustriesEnum } from '../../../../enum/IndustriesEnum';
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.OpenCase),
 	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
-	UrlProvider.urlBuilder(UrlPath.AuthorPage),
+	UrlProvider.urlBuilder(UrlPath.AuthorPage + AuthorsEnum.VitaliiDolotov),
 	companyUrl[CompanyEnum.AboutUs],
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
@@ -28,19 +30,20 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test.skip(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Check the redirection to the main page by clicking on the TS logo in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Link.HeaderLogo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 
-	test.skip(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.Menu).click();
 		const menuHeaderslist: Locator[] = [
+			driver.getByTestId(Button.Menu_Industries),
 			driver.getByTestId(Button.Menu_Services),
 			driver.getByTestId(Button.Menu_Company),
-			driver.getByTestId(Button.Menu_ContactUs).getByText('Contact Us'),
+			driver.getByTestId(Button.Menu_ContactUs),
 		];
 
 		for (const header of menuHeaderslist) {
@@ -54,7 +57,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesList = new Map([
 			[Button.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
@@ -78,7 +81,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Check the redirection for the Company block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const companyList = new Map([
 			[Button.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
@@ -93,6 +96,23 @@ for (const url of testDataProvider) {
 			await driver.getByTestId(Button.Menu_Company).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(companyUrl);
+			await baseDriverSteps.goToUrl(url);
+		}
+	});
+
+	test(`Check the redirection for the Industries block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+		await baseDriverSteps.goToUrl(url);
+		const industriesList = new Map([
+			[Button.Industries_Healthcare, industriesUrl[IndustriesEnum.Healthcare]],
+			[Button.Industries_TransportationAndLogistics, industriesUrl[IndustriesEnum.TransportAndLogist]],
+			[Button.Industries_RenewableEnergy, industriesUrl[IndustriesEnum.RenewableEnergy]],
+		]);
+
+		for (const [element, industriesUrl] of industriesList) {
+			await driver.getByTestId(Button.Menu).click();
+			await driver.getByTestId(Button.Menu_Company).click();
+			await driver.getByTestId(element).click();
+			await baseDriverSteps.checkUrl(industriesUrl);
 			await baseDriverSteps.goToUrl(url);
 		}
 	});

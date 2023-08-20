@@ -9,7 +9,7 @@ import Link from '../../../../identifiers/Link';
 import {Environment} from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industriesUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 
@@ -26,7 +26,7 @@ const testDataProvider: string[] = [
 	companyUrl[CompanyEnum.Blog],
 ]
 	.concat(Object.values(serviceUrl))
-	.concat(Object.values(industryUrl));
+	.concat(Object.values(industriesUrl));
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
@@ -102,7 +102,7 @@ for (const url of testDataProvider) {
 
 		for (let index = 0; index < industriesList.length; index++) {
 			await industriesList[index].click();
-			await baseDriverSteps.checkUrl(Object.values(industryUrl)[index]);
+			await baseDriverSteps.checkUrl(Object.values(industriesUrl)[index]);
 			await baseDriverSteps.goToUrl(url);
 		}
 	});
