@@ -8,7 +8,7 @@ export default class MainSiteButtons {
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 	static BookAMeeting = 'Button-BookAMeeting';
-	static CheckOutHowWeBuiltIt = 'CheckOutHowWeBuildIt'; // Replace with Button-CheckOutHowWeBuildIt
+	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
 
 	// Services
@@ -18,7 +18,7 @@ export default class MainSiteButtons {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
-	static DelloitteSurvey = 'Button-DelloiteSurvey'; // Delete after replacing data-id to Button-Deloitte
+	static DelloitteSurvey = 'Button-DeloitteSurvey';
 
 	// Links
 	static Tiktok = 'Link-TikTok';

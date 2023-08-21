@@ -24,15 +24,17 @@ test("Check redirect by 'Home' breadcrumbs button in header from the 'Renewable 
 
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
+	const buttonDeloitte = await techstackInNumbersContainer.getByTestId(MainSiteButtons.DelloitteSurvey);
+	const testData =
+		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf';
 
-	await techstackInNumbersContainer.getByTestId(MainSiteButtons.DelloitteSurvey).click();
+	const actualLink = await buttonDeloitte.getAttribute('href');
 
+	expect(actualLink).toBe(testData);
+
+	await buttonDeloitte.click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	await newPage.waitForLoadState('networkidle');
-
-	expect(newPage.url()).toEqual(
-		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf'
-	);
 });
 
 test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -46,16 +48,6 @@ test("Check redirect by 'Check out how we built it' button in 'The Solar Energy 
 
 test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
-	// const containerSection = ourKeyAreasOfExpertiseContainer.getByTestId(Container.ContainerSection);
-	// const arrowUrlMap = new Map([
-	// 	[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-	// 	[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-	// 	[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
-	// 	[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-	// 	[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-	// 	[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-	// 	[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-	// ]);
 
 	const arrowUrlMap = new Map([
 		[ourKeyAreasOfExpertiseContainer.getByTestId(Container.Arrow).nth(0), UrlProvider.urlBuilder(UrlPath.BigData)],

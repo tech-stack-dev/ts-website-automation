@@ -141,7 +141,7 @@ test("Check section titles, block title, image and CTA button in 'The Solar Ener
 	const blockTitle = await theSolarEnergyContainer.getByTestId(Container.BlockTitle).innerText();
 	expect(blockTitle).toEqual('Solar energy data portal scheme');
 
-	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
 	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toBeVisible();
 });
 
