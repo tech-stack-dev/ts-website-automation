@@ -9,12 +9,6 @@ import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
-import Buttons from '../../../../identifiers/Buttons';
-import Navigation from '../../../../identifiers/Career/Navigation';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {
@@ -96,6 +90,7 @@ test.describe('with many precondition vacancy', () => {
 		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
 		await nextButton.click();
 		const secondPageButton = await careerSteps.getPaginationNumberButton(2);
+		await driver.Page.waitForTimeout(1000); // Timeout for page reloading and getting correct button background
 		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
 		const prevButton = await careerSteps.getPaginationNavigationArrowButton('Prev');
 		expect(await prevButton.isVisible()).toBeTruthy();
