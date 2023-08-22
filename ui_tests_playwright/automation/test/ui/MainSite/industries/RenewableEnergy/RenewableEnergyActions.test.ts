@@ -24,7 +24,7 @@ test("Check redirect by 'Home' breadcrumbs button in header from the 'Renewable 
 
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
-	const buttonDeloitte = await techstackInNumbersContainer.getByTestId(MainSiteButtons.DelloitteSurvey);
+	const buttonDeloitte = await techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
 	const testData =
 		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf';
 
@@ -34,7 +34,7 @@ test("Check redirect by source link in 'Techstack in Numbers' container from the
 
 	await buttonDeloitte.click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
-	await newPage.waitForLoadState('networkidle');
+	await expect(newPage.waitForLoadState('networkidle')).toBeTruthy();
 });
 
 test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -93,16 +93,11 @@ test("Check carousel sections, arrows and CTA button in 'How We Operate at Techs
 	const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
 	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 
-	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle);
 	const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'Step 1',
-		'Step 2',
-		'Step 3',
-		'Step 4',
-	]);
+	await expect(allSectionTitles).toHaveText(testData);
+	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['Step 1', 'Step 2', 'Step 3', 'Step 4']);
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
 
