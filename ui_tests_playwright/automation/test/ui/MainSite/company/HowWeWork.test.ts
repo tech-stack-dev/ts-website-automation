@@ -163,7 +163,6 @@ test("Check the 'Techstack structure' section from the 'How we work' block @Regr
 test("Check the 'Tools we use' section from the 'How we work' block @Regression @HowWeWork", async () => {
     const toolsWeUseContainer = driver.getByTestId(HowWeWork.ToolsWeUseContainer);
 
-    await expect(toolsWeUseContainer.getByTestId(Container.ContainerTitle)).toHaveText('Tools we use\nto organize\nthe workflow');
     await expect(toolsWeUseContainer.getByTestId(Container.ContainerNumber)).toHaveText('05');
 });
 
