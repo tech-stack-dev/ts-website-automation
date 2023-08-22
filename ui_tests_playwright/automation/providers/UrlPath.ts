@@ -1,4 +1,8 @@
 export default class UrlPath {
+	static Healthcare = 'industries/healthcare';
+	static TransportAndLogist = 'industries/transportation-and-logistics';
+	static RenewableEnergy = 'industries/renewable-energy';
+	
 	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
 	static CloudAndDev = 'services/cloud-and-devops';
@@ -21,10 +25,6 @@ export default class UrlPath {
 	static client1Url = 'https://reqres.in';
 	static client2Url = 'NOT_IMPLEMENTED';
 	static client3Url = 'NOT_IMPLEMENTED';
-
-	static Healthcare = 'industries/healthcare';
-	static TransportAndLogist = 'industries/transportation-and-logistics';
-	static RenewableEnergy = 'industries/renewable-energy';
 
 	static Terms = 'terms';
 	static CookiesPolicy = 'cookies-policy';
