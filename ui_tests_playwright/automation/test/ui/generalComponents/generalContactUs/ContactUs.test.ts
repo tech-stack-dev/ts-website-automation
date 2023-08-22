@@ -11,7 +11,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
-test.skip("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
 	for (const url of Object.values(serviceUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Button.ContactUs).click();
@@ -19,7 +19,7 @@ test.skip("Check 'Contact Us' button from 'Services' section @Regression @Contac
 	}
 });
 
-test.skip("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
 	const urlList: string[] = [
 		companyUrl[CompanyEnum.AboutUs],
 		companyUrl[CompanyEnum.HowWeWork],
@@ -33,7 +33,7 @@ test.skip("Check 'Contact Us' button from 'Company' section @Regression @Contact
 	}
 });
 
-test.skip("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532", async () => {
+test("Check 'Contact Us' button from 'Contact Us' section and from main page @Regression @ContactUs @TSWEB-532", async () => {
 	const urlList: Array<string> = [UrlProvider.urlBuilder(UrlPath.ContactUs), UrlProvider.webSiteUrl()];
 
 	for (const url of urlList) {

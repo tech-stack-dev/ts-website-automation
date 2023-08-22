@@ -110,7 +110,7 @@ for (const url of testDataProvider) {
 
 		for (const [element, industriesUrl] of industriesList) {
 			await driver.getByTestId(Button.Menu).click();
-			await driver.getByTestId(Button.Menu_Company).click();
+			await driver.getByTestId(Button.Menu_Industries).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(industriesUrl);
 			await baseDriverSteps.goToUrl(url);
