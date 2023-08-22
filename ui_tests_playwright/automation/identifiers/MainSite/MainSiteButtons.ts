@@ -18,7 +18,7 @@ export default class MainSiteButtons {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
-	static DelloitteSurvey = 'Button-DeloitteSurvey';
+	static DeloitteSurvey = 'Button-DeloitteSurvey';
 
 	// Links
 	static Tiktok = 'Link-TikTok';
