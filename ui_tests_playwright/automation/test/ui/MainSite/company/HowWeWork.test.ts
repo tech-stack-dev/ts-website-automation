@@ -1,6 +1,6 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { expect, test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import HowWeWork from '../../../../identifiers/MainSite/pages/company/HowWeWork';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
@@ -10,13 +10,13 @@ import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
 import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
+    await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
 test("Check the header from the 'How we work' block  @Regression @HowWeWork", async () => {
     const info = driver.getByTestId(HowWeWork.Info);
     await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
-	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
+    await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
     await expect(info.getByTestId(Buttons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
@@ -28,18 +28,18 @@ test("Check the 'Cooperation models' section title and number from the 'How we w
     await expect(cooperationModelsContainer.getByTestId(Container.ContainerNumber)).toHaveText('01');
 
     expect(await cooperationModelsContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-	]);
+        '01',
+        '02',
+        '03',
+        '04',
+    ]);
 
     const testData = [
-		'Team augmentation',
-		'Dedicated team',
-		'Product development',
-		'White label',
-	];
+        'Team augmentation',
+        'Dedicated team',
+        'Product development',
+        'White label',
+    ];
 
     expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
@@ -52,20 +52,20 @@ test("Check the 'Work process' section title and number from the 'How we work' b
     await expect(workProcessContainer.getByTestId(Container.ContainerNumber)).toHaveText('02');
 
     expect(await workProcessContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
+        '01',
+        '02',
         '03',
-		'04',
+        '04',
         '05',
-	]);
-    
+    ]);
+
     const testData = [
-		'Discovery',
-		'Pre-Engagement',
+        'Discovery',
+        'Pre-Engagement',
         'Engagement',
         'Delivery',
         'Support & Maintenance',
-	];
+    ];
 
     expect(allSectionTitles.sort()).toEqual(testData.sort());
 
@@ -79,43 +79,43 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
     await expect(technologyStackContainer.getByTestId(Container.ContainerNumber)).toHaveText('03');
 
     const backEndTestData = [
-		'.NET Stack',
-		'JVM Stack',
+        '.NET Stack',
+        'JVM Stack',
         'Node.js stack',
         'Other',
-	];
+    ];
     const frontEndTestData = [
-		'Languages',
-		'Frameworks',
+        'Languages',
+        'Frameworks',
         'State\nmanagement',
         'Build tools',
         'Markup',
         'Rich content',
-	];
+    ];
     const mobileTestData = [
-		'React Native',
-		'Cordova',
+        'React Native',
+        'Cordova',
         'Flutter',
         'Android',
         'iOS',
-	];
+    ];
     const iotTestData = [
-		'Devices',
-		'Gateways',
-	];
+        'Devices',
+        'Gateways',
+    ];
     const devOpsTestData = [
-		'Cloud',
-		'DevOps',
+        'Cloud',
+        'DevOps',
         'CI/CD',
         'Monitoring',
-	];
+    ];
     const aiMlDataScienceTestData = [
-		'Computer vision',
-		'Deep learning and machine learning',
+        'Computer vision',
+        'Deep learning and machine learning',
         'Data visualization',
         'Data storage & manipulation',
         'Development environment',
-	];
+    ];
 
     const allSectionTitles = await technologyStackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
     const expectedBackEndData = allSectionTitles.slice(0, 4);
@@ -124,7 +124,7 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
     const expectedIotData = allSectionTitles.slice(15, 17);
     const expectedDevopsData = allSectionTitles.slice(17, 21);
     const expectedAiMlDataScienceData = allSectionTitles.slice(21, 26);
-    
+
     expect(expectedBackEndData.sort()).toEqual(backEndTestData.sort());
     expect(expectedFrontEndData.sort()).toEqual(frontEndTestData.sort());
     expect(expectedMobileData.sort()).toEqual(mobileTestData.sort());
@@ -148,14 +148,14 @@ test("Check the 'Techstack structure' section from the 'How we work' block @Regr
     await expect(techstackStructure.getByTestId(Container.ContainerNumber)).toHaveText('04');
 
     const testData = [
-		'Engineering \nfunction',
-		'Product \nfunction',
-		'Design \nfunction',
-		'HR \nfunction',
+        'Engineering \nfunction',
+        'Product \nfunction',
+        'Design \nfunction',
+        'HR \nfunction',
         'AM \nfunction',
         'Business \ndevelopment \nfunction',
         'Legal \nfunction',
-	];
+    ];
 
     expect(allSectionTitles.sort()).toEqual(testData.sort());
 });
@@ -178,5 +178,5 @@ test("Check the 'Get in Touch' section from the 'How we work' block @Regression 
 });
 
 test.afterEach(async () => {
-	await driver.closeDrivers();
+    await driver.closeDrivers();
 });
