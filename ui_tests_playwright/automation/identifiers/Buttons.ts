@@ -6,9 +6,10 @@ export default class Buttons {
 
 	// Menu components
 	static Close = 'CloseButton-Close';
-	static Menu_Services = 'ServicesHeader-ServicesHeader';
-	static Menu_Company = 'CompanyHeader-CompanyHeader';
-	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
+	static Menu_Industries = 'Header-Industries';
+	static Menu_Services = 'Header-Services';
+	static Menu_Company = 'Header-Company';
+	static Menu_ContactUs = 'Header-ContactUs';
 
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
@@ -26,6 +27,10 @@ export default class Buttons {
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
+
+	static Industries_Healthcare = 'Industries-Healthcare';
+	static Industries_TransportationAndLogistics = 'Industries-TransportationAndLogistics';
+	static Industries_RenewableEnergy = 'Industries-RenewableEnergy';
 
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';

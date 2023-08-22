@@ -39,7 +39,7 @@ for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Buttons.Menu).click();
 		const menuHeaderslist: Locator[] = [
-			driver.getByTestId(Button.Menu_Industries),
+			driver.getByTestId(Buttons.Menu_Industries),
 			driver.getByTestId(Buttons.Menu_Services),
 			driver.getByTestId(Buttons.Menu_Company),
 			driver.getByTestId(Buttons.Menu_ContactUs),
@@ -102,14 +102,14 @@ for (const url of testDataProvider) {
 	test(`Check the redirection for the Industries block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const industriesList = new Map([
-			[Button.Industries_Healthcare, industriesUrl[IndustriesEnum.Healthcare]],
-			[Button.Industries_TransportationAndLogistics, industriesUrl[IndustriesEnum.TransportAndLogist]],
-			[Button.Industries_RenewableEnergy, industriesUrl[IndustriesEnum.RenewableEnergy]],
+			[Buttons.Industries_Healthcare, industriesUrl[IndustriesEnum.Healthcare]],
+			[Buttons.Industries_TransportationAndLogistics, industriesUrl[IndustriesEnum.TransportAndLogist]],
+			[Buttons.Industries_RenewableEnergy, industriesUrl[IndustriesEnum.RenewableEnergy]],
 		]);
 
 		for (const [element, industriesUrl] of industriesList) {
-			await driver.getByTestId(Button.Menu).click();
-			await driver.getByTestId(Button.Menu_Industries).click();
+			await driver.getByTestId(Buttons.Menu).click();
+			await driver.getByTestId(Buttons.Menu_Industries).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(industriesUrl);
 			await baseDriverSteps.goToUrl(url);

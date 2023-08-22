@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {serviceUrl, companyUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {serviceUrl, companyUrl, industriesUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 });
 
 test("Check 'Contact Us' button from 'Industries' section @Regression @ContactUs", async () => {
-	for (const url of Object.values(industryUrl)) {
+	for (const url of Object.values(industriesUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Buttons.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
