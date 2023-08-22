@@ -1,5 +1,6 @@
 import {driver} from '../../base/driver/Driver';
-import Button from '../../identifiers/Button';
+import CareerButtons from '../../identifiers/Career/CareerButtons';
+import Buttons from '../../identifiers/Buttons';
 import Input from '../../identifiers/Input';
 import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
@@ -16,8 +17,8 @@ class FormSteps {
 		await driver.getByTestId(ContactUsForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
-			await driver.getByTestId(Button.SendButton).click();
-			await driver.getByTestId(Button.Close).waitFor({state: 'visible'});
+			await driver.getByTestId(CareerButtons.SendButton).click();
+			await driver.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
 
@@ -29,8 +30,8 @@ class FormSteps {
 		await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
-			await driver.getByTestId(Button.SendButton).click();
-			await driver.getByTestId(Button.SendButton).waitFor({state: 'hidden'});
+			await driver.getByTestId(CareerButtons.SendButton).click();
+			await driver.getByTestId(CareerButtons.SendButton).waitFor({state: 'hidden'});
 		}, 5);
 	}
 
@@ -47,8 +48,8 @@ class FormSteps {
 		await driver.getByTestId(GetInTouchForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
 		await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
-		await driver.getByTestId(Button.SendButton).click();
-		await driver.getByTestId(Button.Close, undefined, 1).waitFor({state: 'visible'});
+		await driver.getByTestId(CareerButtons.SendButton).click();
+		await driver.getByTestId(Buttons.Close, undefined, 1).waitFor({state: 'visible'});
 	}
 
 	public async getErrorMessagesFromFields(necessaryFields: string[]): Promise<string[]> {

@@ -3,9 +3,10 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import QaAsAService from '../../../../identifiers/QaAsAService';
+import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
 import Container from '../../../../identifiers/Container';
-import Button from '../../../../identifiers/Button';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import Links from '../../../../preconditionsData/Links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.QaAsAServ));
@@ -21,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -166,6 +167,15 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 		'QA service output',
 		'Service flow',
 	]);
+});
+
+test("Check redirect by arrow in 'Our Approach and Achievements' block  from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
+
+	await ourApproachContainer.getByTestId(Container.Arrow).click();
+	const newPage = await driver.DriverContext.waitForEvent('page');
+
+	expect(newPage.url()).toContain(Links.Nuget);
 });
 
 test.afterEach(async () => {

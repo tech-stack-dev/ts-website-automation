@@ -3,16 +3,16 @@ import {driver} from '../../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
-import Containers from '../../../../../../identifiers/Containers';
+import ContainersCareer from '../../../../../../identifiers/Career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
-import Tag from '../../../../../../identifiers/Tag';
-import Button from '../../../../../../identifiers/Button';
+import TagsCareer from '../../../../../../identifiers/Career/TagsCareer';
+import CareerButtons from '../../../../../../identifiers/Career/CareerButtons';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
 import {containerSteps} from '../../../../../../steps/components/container/ContainerSteps';
-import Career from '../../../../../../identifiers/Career';
+import Career from '../../../../../../identifiers/Career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 
@@ -24,27 +24,27 @@ const testDataProvider = [
 	{
 		filterBlock: 'seniority level',
 		createTags: [SeniorityLevelsEnum.Trainee, SeniorityLevelsEnum.Junior],
-		tagList: [Tag.JuniorTag, Tag.TraineeTag],
+		tagList: [TagsCareer.JuniorTag, TagsCareer.TraineeTag],
 	},
 	{
 		filterBlock: 'direction',
 		createTags: [DirectionsEnum.LongSoftwareDataManager, DirectionsEnum.SoftwareDevelopment],
-		tagList: [Tag.LongSoftwareDataManager, Tag.SoftwareDevelopment],
+		tagList: [TagsCareer.LongSoftwareDataManager, TagsCareer.SoftwareDevelopment],
 	},
 	{
 		filterBlock: 'technology stack',
 		createTags: [TagsEnum.StackJava, TagsEnum.DevOps],
-		tagList: [Tag.JavaTag, Tag.DevOpsTag],
+		tagList: [TagsCareer.JavaTag, TagsCareer.DevOpsTag],
 	},
 	{
 		filterBlock: 'tags',
 		createTags: [TagsEnum.RemoteAllowed, TagsEnum.PartTime],
-		tagList: [Tag.RemoteAllowedTag, Tag.PartTimeTag],
+		tagList: [TagsCareer.RemoteAllowedTag, TagsCareer.PartTimeTag],
 	},
 ];
 
 for (const testData of testDataProvider) {
-	test.skip(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+	test(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
 		contentfulUtils.AddTagsToCareerBody(testData.createTags);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -56,12 +56,12 @@ for (const testData of testDataProvider) {
 		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.FilterGroupWrapper,
+			ContainersCareer.FilterGroupWrapper,
 			careerMainContainer
 		);
 		const activeTagsGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.ActiveTagsGroupWrapper,
+			ContainersCareer.ActiveTagsGroupWrapper,
 			careerMainContainer
 		);
 
@@ -73,7 +73,7 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await activeTagsGroupContainer.Element.getByTestId(Button.ResetButton).click();
+		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click();
 		testData.tagList.forEach(async (tag) => {
 			const filterTag = filterGroupContainer.getByTestId(tag);
 			await expect(filterTag).not.toHaveClass(/active-tag/);

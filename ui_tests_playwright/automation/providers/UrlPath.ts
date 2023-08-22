@@ -16,6 +16,7 @@ export default class UrlPath {
 	static Blog = 'blog/';
 	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
 	static ContactUs = 'contact-us';
+
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';
 	static client2Url = 'NOT_IMPLEMENTED';
@@ -27,6 +28,8 @@ export default class UrlPath {
 
 	static Terms = 'terms';
 	static CookiesPolicy = 'cookies-policy';
+	static Sitemap = 'sitemap';
+
 	static Reviews = 'reviews';
 
 	static OpenCase = 'case-studies/test-case';

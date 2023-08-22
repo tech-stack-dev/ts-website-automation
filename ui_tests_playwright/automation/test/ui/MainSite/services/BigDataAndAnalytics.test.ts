@@ -4,13 +4,14 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
-import BigDataAndAnalytics from '../../../../identifiers/BigDataAndAnalytics';
-import Button from '../../../../identifiers/Button';
-import {ClutchReviewLinks} from '../../../../preconditionsData/ClutchReviewLinks';
+import BigDataAndAnalytics from '../../../../identifiers/MainSite/pages/services/BigDataAndAnalytics';
+import Buttons from '../../../../identifiers/Buttons';
+import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
-import {ExpertsLinkedInLinks} from '../../../../preconditionsData/ExpertsLinkedInLinks';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -20,7 +21,7 @@ test("Check the header from the 'Big Data & Analytics' block @Regression @BigDat
 	const info = driver.getByTestId(BigDataAndAnalytics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');
-	await expect(info.getByTestId(Button.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 });
 
 test("Check the container title and number from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
@@ -156,8 +157,8 @@ test("Check section title and award cards in 'Why Choose Techstack’s Big Data 
 
 	const awardCards = whyChooseTechstackBigDataServicesContainer.getByTestId(Container.AwardCard);
 	const awardCardsData = [
-		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.png'},
-		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.png'},
+		{index: 0, alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.webp'},
+		{index: 1, alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.webp'},
 	];
 	for (const awardCardImage of awardCardsData) {
 		const actualCard = awardCards.nth(awardCardImage.index).locator('img');
@@ -170,7 +171,7 @@ test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software De
 	const whyChooseTechstackBigDataServicesContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
-	const clutchButton = await whyChooseTechstackBigDataServicesContainer.getByTestId(Button.Clutch);
+	const clutchButton = await whyChooseTechstackBigDataServicesContainer.getByTestId(Buttons.Clutch);
 
 	await clutchButton.click();
 
@@ -205,24 +206,24 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
-		[ourExpertsContainer.getByTestId(Button.Linkedin).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(0),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(1),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(2),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksandrBezrukov,
 		],
 		[
-			ourExpertsContainer.getByTestId(Button.Blog).nth(3),
+			ourExpertsContainer.getByTestId(Buttons.Blog).nth(3),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
 	]);
@@ -281,4 +282,8 @@ test("Check section titles in 'FAQ' container from the 'Big Data & Analytics' bl
 	];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
+});
+
+test.afterEach(async () => {
+	await driver.closeDrivers();
 });

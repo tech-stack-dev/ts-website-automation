@@ -4,8 +4,12 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
-import UxUiDesign from '../../../../identifiers/UxUiDesign';
-import Button from '../../../../identifiers/Button';
+import UxUiDesign from '../../../../identifiers/MainSite/pages/services/UxUiDesign';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
+import Links from '../../../../preconditionsData/Links/Links';
+import Buttons from '../../../../identifiers/Buttons';
+import ExpertsBehanceLinks from '../../../../preconditionsData/Links/ExpertsBehanceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -21,7 +25,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [UxUiDesign.Info, UxUiDesign.WeNeverStopImprovingYourProduct];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -159,8 +163,6 @@ test("Check blocks and sections titles in 'In Design We Trust' container from th
 test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
 	const carousel = typicalUxUiDesignWorkflowContainer.getByTestId(Container.ContainerCarousel);
-	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
-	const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
 	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = [
 		'Business requirements allocation',
@@ -191,24 +193,7 @@ test("Check carousel sections and arrows in 'Typical UX/UI Design Workflow' cont
 		'11',
 	]);
 
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click();
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-
-	const clickCount = allSectionTitles.length - 1;
-	for (let i = 0; i < clickCount; i++) {
-		await carouselButtonNext.click({delay: 1000});
-	}
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
+	await baseDriverSteps.checkCarouselArrowsClick(typicalUxUiDesignWorkflowContainer);
 });
 
 test("Check member names and roles in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
@@ -223,7 +208,12 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 	const allMemberNames = await weNeverStopImprovingYourProductContainer
 		.getByTestId(Container.MemberName)
 		.allInnerTexts();
-	const testDataNames = ['Dmytro Dytiuk', 'Yulia Melnychenko', 'Elizabeth Malygina', 'Hanna Zhyhan'];
+	const testDataNames = [
+		ExpertNames.DmytroDytiuk,
+		ExpertNames.YuliaMelnychenko,
+		ExpertNames.ElizabethMalygina,
+		ExpertNames.HannaZhyhan,
+	];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
@@ -231,11 +221,11 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 test("Check links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkMap = new Map([
-		[UxUiDesign.Instagram, 'https://www.instagram.com'],
-		[UxUiDesign.Tiktok, 'https://www.tiktok.com/@techstack.design'],
-		[UxUiDesign.Behance, 'https://www.behance.net/dimadityuk'],
-		[Container.MemberCard, 'https://www.behance.net/dimadityuk'],
-		[Container.MemberName, 'https://www.behance.net/dimadityuk'],
+		[MainSiteButtons.Instagram, Links.Instagram],
+		[MainSiteButtons.Tiktok, Links.TikTokDesign],
+		[Buttons.Behance, ExpertsBehanceLinks.DmytroDytuk],
+		[Container.MemberCard, ExpertsBehanceLinks.DmytroDytuk],
+		[Container.MemberName, ExpertsBehanceLinks.DmytroDytuk],
 	]);
 
 	for (const entries of linkMap.entries()) {

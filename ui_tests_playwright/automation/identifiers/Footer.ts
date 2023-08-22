@@ -8,12 +8,5 @@ export default class Footer {
 	// Button
 	static TermsOfUse = 'Button-TermsOfUses';
 	static CookiesPolicy = 'Button-CookiesPolicy';
-	static LinkedIn = 'Button-LinkedIn';
-	static Facebook = 'Button-Facebook';
-	static Instagram = 'Button-Instagram';
-	static Behance = 'Button-Behance';
-	static Dribbble = 'Button-Dribbble';
-	static Twitter = 'Button-Twitter';
-	static GoodFirms = 'Button-GoodFirms';
-	static Clutch = 'Button-Clutch';
+	static Sitemap = 'Button-Sitemap';
 }

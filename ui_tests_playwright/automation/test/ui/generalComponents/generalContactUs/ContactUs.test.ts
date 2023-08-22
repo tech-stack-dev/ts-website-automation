@@ -1,20 +1,28 @@
 import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {serviceUrl, companyUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
+test("Check 'Contact Us' button from 'Industries' section @Regression @ContactUs", async () => {
+	for (const url of Object.values(industryUrl)) {
+		await baseDriverSteps.goToUrl(url);
+		await driver.getByTestId(Buttons.ContactUs).click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+	}
+});
+
 test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @TSWEB-532", async () => {
 	for (const url of Object.values(serviceUrl)) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Button.ContactUs).click();
+		await driver.getByTestId(Buttons.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	}
 });
@@ -28,7 +36,7 @@ test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @T
 	];
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Button.ContactUs).click();
+		await driver.getByTestId(Buttons.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	}
 });
@@ -38,7 +46,7 @@ test("Check 'Contact Us' button from 'Contact Us' section and from main page @Re
 
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Button.ContactUs).click();
+		await driver.getByTestId(Buttons.ContactUs).click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	}
 });

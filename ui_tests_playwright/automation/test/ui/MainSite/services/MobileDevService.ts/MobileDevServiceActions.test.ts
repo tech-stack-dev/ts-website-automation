@@ -6,10 +6,10 @@ import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import Button from '../../../../../identifiers/Button';
-import MobileDevService from '../../../../../identifiers/MobileDevService';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/ClutchReviewLinks';
+import Buttons from '../../../../../identifiers/Buttons';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 
 test("Check redirects by buttons in 'Our Approach to Mobile App Development Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
-	const clutchButtons = await ourApproachContainer.getByTestId(Button.Clutch).all();
+	const clutchButtons = await ourApproachContainer.getByTestId(Buttons.Clutch).all();
 
 	const buttonMap = new Map([
 		[clutchButtons[0], ClutchReviewLinks.AnonymousPeerToPeer],
@@ -36,32 +36,13 @@ test("Check redirects by buttons in 'Our Approach to Mobile App Development Serv
 test("Check carousel sections and arrows in 'Mobile App Development Process' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
 	const carousel = mobileAppDevProcessContainer.getByTestId(Container.ContainerCarousel);
-	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
-	const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
 	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Investigation', 'New products', 'Existing products', 'Execution', 'Performance', 'Analysis'];
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual(['01', '02', '03', '04']);
 
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-
-	const clickCount = allSectionTitles.length;
-	for (let i = 0; i < clickCount; i++) {
-		await carouselButtonNext.click({delay: 1000});
-	}
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
+	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, 3);
 });
 
 test("Check section titles and redirects by buttons in 'We Never Stop Improving Your Product' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
@@ -77,23 +58,23 @@ test("Check section titles and redirects by buttons in 'We Never Stop Improving 
 
 	const buttonUrlMap = new Map([
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(0),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(0),
 			ExpertsLinkedInLinks.YevheniiKarachevtsev,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(1),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(1),
 			ExpertsLinkedInLinks.IvanYeremenko,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(2),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(2),
 			ExpertsLinkedInLinks.MariaDarmanian,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(3),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(3),
 			ExpertsLinkedInLinks.DmytroShtapauk,
 		],
 		[
-			weNeverStopImprovingYourProductContainer.getByTestId(Button.Linkedin).nth(4),
+			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(4),
 			ExpertsLinkedInLinks.VitaliiDolotov,
 		],
 	]);
