@@ -42,10 +42,6 @@ test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Mo
 test("Check redirect by links in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	const linkMap = new Map([
-		[
-			MainSiteButtons.Statista,
-			'https://www.statista.com/outlook/dmo/ecommerce/beauty-health-personal-household-care/health-care/worldwide',
-		],
 		[MainSiteButtons.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
 		[
 			MainSiteButtons.McKinsey,
