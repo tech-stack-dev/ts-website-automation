@@ -1,17 +1,17 @@
-import { Locator, expect, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
-import { driver } from '../../../../base/driver/Driver';
+import {Locator, expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Link from '../../../../identifiers/Link';
-import { Environment } from '../../../../providers/EnvProvider';
+import {Environment} from '../../../../providers/EnvProvider';
 import Button from '../../../../identifiers/Button';
 import Colors from '../../../../preconditionsData/Colors';
-import { companyUrl, industriesUrl, serviceUrl } from '../../../../preconditionsData/UrlPreconditions';
-import { ServicesEnum } from '../../../../enum/ServicesEnum';
-import { CompanyEnum } from '../../../../enum/CompanyEnum';
-import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
-import { IndustriesEnum } from '../../../../enum/IndustriesEnum';
+import {companyUrl, industriesUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {ServicesEnum} from '../../../../enum/ServicesEnum';
+import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),

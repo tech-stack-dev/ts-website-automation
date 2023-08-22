@@ -32,7 +32,7 @@ export default class Button {
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_UiUxDesign = 'Services-UiUxDesign';
 	static Services_QaAsAServ = 'Services-QaAsAServ';
-	static Services_ConsultingServ = 'Services-ConsultingServ';	
+	static Services_ConsultingServ = 'Services-ConsultingServ';
 
 	// Company section
 	static Company_AboutUs = 'Company-AboutUs';
