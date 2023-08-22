@@ -25,7 +25,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [UxUiDesign.Info, UxUiDesign.WeNeverStopImprovingYourProduct];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+		await expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
