@@ -26,9 +26,11 @@ test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Cu
 });
 
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	await driver.Page.waitForLoadState('load');
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
 
+	await requestAQuote.scrollIntoViewIfNeeded();
 	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
 	await requestAQuote.click();
@@ -74,6 +76,7 @@ test("Check redirects by arrows in 'Custom development services we provide' cont
 });
 
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' from the 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	await driver.Page.waitForLoadState('load');
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
 
