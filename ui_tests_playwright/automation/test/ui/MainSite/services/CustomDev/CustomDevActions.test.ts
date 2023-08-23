@@ -12,6 +12,8 @@ import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
+const requestAQuoteText = 'Request a quote';
+
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
@@ -27,7 +29,7 @@ test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Req
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await expect(requestAQuote).toHaveText('Request a quote');
+	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
 	await requestAQuote.click();
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
@@ -37,7 +39,7 @@ test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Req
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await expect(requestAQuote).toHaveText('Request a quote');
+	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
 	await requestAQuote.click();
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
@@ -50,7 +52,7 @@ test("Check carousel arrows and 'Request quote' button from the 'Custom software
 
 	const requestAQuote = devProcess.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await expect(requestAQuote).toHaveText('Request a quote');
+	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
 	await requestAQuote.click();
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
@@ -91,8 +93,8 @@ test("Check social link redirects in 'Custom software development experts' conta
 	}
 });
 
-//TODO
 test.skip("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	test.skip(true, "Clutch redirect links aren't consistent with the rest of pages");
 	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
 
 	const clutchButtons = devApproach.getByTestId(Buttons.Clutch);
