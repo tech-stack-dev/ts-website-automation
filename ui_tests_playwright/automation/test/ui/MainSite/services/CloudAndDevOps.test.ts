@@ -1,16 +1,16 @@
 import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import Buttons from '../../../../identifiers/Buttons';
+import {driver} from '../../../../base/driver/Driver';
+import UrlProvider from '../../../../providers/UrlProvider';
+import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
+import Buttons from '../../../../identifiers/Buttons';
+import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import {Environment} from '../../../../providers/EnvProvider';
 import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {Environment} from '../../../../providers/EnvProvider';
-import UrlPath from '../../../../providers/UrlPath';
-import UrlProvider from '../../../../providers/UrlProvider';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudAndDev));

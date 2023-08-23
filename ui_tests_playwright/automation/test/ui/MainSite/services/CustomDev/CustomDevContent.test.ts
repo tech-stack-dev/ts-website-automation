@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check the header from the 'Custom Software Development' block", async () => {
+test("Check the header from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
@@ -21,7 +21,7 @@ test("Check the header from the 'Custom Software Development' block", async () =
 	);
 });
 
-test("Check container titles and numbers from the 'Custom Software Development' block ", async () => {
+test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const containers = [
 		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentForYourProduct),
 		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentServicesWeProvide),
@@ -156,7 +156,7 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 		{
 			title: 'Back-End',
 			sections: [
-				//TODO: incorrect test id on '.NET Stack',
+				//incorrect test id on '.NET Stack',
 				'JVM Stack',
 				'Node.js stack',
 				'Other',
@@ -188,7 +188,6 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 		await tabButtons[i].click();
 
 		for (let j = 0; j < expectedValues.sections.length; j++) {
-			console.log(await sectionTitles.count());
 			await expect(sectionTitles.filter({hasText: expectedValues.sections[j]})).toBeVisible();
 		}
 	}
