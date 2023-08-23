@@ -3,14 +3,15 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
+import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
 import Container from '../../../../../identifiers/Container';
-import ConsultingService from '../../../../../identifiers/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import Button from '../../../../../identifiers/Button';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/ExpertsLinkedInLinks';
+import Buttons from '../../../../../identifiers/Buttons';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import Links from '../../../../../preconditionsData/Links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -19,8 +20,6 @@ test.beforeEach(async () => {
 test("Check carousel sections and arrows in 'Consulting process' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
 	const carousel = consultingProcessContainer.getByTestId(Container.ContainerCarousel);
-	const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
-	const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
 	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Discovery', 'Analysis', 'Brainstorming', 'Presentation', 'Implementation', 'Touch base'];
 
@@ -34,61 +33,45 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 		'06',
 	]);
 
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonNext.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-	await carouselButtonPrev.click({delay: 1000});
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
-
-	for (let i = 0; i < allSectionTitles.length - 1; i++) {
-		await carouselButtonNext.click({delay: 1000});
-	}
-
-	await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-	await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
+	await baseDriverSteps.checkCarouselArrowsClick(consultingProcessContainer);
 });
 
 test("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(0),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(0),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(1),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(1),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(2),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(2),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(3), ExpertsLinkedInLinks.VitaliiDolotov],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.VitaliiDolotov],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(3),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(3),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.VitaliiDolotov,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(4), ExpertsLinkedInLinks.IvanYeremenko],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(4), ExpertsLinkedInLinks.IvanYeremenko],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(4),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(4),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(5),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(5),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
 		],
-		[consultingExpertsContainer.getByTestId(Button.Linkedin).nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
+		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
 		[
-			consultingExpertsContainer.getByTestId(Button.Blog).nth(6),
+			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(6),
 			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,
 		],
 	]);
@@ -101,7 +84,7 @@ test("Check redirects by buttons in 'Consulting experts' container from the 'Con
 	}
 });
 
-test("Check section titles and redirects in Open source contributions block  in 'Our approach' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test("Check section titles and redirects in 'Our approach' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 	const allSectionTitles = await ourApproachContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const testData = ['Open source contributions', 'Global certifications', 'Profound experience'];
@@ -111,7 +94,7 @@ test("Check section titles and redirects in Open source contributions block  in 
 	ourApproachContainer.getByTestId(Container.Arrow).click();
 	const newPage = await driver.DriverContext.waitForEvent('page');
 
-	expect(newPage.url()).toContain('https://www.nuget.org/profiles/VitaliiDolotov');
+	expect(newPage.url()).toContain(Links.Nuget);
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {

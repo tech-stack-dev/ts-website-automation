@@ -8,7 +8,7 @@ export default class JobDescriptionBlock extends BaseComponent {
 	}
 
 	public get title() {
-		return this.Element.locator("//div[@class='block-title']");
+		return this.Element.locator("//div[contains(@class, 'block-title')]");
 	}
 
 	public get description() {
