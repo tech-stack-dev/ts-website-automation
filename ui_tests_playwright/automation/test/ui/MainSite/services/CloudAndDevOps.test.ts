@@ -1,16 +1,16 @@
 import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
-import UrlProvider from '../../../../providers/UrlProvider';
-import UrlPath from '../../../../providers/UrlPath';
-import Container from '../../../../identifiers/Container';
-import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
-import Buttons from '../../../../identifiers/Buttons';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import {Environment} from '../../../../providers/EnvProvider';
+import Buttons from '../../../../identifiers/Buttons';
+import Container from '../../../../identifiers/Container';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import CloudAndDevOps from '../../../../identifiers/MainSite/pages/services/CloudAndDevOps';
 import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import {Environment} from '../../../../providers/EnvProvider';
+import UrlPath from '../../../../providers/UrlPath';
+import UrlProvider from '../../../../providers/UrlProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudAndDev));
@@ -158,7 +158,7 @@ test("Check redirect to clutch in 'Our approach to cloud app development' contai
 	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(
 		CloudAndDevOps.OurApproachToCloudAppDevelopment
 	);
-	const clutchButton = await ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch);
+	const clutchButton = ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch);
 
 	await clutchButton.hover();
 	await clutchButton.click();

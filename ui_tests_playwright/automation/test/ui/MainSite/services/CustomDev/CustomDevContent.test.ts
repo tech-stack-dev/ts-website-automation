@@ -4,6 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import {CustomDev} from '../../../../../identifiers/MainSite/pages/services/CustomDev';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -236,6 +237,94 @@ test("Check section titles and numbers in 'Custom software development process' 
 
 		await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 		await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
+	}
+});
+
+test("Check section titles, member names and roles in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const sections = devExperts.getByTestId(Container.ContainerSection);
+	const numOfSections = 3;
+
+	await expect(sections).toHaveCount(numOfSections);
+
+	const expectedText = ['Tech Experts Team', 'Development Team', 'Management Team'];
+
+	for (let i = 0; i < numOfSections; i++) {
+		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
+	}
+
+	const memberCards = devExperts.getByTestId(Container.MemberCard);
+
+	const numOfMembers = 7;
+
+	await expect(memberCards).toHaveCount(numOfMembers);
+
+	const expectedMemberCardsText: {name: string; role: string}[] = [
+		{
+			name: ExpertNames.IvanIeremenko,
+			role: 'CEO, Software Architect,\nRuns critical initiatives that make products grow',
+		},
+		{name: ExpertNames.OleksiiSvystun, role: 'CTO, Software Architect,\nElaborates on the technology strategy'},
+		{
+			name: ExpertNames.VitaliiDolotov,
+			role: 'Sr. Director of Quality Engineering,\nOversees technology-related initiatives',
+		},
+		{name: ExpertNames.IvanYeremenko, role: 'VP of Engineering,\nLeads the Tech Experts Program and team'},
+		{
+			name: ExpertNames.YevheniiKarachevtsev,
+			role: 'R&D Engineer, Software Engineering Lead,\nAdvises the best custom solution',
+		},
+		{name: ExpertNames.DmytroDytiuk, role: 'Chief Creative Officer,\nAligns UX with users’ needs / business goals'},
+		{
+			name: ExpertNames.DmytroShtapauk,
+			role: 'Head of Account Management,\nDrives cross-functional process transformation',
+		},
+	];
+
+	for (let i = 0; i < numOfMembers; i++) {
+		const memberCard = memberCards.nth(i);
+
+		await expect(memberCard.getByTestId(Container.MemberRole)).toHaveText(expectedMemberCardsText[i].role);
+		await expect(memberCard.getByTestId(Container.MemberName)).toHaveText(expectedMemberCardsText[i].name);
+	}
+});
+
+test("Check section titles and award cards in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
+
+	const sections = devApproach.getByTestId(Container.ContainerSection);
+	const numOfSections = 3;
+
+	await expect(sections).toHaveCount(numOfSections);
+
+	const expectedText = ['Tech community', 'Ownership over\nproducts', 'Proven expertise'];
+
+	for (let i = 0; i < numOfSections; i++) {
+		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
+	}
+
+	const awardCards = devApproach
+		.getByTestId(Container.AwardCard)
+		.filter({has: driver.getByTestId(Container.AwardCard)});
+
+	const numOfCards = 6;
+
+	await expect(awardCards).toHaveCount(numOfCards);
+
+	const expectedAwardCardsData: {alt: string; src: string}[] = [
+		{alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.webp'},
+		{alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.webp'},
+		{alt: 'Award-3', src: 'img/awards-logos-yellow/design-rush-1.webp'},
+		{alt: 'Award-4', src: 'img/awards-logos-yellow/design-rush-2.webp'},
+		{alt: 'Award-5', src: 'img/awards-logos-yellow/top-hybrid-app.webp'},
+		{alt: 'Award-6', src: 'img/awards-logos-yellow/software-testing-companies.webp'},
+	];
+
+	for (let i = 0; i < numOfCards; i++) {
+		const awardCardImage = awardCards.nth(i).getByTestId(Container.AwardCard);
+
+		await expect(awardCardImage).toHaveAttribute('alt', expectedAwardCardsData[i].alt);
+		await expect(awardCardImage).toHaveAttribute('src', expectedAwardCardsData[i].src);
 	}
 });
 
