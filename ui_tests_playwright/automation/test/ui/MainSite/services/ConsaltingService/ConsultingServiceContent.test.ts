@@ -2,10 +2,11 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
-import ConsultingService from '../../../../../identifiers/ConsultingService';
+import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import Button from '../../../../../identifiers/Button';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -21,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regressi
 	const containers = [ConsultingService.Info, ConsultingService.ConsultingProcess, ConsultingService.RelatedServices];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -189,13 +190,13 @@ test("Check member names and roles in 'Consulting experts' container from the 'C
 
 	const allMemberNames = await consultingExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
 	const testDataNames = [
-		'Ivan Ieremenko',
-		'Oleksii Svystun',
-		'Yevhenii Karachevtsev',
-		'Vitalii Dolotov',
-		'Ivan Yeremenko',
-		'Dmytro Dytiuk',
-		'Dmytro Shtapauk',
+		ExpertNames.IvanIeremenko,
+		ExpertNames.OleksiiSvystun,
+		ExpertNames.YevheniiKarachevtsev,
+		ExpertNames.VitaliiDolotov,
+		ExpertNames.IvanYeremenko,
+		ExpertNames.DmytroDytiuk,
+		ExpertNames.DmytroShtapauk,
 	];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
@@ -240,12 +241,12 @@ test("Check section titles and award cards in 'We make an impact' container from
 
 	const awardCards = weMakeAnImpactContainer.getByTestId(Container.AwardCard);
 	const awardCardsData = [
-		{index: 0, alt: 'Award-1', src: 'img/consulting-logos/1.png'},
-		{index: 1, alt: 'Award-2', src: 'img/consulting-logos/2.png'},
-		{index: 2, alt: 'Award-3', src: 'img/consulting-logos/3.png'},
-		{index: 3, alt: 'Award-4', src: 'img/consulting-logos/4.png'},
-		{index: 4, alt: 'Award-5', src: 'img/consulting-logos/5.png'},
-		{index: 5, alt: 'Award-6', src: 'img/consulting-logos/6.png'},
+		{index: 0, alt: 'Award-1', src: 'img/consulting-logos/1.webp'},
+		{index: 1, alt: 'Award-2', src: 'img/consulting-logos/2.webp'},
+		{index: 2, alt: 'Award-3', src: 'img/consulting-logos/3.webp'},
+		{index: 3, alt: 'Award-4', src: 'img/consulting-logos/4.webp'},
+		{index: 4, alt: 'Award-5', src: 'img/consulting-logos/5.webp'},
+		{index: 5, alt: 'Award-6', src: 'img/consulting-logos/6.webp'},
 	];
 	for (const awardCardImage of awardCardsData) {
 		const actualCard = awardCards.nth(awardCardImage.index).locator('img');

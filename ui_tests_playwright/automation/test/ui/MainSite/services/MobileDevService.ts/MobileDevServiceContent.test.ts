@@ -4,8 +4,9 @@ import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import Button from '../../../../../identifiers/Button';
-import MobileDevService from '../../../../../identifiers/MobileDevService';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
@@ -25,7 +26,7 @@ test("Check 'Request a Quote' buttons on the 'Mobile App Development Service' bl
 	];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(Button.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
@@ -198,11 +199,11 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 		.getByTestId(Container.MemberName)
 		.allInnerTexts();
 	const testDataNames = [
-		'Yevhenii Karachevtsev',
-		'Ivan Yeremenko',
-		'Maria Darmanian',
-		'Dmytro Shtapauk',
-		'Vitalii Dolotov',
+		ExpertNames.YevheniiKarachevtsev,
+		ExpertNames.IvanYeremenko,
+		ExpertNames.MariaDarmanian,
+		ExpertNames.DmytroShtapauk,
+		ExpertNames.VitaliiDolotov,
 	];
 
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());

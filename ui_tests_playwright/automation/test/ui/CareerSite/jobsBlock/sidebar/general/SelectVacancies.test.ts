@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
-import Containers from '../../../../../../identifiers/Containers';
+import ContainersCareer from '../../../../../../identifiers/Career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
@@ -11,28 +11,29 @@ import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulStep
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 import {ColorsEnum} from '../../../../../../enum/ColorsEnum';
 import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
-import Tag from '../../../../../../identifiers/Tag';
+import TagsCareer from '../../../../../../identifiers/Career/TagsCareer';
 import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
-import Career from '../../../../../../identifiers/Career';
+import Career from '../../../../../../identifiers/Career/pages/Career';
+import {locatorUtils} from '../../../../../../utils/LocatorUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
 const testDataProvider = [
-	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: Tag.TraineeTag},
+	{filterBlock: 'seniority level', createTag: [SeniorityLevelsEnum.Trainee], tagName: TagsCareer.TraineeTag},
 	{
 		filterBlock: 'direction',
 		createTag: [DirectionsEnum.LongSoftwareDataManager],
-		tagName: Tag.LongSoftwareDataManager,
+		tagName: TagsCareer.LongSoftwareDataManager,
 	},
-	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: Tag.JavaTag},
-	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: Tag.RemoteAllowedTag},
+	{filterBlock: 'technology stack', createTag: [TagsEnum.StackJava], tagName: TagsCareer.JavaTag},
+	{filterBlock: 'tags', createTag: [TagsEnum.RemoteAllowed], tagName: TagsCareer.RemoteAllowedTag},
 ];
 
 for (const testData of testDataProvider) {
-	test.skip(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
+	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
 		contentfulUtils.AddTagsToCareerBody(testData.createTag);
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -44,13 +45,13 @@ for (const testData of testDataProvider) {
 		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.FilterGroupWrapper,
+			ContainersCareer.FilterGroupWrapper,
 			careerMainContainer
 		);
 		const filterTag = filterGroupContainer.getByTestId(testData.tagName);
 		const activeTagsGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			Containers.ActiveTagsGroupWrapper,
+			ContainersCareer.ActiveTagsGroupWrapper,
 			careerMainContainer
 		);
 		const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
@@ -58,11 +59,7 @@ for (const testData of testDataProvider) {
 		await filterTag.click();
 		await driver.executeFunc(async () => {
 			await expect(filterTag).toHaveClass(/active-tag/);
-			expect(
-				await filterTag.evaluate(async (el) => {
-					return getComputedStyle(el).backgroundColor;
-				})
-			).toBe(ColorsEnum.OrangeYellow);
+			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
 		}, 5);
 		await expect(activeTag).toHaveClass(/active-tag/);
 		expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorsEnum.OrangeYellow);
