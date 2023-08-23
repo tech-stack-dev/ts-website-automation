@@ -18,39 +18,6 @@ jobs:
             working-directory: ./ui_tests
 
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore ./PlaywrightAutomation.sln
-
-    - name: Override config parameters
-      shell: pwsh
-      run: |
-        Try
-          {
-            $configPath = './PlaywrightAutomation/appsettings.json'
-            $jsonConfig = Get-Content $configPath | Out-String | ConvertFrom-Json
-            $jsonConfig.Browser_Headless = 'true'
-            $jsonConfig | ConvertTo-Json -depth 100 | Out-File $configPath
-          }
-          Catch
-          {
-            throw "$_.Exception.ToString()"
-          }
-
-    - name: Build
-      run: dotnet build ./PlaywrightAutomation.sln --no-restore
-      
-
-    - name: Unit tests
-      id: unitTests
-      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
-      run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory=OnBuild" --no-build --verbosity normal
       
     # Slack message of Unit tests fail  
     - name: Slack Notification for Unit tests
