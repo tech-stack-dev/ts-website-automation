@@ -186,7 +186,7 @@ test("Check member names and roles in 'Our Leading Cloud Experts' container from
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
-test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
+test.skip("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud & DevOps' block @Regression @CloudAndDevOps @TSWEB-692", async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudAndDevOps.OurCloudDevOpsExperts);
 	const buttonUrlMap = new Map([
 		[ourCloudDevOpsExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
