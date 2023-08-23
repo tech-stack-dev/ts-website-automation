@@ -53,50 +53,6 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
-
-      # Steps to report UI tests execution status
-      # - name: Get Playwright report
-      #   uses: actions/checkout@v3
-      #   if: always() 
-      #   continue-on-error: true
-      #   with:
-      #     ref: gh-pages
-      #     path: gh-pages
-
-      # - name: Verify catalog
-      #   if: always()
-      #   run: |
-      #     echo "Current working directory: $(pwd)"
-      #     ls -la .
-
-      # - name: Navigate to Previous Directory
-      #   if: always()
-      #   run: |
-      #     cd ..
-      #     echo "Current working directory: $(pwd)"
-      #     ls -la
-
-      # - name: Debug Directory Contents
-      #   if: always()
-      #   run: |
-      #     cd ui_tests_playwright
-  
-      #     echo "Contents of ui_tests_playwright/:"
-      #     ls -la .
-  
-      #     echo "Contents of extracted_report:"
-      #     ls -la ui_tests_playwright
-  
-      
-      # - name: Extract Playwright Report Archive
-      #   if: always()
-      #   run: |
-      #     echo "Current working directory: $(pwd)"
-      #     ls -la .
-        
-      #     mkdir -p extracted_report
-      #     unzip -q playwright-report -d extracted_report
-      #   working-directory: ui_tests_playwright/playwright-report/
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -104,194 +60,64 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ui_tests_playwright/playwright-report
-          publish_branch: gh-pages      
-      
-          # - name: Add Playwright report link to Annotations section
-      #   if: always()
-      #   run: |
-      #     text="https://tech-stack-dev.github.io/ts-website-automation/index.html"
-      #     echo "::warning ::$text"
-      # - name: Add Playwright report link to Annotations section
-      #   if: always()
-      #   run: |
-      #     report_url="https://tech-stack-dev.github.io/ts-website-automation/index.html"
-      #     echo "::notice file=playwright-report::Click to view Playwright report::${report_url}"
-
-      # - name: Debug Issue Number
-      #   run: |
-      #     echo "Issue Number: ${{ github.event.issue.number }}"
-      #   if: always()
-      #   env:
-      #     GITHUB_CONTEXT: ${{ toJson(github) }}
-      
-      # - name: Add Playwright report link as comment
-      #   if: always()
-      #   uses: actions/github-script@v4
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       const reportUrl = 'https://tech-stack-dev.github.io/ts-website-automation/index.html';
-      #       const comment = `Click to view the Playwright report: [Playwright Report](${reportUrl})`;
-      #       github.issues.createComment({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         # issue_number: context.issue.number,
-      #         body: comment
-      #       });
-      
-
-
+          publish_branch: gh-pages
 
       - name: Display Playwright Report Link
         if: always()
         run: |
           echo "::warning ::[Click to view Playwright report](https://tech-stack-dev.github.io/ts-website-automation/index.html)"
-      # - name: Display Playwright Report Link
-      #   uses: actions/github-script@v4
-      #   if: always()
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       const reportUrl = `https://${process.env.GITHUB_REPOSITORY.split('/')[0]}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/playwright-report/index.html`;
-      #       const payload = {
-      #         sha: context.sha,
-      #         event: 'check_run',
-      #         name: 'Playwright Report',
-      #         head_sha: context.sha,
-      #         conclusion: 'success',
-      #         output: {
-      #           title: 'Playwright Test Report',
-      #           summary: `View Playwright report [here](${reportUrl})`,
-      #         },
-      #       };
-      #       github.checks.create(payload);
-      
-      
-      # - name: Upload Playwright report
-      #   id: upload-report
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: ui_tests_playwright/playwright-report/
-      #     retention-days: 30
 
-      # - name: Display Playwright Report Link
-      #   uses: actions/github-script@v4
-      #   if: always()
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       const reportUrl = "${{ steps.upload-report.outputs.artifact_url }}/index.html";
-      #       console.log(reportUrl);
-      #       console.log(context);
-      #       const payload = {
-      #         sha: context.sha,
-      #         event: 'check_run',
-      #         name: 'Playwright Report',
-      #         head_sha: context.sha,
-      #         conclusion: 'success',
-      #         output: {
-      #           title: 'Playwright Test Report',
-      #           summary: `View Playwright report [here](${reportUrl})`,
-      #         },
-      #       };
-      #       github.checks.create(payload);
-      
-      
-      # - name: Get Playwright history
-      #   uses: actions/checkout@v3
-      #   if: always()
-      #   continue-on-error: true
-      #   with:
-      #     ref: gh-pages
-      #     path: gh-pages    
-      
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v3
-      #   if: always()
-      #   with:
-      #     ref: gh-pages
+      - name: Preparing Slack emoji
+        uses: haya14busa/action-cond@v1
+        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_icon_emoji
+        with:
+          cond: ${{ job.status == 'failure' }}
+          if_true: ':finnadie:'
+          if_false: ':aw_yeah:'
 
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: always()
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: /ui_tests_playwright/playwright-report
-      #     publish_branch: gh-pages
-      
-      # - name: Deploy Playwright Report to GitHub Pages
-      #   uses: JamesIves/github-pages-deploy-action@v4.4.1
-      #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-      #   with:
-      #     token: ${{ secrets.ACCESS_TOKEN }}
-      #     branch: gh-pages
-      #     folder: ui_tests_playwright/playwright-report/index.html
+      - name: Set Slack Channel production
+        uses: haya14busa/action-cond@v1
+        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_channel_production
+        with:
+          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+          if_true: ts_website_automation
+          if_false: ts_website
 
-      # - name: Add Playwright report link to Annotations section
-      #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
-      #   run: |
-      #     text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
-      #     echo "::warning ::$text"
+      - name: Set Slack Channel automation
+        uses: haya14busa/action-cond@v1
+        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        id: slack_channel_automation
+        with:
+          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+          if_true: test_slack_notifications
+          if_false: ts_website_automation
 
-      # - name: Display HTML Link
-      #   if: always()
-      #   run: |
-      #     echo "::warning ::Index HTML: https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}/index.html"
+      - name: Slack Notification for UI tests production
+        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_USERNAME: Tests execution report
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
+          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_TITLE: TypeScript UI tests
+          MSG_MINIMAL: true
+          SLACK_FOOTER: TS website
 
-
-      # - name: Preparing Slack emoji
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-      #   id: slack_icon_emoji
-      #   with:
-      #     cond: ${{ job.status == 'failure' }}
-      #     if_true: ':finnadie:'
-      #     if_false: ':aw_yeah:'
-
-      # - name: Set Slack Channel production
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-      #   id: slack_channel_production
-      #   with:
-      #     cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-      #     if_true: ts_website_automation
-      #     if_false: ts_website
-
-      # - name: Set Slack Channel automation
-      #   uses: haya14busa/action-cond@v1
-      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-      #   id: slack_channel_automation
-      #   with:
-      #     cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-      #     if_true: test_slack_notifications
-      #     if_false: ts_website_automation
-
-      # - name: Slack Notification for UI tests production
-      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-      #   uses: rtCamp/action-slack-notify@v2.2.0
-      #   env:
-      #     SLACK_USERNAME: Tests execution report
-      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      #     SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
-      #     SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-      #     SLACK_COLOR: ${{ job.status }}
-      #     SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      #     SLACK_TITLE: TypeScript UI tests
-      #     MSG_MINIMAL: true
-      #     SLACK_FOOTER: TS website
-
-      # - name: Slack Notification for UI tests automation
-      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-      #   uses: rtCamp/action-slack-notify@v2.2.0
-      #   env:
-      #     SLACK_USERNAME: Tests execution report
-      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      #     SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
-      #     SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-      #     SLACK_COLOR: ${{ job.status }}
-      #     SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      #     SLACK_TITLE: TypeScript UI tests
-      #     MSG_MINIMAL: true
-      #     SLACK_FOOTER: TS website
+      - name: Slack Notification for UI tests automation
+        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_USERNAME: Tests execution report
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
+          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_TITLE: TypeScript UI tests
+          MSG_MINIMAL: true
+          SLACK_FOOTER: TS website

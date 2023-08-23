@@ -79,38 +79,6 @@ jobs:
     - name: UI tests on Schedule or Manual  run
       if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
       run: dotnet test ./PlaywrightAutomation.sln --filter "TestCategory!=OnBuild&TestCategory!=NotRun"
-      
-    # Steps to report UI tests execution status
-    # Prepare Allure history and publish to GitHub pages
-    # - name: Get Allure history
-    #   uses: actions/checkout@v3
-    #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-    #   continue-on-error: true
-    #   with:
-    #     ref: gh-pages
-    #     path: gh-pages
-        
-    # - name: Compile Allure report
-    #   uses: simple-elf/allure-report-action@master
-    #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-    #   with:
-    #     allure_results: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-results
-    #     allure_history: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
-    #     keep_reports: 30
-          
-    # - name: Deploy Allure Report to GitHub Pages
-    #   uses: JamesIves/github-pages-deploy-action@v4.4.1
-    #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }} 
-    #   with:
-    #     token: ${{ secrets.ACCESS_TOKEN }}
-    #     branch: gh-pages
-    #     folder: ui_tests/PlaywrightAutomation/bin/Debug/net6.0/allure-history
-        
-    # - name: Add Allure report link to Annotations section
-    #   if: ${{ steps.unitTests.outcome == 'success' && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure())) }}
-    #   run: |
-    #     text="https://tech-stack-dev.github.io/ts-website-automation/${{ github.run_number }}"
-    #     echo "::warning ::$text"
          
     - name: Preparing Slack emoji
       uses: haya14busa/action-cond@v1
