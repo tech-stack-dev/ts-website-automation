@@ -33,6 +33,7 @@
 		"typescript": "^4.9.5"
 	},
 	"dependencies": {
+		"@slack/web-api": "^6.9.0",
 		"aws-sdk": "^2.1343.0",
 		"contentful": "^9.3.4",
 		"contentful-management": "^10.30.0",
