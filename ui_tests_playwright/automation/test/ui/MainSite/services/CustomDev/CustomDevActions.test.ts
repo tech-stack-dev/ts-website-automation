@@ -77,6 +77,7 @@ test("Check page is scrolled down to 'Get in Touch' container after clicking on 
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
 
+	await requestAQuote.scrollIntoViewIfNeeded();
 	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
 	await requestAQuote.click();
