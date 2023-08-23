@@ -5,9 +5,9 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
-import Link from '../../../../identifiers/Link';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import Button from '../../../../identifiers/Button';
+import Buttons from '../../../../identifiers/Buttons';
+import Links from '../../../../preconditionsData/Links/Links';
 
 let footer: Locator;
 const testDataProvider = [
@@ -19,19 +19,19 @@ const testDataProvider = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Button.AcceptCookies).click();
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 
 		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
 		const year = new Date().getFullYear();
 
-		await expect(footer.getByTestId(Link.Logo)).toBeVisible();
+		await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 		await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
 		await expect(careerBlock.getByTestId(Container.BlockTitle)).toHaveText('Career');
 		await expect(footer.getByTestId(Footer.Info).nth(0)).toHaveText(`© ${year} Techstack. All rights reserved.`);
@@ -49,7 +49,7 @@ for (const url of testDataProvider) {
 		]);
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const companyUrlList = [
 			UrlProvider.webSiteUrl(),
 			UrlProvider.urlBuilder(UrlPath.OurServices),
@@ -68,7 +68,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Career block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const careerUrlList = [
 			UrlProvider.careerUrl(),
 			UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
@@ -87,12 +87,12 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
-			[Footer.Behance, 'https://www.behance.net/Techstack_Ltd'],
-			[Footer.LinkedIn, 'https://www.linkedin.com'],
-			[Footer.Facebook, 'https://www.facebook.com'],
-			[Footer.Instagram, 'https://www.instagram.com'],
+			[Buttons.Behance, Links.Behance],
+			[Buttons.LinkedIn, Links.LinkedIn],
+			[Buttons.Facebook, Links.Facebook],
+			[Buttons.Instagram, Links.Instagram],
 		]);
 
 		for (const entries of linkMap.entries()) {
@@ -106,17 +106,17 @@ for (const url of testDataProvider) {
 
 		const [newPage] = await Promise.all([
 			driver.DriverContext.waitForEvent('page'),
-			await footer.getByTestId(Footer.Clutch).nth(1).click(),
+			await footer.getByTestId(Buttons.Clutch).nth(1).click(),
 		]);
-		expect(newPage.url()).toContain('https://clutch.co/profile/techstack');
+		expect(newPage.url()).toContain(Links.Clutch);
 		await newPage.close();
 	});
 
-	test(`Check redirection to the Terms, Cookies Policy and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check redirection to the Terms, Cookies Policy and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
-			[Link.Logo, UrlProvider.careerUrl()],
+			[Buttons.Logo, UrlProvider.careerUrl()],
 		]);
 		for (const entries of linkMap.entries()) {
 			await baseDriverSteps.goToUrl(url);

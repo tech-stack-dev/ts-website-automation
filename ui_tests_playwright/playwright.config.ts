@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
 	/* Retry on CI only */
 	retries: 2,
 	/* Opt out of parallel tests on CI. */
-	workers: 2,
+	workers:5,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [['html', {open: 'never'}]],
 
@@ -102,8 +102,6 @@ const config: PlaywrightTestConfig = {
 			use: {
 				channel: 'chrome',
 			},
-			// Delete after https://ts-website.atlassian.net/browse/TSWEB-847
-			grepInvert: [new RegExp('@JobsBlock'), new RegExp('@FilterBlock')],
 		},
 	],
 
