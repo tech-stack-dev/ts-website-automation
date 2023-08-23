@@ -18,14 +18,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check redirect by 'Home' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 	await info.getByTestId(Container.BreadcrumbsPrev).click();
 
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 });
 
-test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Request quote' from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
 
@@ -35,7 +35,45 @@ test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Req
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Request quote' from the 'Technology stack' block @Regression @CustomDev", async () => {
+test("Check redirects by arrows in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
+	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
+
+	const sectionRegex = /.(Front-End and Back-End development)|.(Building software products)/;
+	const numberOfSectionsWithoutRedirects = 2;
+	const sectionsWithoutRedirects = sections.filter({
+		hasText: sectionRegex,
+	});
+
+	for (let i = 0; i < numberOfSectionsWithoutRedirects; i++) {
+		await sectionsWithoutRedirects.nth(i).click();
+
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+	}
+
+	const sectionsWithRedirects = sections.filter({hasNotText: sectionRegex});
+	const numberOfSectionsWithRedirects = 8;
+	const expectedRedirectUri = [
+		UrlProvider.urlBuilder(UrlPath.MobileDev),
+		UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+		UrlProvider.urlBuilder(UrlPath.BigData),
+		UrlProvider.urlBuilder(UrlPath.AiMl),
+		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+	];
+
+	for (let i = 0; i < numberOfSectionsWithRedirects; i++) {
+		const section = sectionsWithRedirects.nth(i);
+
+		await section.click();
+		await baseDriverSteps.checkUrl(expectedRedirectUri[i]);
+		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+	}
+});
+
+test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' from the 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
 
@@ -45,8 +83,8 @@ test("Check page is scrolled down to 'Get in Touch' block after clicking on 'Req
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check carousel arrows and 'Request quote' button from the 'Custom software development process' block @Regression @CustomDev", async () => {
-	const devProcess = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
+test("Check carousel arrows and 'Request a quote' button from the 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(devProcess);
 
@@ -59,7 +97,7 @@ test("Check carousel arrows and 'Request quote' button from the 'Custom software
 });
 
 test("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
 	const memberCards = devExperts.getByTestId(Container.MemberCard);
 
 	const numOfMembers = 7;

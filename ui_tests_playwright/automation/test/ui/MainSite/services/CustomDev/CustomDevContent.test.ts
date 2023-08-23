@@ -1,8 +1,8 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {CustomDev} from '../../../../../identifiers/MainSite/pages/services/CustomDev';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
@@ -23,12 +23,12 @@ test("Check the header from the 'Custom Software Development' block @Regression 
 
 test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const containers = [
-		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentForYourProduct),
-		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentServicesWeProvide),
+		driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct),
+		driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide),
 		driver.getByTestId(CustomDev.TechnologyStack),
-		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentBenefits),
-		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess),
-		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts),
+		driver.getByTestId(CustomDev.CustomDevelopmentBenefits),
+		driver.getByTestId(CustomDev.CustomDevelopmentProcess),
+		driver.getByTestId(CustomDev.CustomDevelopmentExperts),
 		driver.getByTestId(CustomDev.CaseStudies),
 		driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment),
 		driver.getByTestId(CustomDev.Faq),
@@ -57,7 +57,7 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 });
 
 test("Check section titles and numbers in 'Custom software development for your product' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const devForYourProduct = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentForYourProduct);
+	const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
 
 	const sections = devForYourProduct.getByTestId(Container.ContainerSection);
 
@@ -79,8 +79,8 @@ test("Check section titles and numbers in 'Custom software development for your 
 	}
 });
 
-test("Check section titles and redirects by arrows in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const servicesWeProvide = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentServicesWeProvide);
+test("Check section titles in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
 	const numOfSections = 10;
@@ -105,51 +105,18 @@ test("Check section titles and redirects by arrows in 'Custom development servic
 		await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 		await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
 	}
-
-	const sectionRegex = /.(Front-End and Back-End development)|.(Building software products)/;
-	const numberOfSectionsWithoutRedirects = 2;
-	const sectionsWithoutRedirects = sections.filter({
-		hasText: sectionRegex,
-	});
-
-	for (let i = 0; i < numberOfSectionsWithoutRedirects; i++) {
-		await sectionsWithoutRedirects.nth(i).click();
-
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
-	}
-
-	const sectionsWithRedirects = sections.filter({hasNotText: sectionRegex});
-	const numberOfSectionsWithRedirects = 8;
-	const expectedRedirectUri = [
-		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		UrlProvider.urlBuilder(UrlPath.CloudAndDev),
-		UrlProvider.urlBuilder(UrlPath.BigData),
-		UrlProvider.urlBuilder(UrlPath.AiMl),
-		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-	];
-
-	for (let i = 0; i < numberOfSectionsWithRedirects; i++) {
-		const section = sectionsWithRedirects.nth(i);
-
-		await section.click();
-		await baseDriverSteps.checkUrl(expectedRedirectUri[i]);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
-	}
 });
 
 test("Check section titles in 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 
 	const tabButtons = [
-		technologyStack.getByTestId(Buttons.Technology_BackEnd),
-		technologyStack.getByTestId(Buttons.Technology_FrontEnd),
-		technologyStack.getByTestId(Buttons.Technology_Mobile),
-		technologyStack.getByTestId(Buttons.Technology_Iot),
-		technologyStack.getByTestId(Buttons.Technology_DevopsCloud),
-		technologyStack.getByTestId(Buttons.Technology_AiMlDataScience),
+		technologyStack.getByTestId(MainSiteButtons.Technology_BackEnd),
+		technologyStack.getByTestId(MainSiteButtons.Technology_FrontEnd),
+		technologyStack.getByTestId(MainSiteButtons.Technology_Mobile),
+		technologyStack.getByTestId(MainSiteButtons.Technology_Iot),
+		technologyStack.getByTestId(MainSiteButtons.Technology_DevopsCloud),
+		technologyStack.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
 	];
 
 	const expectedText: {title: string; sections: string[]}[] = [
@@ -194,7 +161,7 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 });
 
 test("Check section titles and numbers in 'Custom software development benefits' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const devBenefits = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentBenefits);
+	const devBenefits = driver.getByTestId(CustomDev.CustomDevelopmentBenefits);
 
 	const sections = devBenefits.getByTestId(Container.ContainerSection);
 
@@ -217,7 +184,7 @@ test("Check section titles and numbers in 'Custom software development benefits'
 });
 
 test("Check section titles and numbers in 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const devProcess = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
+	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
 
 	const carouselSections = devProcess.getByTestId(Container.CarouselSection);
 
@@ -240,7 +207,7 @@ test("Check section titles and numbers in 'Custom software development process' 
 });
 
 test("Check section titles, member names and roles in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
 	const sections = devExperts.getByTestId(Container.ContainerSection);
 	const numOfSections = 3;
 
