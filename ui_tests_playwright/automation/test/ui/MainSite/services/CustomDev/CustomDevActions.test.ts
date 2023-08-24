@@ -26,14 +26,15 @@ test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Cu
 });
 
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	await driver.Page.waitForLoadState('networkidle');
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
 
 	await requestAQuote.scrollIntoViewIfNeeded();
 	await expect(requestAQuote).toHaveText(requestAQuoteText);
 
+	await driver.Page.waitForLoadState('networkidle');
 	await requestAQuote.click();
+
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
