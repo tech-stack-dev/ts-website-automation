@@ -122,12 +122,7 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 	const expectedText: {title: string; sections: string[]}[] = [
 		{
 			title: 'Back-End',
-			sections: [
-				//incorrect test id on '.NET Stack',
-				'JVM Stack',
-				'Node.js stack',
-				'Other',
-			],
+			sections: ['.NET Stack', 'JVM Stack', 'Node.js stack', 'Other'],
 		},
 		{
 			title: 'Front-End',

@@ -136,8 +136,7 @@ test("Check social link redirects in 'Custom software development experts' conta
 	}
 });
 
-test.skip("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
-	test.skip(true, "Clutch redirect links aren't consistent with the rest of pages");
+test("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
 	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
 
 	const clutchButtons = devApproach.getByTestId(Buttons.Clutch);
