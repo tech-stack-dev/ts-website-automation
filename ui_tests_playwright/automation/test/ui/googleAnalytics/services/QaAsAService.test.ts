@@ -27,14 +27,14 @@ test("Check google analytics for 'QA as a Service' page @Regression @GoogleAnaly
 	await driver.Page.reload();
 
 	const info = driver.getByTestId(QaAsAService.Info);
-	const breadcrumbsButton: Locator = info.locator(Container.BreadcrumbsPrev);
-	// await googleAnalyticsSteps.checkGoogleAnalytics(
-	// 	breadcrumbsButton,
-    //     'QAasAServBreadServices',
-	// 	'GET',
-	// 	testInfo.title
-	// );
-	// await baseDriverSteps.goToUrl(pageUrl);
+	const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		breadcrumbsButton,
+        'QAasAServBreadServices',
+		'GET',
+		testInfo.title
+	);
+	await baseDriverSteps.goToUrl(pageUrl);
 
 	const infoRequestQuoteButton: Locator = info.getByTestId(MainSiteButtons.RequestAQuote);
 	await googleAnalyticsSteps.checkGoogleAnalytics(
