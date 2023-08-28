@@ -5,7 +5,7 @@ import HowWeWork from '../../../../identifiers/MainSite/pages/company/HowWeWork'
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
-import Buttons from '../../../../identifiers/Buttons';
+import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
 import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 
@@ -17,7 +17,7 @@ test("Check the header from the 'How we work' block  @Regression @HowWeWork", as
     const info = driver.getByTestId(HowWeWork.Info);
     await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
     await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
-    await expect(info.getByTestId(Buttons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+    await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
 test("Check the 'Cooperation models' section title and number from the 'How we work' block @Regression @HowWeWork", async () => {
@@ -132,12 +132,12 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
     expect(expectedDevopsData.sort()).toEqual(devOpsTestData.sort());
     expect(expectedAiMlDataScienceData.sort()).toEqual(aiMlDataScienceTestData.sort());
 
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_BackEnd)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_FrontEnd)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_Mobile)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_Iot)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_DevopsCloud)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(Buttons.Technology_AiMlDataScience)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_BackEnd)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Iot)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevopsCloud)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_AiMlDataScience)).toBeVisible();
 });
 
 test("Check the 'Techstack structure' section from the 'How we work' block @Regression @HowWeWork", async () => {

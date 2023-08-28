@@ -27,14 +27,6 @@ export default class Buttons {
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
 
-	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
-	static Technology_BackEnd = 'Button-BackEnd';
-	static Technology_FrontEnd = 'Button-FrontEnd';
-	static Technology_Mobile = 'Button-Mobile';
-	static Technology_Iot = 'Button-Iot';
-	static Technology_DevopsCloud = 'Button-DevopsCloud';
-	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
-
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';
 	static Facebook = 'Button-Facebook';
