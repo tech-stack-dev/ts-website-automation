@@ -5,7 +5,8 @@ export default class MainSiteButtons {
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-
+	static SeeAllNews = 'Button-SeeAllNews';
+	
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 
@@ -16,6 +17,12 @@ export default class MainSiteButtons {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
+	static LinkedInReviewArrow = 'LinkedInArrow';
+	static ClutchReviewArrow = 'ClutchArrow';
+
+	// Switch tab
+	static LinkedInReviews = 'Button-LinkedInReviews';
+	static ClutchReviews = 'Button-ClutchReviews';
 
 	// Links
 	static Tiktok = 'Link-TikTok';

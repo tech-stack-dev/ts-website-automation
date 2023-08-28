@@ -5,7 +5,7 @@ export default class UrlPath {
 
 	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
-	static CloudAndDev = 'services/cloud-and-devops';
+	static CloudAndDev = 'services/cloud-application-development';
 	static BigData = 'services/big-data-and-analytics';
 	static AiMl = 'services/artificial-intelligence';
 	static InternetOfThings = 'services/internet-of-things';
