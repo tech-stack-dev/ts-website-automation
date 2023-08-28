@@ -113,7 +113,7 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 	const tabButtons = [
 		technologyStack.getByTestId(MainSiteButtons.Technology_BackEnd),
 		technologyStack.getByTestId(MainSiteButtons.Technology_FrontEnd),
-		technologyStack.getByTestId(MainSiteButtons.Technology_Mobile),
+		technologyStack.getByTestId(MainSiteButtons.Mobile),
 		technologyStack.getByTestId(MainSiteButtons.Technology_Iot),
 		technologyStack.getByTestId(MainSiteButtons.Technology_DevopsCloud),
 		technologyStack.getByTestId(MainSiteButtons.Technology_AiMlDataScience),

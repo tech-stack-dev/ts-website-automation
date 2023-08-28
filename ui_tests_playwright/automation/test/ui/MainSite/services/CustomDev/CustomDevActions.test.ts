@@ -58,7 +58,7 @@ test("Check redirects by arrows in 'Custom development services we provide' cont
 	const numberOfSectionsWithRedirects = 8;
 	const expectedRedirectUri = [
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+		UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 		UrlProvider.urlBuilder(UrlPath.BigData),
 		UrlProvider.urlBuilder(UrlPath.AiMl),
 		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
