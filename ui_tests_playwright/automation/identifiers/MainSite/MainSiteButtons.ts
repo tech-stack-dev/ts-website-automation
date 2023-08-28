@@ -7,6 +7,7 @@ export default class MainSiteButtons {
 	static LetsDiscuss = 'Button-LetsDiscuss';
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
+	static AboutUs = 'Button-AboutUs';
 	static BookAMeeting = 'Button-BookAMeeting';
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
@@ -23,4 +24,12 @@ export default class MainSiteButtons {
 	// Links
 	static Tiktok = 'Link-TikTok';
 	static Instagram = 'Link-Instagram';
+
+	// Technology Stack
+	static BackEnd = 'Button-Backend';
+	static FrontEnd = 'Button-Frontend';
+	static Mobile = 'Button-Mobile';
+	static IoT = 'Button-IoT';
+	static DevOpsCloud = 'Button-Cloud';
+	static AiMlDataScience = 'Button-Ai';
 }
