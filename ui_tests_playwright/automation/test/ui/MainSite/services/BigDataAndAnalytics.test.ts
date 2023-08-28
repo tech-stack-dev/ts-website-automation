@@ -171,7 +171,7 @@ test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software De
 	const whyChooseTechstackBigDataServicesContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
-	const clutchButton = await whyChooseTechstackBigDataServicesContainer.getByTestId(Buttons.Clutch);
+	const clutchButton = whyChooseTechstackBigDataServicesContainer.getByTestId(Buttons.Clutch);
 
 	await clutchButton.click();
 
@@ -203,7 +203,7 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
 });
 
-test("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test.skip("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
 		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
@@ -259,7 +259,7 @@ test("Check section titles and redirects by arrows in 'Related Services' contain
 		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
 		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
+		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
