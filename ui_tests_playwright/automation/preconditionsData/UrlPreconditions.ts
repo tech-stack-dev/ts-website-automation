@@ -13,7 +13,7 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.OurServices]: UrlProvider.urlBuilder(UrlPath.OurServices),
 	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
-	[ServicesEnum.CloudAndDev]: UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+	[ServicesEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
 	[ServicesEnum.AiMl]: UrlProvider.urlBuilder(UrlPath.AiMl),
 	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
