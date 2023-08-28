@@ -79,7 +79,10 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 
 	const arrowUrlMap = new Map([
 		[servicesContainer.getByTestId(Container.ContainerSection).nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(1), UrlProvider.urlBuilder(UrlPath.CloudAndDev)],
+		[
+			servicesContainer.getByTestId(Container.ContainerSection).nth(1),
+			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
+		],
 		[servicesContainer.getByTestId(Container.ContainerSection).nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[
 			servicesContainer.getByTestId(Container.ContainerSection).nth(3),
