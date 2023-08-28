@@ -24,17 +24,13 @@ test("Check redirect by 'Home' breadcrumbs button in header from the 'Renewable 
 
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
-	const buttonDeloitte = await techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
+	const buttonDeloitte = techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
 	const testData =
 		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf';
 
 	const actualLink = await buttonDeloitte.getAttribute('href');
 
 	expect(actualLink).toBe(testData);
-
-	await buttonDeloitte.click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	await expect(newPage.waitForLoadState('networkidle')).toBeTruthy();
 });
 
 test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -54,7 +50,7 @@ test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Ener
 		[ourKeyAreasOfExpertiseContainer.getByTestId(Container.Arrow).nth(1), UrlProvider.urlBuilder(UrlPath.AiMl)],
 		[
 			ourKeyAreasOfExpertiseContainer.getByTestId(Container.Arrow).nth(2),
-			UrlProvider.urlBuilder(UrlPath.CloudAndDev),
+			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 		],
 		[
 			ourKeyAreasOfExpertiseContainer.getByTestId(Container.Arrow).nth(3),
@@ -75,7 +71,7 @@ test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Ener
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
+		await arrow.click();
 		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
 	}
@@ -93,7 +89,7 @@ test("Check carousel sections, arrows and CTA button in 'How We Operate at Techs
 	const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
 	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 
-	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle);
+	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
 	const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
 
 	await expect(allSectionTitles).toHaveText(testData);

@@ -84,18 +84,18 @@ test("Check the container title and number from the 'Renewable Energy' block @Re
 
 test("Check block titles in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
-	const allBlockTitles = await techstackInNumbersContainer.getByTestId(Container.BlockTitle);
+	const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
 	const testData = ['9\nyears', '20\nexperts', '91\n%', '2 of 3\nclients'];
 
-	expect(allBlockTitles).toHaveText(testData);
+	await expect(allBlockTitles).toHaveText(testData);
 });
 
 test("Check section titles and numbers in 'Who We Serve' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const whoWeServeContainer = driver.getByTestId(RenewableEnergy.WhoWeServe);
 
-	await expect(await whoWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
+	await expect(whoWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
 
-	const allSectionTitles = await whoWeServeContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Industry service companies',
 		'Renewable energy producers and distributors',
@@ -108,7 +108,7 @@ test("Check section titles and numbers in 'Who We Serve' container from the 'Ren
 
 test("Check block titles, section titles and CTA button in 'Renewable Energy Software Development Services' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const renewableEnergySoftDevServContainer = driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ);
-	const allBlockTitles = await renewableEnergySoftDevServContainer.getByTestId(Container.BlockTitle);
+	const allBlockTitles = renewableEnergySoftDevServContainer.getByTestId(Container.BlockTitle);
 	const testDataBlockTitles = [
 		'Domain-Specific Software for the Renewable Energy Industry',
 		'Energy Management Systems',
@@ -120,7 +120,7 @@ test("Check block titles, section titles and CTA button in 'Renewable Energy Sof
 	const testDataSectionTitles = ['Overview', 'Implementation\nin the real world'];
 
 	for (const block of containerBlocks) {
-		const sectionTitles = await block.getByTestId(Container.SectionTitle);
+		const sectionTitles = block.getByTestId(Container.SectionTitle);
 		await expect(sectionTitles).toHaveText(testDataSectionTitles);
 	}
 
@@ -129,11 +129,11 @@ test("Check block titles, section titles and CTA button in 'Renewable Energy Sof
 
 test("Check section titles, block title, image and CTA button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
-	const allSectionTitles = await theSolarEnergyContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = theSolarEnergyContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
 	await expect(allSectionTitles).toHaveText(testData);
 
-	const blockTitle = await theSolarEnergyContainer.getByTestId(Container.BlockTitle);
+	const blockTitle = theSolarEnergyContainer.getByTestId(Container.BlockTitle);
 	await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
 	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
@@ -142,7 +142,7 @@ test("Check section titles, block title, image and CTA button in 'The Solar Ener
 
 test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
-	const allSectionTitles = await ourKeyAreasOfExpertiseContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = ourKeyAreasOfExpertiseContainer.getByTestId(Container.SectionTitle);
 
 	const testData = [
 		'Predictive analytics and big data',
@@ -159,7 +159,7 @@ test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' c
 
 test("Check section titles in 'Why Choose Us?' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
-	const allSectionTitles = await whyChooseUsContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = whyChooseUsContainer.getByTestId(Container.SectionTitle);
 
 	const testData = ['Product-oriented approach', 'Cross-domain expertise', 'Multifaceted technology experts'];
 
@@ -169,15 +169,9 @@ test("Check section titles in 'Why Choose Us?' container from the 'Renewable Ene
 test("Check section titles and numbers in 'Our Workflow' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const ourWorkflowContainer = driver.getByTestId(RenewableEnergy.OurWorkflow);
 
-	await expect(await ourWorkflowContainer.getByTestId(Container.SectionNumber)).toHaveText([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-	]);
+	await expect(ourWorkflowContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
 
-	const allSectionTitles = await ourWorkflowContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = ourWorkflowContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];
 
 	await expect(allSectionTitles).toHaveText(testData);
@@ -185,7 +179,7 @@ test("Check section titles and numbers in 'Our Workflow' container from the 'Ren
 
 test("Check section titles in 'FAQ' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 
 	const testData = [
 		'What processes are involved in developing software for renewable energy providers?',
