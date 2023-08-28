@@ -5,10 +5,12 @@ export default class MainSiteButtons {
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 	static AboutUs = 'Button-AboutUs';
+	static BookAMeeting = 'Button-BookAMeeting';
+	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
+	static TalkToAnExpert = 'Button-TalkToAnExpert';
 
 	// Services
 	static Forbes = 'Button-Forbes';
