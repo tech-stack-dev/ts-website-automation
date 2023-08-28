@@ -7,4 +7,5 @@ export enum AuthorsEnum {
 	DmytroDytiuk = 'dmytro-dytiuk/',
 	DmytroShtapauk = 'dmytro_shtapauk/',
 	OleksandrBezrukov = 'oleksandr-bezrukov/',
+	VladyslavUshakov = 'vladyslav/',
 }

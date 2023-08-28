@@ -58,7 +58,7 @@ for (const url of testDataProvider) {
 		const servicesList = new Map([
 			[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
 			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
-			[Buttons.Services_CloudAndDev, serviceUrl[ServicesEnum.CloudAndDev]],
+			[Buttons.Services_CloudDev, serviceUrl[ServicesEnum.CloudDev]],
 			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
 			[Buttons.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
 			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
