@@ -9,6 +9,10 @@ export default class MainSiteButtons {
 	
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
+	static AboutUs = 'Button-AboutUs';
+	static BookAMeeting = 'Button-BookAMeeting';
+	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
+	static TalkToAnExpert = 'Button-TalkToAnExpert';
 
 	// Services
 	static Forbes = 'Button-Forbes';
@@ -17,6 +21,7 @@ export default class MainSiteButtons {
 	static McKinsey = 'Button-Mckinsey';
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
+	static DeloitteSurvey = 'Button-DeloitteSurvey';
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
 
@@ -27,4 +32,12 @@ export default class MainSiteButtons {
 	// Links
 	static Tiktok = 'Link-TikTok';
 	static Instagram = 'Link-Instagram';
+
+	// Technology Stack
+	static BackEnd = 'Button-Backend';
+	static FrontEnd = 'Button-Frontend';
+	static Mobile = 'Button-Mobile';
+	static IoT = 'Button-IoT';
+	static DevOpsCloud = 'Button-Cloud';
+	static AiMlDataScience = 'Button-Ai';
 }
