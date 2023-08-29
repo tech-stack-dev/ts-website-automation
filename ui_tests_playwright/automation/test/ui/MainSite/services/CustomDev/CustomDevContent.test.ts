@@ -264,29 +264,10 @@ test("Check section titles and award cards in 'Our approach to software developm
 		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
 	}
 
-	const awardCards = devApproach
-		.getByTestId(Container.AwardCard)
-		.filter({has: driver.getByTestId(Container.AwardCard)});
-
 	const numOfCards = 6;
+	const filterdLocator = 'img';
 
-	await expect(awardCards).toHaveCount(numOfCards);
-
-	const expectedAwardCardsData: {alt: string; src: string}[] = [
-		{alt: 'Award-1', src: 'img/awards-logos-yellow/upwork.webp'},
-		{alt: 'Award-2', src: 'img/awards-logos-yellow/clutch.webp'},
-		{alt: 'Award-3', src: 'img/awards-logos-yellow/design-rush-1.webp'},
-		{alt: 'Award-4', src: 'img/awards-logos-yellow/design-rush-2.webp'},
-		{alt: 'Award-5', src: 'img/awards-logos-yellow/top-hybrid-app.webp'},
-		{alt: 'Award-6', src: 'img/awards-logos-yellow/software-testing-companies.webp'},
-	];
-
-	for (let i = 0; i < numOfCards; i++) {
-		const awardCardImage = awardCards.nth(i).getByTestId(Container.AwardCard);
-
-		await expect(awardCardImage).toHaveAttribute('alt', expectedAwardCardsData[i].alt);
-		await expect(awardCardImage).toHaveAttribute('src', expectedAwardCardsData[i].src);
-	}
+	await baseDriverSteps.checkAwardCardsVisibility(devApproach, numOfCards, filterdLocator);
 });
 
 test.afterEach(async () => {
