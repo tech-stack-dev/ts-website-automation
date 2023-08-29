@@ -270,6 +270,27 @@ test("Check section titles and award cards in 'Our approach to software developm
 	await baseDriverSteps.checkAwardCardsVisibility(devApproach, numOfCards, filteredLocator);
 });
 
+test("Check section titles in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const faq = driver.getByTestId(CustomDev.Faq);
+
+	const sections = faq.getByTestId(Container.ContainerSection);
+	const numOfSections = 5;
+
+	await expect(sections).toHaveCount(numOfSections);
+
+	const expectedText = [
+		'Why choose Techstack for custom software development?',
+		'How does Techstack enhance the professional development of engineers?',
+		'How do you ensure IP protection during custom product development?',
+		'Why choose Techstack for enterprise custom development?',
+		'What are the main steps of our custom software development process?',
+	];
+
+	for (let i = 0; i < numOfSections; i++) {
+		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

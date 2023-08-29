@@ -170,9 +170,9 @@ test("Check section titles and navigation bar in 'Technology stack' container fr
 		const currentBlock = containerBlocks.nth(tab);
 		const tabSectionTitles = testDataSectionTitles[tab];
 
-		await expect(await currentBlock.getAttribute('class')).toBe('content-switcher-content--active');
+		expect(await currentBlock.getAttribute('class')).toBe('content-switcher-content--active');
 		await currentTab.click();
-		await expect(await currentTab.getAttribute('class')).toBe('h3 content-switcher-tab--active');
+		expect(await currentTab.getAttribute('class')).toBe('h3 content-switcher-tab--active');
 		expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 	}
 });
@@ -180,7 +180,7 @@ test("Check section titles and navigation bar in 'Technology stack' container fr
 test("Check section titles and CTA button in 'Our approach' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
 	const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
-	const allSectionTitles = await ourApproachContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Domain\nproficiency', 'We are the team', 'Data-driven\ndecisions'];
 
 	await expect(allSectionTitles).toHaveText(testData);
@@ -210,7 +210,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Reviews' container from the 
 test("Check section titles in 'FAQ' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
 	const faqContainer = driver.getByTestId(OurServices.Faq);
 
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'What work models do we support?',
 		'Is product scope estimation free?',
