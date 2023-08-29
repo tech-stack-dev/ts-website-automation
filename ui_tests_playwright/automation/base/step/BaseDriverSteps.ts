@@ -70,6 +70,7 @@ class BaseDriverSteps {
 		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 	}
 
+	// Need remove getByRole part after fixing data-id on CustomDev page on site
 	public async checkAwardCardsVisibility(ContainerName: Locator, numberOfCards: number, role?: any) {
 		const awardCards = role
 			? ContainerName.getByTestId(Container.AwardCard).filter({
