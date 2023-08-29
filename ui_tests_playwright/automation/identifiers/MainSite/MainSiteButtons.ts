@@ -32,4 +32,11 @@ export default class MainSiteButtons {
 	static IoT = 'Button-IoT';
 	static DevOpsCloud = 'Button-Cloud';
 	static AiMlDataScience = 'Button-Ai';
+
+	//TODO: merge with 'Technology Stack' buttons after updating test-ids
+	static Technology_BackEnd = 'Button-BackEnd';
+	static Technology_FrontEnd = 'Button-FrontEnd';
+	static Technology_Iot = 'Button-Iot';
+	static Technology_DevopsCloud = 'Button-DevopsCloud';
+	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
 }
