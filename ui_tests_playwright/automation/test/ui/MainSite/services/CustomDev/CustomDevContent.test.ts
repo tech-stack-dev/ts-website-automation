@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check the header from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check the header from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
@@ -21,7 +21,7 @@ test("Check the header from the 'Custom Software Development' block @Regression 
 	);
 });
 
-test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const containers = [
 		driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct),
 		driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide),
@@ -56,7 +56,7 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 	}
 });
 
-test("Check section titles and numbers in 'Custom software development for your product' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles and numbers in 'Custom software development for your product' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
 
 	const sections = devForYourProduct.getByTestId(Container.ContainerSection);
@@ -79,7 +79,7 @@ test("Check section titles and numbers in 'Custom software development for your 
 	}
 });
 
-test("Check section titles in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
@@ -107,7 +107,7 @@ test("Check section titles in 'Custom development services we provide' container
 	}
 });
 
-test("Check section titles in 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles in 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 
 	const tabButtons = [
@@ -155,7 +155,7 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 	}
 });
 
-test("Check section titles and numbers in 'Custom software development benefits' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles and numbers in 'Custom software development benefits' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devBenefits = driver.getByTestId(CustomDev.CustomDevelopmentBenefits);
 
 	const sections = devBenefits.getByTestId(Container.ContainerSection);
@@ -178,7 +178,7 @@ test("Check section titles and numbers in 'Custom software development benefits'
 	}
 });
 
-test("Check section titles and numbers in 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles and numbers in 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
 
 	const carouselSections = devProcess.getByTestId(Container.CarouselSection);
@@ -201,7 +201,7 @@ test("Check section titles and numbers in 'Custom software development process' 
 	}
 });
 
-test("Check section titles, member names and roles in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles, member names and roles in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
 	const sections = devExperts.getByTestId(Container.ContainerSection);
 	const numOfSections = 3;
@@ -250,7 +250,7 @@ test("Check section titles, member names and roles in 'Custom software developme
 	}
 });
 
-test("Check section titles and award cards in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section titles and award cards in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
 
 	const sections = devApproach.getByTestId(Container.ContainerSection);
@@ -265,9 +265,9 @@ test("Check section titles and award cards in 'Our approach to software developm
 	}
 
 	const numOfCards = 6;
-	const filterdLocator = 'img';
+	const filteredLocator = 'img';
 
-	await baseDriverSteps.checkAwardCardsVisibility(devApproach, numOfCards, filterdLocator);
+	await baseDriverSteps.checkAwardCardsVisibility(devApproach, numOfCards, filteredLocator);
 });
 
 test.afterEach(async () => {
