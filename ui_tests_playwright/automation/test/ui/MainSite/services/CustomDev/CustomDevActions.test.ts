@@ -18,14 +18,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 	await info.getByTestId(Container.BreadcrumbsPrev).click();
 
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 });
 
-test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
 
@@ -38,7 +38,7 @@ test("Check page is scrolled down to 'Get in Touch' container after clicking on 
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check redirects by arrows in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check redirects by arrows in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
@@ -76,7 +76,7 @@ test("Check redirects by arrows in 'Custom development services we provide' cont
 	}
 });
 
-test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' from the 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' from the 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	await driver.Page.waitForLoadState('load');
 	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
 	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
@@ -88,7 +88,7 @@ test("Check page is scrolled down to 'Get in Touch' container after clicking on 
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check carousel arrows and 'Request a quote' button from the 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check carousel arrows and 'Request a quote' button from the 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(devProcess);
@@ -101,7 +101,7 @@ test("Check carousel arrows and 'Request a quote' button from the 'Custom softwa
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
 	const memberCards = devExperts.getByTestId(Container.MemberCard);
 
@@ -136,7 +136,7 @@ test("Check social link redirects in 'Custom software development experts' conta
 	}
 });
 
-test("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
 
 	const clutchButtons = devApproach.getByTestId(Buttons.Clutch);
@@ -156,7 +156,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Our approach to software dev
 	}
 });
 
-test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev", async () => {
+test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const faq = driver.getByTestId(CustomDev.Faq);
 
 	const sections = faq.getByTestId(Container.ContainerSection);

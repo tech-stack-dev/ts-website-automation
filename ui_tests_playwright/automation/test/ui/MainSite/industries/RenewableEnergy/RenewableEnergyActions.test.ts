@@ -29,8 +29,16 @@ test("Check redirect by source link in 'Techstack in Numbers' container from the
 		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf';
 
 	const actualLink = await buttonDeloitte.getAttribute('href');
-
 	expect(actualLink).toBe(testData);
+
+	const [download] = await Promise.all([
+		driver.Page.waitForEvent('download'), // remotely opens pdf viewer, not page
+		buttonDeloitte.click(),
+	]);
+	expect(download.url()).toBe(testData);
+
+	const checkPdfName = download.suggestedFilename().endsWith('DI_100-Percent-Renewables.pdf');
+	expect(checkPdfName).toBe(true);
 });
 
 test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
