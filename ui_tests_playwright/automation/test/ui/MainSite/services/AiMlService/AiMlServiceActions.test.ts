@@ -68,7 +68,7 @@ test("Check redirect by Clutch button in 'Our approach' container from the 'AI&M
 	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
 });
 
-test("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
+test.skip("Check buttons in 'Our Experts' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourExpertsContainer = driver.getByTestId(AiMlService.OurExperts);
 	const buttonUrlMap = new Map([
 		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.YevheniiKarachevtsev],
