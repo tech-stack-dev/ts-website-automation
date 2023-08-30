@@ -70,7 +70,7 @@ test("Check google analytics for 'QA as a Service' page @Regression @GoogleAnaly
 	for (let index = 0; index < 3; index++) {
 		const caseCard = caseCardList[index];
 		await googleAnalyticsSteps.checkGoogleAnalytics(caseCard, caseEventsList[index], 'GET', testInfo.title);
-		await baseDriverSteps.goToUrl(pageUrl);
+		await driver.Page.goto(pageUrl, {timeout:60000});
 	}
 
 	const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
