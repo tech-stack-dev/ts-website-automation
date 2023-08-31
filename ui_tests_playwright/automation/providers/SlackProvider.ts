@@ -9,6 +9,7 @@ export default class SlackProvider {
 			token: jsonObj.Token,
 			stagingTechstackHrNotifyId: jsonObj.StagingTechstackHrNotifyId,
 			stagingTechstackNotifyId: jsonObj.StagingTechstackNotifyId,
+			tsGoogleAnalyticsId: jsonObj.TsGoogleAnalyticsId,
 		};
 	}
 }

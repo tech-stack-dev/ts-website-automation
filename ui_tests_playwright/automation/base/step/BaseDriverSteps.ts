@@ -69,6 +69,14 @@ class BaseDriverSteps {
 		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
 		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 	}
+
+	public async checkImagesVisibility(images: Locator, numberOfCards: number) {
+		await expect(images).toHaveCount(numberOfCards);
+
+		for (const awardCard of await images.all()) {
+			await expect(awardCard).toBeVisible();
+		}
+	}
 }
 
 const baseDriverSteps = new BaseDriverSteps();

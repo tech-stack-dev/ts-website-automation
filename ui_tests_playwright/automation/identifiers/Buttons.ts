@@ -12,7 +12,7 @@ export default class Buttons {
 
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
-	static Services_CloudAndDev = 'Services-CloudAndDev';
+	static Services_CloudDev = 'Services-CloudDev';
 	static Services_BigData = 'Services-BigData';
 	static Services_AiMl = 'Services-AIML';
 	static Services_InternetOfThings = 'Services-InternetOfThings';

@@ -117,20 +117,22 @@ test("Check section numbers and section titles in 'Information technology consul
 	const informationTechnologyConsultingServicesContainer = driver.getByTestId(
 		ConsultingService.InformationTechnologyConsultingServices
 	);
-	const allSectionTitles = await informationTechnologyConsultingServicesContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const allSectionTitles = informationTechnologyConsultingServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Infrastructure', 'Process audit', 'CI/CD roadmap', 'Testing strategy', 'UX analysis'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(
-		await informationTechnologyConsultingServicesContainer.getByTestId(Container.SectionNumber).allInnerTexts()
-	).toEqual(['01', '02', '03', '04', '05']);
+	await expect(allSectionTitles).toHaveText(testData);
+	await expect(informationTechnologyConsultingServicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+	]);
 });
 
 test("Check section titles in 'Consulting benefits' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingBenefitsContainer = driver.getByTestId(ConsultingService.ConsultingBenefits);
-	const allSectionTitles = await consultingBenefitsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = consultingBenefitsContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Eliminate waste of effort and focus on value;',
 		'Minimize technical debt;',
@@ -140,12 +142,12 @@ test("Check section titles in 'Consulting benefits' container from the 'Consulti
 		'Remove production issues and keep the environment stable.',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Development process audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
-	const allSectionTitles = await developmentProcessAuditContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = developmentProcessAuditContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Project management\nprocess',
 		'Development\nprocess',
@@ -154,12 +156,12 @@ test("Check section titles in 'Development process audit' container from the 'Co
 		'Business analytics\nprocess',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Software audit' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
-	const allSectionTitles = await softwareAuditContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = softwareAuditContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Architecture',
 		'AWS',
@@ -170,12 +172,12 @@ test("Check section titles in 'Software audit' container from the 'Consulting se
 		'Database and data model',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check member names and roles in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
-	const allMemberRoles = await consultingExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
+	const allMemberRoles = consultingExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
 		'CEO, Software Architect,\nRuns critical initiatives that make products grow',
 		'CTO, Software Architect,\nElaborates on the technology strategy',
@@ -186,9 +188,9 @@ test("Check member names and roles in 'Consulting experts' container from the 'C
 		'Head of Account Management,\nDrives cross-functional process transformation',
 	];
 
-	expect(allMemberRoles.sort()).toEqual(testDataRoles.sort());
+	await expect(allMemberRoles).toHaveText(testDataRoles);
 
-	const allMemberNames = await consultingExpertsContainer.getByTestId(Container.MemberName).allInnerTexts();
+	const allMemberNames = consultingExpertsContainer.getByTestId(Container.MemberName);
 	const testDataNames = [
 		ExpertNames.IvanIeremenko,
 		ExpertNames.OleksiiSvystun,
@@ -199,12 +201,12 @@ test("Check member names and roles in 'Consulting experts' container from the 'C
 		ExpertNames.DmytroShtapauk,
 	];
 
-	expect(allMemberNames.sort()).toEqual(testDataNames.sort());
+	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
 test("Check section titles in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const relatedServicesContainer = driver.getByTestId(ConsultingService.RelatedServices);
-	const allSectionTitles = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'UX/UI Design',
 		'QA as a Service',
@@ -215,12 +217,12 @@ test("Check section titles in 'Related Services' container from the 'Consulting 
 		'IoT',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'FAQ' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const faqContainer = driver.getByTestId(ConsultingService.Faq);
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Why are consulting services\nnecessary for business?',
 		'Who are the consultants\nand what will they do?',
@@ -229,30 +231,19 @@ test("Check section titles in 'FAQ' container from the 'Consulting service' bloc
 		'What types of audits\ndo we offer?',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles and award cards in 'We make an impact' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const weMakeAnImpactContainer = driver.getByTestId(ConsultingService.WeMakeAnImpact);
-	const allSectionTitles = await weMakeAnImpactContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = weMakeAnImpactContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
 	const awardCards = weMakeAnImpactContainer.getByTestId(Container.AwardCard);
-	const awardCardsData = [
-		{index: 0, alt: 'Award-1', src: 'img/consulting-logos/1.webp'},
-		{index: 1, alt: 'Award-2', src: 'img/consulting-logos/2.webp'},
-		{index: 2, alt: 'Award-3', src: 'img/consulting-logos/3.webp'},
-		{index: 3, alt: 'Award-4', src: 'img/consulting-logos/4.webp'},
-		{index: 4, alt: 'Award-5', src: 'img/consulting-logos/5.webp'},
-		{index: 5, alt: 'Award-6', src: 'img/consulting-logos/6.webp'},
-	];
-	for (const awardCardImage of awardCardsData) {
-		const actualCard = awardCards.nth(awardCardImage.index).locator('img');
-		await expect(actualCard).toHaveAttribute('alt', awardCardImage.alt);
-		await expect(actualCard).toHaveAttribute('src', awardCardImage.src);
-	}
+	const numberOfCards = 6;
+	await baseDriverSteps.checkImagesVisibility(awardCards, numberOfCards);
 });
 
 test.afterEach(async () => {
