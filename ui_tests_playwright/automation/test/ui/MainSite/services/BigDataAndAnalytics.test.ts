@@ -153,8 +153,9 @@ test("Check section title and award cards in 'Why Choose Techstack’s Big Data 
 
 	await expect(allSectionTitles).toHaveText(testData);
 
+	const awardCards = whyChooseTechstackBigDataServicesContainer.getByTestId(Container.AwardCard);
 	const numberOfCards = 2;
-	await baseDriverSteps.checkAwardCardsVisibility(whyChooseTechstackBigDataServicesContainer, numberOfCards);
+	await baseDriverSteps.checkImagesVisibility(awardCards, numberOfCards);
 });
 
 test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
