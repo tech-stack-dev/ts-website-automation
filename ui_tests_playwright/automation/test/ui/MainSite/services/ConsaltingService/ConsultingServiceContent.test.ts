@@ -241,8 +241,9 @@ test("Check section titles and award cards in 'We make an impact' container from
 
 	await expect(allSectionTitles).toHaveText(testData);
 
+	const awardCards = weMakeAnImpactContainer.getByTestId(Container.AwardCard);
 	const numberOfCards = 6;
-	await baseDriverSteps.checkAwardCardsVisibility(weMakeAnImpactContainer, numberOfCards);
+	await baseDriverSteps.checkImagesVisibility(awardCards, numberOfCards);
 });
 
 test.afterEach(async () => {
