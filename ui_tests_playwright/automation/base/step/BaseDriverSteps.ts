@@ -70,17 +70,10 @@ class BaseDriverSteps {
 		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
 	}
 
-	// Need remove getByRole part after fixing data-id on CustomDev page on site
-	public async checkAwardCardsVisibility(ContainerName: Locator, numberOfCards: number, role?: any) {
-		const awardCards = role
-			? ContainerName.getByTestId(Container.AwardCard).filter({
-					has: driver.Page.getByRole(role),
-			  })
-			: ContainerName.getByTestId(Container.AwardCard);
+	public async checkImagesVisibility(images: Locator, numberOfCards: number) {
+		await expect(images).toHaveCount(numberOfCards);
 
-		await expect(awardCards).toHaveCount(numberOfCards);
-
-		for (const awardCard of await awardCards.all()) {
+		for (const awardCard of await images.all()) {
 			await expect(awardCard).toBeVisible();
 		}
 	}
