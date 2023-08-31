@@ -22,70 +22,35 @@ test("Check the header from the 'Healthcare' block @Regression @Healthcare @TSWE
 });
 
 test("Check the container title and number from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
-	await expect(
-		driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent).getByTestId(Container.ContainerTitle)
-	).toHaveText('What Makes Our Team Different');
-	await expect(
-		driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent),
+		driver.getByTestId(Healthcare.OurExpertise),
+		driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack),
+		driver.getByTestId(Healthcare.PatientCenteredStrategy),
+		driver.getByTestId(Healthcare.MostRecentIndustryFacts),
+		driver.getByTestId(Healthcare.HowWeOperate),
+		driver.getByTestId(Healthcare.OurWorkflow),
+		driver.getByTestId(Healthcare.CorePractices),
+		driver.getByTestId(Healthcare.ServingPartnersWorldwide),
+		driver.getByTestId(Healthcare.Faq),
+		driver.getByTestId(Healthcare.RelatedArticles),
+	];
 
-	await expect(driver.getByTestId(Healthcare.OurExpertise).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our Expertise'
-	);
-	await expect(driver.getByTestId(Healthcare.OurExpertise).getByTestId(Container.ContainerNumber)).toHaveText('02');
+	const expectedData = [
+		['What Makes Our Team Different', '01'],
+		['Our Expertise', '02'],
+		['Beats Screening Module by Techstack', '03'],
+		['Patient-Centered\nStrategy', '04'],
+		['Most Recent\nIndustry Facts', '05'],
+		['How We Operate', '06'],
+		['Our Workflow', '07'],
+		['Core Practices', '08'],
+		['Serving Partners Worldwide', '09'],
+		['FAQ', '10'],
+		['Related Articles', '11'],
+	];
 
-	await expect(
-		driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('Beats Screening Module by Techstack');
-	await expect(
-		driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
-
-	await expect(
-		driver.getByTestId(Healthcare.PatientCenteredStrategy).getByTestId(Container.ContainerTitle)
-	).toHaveText('Patient-Centered\nStrategy');
-	await expect(
-		driver.getByTestId(Healthcare.PatientCenteredStrategy).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(Healthcare.MostRecentIndustryFacts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Most Recent\nIndustry Facts');
-	await expect(
-		driver.getByTestId(Healthcare.MostRecentIndustryFacts).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(driver.getByTestId(Healthcare.HowWeOperate).getByTestId(Container.ContainerTitle)).toHaveText(
-		'How We Operate'
-	);
-	await expect(driver.getByTestId(Healthcare.HowWeOperate).getByTestId(Container.ContainerNumber)).toHaveText('06');
-
-	await expect(driver.getByTestId(Healthcare.OurWorkflow).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our Workflow'
-	);
-	await expect(driver.getByTestId(Healthcare.OurWorkflow).getByTestId(Container.ContainerNumber)).toHaveText('07');
-
-	await expect(driver.getByTestId(Healthcare.CorePractices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Core Practices'
-	);
-	await expect(driver.getByTestId(Healthcare.CorePractices).getByTestId(Container.ContainerNumber)).toHaveText('08');
-
-	await expect(
-		driver.getByTestId(Healthcare.ServingPartnersWorldwide).getByTestId(Container.ContainerTitle)
-	).toHaveText('Serving Partners Worldwide');
-	await expect(
-		driver.getByTestId(Healthcare.ServingPartnersWorldwide).getByTestId(Container.ContainerNumber)
-	).toHaveText('09');
-
-	await expect(driver.getByTestId(Healthcare.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(Healthcare.Faq).getByTestId(Container.ContainerNumber)).toHaveText('10');
-
-	await expect(driver.getByTestId(Healthcare.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related Articles'
-	);
-	await expect(driver.getByTestId(Healthcare.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
-		'11'
-	);
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check block titles in 'What Makes Our Team Different' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
