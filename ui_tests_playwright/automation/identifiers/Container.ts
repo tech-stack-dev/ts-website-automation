@@ -25,6 +25,7 @@ export default class Container {
 	static CarouselButtonNext = 'CarouselButtonNext';
 
 	static AwardCard = 'AwardCard';
+	static PartnerLogo = 'PartnerLogo';
 
 	static SectionShortAnswer = 'SectionShortAnswer';
 	static SectionFullAnswer = 'SectionFullAnswer';

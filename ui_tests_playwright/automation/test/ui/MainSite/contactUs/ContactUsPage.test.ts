@@ -21,11 +21,11 @@ test("Check the container title and number from the 'Contact Us' block @Regressi
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-// Unskip after adding data-id to images and container
-test.skip("Check images in 'Get in Touch' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
-	const formContainerContainer = driver.getByTestId(ContactUs.FormContainer);
+test("Check images in 'Get in Touch' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
+	const GetInTouchFormContainer = driver.getByTestId(ContactUs.GetInTouchForm);
+	const partnerLogos = GetInTouchFormContainer.getByTestId(Container.PartnerLogo);
 
-	await baseDriverSteps.checkAwardCardsVisibility(formContainerContainer, 8);
+	await baseDriverSteps.checkImagesVisibility(partnerLogos, 8);
 });
 
 test("Check contact information in 'Cooperation' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
