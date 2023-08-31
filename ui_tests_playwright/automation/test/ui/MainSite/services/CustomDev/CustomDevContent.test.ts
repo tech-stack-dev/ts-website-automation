@@ -113,9 +113,9 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 	const tabButtons = [
 		technologyStack.getByTestId(MainSiteButtons.Technology_BackEnd),
 		technologyStack.getByTestId(MainSiteButtons.Technology_FrontEnd),
-		technologyStack.getByTestId(MainSiteButtons.Mobile),
+		technologyStack.getByTestId(MainSiteButtons.Technology_Mobile),
 		technologyStack.getByTestId(MainSiteButtons.Technology_Iot),
-		technologyStack.getByTestId(MainSiteButtons.Technology_DevopsCloud),
+		technologyStack.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
 		technologyStack.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
 	];
 
@@ -265,9 +265,9 @@ test("Check section titles and award cards in 'Our approach to software developm
 	}
 
 	const numOfCards = 6;
-	const filteredLocator = 'img';
+	const awardCards = devApproach.getByTestId(Container.AwardCard);
 
-	await baseDriverSteps.checkAwardCardsVisibility(devApproach, numOfCards, filteredLocator);
+	await baseDriverSteps.checkImagesVisibility(awardCards, numOfCards);
 });
 
 test("Check section titles in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
