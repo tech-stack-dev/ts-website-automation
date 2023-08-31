@@ -53,14 +53,19 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
-
-      - uses: actions/upload-artifact@v3
-        name: Upload Playwright report
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ui_tests_playwright/playwright-report
+          publish_branch: gh-pages
+
+      - name: Display Playwright Report Link
+        if: always()
+        run: |
+          echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
