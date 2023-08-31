@@ -27,7 +27,7 @@ test("Check the header from the 'Cloud Development' block @Regression CloudDevel
 test("Check the container title and number from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
 	await expect(
 		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ).getByTestId(Container.ContainerTitle)
-	).toHaveText('Leverage Сloud Native\nDevelopment Services');
+	).toHaveText('Leverage Cloud Native\nDevelopment Services');
 	await expect(
 		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ).getByTestId(Container.ContainerNumber)
 	).toHaveText('01');
@@ -41,7 +41,7 @@ test("Check the container title and number from the 'Cloud Development' block @R
 
 	await expect(
 		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits).getByTestId(Container.ContainerTitle)
-	).toHaveText('Cloud Сomputing Development Benefits');
+	).toHaveText('Cloud Computing Development Benefits');
 	await expect(
 		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits).getByTestId(Container.ContainerNumber)
 	).toHaveText('05');
@@ -129,7 +129,7 @@ test("Check section number and section title in 'Cloud Computing Development Ben
 		'Improved flexibility',
 		'Data loss prevention',
 		'Increased security',
-		'Improved insight in terms of data analysis',
+		'Improved data analysis',
 	];
 
 	expect(allSectionTitles).toHaveText(testData);
