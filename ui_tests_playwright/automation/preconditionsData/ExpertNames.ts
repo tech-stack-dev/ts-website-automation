@@ -11,4 +11,5 @@ export enum ExpertNames {
 	YuliaMelnychenko = 'Yulia Melnychenko',
 	ElizabethMalygina = 'Elizabeth Malygina',
 	HannaZhyhan = 'Hanna Zhyhan',
+	VladyslavUshakov = 'Vladyslav Ushakov',
 }
