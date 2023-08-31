@@ -109,12 +109,12 @@ test("Check section titles and navigation bar in 'Technology stack' container fr
 	const technologyStackContainer = driver.getByTestId(OurServices.TechnologyStack);
 
 	const navigationTabs = [
-		technologyStackContainer.getByTestId(MainSiteButtons.FrontEnd),
-		technologyStackContainer.getByTestId(MainSiteButtons.Mobile),
-		technologyStackContainer.getByTestId(MainSiteButtons.IoT),
-		technologyStackContainer.getByTestId(MainSiteButtons.DevOpsCloud),
-		technologyStackContainer.getByTestId(MainSiteButtons.AiMlDataScience),
-		technologyStackContainer.getByTestId(MainSiteButtons.BackEnd), // To click this item last because it selected by default on page
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_FrontEnd),
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_Mobile),
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_Iot),
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
+		technologyStackContainer.getByTestId(MainSiteButtons.Technology_BackEnd), // To click this item last because it selected by default on page
 	];
 
 	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);

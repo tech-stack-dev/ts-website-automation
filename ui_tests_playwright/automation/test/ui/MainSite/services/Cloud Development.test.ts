@@ -147,8 +147,7 @@ test("Check award cards in 'Our Approach to Cloud App Development' container fro
 	}
 });
 
-// Unskip after fix on the site
-test.skip("Check redirect to clutch in 'Our Approach to Cloud App Development' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
+test("Check redirect to clutch in 'Our Approach to Cloud App Development' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
 	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(
 		CloudDevelopment.OurApproachToCloudAppDevelopment
 	);
