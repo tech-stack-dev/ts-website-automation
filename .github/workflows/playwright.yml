@@ -53,6 +53,14 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
+
+      - uses: actions/upload-artifact@v3
+        name: Upload Playwright report
+        if: always()
+        with:
+          name: playwright-report
+          path: ui_tests_playwright/playwright-report/
+          retention-days: 30
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
