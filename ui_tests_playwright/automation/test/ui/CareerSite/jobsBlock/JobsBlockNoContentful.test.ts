@@ -81,6 +81,7 @@ test('Check that user can switch language in navigation header in career page @R
 	);
 
 	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+	await uaButtonSwitcher.waitFor();
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
