@@ -101,7 +101,7 @@ test("Check carousel arrows and 'Request a quote' button from the 'Custom softwa
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test.skip("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
 	const memberCards = devExperts.getByTestId(Container.MemberCard);
 

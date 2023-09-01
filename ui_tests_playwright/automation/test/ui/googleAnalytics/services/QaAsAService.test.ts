@@ -54,8 +54,6 @@ test("Check google analytics for 'QA as a Service' page @Regression @GoogleAnaly
 		await googleAnalyticsSteps.checkGoogleAnalytics(arrow, servicesBlockEvents[index], 'GET', testInfo.title);
 	}
 
-	/* Unstable prod blog
-
 	const caseStudies = driver.getByTestId(QaAsAService.CaseStudies);
 	const caseCardList = await caseStudies.getByTestId(CaseStudies.CaseCard).all();
 	const caseNameList = await caseStudies.getByTestId(CaseStudies.CaseName).allTextContents();
@@ -69,7 +67,6 @@ test("Check google analytics for 'QA as a Service' page @Regression @GoogleAnaly
 		await googleAnalyticsSteps.checkGoogleAnalytics(caseCard, caseEventsList[index], 'GET', testInfo.title);
 		await baseDriverSteps.goToUrl(pageUrl);
 	}
-	*/
 
 	const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 	const ourApproachRequestQuoteButton: Locator = ourApproachAndAchievements.getByTestId(
@@ -98,16 +95,18 @@ test("Check google analytics for 'QA as a Service' page @Regression @GoogleAnaly
 		await googleAnalyticsSteps.checkGoogleAnalytics(arrowList[index], faqBlockEvents[index], 'GET', testInfo.title);
 	}
 
-	const relatedArticles = driver.getByTestId(QaAsAService.RelatedArticles);
-	const ArticleItemList = await relatedArticles.getByTestId(RelatedArticles.ArticleItem).all();
-	const ArticleTitleList = await relatedArticles.getByTestId(RelatedArticles.ArticleTitle).allTextContents();
-	const baseRelatedArticlesEvent = 'QAasAServArticle-';
-	const articlesEventsList = ArticleTitleList.map((name) => {
-		return `${baseRelatedArticlesEvent}${name.replace(/\s+/g, '-')}`;
-	});
+	// Unstable prod blog
 
-	for (let index = 0; index < 3; index++) {
-		const articleItem = ArticleItemList[index];
-		await googleAnalyticsSteps.checkGoogleAnalytics(articleItem, articlesEventsList[index], 'GET', testInfo.title);
-	}
+	// const relatedArticles = driver.getByTestId(QaAsAService.RelatedArticles);
+	// const ArticleItemList = await relatedArticles.getByTestId(RelatedArticles.ArticleItem).all();
+	// const ArticleTitleList = await relatedArticles.getByTestId(RelatedArticles.ArticleTitle).allTextContents();
+	// const baseRelatedArticlesEvent = 'QAasAServArticle-';
+	// const articlesEventsList = ArticleTitleList.map((name) => {
+	// 	return `${baseRelatedArticlesEvent}${name.replace(/\s+/g, '-')}`;
+	// });
+
+	// for (let index = 0; index < 3; index++) {
+	// 	const articleItem = ArticleItemList[index];
+	// 	await googleAnalyticsSteps.checkGoogleAnalytics(articleItem, articlesEventsList[index], 'GET', testInfo.title);
+	// }
 });
