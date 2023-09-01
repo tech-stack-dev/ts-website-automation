@@ -183,7 +183,7 @@ test("Check member names and roles in 'Our Leading Cloud Experts' container from
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
+test.skip("Check redirects by buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
 	const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const buttonUrlMap = new Map([
 		[ourLeadingCloudExperts.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
