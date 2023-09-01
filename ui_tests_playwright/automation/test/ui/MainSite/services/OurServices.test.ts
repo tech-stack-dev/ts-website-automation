@@ -170,9 +170,9 @@ test("Check section titles and navigation bar in 'Technology stack' container fr
 		const currentBlock = containerBlocks.nth(tab);
 		const tabSectionTitles = testDataSectionTitles[tab];
 
-		expect(await currentBlock.getAttribute('class')).toBe('content-switcher-content--active');
+		await expect(currentBlock).toHaveClass(/--active/);
 		await currentTab.click();
-		expect(await currentTab.getAttribute('class')).toBe('h3 content-switcher-tab--active');
+		await expect(currentTab).toHaveClass(/--active/);
 		expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 	}
 });
