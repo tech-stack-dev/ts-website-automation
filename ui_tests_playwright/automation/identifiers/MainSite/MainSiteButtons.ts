@@ -14,6 +14,14 @@ export default class MainSiteButtons {
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
 
+	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
+	static Technology_BackEnd = 'Button-BackEnd';
+	static Technology_FrontEnd = 'Button-FrontEnd';
+	static Technology_Mobile = 'Button-Mobile';
+	static Technology_Iot = 'Button-Iot';
+	static Technology_DevopsCloud = 'Button-DevopsCloud';
+	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
+
 	// Services
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
