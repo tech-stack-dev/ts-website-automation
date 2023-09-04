@@ -157,9 +157,9 @@ test("Check redirect by 'Clutch Review' buttons in 'Our approach to software dev
 });
 
 test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const faq = driver.getByTestId(CustomDev.Faq);
+	const faqContainer = driver.getByTestId(CustomDev.Faq);
 
-	const sections = faq.getByTestId(Container.ContainerSection);
+	const sections = faqContainer.getByTestId(Container.ContainerSection);
 	const numOfSections = await sections.count();
 
 	for (let i = numOfSections - 1; i >= 0; i--) {
