@@ -2,7 +2,6 @@ export default class Footer {
 	static Container_Footer = 'Container-Footer';
 
 	static Headquarters = 'Headquarters';
-	static Phone = 'Phone';
 	static Info = 'Info';
 
 	// Button

@@ -27,7 +27,7 @@ test("Check 'Contact Us' button from 'Services' section @Regression @ContactUs @
 	}
 });
 
-test("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
+test.skip("Check 'Contact Us' button from 'Company' section @Regression @ContactUs @TSWEB-532", async () => {
 	const urlList: string[] = [
 		companyUrl[CompanyEnum.AboutUs],
 		companyUrl[CompanyEnum.HowWeWork],

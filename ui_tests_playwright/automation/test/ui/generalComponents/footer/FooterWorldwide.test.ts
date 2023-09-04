@@ -61,8 +61,8 @@ for (const url of testDataProvider) {
 		await expect(contactBlock.getByTestId(Footer.Headquarters)).toContainText('Headquarters:');
 		await expect(contactBlock.getByTestId(Footer.Headquarters)).toContainText('Poland, Wroclaw,');
 		await expect(contactBlock.getByTestId(Footer.Headquarters)).toContainText('9 Rybacka street, 53-656');
-		await expect(contactBlock.getByTestId(Footer.Phone)).toContainText('Phone number:');
-		await expect(contactBlock.getByTestId(Footer.Phone)).toContainText('+1-312-442-0823');
+		await expect(contactBlock.getByTestId(Container.Phone)).toContainText('Phone number:');
+		await expect(contactBlock.getByTestId(Container.Phone)).toContainText('+1-312-442-0823');
 		await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
 		expect(await industriesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
