@@ -136,7 +136,7 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
     await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toBeVisible();
     await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toBeVisible();
     await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Iot)).toBeVisible();
-    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevopsCloud)).toBeVisible();
+    await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevOpsCloud)).toBeVisible();
     await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_AiMlDataScience)).toBeVisible();
 });
 
