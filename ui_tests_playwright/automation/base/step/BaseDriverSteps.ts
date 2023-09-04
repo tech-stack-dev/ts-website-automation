@@ -77,6 +77,15 @@ class BaseDriverSteps {
 			await expect(awardCard).toBeVisible();
 		}
 	}
+
+	public async checkContainerTitlesAndNumbers(containers: Locator[], expectedData: string[][]) {
+		for (const [index, container] of containers.entries()) {
+			const containerData = expectedData[index];
+
+			await expect(container.getByTestId(Container.ContainerTitle)).toHaveText(containerData[0]);
+			await expect(container.getByTestId(Container.ContainerNumber)).toHaveText(containerData[1]);
+		}
+	}
 }
 
 const baseDriverSteps = new BaseDriverSteps();

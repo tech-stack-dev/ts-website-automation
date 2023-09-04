@@ -9,6 +9,7 @@ export default class Container {
 	static ContainerSection = 'ContainerSection';
 	static SectionNumber = 'SectionNumber';
 	static SectionTitle = 'SectionTitle';
+	static SectionDescription = 'SectionDescription';
 
 	static ContainerBlock = 'ContainerBlock';
 	static BlockTitle = 'BlockTitle';
@@ -24,7 +25,11 @@ export default class Container {
 	static CarouselButtonNext = 'CarouselButtonNext';
 
 	static AwardCard = 'AwardCard';
+	static PartnerLogo = 'PartnerLogo';
 
 	static SectionShortAnswer = 'SectionShortAnswer';
 	static SectionFullAnswer = 'SectionFullAnswer';
+
+	static Email = 'Email';
+	static Phone = 'Phone';
 }
