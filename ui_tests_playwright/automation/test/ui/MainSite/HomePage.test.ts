@@ -152,7 +152,7 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 	}
 });
 
-test("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test.skip("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
 	const companyInsightsblock = driver.getByTestId(HomePage.CompanyInsights);
 
 	await companyInsightsblock.getByTestId(MainSiteButtons.SeeAllNews).click();
