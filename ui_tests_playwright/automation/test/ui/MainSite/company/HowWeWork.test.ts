@@ -20,52 +20,54 @@ test("Check the header from the 'How we work' block  @Regression @HowWeWork", as
 	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
+test("Check container titles and  numbers from the 'How we work' block  @Regression @HowWeWork", async () => {
+	const containers = [
+		driver.getByTestId(HowWeWork.CooperationModels),
+		driver.getByTestId(HowWeWork.WorkProcess),
+		driver.getByTestId(HowWeWork.TechnologyStack),
+		driver.getByTestId(HowWeWork.TechstackStructure),
+		// driver.getByTestId(HowWeWork.ToolsWeUseToOrganize), // Unskip after adding data-id
+		driver.getByTestId(HowWeWork.GetInTouch),
+	];
+
+	const expectedData = [
+		['Cooperation \nmodels', '01'],
+		['Work process', '02'],
+		['Technology stack', '03'],
+		['Techstack structure', '04'],
+		// ['Tools we use\nto organize\nthe workflow', '05'], // Unskip after adding data-id
+		['Get in Touch', '06'],
+	];
+
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+});
+
 test("Check the 'Cooperation models' section title and number from the 'How we work' block @Regression @HowWeWork", async () => {
 	const cooperationModelsContainer = driver.getByTestId(HowWeWork.CooperationModels);
-	const allSectionTitles = await cooperationModelsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = cooperationModelsContainer.getByTestId(Container.SectionTitle);
 
-	await expect(cooperationModelsContainer.getByTestId(Container.ContainerTitle)).toHaveText('Cooperation \nmodels');
-	await expect(cooperationModelsContainer.getByTestId(Container.ContainerNumber)).toHaveText('01');
-
-	expect(await cooperationModelsContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-	]);
+	await expect(cooperationModelsContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
 
 	const testData = ['Team augmentation', 'Dedicated team', 'Product development', 'White label'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check the 'Work process' section title and number from the 'How we work' block @Regression @HowWeWork", async () => {
+test("Check the 'Work process' section title and number and carousel from the 'How we work' block @Regression @HowWeWork", async () => {
 	const workProcessContainer = driver.getByTestId(HowWeWork.WorkProcess);
-	const allSectionTitles = await workProcessContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = workProcessContainer.getByTestId(Container.SectionTitle);
 
-	await expect(workProcessContainer.getByTestId(Container.ContainerTitle)).toHaveText('Work process');
-	await expect(workProcessContainer.getByTestId(Container.ContainerNumber)).toHaveText('02');
-
-	expect(await workProcessContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-	]);
+	await expect(workProcessContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
 
 	const testData = ['Discovery', 'Pre-Engagement', 'Engagement', 'Delivery', 'Support & Maintenance'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
 	await baseDriverSteps.checkCarouselArrowsClick(workProcessContainer);
 });
 
 test("Check the 'Technology stack' section from the 'How we work' block @Regression @HowWeWork", async () => {
 	const technologyStackContainer = driver.getByTestId(HowWeWork.TechnologyStack);
-
-	await expect(technologyStackContainer.getByTestId(Container.ContainerTitle)).toHaveText('Technology stack');
-	await expect(technologyStackContainer.getByTestId(Container.ContainerNumber)).toHaveText('03');
 
 	const backEndTestData = ['.NET Stack', 'JVM Stack', 'Node.js stack', 'Other'];
 	const frontEndTestData = ['Languages', 'Frameworks', 'State\nmanagement', 'Build tools', 'Markup', 'Rich content'];
@@ -105,10 +107,7 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
 
 test("Check the 'Techstack structure' section from the 'How we work' block @Regression @HowWeWork", async () => {
 	const techstackStructure = driver.getByTestId(HowWeWork.TechstackStructure);
-	const allSectionTitles = await techstackStructure.getByTestId(Container.SectionTitle).allInnerTexts();
-
-	await expect(techstackStructure.getByTestId(Container.ContainerTitle)).toHaveText('Techstack structure');
-	await expect(techstackStructure.getByTestId(Container.ContainerNumber)).toHaveText('04');
+	const allSectionTitles = await techstackStructure.getByTestId(Container.SectionTitle);
 
 	const testData = [
 		'Engineering \nfunction',
@@ -120,7 +119,7 @@ test("Check the 'Techstack structure' section from the 'How we work' block @Regr
 		'Legal \nfunction',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check the 'Tools we use' section from the 'How we work' block @Regression @HowWeWork", async () => {

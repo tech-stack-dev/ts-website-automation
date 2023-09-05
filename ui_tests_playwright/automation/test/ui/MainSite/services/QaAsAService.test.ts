@@ -27,58 +27,36 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 });
 
 test("Check the container title and number from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
-	await expect(driver.getByTestId(QaAsAService.WhatIsQaAsAService).getByTestId(Container.ContainerTitle)).toHaveText(
-		'What is QA \nas a Service?'
-	);
-	await expect(driver.getByTestId(QaAsAService.WhatIsQaAsAService).getByTestId(Container.ContainerNumber)).toHaveText(
-		'01'
-	);
+	const containers = [
+		driver.getByTestId(QaAsAService.WhatIsQaAsAService),
+		driver.getByTestId(QaAsAService.WhoIsThisServiceFor),
+		driver.getByTestId(QaAsAService.Services),
+		driver.getByTestId(QaAsAService.CaseStudies),
+		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre),
+		driver.getByTestId(QaAsAService.OurApproachAndAchievements),
+		driver.getByTestId(QaAsAService.Faq),
+		driver.getByTestId(QaAsAService.RelatedArticles),
+		driver.getByTestId(QaAsAService.GetInTouch),
+	];
 
-	await expect(driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Who is this \nservice for'
-	);
-	await expect(
-		driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(Container.ContainerNumber)
-	).toHaveText('02');
+	const expectedData = [
+		['What is QA \nas a Service?', '01'],
+		['Who is this \nservice for', '02'],
+		['Services', '03'],
+		['Case studies: \nQA as a Service', '04'],
+		['Services that \nmeet you where \nyou are', '05'],
+		['Our Approach \nand Achievements', '06'],
+		['FAQ', '07'],
+		['Related Articles', '08'],
+		['Get in Touch', '09'],
+	];
 
-	await expect(driver.getByTestId(QaAsAService.Services).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Services'
-	);
-	await expect(driver.getByTestId(QaAsAService.Services).getByTestId(Container.ContainerNumber)).toHaveText('03');
-
-	await expect(driver.getByTestId(QaAsAService.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Case studies: \nQA as a Service'
-	);
-	await expect(driver.getByTestId(QaAsAService.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(Container.ContainerTitle)
-	).toHaveText('Services that \nmeet you where \nyou are ');
-	await expect(
-		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(
-		driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Approach \nand Achievements');
-	await expect(
-		driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
-
-	await expect(driver.getByTestId(QaAsAService.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(QaAsAService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('07');
-
-	await expect(driver.getByTestId(QaAsAService.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related Articles'
-	);
-	await expect(driver.getByTestId(QaAsAService.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
-		'08'
-	);
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check the sections of the containers from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
 	const whoIsThisServiceFor = driver.getByTestId(QaAsAService.WhoIsThisServiceFor);
-	expect(await whoIsThisServiceFor.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+	await expect(whoIsThisServiceFor.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
 		'02',
 		'03',
@@ -88,13 +66,13 @@ test("Check the sections of the containers from the 'QA as a Service' block @Reg
 	]);
 
 	const servicesThatMeetYouWhereYouAre = driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre);
-	expect(await servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+	await expect(servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
 		'02',
 		'03',
 		'04',
 	]);
-	expect(await servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionTitle)).toHaveText([
 		'Web',
 		'Mobile',
 		'Desktop',
@@ -102,14 +80,14 @@ test("Check the sections of the containers from the 'QA as a Service' block @Reg
 	]);
 
 	const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
-	expect(await ourApproachAndAchievements.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(ourApproachAndAchievements.getByTestId(Container.SectionTitle)).toHaveText([
 		'Open Source \nContributions',
 		'Global \nCertifications',
 		'Profound \nExperience',
 	]);
 
 	const faq = driver.getByTestId(QaAsAService.Faq);
-	expect(await faq.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(await faq.getByTestId(Container.SectionTitle)).toHaveText([
 		'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
 		'Is QA as a service better\nthan a QA service?',
 		'We have an in-house QA\nteam. Why do we need your\nregression testing services?',
@@ -124,7 +102,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	const containerBlocks = await services.getByTestId(Container.ContainerBlock).all();
 
 	await expect(containerBlocks[0].getByTestId(Container.BlockTitle)).toHaveText('Regression testing on demand');
-	expect(await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(containerBlocks[0].getByTestId(Container.SectionTitle)).toHaveText([
 		'When it is applicable',
 		'Required input',
 		'QA service output',
@@ -132,7 +110,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	]);
 
 	await expect(containerBlocks[1].getByTestId(Container.BlockTitle)).toHaveText('Exploratory and usability testing');
-	expect(await containerBlocks[1].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(containerBlocks[1].getByTestId(Container.SectionTitle)).toHaveText([
 		'When it is applicable',
 		'Required input',
 		'QA service output',
@@ -142,7 +120,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	await expect(containerBlocks[2].getByTestId(Container.BlockTitle)).toHaveText(
 		'Testing processes setup from scratch'
 	);
-	expect(await containerBlocks[2].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(containerBlocks[2].getByTestId(Container.SectionTitle)).toHaveText([
 		'When it is applicable',
 		'Required input',
 		'QA service output',
@@ -152,7 +130,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	await expect(containerBlocks[3].getByTestId(Container.BlockTitle)).toHaveText(
 		'Auditing existing company QA processes'
 	);
-	expect(await containerBlocks[3].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(containerBlocks[3].getByTestId(Container.SectionTitle)).toHaveText([
 		'When it is applicable',
 		'Required input',
 		'QA service output',
@@ -161,7 +139,7 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	await expect(containerBlocks[4].getByTestId(Container.BlockTitle)).toHaveText(
 		'Testing automation and integrating CI/CD'
 	);
-	expect(await containerBlocks[4].getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
+	await expect(containerBlocks[4].getByTestId(Container.SectionTitle)).toHaveText([
 		'When it is applicable',
 		'Required input',
 		'QA service output',

@@ -25,57 +25,36 @@ test("Check the header from the 'Cloud Development' block @Regression CloudDevel
 });
 
 test("Check the container title and number from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
-	await expect(
-		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ).getByTestId(Container.ContainerTitle)
-	).toHaveText('Leverage Cloud Native\nDevelopment Services');
-	await expect(
-		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	// Uncomment after adding data-id
+	const containers = [
+		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ),
+		// driver.getByTestId(CloudDevelopment.IndustrySpecificSolution),
+		// driver.getByTestId(CloudDevelopment.IndustriesWeServe),
+		driver.getByTestId(CloudDevelopment.TechnologyStack),
+		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits),
+		driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment),
+		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts),
+		driver.getByTestId(CloudDevelopment.RelatedServices),
+		driver.getByTestId(CloudDevelopment.Faq),
+		driver.getByTestId(CloudDevelopment.RelatedArticles),
+		driver.getByTestId(CloudDevelopment.GetInTouch),
+	];
+	// Uncomment after adding data-id
+	const expectedData = [
+		['Leverage Cloud Native\nDevelopment Services', '01'],
+		// ['Industry-Specific Solution', '02'],
+		// ['Industries We Serve', '03'],
+		['Technology Stack', '04'],
+		['Cloud Computing Development Benefits', '05'],
+		['Our Approach\nto Cloud App Development', '06'],
+		['Our Leading Cloud Experts', '07'],
+		['Related Services', '08'],
+		['FAQ', '09'],
+		['Related Articles', '10'],
+		['Get in Touch', '11'],
+	];
 
-	await expect(driver.getByTestId(CloudDevelopment.TechnologyStack).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Technology Stack'
-	);
-	await expect(
-		driver.getByTestId(CloudDevelopment.TechnologyStack).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits).getByTestId(Container.ContainerTitle)
-	).toHaveText('Cloud Computing Development Benefits');
-	await expect(
-		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(
-		driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Approach\nto Cloud App Development');
-	await expect(
-		driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
-
-	await expect(
-		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Leading Cloud Experts');
-	await expect(
-		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
-
-	await expect(driver.getByTestId(CloudDevelopment.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related Services'
-	);
-	await expect(
-		driver.getByTestId(CloudDevelopment.RelatedServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('08');
-
-	await expect(driver.getByTestId(CloudDevelopment.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(CloudDevelopment.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
-
-	await expect(driver.getByTestId(CloudDevelopment.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related Articles'
-	);
-	await expect(
-		driver.getByTestId(CloudDevelopment.RelatedArticles).getByTestId(Container.ContainerNumber)
-	).toHaveText('10');
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check section number and section title in 'Leverage Cloud Native Development Services' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {

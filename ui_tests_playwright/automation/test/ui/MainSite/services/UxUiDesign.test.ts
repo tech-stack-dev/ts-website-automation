@@ -30,62 +30,33 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 });
 
 test("Check the container title and number from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
-	await expect(
-		driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Get custom \nUX and UI design services');
-	await expect(
-		driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices),
+		driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb),
+		driver.getByTestId(UxUiDesign.InDesignWeTrust),
+		driver.getByTestId(UxUiDesign.CaseStudies),
+		driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow),
+		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct),
+		driver.getByTestId(UxUiDesign.RelatedServices),
+		driver.getByTestId(UxUiDesign.Faq),
+		driver.getByTestId(UxUiDesign.RelatedArticles),
+		driver.getByTestId(UxUiDesign.GetInTouch),
+	];
 
-	await expect(
-		driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb).getByTestId(Container.ContainerTitle)
-	).toHaveText('We build \nUX/UI for \nMobile & Web');
-	await expect(
-		driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb).getByTestId(Container.ContainerNumber)
-	).toHaveText('02');
+	const expectedData = [
+		['Get custom \nUX and UI design services', '01'],
+		['We build \nUX/UI for \nMobile & Web', '02'],
+		['In design \nwe trust', '03'],
+		['Case studies: \nUX/UI design services', '04'],
+		['Typical UX/UI \ndesign workflow', '05'],
+		['We never stop \nimproving your product', '06'],
+		['Related \nServices', '07'],
+		['FAQ', '08'],
+		['Related Articles', '09'],
+		['Get in Touch', '10'],
+	];
 
-	await expect(driver.getByTestId(UxUiDesign.InDesignWeTrust).getByTestId(Container.ContainerTitle)).toHaveText(
-		'In design \nwe trust'
-	);
-	await expect(driver.getByTestId(UxUiDesign.InDesignWeTrust).getByTestId(Container.ContainerNumber)).toHaveText(
-		'03'
-	);
-
-	await expect(driver.getByTestId(UxUiDesign.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Case studies: \nUX/UI design services'
-	);
-	await expect(driver.getByTestId(UxUiDesign.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow).getByTestId(Container.ContainerTitle)
-	).toHaveText('Typical UX/UI \ndesign workflow');
-	await expect(
-		driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(
-		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(Container.ContainerTitle)
-	).toHaveText('We never stop \nimproving your product');
-	await expect(
-		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
-
-	await expect(driver.getByTestId(UxUiDesign.RelatedServices).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nServices'
-	);
-	await expect(driver.getByTestId(UxUiDesign.RelatedServices).getByTestId(Container.ContainerNumber)).toHaveText(
-		'07'
-	);
-
-	await expect(driver.getByTestId(UxUiDesign.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(UxUiDesign.Faq).getByTestId(Container.ContainerNumber)).toHaveText('08');
-
-	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Related \nArticles'
-	);
-	await expect(driver.getByTestId(UxUiDesign.RelatedArticles).getByTestId(Container.ContainerNumber)).toHaveText(
-		'09'
-	);
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check section number and section title in 'Get Custom UX And UI Design Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
@@ -264,7 +235,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'UX/UI 
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
+		await arrow.click();
 		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 	}
