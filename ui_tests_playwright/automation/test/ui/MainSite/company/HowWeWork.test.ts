@@ -8,6 +8,7 @@ import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
 import CareerButtons from '../../../../identifiers/Career/CareerButtons';
+import TechnologyStackData from '../../../../preconditionsData/TechnologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
@@ -69,40 +70,15 @@ test("Check the 'Work process' section title and number and carousel from the 'H
 test("Check the 'Technology stack' section from the 'How we work' block @Regression @HowWeWork", async () => {
 	const technologyStackContainer = driver.getByTestId(HowWeWork.TechnologyStack);
 
-	const backEndTestData = ['.NET Stack', 'JVM Stack', 'Node.js stack', 'Other'];
-	const frontEndTestData = ['Languages', 'Frameworks', 'State\nmanagement', 'Build tools', 'Markup', 'Rich content'];
-	const mobileTestData = ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS'];
-	const iotTestData = ['Devices', 'Gateways'];
-	const devOpsTestData = ['Cloud', 'DevOps', 'CI/CD', 'Monitoring'];
-	const aiMlDataScienceTestData = [
-		'Computer vision',
-		'Deep learning and machine learning',
-		'Data visualization',
-		'Data storage & manipulation',
-		'Development environment',
-	];
+	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
+	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
+	const testDataSectionTitles = TechnologyStackData.SectionTitles;
 
-	const allSectionTitles = await technologyStackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const expectedBackEndData = allSectionTitles.slice(0, 4);
-	const expectedFrontEndData = allSectionTitles.slice(4, 10);
-	const expectedMobileData = allSectionTitles.slice(10, 15);
-	const expectedIotData = allSectionTitles.slice(15, 17);
-	const expectedDevopsData = allSectionTitles.slice(17, 21);
-	const expectedAiMlDataScienceData = allSectionTitles.slice(21, 26);
-
-	expect(expectedBackEndData.sort()).toEqual(backEndTestData.sort());
-	expect(expectedFrontEndData.sort()).toEqual(frontEndTestData.sort());
-	expect(expectedMobileData.sort()).toEqual(mobileTestData.sort());
-	expect(expectedIotData.sort()).toEqual(iotTestData.sort());
-	expect(expectedDevopsData.sort()).toEqual(devOpsTestData.sort());
-	expect(expectedAiMlDataScienceData.sort()).toEqual(aiMlDataScienceTestData.sort());
-
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_BackEnd)).toBeVisible();
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toBeVisible();
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toBeVisible();
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_Iot)).toBeVisible();
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevOpsCloud)).toBeVisible();
-	await expect(technologyStackContainer.getByTestId(MainSiteButtons.Technology_AiMlDataScience)).toBeVisible();
+	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
+		navigationTabs,
+		containerBlocks,
+		testDataSectionTitles
+	);
 });
 
 test("Check the 'Techstack structure' section from the 'How we work' block @Regression @HowWeWork", async () => {

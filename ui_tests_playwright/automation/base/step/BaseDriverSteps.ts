@@ -47,7 +47,7 @@ class BaseDriverSteps {
 		const carousel = ContainerName.getByTestId(Container.ContainerCarousel);
 		const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
 		const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
-		const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
+		const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).all();
 		const attribute = 'data-disabled';
 
 		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'true');
@@ -102,6 +102,14 @@ class BaseDriverSteps {
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
 			expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
+		}
+	}
+
+	public async checkRedirectToPagesInSameTab(sectionUrlMap: Map<Locator, string>, url: string) {
+		for (const [section, expectedUrl] of sectionUrlMap) {
+			await section.click();
+			await baseDriverSteps.checkUrl(expectedUrl);
+			await baseDriverSteps.goToUrl(url);
 		}
 	}
 }
