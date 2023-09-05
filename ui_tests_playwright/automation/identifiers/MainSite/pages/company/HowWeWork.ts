@@ -1,9 +1,8 @@
-export default class HowWeWork {
-    static Info = 'Container-Info';
-    static CooperationModelsContainer = 'Container-CooperationModels';
-    static WorkProcessContainer = 'Container-WorkProcess';
-    static TechnologyStackContainer = 'Container-TechnologyStack';
-    static TechstackStructureContainer = 'Container-TechstackStructure';
-    static ToolsWeUseContainer = 'Container-ToolWeUse';
-    static GetInTouchContainer = 'Container-GetInTouch';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class HowWeWork extends GeneralContainersMainSite {
+	static CooperationModels = 'Container-CooperationModels';
+	static WorkProcess = 'Container-WorkProcess';
+	static TechstackStructure = 'Container-TechstackStructure';
+	static ToolsWeUseToOrganize = 'Container-ToolWeUse';
 }

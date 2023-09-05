@@ -1,5 +1,6 @@
-export default class MobileDevService {
-	static Info = 'Container-Info';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class MobileDevService extends GeneralContainersMainSite {
 	static WhatYouGet = 'Container-WhatYouGet';
 	static WhatWeDo = 'Container-WhatWeDo';
 	static MobileApplicationDevTechStack = 'Container-TechnologyStack';
@@ -9,7 +10,4 @@ export default class MobileDevService {
 	static MobileAppDevelopmentProcess = 'Container-MobileAppDevelopmentProcess';
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static TheCostOfMobileAppDevelopment = 'Container-TheCostOfMobileAppDevelopment';
-	static RelatedServices = 'Container-RelatedServices';
-	static Faq = 'Container-Faq';
-	static RelatedArticles = 'Container-RelatedArticles';
 }

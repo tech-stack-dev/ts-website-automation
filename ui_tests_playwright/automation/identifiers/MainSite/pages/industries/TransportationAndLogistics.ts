@@ -1,4 +1,6 @@
-export default class TransportationAndLogistics {
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class TransportationAndLogistics extends GeneralContainersMainSite {
 	static Info = 'Container-Info';
 	static TechstackInNumbers = 'Container-TechstackInNumbers';
 	static WhoWeServe = 'Container-WhoWeServe';
@@ -8,5 +10,4 @@ export default class TransportationAndLogistics {
 	static WhatMakesUsDifferent = 'Container-WhatMakesOurTeamDifferent';
 	static TransportationAndLogisticsSoftwareDevAtTechstack = 'Container-SoftwareDevelopment';
 	static DevelopmentWorkflowThatWeFollow = 'Container-OurWorkflow';
-	static Faq = 'Container-Faq';
 }
