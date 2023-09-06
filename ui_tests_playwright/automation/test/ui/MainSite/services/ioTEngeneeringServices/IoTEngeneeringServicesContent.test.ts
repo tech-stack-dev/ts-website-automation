@@ -169,7 +169,7 @@ test('Check section titles and sensor image in "IoT Engineering Case Studies" co
 	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 	expect(await ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle).textContent()
 	).toBe('IoT humidity\nsensors scheme');
-	expect(driver.getByTestId(MainSiteImages.SensorsScheme).isVisible());
+	expect(driver.getByTestId(MainSiteImages.SensorsScheme)).toBeVisible();
 });
 
 test('Check section titles in "Industry-specific IoT Solutions" container. @Regression @InternetOfThings @TSWEB-695', async () => {
