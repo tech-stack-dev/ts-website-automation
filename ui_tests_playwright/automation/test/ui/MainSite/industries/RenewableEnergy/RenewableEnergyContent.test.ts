@@ -22,64 +22,33 @@ test("Check the header from the 'Renewable Energy' block @Regression @RenewableE
 });
 
 test("Check the container title and number from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
-	await expect(
-		driver.getByTestId(RenewableEnergy.TechstackInNumbers).getByTestId(Container.ContainerTitle)
-	).toHaveText('Techstack in Numbers');
-	await expect(
-		driver.getByTestId(RenewableEnergy.TechstackInNumbers).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(RenewableEnergy.TechstackInNumbers),
+		driver.getByTestId(RenewableEnergy.WhoWeServe),
+		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ),
+		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack),
+		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise),
+		driver.getByTestId(RenewableEnergy.WhyChooseUs),
+		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack),
+		driver.getByTestId(RenewableEnergy.OurWorkflow),
+		driver.getByTestId(RenewableEnergy.Faq),
+		driver.getByTestId(RenewableEnergy.GetInTouch),
+	];
 
-	await expect(driver.getByTestId(RenewableEnergy.WhoWeServe).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Who We Serve'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.WhoWeServe).getByTestId(Container.ContainerNumber)).toHaveText(
-		'02'
-	);
+	const expectedData = [
+		['Techstack in Numbers', '01'],
+		['Who We Serve', '02'],
+		['Renewable Energy Software Development Services', '03'],
+		['The Solar Energy Data Portal by Techstack', '04'],
+		['Our Key Areas of Expertise in Renewable Energy', '05'],
+		['Why Choose Us?', '06'],
+		['How We Operate at Techstack', '07'],
+		['Our Workflow', '08'],
+		['FAQ', '09'],
+		['Get in Touch', '10'],
+	];
 
-	await expect(
-		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(Container.ContainerTitle)
-	).toHaveText('Renewable Energy Software Development Services');
-	await expect(
-		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('The Solar Energy Data Portal by Techstack');
-	await expect(
-		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Key Areas of Expertise in Renewable Energy');
-	await expect(
-		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(driver.getByTestId(RenewableEnergy.WhyChooseUs).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Why Choose Us?'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.WhyChooseUs).getByTestId(Container.ContainerNumber)).toHaveText(
-		'06'
-	);
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('How We Operate at Techstack');
-	await expect(
-		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
-
-	await expect(driver.getByTestId(RenewableEnergy.OurWorkflow).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our Workflow'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.OurWorkflow).getByTestId(Container.ContainerNumber)).toHaveText(
-		'08'
-	);
-
-	await expect(driver.getByTestId(RenewableEnergy.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(RenewableEnergy.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check block titles in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {

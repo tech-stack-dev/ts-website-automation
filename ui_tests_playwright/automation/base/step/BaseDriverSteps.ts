@@ -47,18 +47,19 @@ class BaseDriverSteps {
 		const carousel = ContainerName.getByTestId(Container.ContainerCarousel);
 		const carouselButtonPrev = carousel.getByTestId(Container.CarouselButtonPrev);
 		const carouselButtonNext = carousel.getByTestId(Container.CarouselButtonNext);
-		const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
+		const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).all();
+		const attribute = 'data-disabled';
 
-		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'true');
+		await expect(carouselButtonNext).toHaveAttribute(attribute, 'false');
 		await carouselButtonNext.click({delay: 1000});
 
-		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'false');
+		await expect(carouselButtonNext).toHaveAttribute(attribute, 'false');
 		await carouselButtonPrev.click({delay: 1000});
 
-		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'true');
-		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'false');
+		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'true');
+		await expect(carouselButtonNext).toHaveAttribute(attribute, 'false');
 
 		clicksCount = clicksCount ? clicksCount : allSectionTitles.length - 1;
 
@@ -66,8 +67,8 @@ class BaseDriverSteps {
 			await carouselButtonNext.click({delay: 1000});
 		}
 
-		await expect(carouselButtonPrev).toHaveAttribute('data-disabled', 'false');
-		await expect(carouselButtonNext).toHaveAttribute('data-disabled', 'true');
+		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'false');
+		await expect(carouselButtonNext).toHaveAttribute(attribute, 'true');
 	}
 
 	public async checkImagesVisibility(images: Locator, numberOfCards: number) {
@@ -84,6 +85,31 @@ class BaseDriverSteps {
 
 			await expect(container.getByTestId(Container.ContainerTitle)).toHaveText(containerData[0]);
 			await expect(container.getByTestId(Container.ContainerNumber)).toHaveText(containerData[1]);
+		}
+	}
+
+	public async checkTechnologyStackTabsAndSectionTitles(
+		navigationTabs: Locator[],
+		containerBlocks: Locator,
+		testDataSectionTitles: string[][]
+	) {
+		for (let tab = 0; tab < navigationTabs.length; tab++) {
+			const currentTab = navigationTabs[tab];
+			const currentBlock = containerBlocks.nth(tab);
+			const tabSectionTitles = testDataSectionTitles[tab];
+
+			await expect(currentBlock).toHaveClass(/--active/);
+			await currentTab.click();
+			await expect(currentTab).toHaveClass(/--active/);
+			expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
+		}
+	}
+
+	public async checkRedirectToPagesInSameTab(sectionUrlMap: Map<Locator, string>, url: string) {
+		for (const [section, expectedUrl] of sectionUrlMap) {
+			await section.click();
+			await baseDriverSteps.checkUrl(expectedUrl);
+			await baseDriverSteps.goToUrl(url);
 		}
 	}
 }

@@ -1,14 +1,13 @@
-export class CustomDev {
-	static Info = 'Container-Info';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export class CustomDev extends GeneralContainersMainSite {
+	static TechstacksStrengthsInCustomSoftDev = 'Container-TechstacksStrengthsInCustomSoftDev'; // Update in scope of TSWEB-1027
 	static CustomDevelopmentForYourProduct = 'Container-CustomSoftwareDevelopmentForYourProduct';
 	static CustomDevelopmentServicesWeProvide = 'Container-CustomSoftwareDevelopmentServicesWeProvide';
-	static TechnologyStack = 'Container-TechnologyStack';
-	static CustomDevelopmentBenefits = 'Container-CustomSoftwareDevelopmentBenefits';
-	static CustomDevelopmentProcess = 'Container-CustomSoftwareDevelopmentProcess';
-	static CustomDevelopmentExperts = 'Container-CustomSoftwareDevelopmentExperts';
-	static CaseStudies = 'Container-CaseStudies';
-	static OurApproachToSoftwareDevelopment = 'Container-OurApproachToSoftwareDevelopment';
-	static Faq = 'Container-Faq';
-	static RelatedArticles = 'Container-RelatedArticles';
-	static GetInTouch = 'Container-GetInTouch';
+	static OurFeaturedCaseStudy = 'Container-OurFeaturedCaseStudy'; // Update in scope of TSWEB-1027
+	static IndustriesWeDevelopSoftwareFor = 'Container-IndustriesWeDevelopSoftwareFor'; // Update in scope of TSWEB-1027
+	static WhyChooseTechstack = 'Container-OurApproachToSoftwareDevelopment'; // Update in scope of TSWEB-1027
+	static CustomSoftwareDevelopmentExperts = 'Container-CustomSoftwareDevelopmentExperts';
+	static OurTailoredCollaborationAndPricingModels = 'Container-OurApproachToSoftwareDevelopment'; // Update in scope of TSWEB-1027
+	static CustomSoftwareDevelopmentProcess = 'Container-CustomSoftwareDevelopmentProcess';
 }

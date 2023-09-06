@@ -1,5 +1,6 @@
-export default class Healthcare {
-	static Info = 'Container-Info';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class Healthcare extends GeneralContainersMainSite {
 	static WhatMakesOurTeamDifferent = 'Container-WhatMakesOurTeamDifferent';
 	static OurExpertise = 'Container-OurExpertise';
 	static BeatsScreeningModuleByTechstack = 'Container-BeatsScreeningModule';
@@ -9,6 +10,4 @@ export default class Healthcare {
 	static OurWorkflow = 'Container-OurWorkflow';
 	static CorePractices = 'Container-CorePractices';
 	static ServingPartnersWorldwide = 'Container-ServingPartnersWorldwide';
-	static Faq = 'Container-Faq';
-	static RelatedArticles = 'Container-RelatedArticles';
 }

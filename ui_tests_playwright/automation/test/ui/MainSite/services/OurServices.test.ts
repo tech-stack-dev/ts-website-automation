@@ -8,6 +8,7 @@ import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
+import TechnologyStackData from '../../../../preconditionsData/TechnologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -21,26 +22,25 @@ test("Check the header from the 'Our Services' block @Regression @OurServices @T
 });
 
 test("Check the container title and number from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
-	await expect(driver.getByTestId(OurServices.Services).getByTestId(Container.ContainerTitle)).toHaveText('Services');
-	await expect(driver.getByTestId(OurServices.Services).getByTestId(Container.ContainerNumber)).toHaveText('01');
+	const containers = [
+		driver.getByTestId(OurServices.Services),
+		driver.getByTestId(OurServices.TechnologyStack),
+		driver.getByTestId(OurServices.OurApproach),
+		driver.getByTestId(OurServices.Reviews),
+		driver.getByTestId(OurServices.Faq),
+		driver.getByTestId(OurServices.GetInTouch),
+	];
 
-	await expect(driver.getByTestId(OurServices.TechnologyStack).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Technology stack'
-	);
-	await expect(driver.getByTestId(OurServices.TechnologyStack).getByTestId(Container.ContainerNumber)).toHaveText(
-		'02'
-	);
+	const expectedData = [
+		['Services', '01'],
+		['Technology stack', '02'],
+		['Our approach', '03'],
+		['Reviews', '04'],
+		['FAQ', '05'],
+		['Get in Touch', '06'],
+	];
 
-	await expect(driver.getByTestId(OurServices.OurApproach).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our approach'
-	);
-	await expect(driver.getByTestId(OurServices.OurApproach).getByTestId(Container.ContainerNumber)).toHaveText('03');
-
-	await expect(driver.getByTestId(OurServices.Reviews).getByTestId(Container.ContainerTitle)).toHaveText('Reviews');
-	await expect(driver.getByTestId(OurServices.Reviews).getByTestId(Container.ContainerNumber)).toHaveText('04');
-
-	await expect(driver.getByTestId(OurServices.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(OurServices.Faq).getByTestId(Container.ContainerNumber)).toHaveText('05');
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check section titles and numbers in 'Services' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
@@ -58,7 +58,7 @@ test("Check section titles and numbers in 'Services' container from the 'Our Ser
 		'09',
 	]);
 
-	const allSectionTitles = await servicesContainer.getByTestId(Container.SectionTitle);
+	const allSectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom Software Development',
 		'Cloud & DevOps',
@@ -98,83 +98,22 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 		],
 	]);
 
-	for (const [section, url] of arrowUrlMap) {
-		await section.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
-	}
+	const ourServicesUrl = UrlProvider.urlBuilder(UrlPath.OurServices);
+	await baseDriverSteps.checkRedirectToPagesInSameTab(arrowUrlMap, ourServicesUrl);
 });
 
 test("Check section titles and navigation bar in 'Technology stack' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
 	const technologyStackContainer = driver.getByTestId(OurServices.TechnologyStack);
 
-	const navigationTabs = [
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_FrontEnd),
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_Mobile),
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_Iot),
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
-		technologyStackContainer.getByTestId(MainSiteButtons.Technology_BackEnd), // To click this item last because it selected by default on page
-	];
-
+	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
 	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
-	const testDataSectionTitles = [
-		[
-			// Back-End tab
-			'.NET Stack',
-			'JVM Stack',
-			'Node.js stack',
-			'Other',
-		],
-		[
-			// Front-End tab
-			'Languages',
-			'Frameworks',
-			'State\nmanagement',
-			'Build tools',
-			'Markup',
-			'Rich content',
-		],
-		[
-			// Mobile tab
-			'React Native',
-			'Cordova',
-			'Flutter',
-			'Android',
-			'iOS',
-		],
-		[
-			// IoT tab
-			'Devices',
-			'Gateways',
-		],
-		[
-			// DevOps/Cloud tab
-			'Cloud',
-			'DevOps',
-			'CI/CD',
-			'Monitoring',
-		],
-		[
-			// AI&ML/Data science tab
-			'Computer vision',
-			'Deep learning and machine learning',
-			'Data visualization',
-			'Data storage & manipulation',
-			'Development environment',
-		],
-	];
+	const testDataSectionTitles = TechnologyStackData.SectionTitles;
 
-	for (let tab = 0; tab < navigationTabs.length; tab++) {
-		const currentTab = navigationTabs[tab];
-		const currentBlock = containerBlocks.nth(tab);
-		const tabSectionTitles = testDataSectionTitles[tab];
-
-		await expect(currentBlock).toHaveClass(/--active/);
-		await currentTab.click();
-		await expect(currentTab).toHaveClass(/--active/);
-		expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
-	}
+	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
+		navigationTabs,
+		containerBlocks,
+		testDataSectionTitles
+	);
 });
 
 test("Check section titles and CTA button in 'Our approach' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
