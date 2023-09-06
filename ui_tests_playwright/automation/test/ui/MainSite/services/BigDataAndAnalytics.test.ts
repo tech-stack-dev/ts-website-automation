@@ -154,6 +154,7 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
+// Unskip after Blog will be stable
 test.skip("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([
