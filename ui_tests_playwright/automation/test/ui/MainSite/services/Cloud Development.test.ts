@@ -25,33 +25,31 @@ test("Check the header from the 'Cloud Development' block @Regression CloudDevel
 });
 
 test("Check the container title and number from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
-	// Uncomment after adding data-id
 	const containers = [
 		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ),
-		// driver.getByTestId(CloudDevelopment.IndustrySpecificSolution),
-		// driver.getByTestId(CloudDevelopment.IndustriesWeServe),
+		driver.getByTestId(CloudDevelopment.IndustrySpecificSolution),
+		driver.getByTestId(CloudDevelopment.IndustriesWeServe),
 		driver.getByTestId(CloudDevelopment.TechnologyStack),
 		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits),
 		driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment),
 		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts),
 		driver.getByTestId(CloudDevelopment.RelatedServices),
-		driver.getByTestId(CloudDevelopment.Faq),
-		driver.getByTestId(CloudDevelopment.RelatedArticles),
 		driver.getByTestId(CloudDevelopment.GetInTouch),
+		driver.getByTestId(CloudDevelopment.RelatedArticles),
+		driver.getByTestId(CloudDevelopment.Faq),
 	];
-	// Uncomment after adding data-id
 	const expectedData = [
 		['Leverage Cloud Native\nDevelopment Services', '01'],
-		// ['Industry-Specific Solution', '02'],
-		// ['Industries We Serve', '03'],
+		['Industry-Specific Solution', '02'],
+		['Industries We Serve', '03'],
 		['Technology Stack', '04'],
 		['Cloud Computing Development Benefits', '05'],
 		['Our Approach\nto Cloud App Development', '06'],
 		['Our Leading Cloud Experts', '07'],
 		['Related Services', '08'],
-		['FAQ', '09'],
+		['Get in Touch', '09'],
 		['Related Articles', '10'],
-		['Get in Touch', '11'],
+		['FAQ', '11'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

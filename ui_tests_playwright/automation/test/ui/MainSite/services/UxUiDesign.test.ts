@@ -41,8 +41,8 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 		// driver.getByTestId(UxUiDesign.SuccessStories), // Uncomment in scope of TSWEB-1028
 		driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow),
 		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct),
-		// driver.getByTestId(UxUiDesign.OurApproach),
-		// driver.getByTestId(UxUiDesign.DesignThinkingProcess),
+		// driver.getByTestId(UxUiDesign.OurApproach), // Uncomment in scope of TSWEB-1028
+		// driver.getByTestId(UxUiDesign.DesignThinkingProcess), // Uncomment in scope of TSWEB-1028
 		driver.getByTestId(UxUiDesign.RelatedServices),
 		driver.getByTestId(UxUiDesign.GetInTouch),
 		driver.getByTestId(UxUiDesign.RelatedArticles),
