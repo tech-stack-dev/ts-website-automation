@@ -1,13 +1,13 @@
 import GeneralContainersMainSite from '../../GeneralContainersMainSite';
 
 export class CustomDev extends GeneralContainersMainSite {
-	static TechstacksStrengthsInCustomSoftDev = 'Container-TechstacksStrengthsInCustomSoftDev'; // Update in scope of TSWEB-1027
+	static TechstacksStrengthsInCustomSoftDev = 'Container-CustomDevTechstackStrengths';
 	static CustomDevelopmentForYourProduct = 'Container-CustomSoftwareDevelopmentForYourProduct';
 	static CustomDevelopmentServicesWeProvide = 'Container-CustomSoftwareDevelopmentServicesWeProvide';
-	static OurFeaturedCaseStudy = 'Container-OurFeaturedCaseStudy'; // Update in scope of TSWEB-1027
-	static IndustriesWeDevelopSoftwareFor = 'Container-IndustriesWeDevelopSoftwareFor'; // Update in scope of TSWEB-1027
-	static WhyChooseTechstack = 'Container-OurApproachToSoftwareDevelopment'; // Update in scope of TSWEB-1027
+	static OurFeaturedCaseStudy = 'Container-OurFeaturedCaseStudy';
+	static IndustriesWeDevelopSoftwareFor = 'Container-IndustriesWeDevelopSoftwareFor';
+	static WhyChooseTechstack = 'Container-WhyChooseTechstack';
 	static CustomSoftwareDevelopmentExperts = 'Container-CustomSoftwareDevelopmentExperts';
-	static OurTailoredCollaborationAndPricingModels = 'Container-OurApproachToSoftwareDevelopment'; // Update in scope of TSWEB-1027
+	static OurTailoredCollaborationAndPricingModels = 'Container-OurTailoredCollaborationAndPricingModels';
 	static CustomSoftwareDevelopmentProcess = 'Container-CustomSoftwareDevelopmentProcess';
 }

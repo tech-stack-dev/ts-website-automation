@@ -37,9 +37,9 @@ test("Check the container title and number from the 'Consulting Service' block @
 		driver.getByTestId(ConsultingService.OurApproach),
 		driver.getByTestId(ConsultingService.WeMakeAnImpact),
 		driver.getByTestId(ConsultingService.RelatedServices),
-		driver.getByTestId(ConsultingService.Faq),
-		driver.getByTestId(ConsultingService.RelatedArticles),
 		driver.getByTestId(ConsultingService.GetInTouch),
+		driver.getByTestId(ConsultingService.RelatedArticles),
+		driver.getByTestId(ConsultingService.Faq),
 	];
 
 	const expectedData = [
@@ -52,9 +52,9 @@ test("Check the container title and number from the 'Consulting Service' block @
 		['Our approach', '07'],
 		['We make an impact', '08'],
 		['Related \nServices', '09'],
-		['FAQ', '10'],
+		['Get in Touch', '10'],
 		['Related Articles', '11'],
-		['Get in Touch', '12'],
+		['FAQ', '12'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

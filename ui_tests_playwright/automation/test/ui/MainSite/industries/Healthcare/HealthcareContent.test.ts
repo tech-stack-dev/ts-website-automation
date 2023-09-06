@@ -32,9 +32,9 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 		driver.getByTestId(Healthcare.OurWorkflow),
 		driver.getByTestId(Healthcare.CorePractices),
 		driver.getByTestId(Healthcare.ServingPartnersWorldwide),
-		driver.getByTestId(Healthcare.Faq),
-		driver.getByTestId(Healthcare.RelatedArticles),
 		driver.getByTestId(Healthcare.GetInTouch),
+		driver.getByTestId(Healthcare.RelatedArticles),
+		driver.getByTestId(Healthcare.Faq),
 	];
 
 	const expectedData = [
@@ -47,9 +47,9 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 		['Our Workflow', '07'],
 		['Core Practices', '08'],
 		['Serving Partners Worldwide', '09'],
-		['FAQ', '10'],
+		['Get in Touch', '10'],
 		['Related Articles', '11'],
-		['Get in Touch', '12'],
+		['FAQ', '12'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -110,31 +110,25 @@ test("Check section numbers and section titles in 'Patient-Centered Strategy' co
 
 test("Check block titles in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
-	const allBlockTitles = await mostRecentIndustryFactsContainer.getByTestId(Container.BlockTitle).allInnerTexts();
+	const allBlockTitles = mostRecentIndustryFactsContainer.getByTestId(Container.BlockTitle);
 	const testData = ['1.57\nbillion users', '82\n%', '$\n641\nPPM'];
 
-	expect(allBlockTitles.sort()).toEqual(testData.sort());
+	await expect(allBlockTitles).toHaveText(testData);
 });
 
 test("Check section numbers and section titles in 'Our Workflow' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const ourWorkflowContainer = driver.getByTestId(Healthcare.OurWorkflow);
-	expect(await ourWorkflowContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-	]);
+	await expect(ourWorkflowContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
 
-	const allSectionTitles = await ourWorkflowContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = ourWorkflowContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
 
-	const allSectionTitles = await corePracticesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = corePracticesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom Software\nDevelopment',
 		'Cloud & DevOps',
@@ -144,25 +138,25 @@ test("Check section titles in 'Core Practices' container from the 'Healthcare' b
 		'Mobile App\nDevelopment',
 		'UI/UX Design',
 	];
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check image in 'Serving Partners Worldwide' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const servingPartnersWorldwideContainer = driver.getByTestId(Healthcare.ServingPartnersWorldwide);
 
-	expect(await servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
+	await expect(servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
 });
 
 test("Check section titles in 'FAQ' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const faqContainer = driver.getByTestId(Healthcare.Faq);
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'What safeguards are in place to protect the privacy and security of patient data in healthcare software?',
 		'How can scalability and the capacity to manage growing user loads be ensured in healthcare software?',
 		'How quickly can we begin development with Techstack on our healthcare software product?',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test.afterEach(async () => {

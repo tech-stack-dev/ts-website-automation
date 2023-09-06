@@ -66,6 +66,7 @@ test("Check carousel arrows from the 'Custom software development process' conta
 	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
 });
 
+// Unskip after Blog will be stable
 test.skip("Check social link redirects in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
 	const memberCards = devExperts.getByTestId(Container.MemberCard);

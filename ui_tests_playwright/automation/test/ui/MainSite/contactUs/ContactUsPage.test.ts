@@ -62,7 +62,7 @@ test("Check section number, title and description in 'Cooperation' container fro
 	const testDataDescriptions = [
 		'9 Rybacka street,\nWroclaw, 53-656',
 		'3 Borysohlibska street,\nKyiv, 04070',
-		'1 Shpytalʹna street,\nLviv, 79000',
+		'10 Shevchenko Ave,\nLviv, 79000',
 		'Liikuri tn 10-107,\nTallinn, 13618',
 		'20A August 23 street,\nKharkiv, 61101',
 		'No. 5, 17/F, Strand 50,\n50 Bonham Strand,\nSheung Wan, Hong Kong',

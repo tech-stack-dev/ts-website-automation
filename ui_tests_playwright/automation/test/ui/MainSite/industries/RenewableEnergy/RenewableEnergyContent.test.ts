@@ -31,8 +31,8 @@ test("Check the container title and number from the 'Renewable Energy' block @Re
 		driver.getByTestId(RenewableEnergy.WhyChooseUs),
 		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack),
 		driver.getByTestId(RenewableEnergy.OurWorkflow),
-		driver.getByTestId(RenewableEnergy.Faq),
 		driver.getByTestId(RenewableEnergy.GetInTouch),
+		driver.getByTestId(RenewableEnergy.Faq),
 	];
 
 	const expectedData = [
@@ -44,8 +44,8 @@ test("Check the container title and number from the 'Renewable Energy' block @Re
 		['Why Choose Us?', '06'],
 		['How We Operate at Techstack', '07'],
 		['Our Workflow', '08'],
-		['FAQ', '09'],
-		['Get in Touch', '10'],
+		['Get in Touch', '09'],
+		['FAQ', '10'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

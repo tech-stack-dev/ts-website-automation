@@ -21,15 +21,15 @@ test("Check the header from the 'Custom Software Development' block @Regression 
 
 test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const containers = [
-		// driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev), // Ucomment in scope of TSWEB-1027
+		driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev),
 		driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct),
 		driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide),
 		driver.getByTestId(CustomDev.TechnologyStack),
-		// driver.getByTestId(CustomDev.OurFeaturedCaseStudy), // Ucomment in scope of TSWEB-1027
-		// driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor), // Ucomment in scope of TSWEB-1027
+		driver.getByTestId(CustomDev.OurFeaturedCaseStudy),
+		driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor),
 		driver.getByTestId(CustomDev.WhyChooseTechstack),
 		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts),
-		// driver.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels), // Ucomment in scope of TSWEB-1027
+		driver.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels),
 		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess),
 		driver.getByTestId(CustomDev.GetInTouch),
 		driver.getByTestId(CustomDev.RelatedArticles),
@@ -37,15 +37,15 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 	];
 
 	const expectedText: [string, string][] = [
-		// ['Techstack’s Strengths\nin Custom Software\nDevelopment', '01'], // Ucomment in scope of TSWEB-1027
+		['Techstack’s Strengths\nin Custom Software\nDevelopment', '01'],
 		['Custom Software Development for\nYour Product', '02'],
 		['Custom Development\nServices We Provide', '03'],
 		['Technology stack', '04'],
-		// ['Our Featured\nCase Study', '05'], // Ucomment in scope of TSWEB-1027
-		// ['Industries We Develop\nSoftware For', '06'], // Ucomment in scope of TSWEB-1027
+		['Our Featured\nCase Study', '05'],
+		['Industries We Develop\nSoftware For', '06'],
 		['Why Choose\nTechstack', '07'],
 		['Custom Software\nDevelopment Experts', '08'],
-		// ['Our Tailored Collaboration and Pricing Models', '09'], // Ucomment in scope of TSWEB-1027
+		['Our Tailored Collaboration and Pricing Models', '09'],
 		['Custom software development process', '10'],
 		['Get in Touch', '11'],
 		['Related Articles', '12'],
