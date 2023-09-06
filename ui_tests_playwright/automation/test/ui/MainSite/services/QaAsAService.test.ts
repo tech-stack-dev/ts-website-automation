@@ -87,7 +87,7 @@ test("Check the sections of the containers from the 'QA as a Service' block @Reg
 	]);
 
 	const faq = driver.getByTestId(QaAsAService.Faq);
-	await expect(await faq.getByTestId(Container.SectionTitle)).toHaveText([
+	await expect(faq.getByTestId(Container.SectionTitle)).toHaveText([
 		'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
 		'Is QA as a service better\nthan a QA service?',
 		'We have an in-house QA\nteam. Why do we need your\nregression testing services?',
