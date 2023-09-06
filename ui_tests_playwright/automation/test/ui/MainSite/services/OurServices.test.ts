@@ -61,7 +61,7 @@ test("Check section titles and numbers in 'Services' container from the 'Our Ser
 	const allSectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom Software Development',
-		'Cloud & DevOps',
+		'Cloud Development',
 		'Big Data & Analytics',
 		'Internet of Things',
 		'Artificial Intelligence & Machine Learning',

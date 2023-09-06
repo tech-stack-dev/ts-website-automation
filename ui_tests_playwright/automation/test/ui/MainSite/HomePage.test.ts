@@ -38,7 +38,7 @@ test("Check the container title and number from the 'Home' page @Regression @Hom
 		['Company insights', '07'],
 		['Get in Touch', '08'],
 	];
-	
+
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
@@ -71,7 +71,7 @@ test("Check section titles in 'What we do' block from the 'Home' page @Regressio
 	const allBlockTitles = whatWeDo.getByTestId(Container.BlockTitle);
 	const testData = [
 		'Custom Software Development',
-		'Cloud & DevOps',
+		'Cloud\nDevelopment',
 		'Big Data & Analytics',
 		'AI & ML',
 		'Internet of Things',
@@ -151,7 +151,7 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 		await newPage.close();
 	}
 });
-
+// Unskip after Blog will be stable
 test.skip("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
 	const companyInsightsblock = driver.getByTestId(HomePage.CompanyInsights);
 
