@@ -113,16 +113,24 @@ test('Check section numbers and section titles in "IoT Engineering Solutions" co
 test('Check section titles in "Our IoT Engineering Services" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ourIoTEngineeringServicesContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices);
 	const containerBlocks = await ourIoTEngineeringServicesContainer.getByTestId(Container.ContainerSection).all();
-	const actualSectionTitles = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
-	const expectedSectionTitles = [
-		'Enterprise automation and transformation',
-		'Smart home and office ecosystem',
-		'Quick start with a\u00A0hardware MVP',
-		'IoT development consulting',
-		'Integration of IoT devices into a\u00A0software ecosystem'
-	];
+	
+	const sectionTitles = await containerBlocks[0].getByTestId(Container.SectionTitle).allInnerTexts();
+	const sectionIndexes = await containerBlocks[0].getByTestId(Container.SectionNumber).allInnerTexts();
+	const actualIndexesAndTitles: Map<string, string> = new Map();
 
-	expect(actualSectionTitles).toEqual(expectedSectionTitles);
+	for (let i = 0; i < sectionTitles.length; i++) {
+		actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+	}
+	
+	const expectedIndexesAndTitles: Map<string, string> = new Map([
+		['01', 'Enterprise automation and transformation'],
+		['02', 'Smart home and office ecosystem'],
+		['03', 'Quick start with a\u00A0hardware MVP'],
+		['04', 'IoT development consulting'],
+		['05', 'Integration of IoT devices into a\u00A0software ecosystem']
+	]);
+
+	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 });
 
 test('Check section titles in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
