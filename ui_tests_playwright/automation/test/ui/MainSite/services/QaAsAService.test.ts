@@ -34,9 +34,9 @@ test("Check the container title and number from the 'QA as a Service' block @Reg
 		driver.getByTestId(QaAsAService.CaseStudies),
 		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre),
 		driver.getByTestId(QaAsAService.OurApproachAndAchievements),
-		driver.getByTestId(QaAsAService.Faq),
-		driver.getByTestId(QaAsAService.RelatedArticles),
 		driver.getByTestId(QaAsAService.GetInTouch),
+		driver.getByTestId(QaAsAService.RelatedArticles),
+		driver.getByTestId(QaAsAService.Faq),
 	];
 
 	const expectedData = [
@@ -46,9 +46,9 @@ test("Check the container title and number from the 'QA as a Service' block @Reg
 		['Case studies: \nQA as a Service', '04'],
 		['Services that \nmeet you where \nyou are', '05'],
 		['Our Approach \nand Achievements', '06'],
-		['FAQ', '07'],
+		['Get in Touch', '07'],
 		['Related Articles', '08'],
-		['Get in Touch', '09'],
+		['FAQ', '09'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -87,7 +87,7 @@ test("Check the sections of the containers from the 'QA as a Service' block @Reg
 	]);
 
 	const faq = driver.getByTestId(QaAsAService.Faq);
-	await expect(await faq.getByTestId(Container.SectionTitle)).toHaveText([
+	await expect(faq.getByTestId(Container.SectionTitle)).toHaveText([
 		'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
 		'Is QA as a service better\nthan a QA service?',
 		'We have an in-house QA\nteam. Why do we need your\nregression testing services?',

@@ -34,9 +34,9 @@ test("Check the container title and number from the 'Big Data & Analytics' block
 		driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices),
 		driver.getByTestId(BigDataAndAnalytics.OurExperts),
 		driver.getByTestId(BigDataAndAnalytics.RelatedServices),
-		driver.getByTestId(BigDataAndAnalytics.Faq),
-		driver.getByTestId(BigDataAndAnalytics.RelatedArticles),
 		driver.getByTestId(BigDataAndAnalytics.GetInTouch),
+		driver.getByTestId(BigDataAndAnalytics.RelatedArticles),
+		driver.getByTestId(BigDataAndAnalytics.Faq),
 	];
 
 	const expectedData = [
@@ -48,9 +48,9 @@ test("Check the container title and number from the 'Big Data & Analytics' block
 		['Why Choose Techstack’s Big Data Software Development Services?', '06'],
 		['Our Experts', '07'],
 		['Related Services', '08'],
-		['FAQ', '09'],
+		['Get in Touch', '09'],
 		['Related Articles', '10'],
-		['Get in Touch', '11'],
+		['FAQ', '11'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -154,6 +154,7 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
+// Unskip after Blog will be stable
 test.skip("Check redirects by buttons in 'Our Experts' container from the 'Big Data & Analytics' block @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const buttonUrlMap = new Map([

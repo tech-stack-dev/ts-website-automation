@@ -29,9 +29,9 @@ test("Check the container title and number from the 'AI&ML Service' block @Regre
 		driver.getByTestId(AiMlService.TechnologyStack),
 		driver.getByTestId(AiMlService.OurExperts),
 		driver.getByTestId(AiMlService.RelatedServices),
-		driver.getByTestId(AiMlService.Faq),
-		driver.getByTestId(AiMlService.RelatedArticles),
 		driver.getByTestId(AiMlService.GetInTouch),
+		driver.getByTestId(AiMlService.RelatedArticles),
+		driver.getByTestId(AiMlService.Faq),
 	];
 
 	const expectedData = [
@@ -43,9 +43,9 @@ test("Check the container title and number from the 'AI&ML Service' block @Regre
 		['Technology \nstack', '06'],
 		['Our Experts', '07'],
 		['Related Services', '08'],
-		['FAQ', '09'],
+		['Get in Touch', '09'],
 		['Related Articles', '10'],
-		['Get in Touch', '11'],
+		['FAQ', '11'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

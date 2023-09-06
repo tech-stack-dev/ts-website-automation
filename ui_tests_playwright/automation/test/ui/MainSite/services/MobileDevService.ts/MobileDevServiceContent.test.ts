@@ -42,9 +42,9 @@ test("Check the container titles and numbers from the 'Mobile App Development Se
 		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct),
 		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment),
 		driver.getByTestId(MobileDevService.RelatedServices),
-		driver.getByTestId(MobileDevService.Faq),
-		driver.getByTestId(MobileDevService.RelatedArticles),
 		driver.getByTestId(MobileDevService.GetInTouch),
+		driver.getByTestId(MobileDevService.RelatedArticles),
+		driver.getByTestId(MobileDevService.Faq),
 	];
 
 	const expectedData = [
@@ -58,9 +58,9 @@ test("Check the container titles and numbers from the 'Mobile App Development Se
 		['We Never Stop Improving Your Product', '08'],
 		['The Cost of Mobile\nApp Development', '09'],
 		['Related Services', '10'],
-		['FAQ', '11'],
+		['Get in Touch', '11'],
 		['Related Articles', '12'],
-		['Get in Touch', '13'],
+		['FAQ', '13'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

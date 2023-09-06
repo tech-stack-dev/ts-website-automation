@@ -36,6 +36,7 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 	await baseDriverSteps.checkCarouselArrowsClick(consultingProcessContainer);
 });
 
+// Unskip after Blog will be stable
 test.skip("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([

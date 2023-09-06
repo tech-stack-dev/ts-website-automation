@@ -29,8 +29,8 @@ test("Check the container title and number from the 'Transportation and Logistic
 		driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent),
 		driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
 		driver.getByTestId(TransportationAndLogistics.DevelopmentWorkflowThatWeFollow),
-		driver.getByTestId(TransportationAndLogistics.Faq),
 		driver.getByTestId(TransportationAndLogistics.GetInTouch),
+		driver.getByTestId(TransportationAndLogistics.Faq),
 	];
 
 	const expectedData = [
@@ -42,8 +42,8 @@ test("Check the container title and number from the 'Transportation and Logistic
 		['What Makes Us\nDifferent', '06'],
 		['Transportation and Logistics\nSoftware Development at\nTechstack', '07'],
 		['Development\nWorkflow That We\nFollow', '08'],
-		['FAQ', '09'],
-		['Get in Touch', '10'],
+		['Get in Touch', '09'],
+		['FAQ', '10'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
