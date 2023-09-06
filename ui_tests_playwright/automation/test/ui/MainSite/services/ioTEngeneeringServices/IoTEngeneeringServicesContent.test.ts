@@ -93,8 +93,8 @@ test('Check the container titles and indexes @Regression @InternetOfThings @TSWE
 
 test('Check section numbers and section titles in "IoT Engineering Solutions" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringSolutionsContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions);
-	const allSectionTitles = await ioTEngineeringSolutionsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = [
+	const actualTitles = await ioTEngineeringSolutionsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const expectedTitles = [
 		'Lack of necessary skill sets',
 		'Insufficient testing and updating',
 		'Increased cost and time to market',
@@ -104,7 +104,7 @@ test('Check section numbers and section titles in "IoT Engineering Solutions" co
 		'Data collection and processing'
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	expect(actualTitles).toEqual(expectedTitles);
 	expect(await ioTEngineeringSolutionsContainer.getByTestId(Container.SectionNumber).allInnerTexts()
 	).toEqual(['01', '02', '03', '04', '05', '06', '07']);
 });
@@ -146,18 +146,28 @@ test('Check section titles in "IoT Technology Stack by Layers" container. @Regre
 	expect(actualSectionTitles).toEqual(expectedSectionTitles);
 });
 
-test('Check section titles and sencor image in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles and sensor image in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
-	const actualSectionTitles = await ioTEngineeringCaseStudiesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const expectedSectionTitles = [
-		'Real-time monitoring of production processes',
-		'Valuable insights on process adjustments',
-		'Cost savings from addressing over/undercooling',
-		'Forecasting capabilities',
-		'Process improvements'
-	];
+	const sectionIndexes = await ioTEngineeringCaseStudiesContainer.getByTestId(Container.SectionNumber).allInnerTexts();
+	const sectionTitles = await ioTEngineeringCaseStudiesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 
-	expect(actualSectionTitles).toEqual(expectedSectionTitles);
+	const actualIndexesAndTitles: Map<string, string> = new Map();
+
+	for (let i = 0; i < sectionTitles.length; i++) {
+		actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+	}
+	
+	const expectedIndexesAndTitles: Map<string, string> = new Map([
+		['01', 'Real-time monitoring of production processes'],
+		['02', 'Valuable insights on process adjustments'],
+		['03', 'Cost savings from addressing over/undercooling'],
+		['04', 'Forecasting capabilities'],
+		['05', 'Process improvements']
+	]);
+
+	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+	expect(await ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle).textContent()
+	).toBe('IoT humidity\nsensors scheme');
 	expect(driver.getByTestId(IoTEngineeringServices.SensorsScheme).isVisible());
 });
 
@@ -179,22 +189,38 @@ test('Check section titles in "Industry-specific IoT Solutions" container. @Regr
 test('Check section and block titles in "IoT Engineering Process" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	const carouselSections = await ioTEngineeringProcessContainer.getByTestId(Container.CarouselSection).all();
-	const actualSectionTitles: string[] = [];
+	const actualCarouselIndexesAndTitles: Map<string, string> = new Map();
 
 	for (const carouselSection of carouselSections) {
-  		const titleText = await carouselSection.getByTestId(Container.SectionTitle).first().textContent();
-  		actualSectionTitles.push(titleText!);
+		const index = await carouselSection.getByTestId(Container.SectionNumber).textContent();
+		const title = await carouselSection.getByTestId(Container.SectionTitle).first().textContent();
+		actualCarouselIndexesAndTitles.set(index!, title!)
 	}
 
-	const expectedSectionTitles = [
-		'Investigation',
-		'Execution',
-		'Performance',
-		'Analysis'
+	const expectedCarouselIndexesAndTitles: Map<string, string> = new Map([
+		['01', 'Investigation'],
+		['02', 'Execution'],
+		['03', 'Performance'],
+		['04', 'Analysis']
+	]);
+
+	expect(actualCarouselIndexesAndTitles).toEqual(expectedCarouselIndexesAndTitles);
+	expect(await ioTEngineeringProcessContainer.getByTestId(Container.BlockTitle).textContent()).toEqual('New IoT Device\nEngineering');
+
+	const containerBlock = ioTEngineeringProcessContainer.getByTestId(Container.ContainerBlock);
+	const actualNewIoTEngineeringDeviceTitles = await containerBlock.getByTestId(Container.SectionTitle).allTextContents();
+	const expectedNewIoTEngineeringDeviceTitles = [
+		'Defining core system components;',
+		'Hardware development;',
+		'Edge application development;',
+		'Creating Cloud Infrastructure;',
+		'UI presentation development;',
+		'Releasing the product in the\u00A0development environment;',
+		'Testing;',
+		'Releasing the product in the\u00A0production environment.',
 	];
 
-	expect(actualSectionTitles).toEqual(expectedSectionTitles);
-	expect(await ioTEngineeringProcessContainer.getByTestId(Container.BlockTitle).textContent()).toEqual('New IoT Device\nEngineering');
+	expect(actualNewIoTEngineeringDeviceTitles).toEqual(expectedNewIoTEngineeringDeviceTitles);
 });
 
 test('Check section titles and award images in "Our Approach to IoT Engineering" container. @Regression @InternetOfThings @TSWEB-695', async () => {
