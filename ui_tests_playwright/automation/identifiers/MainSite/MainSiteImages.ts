@@ -3,4 +3,5 @@ export default class MainSiteImages {
 	static CompleteMap = 'Map-CompleteMap';
 	static CaseStudy = 'Img-CaseStudy';
 	static SolarEnergy = 'Img-SolarEnergy';
+	static SensorsScheme = 'Img-SensorsScheme';
 }

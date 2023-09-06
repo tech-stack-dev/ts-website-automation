@@ -1,4 +1,4 @@
-import {Locator, expect, test} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
@@ -8,6 +8,7 @@ import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import ContactUs from '../../../../../identifiers/MainSite/pages/contactUs/ContactUs';
+import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 
 test.beforeAll(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
@@ -168,7 +169,7 @@ test('Check section titles and sensor image in "IoT Engineering Case Studies" co
 	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 	expect(await ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle).textContent()
 	).toBe('IoT humidity\nsensors scheme');
-	expect(driver.getByTestId(IoTEngineeringServices.SensorsScheme).isVisible());
+	expect(driver.getByTestId(MainSiteImages.SensorsScheme).isVisible());
 });
 
 test('Check section titles in "Industry-specific IoT Solutions" container. @Regression @InternetOfThings @TSWEB-695', async () => {
