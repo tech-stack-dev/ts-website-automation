@@ -39,6 +39,7 @@
 		"contentful-management": "^10.30.0",
 		"dotenv": "^16.3.1",
 		"lodash": "^4.17.21",
+		"playwright": "^1.37.1",
 		"playwright-core": "^1.27.1",
 		"randomstring": "^1.2.3",
 		"uuid": "^9.0.0"

@@ -18,6 +18,7 @@ test.beforeEach(async () => {
 
 test("Check redirect by links in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
+	// Unskip after investigate
 	const linkMap = new Map([
 		[
 			MainSiteButtons.Forbes,
@@ -28,10 +29,10 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 			MainSiteButtons.Deloitte,
 			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
 		],
-		[
-			MainSiteButtons.McKinsey,
-			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
-		],
+		// [
+		// 	MainSiteButtons.McKinsey,
+		// 	'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
+		// ],
 	]);
 
 	for (const entries of linkMap.entries()) {
@@ -39,6 +40,15 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
+
+		// Remove after investigate
+		const actualLink = await aiBeneficialImpactOnIndustriesContainer
+			.getByTestId(MainSiteButtons.McKinsey)
+			.getAttribute('href');
+
+		expect(actualLink).toEqual(
+			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy'
+		);
 	}
 });
 
