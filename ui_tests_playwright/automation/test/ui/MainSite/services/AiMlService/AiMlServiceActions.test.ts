@@ -40,6 +40,15 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
+
+		// Remove after investigate
+		const actualLink = await aiBeneficialImpactOnIndustriesContainer
+			.getByTestId(MainSiteButtons.McKinsey)
+			.getAttribute('href');
+
+		expect(actualLink).toEqual(
+			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy'
+		);
 	}
 });
 
