@@ -28,7 +28,7 @@ test('Check "Request a Quote" buttons presence. @Regression @InternetOfThings @T
 	];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+		await expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
 	}
 });
 
