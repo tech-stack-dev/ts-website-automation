@@ -25,7 +25,7 @@ test("Check the header from the 'UX/UI Design' block @Regression @UxUiDesign @TS
 	await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');
 });
 
-test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
+test("Check 'Request a Quote' buttons from the 'UX/UI Design' page @Regression @UxUiDesign @TSWEB-670", async () => {
 	const containers = [UxUiDesign.Info];
 
 	for (const container of containers) {
@@ -67,7 +67,7 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check section numbers and section titles in 'Get Custom UX and UI\nDesign Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
+test("Check section numbers and section titles in 'Get Custom UX and UI Design Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const getCustomUxAndUiDesignServicesContainer = driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices);
 
 	await expect(getCustomUxAndUiDesignServicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -96,7 +96,7 @@ test("Check section titles in 'We Build UX/UI for Mobile & Web' container from t
 	await expect(allSectionTitles).toHaveText(testDataSectionTitles);
 });
 
-test("Check section titles 'Our UI/UX Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
+test("Check section titles in 'Our UI/UX Services' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const ourUiUxServicesContainer = driver.getByTestId(UxUiDesign.OurUiUxServices);
 	const allSectionTitles = ourUiUxServicesContainer.getByTestId(Container.SectionTitle);
 	const testDataSectionTitles = [

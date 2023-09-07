@@ -46,7 +46,7 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 		['Why Choose\nTechstack', '07'],
 		['Custom Software\nDevelopment Experts', '08'],
 		['Our Tailored Collaboration and Pricing Models', '09'],
-		['Custom software development process', '10'],
+		['Custom Software Development Process', '10'],
 		['Get in Touch', '11'],
 		['Related Articles', '12'],
 		['FAQ', '13'],
@@ -188,7 +188,7 @@ test("Check section titles, member names and roles in 'Custom Software Developme
 	}
 });
 
-test("Check carousel section titles and numbers in 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check carousel section titles and numbers in 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const customSoftDevProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
 	await expect(customSoftDevProcessContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -203,7 +203,7 @@ test("Check carousel section titles and numbers in 'Custom software development 
 	await expect(sectionTitles).toHaveText(expectedText);
 });
 
-test("Check section titles in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles in 'FAQ' container from the 'Custom Software Development Process' block @Regression @CustomDev @TSWEB-672", async () => {
 	const faqContainer = driver.getByTestId(CustomDev.Faq);
 
 	const sections = faqContainer.getByTestId(Container.ContainerSection);

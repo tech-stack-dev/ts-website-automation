@@ -50,7 +50,7 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 	]);
 
 	for (const entries of linkMap.entries()) {
-		await mostRecentIndustryFactsContainer.getByTestId(entries[0]).first().click();
+		await mostRecentIndustryFactsContainer.getByTestId(entries[0]).click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
