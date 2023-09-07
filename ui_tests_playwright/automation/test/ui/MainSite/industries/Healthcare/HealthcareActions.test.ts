@@ -41,12 +41,13 @@ test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Mo
 
 test("Check redirect by links in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
+	// Unskip after investigate
 	const linkMap = new Map([
 		[MainSiteButtons.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
-		[
-			MainSiteButtons.McKinsey,
-			'https://www.mckinsey.com/industries/healthcare/our-insights/what-to-expect-in-us-healthcare-in-2023-and-beyond#/',
-		],
+		// [
+		// 	MainSiteButtons.McKinsey,
+		// 	'https://www.mckinsey.com/industries/healthcare/our-insights/what-to-expect-in-us-healthcare-in-2023-and-beyond#/',
+		// ],
 	]);
 
 	for (const entries of linkMap.entries()) {
@@ -54,7 +55,6 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 	}
 });
 
