@@ -37,7 +37,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 		// Check selected Layer
 		expect(
 			await containerBlocks[i].getAttribute('data-disabled'),
-			`Invalid value of 'data-disabled' attribute for selected Layer ${containerBlocks[i]}`
+			`Invalid value of 'data-disabled' attribute for selected Layer ${i}.`
 		).toEqual('false');
 
 		// While there is a selected layer, another layers are expected to be disabled. Checked on a random layer
@@ -45,7 +45,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 
 		expect(
 			await containerBlocks[randomLayerIndex].getAttribute('data-disabled'),
-			`Invalid value of 'data-disabled' attribute for not selected Layer ${containerBlocks[i + 1]}`
+			`Invalid value of 'data-disabled' attribute for not selected Layer ${i + 1}.`
 		).toEqual('true');
 
 		if (layerButtonIndex <= containerBlocks.length) {
@@ -54,7 +54,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 			await driver.Page.locator(format(IoTEngineeringServices.LayerButton, 1)).click();
 			expect(
 				await containerBlocks[0].getAttribute('data-disabled'),
-				`Invalid value of 'data-disabled' attribute for selected Layer ${containerBlocks[0]}`
+				`Invalid value of 'data-disabled' attribute for selected Layer ${1}.`
 			).toEqual('false');
 		}
 	}
