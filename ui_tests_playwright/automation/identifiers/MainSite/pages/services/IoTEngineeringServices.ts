@@ -9,4 +9,5 @@ export default class IoTEngineeringServices extends GeneralContainersMainSite {
 	static IoTEngineeringProcess = 'Container-IoTEngineeringProcess';
 	static OurApproachToIoTEngineering = 'Container-OurApproachToIoTEngineering';
 	static OurIoTEngineeringExperts = 'Container-OurIoTEngineeringExperts';
+	static LayerButton = `//label[@data-id="Button-%s_Layer"]/div`;
 }
