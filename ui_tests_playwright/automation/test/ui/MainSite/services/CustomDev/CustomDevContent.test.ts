@@ -40,7 +40,7 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 		['Techstack’s Strengths\nin Custom Software\nDevelopment', '01'],
 		['Custom Software Development for\nYour Product', '02'],
 		['Custom Development\nServices We Provide', '03'],
-		['Technology stack', '04'],
+		['Technology Stack', '04'],
 		['Our Featured\nCase Study', '05'],
 		['Industries We Develop\nSoftware For', '06'],
 		['Why Choose\nTechstack', '07'],
