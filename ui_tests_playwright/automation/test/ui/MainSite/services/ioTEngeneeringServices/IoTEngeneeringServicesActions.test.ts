@@ -95,14 +95,14 @@ test('Check social link redirects in "Our Internet of Things Engineering Experts
 
 test("Check redirects by arrows in 'Related Services' container. @Regression @IoTEngineeringServices @TSWEB-695", async () => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
-	const serviceArrors = await relatedServicesContainer.getByTestId(Container.Arrow).all();
+	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
 	const arrowUrlMap = new Map([
-		[serviceArrors[0], UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[serviceArrors[1], UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[serviceArrors[2], UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[serviceArrors[3], UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
-		[serviceArrors[4], UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[serviceArrors[5], UrlProvider.urlBuilder(UrlPath.BigData)],
+		[serviceArrows[0], UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[serviceArrows[1], UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[serviceArrows[2], UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[serviceArrows[3], UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[serviceArrows[4], UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[serviceArrows[5], UrlProvider.urlBuilder(UrlPath.BigData)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
