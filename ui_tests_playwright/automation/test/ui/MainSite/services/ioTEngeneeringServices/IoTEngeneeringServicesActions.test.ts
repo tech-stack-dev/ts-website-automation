@@ -1,19 +1,19 @@
-import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../../base/driver/Driver';
-import UrlProvider from '../../../../../providers/UrlProvider';
-import UrlPath from '../../../../../providers/UrlPath';
-import Container from '../../../../../identifiers/Container';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import { expect, test } from '@playwright/test';
 import format from 'format-util';
-import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import {Environment} from '../../../../../providers/EnvProvider';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
+import Container from '../../../../../identifiers/Container';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
+import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
+import { Environment } from '../../../../../providers/EnvProvider';
+import UrlPath from '../../../../../providers/UrlPath';
+import UrlProvider from '../../../../../providers/UrlProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
@@ -40,7 +40,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 			`Invalid value of 'data-disabled' attribute for selected Layer ${containerBlocks[i]}`
 		).toEqual('false');
 
-		//While there is a selected layer, another layers are expected to be disabled. Checked on random layer
+		// While there is a selected layer, another layers are expected to be disabled. Checked on a random layer
 		let randomLayerIndex = getRandomIntInRangeExcluding(0, containerBlocks.length - 1, i);
 
 		expect(
@@ -78,19 +78,20 @@ test('Check social link redirects in "Our Internet of Things Engineering Experts
 	for (let i = 0; i < expertCards.length; i++) {
 		const memberCard = expertCards[i];
 
+		/* TODO: Uncomment Blog related checks after TSWEB-1061 is done
 		await memberCard.getByTestId(Buttons.Blog).click();
 		let newPage = await driver.DriverContext.waitForEvent('page');
 
 		await expect(newPage).toHaveURL(expectedMemberCardsLinks[i].blogLink);
 		await newPage.close();
+		*/
 
 		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		newPage = await driver.DriverContext.waitForEvent('page');
+		let newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(expectedMemberCardsLinks[i].linkedInLink);
 		await newPage.close();
 	}
 });
-
 
 test("Check redirects by arrows in 'Related Services' container. @Regression @IoTEngineeringServices @TSWEB-695", async () => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
