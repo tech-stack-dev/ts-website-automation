@@ -60,7 +60,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 	}
 });
 
-test("Check carousel buttons in 'IoT Engineering Prodcess' container. @Regression @IoTEngineeringServices @TSWEB-695", async () => {
+test('Check carousel buttons in "IoT Engineering Prodcess" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	await baseDriverSteps.checkCarouselArrowsClick(ioTEngineeringProcessContainer, 3);
 });
@@ -93,7 +93,7 @@ test('Check social link redirects in "Our Internet of Things Engineering Experts
 	}
 });
 
-test("Check redirects by arrows in 'Related Services' container. @Regression @IoTEngineeringServices @TSWEB-695", async () => {
+test('Check redirects by arrows in "Related Services" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
 	const arrowUrlMap = new Map([
