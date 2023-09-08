@@ -56,12 +56,12 @@ test("Check the container title and number from the 'UX/UI Design' block @Regres
 		// ['Success Stories', '04'], // Uncomment in scope of TSWEB-1028
 		['Typical UX/UI Design Workflow', '05'],
 		['We Never Stop\nImproving Your Product', '06'],
-		// ['Our Approach', '08'], // fix numeration after fix on site and uncomment in scope of TSWEB-1028
-		// ['Design Thinking\nProcess', '09'], // fix numeration after fix on site and uncomment in scope of TSWEB-1028
-		['Related Services', '10'],
-		['Get in Touch', '11'],
-		['Related Articles', '12'],
-		['FAQ', '13'],
+		// ['Our Approach', '07'], // Uncomment in scope of TSWEB-1028
+		// ['Design Thinking\nProcess', '08'], // Uncomment in scope of TSWEB-1028
+		['Related Services', '09'],
+		['Get in Touch', '10'],
+		['Related Articles', '11'],
+		['FAQ', '12'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

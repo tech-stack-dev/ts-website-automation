@@ -60,7 +60,7 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	await baseDriverSteps.checkRedirectToPagesInSameTab(sectionUrlMap, pageUrl);
 });
 
-test("Check carousel arrows from the 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check carousel arrows from the 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
