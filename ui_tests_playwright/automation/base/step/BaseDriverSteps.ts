@@ -112,6 +112,33 @@ class BaseDriverSteps {
 			await baseDriverSteps.goToUrl(url);
 		}
 	}
+
+	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
+		const sections = container.getByTestId(Container.ContainerSection);
+		await expect(sections).toHaveCount(numberOfSections);
+
+		for (const section of await sections.all()) {
+			const shortAnswer = section.getByTestId(Container.SectionShortAnswer);
+			const fullAnswer = section.getByTestId(Container.SectionFullAnswer);
+
+			const isCollapsed = await (async () => {
+				await expect(section).toHaveClass(/collapsed/);
+				await expect(shortAnswer).toBeVisible();
+				await expect(fullAnswer).toBeHidden();
+				return true;
+			})();
+
+			expect(isCollapsed).toBeTruthy();
+
+			await section.click(); // Opening section
+			await expect(section).not.toHaveClass(/collapsed/);
+			await expect(shortAnswer).toBeVisible();
+			await expect(fullAnswer).toBeVisible();
+
+			await section.click(); // Closing section
+			expect(isCollapsed).toBeTruthy();
+		}
+	}
 }
 
 const baseDriverSteps = new BaseDriverSteps();
