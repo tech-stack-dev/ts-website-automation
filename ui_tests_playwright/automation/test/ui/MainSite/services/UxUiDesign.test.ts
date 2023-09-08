@@ -271,6 +271,12 @@ test("Check section titles in 'FAQ' container from the 'UX/UI Design' block @Reg
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
+test("Check section collapsing in 'FAQ' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
+	const faqContainer = driver.getByTestId(UxUiDesign.Faq);
+	const epectedNumberOfSections = 8;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

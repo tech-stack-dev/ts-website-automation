@@ -86,6 +86,12 @@ test("Check carousel sections, arrows and 'Contact Us' button in 'Transportation
 	).toBeVisible();
 });
 
+test("Check section collapsing in 'FAQ' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+	const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);
+	const epectedNumberOfSections = 4;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

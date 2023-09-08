@@ -156,6 +156,12 @@ test("Check redirect by arrow in 'Our Approach and Achievements' block  from the
 	expect(newPage.url()).toContain(Links.Nuget);
 });
 
+test("Check section collapsing in 'FAQ' container from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const faqContainer = driver.getByTestId(QaAsAService.Faq);
+	const epectedNumberOfSections = 6;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

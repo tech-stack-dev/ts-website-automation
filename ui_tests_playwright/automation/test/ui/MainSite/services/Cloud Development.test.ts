@@ -246,6 +246,12 @@ test("Check section titles in 'FAQ' container from the 'Cloud Development' block
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
+test("Check section collapsing in 'FAQ' container from the 'Cloud Development' block @Regression CloudDevelopment @TSWEB-692", async () => {
+	const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
+	const epectedNumberOfSections = 7;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

@@ -108,6 +108,12 @@ test("Check carousel sections, arrows and CTA button in 'How We Operate at Techs
 	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toBeVisible();
 });
 
+test("Check section collapsing in 'FAQ' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
+	const epectedNumberOfSections = 5;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

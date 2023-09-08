@@ -130,12 +130,12 @@ class BaseDriverSteps {
 
 			expect(isCollapsed).toBeTruthy();
 
-			await section.click(); // Opening section
+			await section.click(); // Open section
 			await expect(section).not.toHaveClass(/collapsed/);
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeVisible();
 
-			await section.click(); // Closing section
+			await section.click(); // Collapse section
 			expect(isCollapsed).toBeTruthy();
 		}
 	}

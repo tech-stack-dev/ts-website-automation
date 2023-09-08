@@ -121,8 +121,8 @@ test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' contai
 
 test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const faqContainer = driver.getByTestId(CustomDev.Faq);
-
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, 5);
+	const epectedNumberOfSections = 5;
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
 });
 
 test.afterEach(async () => {
