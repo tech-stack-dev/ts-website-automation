@@ -1,12 +1,12 @@
-export default class UxUiDesign {
-	static Info = 'Container-Info';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class UxUiDesign extends GeneralContainersMainSite {
 	static GetCustomUxAndUiDesignServices = 'Container-GetCustomUxAndUiDesignServices';
 	static WeBuildUxUiForMobileWeb = 'Container-WeBuildUxUiForMobileWeb';
-	static InDesignWeTrust = 'Container-InDesignWeTrust';
-	static CaseStudies = 'Container-CaseStudies';
+	static OurUiUxServices = 'Container-OurExpertise'; // Fix data-id
+	static SuccessStories = 'Container-SuccessStories'; // Add data-id
 	static TypicalUxUiDesignWorkflow = 'Container-TypicalUxUiDesignWorkflow';
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
-	static RelatedServices = 'Container-RelatedServices';
-	static Faq = 'Container-Faq';
-	static RelatedArticles = 'Container-RelatedArticles';
+	static OurApproach = 'Container-OurApproach'; // Add data-id
+	static DesignThinkingProcess = 'Container-DesignThinkingProcess'; // Add data-id
 }

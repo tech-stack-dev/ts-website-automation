@@ -27,31 +27,39 @@ test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regressi
 });
 
 test("Check the container title and number from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
-	await expect(
-		driver
-			.getByTestId(ConsultingService.InformationTechnologyConsultingServices)
-			.getByTestId(Container.ContainerTitle)
-	).toHaveText('Information technology consulting services');
-	await expect(
-		driver
-			.getByTestId(ConsultingService.InformationTechnologyConsultingServices)
-			.getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(ConsultingService.InformationTechnologyConsultingServices),
+		driver.getByTestId(ConsultingService.ConsultingBenefits),
+		driver.getByTestId(ConsultingService.OurITConsultingServices),
+		driver.getByTestId(ConsultingService.ConsultingProcess),
+		driver.getByTestId(ConsultingService.ConsultingExperts),
+		driver.getByTestId(ConsultingService.CaseStudies),
+		driver.getByTestId(ConsultingService.OurApproach),
+		driver.getByTestId(ConsultingService.WeMakeAnImpact),
+		driver.getByTestId(ConsultingService.RelatedServices),
+		driver.getByTestId(ConsultingService.GetInTouch),
+		driver.getByTestId(ConsultingService.RelatedArticles),
+		driver.getByTestId(ConsultingService.Faq),
+	];
 
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingBenefits).getByTestId(Container.ContainerTitle)
-	).toHaveText('Consulting benefits');
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingBenefits).getByTestId(Container.ContainerNumber)
-	).toHaveText('02');
+	const expectedData = [
+		['Information technology consulting services', '01'],
+		['Consulting benefits', '02'],
+		['Our IT consulting services', '03'],
+		['Consulting process', '04'],
+		['Consulting experts', '05'],
+		['Case studies', '06'],
+		['Our approach', '07'],
+		['We make an impact', '08'],
+		['Related \nServices', '09'],
+		['Get in Touch', '10'],
+		['Related Articles', '11'],
+		['FAQ', '12'],
+	];
 
-	await expect(
-		driver.getByTestId(ConsultingService.OurITConsultingServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our IT consulting services');
-	await expect(
-		driver.getByTestId(ConsultingService.OurITConsultingServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 
+	// Checks for container titles from 'Our IT consulting services' block
 	await expect(
 		driver.getByTestId(ConsultingService.DevelopmentProcessAudit).getByTestId(Container.ContainerTitle)
 	).toHaveText('Development process audit');
@@ -59,58 +67,6 @@ test("Check the container title and number from the 'Consulting Service' block @
 	await expect(driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(Container.ContainerTitle)).toHaveText(
 		'Software audit'
 	);
-
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(Container.ContainerTitle)
-	).toHaveText('Consulting process');
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Consulting experts');
-	await expect(
-		driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(driver.getByTestId(ConsultingService.CaseStudies).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Case studies'
-	);
-	await expect(driver.getByTestId(ConsultingService.CaseStudies).getByTestId(Container.ContainerNumber)).toHaveText(
-		'06'
-	);
-
-	await expect(driver.getByTestId(ConsultingService.OurApproach).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our approach'
-	);
-	await expect(driver.getByTestId(ConsultingService.OurApproach).getByTestId(Container.ContainerNumber)).toHaveText(
-		'07'
-	);
-
-	await expect(driver.getByTestId(ConsultingService.WeMakeAnImpact).getByTestId(Container.ContainerTitle)).toHaveText(
-		'We make an impact'
-	);
-	await expect(
-		driver.getByTestId(ConsultingService.WeMakeAnImpact).getByTestId(Container.ContainerNumber)
-	).toHaveText('08');
-
-	await expect(
-		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related \nServices');
-	await expect(
-		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('09');
-
-	await expect(driver.getByTestId(ConsultingService.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(ConsultingService.Faq).getByTestId(Container.ContainerNumber)).toHaveText('10');
-
-	await expect(
-		driver.getByTestId(ConsultingService.RelatedArticles).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related Articles');
-	await expect(
-		driver.getByTestId(ConsultingService.RelatedArticles).getByTestId(Container.ContainerNumber)
-	).toHaveText('11');
 });
 
 test("Check section numbers and section titles in 'Information technology consulting services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {

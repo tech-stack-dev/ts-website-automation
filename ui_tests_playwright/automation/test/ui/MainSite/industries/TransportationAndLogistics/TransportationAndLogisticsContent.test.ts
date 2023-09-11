@@ -20,97 +20,46 @@ test("Check the header from the 'Transportation and Logistics' block @Regression
 });
 
 test("Check the container title and number from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.TechstackInNumbers).getByTestId(Container.ContainerTitle)
-	).toHaveText('Techstack in Numbers');
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.TechstackInNumbers).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
+		driver.getByTestId(TransportationAndLogistics.WhoWeServe),
+		driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
+		driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack),
+		driver.getByTestId(TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions),
+		driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent),
+		driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
+		driver.getByTestId(TransportationAndLogistics.DevelopmentWorkflowThatWeFollow),
+		driver.getByTestId(TransportationAndLogistics.GetInTouch),
+		driver.getByTestId(TransportationAndLogistics.Faq),
+	];
 
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(Container.ContainerTitle)
-	).toHaveText('Who We Serve');
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(Container.ContainerNumber)
-	).toHaveText('02');
+	const expectedData = [
+		['Techstack in Numbers', '01'],
+		['Who We Serve', '02'],
+		['Transportation and Logistics\nSoftware Development\nServices at Techstack', '03'],
+		['Case Study by Techstack', '04'],
+		['Our Expertise in Logistics\nSoftware Development\nSolutions', '05'],
+		['What Makes Us\nDifferent', '06'],
+		['Transportation and Logistics\nSoftware Development at\nTechstack', '07'],
+		['Development\nWorkflow That We\nFollow', '08'],
+		['Get in Touch', '09'],
+		['FAQ', '10'],
+	];
 
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ)
-			.getByTestId(Container.ContainerTitle)
-	).toHaveText('Transportation and Logistics\nSoftware Development\nServices at Techstack');
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ)
-			.getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
-
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('Case Study by Techstack');
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions)
-			.getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Expertise in Logistics\nSoftware Development\nSolutions');
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions)
-			.getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent).getByTestId(Container.ContainerTitle)
-	).toHaveText('What Makes Us\nDifferent');
-	await expect(
-		driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
-
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
-			.getByTestId(Container.ContainerTitle)
-	).toHaveText('Transportation and Logistics\nSoftware Development at\nTechstack');
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
-			.getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
-
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.DevelopmentWorkflowThatWeFollow)
-			.getByTestId(Container.ContainerTitle)
-	).toHaveText('Development\nWorkflow That We\nFollow');
-	await expect(
-		driver
-			.getByTestId(TransportationAndLogistics.DevelopmentWorkflowThatWeFollow)
-			.getByTestId(Container.ContainerNumber)
-	).toHaveText('08');
-
-	await expect(driver.getByTestId(TransportationAndLogistics.Faq).getByTestId(Container.ContainerTitle)).toHaveText(
-		'FAQ'
-	);
-	await expect(driver.getByTestId(TransportationAndLogistics.Faq).getByTestId(Container.ContainerNumber)).toHaveText(
-		'09'
-	);
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check block titles in 'Techstack in Numbers' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(TransportationAndLogistics.TechstackInNumbers);
-	const allBlockTitles = await techstackInNumbersContainer.getByTestId(Container.BlockTitle).allInnerTexts();
+	const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
 	const testData = ['11\ntech specialists', '9\nyear-long', '91\n%', '67\n%'];
 
-	expect(allBlockTitles.sort()).toEqual(testData.sort());
+	await expect(allBlockTitles).toHaveText(testData);
 });
 
 test("Check section titles and numbers in 'Who We Serve' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const whoWeServeContainer = driver.getByTestId(TransportationAndLogistics.WhoWeServe);
-	expect(await whoWeServeContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+	await expect(whoWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
 		'02',
 		'03',
@@ -119,7 +68,7 @@ test("Check section titles and numbers in 'Who We Serve' container from the 'Tra
 		'06',
 	]);
 
-	const allSectionTitles = await whoWeServeContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Carriers and shippers',
 		'Delivery and courier\nservice companies',
@@ -129,7 +78,7 @@ test("Check section titles and numbers in 'Who We Serve' container from the 'Tra
 		'3PL and 4PL providers',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Transportation and Logistics Software Development Services at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
@@ -137,9 +86,7 @@ test("Check section titles in 'Transportation and Logistics Software Development
 		TransportationAndLogistics.TransportAndLogisticsSoftDevServ
 	);
 
-	const allSectionTitles = await transportAndLogisticsSoftDevServContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const allSectionTitles = transportAndLogisticsSoftDevServContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Shipping management',
 		'Fleet management',
@@ -150,16 +97,16 @@ test("Check section titles in 'Transportation and Logistics Software Development
 		'Data analytics',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles, image and CTA button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
 
-	const allSectionTitles = await caseStudyByTechstackContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = caseStudyByTechstackContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Web-based bidding process', 'Bid processing and validation', 'Determination of winning bids'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
 	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toBeVisible();
@@ -170,9 +117,7 @@ test("Check section titles in 'Our Expertise in Logistics Software Development S
 		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
 	);
 
-	const allSectionTitles = await ourExpertiseInLogisticsSoftDevSolutionsContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const allSectionTitles = ourExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Predictive analytics and big data',
 		'AI and ML',
@@ -183,16 +128,16 @@ test("Check section titles in 'Our Expertise in Logistics Software Development S
 		'Web Apps',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'What Makes Us Different' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const whatMakesUsDifferentContainer = driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent);
 
-	const allSectionTitles = await whatMakesUsDifferentContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = whatMakesUsDifferentContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Product-first approach', 'End-to-end development', 'Expert technology advice'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles and numbers in 'Development Workflow That We Follow' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
@@ -200,22 +145,24 @@ test("Check section titles and numbers in 'Development Workflow That We Follow' 
 		TransportationAndLogistics.DevelopmentWorkflowThatWeFollow
 	);
 
-	const allSectionTitles = await developmentWorkflowThatWeFollowContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const allSectionTitles = developmentWorkflowThatWeFollowContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
-	expect(await developmentWorkflowThatWeFollowContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual(
-		['01', '02', '03', '04', '05']
-	);
+	await expect(developmentWorkflowThatWeFollowContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+	]);
 });
 
 test("Check section titles in 'FAQ' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);
 
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'How can Techstack help transport and logistics companies?',
 		'What types of logistics businesses can Techstack help?',
@@ -223,7 +170,7 @@ test("Check section titles in 'FAQ' container from the 'Transportation and Logis
 		'How much does it cost to build custom logistics software with Techstack?',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test.afterEach(async () => {

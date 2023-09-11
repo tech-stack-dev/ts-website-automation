@@ -32,8 +32,9 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 		driver.getByTestId(Healthcare.OurWorkflow),
 		driver.getByTestId(Healthcare.CorePractices),
 		driver.getByTestId(Healthcare.ServingPartnersWorldwide),
-		driver.getByTestId(Healthcare.Faq),
+		driver.getByTestId(Healthcare.GetInTouch),
 		driver.getByTestId(Healthcare.RelatedArticles),
+		driver.getByTestId(Healthcare.Faq),
 	];
 
 	const expectedData = [
@@ -46,8 +47,9 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 		['Our Workflow', '07'],
 		['Core Practices', '08'],
 		['Serving Partners Worldwide', '09'],
-		['FAQ', '10'],
+		['Get in Touch', '10'],
 		['Related Articles', '11'],
+		['FAQ', '12'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -55,15 +57,15 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 
 test("Check block titles in 'What Makes Our Team Different' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const whatMakesOurTeamDifferentContainer = driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent);
-	const allBlockTitles = await whatMakesOurTeamDifferentContainer.getByTestId(Container.BlockTitle).allInnerTexts();
+	const allBlockTitles = whatMakesOurTeamDifferentContainer.getByTestId(Container.BlockTitle);
 	const testData = ['9\nyears', '16\ntech experts', '11\nprojects', '67\n%'];
 
-	expect(allBlockTitles.sort()).toEqual(testData.sort());
+	await expect(allBlockTitles).toHaveText(testData);
 });
 
 test("Check section titles and CTA button in 'Our Expertise' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
-	const allSectionTitles = await ourExpertiseContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = ourExpertiseContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Hospital Management\nSystem',
 		'Health Monitoring\nDevices And Wearables',
@@ -71,17 +73,17 @@ test("Check section titles and CTA button in 'Our Expertise' container from the 
 		'UI Kit',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toBeVisible();
 });
 
 test("Check section titles, image and CTA button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
-	const allSectionTitles = await beatsScreeningModuleContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = beatsScreeningModuleContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
 	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toBeVisible();
@@ -89,50 +91,44 @@ test("Check section titles, image and CTA button in 'Beats Screening Module by T
 
 test("Check section numbers and section titles in 'Patient-Centered Strategy' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const patientCenteredStrategyContainer = driver.getByTestId(Healthcare.PatientCenteredStrategy);
-	expect(await patientCenteredStrategyContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+	await expect(patientCenteredStrategyContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
 		'02',
 		'03',
 		'04',
 	]);
 
-	const allSectionTitles = await patientCenteredStrategyContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = patientCenteredStrategyContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Conducting user\nresearch',
 		'Design with empathy',
 		'Involving patients\nin the development\nprocess',
 		'Responsible use\nof patient data',
 	];
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check block titles in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
-	const allBlockTitles = await mostRecentIndustryFactsContainer.getByTestId(Container.BlockTitle).allInnerTexts();
+	const allBlockTitles = mostRecentIndustryFactsContainer.getByTestId(Container.BlockTitle);
 	const testData = ['1.57\nbillion users', '82\n%', '$\n641\nPPM'];
 
-	expect(allBlockTitles.sort()).toEqual(testData.sort());
+	await expect(allBlockTitles).toHaveText(testData);
 });
 
 test("Check section numbers and section titles in 'Our Workflow' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const ourWorkflowContainer = driver.getByTestId(Healthcare.OurWorkflow);
-	expect(await ourWorkflowContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-	]);
+	await expect(ourWorkflowContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
 
-	const allSectionTitles = await ourWorkflowContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = ourWorkflowContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
 
-	const allSectionTitles = await corePracticesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = corePracticesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom Software\nDevelopment',
 		'Cloud & DevOps',
@@ -142,25 +138,25 @@ test("Check section titles in 'Core Practices' container from the 'Healthcare' b
 		'Mobile App\nDevelopment',
 		'UI/UX Design',
 	];
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check image in 'Serving Partners Worldwide' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const servingPartnersWorldwideContainer = driver.getByTestId(Healthcare.ServingPartnersWorldwide);
 
-	expect(await servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
+	await expect(servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
 });
 
 test("Check section titles in 'FAQ' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const faqContainer = driver.getByTestId(Healthcare.Faq);
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'What safeguards are in place to protect the privacy and security of patient data in healthcare software?',
 		'How can scalability and the capacity to manage growing user loads be ensured in healthcare software?',
 		'How quickly can we begin development with Techstack on our healthcare software product?',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test.afterEach(async () => {

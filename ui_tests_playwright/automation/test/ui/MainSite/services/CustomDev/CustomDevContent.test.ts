@@ -2,11 +2,11 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {CustomDev} from '../../../../../identifiers/MainSite/pages/services/CustomDev';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import TechnologyStackData from '../../../../../preconditionsData/TechnologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
@@ -16,47 +16,46 @@ test("Check the header from the 'Custom Software Development' block @Regression 
 	const info = driver.getByTestId(CustomDev.Info);
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
-	await expect(info.getByTestId(Container.Title)).toHaveText(
-		'Custom Software and\nApplication Development\nServices'
-	);
+	await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software\nDevelopment Services');
 });
 
 test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const containers = [
+		driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev),
 		driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct),
 		driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide),
 		driver.getByTestId(CustomDev.TechnologyStack),
-		driver.getByTestId(CustomDev.CustomDevelopmentBenefits),
-		driver.getByTestId(CustomDev.CustomDevelopmentProcess),
-		driver.getByTestId(CustomDev.CustomDevelopmentExperts),
-		driver.getByTestId(CustomDev.CaseStudies),
-		driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment),
-		driver.getByTestId(CustomDev.Faq),
+		driver.getByTestId(CustomDev.OurFeaturedCaseStudy),
+		driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor),
+		driver.getByTestId(CustomDev.WhyChooseTechstack),
+		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts),
+		driver.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels),
+		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess),
+		driver.getByTestId(CustomDev.GetInTouch),
 		driver.getByTestId(CustomDev.RelatedArticles),
+		driver.getByTestId(CustomDev.Faq),
 	];
 
 	const expectedText: [string, string][] = [
-		['Custom software development for your product', '01'],
-		['Custom\ndevelopment\nservices we provide', '02'],
-		['Technology stack', '03'],
-		['Custom software development benefits', '04'],
-		['Custom software development process', '05'],
-		['Custom software\ndevelopment experts', '06'],
-		['Case studies', '07'],
-		['Our approach\nto software\ndevelopment', '08'],
-		['FAQ', '09'],
-		['Related Articles', '10'],
+		['Techstack’s Strengths\nin Custom Software\nDevelopment', '01'],
+		['Custom Software Development for\nYour Product', '02'],
+		['Custom Development\nServices We Provide', '03'],
+		['Technology Stack', '04'],
+		['Our Featured\nCase Study', '05'],
+		['Industries We Develop\nSoftware For', '06'],
+		['Why Choose\nTechstack', '07'],
+		['Custom Software\nDevelopment Experts', '08'],
+		['Our Tailored Collaboration and Pricing Models', '09'],
+		['Custom Software Development Process', '10'],
+		['Get in Touch', '11'],
+		['Related Articles', '12'],
+		['FAQ', '13'],
 	];
 
-	for (let i = 0; i < containers.length; i++) {
-		const container = containers[i];
-
-		await expect(container.getByTestId(Container.ContainerTitle)).toHaveText(expectedText[i][0]);
-		await expect(container.getByTestId(Container.ContainerNumber)).toHaveText(expectedText[i][1]);
-	}
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedText);
 });
 
-test("Check section titles and numbers in 'Custom software development for your product' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles and numbers in 'Custom Software Development for Your Product' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
 
 	const sections = devForYourProduct.getByTestId(Container.ContainerSection);
@@ -79,24 +78,25 @@ test("Check section titles and numbers in 'Custom software development for your 
 	}
 });
 
-test("Check section titles in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
-	const numOfSections = 10;
+	const numOfSections = 11;
 	await expect(sections).toHaveCount(numOfSections);
 
 	const expectedText: [string, string][] = [
-		['Mobile development', '01'],
-		['Front-End and Back-End development', '02'],
-		['Cloud app development', '03'],
+		['Mobile\nDevelopment', '01'],
+		['Front-End and Back-End Development', '02'],
+		['Cloud App\nDevelopment', '03'],
 		['Big Data & Analytics', '04'],
-		['AI & ML', '05'],
-		['IoT', '06'],
-		['UX/UI Design', '07'],
-		['Building software products\nfrom scratch', '08'],
+		['UX/UI Design', '05'],
+		['AI & ML', '06'],
+		['Internet\nof Things', '07'],
+		['Building Software Products\nfrom Scratch', '08'],
 		['QA as a Service', '09'],
-		['Software development\nconsulting', '10'],
+		['Custom Software\nDevelopment Consulting', '10'],
+		['Digital\nTransformation', '11'],
 	];
 
 	for (let i = 0; i < numOfSections; i++) {
@@ -108,113 +108,51 @@ test("Check section titles in 'Custom development services we provide' container
 });
 
 test("Check section titles in 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
+	const technologyStackContainer = driver.getByTestId(CustomDev.TechnologyStack);
 
-	const tabButtons = [
-		technologyStack.getByTestId(MainSiteButtons.Technology_BackEnd),
-		technologyStack.getByTestId(MainSiteButtons.Technology_FrontEnd),
-		technologyStack.getByTestId(MainSiteButtons.Technology_Mobile),
-		technologyStack.getByTestId(MainSiteButtons.Technology_Iot),
-		technologyStack.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
-		technologyStack.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
-	];
+	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
+	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
+	const testDataSectionTitles = TechnologyStackData.SectionTitles;
 
-	const expectedText: {title: string; sections: string[]}[] = [
-		{
-			title: 'Back-End',
-			sections: ['.NET Stack', 'JVM Stack', 'Node.js stack', 'Other'],
-		},
-		{
-			title: 'Front-End',
-			sections: ['Languages', 'Frameworks', 'State\nmanagement', 'Build tools', 'Markup', 'Rich content'],
-		},
-		{title: 'Mobile', sections: ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS']},
-		{title: 'IoT', sections: ['Devices', 'Gateways']},
-		{title: 'DevOps/Cloud', sections: ['Cloud', 'DevOps', 'CI/CD', 'Monitoring']},
-		{
-			title: 'AI&ML/Data science',
-			sections: [
-				'Computer vision',
-				'Deep learning and machine learning',
-				'Data visualization',
-				'Data storage & manipulation',
-				'Development environment',
-			],
-		},
-	];
-	const sectionTitles = technologyStack.getByTestId(Container.BlockTitle);
-
-	for (let i = 0; i < tabButtons.length; i++) {
-		const expectedValues = expectedText[i];
-		await expect(tabButtons[i]).toHaveText(expectedValues.title);
-		await tabButtons[i].click();
-
-		for (let j = 0; j < expectedValues.sections.length; j++) {
-			await expect(sectionTitles.filter({hasText: expectedValues.sections[j]})).toBeVisible();
-		}
-	}
+	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
+		navigationTabs,
+		containerBlocks,
+		testDataSectionTitles
+	);
 });
 
-test("Check section titles and numbers in 'Custom software development benefits' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devBenefits = driver.getByTestId(CustomDev.CustomDevelopmentBenefits);
+test("Check section titles in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
 
-	const sections = devBenefits.getByTestId(Container.ContainerSection);
-
-	const numOfSections = 4;
+	const sections = whyChooseTechstackContainer.getByTestId(Container.ContainerSection);
+	const numOfSections = 3;
 	await expect(sections).toHaveCount(numOfSections);
 
-	const expectedText: [string, string][] = [
-		['Retain clients', '01'],
-		['Improve performance', '02'],
-		['Unlock new opportunities', '03'],
-		['Iterate fast', '04'],
-	];
+	const sectionTitles = whyChooseTechstackContainer.getByTestId(Container.SectionTitle);
+	const expectedText = ['Tech community', 'Ownership over\nproducts', 'Proven expertise'];
 
-	for (let i = 0; i < numOfSections; i++) {
-		const section = sections.nth(i);
-
-		await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
-		await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
-	}
+	await expect(sectionTitles).toHaveText(expectedText);
 });
 
-test("Check section titles and numbers in 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
-
-	const carouselSections = devProcess.getByTestId(Container.CarouselSection);
-
-	const numOfSections = 4;
-	await expect(carouselSections).toHaveCount(numOfSections);
-
-	const expectedText: [string, string][] = [
-		['Investigation', '01'],
-		['Execution', '02'],
-		['Performance', '03'],
-		['Analysis', '04'],
-	];
-
-	for (let i = 0; i < numOfSections; i++) {
-		const section = carouselSections.nth(i);
-
-		await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
-		await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
-	}
+test("Check award cards in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
+	const awardCards = whyChooseTechstackContainer.getByTestId(Container.AwardCard);
+	await baseDriverSteps.checkImagesVisibility(awardCards, 8);
 });
 
-test("Check section titles, member names and roles in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
-	const sections = devExperts.getByTestId(Container.ContainerSection);
+test("Check section titles, member names and roles in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const devExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const sections = devExpertsContainer.getByTestId(Container.ContainerSection);
 	const numOfSections = 3;
 
 	await expect(sections).toHaveCount(numOfSections);
 
+	const sectionTitles = devExpertsContainer.getByTestId(Container.SectionTitle);
 	const expectedText = ['Tech Experts Team', 'Development Team', 'Management Team'];
 
-	for (let i = 0; i < numOfSections; i++) {
-		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
-	}
+	await expect(sectionTitles).toHaveText(expectedText);
 
-	const memberCards = devExperts.getByTestId(Container.MemberCard);
+	const memberCards = devExpertsContainer.getByTestId(Container.MemberCard);
 
 	const numOfMembers = 7;
 
@@ -250,27 +188,22 @@ test("Check section titles, member names and roles in 'Custom software developme
 	}
 });
 
-test("Check section titles and award cards in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
+test("Check carousel section titles and numbers in 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const customSoftDevProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
-	const sections = devApproach.getByTestId(Container.ContainerSection);
-	const numOfSections = 3;
+	await expect(customSoftDevProcessContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+	]);
+	const sectionTitles = customSoftDevProcessContainer.getByTestId(Container.SectionTitle);
+	const expectedText = ['Investigation', 'Execution', 'Performance', 'Analysis'];
 
-	await expect(sections).toHaveCount(numOfSections);
-
-	const expectedText = ['Tech community', 'Ownership over\nproducts', 'Proven expertise'];
-
-	for (let i = 0; i < numOfSections; i++) {
-		await expect(sections.nth(i).getByTestId(Container.SectionTitle)).toHaveText(expectedText[i]);
-	}
-
-	const numOfCards = 6;
-	const awardCards = devApproach.getByTestId(Container.AwardCard);
-
-	await baseDriverSteps.checkImagesVisibility(awardCards, numOfCards);
+	await expect(sectionTitles).toHaveText(expectedText);
 });
 
-test("Check section titles in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles in 'FAQ' container from the 'Custom Software Development Process' block @Regression @CustomDev @TSWEB-672", async () => {
 	const faqContainer = driver.getByTestId(CustomDev.Faq);
 
 	const sections = faqContainer.getByTestId(Container.ContainerSection);
@@ -283,7 +216,7 @@ test("Check section titles in 'FAQ' container from the 'Custom Software Developm
 		'How does Techstack enhance the professional development of engineers?',
 		'How do you ensure IP protection during custom product development?',
 		'Why choose Techstack for enterprise custom development?',
-		'What are the main steps of our custom software development process?',
+		'What are the main steps of our custom software design and development process?',
 	];
 
 	for (let i = 0; i < numOfSections; i++) {
