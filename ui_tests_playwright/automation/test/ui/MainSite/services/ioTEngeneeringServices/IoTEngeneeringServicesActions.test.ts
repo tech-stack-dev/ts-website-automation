@@ -1,17 +1,17 @@
-import { expect, test } from '@playwright/test';
+import {expect, test} from '@playwright/test';
 import format from 'format-util';
-import { driver } from '../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
-import { ServicesEnum } from '../../../../../enum/ServicesEnum';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
+import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import { Environment } from '../../../../../providers/EnvProvider';
+import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -30,7 +30,7 @@ test('Check redirect by "Read the full Case Study" button in "IoT Engineering Ca
 	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 
 	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.IotSensorsAndImagers, Environment.Production)
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`, Environment.Production)
 	);
 });
 
@@ -42,26 +42,26 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 	for (let i = 0; i < containerBlocks.length; i++) {
 		// Check selected Layer
 		expect(
-			await containerBlocks[i].getAttribute('data-disabled'),
+			containerBlocks[i],
 			`Invalid value of 'data-disabled' attribute for selected Layer ${i}.`
-		).toEqual('false');
+		).toHaveAttribute('data-disabled', 'false');
 
 		// While there is a selected layer, another layers are expected to be disabled. Checked on a random layer
 		let randomLayerIndex = getRandomIntInRangeExcluding(0, containerBlocks.length - 1, i);
 
 		expect(
-			await containerBlocks[randomLayerIndex].getAttribute('data-disabled'),
+			containerBlocks[randomLayerIndex],
 			`Invalid value of 'data-disabled' attribute for not selected Layer ${i + 1}.`
-		).toEqual('true');
+		).toHaveAttribute('data-disabled', 'true');
 
 		if (layerButtonIndex <= containerBlocks.length) {
 			await driver.Page.locator(format(IoTEngineeringServices.LayerButton, layerButtonIndex++)).click();
 		} else {
 			await driver.Page.locator(format(IoTEngineeringServices.LayerButton, 1)).click();
 			expect(
-				await containerBlocks[0].getAttribute('data-disabled'),
+				containerBlocks[0],
 				`Invalid value of 'data-disabled' attribute for selected Layer ${1}.`
-			).toEqual('false');
+			).toHaveAttribute('data-disabled', 'false');
 		}
 	}
 });
@@ -71,30 +71,37 @@ test('Check carousel buttons in "IoT Engineering Prodcess" container. @Regressio
 	await baseDriverSteps.checkCarouselArrowsClick(ioTEngineeringProcessContainer, 3);
 });
 
-test('Check social link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const expertCards = await driver.getByTestId(Container.MemberCard).all();
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
-
-	const expectedMemberCardsLinks: {blogLink: string; linkedInLink: string}[] = [
-		{blogLink: blogUri + AuthorsEnum.IvanIeremenko, linkedInLink: ExpertsLinkedInLinks.IvanIeremenko},
-		{blogLink: blogUri + AuthorsEnum.OleksiiSvystun, linkedInLink: ExpertsLinkedInLinks.OleksiiSvystun},
-		{blogLink: blogUri + AuthorsEnum.YevheniiKarachevtsev, linkedInLink: ExpertsLinkedInLinks.YevheniiKarachevtsev},
+	const expectedLinkedInLinks = [
+		ExpertsLinkedInLinks.IvanIeremenko,
+		ExpertsLinkedInLinks.OleksiiSvystun,
+		ExpertsLinkedInLinks.YevheniiKarachevtsev,
 	];
 
 	for (let i = 0; i < expertCards.length; i++) {
 		const memberCard = expertCards[i];
 
-		/* TODO: Uncomment Blog related checks after TSWEB-1061 is done
+		await memberCard.getByTestId(Buttons.LinkedIn).click();
+		let newPage = await driver.DriverContext.waitForEvent('page');
+		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
+		await newPage.close();
+	}
+});
+
+test('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, TSWEB-1061', async () => {
+	const expertCards = await driver.getByTestId(Container.MemberCard).all();
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+
+	const expectedBlogLinks = [AuthorsEnum.IvanIeremenko, AuthorsEnum.OleksiiSvystun, AuthorsEnum.YevheniiKarachevtsev];
+
+	for (let i = 0; i < expertCards.length; i++) {
+		const memberCard = expertCards[i];
+
 		await memberCard.getByTestId(Buttons.Blog).click();
 		let newPage = await driver.DriverContext.waitForEvent('page');
 
-		await expect(newPage).toHaveURL(expectedMemberCardsLinks[i].blogLink);
-		await newPage.close();
-		*/
-
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		let newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedMemberCardsLinks[i].linkedInLink);
+		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
 		await newPage.close();
 	}
 });
