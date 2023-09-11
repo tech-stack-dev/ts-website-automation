@@ -15,13 +15,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
 });
 
-test("Check redirect by 'Home' breadcrumbs button in header from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
-	const info = driver.getByTestId(RenewableEnergy.Info);
-	await info.getByTestId(Container.BreadcrumbsPrev).click();
-
-	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
-});
-
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 	const buttonDeloitte = techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);

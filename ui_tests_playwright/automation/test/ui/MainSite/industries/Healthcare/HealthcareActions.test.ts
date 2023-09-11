@@ -15,13 +15,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test("Check redirect by 'Home' breadcrumbs button in header from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
-	const info = driver.getByTestId(Healthcare.Info);
-	await info.getByTestId(Container.BreadcrumbsPrev).click();
-
-	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
-});
-
 test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 

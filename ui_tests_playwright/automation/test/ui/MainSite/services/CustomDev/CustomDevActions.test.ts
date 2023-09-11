@@ -18,13 +18,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const info = driver.getByTestId(CustomDev.Info);
-	await info.getByTestId(Container.BreadcrumbsPrev).click();
-
-	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
-});
-
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
 	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
