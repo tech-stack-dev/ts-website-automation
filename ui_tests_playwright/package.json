@@ -38,7 +38,6 @@
 		"contentful": "^9.3.4",
 		"contentful-management": "^10.30.0",
 		"dotenv": "^16.3.1",
-		"format-util": "^1.0.5",
 		"lodash": "^4.17.21",
 		"playwright": "^1.37.1",
 		"playwright-core": "^1.27.1",

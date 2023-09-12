@@ -1,5 +1,4 @@
 import {expect, test} from '@playwright/test';
-import format from 'format-util';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
@@ -36,32 +35,16 @@ test('Check redirect by "Read the full Case Study" button in "IoT Engineering Ca
 
 test('Check switching between layers in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTTechnologyStackByLayersContainer = driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers);
+	const layerButtons = await ioTTechnologyStackByLayersContainer.getByTestId(IoTEngineeringServices.LayerButton).all();
 	const containerBlocks = await ioTTechnologyStackByLayersContainer.getByTestId(Container.ContainerBlock).all();
-	let layerButtonIndex: number = 2;
 
-	for (let i = 0; i < containerBlocks.length; i++) {
-		// Check selected Layer
-		expect(
-			containerBlocks[i],
-			`Invalid value of 'data-disabled' attribute for selected Layer ${i}.`
-		).toHaveAttribute('data-disabled', 'false');
+	for (let i = 0; i < layerButtons.length; i++) {
+		const buttonIndex = (layerButtons.length - i) % layerButtons.length;
+		await layerButtons[buttonIndex].click();
 
-		// While there is a selected layer, another layers are expected to be disabled. Checked on a random layer
-		let randomLayerIndex = getRandomIntInRangeExcluding(0, containerBlocks.length - 1, i);
-
-		expect(
-			containerBlocks[randomLayerIndex],
-			`Invalid value of 'data-disabled' attribute for not selected Layer ${i + 1}.`
-		).toHaveAttribute('data-disabled', 'true');
-
-		if (layerButtonIndex <= containerBlocks.length) {
-			await driver.Page.locator(format(IoTEngineeringServices.LayerButton, layerButtonIndex++)).click();
-		} else {
-			await driver.Page.locator(format(IoTEngineeringServices.LayerButton, 1)).click();
-			expect(
-				containerBlocks[0],
-				`Invalid value of 'data-disabled' attribute for selected Layer ${1}.`
-			).toHaveAttribute('data-disabled', 'false');
+		for (let j = containerBlocks.length - 1; j < 0; j--) {
+			const expectedState = j - 1 === buttonIndex - 1 ? 'false' : 'true';
+			await expect(containerBlocks[j]).toHaveAttribute('data-disabled', expectedState);
 		}
 	}
 });
@@ -124,16 +107,6 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.InternetOfThings));
 	}
 });
-
-function getRandomIntInRangeExcluding(min: number, max: number, excludedNumber: number): number {
-	let randomNumber: number;
-
-	do {
-		randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-	} while (randomNumber === excludedNumber);
-
-	return randomNumber;
-}
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
