@@ -107,7 +107,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'Mobile
 	}
 });
 
-test("Check section collapsing in 'FAQ' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test("Check sections expanding and collapsing in 'FAQ' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
 	const faqContainer = driver.getByTestId(MobileDevService.Faq);
 	const epectedNumberOfSections = 4;
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
