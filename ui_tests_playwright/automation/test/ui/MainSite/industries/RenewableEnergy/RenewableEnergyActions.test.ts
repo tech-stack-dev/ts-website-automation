@@ -46,7 +46,7 @@ test("Check redirect by 'Check out how we built it' button in 'The Solar Energy 
 
 	await theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
 	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.SolarEnergyDataPortal, Environment.Production)
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`, Environment.Production)
 	);
 });
 

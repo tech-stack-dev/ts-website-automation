@@ -105,11 +105,11 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToPagesInSameTab(sectionUrlMap: Map<Locator, string>, url: string) {
-		for (const [section, expectedUrl] of sectionUrlMap) {
-			await section.click();
+	public async checkRedirectToPagesInSameTab(locatorUrlMap: Map<Locator, string>, initialPageUrl: string) {
+		for (const [locator, expectedUrl] of locatorUrlMap) {
+			await locator.click();
 			await baseDriverSteps.checkUrl(expectedUrl);
-			await baseDriverSteps.goToUrl(url);
+			await baseDriverSteps.goToUrl(initialPageUrl);
 		}
 	}
 
