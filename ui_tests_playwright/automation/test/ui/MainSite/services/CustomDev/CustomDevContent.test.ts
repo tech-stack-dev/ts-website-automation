@@ -92,7 +92,7 @@ test("Check section titles and numbers in 'Custom Software Development for Your 
 	}
 });
 
-test("Check section titles and CTA button in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles and numbers, and CTA button in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 

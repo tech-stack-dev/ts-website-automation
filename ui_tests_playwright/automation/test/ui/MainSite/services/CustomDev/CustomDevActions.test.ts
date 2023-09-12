@@ -65,7 +65,7 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	await baseDriverSteps.checkRedirectToPagesInSameTab(sectionUrlMap, pageUrl);
 });
 
-test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
 
 	await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore).click();
