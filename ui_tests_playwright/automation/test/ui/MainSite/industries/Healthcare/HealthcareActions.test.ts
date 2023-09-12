@@ -28,7 +28,7 @@ test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Mo
 
 	await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.BeatsScreeningModule, Environment.Production)
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`, Environment.Production)
 	);
 });
 

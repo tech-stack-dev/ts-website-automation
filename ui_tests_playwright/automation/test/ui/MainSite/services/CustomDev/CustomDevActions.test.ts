@@ -11,11 +11,23 @@ import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/Exper
 import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
+import Links from '../../../../../preconditionsData/Links/Links';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 
 const requestAQuoteText = 'Request a Quote';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+});
+
+test("Check redirect by link in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+	await techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch).click();
+
+	const newPage = await driver.DriverContext.waitForEvent('page');
+	expect(newPage.url()).toContain(Links.ClutchReviews);
+	await newPage.close();
 });
 
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -53,10 +65,43 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	await baseDriverSteps.checkRedirectToPagesInSameTab(sectionUrlMap, pageUrl);
 });
 
-test("Check carousel arrows from the 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
+test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
 
-	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
+	await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore).click();
+	await baseDriverSteps.checkUrl(
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.OneStopCrossPlatform}`, Environment.Production)
+	);
+});
+
+test("Check redirect by links in 'Industries We Develop Software For' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
+	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
+
+	const linksUrlMap = new Map([
+		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
+		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
+		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+	]);
+
+	await baseDriverSteps.checkRedirectToPagesInSameTab(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
+});
+
+test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
+	const clutchReviewButtons = whyChooseTechstackContainer.getByTestId(Buttons.Clutch);
+
+	const clutchButtonUrlMap = new Map([
+		[clutchReviewButtons.nth(0), ClutchReviewLinks.DarrenCody],
+		[clutchReviewButtons.nth(1), ClutchReviewLinks.MarkBeare],
+	]);
+
+	for (const [button, url] of clutchButtonUrlMap) {
+		await button.click();
+		const newPage = await driver.DriverContext.waitForEvent('page');
+		expect(newPage.url()).toContain(url);
+		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+	}
 });
 
 // Unskip after Blog will be stable
@@ -95,21 +140,10 @@ test.skip("Check social link redirects in 'Custom Software Development Experts' 
 	}
 });
 
-test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
-	const clutchReviewButtons = whyChooseTechstackContainer.getByTestId(Buttons.Clutch);
+test("Check carousel arrows from the 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
-	const clutchButtonUrlMap = new Map([
-		[clutchReviewButtons.nth(0), ClutchReviewLinks.DarrenCody],
-		[clutchReviewButtons.nth(1), ClutchReviewLinks.MarkBeare],
-	]);
-
-	for (const [button, url] of clutchButtonUrlMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
-	}
+	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
 });
 
 test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
