@@ -16,6 +16,8 @@ export default class MainSiteButtons {
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
+	static RequestMoreInformation = 'Button-RequestMoreInformation';
+	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 
@@ -27,6 +29,7 @@ export default class MainSiteButtons {
 	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
+
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
 
