@@ -144,8 +144,7 @@ test("Check section numbers, section titles and CTA in 'Cloud Computing Developm
 test("Check award cards and author info in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
 	const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment);
 	const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
-	// Uncomment after adding data-id
-	// await baseDriverSteps.checkImagesVisibility(awardCards, 3);
+	await baseDriverSteps.checkImagesVisibility(awardCards, 3);
 
 	await expect(ourApproachContainer.getByTestId(Container.AuthorName)).toHaveText(AuthorReviewData.MarkBeare.name);
 	await expect(ourApproachContainer.getByTestId(Container.AuthorPosition)).toHaveText(
