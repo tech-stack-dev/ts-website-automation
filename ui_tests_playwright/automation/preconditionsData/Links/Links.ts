@@ -7,6 +7,8 @@ export default class Links {
 	static Twitter = 'https://twitter.com';
 	static GoodFirms = 'https://www.goodfirms.co/company/techstack-ltd';
 	static Clutch = 'https://clutch.co/profile/techstack';
+	static ClutchReviews = `${this.Clutch}#reviews`;
+	static ClutchHighlights = `${this.Clutch}#highlights`;
 
 	static InstagramDesign = 'https://www.instagram.com/techstack.design/';
 	static TikTokDesign = 'https://www.tiktok.com/@techstack.design';

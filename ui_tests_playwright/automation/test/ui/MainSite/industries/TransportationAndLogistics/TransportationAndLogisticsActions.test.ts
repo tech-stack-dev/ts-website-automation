@@ -35,7 +35,7 @@ test("Check redirect by 'Read Full Case Study' button in 'Case Study by Techstac
 
 	await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(UrlPath.CaseStudies + CaseStudyPath.CargoAuctionSolution, Environment.Production)
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.CargoAuctionSolution}`, Environment.Production)
 	);
 });
 
