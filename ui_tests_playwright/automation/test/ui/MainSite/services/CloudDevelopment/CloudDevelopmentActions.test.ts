@@ -66,8 +66,7 @@ test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' contain
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
 });
 
-// Unskip after Blog will be stable in scope of TSWEB-1061
-test.skip("Check redirects by Blog buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test("Check redirects by Blog buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692 @TSWEB-1061", async () => {
 	const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const buttonUrlMap = new Map([
