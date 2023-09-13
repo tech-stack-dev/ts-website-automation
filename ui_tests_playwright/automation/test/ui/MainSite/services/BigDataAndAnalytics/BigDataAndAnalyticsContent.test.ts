@@ -8,6 +8,7 @@ import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import AuthorReviewData from '../../../../../preconditionsData/AuthorReviewData/AuthorReviewData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -122,7 +123,7 @@ test("Check section titles, block title, image and CTA button in 'Big Data Case 
 	);
 	await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
 	await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution)).toHaveText(
-		'Read More About Solution'
+		'Read more about Solution'
 	);
 });
 
@@ -140,7 +141,7 @@ test("Check section titles in 'Industry-specific Big Data Solutions' container f
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles and award cards in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test("Check section titles, award cards and author info in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const whyChooseTechstackContainer = driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices);
 	const allSectionTitles = whyChooseTechstackContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Product ownership', 'Domain proficiency', 'Tech community'];
@@ -150,6 +151,13 @@ test("Check section titles and award cards in 'Why Choose Techstack’s Big Data
 	const awardCards = whyChooseTechstackContainer.getByTestId(Container.AwardCard);
 	const numberOfCards = 2;
 	await baseDriverSteps.checkImagesVisibility(awardCards, numberOfCards);
+
+	await expect(whyChooseTechstackContainer.getByTestId(Container.AuthorName)).toHaveText(
+		AuthorReviewData.MarkBeare.name
+	);
+	await expect(whyChooseTechstackContainer.getByTestId(Container.AuthorPosition)).toHaveText(
+		AuthorReviewData.MarkBeare.position
+	);
 });
 
 test("Check member names and roles in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {

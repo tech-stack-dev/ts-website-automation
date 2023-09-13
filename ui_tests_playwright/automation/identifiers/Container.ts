@@ -19,6 +19,9 @@ export default class Container {
 	static MemberRole = 'MemberRole';
 	static MemberName = 'MemberName';
 
+	static AuthorName = 'AuthorName';
+	static AuthorPosition = 'AuthorPosition';
+
 	static ContainerCarousel = 'ContainerCarousel';
 	static CarouselSection = 'CarouselSection';
 	static CarouselButtonPrev = 'CarouselButtonPrev';

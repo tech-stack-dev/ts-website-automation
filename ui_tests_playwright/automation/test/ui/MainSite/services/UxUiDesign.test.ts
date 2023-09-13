@@ -252,7 +252,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'UX/UI 
 	]);
 
 	const uxUiPageUrl = UrlProvider.urlBuilder(UrlPath.UiUxDesign);
-	await baseDriverSteps.checkRedirectToPagesInSameTab(arrowUrlMap, uxUiPageUrl);
+	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, uxUiPageUrl);
 });
 
 test("Check section titles in 'FAQ' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
