@@ -32,7 +32,7 @@ test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcru
 		UrlProvider.urlBuilder(UrlPath.AiMl),
 		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		// UrlProvider.urlBuilder(UrlPath.UiUxDesign), // Uncomment after adding data-id
+		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
 	];
