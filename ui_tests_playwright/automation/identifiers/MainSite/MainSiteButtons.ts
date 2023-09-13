@@ -16,6 +16,8 @@ export default class MainSiteButtons {
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
+	static GetAConsultation = 'Button-GetAConsultation';
+	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 

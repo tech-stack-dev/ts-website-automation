@@ -3,4 +3,5 @@ export default class CaseStudyPath {
 	static CargoAuctionSolution = '/cargo-auction-solution-for-logistics-and-transportation-company';
 	static SolarEnergyDataPortal = '/the-solar-energy-data-portal';
 	static OneStopCrossPlatform = '/a-one-stop-cross-platform-mobile-app';
+	static VideoBasedQualityControl = '/video-based-quality-control-system';
 }
