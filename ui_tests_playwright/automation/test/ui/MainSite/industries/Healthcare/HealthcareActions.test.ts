@@ -10,6 +10,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {Environment} from '../../../../../providers/EnvProvider';
 import Container from '../../../../../identifiers/Container';
+import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
@@ -36,11 +37,8 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
 	const buttonLinkMap = new Map([
-		[MainSiteButtons.Pwc, 'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html'],
-		[
-			MainSiteButtons.McKinsey,
-			'https://www.mckinsey.com/industries/healthcare/our-insights/what-to-expect-in-us-healthcare-in-2023-and-beyond#/',
-		],
+		[MainSiteButtons.Pwc, ExternalSourceLinks.PwcHealthcareTrends],
+		[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyExpectInHealthcare],
 	]);
 
 	for (const entries of buttonLinkMap.entries()) {

@@ -10,6 +10,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
+import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -18,8 +19,7 @@ test.beforeEach(async () => {
 test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 	const buttonDeloitte = techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
-	const testData =
-		'https://www2.deloitte.com/content/dam/insights/us/articles/6387_100-Percent-Renewables/DI_100-Percent-Renewables.pdf';
+	const testData = ExternalSourceLinks.Deloitte100PercentRenewablesPdf;
 
 	const actualLink = await buttonDeloitte.getAttribute('href');
 	expect(actualLink).toBe(testData);

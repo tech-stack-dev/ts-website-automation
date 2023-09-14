@@ -11,6 +11,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import Buttons from '../../../../../identifiers/Buttons';
+import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -20,19 +21,10 @@ test("Check redirect by links in 'AI’s Beneficial Impact on Industries' contai
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
 	// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
 	const buttonLinkMap = new Map([
-		[
-			MainSiteButtons.Forbes,
-			'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14',
-		],
-		[MainSiteButtons.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
-		[
-			MainSiteButtons.Deloitte,
-			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
-		],
-		[
-			MainSiteButtons.McKinsey,
-			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
-		],
+		[MainSiteButtons.Forbes, ExternalSourceLinks.ForbesAiStartups],
+		[MainSiteButtons.Salesforce, ExternalSourceLinks.SalesforceCustomerEngagement],
+		[MainSiteButtons.Deloitte, ExternalSourceLinks.DeloitteAiManufacturing],
+		[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyImpactOfAi],
 	]);
 
 	for (const entries of buttonLinkMap.entries()) {
