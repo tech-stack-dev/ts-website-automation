@@ -14,14 +14,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
-test("Check the header from the 'How we work' block  @Regression @HowWeWork", async () => {
+test("Check the header from the 'How we work' block @Regression @HowWeWork", async () => {
 	const info = driver.getByTestId(HowWeWork.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
 	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
 	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
-test("Check container titles and  numbers from the 'How we work' block  @Regression @HowWeWork", async () => {
+test("Check container titles and numbers from the 'How we work' block @Regression @HowWeWork", async () => {
 	const containers = [
 		driver.getByTestId(HowWeWork.CooperationModels),
 		driver.getByTestId(HowWeWork.WorkProcess),
@@ -83,7 +83,7 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
 
 test("Check the 'Techstack structure' section from the 'How we work' block @Regression @HowWeWork", async () => {
 	const techstackStructure = driver.getByTestId(HowWeWork.TechstackStructure);
-	const allSectionTitles = await techstackStructure.getByTestId(Container.SectionTitle);
+	const allSectionTitles = techstackStructure.getByTestId(Container.SectionTitle);
 
 	const testData = [
 		'Engineering \nfunction',
