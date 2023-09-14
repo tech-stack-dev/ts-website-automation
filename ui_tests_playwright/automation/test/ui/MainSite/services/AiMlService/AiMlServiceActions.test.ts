@@ -11,6 +11,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import Buttons from '../../../../../identifiers/Buttons';
+import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiMl));
@@ -18,37 +19,17 @@ test.beforeEach(async () => {
 
 test("Check redirect by links in 'AI’s Beneficial Impact on Industries' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiMlService.AiBeneficialImpactOnIndustries);
-	// Unskip after investigate
-	const linkMap = new Map([
-		[
-			MainSiteButtons.Forbes,
-			'https://www.forbes.com/sites/robtoews/2022/03/27/a-wave-of-billion-dollar-language-ai-startups-is-coming/?sh=422fd0152b14',
-		],
-		[MainSiteButtons.Salesforce, 'https://www.salesforce.com/news/stories/customer-engagement-research/'],
-		[
-			MainSiteButtons.Deloitte,
-			'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html',
-		],
-		// [
-		// 	MainSiteButtons.McKinsey,
-		// 	'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy',
-		// ],
+	// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
+	const buttonLinkMap = new Map([
+		[MainSiteButtons.Forbes, ExternalSourceLinks.ForbesAiStartups],
+		[MainSiteButtons.Salesforce, ExternalSourceLinks.SalesforceCustomerEngagement],
+		[MainSiteButtons.Deloitte, ExternalSourceLinks.DeloitteAiManufacturing],
+		[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyImpactOfAi],
 	]);
 
-	for (const entries of linkMap.entries()) {
-		await aiBeneficialImpactOnIndustriesContainer.getByTestId(entries[0]).first().click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(entries[1]);
-		await newPage.close();
-
-		// Remove after investigate
-		const actualLink = await aiBeneficialImpactOnIndustriesContainer
-			.getByTestId(MainSiteButtons.McKinsey)
-			.getAttribute('href');
-
-		expect(actualLink).toEqual(
-			'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy'
-		);
+	for (const entries of buttonLinkMap.entries()) {
+		const actualLink = await aiBeneficialImpactOnIndustriesContainer.getByTestId(entries[0]).getAttribute('href');
+		expect(actualLink).toEqual(entries[1]);
 	}
 });
 
