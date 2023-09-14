@@ -62,7 +62,7 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	]);
 
 	const pageUrl = UrlProvider.urlBuilder(UrlPath.CustomDev);
-	await baseDriverSteps.checkRedirectToPagesInSameTab(sectionUrlMap, pageUrl);
+	await baseDriverSteps.checkRedirectToPages(sectionUrlMap, pageUrl);
 });
 
 test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -84,7 +84,7 @@ test("Check redirect by links in 'Industries We Develop Software For' container 
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPagesInSameTab(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
+	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
 test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
