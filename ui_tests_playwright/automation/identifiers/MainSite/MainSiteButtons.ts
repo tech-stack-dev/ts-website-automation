@@ -24,7 +24,6 @@ export default class MainSiteButtons {
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-Mckinsey';
-	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
 	static LinkedInReviewArrow = 'LinkedInArrow';
