@@ -31,6 +31,7 @@ export default class MainSiteButtons {
 
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
+	static Layer = 'Button-Layer';
 
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';
