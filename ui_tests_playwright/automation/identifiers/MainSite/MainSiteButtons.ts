@@ -28,6 +28,7 @@ export default class MainSiteButtons {
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
+	static Layer = 'Button-Layer';
 
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';
