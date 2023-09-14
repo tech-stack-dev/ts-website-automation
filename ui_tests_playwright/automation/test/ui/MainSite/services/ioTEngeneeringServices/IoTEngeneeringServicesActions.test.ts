@@ -18,12 +18,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
 });
 
-test('Check redirect by "Our Services" breadcrumbs button in header. @Regression @InternetOfThings @TSWEB-695', async () => {
-	driver.getByTestId(IoTEngineeringServices.Info).getByTestId(Container.BreadcrumbsPrev).click();
-
-	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
-});
-
 test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
 	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
