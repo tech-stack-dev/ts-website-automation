@@ -12,7 +12,6 @@ export default class MainSiteButtons {
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
 	static SeeAllNews = 'Button-SeeAllNews';
-	static Layer = 'Button-Layer';
 	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
@@ -30,6 +29,7 @@ export default class MainSiteButtons {
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
+	static Layer = 'Button-Layer';
 
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';
