@@ -60,11 +60,13 @@ test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software De
 
 test("Check redirects by LinkedIn buttons in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
+	const linkedInButtons = ourExpertsContainer.getByTestId(Buttons.LinkedIn);
+
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
-		[ourExpertsContainer.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[linkedInButtons.nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[linkedInButtons.nth(2), ExpertsLinkedInLinks.OleksandrBezrukov],
+		[linkedInButtons.nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 	]);
 
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
@@ -73,11 +75,13 @@ test("Check redirects by LinkedIn buttons in 'Our Experts' container from the 'B
 test("Check redirects by Blog buttons in in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061", async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
+
 	const buttonUrlMap = new Map([
-		[ourExpertsContainer.getByTestId(Buttons.Blog).nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
-		[ourExpertsContainer.getByTestId(Buttons.Blog).nth(1), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
-		[ourExpertsContainer.getByTestId(Buttons.Blog).nth(2), `${blogUri}${AuthorsEnum.OleksandrBezrukov}`],
-		[ourExpertsContainer.getByTestId(Buttons.Blog).nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+		[blogButtons.nth(1), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+		[blogButtons.nth(2), `${blogUri}${AuthorsEnum.OleksandrBezrukov}`],
+		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
 	]);
 
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
@@ -85,16 +89,16 @@ test("Check redirects by Blog buttons in in 'Our Experts' container from the 'Bi
 
 test("Check redirects by arrows in 'Related Services' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
 	const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
-	const containerSection = relatedServicesContainer.getByTestId(Container.ContainerSection);
+	const arrows = relatedServicesContainer.getByTestId(Container.Arrow);
 
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.BigData));
