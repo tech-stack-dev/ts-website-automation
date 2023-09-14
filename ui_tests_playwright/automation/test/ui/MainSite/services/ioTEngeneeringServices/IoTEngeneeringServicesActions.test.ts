@@ -35,7 +35,7 @@ test('Check redirect by "Read the full Case Study" button in "IoT Engineering Ca
 
 test('Check switching between layers in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTTechnologyStackByLayersContainer = driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers);
-	const layerButtons = await ioTTechnologyStackByLayersContainer.getByTestId(IoTEngineeringServices.LayerButton).all();
+	const layerButtons = await ioTTechnologyStackByLayersContainer.getByTestId(MainSiteButtons.Layer).all();
 	const containerBlocks = await ioTTechnologyStackByLayersContainer.getByTestId(Container.ContainerBlock).all();
 
 	for (let i = 0; i < layerButtons.length; i++) {
@@ -49,7 +49,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 	}
 });
 
-test('Check carousel buttons in "IoT Engineering Prodcess" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check carousel buttons in "IoT Engineering Process" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	await baseDriverSteps.checkCarouselArrowsClick(ioTEngineeringProcessContainer, 3);
 });

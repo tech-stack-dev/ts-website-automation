@@ -12,6 +12,7 @@ export default class MainSiteButtons {
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
 	static SeeAllNews = 'Button-SeeAllNews';
+	static Layer = 'Button-Layer';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 
