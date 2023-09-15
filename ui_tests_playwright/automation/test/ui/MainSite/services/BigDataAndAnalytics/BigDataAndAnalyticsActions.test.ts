@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
 });
 
-test("Check redirect by 'Read more about Solution' button in 'Big Data Case Studies' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check redirect by "Read more about Solution" button in "Big Data Case Studies" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 
 	await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution).click();
@@ -30,7 +30,7 @@ test("Check redirect by 'Read more about Solution' button in 'Big Data Case Stud
 	);
 });
 
-test("Check redirect by links in 'Industry-specific Big Data Solutions' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check redirect by links in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const industriesSpecificContainer = driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions);
 
 	const linksUrlMap = new Map([
@@ -47,7 +47,7 @@ test("Check redirect by links in 'Industry-specific Big Data Solutions' containe
 	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.BigData));
 });
 
-test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check redirect to clutch in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const whyChooseTechstackBigDataContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
@@ -58,7 +58,7 @@ test("Check redirect to clutch in 'Why Choose Techstack’s Big Data Software De
 	await newPage.close();
 });
 
-test("Check redirects by LinkedIn buttons in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check redirects by LinkedIn buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const linkedInButtons = ourExpertsContainer.getByTestId(Buttons.LinkedIn);
 
@@ -72,7 +72,7 @@ test("Check redirects by LinkedIn buttons in 'Our Experts' container from the 'B
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
 });
 
-test("Check redirects by Blog buttons in in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061", async () => {
+test('Check redirects by Blog buttons in in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061', async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
@@ -87,7 +87,7 @@ test("Check redirects by Blog buttons in in 'Our Experts' container from the 'Bi
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
 });
 
-test("Check redirects by arrows in 'Related Services' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check redirects by arrows in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
 	const arrows = relatedServicesContainer.getByTestId(Container.Arrow);
 

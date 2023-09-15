@@ -14,14 +14,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
 });
 
-test("Check the info container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check the info container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const info = driver.getByTestId(BigDataAndAnalytics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
-test("Check the container titles and numbers from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check the container titles and numbers from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const containers = [
 		driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou),
 		driver.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack),
@@ -53,7 +53,7 @@ test("Check the container titles and numbers from the 'Big Data & Analytics' pag
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check section numbers and titles in 'How Big Data Will Help You' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section numbers and titles in "How Big Data Will Help You" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const howBigDataWillHelpYouContainer = driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou);
 
 	await expect(howBigDataWillHelpYouContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -68,7 +68,7 @@ test("Check section numbers and titles in 'How Big Data Will Help You' container
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles and CTA button in 'Big Data Software Development With Techstack' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles and CTA button in "Big Data Software Development With Techstack" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const bigDataWithTechstackContainer = driver.getByTestId(
 		BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack
 	);
@@ -89,7 +89,7 @@ test("Check section titles and CTA button in 'Big Data Software Development With
 	);
 });
 
-test("Check section titles in 'Big Data Solutions Technology Stack' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles in "Big Data Solutions Technology Stack" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const bigDataTechnologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
 	const allSectionTitles = bigDataTechnologyStackContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -105,7 +105,7 @@ test("Check section titles in 'Big Data Solutions Technology Stack' container fr
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles, block title, image and CTA button in 'Big Data Case Studies' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles, block title, image and CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 	const allSectionTitles = bigDataCaseStudiesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -127,7 +127,7 @@ test("Check section titles, block title, image and CTA button in 'Big Data Case 
 	);
 });
 
-test("Check section titles in 'Industry-specific Big Data Solutions' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const industrySpecificContainer = driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions);
 	const allSectionTitles = industrySpecificContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -141,7 +141,7 @@ test("Check section titles in 'Industry-specific Big Data Solutions' container f
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles, award cards and author info in 'Why Choose Techstack’s Big Data Software Development Services?' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles, award cards and author info in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const whyChooseTechstackContainer = driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices);
 	const allSectionTitles = whyChooseTechstackContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Product ownership', 'Domain proficiency', 'Tech community'];
@@ -160,7 +160,7 @@ test("Check section titles, award cards and author info in 'Why Choose Techstack
 	);
 });
 
-test("Check member names and roles in 'Our Experts' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check member names and roles in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
@@ -183,7 +183,7 @@ test("Check member names and roles in 'Our Experts' container from the 'Big Data
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test("Check section titles in 'Related Services' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
 	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -199,7 +199,7 @@ test("Check section titles in 'Related Services' container from the 'Big Data & 
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles in 'FAQ' container from the 'Big Data & Analytics' page @Regression @BigDataAndAnalytics @TSWEB-693", async () => {
+test('Check section titles in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const faqContainer = driver.getByTestId(BigDataAndAnalytics.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
