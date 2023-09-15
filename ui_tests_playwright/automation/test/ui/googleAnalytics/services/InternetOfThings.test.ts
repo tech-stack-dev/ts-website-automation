@@ -30,7 +30,7 @@ test('Check google analytics in breadcrumbs. @Regression @GoogleAnalytics @TSWEB
 	await googleAnalyticsSteps.checkGoogleAnalytics(breadcrumbsButton, 'IoTServBreadServices', testInfo.title);
 });
 
-test('Check google analytics "Request a quote" button in "Info" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
+test('Check google analytics by "Request a quote" button in "Info" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
 	const info = driver.getByTestId(IoTEngineeringServices.Info);
 	const requestQuoteButton = info.getByTestId(MainSiteButtons.RequestAQuote);
 
@@ -71,7 +71,7 @@ test('Check google analytics by Blog buttons in "Our Internet of Things Engineer
 	for (let i = 0; i < expertCards.length; i++) {
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			expertCards[i].getByTestId(Buttons.Blog),
-			`${events[i]}`,
+			events[i],
 			testInfo.title
 		);
 	}
@@ -79,7 +79,7 @@ test('Check google analytics by Blog buttons in "Our Internet of Things Engineer
 
 test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engineering Experts" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
 	const expertCards = await driver.getByTestId(Container.MemberCard).all();
-	const linkedInEvents = [
+	const events = [
 		`${ExpertNames.IvanIeremenko}`,
 		`${ExpertNames.OleksiiSvystun}`,
 		`${ExpertNames.YevheniiKarachevtsev}`,
@@ -88,7 +88,7 @@ test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engi
 	for (let i = 0; i < expertCards.length; i++) {
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			expertCards[i].getByTestId(Buttons.LinkedIn),
-			`${linkedInEvents[i]}`,
+			events[i],
 			testInfo.title
 		);
 	}
@@ -96,14 +96,13 @@ test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engi
 
 test('Check google analytics by arrows in "Related Services" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061, @TSWEB-1083', async ({}, testInfo) => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
-	const serviceArrows = relatedServicesContainer.getByTestId(Container.SectionTitle);
-	const serviceNames = await relatedServicesContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
+	const serviceNames = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
 	const events = serviceNames.map((name) => `IoTServRelServices-${stringUtils.encodeForUrl(name)}`);
 
 	for (let i = 0; i < serviceArrows.length; i++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(serviceArrows[i], `${events[i]}`, testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(serviceArrows[i], events[i], testInfo.title);
+		await baseDriverSteps.goToUrl(pageUrl);
 	}
 });
 
@@ -124,6 +123,6 @@ test('Check google analytics by cards in "Related Articles" container. @Regressi
 	const events = articleNames.map((name) => `IoTServArticle-${stringUtils.encodeForUrl(name)}`);
 
 	for (let i = 0; i < articles.length - 1; i++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(articles[i], `${events[i]}`, testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(articles[i], events[i], testInfo.title);
 	}
 });
