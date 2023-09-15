@@ -1,43 +1,39 @@
-import {Locator, Request} from '@playwright/test';
-import {driver} from '../../base/driver/Driver';
-import {slackSteps} from './SlackSteps';
-import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
-import {promisify} from 'util';
+import { Locator, Request, expect } from '@playwright/test';
+import { driver } from '../../base/driver/Driver';
+import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
+import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import { slackSteps } from './SlackSteps';
 
 class GoogleAnalyticsSteps {
 	public async checkGoogleAnalytics(
 		element: Locator,
 		event: string,
-		method: string,
 		testName: string
 	): Promise<void> {
-		const wait = promisify(setTimeout);
+		const method = 'GET';
+		const postData = `Event: ${event}\nMethod: ${method}`;
 		const result = await Promise.race([
 			element.click(),
 			driver.Page.waitForRequest(
-				(request: Request) => request.url().includes(event) && request.method() === method
-			),
-			wait(10000),
-		]);
-		const postMessage = async () => {
+				(request: Request) =>
+					request.url().includes(ExternalSourceLinks.GoogleAnalytics) &&
+					request.url().includes(event) &&
+					request.method() === method,
+				{timeout: 10000}
+			)]);
+
+		try {
+			expect(result, `Invalid request\n${postData}`).toBeTruthy();
+		} catch (error) {
 			await slackSteps.postMessageInSlackChannel(
 				slackDtoVariable.value.tsGoogleAnalyticsId,
-				`Test: ${testName}\nEvent: ${event}\nMethod: ${method}\n`
+				`Test: ${testName}\n${postData}`
 			);
-		};
-		if (!result) {
-			await postMessage();
-			return;
-		}
-		const request = result as Request;
-		const url = request.url();
-
-		if (!url.includes('https://www.google-analytics.com') || !url.includes(event)) {
-			await postMessage();
-			return;
+			throw error;
 		}
 	}
 }
 
 const googleAnalyticsSteps = new GoogleAnalyticsSteps();
-export {googleAnalyticsSteps};
+export { googleAnalyticsSteps };
+
