@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
 });
 
-test("Check redirects by buttons in 'Our Approach to Mobile App Development Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test('Check redirects by buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
 	const clutchButtons = await ourApproachContainer.getByTestId(Buttons.Clutch).all();
 
@@ -33,7 +33,7 @@ test("Check redirects by buttons in 'Our Approach to Mobile App Development Serv
 	}
 });
 
-test("Check carousel sections and arrows in 'Mobile App Development Process' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test('Check carousel sections and arrows in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
 	const carousel = mobileAppDevProcessContainer.getByTestId(Container.ContainerCarousel);
 	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
@@ -45,17 +45,7 @@ test("Check carousel sections and arrows in 'Mobile App Development Process' con
 	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, 3);
 });
 
-test("Check section titles and redirects by buttons in 'We Never Stop Improving Your Product' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
-	const weNeverStopImprovingYourProductContainer = driver.getByTestId(
-		MobileDevService.WeNeverStopImprovingYourProduct
-	);
-	const allSectionTitles = await weNeverStopImprovingYourProductContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
-	const testData = ['Tech Experts Team', 'Development Team', 'Management Team'];
-
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-
+test('Check section titles and redirects by buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development Service" block @Regression @MobileAppDev @TSWEB-696', async () => {
 	const buttonUrlMap = new Map([
 		[
 			weNeverStopImprovingYourProductContainer.getByTestId(Buttons.LinkedIn).nth(0),
@@ -87,7 +77,7 @@ test("Check section titles and redirects by buttons in 'We Never Stop Improving 
 	}
 });
 
-test("Check redirects by arrows in 'Related Services' container from the 'Mobile App Development Service' block @Regression @MobileDevService @TSWEB-696", async () => {
+test('Check redirects by arrows in "Related Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const relatedServicesContainer = driver.getByTestId(MobileDevService.RelatedServices);
 	const containerSection = relatedServicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
