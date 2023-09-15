@@ -141,7 +141,7 @@ test('Check section titles and images in "Our Approach to Mobile App Development
 	await baseDriverSteps.checkImagesVisibility(bigNumberImages, numberOfImages);
 });
 
-test('Check carousel sections in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check carousel section titles in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
 	const carousel = mobileAppDevProcessContainer.getByTestId(Container.ContainerCarousel);
 	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
