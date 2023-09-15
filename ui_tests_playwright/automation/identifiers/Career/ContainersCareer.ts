@@ -7,6 +7,7 @@ export default class ContainersCareer {
 	// Job page
 	static JobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
 	static JobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
+	static LocaleSwitcherBlock = 'styledComponents__LocaleSwitcherBlock-sc-126gmej-1 iEwdkj';
 
 	// Side Bar
 	static ActiveTagsGroupWrapper = 'styledComponents__ActiveTagsGroupWrapper';
