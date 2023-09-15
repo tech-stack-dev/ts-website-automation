@@ -5,4 +5,5 @@ export default class CaseStudyPath {
 	static IotSensorsAndImagers = '/iot-humidity-and-temperature-control-sensors-and-imagers';
 	static OneStopCrossPlatform = '/a-one-stop-cross-platform-mobile-app';
 	static CloudPlatformForEvCharging = '/cloud-platform-for-ev-charging-stations';
+	static VideoBasedQualityControl = '/video-based-quality-control-system';
 }

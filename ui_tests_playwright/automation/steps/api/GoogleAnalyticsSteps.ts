@@ -23,7 +23,7 @@ class GoogleAnalyticsSteps {
 			)]);
 
 		try {
-			expect(result, `Invalid request\n${postData}`).toBeTruthy();
+			expect(result, `Event was not found\n${postData}`).toBeTruthy();
 		} catch (error) {
 			await slackSteps.postMessageInSlackChannel(
 				slackDtoVariable.value.tsGoogleAnalyticsId,
