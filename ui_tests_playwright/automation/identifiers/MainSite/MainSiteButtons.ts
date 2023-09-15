@@ -18,6 +18,8 @@ export default class MainSiteButtons {
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
 	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
+	static GetAConsultation = 'Button-GetAConsultation';
+	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 	static MoreProductDetails = 'Button-MoreProductDetails';
 	static ScheduleACall = 'Button-ScheduleACall';
 
