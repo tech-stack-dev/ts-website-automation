@@ -20,6 +20,8 @@ export default class MainSiteButtons {
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 	static GetAConsultation = 'Button-GetAConsultation';
 	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
+	static MoreProductDetails = 'Button-MoreProductDetails';
+	static ScheduleACall = 'Button-ScheduleACall';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 

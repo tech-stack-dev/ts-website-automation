@@ -6,4 +6,5 @@ export default class CaseStudyPath {
 	static OneStopCrossPlatform = '/a-one-stop-cross-platform-mobile-app';
 	static CloudPlatformForEvCharging = '/cloud-platform-for-ev-charging-stations';
 	static VideoBasedQualityControl = '/video-based-quality-control-system';
+	static MobileSocialNetworkForSportsFans = '/mobile-social-network-for-sports-fans';
 }
