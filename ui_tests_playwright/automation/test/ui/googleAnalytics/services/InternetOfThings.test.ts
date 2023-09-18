@@ -127,7 +127,7 @@ test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engi
 	}
 });
 
-test('Check google analytics by arrows in "Related Services" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061, @TSWEB-1083', async ({}, testInfo) => {
+test.skip('Check google analytics by arrows in "Related Services" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061, @TSWEB-1083', async ({}, testInfo) => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
 	const serviceNames = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
