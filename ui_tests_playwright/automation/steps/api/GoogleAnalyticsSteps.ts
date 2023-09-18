@@ -3,19 +3,15 @@ import {driver} from '../../base/driver/Driver';
 import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
 import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
 import {slackSteps} from './SlackSteps';
+import {HttpMethod} from '../../enum/HttpMethodEnum';
 
 class GoogleAnalyticsSteps {
-	public async checkGoogleAnalytics(
-		element: Locator,
-		event: string | string[],
-		method: string,
-		testName: string
-	): Promise<void> {
+	public async checkGoogleAnalytics(element: Locator, event: string | string[], testName: string): Promise<void> {
 		const events = Array.isArray(event) ? event : [event];
 		element.click();
 
 		for (const event of events) {
-			const postData = `Event: ${event}\nMethod: ${method}`;
+			const postData = `Event: ${event}\nMethod: ${HttpMethod.GET}`;
 			let request: Request | null = null;
 
 			try {
@@ -23,8 +19,8 @@ class GoogleAnalyticsSteps {
 					(request: Request) =>
 						request.url().includes(ExternalSourceLinks.GoogleAnalytics) &&
 						request.url().includes(event) &&
-						request.method() === method,
-					{ timeout: 10000 }
+						request.method() === HttpMethod.GET,
+					{timeout: 10000}
 				);
 			} catch (error) {
 				await slackSteps.postMessageInSlackChannel(
