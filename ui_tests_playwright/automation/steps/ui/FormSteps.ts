@@ -35,7 +35,7 @@ class FormSteps {
 	}
 
 	public async sendGetInTouchMessage() {
-		this.fillGetInTouchForm();
+		await this.fillGetInTouchForm();
 
 		await driver.getByTestId(Buttons.Send).click();
 		await driver.getByTestId(Buttons.Close, undefined, 1).waitFor({state: 'visible'});
