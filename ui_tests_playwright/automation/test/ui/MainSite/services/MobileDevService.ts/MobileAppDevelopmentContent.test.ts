@@ -107,6 +107,7 @@ test('Check section titles, image, and CTA button in "Industry-Specific Solution
 	const industrySolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
 	const allSectionTitles = industrySolutionContainer.getByTestId(Container.SectionTitle);
 	const testData = ['User experience', 'Moving to IaaS', 'Third-party\nservices'];
+
 	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(industrySolutionContainer.getByTestId(MainSiteImages.MobileCaseStudy)).toBeVisible();
@@ -126,6 +127,7 @@ test('Check section titles in "What Industries We Serve" container from the "Mob
 		'Leisure and\nentertainment',
 		'Agriculture',
 	];
+
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
@@ -137,8 +139,8 @@ test('Check section titles and images in "Our Approach to Mobile App Development
 	await expect(allSectionTitles).toHaveText(testData);
 
 	const bigNumberImages = ourApproachContainer.getByTestId(MainSiteImages.BigNumber);
-	const numberOfImages = 3;
-	await baseDriverSteps.checkImagesVisibility(bigNumberImages, numberOfImages);
+
+	await baseDriverSteps.checkImagesVisibility(bigNumberImages, 3);
 });
 
 test('Check carousel section titles in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
@@ -167,6 +169,7 @@ test('Check section titles, member names and roles, and CTA button in "We Never 
 		'Head of Account Management,\nEnsures smooth communication and results.',
 		'Sr. Director of Quality Engineering,\nLeads QA and implements a data-driven culture.',
 	];
+
 	await expect(allMemberRoles).toHaveText(testDataRoles);
 
 	const allMemberNames = weNeverStopImprovingContainer.getByTestId(Container.MemberName);
@@ -177,6 +180,7 @@ test('Check section titles, member names and roles, and CTA button in "We Never 
 		ExpertNames.DmytroShtapauk,
 		ExpertNames.VitaliiDolotov,
 	];
+
 	await expect(allMemberNames).toHaveText(testDataNames);
 
 	await expect(weNeverStopImprovingContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
@@ -192,6 +196,7 @@ test('Check section titles, block title, and CTA button in "The Cost of Mobile A
 		'Mobile app as a part\nof a complex software solution',
 		'Full-cycle mobile app\ndevelopment',
 	];
+
 	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(theCostOfMobAppDevContainer.getByTestId(Container.BlockTitle)).toHaveText(

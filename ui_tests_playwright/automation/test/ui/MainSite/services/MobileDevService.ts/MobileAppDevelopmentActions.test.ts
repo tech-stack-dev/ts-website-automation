@@ -71,9 +71,8 @@ test('Check redirects by Clutch buttons in "Our Approach to Mobile App Developme
 
 test('Check carousel arrows in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
-	const numberOfClicks = 3;
 
-	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, numberOfClicks);
+	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, 3);
 });
 
 test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
