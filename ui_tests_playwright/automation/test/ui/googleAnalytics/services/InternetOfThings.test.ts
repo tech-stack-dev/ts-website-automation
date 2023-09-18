@@ -1,6 +1,7 @@
 import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {HttpMethod} from '../../../../enum/HttpMethodEnum';
 import Buttons from '../../../../identifiers/Buttons';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
@@ -27,28 +28,48 @@ test('Check google analytics in breadcrumbs. @Regression @GoogleAnalytics @TSWEB
 	const info = driver.getByTestId(IoTEngineeringServices.Info);
 	const breadcrumbsButton = info.getByTestId(Container.BreadcrumbsPrev);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(breadcrumbsButton, 'IoTServBreadServices', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		breadcrumbsButton,
+		'IoTServBreadServices',
+		HttpMethod.GET,
+		testInfo.title
+	);
 });
 
 test('Check google analytics by "Request a quote" button in "Info" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
 	const info = driver.getByTestId(IoTEngineeringServices.Info);
 	const requestQuoteButton = info.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(requestQuoteButton, 'IoTServMainRequestQuote', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		requestQuoteButton,
+		'IoTServMainRequestQuote',
+		HttpMethod.GET,
+		testInfo.title
+	);
 });
 
 test('Check google analytics by "Request a quote" button in "IoT Technology Stack by Layers" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
 	const info = driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers);
 	const requestQuoteButton = info.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(requestQuoteButton, 'IoTServTechStackRequestQuote', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		requestQuoteButton,
+		'IoTServTechStackRequestQuote',
+		HttpMethod.GET,
+		testInfo.title
+	);
 });
 
 test('Check google analytics by "Request a quote" button in "IoT Engineering Process" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
 	const info = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	const requestQuoteButton = info.getByTestId(MainSiteButtons.RequestAQuote);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(requestQuoteButton, 'IoTServNewIoTRequestQuote', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		requestQuoteButton,
+		'IoTServNewIoTRequestQuote',
+		HttpMethod.GET,
+		testInfo.title
+	);
 });
 
 test('Check google analytics by carousel buttons in "IoT Engineering Process" container. @Regression @GoogleAnalytics @TSWEB-1069', async ({}, testInfo) => {
@@ -56,8 +77,18 @@ test('Check google analytics by carousel buttons in "IoT Engineering Process" co
 	const carouselNextButton = info.getByTestId(Container.CarouselButtonNext);
 	const carouselPrevButton = info.getByTestId(Container.CarouselButtonPrev);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(carouselNextButton, 'IoTServProcNext', testInfo.title);
-	await googleAnalyticsSteps.checkGoogleAnalytics(carouselPrevButton, 'IoTServProcPrev', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		carouselNextButton,
+		'IoTServProcNext',
+		HttpMethod.GET,
+		testInfo.title
+	);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		carouselPrevButton,
+		'IoTServProcPrev',
+		HttpMethod.GET,
+		testInfo.title
+	);
 });
 
 test('Check google analytics by Blog buttons in "Our Internet of Things Engineering Experts" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061', async ({}, testInfo) => {
@@ -72,6 +103,7 @@ test('Check google analytics by Blog buttons in "Our Internet of Things Engineer
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			expertCards[i].getByTestId(Buttons.Blog),
 			events[i],
+			HttpMethod.GET,
 			testInfo.title
 		);
 	}
@@ -89,6 +121,7 @@ test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engi
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			expertCards[i].getByTestId(Buttons.LinkedIn),
 			events[i],
+			HttpMethod.GET,
 			testInfo.title
 		);
 	}
@@ -101,7 +134,7 @@ test('Check google analytics by arrows in "Related Services" container. @Regress
 	const events = serviceNames.map((name) => `IoTServRelServices-${stringUtils.encodeForUrl(name)}`);
 
 	for (let i = 0; i < serviceArrows.length; i++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(serviceArrows[i], events[i], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(serviceArrows[i], events[i], HttpMethod.GET, testInfo.title);
 		await baseDriverSteps.goToUrl(pageUrl);
 	}
 });
@@ -112,7 +145,7 @@ test('Check google analytics by arrows in "FAQ" container. @Regression @GoogleAn
 	const events = ['IoTServFaq1More', 'IoTServFaq2More', 'IoTServFaq3More'];
 
 	for (let i = 0; i < arrows.length; i++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(arrows[i], events[i], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(arrows[i], events[i], HttpMethod.GET, testInfo.title);
 	}
 });
 
@@ -123,6 +156,6 @@ test('Check google analytics by cards in "Related Articles" container. @Regressi
 	const events = articleNames.map((name) => `IoTServArticle-${stringUtils.encodeForUrl(name)}`);
 
 	for (let i = 0; i < articles.length - 1; i++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(articles[i], events[i], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(articles[i], events[i], HttpMethod.GET, testInfo.title);
 	}
 });

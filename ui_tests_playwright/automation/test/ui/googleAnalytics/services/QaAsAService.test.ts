@@ -13,6 +13,7 @@ import CaseStudies from '../../../../identifiers/MainSite/CaseStudies';
 import RelatedArticles from '../../../../identifiers/MainSite/RelatedArticles';
 import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import {HttpMethod} from '../../../../enum/HttpMethodEnum';
 
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.QaAsAServ, Environment.Production);
 
@@ -29,13 +30,19 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 
 	const info = driver.getByTestId(QaAsAService.Info);
 	const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
-	await googleAnalyticsSteps.checkGoogleAnalytics(breadcrumbsButton, 'QAasAServBreadServices', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(
+		breadcrumbsButton,
+		HttpMethod.GET,
+		'QAasAServBreadServices',
+		testInfo.title
+	);
 	await baseDriverSteps.goToUrl(pageUrl);
 
 	const infoRequestQuoteButton: Locator = info.getByTestId(MainSiteButtons.RequestAQuote);
 	await googleAnalyticsSteps.checkGoogleAnalytics(
 		infoRequestQuoteButton,
 		'QAasAServMainRequestQuote',
+		HttpMethod.GET,
 		testInfo.title
 	);
 
@@ -51,7 +58,12 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 
 	for (let index = 0; index < servicesBlocks.length; index++) {
 		const arrow = servicesBlocks[index].getByTestId(Container.Arrow);
-		await googleAnalyticsSteps.checkGoogleAnalytics(arrow, servicesBlockEvents[index], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(
+			arrow,
+			servicesBlockEvents[index],
+			HttpMethod.GET,
+			testInfo.title
+		);
 	}
 
 	const caseStudies = driver.getByTestId(QaAsAService.CaseStudies);
@@ -64,7 +76,12 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 
 	for (let index = 0; index < 3; index++) {
 		const caseCard = caseCardList[index];
-		await googleAnalyticsSteps.checkGoogleAnalytics(caseCard, caseEventsList[index], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(
+			caseCard,
+			caseEventsList[index],
+			HttpMethod.GET,
+			testInfo.title
+		);
 		await baseDriverSteps.goToUrl(pageUrl);
 	}
 
@@ -75,6 +92,7 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 	await googleAnalyticsSteps.checkGoogleAnalytics(
 		ourApproachRequestQuoteButton,
 		'QAasAServAchiveRequestQuote',
+		HttpMethod.GET,
 		testInfo.title
 	);
 
@@ -91,7 +109,12 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 	const arrowList = await faq.getByTestId(Container.Arrow).all();
 
 	for (let index = 0; index < arrowList.length; index++) {
-		await googleAnalyticsSteps.checkGoogleAnalytics(arrowList[index], faqBlockEvents[index], testInfo.title);
+		await googleAnalyticsSteps.checkGoogleAnalytics(
+			arrowList[index],
+			faqBlockEvents[index],
+			HttpMethod.GET,
+			testInfo.title
+		);
 	}
 
 	// Unstable prod blog
@@ -106,6 +129,11 @@ test.skip("Check google analytics for 'QA as a Service' page @Regression @Google
 
 	// for (let index = 0; index < 3; index++) {
 	// 	const articleItem = ArticleItemList[index];
-	// 	await googleAnalyticsSteps.checkGoogleAnalytics(articleItem, articlesEventsList[index], testInfo.title);
+	// 	await googleAnalyticsSteps.checkGoogleAnalytics(
+	// 		articleItem,
+	// 		articlesEventsList[index],
+	// 		HttpMethod.GET,
+	// 		testInfo.title
+	// 	);
 	// }
 });
