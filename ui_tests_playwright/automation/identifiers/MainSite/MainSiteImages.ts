@@ -6,4 +6,7 @@ export default class MainSiteImages {
 	static SensorsScheme = 'Img-SensorsScheme';
 	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
 	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
+	static MobileCaseStudy = 'Img-MobileCaseStudy';
+
+	static BigNumber = 'Img-BigNumbers';
 }
