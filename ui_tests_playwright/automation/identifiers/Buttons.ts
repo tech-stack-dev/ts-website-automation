@@ -52,6 +52,9 @@ export default class Buttons {
 	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';
 
+	// Form
+	static Send = 'SubmitButton-SharedSendMessage';
+
 	// Other
 	static Logo = 'Logo-Techstack';
 	static Blog = 'Button-Blog';
