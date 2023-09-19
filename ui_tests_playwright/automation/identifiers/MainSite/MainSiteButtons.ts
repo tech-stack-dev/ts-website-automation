@@ -12,6 +12,16 @@ export default class MainSiteButtons {
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
 	static SeeAllNews = 'Button-SeeAllNews';
+	static SendUsYourQueries = 'Button-SendUsYourQueries';
+	static ReadMore = 'Button-ReadMore';
+	static ContactOurExperts = 'Button-ContactOurExperts';
+	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
+	static RequestMoreInformation = 'Button-RequestMoreInformation';
+	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
+	static GetAConsultation = 'Button-GetAConsultation';
+	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
+	static MoreProductDetails = 'Button-MoreProductDetails';
+	static ScheduleACall = 'Button-ScheduleACall';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static Arrow = 'Arrow';
@@ -21,15 +31,12 @@ export default class MainSiteButtons {
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-Mckinsey';
-	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
+
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
-
-	// Links
-	static Tiktok = 'Link-TikTok';
-	static Instagram = 'Link-Instagram';
+	static Layer = 'Button-Layer';
 
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';

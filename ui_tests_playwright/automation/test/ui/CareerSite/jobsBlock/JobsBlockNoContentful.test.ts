@@ -61,7 +61,7 @@ test('Check search field styling after search a long jobname on careers page @Re
 test('Check that user can switch language in navigation header in career page @Regression @JobsBlock @TSWEB-146', async () => {
 	const jobPageHeaderContainer = await containerSteps.getContainer(
 		ContainerByClass,
-		ContainersCareer.JobPageHeaderWrapper
+		ContainersCareer.NavigationHeaderClass
 	);
 	const logoHeader = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 
@@ -76,10 +76,17 @@ test('Check that user can switch language in navigation header in career page @R
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 	await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 
-	await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
+	const localeSwitcherBlock = await containerSteps.getContainer(
+		ContainerByClass,
+		ContainersCareer.LocaleSwitcherBlock
+	);
+
+	await expect(localeSwitcherBlock.Element.getByTestId(CareerButtons.EnLanguageSwitcher).first()).toHaveClass(
 		/active-locale/
 	);
-	const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+
+	const uaButtonSwitcher = localeSwitcherBlock.getByTestId(CareerButtons.UaLanguageSwitcher).first();
+
 	await expect(uaButtonSwitcher).toBeVisible();
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);

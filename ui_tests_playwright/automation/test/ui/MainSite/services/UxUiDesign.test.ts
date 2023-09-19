@@ -13,6 +13,7 @@ import ExpertsBehanceLinks from '../../../../preconditionsData/Links/ExpertsBeha
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import MainSiteLinks from '../../../../identifiers/MainSite/MainSiteLinks';
 
 // Divide tests for Content and Actions in scope of TSWEB-1028
 test.beforeEach(async () => {
@@ -179,8 +180,8 @@ test("Check member names and roles in 'We Never Stop Improving Your Product' con
 test("Check social network links in 'We Never Stop Improving Your Product' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {
 	const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const buttonLinkMap = new Map([
-		[weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.Instagram), Links.Instagram],
-		[weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.Tiktok), Links.TikTokDesign],
+		[weNeverStopImprovingYourProductContainer.getByTestId(MainSiteLinks.Instagram), Links.Instagram],
+		[weNeverStopImprovingYourProductContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 	]);
 
 	for (const [button, url] of buttonLinkMap.entries()) {
@@ -251,7 +252,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'UX/UI 
 	]);
 
 	const uxUiPageUrl = UrlProvider.urlBuilder(UrlPath.UiUxDesign);
-	await baseDriverSteps.checkRedirectToPagesInSameTab(arrowUrlMap, uxUiPageUrl);
+	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, uxUiPageUrl);
 });
 
 test("Check section titles in 'FAQ' container from the 'UX/UI Design' block @Regression @UxUiDesign @TSWEB-670", async () => {

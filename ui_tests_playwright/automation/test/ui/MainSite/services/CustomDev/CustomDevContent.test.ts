@@ -7,6 +7,8 @@ import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import TechnologyStackData from '../../../../../preconditionsData/TechnologyStack/TechnologyStackData';
+import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
@@ -14,9 +16,9 @@ test.beforeEach(async () => {
 
 test("Check the header from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const info = driver.getByTestId(CustomDev.Info);
-
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software\nDevelopment Services');
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 });
 
 test("Check container titles and numbers from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -55,6 +57,18 @@ test("Check container titles and numbers from the 'Custom Software Development' 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedText);
 });
 
+test("Check section titles in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+	const sections = techstackStrengthContainer.getByTestId(Container.ContainerSection);
+	const numOfSections = 3;
+	await expect(sections).toHaveCount(numOfSections);
+
+	const sectionTitles = sections.getByTestId(Container.SectionTitle);
+	const testData = ['From MVP to unicorn product', 'Five-star reviews', 'First-hand cross-domain expertise'];
+
+	await expect(sectionTitles).toHaveText(testData);
+});
+
 test("Check section titles and numbers in 'Custom Software Development for Your Product' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
 
@@ -78,7 +92,7 @@ test("Check section titles and numbers in 'Custom Software Development for Your 
 	}
 });
 
-test("Check section titles in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles and numbers, and CTA button in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
@@ -105,6 +119,8 @@ test("Check section titles in 'Custom Development Services We Provide' container
 		await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 		await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
 	}
+
+	await expect(servicesWeProvide.getByTestId(MainSiteButtons.SendUsYourQueries)).toHaveText('Send Us Your Queries');
 });
 
 test("Check section titles in 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -119,6 +135,50 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 		containerBlocks,
 		testDataSectionTitles
 	);
+});
+
+test("Check section titles, image and CTA button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
+
+	const allSectionTitles = ourFeaturedCaseStudyContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Improve user location',
+		'Streamlining the user entry process',
+		'Delivering robust data security across all system components',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteImages.OurFeaturedCaseStudy)).toBeVisible();
+	await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore)).toHaveText('Read More');
+});
+
+test("Check section numbers and titles in 'Industries We Develop Software For' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
+	await expect(industriesWeDevelopContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+		'06',
+		'07',
+		'08',
+	]);
+
+	const allSectionTitles = industriesWeDevelopContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Healthcare',
+		'Transportation and Logistics',
+		'Renewable Energy',
+		'Agriculture and Farming',
+		'Manufacturing',
+		'Hospitality',
+		'Entertainment',
+		'Fintech',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test("Check section titles in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -140,7 +200,7 @@ test("Check award cards in 'Why Choose Techstack' container from the 'Custom Sof
 	await baseDriverSteps.checkImagesVisibility(awardCards, 8);
 });
 
-test("Check section titles, member names and roles in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check section titles, member names and roles, and CTA button in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const devExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
 	const sections = devExpertsContainer.getByTestId(Container.ContainerSection);
 	const numOfSections = 3;
@@ -186,6 +246,20 @@ test("Check section titles, member names and roles in 'Custom Software Developme
 		await expect(memberCard.getByTestId(Container.MemberRole)).toHaveText(expectedMemberCardsText[i].role);
 		await expect(memberCard.getByTestId(Container.MemberName)).toHaveText(expectedMemberCardsText[i].name);
 	}
+
+	await expect(devExpertsContainer.getByTestId(MainSiteButtons.ContactOurExperts)).toHaveText('Contact Our Experts');
+});
+
+test("Check section titles and CTA button in 'Our Tailored Collaboration and Pricing Models' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const ourTailoredCollaborationContainer = driver.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels);
+
+	const sectionTitles = ourTailoredCollaborationContainer.getByTestId(Container.SectionTitle);
+	const expectedText = ['Full-cycle software development', 'Dedicated team', 'R&D partnership'];
+
+	await expect(sectionTitles).toHaveText(expectedText);
+	await expect(ourTailoredCollaborationContainer.getByTestId(MainSiteButtons.ClaimYourCustomQuote)).toHaveText(
+		'Claim Your Custom Quote'
+	);
 });
 
 test("Check carousel section titles and numbers in 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
