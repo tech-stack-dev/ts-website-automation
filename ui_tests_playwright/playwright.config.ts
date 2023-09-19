@@ -14,7 +14,7 @@ dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
 const config: PlaywrightTestConfig = {
 	testDir: './automation',
 	/* Maximum time one test can run for. */
-	timeout: 0,
+	timeout: 15 * 60 * 1000,
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
