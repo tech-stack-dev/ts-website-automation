@@ -102,6 +102,13 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);
+	const expectedNumberOfSections = 3;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

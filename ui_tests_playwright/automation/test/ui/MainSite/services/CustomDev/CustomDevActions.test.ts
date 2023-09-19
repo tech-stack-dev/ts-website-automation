@@ -146,10 +146,11 @@ test("Check carousel arrows from the 'Custom Software Development Process' conta
 	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
 });
 
-test("Check sections expanding and collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const faqContainer = driver.getByTestId(CustomDev.Faq);
-	const epectedNumberOfSections = 5;
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+	const expectedNumberOfSections = 5;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

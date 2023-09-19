@@ -101,10 +101,11 @@ test("Check redirects by arrows in 'Related services' container from the 'AI&ML 
 	}
 });
 
-test("Check sections expanding and collapsing in FAQ' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "AI&ML Service" page @Regression @AiMlService @TSWEB-694', async () => {
 	const faqContainer = driver.getByTestId(AiMlService.Faq);
-	const epectedNumberOfSections = 3;
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+	const expectedNumberOfSections = 3;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

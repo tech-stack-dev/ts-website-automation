@@ -118,10 +118,11 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 	}
 });
 
-test("Check sections expanding and collapsing in 'FAQ' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const faqContainer = driver.getByTestId(ConsultingService.Faq);
-	const epectedNumberOfSections = 5;
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+	const expectedNumberOfSections = 5;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

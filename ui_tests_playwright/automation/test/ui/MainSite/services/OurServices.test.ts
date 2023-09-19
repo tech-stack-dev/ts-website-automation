@@ -165,10 +165,11 @@ test("Check section titles in 'FAQ' container from the 'Our Services' block @Reg
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check sections expanding and collapsing in 'FAQ' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const faqContainer = driver.getByTestId(OurServices.Faq);
-	const epectedNumberOfSections = 9;
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+	const expectedNumberOfSections = 9;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

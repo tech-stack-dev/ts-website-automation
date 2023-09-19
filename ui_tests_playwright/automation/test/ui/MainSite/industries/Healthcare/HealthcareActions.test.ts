@@ -92,11 +92,11 @@ test("Check redirects by arrows in 'Core Practices' container from the 'Healthca
 	}
 });
 
-test("Check sections expanding and collapsing in 'FAQ' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const faqContainer = driver.getByTestId(Healthcare.Faq);
-	const epectedNumberOfSections = 3;
+	const expectedNumberOfSections = 3;
 
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, epectedNumberOfSections);
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {
