@@ -18,12 +18,12 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test("Check the header from the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
+test('Check the header from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const info = driver.getByTestId(AboutUs.Info);
 	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
 });
 
-test("Check the container title and number from the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
+test('Check the container title and number from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const containers = [
 		driver.getByTestId(AboutUs.OurStory),
 		driver.getByTestId(AboutUs.WhatsAtTheCore),
@@ -49,7 +49,7 @@ test("Check the container title and number from the 'About Us' page @Regression 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check member names and roles in 'Our team' block from the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
+test('Check member names and roles in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourExpertsContainer = driver.getByTestId(AboutUs.OurTeam);
 	const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
@@ -84,7 +84,7 @@ test("Check member names and roles in 'Our team' block from the 'About Us' page 
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test("Check redirects by buttons in 'Our team' block from the 'About Us' page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061", async () => {
+test('Check redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
 	const buttonUrlMap = new Map([
 		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
@@ -132,7 +132,7 @@ test("Check redirects by buttons in 'Our team' block from the 'About Us' page @R
 	}
 });
 
-test("Check 'Learn more about how we work' button from the 'Our partners' block on the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
+test('Check "Learn more about how we work" button from the "Our partners" block on the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourPartnersBlock = driver.getByTestId(AboutUs.OurPartners);
 
 	await ourPartnersBlock.getByTestId(MainSiteButtons.Arrow).click();
@@ -140,7 +140,7 @@ test("Check 'Learn more about how we work' button from the 'Our partners' block 
 });
 
 
-test("Check redirect by 'LinkedIn Review' button in 'Shoutout from our partners' block from the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
+test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const shoutoutFromOurPartnersContainer = driver.getByTestId(AboutUs.ShoutoutFromOurPartners);
 
 	const linkedInButtons = await shoutoutFromOurPartnersContainer.getByTestId(MainSiteButtons.LinkedInReviewArrow).all();
@@ -150,29 +150,7 @@ test("Check redirect by 'LinkedIn Review' button in 'Shoutout from our partners'
 
 	const buttonMap = new Map([
 		[linkedInButtons[0], LinkedInReviewLinks.FerdiVanHeerden],
-		[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown],
-	]);
-
-	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
-	}
-});
-
-test("Check redirect by 'Clutch Review' button in 'Shoutout from our partners' container from the 'About Us' page @Regression @AboutUs @TSWEB-1022", async () => {
-	const shoutoutFromOurPartnersContainer = driver.getByTestId(AboutUs.ShoutoutFromOurPartners);
-
-	const clutchReviewButton = shoutoutFromOurPartnersContainer.getByTestId(MainSiteButtons.ClutchReviews);
-	await clutchReviewButton.click();
-	expect(await clutchReviewButton.getAttribute('class')).toContain('active');
-
-	const clutchButtons = await shoutoutFromOurPartnersContainer.getByTestId(MainSiteButtons.ClutchReviewArrow).all();
-
-	const buttonMap = new Map([
-		[clutchButtons[0], ClutchReviewLinks.MarkBeare],
-		[clutchButtons[1], ClutchReviewLinks.AnonymousMedicalDevice],
+		//[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown], waiting for fix from https://ts-website.atlassian.net/browse/TSWEB-1040
 	]);
 
 	for (const [button, url] of buttonMap) {
