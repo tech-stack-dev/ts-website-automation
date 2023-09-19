@@ -1,11 +1,12 @@
-export default class AboutUs {
-    static info = 'Container-Info';
-    static ourStory = 'Container-OurStory';
-    static whatsAtTheCore = 'Container-WhatsAtTheCore';
-    static ourTeam = 'Container-OurTeam';
-    static whatMakesUsSpecial = 'Container-WhatMakesUsSpecial';
-    static ourPartners = 'Container-OurPartners';
-    static shoutoutFromOurPartners = 'Container-ShoutoutFromOurPartners';
-    static ourPeople = 'Container-OurPeople';
-    static getInTouch = 'Container-GetInTouch';
+import GeneralContainersMainSite from "../../GeneralContainersMainSite";
+
+export default class CloudDevelopment extends GeneralContainersMainSite {
+    static OurStory = 'Container-OurStory';
+    static WhatsAtTheCore = 'Container-WhatsAtTheCore';
+    static OurTeam = 'Container-OurTeam';
+    static WhatMakesUsSpecial = 'Container-WhatMakesUsSpecial';
+    static OurPartners = 'Container-OurPartners';
+    static ShoutoutFromOurPartners = 'Container-ShoutoutFromOurPartners';
+    static OurPeople = 'Container-OurPeople';
+    static CarouselPhoto = 'CarouselPhoto';
 }

@@ -14,6 +14,7 @@ export default class MainSiteButtons {
 	static SeeAllNews = 'Button-SeeAllNews';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
+	static Arrow = 'Arrow';
 
 	// Services
 	static Forbes = 'Button-Forbes';
