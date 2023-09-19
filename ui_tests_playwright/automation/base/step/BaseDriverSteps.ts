@@ -105,11 +105,18 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToPagesInSameTab(locatorUrlMap: Map<Locator, string>, initialPageUrl: string) {
+	public async checkRedirectToPages(locatorUrlMap: Map<Locator, string>, initialPageUrl?: string) {
 		for (const [locator, expectedUrl] of locatorUrlMap) {
 			await locator.click();
-			await baseDriverSteps.checkUrl(expectedUrl);
-			await baseDriverSteps.goToUrl(initialPageUrl);
+
+			if (initialPageUrl) {
+				await baseDriverSteps.checkUrl(expectedUrl);
+				await baseDriverSteps.goToUrl(initialPageUrl);
+			} else {
+				const newPage = await driver.DriverContext.waitForEvent('page');
+				expect(newPage.url()).toContain(expectedUrl);
+				await newPage.close();
+			}
 		}
 	}
 

@@ -16,6 +16,12 @@ export default class MainSiteButtons {
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
+	static RequestMoreInformation = 'Button-RequestMoreInformation';
+	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
+	static GetAConsultation = 'Button-GetAConsultation';
+	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
+	static MoreProductDetails = 'Button-MoreProductDetails';
+	static ScheduleACall = 'Button-ScheduleACall';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 
@@ -24,11 +30,12 @@ export default class MainSiteButtons {
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-Mckinsey';
-	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
+
 	static LinkedInReviewArrow = 'LinkedInArrow';
 	static ClutchReviewArrow = 'ClutchArrow';
+	static Layer = 'Button-Layer';
 
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';

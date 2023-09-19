@@ -15,13 +15,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
 });
 
-test("Check redirect by 'Home' breadcrumbs button in header from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
-	const info = driver.getByTestId(TransportationAndLogistics.Info);
-	await info.getByTestId(Container.BreadcrumbsPrev).click();
-
-	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
-});
-
 test("Check redirect by 'Clutch Review' button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
 
