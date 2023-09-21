@@ -74,7 +74,7 @@ test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Produ
 });
 
 // Unskip after Blog will be stable
-test.skip('Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test.skip('Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	await weNeverStopImprovingContainer.getByTestId(Buttons.Blog).click();
 
