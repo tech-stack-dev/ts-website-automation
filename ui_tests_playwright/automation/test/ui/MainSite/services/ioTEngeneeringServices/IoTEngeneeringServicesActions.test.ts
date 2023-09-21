@@ -1,16 +1,17 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import { expect, test } from '@playwright/test';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
+import GeneralContainersMainSite from '../../../../../identifiers/MainSite/GeneralContainersMainSite';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import {Environment} from '../../../../../providers/EnvProvider';
+import { Environment } from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -99,6 +100,25 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 		await arrow.click();
 		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+	}
+});
+
+test('Check navigation to "Get In Touch" form after clicking "Quote a request" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+	const requestAQuoteButtons = [
+		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (let button of requestAQuoteButtons) {
+		await button.click();
+
+		await expect(driver.getByTestId(GeneralContainersMainSite.GetInTouch)).toBeInViewport();
+
+		await driver.Page.evaluate(() => {
+			document.documentElement.scrollTop = 0;
+			document.body.scrollTop = 0;
+		});
 	}
 });
 
