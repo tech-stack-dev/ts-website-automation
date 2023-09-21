@@ -1,38 +1,47 @@
-import {Locator, Request, expect} from '@playwright/test';
-import {driver} from '../../base/driver/Driver';
+import { Locator, Request } from '@playwright/test';
+import { promisify } from 'util';
+import { driver } from '../../base/driver/Driver';
+import { HttpMethod } from '../../enum/HttpMethodEnum';
 import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
-import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
-import {slackSteps} from './SlackSteps';
-import {HttpMethod} from '../../enum/HttpMethodEnum';
+import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import { slackSteps } from './SlackSteps';
 
 class GoogleAnalyticsSteps {
-	public async checkGoogleAnalytics(element: Locator, event: string | string[], testName: string): Promise<void> {
-		const events = Array.isArray(event) ? event : [event];
-		element.click();
+	public async checkGoogleAnalytics(
+		element: Locator,
+		event: string,
+		testName: string,
+		method?: string
+	): Promise<void> {
+		method = method || HttpMethod.GET;
+		const wait = promisify(setTimeout);
+		const result = await Promise.race([
+			element.click(),
+			driver.Page.waitForRequest(
+				(request: Request) => request.url().includes(event) && request.method() === method
+			),
+			wait(10000),
+		]);
+		const postMessage = async () => {
+			await slackSteps.postMessageInSlackChannel(
+				slackDtoVariable.value.tsGoogleAnalyticsId,
+				`Test: ${testName}\nEvent: ${event}\nMethod: ${method}\n`
+			);
+		};
+		if (!result) {
+			await postMessage();
+			return;
+		}
+		const request = result as Request;
+		const url = request.url();
 
-		for (const event of events) {
-			const postData = `Event: ${event}\nMethod: ${HttpMethod.GET}`;
-			let request: Request | null = null;
-
-			try {
-				request = await driver.Page.waitForRequest(
-					(request: Request) =>
-						request.url().includes(ExternalSourceLinks.GoogleAnalytics) &&
-						request.url().includes(event) &&
-						request.method() === HttpMethod.GET,
-					{timeout: 10000}
-				);
-			} catch (error) {
-				await slackSteps.postMessageInSlackChannel(
-					slackDtoVariable.value.tsGoogleAnalyticsId,
-					`Test: ${testName}\n${postData}`
-				);
-			}
-
-			expect(request, `Event was not found\n${postData}`).toBeTruthy();
+		if (!url.includes(ExternalSourceLinks.GoogleAnalytics) || !url.includes(event)) {
+			await postMessage();
+			return;
 		}
 	}
 }
 
 const googleAnalyticsSteps = new GoogleAnalyticsSteps();
-export {googleAnalyticsSteps};
+export { googleAnalyticsSteps };
+

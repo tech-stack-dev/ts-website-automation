@@ -54,6 +54,8 @@ export default class Buttons {
 
 	// Form
 	static Send = 'SubmitButton-SharedSendMessage';
+	static AttachFiles = 'Button-AttachFiles';
+	static Cancel = 'Icon-Cancel';
 
 	// Other
 	static Logo = 'Logo-Techstack';

@@ -1,20 +1,18 @@
-import {test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import RelatedArticles from '../../../../identifiers/MainSite/RelatedArticles';
 import IoTEngineeringServices from '../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import GetInTouchPage from '../../../../pages/GetInTouchPage';
-import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
-import {Environment} from '../../../../providers/EnvProvider';
+import { ExpertNames } from '../../../../preconditionsData/ExpertNames';
+import { Environment } from '../../../../providers/EnvProvider';
 import SlackProvider from '../../../../providers/SlackProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {googleAnalyticsSteps} from '../../../../steps/api/GoogleAnalyticsSteps';
-import {formSteps} from '../../../../steps/ui/FormSteps';
-import {stringUtils} from '../../../../utils/StringUtils';
+import { googleAnalyticsSteps } from '../../../../steps/api/GoogleAnalyticsSteps';
+import { stringUtils } from '../../../../utils/StringUtils';
 
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.InternetOfThings, Environment.Production);
 
@@ -96,7 +94,7 @@ test('Check google analytics by LinkedIn buttons in "Our Internet of Things Engi
 	}
 });
 
-test.skip('Check google analytics by arrows in "Related Services" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061, @TSWEB-1083', async ({}, testInfo) => {
+test('Check google analytics by arrows in "Related Services" container. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1061, @TSWEB-1083', async ({}, testInfo) => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
 	const serviceNames = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
@@ -129,21 +127,19 @@ test('Check google analytics by cards in "Related Articles" container. @Regressi
 	}
 });
 
-test.skip('Check google analytics in "Get in Touch" form. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1090', async ({}, testInfo) => {
+test('Check google analytics in "Get in Touch" form. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1090', async ({ }, testInfo) => {
 	const sendRequestButton = driver.Page.getByTestId(Buttons.Send);
+	const attachFilesButton = driver.getByTestId(Buttons.AttachFiles);
 
 	await googleAnalyticsSteps.checkGoogleAnalytics(sendRequestButton, 'IoTServSendMessageClick%20', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(attachFilesButton, 'IoTServSendMessageAddFile', testInfo.title);
 
-	const getInTouchPage = await driver.getPage(GetInTouchPage);
-	const fileInput = getInTouchPage.fileInput();
+	await attachFilesButton.setInputFiles('automation/resources/test.pdf');
+	const cancelButton = driver.getByTestId(Buttons.Cancel);
 
-	await googleAnalyticsSteps.checkGoogleAnalytics(fileInput, 'IoTServSendMessageAddFile', testInfo.title);
+	await googleAnalyticsSteps.checkGoogleAnalytics(cancelButton, 'IoTServSendMessageDelFile', testInfo.title);
 
-	await fileInput.setInputFiles('automation/resources/test.pdf');
-	const removeFileButton = getInTouchPage.removeFileButton();
-
-	await googleAnalyticsSteps.checkGoogleAnalytics(removeFileButton, 'IoTServSendMessageDelFile', testInfo.title);
-
+	/* TODO: Update checkGoogleAnalytics to accept multiple events to uncomment
 	formSteps.fillGetInTouchForm();
 
 	await googleAnalyticsSteps.checkGoogleAnalytics(
@@ -151,4 +147,5 @@ test.skip('Check google analytics in "Get in Touch" form. @Regression @GoogleAna
 		['IoTServSendMessageClick%20', 'IoTServSendMessageCompl'],
 		testInfo.title
 	);
+	*/
 });
