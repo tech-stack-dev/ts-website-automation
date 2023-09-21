@@ -22,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 });
 

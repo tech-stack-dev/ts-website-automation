@@ -9,7 +9,7 @@ import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
-const RequestAQuoteButtonText = 'Request a Quote';
+const requestAQuoteButtonText = 'Request a Quote';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -19,7 +19,7 @@ test('Check the info container from the "UX/UI Design" page @Regression @UxUiDes
 	const info = driver.getByTestId(UxUiDesign.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 	await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');
-	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(RequestAQuoteButtonText);
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 });
 
 test('Check the container titles and numbers from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
@@ -99,7 +99,7 @@ test('Check section titles and CTA button in "Our UI/UX Services" container from
 	await expect(allSectionTitles).toHaveText(testDataSectionTitles);
 
 	await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-		RequestAQuoteButtonText
+		requestAQuoteButtonText
 	);
 });
 
@@ -172,7 +172,7 @@ test('Check member names and roles, and CTA button in "We Never Stop Improving Y
 	await expect(allMemberRoles).toHaveText(testDataRoles);
 
 	await expect(weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-		RequestAQuoteButtonText
+		requestAQuoteButtonText
 	);
 });
 
