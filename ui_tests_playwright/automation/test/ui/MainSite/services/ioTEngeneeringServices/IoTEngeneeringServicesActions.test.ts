@@ -103,7 +103,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
-test('Check navigation to "Get In Touch" form after clicking "Quote a request" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const requestAQuoteButtons = [
 		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers).getByTestId(MainSiteButtons.RequestAQuote),
