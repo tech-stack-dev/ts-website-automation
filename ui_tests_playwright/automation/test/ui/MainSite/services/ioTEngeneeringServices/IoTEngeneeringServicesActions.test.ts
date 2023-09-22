@@ -5,7 +5,6 @@ import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
 import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
-import GeneralContainersMainSite from '../../../../../identifiers/MainSite/GeneralContainersMainSite';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
 import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
@@ -113,7 +112,7 @@ test('Check navigation to "Get in Touch" form after clicking "Request a quote" b
 	for (let button of requestAQuoteButtons) {
 		await button.click();
 
-		await expect(driver.getByTestId(GeneralContainersMainSite.GetInTouch)).toBeInViewport();
+		await expect(driver.getByTestId(IoTEngineeringServices.GetInTouch)).toBeInViewport();
 
 		await driver.Page.evaluate(() => {
 			document.documentElement.scrollTop = 0;
