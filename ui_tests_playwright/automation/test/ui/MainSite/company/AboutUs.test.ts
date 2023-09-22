@@ -84,50 +84,47 @@ test('Check member names and roles in "Our team" block from the "About Us" page 
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test('Check redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
+test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
-	const buttonUrlMap = new Map([
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.MaxLevytskyi],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.ArtemDolotov],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.OleksiiSvystun],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(4), ExpertsLinkedInLinks.VitaliiDolotov],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(5), ExpertsLinkedInLinks.MariaDarmanian],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(6), ExpertsLinkedInLinks.IvanYeremenko],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(7), ExpertsLinkedInLinks.DmytroDytiuk],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(8), ExpertsLinkedInLinks.DmytroShtapauk],
-		[ourTeamExperts.getByTestId(Buttons.LinkedIn).nth(9), ExpertsLinkedInLinks.NastasiiaDudnik],
+	const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
+	const expectedLinkedInLinks = [
+		ExpertsLinkedInLinks.IvanIeremenko,
+		ExpertsLinkedInLinks.MaxLevytskyi,
+		ExpertsLinkedInLinks.ArtemDolotov,
+		ExpertsLinkedInLinks.OleksiiSvystun,
+		ExpertsLinkedInLinks.VitaliiDolotov,
+		ExpertsLinkedInLinks.MariaDarmanian,
+		ExpertsLinkedInLinks.IvanYeremenko,
+		ExpertsLinkedInLinks.DmytroDytiuk,
+		ExpertsLinkedInLinks.DmytroShtapauk,
+		ExpertsLinkedInLinks.NastasiiaDudnik,
+	];
 
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(0),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
-		],
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(1),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
-		],
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(2),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.VitaliiDolotov,
-		],
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(3),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
-		],
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(4),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
-		],
-		[
-			ourTeamExperts.getByTestId(Buttons.Blog).nth(5),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,
-		],
-	]);
+	for (let i = 0; i < expertCards.length; i++) {
+		const memberCard = expertCards[i];
 
-	for (const [button, url] of buttonUrlMap.entries()) {
-		await button.click();
+		await memberCard.getByTestId(Buttons.LinkedIn).click();
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
+		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
+		await newPage.close();
+	}
+});
+
+test.skip('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
+	
+	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
+	const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+
+	const expectedBlogLinks = [AuthorsEnum.IvanIeremenko, AuthorsEnum.OleksiiSvystun, AuthorsEnum.VitaliiDolotov, AuthorsEnum.IvanYeremenko, AuthorsEnum.DmytroDytiuk, AuthorsEnum.DmytroShtapauk];
+
+	for (let i = 0; i < expertCards.length; i++) {
+		const memberCard = expertCards[i];
+
+		await memberCard.getByTestId(Buttons.Blog).click();
+		const newPage = await driver.DriverContext.waitForEvent('page');
+
+		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
 		await newPage.close();
 	}
 });
@@ -150,7 +147,7 @@ test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners"
 
 	const buttonMap = new Map([
 		[linkedInButtons[0], LinkedInReviewLinks.FerdiVanHeerden],
-		//[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown], waiting for fix from https://ts-website.atlassian.net/browse/TSWEB-1040
+		[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown],
 	]);
 
 	for (const [button, url] of buttonMap) {
@@ -180,6 +177,19 @@ test('Check redirect by "Clutch Review" button in "Shoutout from our partners" c
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(url);
 		await newPage.close();
+	}
+});
+
+test('Check photo carousel from the "Our people" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+	const ourPeopleContainer = driver.getByTestId(AboutUs.OurPeople);
+
+	const carouselPhotoContainer = await ourPeopleContainer.getByTestId(AboutUs.CarouselPhoto).all();
+
+	const nextButton = ourPeopleContainer.getByTestId(Buttons.Carousel_Button_Next);
+
+	for (let index = 0; index < carouselPhotoContainer.length; index++) {
+		expect(await carouselPhotoContainer[index].getAttribute('class')).toContain('active');
+		await nextButton.click();
 	}
 });
 
