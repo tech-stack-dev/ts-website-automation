@@ -1,16 +1,17 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import { expect, test } from '@playwright/test';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import {Environment} from '../../../../../providers/EnvProvider';
+import { Environment } from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -102,7 +103,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
-test('Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test(qase(982, 'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'), async () => {
 	const requestAQuoteButtons = [
 		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver
