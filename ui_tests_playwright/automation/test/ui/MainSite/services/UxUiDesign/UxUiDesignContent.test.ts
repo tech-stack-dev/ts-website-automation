@@ -126,8 +126,9 @@ test('Check section titles, image and CTA button in "Success Stories" container 
 test('Check carousel section numbers and titles in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
 	const carousel = typicalUxUiDesignWorkflowContainer.getByTestId(Container.ContainerCarousel);
+	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
 
-	for (let i = 1; i <= 11; i++) {
+	for (let i = 1; i <= carouselSections.length; i++) {
 		const sectionNumber = i.toString().padStart(2, '0');
 		await expect(carousel.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
 	}

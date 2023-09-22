@@ -22,8 +22,8 @@ test.beforeEach(async () => {
 
 test('Check redirect to clutch in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
-	const clutchButton = successStoriesContainer.getByTestId(Buttons.Clutch);
-	await clutchButton.click();
+
+	await successStoriesContainer.getByTestId(Buttons.Clutch).click();
 
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	expect(newPage.url()).toEqual(ClutchReviewLinks.AnonymousMedicalDevice);
@@ -87,9 +87,8 @@ test.skip('Check redirect by Blog button in "We Never Stop Improving Your Produc
 
 test('Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
-	const behanceButton = weNeverStopImprovingContainer.getByTestId(Buttons.Behance);
 
-	await behanceButton.click();
+	await weNeverStopImprovingContainer.getByTestId(Buttons.Behance).click();
 
 	const newPage = await driver.DriverContext.waitForEvent('page');
 	expect(newPage.url()).toEqual(ExpertsBehanceLinks.DmytroDytuk);
