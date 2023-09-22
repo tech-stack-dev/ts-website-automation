@@ -1,16 +1,16 @@
-import { expect, test } from '@playwright/test';
-import { driver } from '../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
-import { ServicesEnum } from '../../../../../enum/ServicesEnum';
+import {expect, test} from '@playwright/test';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
+import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import { Environment } from '../../../../../providers/EnvProvider';
+import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -76,7 +76,7 @@ test('Check Blog link redirects in "Our Internet of Things Engineering Experts" 
 		const memberCard = expertCards[i];
 
 		await memberCard.getByTestId(Buttons.Blog).click();
-		let newPage = await driver.DriverContext.waitForEvent('page');
+		const newPage = await driver.DriverContext.waitForEvent('page');
 
 		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
 		await newPage.close();
@@ -105,11 +105,13 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 test('Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const requestAQuoteButtons = [
 		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
-		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers).getByTestId(MainSiteButtons.RequestAQuote),
+		driver
+			.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
+			.getByTestId(MainSiteButtons.RequestAQuote),
 		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
 	];
 
-	for (let button of requestAQuoteButtons) {
+	for (const button of requestAQuoteButtons) {
 		await button.click();
 
 		await expect(driver.getByTestId(IoTEngineeringServices.GetInTouch)).toBeInViewport();
@@ -119,6 +121,13 @@ test('Check navigation to "Get in Touch" form after clicking "Request a quote" b
 			document.body.scrollTop = 0;
 		});
 	}
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);
+	const expectedNumberOfSections = 3;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

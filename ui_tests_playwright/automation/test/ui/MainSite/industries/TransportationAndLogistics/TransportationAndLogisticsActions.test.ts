@@ -61,6 +61,13 @@ test("Check carousel arrows click in 'Transportation and Logistics Software Deve
 	await baseDriverSteps.checkCarouselArrowsClick(transportationAndLogisticsContainer);
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
+	const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);
+	const expectedNumberOfSections = 4;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

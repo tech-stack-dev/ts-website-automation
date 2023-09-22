@@ -125,6 +125,13 @@ test('Check redirects by arrows in "Related Services" container from the "UX/UI 
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, uxUiPageUrl);
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+	const faqContainer = driver.getByTestId(UxUiDesign.Faq);
+	const expectedNumberOfSections = 8;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

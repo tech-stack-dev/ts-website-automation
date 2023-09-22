@@ -69,6 +69,13 @@ test("Check redirects by arrows in 'Core Practices' container from the 'Healthca
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+	const faqContainer = driver.getByTestId(Healthcare.Faq);
+	const expectedNumberOfSections = 3;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

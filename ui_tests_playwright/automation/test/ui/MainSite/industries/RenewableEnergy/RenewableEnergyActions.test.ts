@@ -73,6 +73,13 @@ test("Check carousel arrows click in 'How We Operate at Techstack' container fro
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
+	const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
+	const expectedNumberOfSections = 5;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });
