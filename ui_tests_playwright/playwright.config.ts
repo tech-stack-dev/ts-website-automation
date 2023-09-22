@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import ExternalSourceLinks from './automation/preconditionsData/Links/ExternalSourceLinks';
 import { QaseAwsSecret } from './automation/providers/QaseAwsSecret';
+import EnvProvider, { Environment } from './automation/providers/EnvProvider';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -56,6 +57,7 @@ const config: PlaywrightTestConfig = {
 			runComplete: true,
 			logging: true,
 			rootSuiteTitle: 'TS website tests',
+			environmentId: EnvProvider.qaseEnvironmentId,
 			}
 		]
 	],
