@@ -107,6 +107,13 @@ test('Check redirects by arrows in "Related Services" container from the "Mobile
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.MobileDev));
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+	const faqContainer = driver.getByTestId(MobileDevService.Faq);
+	const expectedNumberOfSections = 4;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

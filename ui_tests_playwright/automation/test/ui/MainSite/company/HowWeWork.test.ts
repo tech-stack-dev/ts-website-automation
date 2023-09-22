@@ -27,7 +27,7 @@ test("Check container titles and numbers from the 'How we work' block @Regressio
 		driver.getByTestId(HowWeWork.WorkProcess),
 		driver.getByTestId(HowWeWork.TechnologyStack),
 		driver.getByTestId(HowWeWork.TechstackStructure),
-		// driver.getByTestId(HowWeWork.ToolsWeUseToOrganize), // Unskip after adding data-id
+		driver.getByTestId(HowWeWork.ToolsWeUseToOrganize),
 		driver.getByTestId(HowWeWork.GetInTouch),
 	];
 
@@ -36,7 +36,7 @@ test("Check container titles and numbers from the 'How we work' block @Regressio
 		['Work process', '02'],
 		['Technology stack', '03'],
 		['Techstack structure', '04'],
-		// ['Tools we use\nto organize\nthe workflow', '05'], // Unskip after adding data-id
+		['Tools we use\nto organize\nthe workflow', '05'],
 		['Get in Touch', '06'],
 	];
 

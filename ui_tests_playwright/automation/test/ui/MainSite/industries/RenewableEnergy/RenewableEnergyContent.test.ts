@@ -18,7 +18,7 @@ test("Check the header from the 'Renewable Energy' block @Regression @RenewableE
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nfor the Renewable\nEnergy Industry'
 	);
-	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 });
 
 test("Check the container title and number from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -93,7 +93,9 @@ test("Check block titles, section titles and CTA button in 'Renewable Energy Sof
 		await expect(sectionTitles).toHaveText(testDataSectionTitles);
 	}
 
-	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toBeVisible();
+	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toHaveText(
+		'Book a Meeting'
+	);
 });
 
 test("Check section titles, block title, image and CTA button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -106,7 +108,9 @@ test("Check section titles, block title, image and CTA button in 'The Solar Ener
 	await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
 	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
-	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toBeVisible();
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
+		'Check out how\nwe built it'
+	);
 });
 
 test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -133,6 +137,20 @@ test("Check section titles in 'Why Choose Us?' container from the 'Renewable Ene
 	const testData = ['Product-oriented approach', 'Cross-domain expertise', 'Multifaceted technology experts'];
 
 	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test("Check carousel sections and CTA button in 'How We Operate at Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
+	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
+
+	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['Step 1', 'Step 2', 'Step 3', 'Step 4']);
+
+	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
+	const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toHaveText('Talk to an Expert');
 });
 
 test("Check section titles and numbers in 'Our Workflow' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
