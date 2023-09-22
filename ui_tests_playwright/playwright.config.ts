@@ -56,7 +56,6 @@ const config: PlaywrightTestConfig = {
 			uploadAttachments: true,
 			runComplete: true,
 			logging: true,
-			rootSuiteTitle: 'TS website tests',
 			environmentId: EnvProvider.qaseEnvironmentId,
 			}
 		]
