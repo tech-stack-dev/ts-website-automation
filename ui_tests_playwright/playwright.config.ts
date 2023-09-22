@@ -4,6 +4,7 @@ import path from 'path';
 import ExternalSourceLinks from './automation/preconditionsData/Links/ExternalSourceLinks';
 import { QaseAwsSecret } from './automation/providers/QaseAwsSecret';
 import EnvProvider, { Environment } from './automation/providers/EnvProvider';
+import DateTimeUtils from './automation/utils/DateTimeUtils';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -56,6 +57,7 @@ const config: PlaywrightTestConfig = {
 			uploadAttachments: true,
 			runComplete: true,
 			logging: true,
+			rootSuiteTitle: `Automated run ${DateTimeUtils.currentDateTime}`,
 			environmentId: EnvProvider.qaseEnvironmentId,
 			}
 		]
