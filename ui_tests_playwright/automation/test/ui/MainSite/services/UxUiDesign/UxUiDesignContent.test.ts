@@ -126,22 +126,14 @@ test('Check section titles, image and CTA button in "Success Stories" container 
 test('Check carousel section numbers and titles in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
 	const carousel = typicalUxUiDesignWorkflowContainer.getByTestId(Container.ContainerCarousel);
+	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
 
-	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-		'06',
-		'07',
-		'08',
-		'09',
-		'10',
-		'11',
-	]);
+	for (let i = 1; i <= carouselSections.length; i++) {
+		const sectionNumber = i.toString().padStart(2, '0');
+		await expect(carousel.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
+	}
 
-	const testData = [
+	await expect(carousel.getByTestId(Container.SectionTitle)).toHaveText([
 		'Business requirements allocation',
 		'Market and business domain analysis',
 		'User research',
@@ -153,10 +145,7 @@ test('Check carousel section numbers and titles in "Typical UX/UI Design Workflo
 		'Visual design',
 		'Design documentation creation',
 		'Seamless improvement',
-	];
-	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-
-	await expect(allSectionTitles).toHaveText(testData);
+	]);
 });
 
 test('Check member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
