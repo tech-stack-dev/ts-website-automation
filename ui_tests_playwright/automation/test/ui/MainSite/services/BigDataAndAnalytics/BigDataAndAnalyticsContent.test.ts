@@ -85,7 +85,7 @@ test('Check section titles and CTA button in "Big Data Software Development With
 	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(bigDataWithTechstackContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-		'Get a consultation'
+		'Get a Consultation'
 	);
 });
 
