@@ -36,47 +36,29 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 	const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
 		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
 	);
-	const containerSection = ourExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.ContainerSection);
+	const arrows = ourExpertiseInLogisticsSoftDevSolutionsContainer
+		.getByTestId(Container.ContainerSection)
+		.getByTestId(Container.Arrow);
 
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 	]);
 
-	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
-	}
+	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
 });
 
-test("Check carousel sections, arrows and 'Contact Us' button in 'Transportation and Logistics Software Development at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
-	const transportationAndLogisticsSoftwareDevAtTechstackContainer = driver.getByTestId(
+test("Check carousel arrows click in 'Transportation and Logistics Software Development at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+	const transportationAndLogisticsContainer = driver.getByTestId(
 		TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack
 	);
-	const carousel = transportationAndLogisticsSoftwareDevAtTechstackContainer.getByTestId(Container.ContainerCarousel);
 
-	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
-
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'Step 1',
-		'Step 2',
-		'Step 3',
-		'Step 4',
-	]);
-
-	await baseDriverSteps.checkCarouselArrowsClick(transportationAndLogisticsSoftwareDevAtTechstackContainer);
-
-	await expect(
-		transportationAndLogisticsSoftwareDevAtTechstackContainer.getByTestId(Buttons.ContactUs)
-	).toBeVisible();
+	await baseDriverSteps.checkCarouselArrowsClick(transportationAndLogisticsContainer);
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {

@@ -16,13 +16,14 @@ test("Check the header from the 'Consulting Service' block @Regression @Consulti
 	const info = driver.getByTestId(ConsultingService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
+	await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
 });
 
 test("Check 'Request a Quote' buttons on the 'Consulting service' page @Regression @ConsultingService @TSWEB-697", async () => {
 	const containers = [ConsultingService.Info, ConsultingService.ConsultingProcess, ConsultingService.RelatedServices];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 });
 

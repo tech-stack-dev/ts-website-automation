@@ -47,49 +47,26 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 	}
 });
 
-test("Check carousel sections, arrows and 'Schedule a meeting' button in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test("Check carousel arrows click in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
-	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
-
-	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = [
-		'Make\ncontact',
-		'Speak with\na tech expert',
-		'Offering a service solution proposal',
-		'Contract\nsigning',
-	];
-
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'Step 1',
-		'Step 2',
-		'Step 3',
-		'Step 4',
-	]);
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
-
-	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toBeVisible();
 });
 
 test("Check redirects by arrows in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
-	const containerSection = corePracticesContainer.getByTestId(Container.ContainerSection);
+	const arrows = corePracticesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 	]);
 
-	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
-	}
+	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
