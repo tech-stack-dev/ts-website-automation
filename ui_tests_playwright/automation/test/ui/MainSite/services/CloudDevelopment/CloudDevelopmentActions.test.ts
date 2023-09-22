@@ -100,6 +100,13 @@ test("Check redirects by arrows in 'Related Services' container from the 'Cloud 
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
+	const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
+	const expectedNumberOfSections = 7;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

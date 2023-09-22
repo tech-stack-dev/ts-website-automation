@@ -104,6 +104,13 @@ test('Check redirects by arrows in "Related Services" container from the "Big Da
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.BigData));
 });
 
+test('Check sections expanding and collapsing in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
+	const faqContainer = driver.getByTestId(BigDataAndAnalytics.Faq);
+	const expectedNumberOfSections = 4;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });
