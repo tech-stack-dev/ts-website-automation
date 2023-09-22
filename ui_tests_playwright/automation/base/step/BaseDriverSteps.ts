@@ -127,17 +127,18 @@ class BaseDriverSteps {
 		for (const section of await sections.all()) {
 			const shortAnswer = section.getByTestId(Container.SectionShortAnswer);
 			const fullAnswer = section.getByTestId(Container.SectionFullAnswer);
+			const sectionArrow = section.getByTestId(Container.Arrow);
 
 			await expect(section).toHaveClass(/collapsed/);
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeHidden();
 
-			await section.click(); // Open section
+			await sectionArrow.click(); // Open section
 			await expect(section).not.toHaveClass(/collapsed/);
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeVisible();
 
-			await section.click(); // Collapse section
+			await sectionArrow.click(); // Collapse section
 			await expect(section).toHaveClass(/collapsed/);
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeHidden();
