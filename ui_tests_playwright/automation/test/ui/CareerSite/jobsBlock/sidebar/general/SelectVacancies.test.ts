@@ -56,13 +56,17 @@ for (const testData of testDataProvider) {
 		);
 		const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
 
-		await filterTag.click();
-		await driver.executeFunc(async () => {
-			await expect(filterTag).toHaveClass(/active-tag/);
-			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
-		}, 5);
-		await expect(activeTag).toHaveClass(/active-tag/);
-		expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(ColorsEnum.OrangeYellow);
+		await Promise.all([
+			filterTag.click(),
+			driver.executeFunc(async () => {
+				await expect(filterTag).toHaveClass(/active-tag/);
+				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
+			}, 5),
+			expect(activeTag).toHaveClass(/active-tag/),
+			expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
+				ColorsEnum.OrangeYellow
+			),
+		]);
 	});
 }
 
