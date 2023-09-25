@@ -49,6 +49,42 @@ test('Check the container title and number from the "About Us" page @Regression 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
+test('Check section numbers and titles in "What’s at the Core" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+	const whatAtTheCoreContainer = driver.getByTestId(AboutUs.WhatsAtTheCore);
+
+	await expect(whatAtTheCoreContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+	]);
+	const allSectionTitles = whatAtTheCoreContainer.getByTestId(Container.SectionTitle);
+	const testData = [' Vision:', ' Mission:'];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(whatAtTheCoreContainer.getByTestId(Container.BlockNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+		'06',
+		'07',
+	]);
+
+	const allTableTitles = whatAtTheCoreContainer.getByTestId(Container.BlockTitle);
+	const tableTitles = [
+		'Quality:',
+		'Tech:',
+		'Bravery:',
+		'Creativity:',
+		'Ownership:',
+		'People:',
+		'Joy:',
+	];
+
+	await expect(allTableTitles).toHaveText(tableTitles);
+});
+
 test('Check member names and roles in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourExpertsContainer = driver.getByTestId(AboutUs.OurTeam);
 	const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
@@ -110,13 +146,20 @@ test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us
 	}
 });
 
-test.skip('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
+test('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	
 	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
 	const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 
-	const expectedBlogLinks = [AuthorsEnum.IvanIeremenko, AuthorsEnum.OleksiiSvystun, AuthorsEnum.VitaliiDolotov, AuthorsEnum.IvanYeremenko, AuthorsEnum.DmytroDytiuk, AuthorsEnum.DmytroShtapauk];
+	const expectedBlogLinks = [
+		AuthorsEnum.IvanIeremenko, 
+		AuthorsEnum.OleksiiSvystun, 
+		AuthorsEnum.VitaliiDolotov,
+		AuthorsEnum.IvanYeremenko,
+		AuthorsEnum.DmytroDytiuk,
+		AuthorsEnum.DmytroShtapauk
+	]
 
 	for (let i = 0; i < expertCards.length; i++) {
 		const memberCard = expertCards[i];
@@ -127,6 +170,18 @@ test.skip('Check Blog link redirects by buttons in "Our team" block from the "Ab
 		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
 		await newPage.close();
 	}
+});
+
+test('Check section titles in "What makes us special" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+	const whatMakesUsSpecialContainer = driver.getByTestId(AboutUs.WhatMakesUsSpecial);
+	const allSectionTitles = whatMakesUsSpecialContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Focus on product',
+		'Team growth',
+		'Making an impact (CSR)',
+		'Sharing expertise',
+	];
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test('Check "Learn more about how we work" button from the "Our partners" block on the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
