@@ -7,6 +7,7 @@ export default class MainSiteButtons {
 	static LetsDiscuss = 'Button-LetsDiscuss';
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
+	static ReadFullCaseStudies = 'Button-ReadFullCaseStudies';
 	static AboutUs = 'Button-AboutUs';
 	static BookAMeeting = 'Button-BookAMeeting';
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';

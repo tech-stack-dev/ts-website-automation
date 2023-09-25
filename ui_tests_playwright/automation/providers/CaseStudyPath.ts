@@ -7,4 +7,6 @@ export default class CaseStudyPath {
 	static CloudPlatformForEvCharging = '/cloud-platform-for-ev-charging-stations';
 	static VideoBasedQualityControl = '/video-based-quality-control-system';
 	static MobileSocialNetworkForSportsFans = '/mobile-social-network-for-sports-fans';
+	static RedesignPatientDataSystem = '/redesign-of-a-patient-data-management-system';
+	static OneStopPlatformDesignHospitality = '/one-stop-platform-design-for-the-hospitality-industry';
 }

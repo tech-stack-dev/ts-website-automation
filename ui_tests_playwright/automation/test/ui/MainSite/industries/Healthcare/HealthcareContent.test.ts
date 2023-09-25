@@ -18,7 +18,7 @@ test("Check the header from the 'Healthcare' block @Regression @Healthcare @TSWE
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nSolutions For\nthe Healthcare Industry'
 	);
-	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 });
 
 test("Check the container title and number from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -75,7 +75,9 @@ test("Check section titles and CTA button in 'Our Expertise' container from the 
 
 	await expect(allSectionTitles).toHaveText(testData);
 
-	await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toBeVisible();
+	await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toHaveText(
+		'Schedule a meeting now!'
+	);
 });
 
 test("Check section titles, image and CTA button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -86,7 +88,10 @@ test("Check section titles, image and CTA button in 'Beats Screening Module by T
 	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
-	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toBeVisible();
+
+	await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
+		'Read the full Case Study'
+	);
 });
 
 test("Check section numbers and section titles in 'Patient-Centered Strategy' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -114,6 +119,25 @@ test("Check block titles in 'Most Recent Industry Facts' container from the 'Hea
 	const testData = ['1.57\nbillion users', '82\n%', '$\n641\nPPM'];
 
 	await expect(allBlockTitles).toHaveText(testData);
+});
+
+test("Check carousel sections and CTA button in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
+	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
+
+	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['Step 1', 'Step 2', 'Step 3', 'Step 4']);
+
+	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Make\ncontact',
+		'Speak with\na tech expert',
+		'Offering a service solution proposal',
+		'Contract\nsigning',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toHaveText('Schedule a meeting');
 });
 
 test("Check section numbers and section titles in 'Our Workflow' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
