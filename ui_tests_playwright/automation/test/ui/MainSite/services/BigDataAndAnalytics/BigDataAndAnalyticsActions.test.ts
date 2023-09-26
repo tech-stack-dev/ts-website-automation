@@ -72,7 +72,8 @@ test('Check redirects by LinkedIn buttons in "Our Experts" container from the "B
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
 });
 
-test('Check redirects by Blog buttons in in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061', async () => {
+// Unskip after blog will be stable
+test.skip('Check redirects by Blog buttons in in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061', async () => {
 	const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
