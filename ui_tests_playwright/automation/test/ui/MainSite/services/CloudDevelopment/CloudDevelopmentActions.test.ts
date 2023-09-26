@@ -68,7 +68,8 @@ test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' contain
 	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
 });
 
-test("Check redirects by Blog buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692 @TSWEB-1061", async () => {
+// Unskip after blog will be stable
+test.skip("Check redirects by Blog buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692 @TSWEB-1061", async () => {
 	const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const blogButtons = ourLeadingCloudExperts.getByTestId(Buttons.Blog);
@@ -98,6 +99,13 @@ test("Check redirects by arrows in 'Related Services' container from the 'Cloud 
 	]);
 
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
+	const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
+	const expectedNumberOfSections = 7;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

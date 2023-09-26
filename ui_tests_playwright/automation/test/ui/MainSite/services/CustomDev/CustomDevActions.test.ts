@@ -146,26 +146,11 @@ test("Check carousel arrows from the 'Custom Software Development Process' conta
 	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
 });
 
-test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const faqContainer = driver.getByTestId(CustomDev.Faq);
+	const expectedNumberOfSections = 5;
 
-	const sections = faqContainer.getByTestId(Container.ContainerSection);
-	const numOfSections = await sections.count();
-
-	for (let i = numOfSections - 1; i >= 0; i--) {
-		const section = sections.nth(i);
-		await expect(section).toHaveAttribute('class', /.collapsed./);
-
-		await expect(section.getByTestId(Container.SectionShortAnswer)).toBeVisible();
-		await expect(section.getByTestId(Container.SectionFullAnswer)).toBeHidden();
-
-		await section.click();
-
-		await expect(section).not.toHaveAttribute('class', /.collapsed./);
-
-		await expect(section.getByTestId(Container.SectionShortAnswer)).toBeVisible();
-		await expect(section.getByTestId(Container.SectionFullAnswer)).toBeVisible();
-	}
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

@@ -119,6 +119,31 @@ class BaseDriverSteps {
 			}
 		}
 	}
+
+	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
+		const sections = container.getByTestId(Container.ContainerSection);
+		await expect(sections).toHaveCount(numberOfSections);
+
+		for (const section of await sections.all()) {
+			const shortAnswer = section.getByTestId(Container.SectionShortAnswer);
+			const fullAnswer = section.getByTestId(Container.SectionFullAnswer);
+			const sectionArrow = section.getByTestId(Container.Arrow);
+
+			await expect(section).toHaveClass(/collapsed/);
+			await expect(shortAnswer).toBeVisible();
+			await expect(fullAnswer).toBeHidden();
+
+			await sectionArrow.click(); // Open section
+			await expect(section).not.toHaveClass(/collapsed/);
+			await expect(shortAnswer).toBeVisible();
+			await expect(fullAnswer).toBeVisible();
+
+			await sectionArrow.click(); // Collapse section
+			await expect(section).toHaveClass(/collapsed/);
+			await expect(shortAnswer).toBeVisible();
+			await expect(fullAnswer).toBeHidden();
+		}
+	}
 }
 
 const baseDriverSteps = new BaseDriverSteps();
