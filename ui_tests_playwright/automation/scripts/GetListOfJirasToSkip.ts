@@ -5,13 +5,12 @@ import JiraConstants from '../constants/JiraConstants';
 
 async function getTicketStatus(ticketKey: string): Promise<string | null> {
 	try {
-		const authToken = Buffer.from(`${JiraConstants.jiraApiUrl}:${process.env.JIRA_AUTH_TOKEN}`).toString('base64');
-		const response = await axios.get(`${JiraConstants.jiraApiUsername}/rest/api/3/issue/${ticketKey}`, {
-			headers: {
-				Authorization: `Basic ${authToken}`,
-			},
+		const response = await axios.get(`${JiraConstants.jiraApiUrl}/rest/api/3/issue/${ticketKey}`, {
+			auth:{
+				username: JiraConstants.jiraApiUsername,
+				password: JiraConstants.apiKey
+			}
 		});
-
 		const {statusCategory} = response.data.fields.status;
 		return statusCategory.name;
 	} catch (error) {
