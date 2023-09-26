@@ -7,6 +7,7 @@ import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 import TransportationAndLogistics from '../../../../../identifiers/MainSite/pages/industries/TransportationAndLogistics';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import Buttons from '../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
@@ -16,7 +17,7 @@ test("Check the header from the 'Transportation and Logistics' block @Regression
 	const info = driver.getByTestId(TransportationAndLogistics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and\nLogistics Software\nDevelopment');
-	await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toHaveText(`Let's discuss`);
 });
 
 test("Check the container title and number from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
@@ -109,7 +110,9 @@ test("Check section titles, image and CTA button in 'Case Study by Techstack' co
 	await expect(allSectionTitles).toHaveText(testData);
 
 	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
-	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toBeVisible();
+	await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
+		'Read Full Case Study'
+	);
 });
 
 test("Check section titles in 'Our Expertise in Logistics Software Development Solutions' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
@@ -138,6 +141,22 @@ test("Check section titles in 'What Makes Us Different' container from the 'Tran
 	const testData = ['Product-first approach', 'End-to-end development', 'Expert technology advice'];
 
 	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test("Check carousel sections and CTA button in 'Transportation and Logistics Software Development at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+	const transportationAndLogisticsContainer = driver.getByTestId(
+		TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack
+	);
+	const carousel = transportationAndLogisticsContainer.getByTestId(Container.ContainerCarousel);
+
+	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['Step 1', 'Step 2', 'Step 3', 'Step 4']);
+
+	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
+	const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(transportationAndLogisticsContainer.getByTestId(Buttons.ContactUs)).toHaveText('Contact Us');
 });
 
 test("Check section titles and numbers in 'Development Workflow That We Follow' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
