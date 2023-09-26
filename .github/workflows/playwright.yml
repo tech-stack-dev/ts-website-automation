@@ -38,7 +38,7 @@ jobs:
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
         run: |
-          automation/scripts/GetListOfJirasToSkip.ts
+          ./GenerateOpenedJiraList.sh
           ticketStatusesFile="ticketStatuses.json"
           if [[ -f "$ticketStatusesFile" ]]; then
             ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
