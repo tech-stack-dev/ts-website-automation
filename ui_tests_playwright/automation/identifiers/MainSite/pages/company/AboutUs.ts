@@ -8,5 +8,4 @@ export default class CloudDevelopment extends GeneralContainersMainSite {
     static OurPartners = 'Container-OurPartners';
     static ShoutoutFromOurPartners = 'Container-ShoutoutFromOurPartners';
     static OurPeople = 'Container-OurPeople';
-    static CarouselPhoto = 'CarouselPhoto';
 }

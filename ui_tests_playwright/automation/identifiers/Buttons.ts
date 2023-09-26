@@ -55,6 +55,4 @@ export default class Buttons {
 	// Other
 	static Logo = 'Logo-Techstack';
 	static Blog = 'Button-Blog';
-	static Carousel_Button_Prev = 'CarouselButtonPrev';
-	static Carousel_Button_Next = 'CarouselButtonNext';
 }

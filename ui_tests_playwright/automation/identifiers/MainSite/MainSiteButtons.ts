@@ -25,7 +25,7 @@ export default class MainSiteButtons {
 	static ScheduleACall = 'Button-ScheduleACall';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
-	static Arrow = 'Arrow';
+	static JoinUs = 'Button-JoinUs';
 
 	// Services
 	static Forbes = 'Button-Forbes';

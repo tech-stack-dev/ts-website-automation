@@ -20,6 +20,7 @@ test.beforeEach(async () => {
 
 test('Check the header from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const info = driver.getByTestId(AboutUs.Info);
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
 	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
 });
 
@@ -187,8 +188,11 @@ test('Check section titles in "What makes us special" container from the "About 
 test('Check "Learn more about how we work" button from the "Our partners" block on the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourPartnersBlock = driver.getByTestId(AboutUs.OurPartners);
 
-	await ourPartnersBlock.getByTestId(MainSiteButtons.Arrow).click();
+	await ourPartnersBlock.getByTestId(Container.Arrow).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
+
+	const partnerLogos = ourPartnersBlock.getByTestId(Container.PartnerLogo);
+	await baseDriverSteps.checkImagesVisibility(partnerLogos, 10);
 });
 
 
@@ -238,14 +242,21 @@ test('Check redirect by "Clutch Review" button in "Shoutout from our partners" c
 test('Check photo carousel from the "Our people" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourPeopleContainer = driver.getByTestId(AboutUs.OurPeople);
 
-	const carouselPhotoContainer = await ourPeopleContainer.getByTestId(AboutUs.CarouselPhoto).all();
+	const carouselPhotoContainer = await ourPeopleContainer.getByTestId(Container.CarouselPhoto).all();
 
-	const nextButton = ourPeopleContainer.getByTestId(Buttons.Carousel_Button_Next);
+	const nextButton = ourPeopleContainer.getByTestId(Container.CarouselButtonNext);
 
 	for (let index = 0; index < carouselPhotoContainer.length; index++) {
 		expect(await carouselPhotoContainer[index].getAttribute('class')).toContain('active');
 		await nextButton.click();
 	}
+});
+
+test('Check "Join Us" button from the "Our people" block on the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-836', async () => {
+	const ourPeopleBlock = driver.getByTestId(AboutUs.OurPeople);
+
+	await ourPeopleBlock.getByTestId(MainSiteButtons.JoinUs).click();
+	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
 });
 
 test.afterEach(async () => {

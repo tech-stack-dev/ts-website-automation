@@ -36,4 +36,5 @@ export default class Container {
 
 	static Email = 'Email';
 	static Phone = 'Phone';
+	static CarouselPhoto = 'CarouselPhoto';
 }
