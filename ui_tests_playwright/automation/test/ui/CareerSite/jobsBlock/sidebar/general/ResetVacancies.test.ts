@@ -15,9 +15,11 @@ import {containerSteps} from '../../../../../../steps/components/container/Conta
 import Career from '../../../../../../identifiers/Career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
+import Buttons from '../../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 const testDataProvider = [
