@@ -2,16 +2,19 @@ import * as fs from 'fs';
 import * as path from 'path';
 import axios from 'axios';
 import JiraConstants from '../constants/JiraConstants';
+import dotenv from 'dotenv'; // Import dotenv package
+
+// Load environment variables from .env file
+dotenv.config();
 
 async function getTicketStatus(ticketKey: string): Promise<string | null> {
 	try {
-		const authToken = Buffer.from(`${JiraConstants.jiraApiUrl}:${process.env.JIRA_AUTH_TOKEN}`).toString('base64');
-		const response = await axios.get(`${JiraConstants.jiraApiUsername}/rest/api/3/issue/${ticketKey}`, {
-			headers: {
-				Authorization: `Basic ${authToken}`,
+		const response = await axios.get(`${JiraConstants.jiraApiUrl}/rest/api/3/issue/${ticketKey}`, {
+			auth: {
+				username: JiraConstants.jiraApiUsername,
+				password: process.env.JIRA_AUTH_TOKEN!,
 			},
 		});
-
 		const {statusCategory} = response.data.fields.status;
 		return statusCategory.name;
 	} catch (error) {
