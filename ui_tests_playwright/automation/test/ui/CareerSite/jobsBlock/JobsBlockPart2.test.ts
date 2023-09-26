@@ -9,10 +9,12 @@ import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {
 		await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+		await driver.getByTestId(Buttons.AcceptCookies).click();
 		await contentfulSteps.createCareerWithDefaultValue(
 			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
