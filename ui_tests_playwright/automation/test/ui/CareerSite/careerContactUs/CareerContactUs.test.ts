@@ -1,7 +1,6 @@
 import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Buttons from '../../../../identifiers/Buttons';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
 import UrlProvider from '../../../../providers/UrlProvider';
