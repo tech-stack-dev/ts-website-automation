@@ -15,9 +15,11 @@ import {containerSteps} from '../../../../../../steps/components/container/Conta
 import Career from '../../../../../../identifiers/Career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
+import Buttons from '../../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 const testDataProvider = [
@@ -73,11 +75,13 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click();
-		testData.tagList.forEach(async (tag) => {
-			const filterTag = filterGroupContainer.getByTestId(tag);
-			await expect(filterTag).not.toHaveClass(/active-tag/);
-		});
+		await Promise.all([
+			activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click(),
+			testData.tagList.forEach(async (tag) => {
+				const filterTag = filterGroupContainer.getByTestId(tag);
+				await expect(filterTag).not.toHaveClass(/active-tag/);
+			}),
+		]);
 	});
 }
 

@@ -22,7 +22,7 @@ test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression 
 	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
 
 	for (const container of containers) {
-		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 });
 
@@ -154,6 +154,13 @@ test("Check redirect by arrow in 'Our Approach and Achievements' block  from the
 	const newPage = await driver.DriverContext.waitForEvent('page');
 
 	expect(newPage.url()).toContain(Links.Nuget);
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {
+	const faqContainer = driver.getByTestId(QaAsAService.Faq);
+	const expectedNumberOfSections = 6;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

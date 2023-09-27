@@ -18,7 +18,7 @@ test("Check the header from the 'Our Services' block @Regression @OurServices @T
 	const info = driver.getByTestId(OurServices.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
-	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
 test("Check the container title and number from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
@@ -76,26 +76,17 @@ test("Check section titles and numbers in 'Services' container from the 'Our Ser
 
 test("Check redirects by sections in 'Services' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
 	const servicesContainer = driver.getByTestId(OurServices.Services);
-
+	const servicresSections = servicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[
-			servicesContainer.getByTestId(Container.ContainerSection).nth(1),
-			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-		],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[
-			servicesContainer.getByTestId(Container.ContainerSection).nth(3),
-			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-		],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[servicesContainer.getByTestId(Container.ContainerSection).nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[
-			servicesContainer.getByTestId(Container.ContainerSection).nth(8),
-			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-		],
+		[servicresSections.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[servicresSections.nth(8), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 	]);
 
 	const ourServicesUrl = UrlProvider.urlBuilder(UrlPath.OurServices);
@@ -124,7 +115,11 @@ test("Check section titles and CTA button in 'Our approach' container from the '
 
 	await expect(allSectionTitles).toHaveText(testData);
 
-	await ourApproachContainer.getByTestId(MainSiteButtons.AboutUs).click();
+	const aboutUsButton = ourApproachContainer.getByTestId(MainSiteButtons.AboutUs);
+
+	await expect(aboutUsButton).toHaveText('About us');
+
+	await aboutUsButton.click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
@@ -163,6 +158,13 @@ test("Check section titles in 'FAQ' container from the 'Our Services' block @Reg
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
+	const faqContainer = driver.getByTestId(OurServices.Faq);
+	const expectedNumberOfSections = 9;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

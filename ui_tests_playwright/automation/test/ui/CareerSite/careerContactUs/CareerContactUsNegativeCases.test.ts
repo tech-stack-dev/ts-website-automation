@@ -11,6 +11,7 @@ import Buttons from '../../../../identifiers/Buttons';
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
