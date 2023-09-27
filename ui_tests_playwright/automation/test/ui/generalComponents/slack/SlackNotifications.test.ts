@@ -12,14 +12,15 @@ import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariabl
 import Navigation from '../../../../identifiers/Career/Navigation';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606", async () => {
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 	await formSteps.sendContactUsMessage();
 	const message = await slackSteps.getMessageWithValueFromChat(
@@ -37,7 +38,6 @@ test("Check Slack notification from 'staging_techstack_hr_notify' channel from C
 });
 
 test("Check Slack notification from 'staging_techstack_hr_notify' channel from Apply for a Job page @Regression @ContactUs @TSWEB-606", async () => {
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(CareerButtons.ApplyNow).click();
 	await formSteps.sendApplyForAJob();

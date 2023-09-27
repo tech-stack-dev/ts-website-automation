@@ -29,7 +29,7 @@ tags_to_skip=()
 for tag in "${jira_tags[@]}"; do
     url="https://ts-website.atlassian.net/rest/api/3/issue/${tag}"
     echo "Making request to $url"
-    status=$(curl "$url" --silent --show-error -H "Authorization: $JiraAuthToken" | jq -r '.fields.status.name')
+    status=$(curl -u qa_techstack@tech-stack.io:$JiraAuthToken "$url" --silent --show-error | jq -r '.fields.status.name')
     # Check that retuned status is not null
     if [[ "$status" == "null" ]]; then
         echo "Error: Status is null for tag $tag"
