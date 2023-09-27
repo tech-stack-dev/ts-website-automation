@@ -50,7 +50,7 @@ const config: PlaywrightTestConfig = {
 	reporter: [
 		['html', { open: 'never' }],
 		['list'],
-		['playwright-qase-reporter', {
+		['./TsQaseReporter', {
 			apiToken: QaseAwsSecret.getQaseApiToken(),
 			projectCode: 'TS',
 			basePath: ExternalSourceLinks.QaseApiUrl,
