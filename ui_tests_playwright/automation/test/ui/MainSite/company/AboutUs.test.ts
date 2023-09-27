@@ -150,7 +150,6 @@ test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us
 test('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	const expertCards = await driver.getByTestId(Container.MemberCard).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
-	
 	const expectedBlogLinks = [
 		AuthorsEnum.IvanIeremenko, 
 		AuthorsEnum.OleksiiSvystun, 
