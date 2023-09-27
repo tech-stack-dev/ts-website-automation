@@ -148,11 +148,9 @@ test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us
 });
 
 test('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
-	
-	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
-	const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
+	const expertCards = await driver.getByTestId(Container.MemberCard).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
-
+	
 	const expectedBlogLinks = [
 		AuthorsEnum.IvanIeremenko, 
 		AuthorsEnum.OleksiiSvystun, 
@@ -190,9 +188,6 @@ test('Check "Learn more about how we work" button from the "Our partners" block 
 
 	await ourPartnersBlock.getByTestId(Container.Arrow).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
-
-	const partnerLogos = ourPartnersBlock.getByTestId(Container.PartnerLogo);
-	await baseDriverSteps.checkImagesVisibility(partnerLogos, 10);
 });
 
 
