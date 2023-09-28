@@ -1,4 +1,4 @@
-export default class AboutUs {
+export default class AboutUsCareer {
 	static WeAreTechstackTitle = 'SectionTitle-WeAreTechstackTitle';
 	static WeAreTechstackNumber = 'SectionNumber-01Number';
 

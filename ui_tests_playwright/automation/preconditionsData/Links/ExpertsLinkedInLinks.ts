@@ -14,4 +14,7 @@ export enum ExpertsLinkedInLinks {
 	ElizabethMalygina = 'https://www.linkedin.com/in/elisabeth-malyhina-27883712a/',
 	HannaZhyhan = 'https://www.linkedin.com/in/hanna-zhygan-8a2158234/',
 	YelyzavetaLvova = 'https://www.linkedin.com/in/yelyzaveta-lvova-b6b6b5199/',
+	MaxLevytskyi = 'https://www.linkedin.com/in/maxim-levitskiy/',
+	ArtemDolotov = 'https://www.linkedin.com/in/artemdolotov/',
+	NastasiiaDudnik = 'https://www.linkedin.com/in/nastasia-dudnik/',
 }
