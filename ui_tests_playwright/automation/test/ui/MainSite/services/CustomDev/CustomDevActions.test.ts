@@ -11,18 +11,23 @@ import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/Exper
 import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
+import Links from '../../../../../preconditionsData/Links/Links';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 
-const requestAQuoteText = 'Request a quote';
+const requestAQuoteText = 'Request a Quote';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check redirect by 'Our Services' breadcrumbs button in header from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const info = driver.getByTestId(CustomDev.Info);
-	await info.getByTestId(Container.BreadcrumbsPrev).click();
+test("Check redirect by link in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+	await techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch).click();
 
-	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
+	const newPage = await driver.DriverContext.waitForEvent('page');
+	expect(newPage.url()).toContain(Links.ClutchReviews);
+	await newPage.close();
 });
 
 test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -38,71 +43,70 @@ test("Check page is scrolled down to 'Get in Touch' container after clicking on 
 	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
 });
 
-test("Check redirects by arrows in 'Custom development services we provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test("Check redirects by arrows in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
-	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
-	const sectionRegex = /.(Front-End and Back-End development)|.(Building software products)/;
-	const numberOfSectionsWithoutRedirects = 2;
-	const sectionsWithoutRedirects = sections.filter({
-		hasText: sectionRegex,
-	});
+	const containerSection = servicesWeProvide.getByTestId(Container.ContainerSection);
+	const sectionUrlMap = new Map([
+		[containerSection.nth(0), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		// [containerSection.nth(1), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
+		[containerSection.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[containerSection.nth(3), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[containerSection.nth(4), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[containerSection.nth(5), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[containerSection.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		// [containerSection.nth(7), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
+		[containerSection.nth(8), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[containerSection.nth(9), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		// [containerSection.nth(10), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
+	]);
 
-	for (let i = 0; i < numberOfSectionsWithoutRedirects; i++) {
-		await sectionsWithoutRedirects.nth(i).click();
+	const pageUrl = UrlProvider.urlBuilder(UrlPath.CustomDev);
+	await baseDriverSteps.checkRedirectToPages(sectionUrlMap, pageUrl);
+});
 
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
-	}
+test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
 
-	const sectionsWithRedirects = sections.filter({hasNotText: sectionRegex});
-	const numberOfSectionsWithRedirects = 8;
-	const expectedRedirectUri = [
-		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-		UrlProvider.urlBuilder(UrlPath.BigData),
-		UrlProvider.urlBuilder(UrlPath.AiMl),
-		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-	];
+	await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore).click();
+	await baseDriverSteps.checkUrl(
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.OneStopCrossPlatform}`, Environment.Production)
+	);
+});
 
-	for (let i = 0; i < numberOfSectionsWithRedirects; i++) {
-		const section = sectionsWithRedirects.nth(i);
+test("Check redirect by links in 'Industries We Develop Software For' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
+	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
 
-		await section.click();
-		await baseDriverSteps.checkUrl(expectedRedirectUri[i]);
+	const linksUrlMap = new Map([
+		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
+		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
+		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+	]);
+
+	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
+});
+
+test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
+	const clutchReviewButtons = whyChooseTechstackContainer.getByTestId(Buttons.Clutch);
+
+	const clutchButtonUrlMap = new Map([
+		[clutchReviewButtons.nth(0), ClutchReviewLinks.DarrenCody],
+		[clutchReviewButtons.nth(1), ClutchReviewLinks.MarkBeare],
+	]);
+
+	for (const [button, url] of clutchButtonUrlMap) {
+		await button.click();
+		const newPage = await driver.DriverContext.waitForEvent('page');
+		expect(newPage.url()).toContain(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 	}
 });
 
-test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' from the 'Technology stack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	await driver.Page.waitForLoadState('load');
-	const technologyStack = driver.getByTestId(CustomDev.TechnologyStack);
-	const requestAQuote = technologyStack.getByTestId(MainSiteButtons.RequestAQuote);
-
-	await requestAQuote.scrollIntoViewIfNeeded();
-	await expect(requestAQuote).toHaveText(requestAQuoteText);
-
-	await requestAQuote.click();
-	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
-});
-
-test("Check carousel arrows and 'Request a quote' button from the 'Custom software development process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devProcess = driver.getByTestId(CustomDev.CustomDevelopmentProcess);
-
-	await baseDriverSteps.checkCarouselArrowsClick(devProcess);
-
-	const requestAQuote = devProcess.getByTestId(MainSiteButtons.RequestAQuote);
-
-	await expect(requestAQuote).toHaveText(requestAQuoteText);
-
-	await requestAQuote.click();
-	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
-});
-
-test.skip("Check social link redirects in 'Custom software development experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devExperts = driver.getByTestId(CustomDev.CustomDevelopmentExperts);
+// Unskip after Blog will be stable
+test.skip("Check social link redirects in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
 	const memberCards = devExperts.getByTestId(Container.MemberCard);
 
 	const numOfMembers = 7;
@@ -136,46 +140,17 @@ test.skip("Check social link redirects in 'Custom software development experts' 
 	}
 });
 
-test("Check redirect by 'Clutch Review' buttons in 'Our approach to software development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devApproach = driver.getByTestId(CustomDev.OurApproachToSoftwareDevelopment);
+test("Check carousel arrows from the 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+	const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
-	const clutchButtons = devApproach.getByTestId(Buttons.Clutch);
-
-	const numOfButtons = 2;
-
-	await expect(clutchButtons).toHaveCount(numOfButtons);
-
-	const expectedLinks = [ClutchReviewLinks.DarrenCody, ClutchReviewLinks.AnonymousPeerToPeer];
-
-	for (let i = 0; i < numOfButtons; i++) {
-		await clutchButtons.nth(i).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-
-		expect(newPage.url()).toContain(expectedLinks[i]);
-		await newPage.close();
-	}
+	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);
 });
 
-test("Check section collapsing in 'FAQ' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const faq = driver.getByTestId(CustomDev.Faq);
+test('Check sections expanding and collapsing in "FAQ" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
+	const faqContainer = driver.getByTestId(CustomDev.Faq);
+	const expectedNumberOfSections = 5;
 
-	const sections = faq.getByTestId(Container.ContainerSection);
-	const numOfSections = await sections.count();
-
-	for (let i = numOfSections - 1; i >= 0; i--) {
-		const section = sections.nth(i);
-		await expect(section).toHaveAttribute('class', /.collapsed./);
-
-		await expect(section.getByTestId(Container.SectionShortAnswer)).toBeVisible();
-		await expect(section.getByTestId(Container.SectionFullAnswer)).toBeHidden();
-
-		await section.click();
-
-		await expect(section).not.toHaveAttribute('class', /.collapsed./);
-
-		await expect(section.getByTestId(Container.SectionShortAnswer)).toBeVisible();
-		await expect(section.getByTestId(Container.SectionFullAnswer)).toBeVisible();
-	}
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

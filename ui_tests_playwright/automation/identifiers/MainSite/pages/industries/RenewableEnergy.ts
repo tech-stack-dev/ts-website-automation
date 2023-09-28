@@ -1,5 +1,6 @@
-export default class RenewableEnergy {
-	static Info = 'Container-Info';
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
+
+export default class RenewableEnergy extends GeneralContainersMainSite {
 	static TechstackInNumbers = 'Container-TechstackInNumbers';
 	static WhoWeServe = 'Container-WhoWeServe';
 	static RenewableEnergySoftDevServ = 'Container-EnergyDevelopmentServices';
@@ -8,5 +9,4 @@ export default class RenewableEnergy {
 	static WhyChooseUs = 'Container-WhyChooseUs';
 	static HowWeOperateAtTechstack = 'Container-HowWeOperateAtTechstack';
 	static OurWorkflow = 'Container-OurWorkflow';
-	static Faq = 'Container-Faq';
 }

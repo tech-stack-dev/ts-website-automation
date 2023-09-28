@@ -7,31 +7,40 @@ export default class MainSiteButtons {
 	static LetsDiscuss = 'Button-LetsDiscuss';
 	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
+	static ReadFullCaseStudies = 'Button-ReadFullCaseStudies';
 	static AboutUs = 'Button-AboutUs';
 	static BookAMeeting = 'Button-BookAMeeting';
 	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
 	static TalkToAnExpert = 'Button-TalkToAnExpert';
+	static SeeAllNews = 'Button-SeeAllNews';
+	static SendUsYourQueries = 'Button-SendUsYourQueries';
+	static ReadMore = 'Button-ReadMore';
+	static ContactOurExperts = 'Button-ContactOurExperts';
+	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
+	static RequestMoreInformation = 'Button-RequestMoreInformation';
+	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
+	static GetAConsultation = 'Button-GetAConsultation';
+	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
+	static MoreProductDetails = 'Button-MoreProductDetails';
+	static ScheduleACall = 'Button-ScheduleACall';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
-	static Technology_BackEnd = 'Button-BackEnd';
-	static Technology_FrontEnd = 'Button-FrontEnd';
-	static Technology_Mobile = 'Button-Mobile';
-	static Technology_Iot = 'Button-Iot';
-	static Technology_DevopsCloud = 'Button-DevopsCloud';
-	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
 
 	// Services
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-Mckinsey';
-	static Statista = 'Button-Statista';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
 
-	// Links
-	static Tiktok = 'Link-TikTok';
-	static Instagram = 'Link-Instagram';
+	static LinkedInReviewArrow = 'LinkedInArrow';
+	static ClutchReviewArrow = 'ClutchArrow';
+	static Layer = 'Button-Layer';
+
+	// Switch tab
+	static LinkedInReviews = 'Button-LinkedInReviews';
+	static ClutchReviews = 'Button-ClutchReviews';
 
 	// Technology Stack
 	static Technology_BackEnd = 'Button-BackEnd';

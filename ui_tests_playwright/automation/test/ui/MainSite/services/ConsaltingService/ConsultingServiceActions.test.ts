@@ -36,6 +36,7 @@ test("Check carousel sections and arrows in 'Consulting process' container from 
 	await baseDriverSteps.checkCarouselArrowsClick(consultingProcessContainer);
 });
 
+// Unskip after Blog will be stable
 test.skip("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const buttonUrlMap = new Map([
@@ -115,6 +116,13 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.ConsultingServ));
 	}
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+	const faqContainer = driver.getByTestId(ConsultingService.Faq);
+	const expectedNumberOfSections = 5;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
 test.afterEach(async () => {

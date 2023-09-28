@@ -18,68 +18,37 @@ test("Check the header from the 'Renewable Energy' block @Regression @RenewableE
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nfor the Renewable\nEnergy Industry'
 	);
-	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toBeVisible();
+	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 });
 
 test("Check the container title and number from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
-	await expect(
-		driver.getByTestId(RenewableEnergy.TechstackInNumbers).getByTestId(Container.ContainerTitle)
-	).toHaveText('Techstack in Numbers');
-	await expect(
-		driver.getByTestId(RenewableEnergy.TechstackInNumbers).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+	const containers = [
+		driver.getByTestId(RenewableEnergy.TechstackInNumbers),
+		driver.getByTestId(RenewableEnergy.WhoWeServe),
+		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ),
+		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack),
+		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise),
+		driver.getByTestId(RenewableEnergy.WhyChooseUs),
+		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack),
+		driver.getByTestId(RenewableEnergy.OurWorkflow),
+		driver.getByTestId(RenewableEnergy.GetInTouch),
+		driver.getByTestId(RenewableEnergy.Faq),
+	];
 
-	await expect(driver.getByTestId(RenewableEnergy.WhoWeServe).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Who We Serve'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.WhoWeServe).getByTestId(Container.ContainerNumber)).toHaveText(
-		'02'
-	);
+	const expectedData = [
+		['Techstack in Numbers', '01'],
+		['Who We Serve', '02'],
+		['Renewable Energy Software Development Services', '03'],
+		['The Solar Energy Data Portal by Techstack', '04'],
+		['Our Key Areas of Expertise in Renewable Energy', '05'],
+		['Why Choose Us?', '06'],
+		['How We Operate at Techstack', '07'],
+		['Our Workflow', '08'],
+		['Get in Touch', '09'],
+		['FAQ', '10'],
+	];
 
-	await expect(
-		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(Container.ContainerTitle)
-	).toHaveText('Renewable Energy Software Development Services');
-	await expect(
-		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('The Solar Energy Data Portal by Techstack');
-	await expect(
-		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Key Areas of Expertise in Renewable Energy');
-	await expect(
-		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(driver.getByTestId(RenewableEnergy.WhyChooseUs).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Why Choose Us?'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.WhyChooseUs).getByTestId(Container.ContainerNumber)).toHaveText(
-		'06'
-	);
-
-	await expect(
-		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(Container.ContainerTitle)
-	).toHaveText('How We Operate at Techstack');
-	await expect(
-		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
-
-	await expect(driver.getByTestId(RenewableEnergy.OurWorkflow).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Our Workflow'
-	);
-	await expect(driver.getByTestId(RenewableEnergy.OurWorkflow).getByTestId(Container.ContainerNumber)).toHaveText(
-		'08'
-	);
-
-	await expect(driver.getByTestId(RenewableEnergy.Faq).getByTestId(Container.ContainerTitle)).toHaveText('FAQ');
-	await expect(driver.getByTestId(RenewableEnergy.Faq).getByTestId(Container.ContainerNumber)).toHaveText('09');
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
 test("Check block titles in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -124,7 +93,9 @@ test("Check block titles, section titles and CTA button in 'Renewable Energy Sof
 		await expect(sectionTitles).toHaveText(testDataSectionTitles);
 	}
 
-	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toBeVisible();
+	await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toHaveText(
+		'Book a Meeting'
+	);
 });
 
 test("Check section titles, block title, image and CTA button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -137,7 +108,9 @@ test("Check section titles, block title, image and CTA button in 'The Solar Ener
 	await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
 	await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
-	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toBeVisible();
+	await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
+		'Check out how\nwe built it'
+	);
 });
 
 test("Check section titles in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
@@ -164,6 +137,20 @@ test("Check section titles in 'Why Choose Us?' container from the 'Renewable Ene
 	const testData = ['Product-oriented approach', 'Cross-domain expertise', 'Multifaceted technology experts'];
 
 	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test("Check carousel sections and CTA button in 'How We Operate at Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+	const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
+	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
+
+	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['Step 1', 'Step 2', 'Step 3', 'Step 4']);
+
+	const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
+	const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toHaveText('Talk to an Expert');
 });
 
 test("Check section titles and numbers in 'Our Workflow' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
