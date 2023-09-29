@@ -99,7 +99,7 @@ test('Check redirects by arrows in "Related Services" container from the "Mobile
 		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);

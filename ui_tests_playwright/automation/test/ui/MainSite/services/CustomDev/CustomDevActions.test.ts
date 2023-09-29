@@ -53,7 +53,7 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 		[containerSection.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[containerSection.nth(3), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[containerSection.nth(4), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[containerSection.nth(5), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[containerSection.nth(5), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[containerSection.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 		// [containerSection.nth(7), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
 		[containerSection.nth(8), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
