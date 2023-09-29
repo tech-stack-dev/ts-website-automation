@@ -12,6 +12,7 @@ export default class Container {
 	static SectionDescription = 'SectionDescription';
 
 	static ContainerBlock = 'ContainerBlock';
+	static BlockNumber = 'BlockNumber';
 	static BlockTitle = 'BlockTitle';
 	static BlockSection = 'BlockSection';
 
@@ -35,4 +36,5 @@ export default class Container {
 
 	static Email = 'Email';
 	static Phone = 'Phone';
+	static CarouselPhoto = 'CarouselPhoto';
 }

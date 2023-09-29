@@ -5,9 +5,9 @@ import HomePage from '../../../identifiers/MainSite/pages/HomePage';
 import {ClutchReviewLinks} from '../../../preconditionsData/Links/ClutchReviewLinks';
 import UrlProvider from '../../../providers/UrlProvider';
 import {driver} from '../../../base/driver/Driver';
-import {linkedInReviewLinks} from '../../../preconditionsData/Links/linkedInReviewLinks';
 import UrlPath from '../../../providers/UrlPath';
 import MainSiteButtons from '../../../identifiers/MainSite/MainSiteButtons';
+import { LinkedInReviewLinks } from '../../../preconditionsData/Links/linkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -115,8 +115,8 @@ test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block
 	expect(await linkedInReviewsTab.getAttribute('class')).toContain('active');
 
 	const buttonMap = new Map([
-		[linkedInButtons[0], linkedInReviewLinks.GrahamBrown],
-		[linkedInButtons[1], linkedInReviewLinks.MackenzieDaisley],
+		[linkedInButtons[0], LinkedInReviewLinks.GrahamBrown],
+		[linkedInButtons[1], LinkedInReviewLinks.MackenzieDaisley],
 	]);
 
 	for (const [button, url] of buttonMap) {
