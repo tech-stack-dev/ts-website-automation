@@ -48,19 +48,20 @@ const config: PlaywrightTestConfig = {
 	workers: 5,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [
-		['html', { open: 'never' }],
+		['html', {open: 'never'}],
 		['list'],
-		['./TsQaseReporter', {
-			apiToken: QaseAwsSecret.getQaseApiToken(),
-			projectCode: 'TS',
-			basePath: ExternalSourceLinks.QaseApiUrl,
-			uploadAttachments: true,
-			runComplete: true,
-			logging: true,
-			rootSuiteTitle: `Automated run ${DateTimeUtils.currentDateTime}`,
-			environmentId: EnvProvider.qaseEnvironmentId,
-			}
-		]
+		['playwright-qase-reporter',
+			{
+				apiToken: QaseAwsSecret.getQaseApiToken(),
+				projectCode: 'TS',
+				basePath: ExternalSourceLinks.QaseApiUrl,
+				uploadAttachments: true,
+				runComplete: true,
+				logging: true,
+				rootSuiteTitle: 'Automated tests',
+				environmentId: EnvProvider.qaseEnvironmentId,
+			},
+		],
 	],
 
 	/* Configure projects for major browsers */
