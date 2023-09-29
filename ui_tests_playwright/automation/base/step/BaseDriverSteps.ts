@@ -2,15 +2,24 @@ import {driver} from '../driver/Driver';
 import {BrowsersEnum} from '../driver/BrowsersEnum';
 import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
+import Buttons from '../../identifiers/Buttons';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
 	}
 
-	public async createsNewBrowserAndGoToUrl(url: string, browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
+	public async createsNewBrowserAndGoToUrl(
+		url: string,
+		acceptCookies = true,
+		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
+	) {
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
+
+		if (acceptCookies) {
+			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
+		}
 	}
 
 	public async createNewPage() {
@@ -143,6 +152,17 @@ class BaseDriverSteps {
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeHidden();
 		}
+	}
+
+	public async checkScrollToContainerByCtaButtonClick(ctaButton: Locator, expectedContainer: string) {
+		await ctaButton.click();
+
+		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: 0.8});
+
+		await driver.Page.evaluate(() => {
+			document.documentElement.scrollTop = 0;
+			document.body.scrollTop = 0;
+		});
 	}
 }
 
