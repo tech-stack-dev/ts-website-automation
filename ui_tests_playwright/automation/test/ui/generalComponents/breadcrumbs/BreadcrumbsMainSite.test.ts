@@ -27,11 +27,13 @@ test("Check redirect to 'Main' page by clicking 'Home' breadcrumbs button from '
 test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcrumbs button from 'Services' pages @Regression @Breadcrumbs", async () => {
 	const servicesUrlList = [
 		UrlProvider.urlBuilder(UrlPath.CustomDev),
+		UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 		UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-		UrlProvider.urlBuilder(UrlPath.BigData),
-		UrlProvider.urlBuilder(UrlPath.AiMl),
-		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
+		UrlProvider.urlBuilder(UrlPath.BigData),
+		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+		UrlProvider.urlBuilder(UrlPath.DevOpsServ),
+		UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 		UrlProvider.urlBuilder(UrlPath.ConsultingServ),

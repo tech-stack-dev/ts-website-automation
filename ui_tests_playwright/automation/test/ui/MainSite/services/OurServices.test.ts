@@ -82,7 +82,7 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 		[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
 		[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 		[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
