@@ -163,6 +163,17 @@ test('Check sections expanding and collapsing in "FAQ" container from the "QA as
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {
+	const ctaButtons = [
+		driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, QaAsAService.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

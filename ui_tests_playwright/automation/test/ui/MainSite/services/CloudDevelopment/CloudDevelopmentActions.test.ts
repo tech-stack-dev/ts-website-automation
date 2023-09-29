@@ -108,6 +108,20 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Cloud
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
+	const ctaButtons = [
+		driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver
+			.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
+			.getByTestId(MainSiteButtons.RequestMoreInformation),
+		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(MainSiteButtons.ScheduleAConsultation),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, CloudDevelopment.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

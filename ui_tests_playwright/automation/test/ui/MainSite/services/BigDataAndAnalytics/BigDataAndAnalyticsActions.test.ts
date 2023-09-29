@@ -112,6 +112,19 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Big D
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
+	const ctaButtons = [
+		driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver
+			.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
+			.getByTestId(MainSiteButtons.GetAConsultation),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, BigDataAndAnalytics.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

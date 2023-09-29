@@ -12,6 +12,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import Links from '../../../../../preconditionsData/Links/Links';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -123,6 +124,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Consu
 	const expectedNumberOfSections = 5;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+	const ctaButtons = [
+		driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, ConsultingService.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

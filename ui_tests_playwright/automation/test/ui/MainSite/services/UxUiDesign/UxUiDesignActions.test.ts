@@ -132,6 +132,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "UX/UI
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+	const ctaButtons = [
+		driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(UxUiDesign.OurUiUxServices).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, UxUiDesign.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

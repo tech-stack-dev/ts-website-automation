@@ -114,6 +114,19 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Mobil
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+	const ctaButtons = [
+		driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.MobileApplicationDevTechStack).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(MainSiteButtons.ScheduleACall),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, MobileDevService.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

@@ -167,6 +167,12 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Our S
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
+	const requestAQuoteButton = driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote);
+
+	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(requestAQuoteButton, OurServices.GetInTouch);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

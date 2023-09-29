@@ -13,18 +13,10 @@ import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
-});
-
-test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
-	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
-	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
-
-	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`, Environment.Production)
-	);
 });
 
 test('Check switching between layers in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
@@ -41,6 +33,28 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 			await expect(containerBlocks[j]).toHaveAttribute('data-disabled', expectedState);
 		}
 	}
+});
+
+test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
+	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+
+	await baseDriverSteps.checkUrl(
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`, Environment.Production)
+	);
+});
+
+test('Check redirect by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+	const industriesWeDevelopContainer = driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions);
+	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
+
+	const linksUrlMap = new Map([
+		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
+		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
+		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+	]);
+
+	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
 });
 
 test('Check carousel buttons in "IoT Engineering Process" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
@@ -60,7 +74,7 @@ test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" c
 		const memberCard = expertCards[i];
 
 		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		let newPage = await driver.DriverContext.waitForEvent('page');
+		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
 		await newPage.close();
 	}
@@ -103,7 +117,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
-test('Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Internet of Things" page. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const requestAQuoteButtons = [
 		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver
@@ -113,14 +127,7 @@ test('Check navigation to "Get in Touch" form after clicking "Request a quote" b
 	];
 
 	for (const button of requestAQuoteButtons) {
-		await button.click();
-
-		await expect(driver.getByTestId(IoTEngineeringServices.GetInTouch)).toBeInViewport();
-
-		await driver.Page.evaluate(() => {
-			document.documentElement.scrollTop = 0;
-			document.body.scrollTop = 0;
-		});
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, IoTEngineeringServices.GetInTouch);
 	}
 });
 

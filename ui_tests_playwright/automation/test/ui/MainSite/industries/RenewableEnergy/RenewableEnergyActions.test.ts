@@ -80,6 +80,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Renew
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
+	const ctaButtons = [
+		driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
+		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.BookAMeeting),
+		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.TalkToAnExpert),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, RenewableEnergy.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

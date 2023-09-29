@@ -76,6 +76,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Healt
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+	const ctaButtons = [
+		driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
+		driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
+		driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, Healthcare.GetInTouch);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });
