@@ -18,7 +18,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
 	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
 	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-	[ServicesEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
+	// [ServicesEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ), // Uncomment in scope of TSWEB-1134
 	[ServicesEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 	[ServicesEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 	[ServicesEnum.QaAsAServ]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
