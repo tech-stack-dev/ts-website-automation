@@ -1,4 +1,5 @@
 export default class ExternalSourceLinks {
+	static QaseApiUrl = 'https://api.qase.io/v1/';
 	static PwcHealthcareTrends =
 		'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html';
 	static McKinseyExpectInHealthcare =
