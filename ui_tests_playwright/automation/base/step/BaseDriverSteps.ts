@@ -114,18 +114,15 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToPages(locatorUrlMap: Map<Locator, string>, initialPageUrl?: string) {
-		for (const [locator, expectedUrl] of locatorUrlMap) {
+	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
+		if (initialPageUrl) {
 			await locator.click();
-
-			if (initialPageUrl) {
-				await baseDriverSteps.checkUrl(expectedUrl);
-				await baseDriverSteps.goToUrl(initialPageUrl);
-			} else {
-				const newPage = await driver.DriverContext.waitForEvent('page');
-				expect(newPage.url()).toContain(expectedUrl);
-				await newPage.close();
-			}
+			await baseDriverSteps.checkUrl(expectedUrl);
+			await baseDriverSteps.goToUrl(initialPageUrl);
+		} else {
+			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
+			expect(newPage.url()).toContain(expectedUrl);
+			await newPage.close();
 		}
 	}
 

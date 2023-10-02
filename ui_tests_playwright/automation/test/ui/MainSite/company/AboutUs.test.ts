@@ -214,10 +214,7 @@ test('Check redirect by "Clutch Review" button in "Shoutout from our partners" c
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 

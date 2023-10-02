@@ -47,7 +47,10 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	]);
 
 	const pageUrl = UrlProvider.urlBuilder(UrlPath.CustomDev);
-	await baseDriverSteps.checkRedirectToPages(sectionUrlMap, pageUrl);
+
+	for (const [section, url] of sectionUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(section, url, pageUrl);
+	}
 });
 
 test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -69,7 +72,9 @@ test("Check redirect by links in 'Industries We Develop Software For' container 
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.CustomDev));
+	}
 });
 
 test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -82,10 +87,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' contai
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 

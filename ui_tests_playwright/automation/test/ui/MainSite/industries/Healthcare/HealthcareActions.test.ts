@@ -19,9 +19,9 @@ test.beforeEach(async () => {
 test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
-	await beatsScreeningModuleContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousMedicalDevice);
+	const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 });
 
 test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
@@ -66,7 +66,9 @@ test("Check redirects by arrows in 'Core Practices' container from the 'Healthca
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.Healthcare));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.Healthcare));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {

@@ -54,9 +54,10 @@ test("Check carousel sections and arrows in 'The Way We work' container from the
 test("Check redirect by Clutch button in 'Our approach' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
 	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 
-	await ourApproachContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
+	await baseDriverSteps.checkRedirectToPage(
+		ourApproachContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.DarrenCody
+	);
 });
 
 // Unskip after Blog will be stable

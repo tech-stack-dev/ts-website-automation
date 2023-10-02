@@ -54,7 +54,9 @@ test('Check redirect by links in "Industry-specific IoT Solutions" container fro
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+	}
 });
 
 test('Check carousel buttons in "IoT Engineering Process" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {

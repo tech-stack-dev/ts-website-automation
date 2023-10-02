@@ -124,10 +124,7 @@ test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -149,10 +146,7 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 // Unskip after Blog will be stable

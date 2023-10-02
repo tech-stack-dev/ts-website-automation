@@ -56,15 +56,17 @@ test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Ener
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
+	}
 });
 
 test("Check redirect by 'Clutch Review' button in 'Why Choose Us?' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
 	const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
 
-	await whyChooseUsContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
+	const clutchReviewButton = whyChooseUsContainer.getByTestId(Buttons.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.DarrenCody);
 });
 
 test("Check carousel arrows click in 'How We Operate at Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {

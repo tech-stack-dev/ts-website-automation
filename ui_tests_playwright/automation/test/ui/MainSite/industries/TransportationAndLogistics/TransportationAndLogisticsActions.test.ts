@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import TransportationAndLogistics from '../../../../../identifiers/MainSite/pages/industries/TransportationAndLogistics';
@@ -17,10 +17,10 @@ test.beforeEach(async () => {
 
 test("Check redirect by 'Clutch Review' button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
-
-	await caseStudyByTechstackContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousVehicle);
+	await baseDriverSteps.checkRedirectToPage(
+		caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.AnonymousVehicle
+	);
 });
 
 test("Check redirect by 'Read Full Case Study' button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
@@ -50,7 +50,9 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
+	}
 });
 
 test("Check carousel arrows click in 'Transportation and Logistics Software Development at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
