@@ -1,4 +1,4 @@
-export default class EnvProvider {
+export default class DateTimeUtils {
     public static get currentDateTime(): string {
         const date = new Date();
         
