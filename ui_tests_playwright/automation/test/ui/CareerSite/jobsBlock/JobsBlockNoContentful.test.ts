@@ -1,17 +1,17 @@
 import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
-import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
-import Input from '../../../../identifiers/Input';
-import UrlProvider from '../../../../providers/UrlProvider';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Career from '../../../../identifiers/Career/pages/Career';
-import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
 import randomstring from 'randomstring';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import Navigation from '../../../../identifiers/Career/Navigation';
 import Buttons from '../../../../identifiers/Buttons';
+import CareerButtons from '../../../../identifiers/Career/CareerButtons';
+import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
+import Navigation from '../../../../identifiers/Career/Navigation';
+import Career from '../../../../identifiers/Career/pages/Career';
+import Input from '../../../../identifiers/Input';
+import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
+import UrlProvider from '../../../../providers/UrlProvider';
+import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -23,7 +23,7 @@ test('Check that "First Name" and "Last Name" input fields does not accept only 
 
 	await driver.getByTestId(ApplyForAJobForm.FirstName).fill(' ');
 	await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
-	await driver.getByTestId(CareerButtons.SendButton).click();
+	await driver.getByTestId(Buttons.Send).click();
 
 	const actualErrorText_FirstName = driver.getByTestId(ApplyForAJobForm.FirstName).locator(Input.FieldErrorSelector);
 	const actualErrorText_LastName = driver.getByTestId(ApplyForAJobForm.LastName).locator(Input.FieldErrorSelector);

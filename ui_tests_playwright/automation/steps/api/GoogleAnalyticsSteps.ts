@@ -1,16 +1,19 @@
-import {Locator, Request} from '@playwright/test';
-import {driver} from '../../base/driver/Driver';
-import {slackSteps} from './SlackSteps';
-import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
-import {promisify} from 'util';
+import { Locator, Request } from '@playwright/test';
+import { promisify } from 'util';
+import { driver } from '../../base/driver/Driver';
+import { HttpMethod } from '../../enum/HttpMethodEnum';
+import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
+import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import { slackSteps } from './SlackSteps';
 
 class GoogleAnalyticsSteps {
 	public async checkGoogleAnalytics(
 		element: Locator,
 		event: string,
-		method: string,
-		testName: string
+		testName: string,
+		method?: string
 	): Promise<void> {
+		method = method || HttpMethod.GET;
 		const wait = promisify(setTimeout);
 		const result = await Promise.race([
 			element.click(),
@@ -32,7 +35,7 @@ class GoogleAnalyticsSteps {
 		const request = result as Request;
 		const url = request.url();
 
-		if (!url.includes('https://www.google-analytics.com') || !url.includes(event)) {
+		if (!url.includes(ExternalSourceLinks.GoogleAnalytics) || !url.includes(event)) {
 			await postMessage();
 			return;
 		}
@@ -40,4 +43,5 @@ class GoogleAnalyticsSteps {
 }
 
 const googleAnalyticsSteps = new GoogleAnalyticsSteps();
-export {googleAnalyticsSteps};
+export { googleAnalyticsSteps };
+

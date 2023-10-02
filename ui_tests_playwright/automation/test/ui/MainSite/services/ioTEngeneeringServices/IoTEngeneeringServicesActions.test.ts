@@ -1,4 +1,5 @@
 import {expect, test} from '@playwright/test';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
@@ -82,8 +83,7 @@ test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" c
 	}
 });
 
-// Unskip after blog will be stable
-test.skip('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, @TSWEB-1061', async () => {
+test('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, @TSWEB-1061', async () => {
 	const expertCards = await driver.getByTestId(Container.MemberCard).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 
@@ -119,19 +119,25 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Internet of Things" page. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
-	const requestAQuoteButtons = [
-		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
-		driver
-			.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
-			.getByTestId(MainSiteButtons.RequestAQuote),
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
-	];
+test(
+	qase(
+		982,
+		'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'
+	),
+	async () => {
+		const requestAQuoteButtons = [
+			driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver
+				.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
+				.getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
+		];
 
-	for (const button of requestAQuoteButtons) {
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, IoTEngineeringServices.GetInTouch);
+		for (const button of requestAQuoteButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, IoTEngineeringServices.GetInTouch);
+		}
 	}
-});
+);
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);

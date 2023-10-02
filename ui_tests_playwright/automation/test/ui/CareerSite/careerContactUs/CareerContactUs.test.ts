@@ -1,10 +1,9 @@
 import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
-import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
+import UrlProvider from '../../../../providers/UrlProvider';
 import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
 
 test.beforeEach(async () => {
@@ -16,7 +15,7 @@ test("Check that 'Contact Us' form works correct with valid data @Regression @Co
 	await driver.getByTestId(ContactUsForm.FullName).fill('test name');
 	await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 	await driver.getByTestId(ContactUsForm.Phone).fill('12345');
-	await driver.getByTestId(CareerButtons.SendButton).click({delay: 1000}); // Delay because of form that can't catch all the fields at this moment
+	await driver.getByTestId(Buttons.Send).click({delay: 1000}); // Delay because of form that can't catch all the fields at this moment
 	await contactUsSteps.checkSuccessModalMessage('Thanks for your message. We will contact you shortly.');
 });
 
@@ -28,7 +27,7 @@ for (const file of files) {
 		await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 		await driver.getByTestId(ContactUsForm.Phone).fill('12345');
 		await contactUsSteps.attachFileToContactUsForm(file);
-		await driver.getByTestId(CareerButtons.SendButton).click({delay: 1000}); // Delay because of form that can't catch all the fields at this moment
+		await driver.getByTestId(Buttons.Send).click({delay: 1000}); // Delay because of form that can't catch all the fields at this moment
 		await contactUsSteps.checkSuccessModalMessage('Thanks for your message. We will contact you shortly.');
 	});
 }

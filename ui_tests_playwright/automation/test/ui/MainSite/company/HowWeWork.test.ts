@@ -1,14 +1,14 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import HowWeWork from '../../../../identifiers/MainSite/pages/company/HowWeWork';
-import UrlProvider from '../../../../providers/UrlProvider';
-import UrlPath from '../../../../providers/UrlPath';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import HowWeWork from '../../../../identifiers/MainSite/pages/company/HowWeWork';
 import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
 import TechnologyStackData from '../../../../preconditionsData/TechnologyStack/TechnologyStackData';
+import UrlPath from '../../../../providers/UrlPath';
+import UrlProvider from '../../../../providers/UrlProvider';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
@@ -112,7 +112,7 @@ test("Check the 'Get in Touch' section from the 'How we work' block @Regression 
 	await expect(getInTouchContainer.getByTestId(GetInTouchForm.LastName)).toBeVisible();
 	await expect(getInTouchContainer.getByTestId(GetInTouchForm.Email)).toBeVisible();
 	await expect(getInTouchContainer.getByTestId(GetInTouchForm.Message)).toBeVisible();
-	await expect(getInTouchContainer.getByTestId(CareerButtons.SendButton)).toBeVisible();
+	await expect(getInTouchContainer.getByTestId(Buttons.Send)).toBeVisible();
 });
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
