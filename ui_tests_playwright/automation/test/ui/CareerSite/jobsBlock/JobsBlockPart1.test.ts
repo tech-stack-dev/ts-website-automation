@@ -100,7 +100,7 @@ test('Check error messages related to empty fields in "Apply for a job" form @Re
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await driver.getByTestId(Career.ApplyNowButton).click();
-	await driver.getByTestId(ApplyForAJobForm.SendRequestButtom).click();
+	await driver.getByTestId(Buttons.Send).click();
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ApplyForAJobForm.FirstName,
 		ApplyForAJobForm.LastName,
