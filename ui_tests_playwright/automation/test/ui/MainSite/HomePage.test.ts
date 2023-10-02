@@ -7,7 +7,7 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {driver} from '../../../base/driver/Driver';
 import UrlPath from '../../../providers/UrlPath';
 import MainSiteButtons from '../../../identifiers/MainSite/MainSiteButtons';
-import { LinkedInReviewLinks } from '../../../preconditionsData/Links/linkedInReviewLinks';
+import {LinkedInReviewLinks} from '../../../preconditionsData/Links/linkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -71,11 +71,13 @@ test("Check section titles in 'What we do' block from the 'Home' page @Regressio
 	const allBlockTitles = whatWeDo.getByTestId(Container.BlockTitle);
 	const testData = [
 		'Custom Software Development',
+		'Digital\nTransformation',
 		'Cloud\nDevelopment',
-		'Big Data & Analytics',
-		'AI & ML',
-		'Internet of Things',
 		'Mobile Development',
+		'Big Data & Analytics',
+		'Internet of Things',
+		'DevOps\nServices',
+		'AI Development',
 		'UI/UX Design',
 		'QA as a Service',
 		'Consulting Service',
@@ -89,14 +91,16 @@ test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regr
 	const containerSection = whatWeDoContainer.getByTestId(Container.ContainerBlock);
 	const arrowUrlMap = new Map([
 		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiMl)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[containerSection.nth(7).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[containerSection.nth(8).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
+		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
+		[containerSection.nth(7).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
+		[containerSection.nth(8).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[containerSection.nth(9).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[containerSection.nth(10).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
