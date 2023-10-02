@@ -109,9 +109,9 @@ test('Check sections expanding and collapsing in "FAQ" container from the "AI&ML
 });
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "AI&ML Service" page @Regression @AiMlService @TSWEB-694', async () => {
-	const ctaButton = driver.getByTestId(AiMlService.Info).getByTestId(MainSiteButtons.RequestAQuote);
+	const ctaButton = driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote);
 
-	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, AiMlService.GetInTouch);
+	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, AiDevelopment.GetInTouch);
 });
 
 test.afterEach(async () => {
