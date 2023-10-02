@@ -42,7 +42,7 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 
 	const arrowUrlMap = new Map([
 		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],

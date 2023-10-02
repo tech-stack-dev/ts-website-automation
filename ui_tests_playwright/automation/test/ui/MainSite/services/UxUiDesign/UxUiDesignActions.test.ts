@@ -116,7 +116,7 @@ test('Check redirects by arrows in "Related Services" container from the "UX/UI 
 		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.MobileDev)],
 		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);

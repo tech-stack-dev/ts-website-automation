@@ -104,7 +104,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	const arrowUrlMap = new Map([
 		[serviceArrows[0], UrlProvider.urlBuilder(UrlPath.CustomDev)],
 		[serviceArrows[1], UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[serviceArrows[2], UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[serviceArrows[2], UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[serviceArrows[3], UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 		[serviceArrows[4], UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
 		[serviceArrows[5], UrlProvider.urlBuilder(UrlPath.BigData)],
