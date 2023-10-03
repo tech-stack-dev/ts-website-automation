@@ -115,13 +115,12 @@ class BaseDriverSteps {
 	}
 
 	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
-		await locator.click();
-
 		if (initialPageUrl) {
+			await locator.click();
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 		} else {
-			const newPage = await driver.DriverContext.waitForEvent('page');
+			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			expect(newPage.url()).toContain(expectedUrl);
 			await newPage.close();
 		}
