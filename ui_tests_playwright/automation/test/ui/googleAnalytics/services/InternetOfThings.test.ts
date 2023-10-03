@@ -1,25 +1,24 @@
-import { test } from '@playwright/test';
-import { driver } from '../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import {test} from '@playwright/test';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import RelatedArticles from '../../../../identifiers/MainSite/RelatedArticles';
 import IoTEngineeringServices from '../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import { ExpertNames } from '../../../../preconditionsData/ExpertNames';
-import { Environment } from '../../../../providers/EnvProvider';
+import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
+import {Environment} from '../../../../providers/EnvProvider';
 import SlackProvider from '../../../../providers/SlackProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import { googleAnalyticsSteps } from '../../../../steps/api/GoogleAnalyticsSteps';
-import { stringUtils } from '../../../../utils/StringUtils';
+import {googleAnalyticsSteps} from '../../../../steps/api/GoogleAnalyticsSteps';
+import {stringUtils} from '../../../../utils/StringUtils';
 
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.InternetOfThings, Environment.Production);
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl);
 	await SlackProvider.getSlackSecret();
-	await driver.Page.getByTestId(Buttons.AcceptCookies).nth(1).click();
 	await driver.Page.reload();
 });
 
@@ -127,7 +126,7 @@ test('Check google analytics by cards in "Related Articles" container. @Regressi
 	}
 });
 
-test('Check google analytics in "Get in Touch" form. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1090', async ({ }, testInfo) => {
+test('Check google analytics in "Get in Touch" form. @Regression @GoogleAnalytics @TSWEB-1069, @TSWEB-1090', async ({}, testInfo) => {
 	const sendRequestButton = driver.Page.getByTestId(Buttons.Send);
 	const attachFilesButton = driver.getByTestId(Buttons.AttachFiles);
 
