@@ -173,7 +173,7 @@ test('Check carousel section numbers and titles in "The Way We work" container f
 	await expect(carouselSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles and CTA in "Our approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check section titles and CTA in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
 	const testData = [

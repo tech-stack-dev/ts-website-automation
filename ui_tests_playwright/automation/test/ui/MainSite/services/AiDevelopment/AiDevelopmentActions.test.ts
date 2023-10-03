@@ -81,7 +81,7 @@ test('Check carousel arrows click in "The Way We work" container from the "AI De
 	await baseDriverSteps.checkCarouselArrowsClick(theWayWeWorkContainer);
 });
 
-test('Check redirect by "Clutch Review" button in "Our approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check redirect by "Clutch Review" button in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 
 	await ourApproachContainer.getByTestId(Buttons.Clutch).click();
