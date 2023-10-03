@@ -123,10 +123,11 @@ class BaseDriverSteps {
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
-			const newPage = await driver.DriverContext.waitForEvent('page', {timeout: 15000});
-			await newPage.waitForLoadState();
-			expect(newPage.url()).toContain(expectedUrl);
-			await newPage.close();
+			driver.DriverContext.on('page', async (newPage) => {
+				await newPage.waitForLoadState();
+				expect(newPage.url()).toContain(expectedUrl);
+				await newPage.close();
+			});
 		}
 	}
 
