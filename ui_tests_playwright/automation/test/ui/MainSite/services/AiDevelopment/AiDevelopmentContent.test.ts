@@ -1,0 +1,222 @@
+import {expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../../base/driver/Driver';
+import UrlProvider from '../../../../../providers/UrlProvider';
+import UrlPath from '../../../../../providers/UrlPath';
+import Container from '../../../../../identifiers/Container';
+import AiDevelopment from '../../../../../identifiers/MainSite/pages/services/AiDevelopment';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+
+test.beforeEach(async () => {
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
+});
+
+test('Check the info container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const info = driver.getByTestId(AiDevelopment.Info);
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');
+	await expect(info.getByTestId(Container.Title)).toHaveText('AI Development Services');
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+});
+
+test('Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const containers = [
+		driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
+		driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
+		driver.getByTestId(AiDevelopment.TechnologyStack),
+		// driver.getByTestId(AiDevelopment.IncorporatingAI), // Fix data-id in scope of TSWEB-1148
+		// driver.getByTestId(AiDevelopment.IndustriesWeServe), // Fix in scope of TSWEB-1148
+		driver.getByTestId(AiDevelopment.TheWayWeWork),
+		driver.getByTestId(AiDevelopment.OurApproach),
+		driver.getByTestId(AiDevelopment.RelatedServices),
+		driver.getByTestId(AiDevelopment.GetInTouch),
+		driver.getByTestId(AiDevelopment.RelatedArticles),
+		driver.getByTestId(AiDevelopment.Faq),
+	];
+
+	const expectedData = [
+		['AI’s Beneficial \nImpact on \nIndustries', '01'],
+		['Our AI Development\nServices', '02'],
+		['Technology Stack', '03'],
+		// ['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
+		// ['Industries We Serve', '05'], // Fix in scope of TSWEB-1148
+		['The Way We work', '06'],
+		['Our approach', '07'],
+		['Related Services', '08'],
+		['Get in Touch', '09'],
+		['Related Articles', '10'],
+		['FAQ', '11'],
+	];
+
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+});
+
+test('Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries);
+	const allSectionTitles = aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle);
+
+	const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
+	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test('Check block and section titles in "Our AI Development Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const ourAiMlDevelopmentServicesContainer = driver.getByTestId(AiDevelopment.OurAiDevelopmentServices);
+	const containerBlocks = ourAiMlDevelopmentServicesContainer.getByTestId(Container.ContainerBlock);
+	const allSectionTitlesFirstBlock = containerBlocks.nth(0).getByTestId(Container.SectionTitle);
+	const testData = ['Overview', 'Implementation\nin the real world'];
+
+	await expect(containerBlocks.nth(0).getByTestId(Container.BlockTitle)).toHaveText('ML models');
+	await expect(allSectionTitlesFirstBlock).toHaveText(testData);
+
+	const allSectionTitlesSecondBlock = containerBlocks.nth(1).getByTestId(Container.SectionTitle);
+
+	await expect(containerBlocks.nth(1).getByTestId(Container.BlockTitle)).toHaveText('Deep learning');
+	await expect(allSectionTitlesSecondBlock).toHaveText(testData);
+
+	const allSectionTitlesThirdBlock = containerBlocks.nth(2).getByTestId(Container.SectionTitle);
+
+	await expect(containerBlocks.nth(2).getByTestId(Container.BlockTitle)).toHaveText('Computer Vision');
+	await expect(allSectionTitlesThirdBlock).toHaveText(testData);
+
+	const allSectionTitlesFourthBlock = containerBlocks.nth(3).getByTestId(Container.SectionTitle);
+	const testDataFourthBlock = ['Overview', 'Directions', 'Implementation\nin the real world'];
+
+	await expect(containerBlocks.nth(3).getByTestId(Container.BlockTitle)).toHaveText(
+		'Natural language\nprocessing (NLP)'
+	);
+	await expect(allSectionTitlesFourthBlock).toHaveText(testDataFourthBlock);
+
+	const allSectionTitlesFifthBlock = containerBlocks.nth(4).getByTestId(Container.SectionTitle);
+
+	await expect(containerBlocks.nth(4).getByTestId(Container.BlockTitle)).toHaveText('Conversational AI');
+	await expect(allSectionTitlesFifthBlock).toHaveText(testData);
+
+	const allSectionTitlesSixthBlock = containerBlocks.nth(5).getByTestId(Container.SectionTitle);
+	const testDataSixthBlock = ['Overview', 'Domains\nof application'];
+
+	await expect(containerBlocks.nth(5).getByTestId(Container.BlockTitle)).toHaveText('Predictive analytics');
+	await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
+});
+
+test('Check section titles in "Technology stack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const technologyStackContainer = driver.getByTestId(AiDevelopment.TechnologyStack);
+	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Computer vision',
+		'Deep Learning\nand Machine Learning',
+		'Application',
+		'Data storage\nand manipulation',
+		'DevOps',
+		'QA',
+		'Data Visualization',
+		'CI/CD',
+		'Development\nEnvironment',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test('Check section titles, image and CTA in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
+	const allSectionTitles = IncorporatingAIContainer.getByTestId(Container.SectionTitle);
+	const testData = ['Seamless integration into\nexisting software system', 'Security and data integrity'];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(IncorporatingAIContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
+	// await expect(IncorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
+	// 	'Read the full\nCase Study'
+	// ); // Fix data-id for button in scope of TSWEB-1148
+});
+
+test('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 TSWEB-1148', async () => {
+	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
+	await expect(industriesWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+	]);
+
+	const allSectionTitles = industriesWeServeContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Manufacturing',
+		'Healthcare',
+		'Renewable energy',
+		'Transportation\nand logistics',
+		'Digital transformation',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds)).toHaveText(
+		'Let’s Discuss\nYour Tech Needs'
+	);
+});
+
+test('Check carousel section numbers and titles in "The Way We work" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const theWayWeWorkContainer = driver.getByTestId(AiDevelopment.TheWayWeWork);
+	const carouselSections = theWayWeWorkContainer.getByTestId(Container.CarouselSection);
+
+	await expect(carouselSections.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
+
+	const carouselSectionTitles = carouselSections.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Discovery\nand Research',
+		'Build\nPOC',
+		'Tuning and\nadjustments',
+		'Build\nProduct',
+		'Release\nand Support',
+	];
+
+	await expect(carouselSectionTitles).toHaveText(testData);
+});
+
+test('Check section titles and CTA in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
+	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Flexible AI\nDevelopment',
+		'Solutions for\nany environment',
+		'Balancing\ninnovation\nand practicality',
+		'Tech community',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+
+	// await expect(ourApproachContainer.getByTestId(MainSiteButtons.ScheduleAFreeConsultation)).toHaveText(
+	// 	'Schedule\na Free Consultation'
+	// ); // Fix button data-id in scope of TSWEB-1148
+});
+
+test('Check section titles in "Related Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const relatedServicesContainer = driver.getByTestId(AiDevelopment.RelatedServices);
+	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'Big Data\n& Analytics',
+		'Custom software\ndevelopment',
+		'UX/UI Design',
+		'Development\nconsulting',
+		'Internet of Things',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test('Check section titles in "FAQ" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const faqContainer = driver.getByTestId(AiDevelopment.Faq);
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
+	const testData = [
+		'What are the benefits of\nimplementing AI and ML\nin my business?',
+		'How long does it take to\ndevelop an AI/ML solution?',
+		'How to choose an AI software development company?',
+		'What kind of data do I need to provide to get started with artificial intelligence app development services?',
+	];
+
+	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test.afterEach(async () => {
+	await driver.closeDrivers();
+});
