@@ -21,11 +21,11 @@ test.beforeEach(async () => {
 
 test("Check redirect by link in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+	await techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch).click();
 
-	await baseDriverSteps.checkRedirectToPage(
-		techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
-		Links.ClutchReviews
-	);
+	const newPage = await driver.DriverContext.waitForEvent('page');
+	expect(newPage.url()).toContain(Links.ClutchReviews);
+	await newPage.close();
 });
 
 test("Check redirects by arrows in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
