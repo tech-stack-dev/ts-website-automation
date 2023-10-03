@@ -149,8 +149,8 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
-// Unskip after Blog will be stable
-test.skip("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006 @TSWEB-1061", async () => {
+
+test("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006 @TSWEB-1061", async () => {
 	const companyInsightsblock = driver.getByTestId(HomePage.CompanyInsights);
 	const seeAllNewsButton = companyInsightsblock.getByTestId(MainSiteButtons.SeeAllNews);
 
