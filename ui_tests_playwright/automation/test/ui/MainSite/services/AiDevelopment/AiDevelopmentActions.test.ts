@@ -83,9 +83,10 @@ test('Check carousel arrows click in "The Way We work" container from the "AI De
 test('Check redirect by "Clutch Review" button in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 
-	await ourApproachContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
+	await baseDriverSteps.checkRedirectToPage(
+		ourApproachContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.DarrenCody
+	);
 });
 
 test('Check redirect by arrows in "Related services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {

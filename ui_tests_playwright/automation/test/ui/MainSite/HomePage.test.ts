@@ -50,7 +50,7 @@ test("Check section titles in 'Industries we serve' block from the 'Home' page @
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check redirects by arrows in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test("Check redirects by blocks in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
 	const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
 	const containerSection = industriesServicesContainer.getByTestId(Container.ContainerBlock);
 	const blockUrlMap = new Map([
@@ -60,9 +60,7 @@ test("Check redirects by arrows in 'Industries we serve' block from the 'Home' p
 	]);
 
 	for (const [block, url] of blockUrlMap) {
-		await block.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
+		await baseDriverSteps.checkRedirectToPage(block, url, UrlProvider.webSiteUrl());
 	}
 });
 
