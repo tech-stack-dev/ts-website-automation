@@ -1,16 +1,16 @@
-import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { expect, Locator, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
-import {Environment} from '../../../../providers/EnvProvider';
+import { Environment } from '../../../../providers/EnvProvider';
 import Buttons from '../../../../identifiers/Buttons';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import {companyUrl, serviceUrl, industriesUrl} from '../../../../preconditionsData/UrlPreconditions';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
+import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import { companyUrl, serviceUrl, industriesUrl } from '../../../../preconditionsData/UrlPreconditions';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
 import Links from '../../../../preconditionsData/Links/Links';
 
 let footer: Locator;
@@ -24,6 +24,7 @@ const testDataProvider: string[] = [
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
 	companyUrl[CompanyEnum.Blog],
+	companyUrl[CompanyEnum.Whitepapers]
 ]
 	.concat(Object.values(serviceUrl))
 	.concat(Object.values(industriesUrl));
@@ -73,11 +74,12 @@ for (const url of testDataProvider) {
 		expect(await servicesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'Our Services',
 			'Custom Software Development',
-			'Cloud & DevOps',
-			'Big Data & Analytics',
-			'AI & ML',
-			'Internet of Things',
+			'Digital Transformation',
+			'Cloud Development',
 			'Mobile Development',
+			'Big Data & Analytics',
+			'Internet of Things',
+			'AI & ML',
 			'UX / UI Design',
 			'QA as a Service',
 			'Consulting Services',
@@ -88,6 +90,7 @@ for (const url of testDataProvider) {
 			'Career',
 			'Case Studies',
 			'Blog',
+			'Whitepapers',
 		]);
 	});
 
@@ -130,6 +133,7 @@ for (const url of testDataProvider) {
 			UrlProvider.careerUrl(Environment.Production),
 			companyUrl[CompanyEnum.CaseStudies],
 			companyUrl[CompanyEnum.Blog],
+			companyUrl[CompanyEnum.Whitepapers]
 		];
 
 		await baseDriverSteps.goToUrl(url);

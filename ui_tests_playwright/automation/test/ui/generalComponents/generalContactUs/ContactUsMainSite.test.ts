@@ -34,6 +34,7 @@ test.skip("Check 'Contact Us' button from 'Company' section @Regression @Contact
 		companyUrl[CompanyEnum.HowWeWork],
 		companyUrl[CompanyEnum.CaseStudies],
 		companyUrl[CompanyEnum.Blog],
+		companyUrl[CompanyEnum.Whitepapers]
 	];
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);

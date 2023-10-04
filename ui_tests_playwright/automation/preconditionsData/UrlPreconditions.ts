@@ -1,6 +1,6 @@
-import {CompanyEnum} from '../enum/CompanyEnum';
-import {IndustriesEnum} from '../enum/IndustriesEnum';
-import {ServicesEnum} from '../enum/ServicesEnum';
+import { CompanyEnum } from '../enum/CompanyEnum';
+import { IndustriesEnum } from '../enum/IndustriesEnum';
+import { ServicesEnum } from '../enum/ServicesEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
 
@@ -12,12 +12,13 @@ export const industriesUrl: Record<IndustriesEnum, string> = {
 
 export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.OurServices]: UrlProvider.urlBuilder(UrlPath.OurServices),
-	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
+	[ServicesEnum.CustomSoftwareDevelopment]: UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment),
+	[ServicesEnum.DigitalTransformation]: UrlProvider.urlBuilder(UrlPath.DigitalTransformation),
 	[ServicesEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
-	[ServicesEnum.AiMl]: UrlProvider.urlBuilder(UrlPath.AiMl),
-	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ServicesEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
+	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
+	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+	[ServicesEnum.AiMl]: UrlProvider.urlBuilder(UrlPath.AiMl),
 	[ServicesEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 	[ServicesEnum.QaAsAServ]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
@@ -29,4 +30,5 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
+	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
 };

@@ -1,16 +1,16 @@
-import {Locator, expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { Locator, expect, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import {Environment} from '../../../../providers/EnvProvider';
+import { Environment } from '../../../../providers/EnvProvider';
 import Buttons from '../../../../identifiers/Buttons';
 import Colors from '../../../../preconditionsData/Colors';
-import {companyUrl, industriesUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../enum/ServicesEnum';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
+import { companyUrl, industriesUrl, serviceUrl } from '../../../../preconditionsData/UrlPreconditions';
+import { ServicesEnum } from '../../../../enum/ServicesEnum';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
+import { IndustriesEnum } from '../../../../enum/IndustriesEnum';
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -22,6 +22,7 @@ const testDataProvider: string[] = [
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
 	companyUrl[CompanyEnum.Blog],
+	companyUrl[CompanyEnum.Whitepapers]
 ].concat(Object.values(serviceUrl));
 
 test.beforeEach(async () => {
@@ -35,44 +36,55 @@ for (const url of testDataProvider) {
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 
-	test(`Hovering the mouse over the menu buttons highlights the buttons text in #FFC600 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
+	test(`Hovering the mouse over the menu buttons highlights the buttons text in #EDAB00 color in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.Menu).click();
+		// await driver.getByTestId(Buttons.Menu).click();
 		const menuHeaderslist: Locator[] = [
 			driver.getByTestId(Buttons.Menu_Industries),
 			driver.getByTestId(Buttons.Menu_Services),
 			driver.getByTestId(Buttons.Menu_Company),
-			driver.getByTestId(Buttons.Menu_ContactUs),
 		];
 
 		for (const header of menuHeaderslist) {
-			await driver.executeFunc(async () => {
-				await header.hover();
-				const color = await header.evaluate((node) => {
-					return window.getComputedStyle(node).getPropertyValue('color');
-				});
-				expect(color).toBe(Colors.FFC600);
-			}, 5);
+			await header.click();
+			// Wait for the color to change
+			await driver.Page.waitForTimeout(1000);
+			const color = await header.evaluate((node) => {
+				return window.getComputedStyle(node).getPropertyValue('background-color');
+			});
+
+			expect(color).toBe(Colors.EDAB00);
 		}
+
+		await driver.getByTestId(Buttons.ContactUs).hover();
+		// Wait for the color to change
+		await driver.Page.waitForTimeout(1000);
+		const color = await driver.getByTestId(Buttons.ContactUs).evaluate((node) => {
+			return window.getComputedStyle(node).getPropertyValue('background-color');
+		});
+
+		expect(color).toBe(Colors.EDAB00);
+
 	});
 
 	test(`Check the redirection for the Services block in the 'Header' on the '${url}' link @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesList = new Map([
 			[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
-			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
+			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomSoftwareDevelopment]],
+			[Buttons.Services_DigitalTransformation, serviceUrl[ServicesEnum.DigitalTransformation]],
 			[Buttons.Services_CloudDev, serviceUrl[ServicesEnum.CloudDev]],
-			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
-			[Buttons.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
-			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
 			[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
+			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
+			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
+			[Buttons.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
 			[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
 			[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
 			[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
 		]);
 
 		for (const [element, serviceUrl] of servicesList) {
-			await driver.getByTestId(Buttons.Menu).click();
+			// await driver.getByTestId(Buttons.Menu).click();
 			await driver.getByTestId(Buttons.Menu_Services).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(serviceUrl);
@@ -91,7 +103,7 @@ for (const url of testDataProvider) {
 		]);
 
 		for (const [element, companyUrl] of companyList) {
-			await driver.getByTestId(Buttons.Menu).click();
+			// await driver.getByTestId(Buttons.Menu).click();
 			await driver.getByTestId(Buttons.Menu_Company).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(companyUrl);
@@ -108,7 +120,7 @@ for (const url of testDataProvider) {
 		]);
 
 		for (const [element, industriesUrl] of industriesList) {
-			await driver.getByTestId(Buttons.Menu).click();
+			// await driver.getByTestId(Buttons.Menu).click();
 			await driver.getByTestId(Buttons.Menu_Industries).click();
 			await driver.getByTestId(element).click();
 			await baseDriverSteps.checkUrl(industriesUrl);

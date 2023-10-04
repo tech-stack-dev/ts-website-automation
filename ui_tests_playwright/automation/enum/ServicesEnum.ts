@@ -1,6 +1,7 @@
 export enum ServicesEnum {
 	OurServices,
-	CustomDev,
+	CustomSoftwareDevelopment,
+	DigitalTransformation,
 	CloudDev,
 	BigData,
 	AiMl,

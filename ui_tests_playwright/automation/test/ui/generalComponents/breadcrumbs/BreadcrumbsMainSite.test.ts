@@ -1,9 +1,9 @@
-import {test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {industryUrl} from '../../../../preconditionsData/UrlPreconditions';
+import { industriesUrl } from '../../../../preconditionsData/UrlPreconditions';
 import Container from '../../../../identifiers/Container';
 
 test.beforeEach(async () => {
@@ -11,7 +11,7 @@ test.beforeEach(async () => {
 });
 
 test("Check redirects to 'Main' page by clicking 'Home' breadcrumbs button from 'Industries' pages @Regression @Breadcrumbs", async () => {
-	for (const url of Object.values(industryUrl)) {
+	for (const url of Object.values(industriesUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Container.BreadcrumbsPrev).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
@@ -26,12 +26,13 @@ test("Check redirect to 'Main' page by clicking 'Home' breadcrumbs button from '
 
 test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcrumbs button from 'Services' pages @Regression @Breadcrumbs", async () => {
 	const servicesUrlList = [
-		UrlProvider.urlBuilder(UrlPath.CustomDev),
+		UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment),
+		UrlProvider.urlBuilder(UrlPath.DigitalTransformation),
 		UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-		UrlProvider.urlBuilder(UrlPath.BigData),
-		UrlProvider.urlBuilder(UrlPath.AiMl),
-		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
+		UrlProvider.urlBuilder(UrlPath.BigData),
+		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+		UrlProvider.urlBuilder(UrlPath.AiMl),
 		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
