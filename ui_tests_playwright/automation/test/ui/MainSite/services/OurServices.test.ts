@@ -78,7 +78,7 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 	const servicesContainer = driver.getByTestId(OurServices.Services);
 	const servicresSections = servicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
-		[servicresSections.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[servicresSections.nth(0), UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment)],
 		[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],

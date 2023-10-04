@@ -47,7 +47,7 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment)],
 	]);
 
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.TransportAndLogist));

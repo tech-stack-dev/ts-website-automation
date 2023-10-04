@@ -57,7 +57,7 @@ test("Check redirects by arrows in 'Core Practices' container from the 'Healthca
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
 	const arrows = corePracticesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([
-		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment)],
 		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],

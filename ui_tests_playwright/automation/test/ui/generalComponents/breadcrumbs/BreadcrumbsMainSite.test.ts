@@ -30,7 +30,6 @@ test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcru
 		UrlProvider.urlBuilder(UrlPath.DigitalTransformation),
 		UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 		UrlProvider.urlBuilder(UrlPath.MobileDev),
-		UrlProvider.urlBuilder(UrlPath.MobileDev),
 		UrlProvider.urlBuilder(UrlPath.BigData),
 		UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 		UrlProvider.urlBuilder(UrlPath.DevOpsServ),

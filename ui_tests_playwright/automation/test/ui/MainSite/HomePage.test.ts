@@ -90,8 +90,8 @@ test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regr
 	const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
 	const containerSection = whatWeDoContainer.getByTestId(Container.ContainerBlock);
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
+		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomSoftwareDevelopment)],
+		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DigitalTransformation)],
 		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
 		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
