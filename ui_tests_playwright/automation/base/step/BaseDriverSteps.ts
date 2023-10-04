@@ -154,10 +154,19 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkScrollToContainerByCtaButtonClick(ctaButton: Locator, expectedContainer: string) {
+	public async checkScrollToContainerByCtaButtonClick(
+		ctaButton: Locator,
+		expectedContainer: string,
+		viewportPart?: number
+	) {
 		await ctaButton.click();
+		const container = expect(driver.getByTestId(expectedContainer));
 
-		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: 0.8});
+		if (viewportPart) {
+			await container.toBeInViewport({ratio: viewportPart});
+		} else {
+			await container.toBeInViewport({ratio: 0.8});
+		}
 
 		await driver.Page.evaluate(() => {
 			document.documentElement.scrollTop = 0;
