@@ -66,20 +66,17 @@ test('Check carousel buttons in "IoT Engineering Process" container. @Regression
 });
 
 test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
-	const expertCards = await driver.getByTestId(Container.MemberCard).all();
-	const expectedLinkedInLinks = [
-		ExpertsLinkedInLinks.IvanIeremenko,
-		ExpertsLinkedInLinks.OleksiiSvystun,
-		ExpertsLinkedInLinks.YevheniiKarachevtsev,
-	];
+	const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
+	const linkedInButtons = ourIoTExpertsContainer.getByTestId(Buttons.LinkedIn);
 
-	for (let i = 0; i < expertCards.length; i++) {
-		const memberCard = expertCards[i];
+	const buttonUrlMap = new Map([
+		[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[linkedInButtons.nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+	]);
 
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
-		await newPage.close();
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -113,9 +110,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
 	}
 });
 

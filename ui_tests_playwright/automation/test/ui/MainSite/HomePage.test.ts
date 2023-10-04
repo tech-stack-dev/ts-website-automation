@@ -102,9 +102,7 @@ test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regr
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.webSiteUrl());
 	}
 });
 

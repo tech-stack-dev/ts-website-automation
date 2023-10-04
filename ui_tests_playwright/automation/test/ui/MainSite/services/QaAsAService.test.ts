@@ -147,13 +147,10 @@ test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @
 	]);
 });
 
-test("Check redirect by arrow in 'Our Approach and Achievements' block  from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+test("Check redirect by arrow in 'Our Approach and Achievements' block from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
 	const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 
-	await ourApproachContainer.getByTestId(Container.Arrow).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-
-	expect(newPage.url()).toContain(Links.Nuget);
+	await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {

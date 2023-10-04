@@ -93,10 +93,7 @@ test("Check section titles and redirects in 'Our approach' container from the 'C
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	ourApproachContainer.getByTestId(Container.Arrow).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-
-	expect(newPage.url()).toContain(Links.Nuget);
+	await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
@@ -113,9 +110,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.ConsultingServ));
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.ConsultingServ));
 	}
 });
 

@@ -132,15 +132,13 @@ test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us
 	for (let i = 0; i < expertCards.length; i++) {
 		const memberCard = expertCards[i];
 
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(memberCard.getByTestId(Buttons.LinkedIn), expectedLinkedInLinks[i]);
 	}
 });
 
 test('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
-	const expertCards = await driver.getByTestId(Container.MemberCard).all();
+	const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
+	const blogButtons = await ourTeamContainer.getByTestId(Buttons.Blog).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const expectedBlogLinks = [
 		AuthorsEnum.IvanIeremenko,
@@ -151,14 +149,11 @@ test('Check Blog link redirects by buttons in "Our team" block from the "About U
 		AuthorsEnum.DmytroShtapauk,
 	];
 
-	for (let i = 0; i < expertCards.length; i++) {
-		const memberCard = expertCards[i];
+	for (let i = 0; i < blogButtons.length; i++) {
+		const blogButton = blogButtons[i];
+		const expectedUrl = `${blogUri}${expectedBlogLinks[i]}`;
 
-		await memberCard.getByTestId(Buttons.Blog).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-
-		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(blogButton, expectedUrl);
 	}
 });
 
@@ -192,10 +187,7 @@ test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners"
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 

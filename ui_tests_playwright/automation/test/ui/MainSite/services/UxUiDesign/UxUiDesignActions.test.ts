@@ -91,11 +91,10 @@ test.skip('Check redirect by Blog button in "We Never Stop Improving Your Produc
 test('Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 
-	await weNeverStopImprovingContainer.getByTestId(Buttons.Behance).click();
-
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(ExpertsBehanceLinks.DmytroDytuk);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		weNeverStopImprovingContainer.getByTestId(Buttons.Behance),
+		ExpertsBehanceLinks.DmytroDytuk
+	);
 });
 
 test('Check redirect by link in "Related Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {

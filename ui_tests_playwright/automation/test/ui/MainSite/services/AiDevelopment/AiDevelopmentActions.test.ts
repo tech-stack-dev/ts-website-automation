@@ -36,10 +36,10 @@ test('Check redirect by links in "AI’s Beneficial Impact on Industries" contai
 test('Check redirect by "Clutch Review" button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
 
-	await incorporatingAIContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousMedicalDevice);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		incorporatingAIContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.AnonymousMedicalDevice
+	);
 });
 
 test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1148', async () => {
@@ -101,9 +101,7 @@ test('Check redirect by arrows in "Related services" container from the "AI Deve
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.AiDevelopment));
 	}
 });
 
