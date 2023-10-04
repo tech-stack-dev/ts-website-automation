@@ -9,4 +9,5 @@ export default class CaseStudyPath {
 	static MobileSocialNetworkForSportsFans = '/mobile-social-network-for-sports-fans';
 	static RedesignPatientDataSystem = '/redesign-of-a-patient-data-management-system';
 	static OneStopPlatformDesignHospitality = '/one-stop-platform-design-for-the-hospitality-industry';
+	static IncorporatingAimlIntoFlow = '/incorporating-al-ml-into-existing-healthcare-flow';
 }

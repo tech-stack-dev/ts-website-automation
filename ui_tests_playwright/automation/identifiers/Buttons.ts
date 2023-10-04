@@ -18,7 +18,8 @@ export default class Buttons {
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_BigData = 'Services-BigData';
 	static Services_InternetOfThings = 'Services-InternetOfThings';
-	static Services_AiMl = 'Services-AIML';
+	static Services_DevOps = 'Services-DevOps';
+	static Services_AiDevelopment = 'Services-AIML';
 	static Services_UiUxDesign = 'Services-UiUxDesign';
 	static Services_QaAsAServ = 'Services-QaAsAServ';
 	static Services_ConsultingServ = 'Services-ConsultingServ';
@@ -57,6 +58,11 @@ export default class Buttons {
 
 	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';
+
+	// Form
+	static Send = 'SubmitButton-SharedSendMessage';
+	static AttachFiles = 'Button-AttachFiles';
+	static Cancel = 'Icon-Cancel';
 
 	// Other
 	static Logo = 'Logo-Techstack';

@@ -77,7 +77,8 @@ for (const url of testDataProvider) {
 			[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
 			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
 			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
-			[Buttons.Services_AiMl, serviceUrl[ServicesEnum.AiMl]],
+			// [Buttons.Services_DevOps, serviceUrl[ServicesEnum.DevOpsAsAServ]], // Uncomment in scope of TSWEB-1134
+			[Buttons.Services_AiDevelopment, serviceUrl[ServicesEnum.AiDevelopment]],
 			[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
 			[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
 			[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],

@@ -61,7 +61,7 @@ test("Check redirects by arrows in 'Core Practices' container from the 'Healthca
 		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 	]);

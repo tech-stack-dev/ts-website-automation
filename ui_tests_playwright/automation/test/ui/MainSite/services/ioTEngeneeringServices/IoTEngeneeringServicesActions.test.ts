@@ -1,16 +1,17 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import { expect, test } from '@playwright/test';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
+import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import {Environment} from '../../../../../providers/EnvProvider';
+import { Environment } from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 
@@ -60,14 +61,13 @@ test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" c
 		const memberCard = expertCards[i];
 
 		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		let newPage = await driver.DriverContext.waitForEvent('page');
+		const newPage = await driver.DriverContext.waitForEvent('page');
 		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
 		await newPage.close();
 	}
 });
 
-// Unskip after blog will be stable
-test.skip('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, @TSWEB-1061', async () => {
+test('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, @TSWEB-1061', async () => {
 	const expertCards = await driver.getByTestId(Container.MemberCard).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 
@@ -90,7 +90,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	const arrowUrlMap = new Map([
 		[serviceArrows[0], UrlProvider.urlBuilder(UrlPath.CustomDev)],
 		[serviceArrows[1], UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[serviceArrows[2], UrlProvider.urlBuilder(UrlPath.AiMl)],
+		[serviceArrows[2], UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[serviceArrows[3], UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 		[serviceArrows[4], UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
 		[serviceArrows[5], UrlProvider.urlBuilder(UrlPath.BigData)],
@@ -103,7 +103,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	}
 });
 
-test('Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test(qase(982, 'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'), async () => {
 	const requestAQuoteButtons = [
 		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver

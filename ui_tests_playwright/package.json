@@ -41,6 +41,7 @@
 		"lodash": "^4.17.21",
 		"playwright": "^1.37.1",
 		"playwright-core": "^1.27.1",
+		"playwright-qase-reporter": "^1.2.1",
 		"randomstring": "^1.2.3",
 		"uuid": "^9.0.0"
 	}

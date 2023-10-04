@@ -3,7 +3,6 @@ export default class CareerButtons {
 	static UaLanguageSwitcher = 'LocaleButton-Ua';
 
 	static ApplyNow = 'ApplyNowButton-SharedApplyNow';
-	static SendButton = 'SubmitButton-SharedSendMessage';
 
 	// Header components
 	static LearnMoreButton2 = 'LearnMoreButton-SharedLearnMore2';
