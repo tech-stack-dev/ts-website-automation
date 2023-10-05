@@ -115,7 +115,7 @@ test('Check sections expanding and collapsing in "FAQ" container from the "AI De
 test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const ctaButtons = [
 		driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
-		driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds),
+		// driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds), // Unskip after adding data-id by devs
 		driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAFreeConsultation),
 	];
 
