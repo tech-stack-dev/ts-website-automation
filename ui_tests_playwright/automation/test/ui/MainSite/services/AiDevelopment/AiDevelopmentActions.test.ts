@@ -42,10 +42,10 @@ test('Check redirect by "Clutch Review" button in "Incorporating AI/ML into Exis
 	);
 });
 
-test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1148', async () => {
+test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
 
-	await incorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click(); // Fix button data-id in scope of TSWEB-1148
+	await incorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
 		UrlProvider.urlBuilder(
 			`${UrlPath.CaseStudies}${CaseStudyPath.IncorporatingAimlIntoFlow}`,
@@ -54,7 +54,7 @@ test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthc
 	);
 });
 
-test('Check redirect by links in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1148', async () => {
+test('Check redirect by links in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
 	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
 
 	const linksUrlMap = new Map([
@@ -66,6 +66,10 @@ test('Check redirect by links in "Industries We Serve" container from the "AI De
 		[
 			industriesWeServeContainer.getByTestId(MainSiteLinks.TransportAndLogistics),
 			UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
+		],
+		[
+			industriesWeServeContainer.getByTestId(MainSiteLinks.DigitalTransformation),
+			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 		],
 	]);
 
@@ -112,11 +116,11 @@ test('Check sections expanding and collapsing in "FAQ" container from the "AI De
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
 	const ctaButtons = [
 		driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
-		// driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.GetAConsultation), // Fix button data-id in scope of TSWEB-1148
-		driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAMeetingNow), // Fix button data-id in scope of TSWEB-1148
+		driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds),
+		driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAFreeConsultation),
 	];
 
 	for (const button of ctaButtons) {

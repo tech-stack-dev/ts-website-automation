@@ -5,7 +5,7 @@ export default class MainSiteButtons {
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy'; // Fix data-id in scope of TSWEB-1148
+	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
 	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
 	static ReadFullCaseStudies = 'Button-ReadFullCaseStudies';
 	static AboutUs = 'Button-AboutUs';
@@ -19,12 +19,12 @@ export default class MainSiteButtons {
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
 	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
-	static ScheduleAFreeConsultation = 'Button-ScheduleAMeetingNow'; // Fix data-id in scope of TSWEB-1148
+	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
 	static GetAConsultation = 'Button-GetAConsultation';
 	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 	static MoreProductDetails = 'Button-MoreProductDetails';
 	static ScheduleACall = 'Button-ScheduleACall';
-	static LetsDiscussYourTechNeeds = 'Button-GetAConsultation'; // Fix data-id in scope of TSWEB-1148
+	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
