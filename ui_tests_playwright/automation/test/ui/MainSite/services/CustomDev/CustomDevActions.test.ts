@@ -15,32 +15,17 @@ import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
 import Links from '../../../../../preconditionsData/Links/Links';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 
-const requestAQuoteText = 'Request a Quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
 test("Check redirect by link in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
 	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
-	await techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch).click();
 
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(Links.ClutchReviews);
-	await newPage.close();
-});
-
-test("Check page is scrolled down to 'Get in Touch' container after clicking on 'Request a quote' button from the 'Info' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const info = driver.getByTestId(CustomDev.Info);
-	const requestAQuote = info.getByTestId(MainSiteButtons.RequestAQuote);
-
-	await requestAQuote.scrollIntoViewIfNeeded();
-	await expect(requestAQuote).toHaveText(requestAQuoteText);
-
-	await driver.Page.waitForLoadState('networkidle');
-	await requestAQuote.click();
-
-	await expect(driver.getByTestId(CustomDev.GetInTouch)).toBeInViewport();
+	await baseDriverSteps.checkRedirectToPage(
+		techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
+		Links.ClutchReviews
+	);
 });
 
 test("Check redirects by arrows in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -62,7 +47,10 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	]);
 
 	const pageUrl = UrlProvider.urlBuilder(UrlPath.CustomDev);
-	await baseDriverSteps.checkRedirectToPages(sectionUrlMap, pageUrl);
+
+	for (const [section, url] of sectionUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(section, url, pageUrl);
+	}
 });
 
 test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -84,7 +72,9 @@ test("Check redirect by links in 'Industries We Develop Software For' container 
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CustomDev));
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.CustomDev));
+	}
 });
 
 test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
@@ -97,10 +87,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' contai
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -151,6 +138,21 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Custo
 	const expectedNumberOfSections = 5;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
+	const ctaButtons = [
+		driver.getByTestId(CustomDev.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide).getByTestId(MainSiteButtons.SendUsYourQueries),
+		driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts).getByTestId(MainSiteButtons.ContactOurExperts),
+		driver
+			.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels)
+			.getByTestId(MainSiteButtons.ClaimYourCustomQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, CustomDev.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

@@ -15,7 +15,6 @@ import {containerSteps} from '../../../../steps/components/container/ContainerSt
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {

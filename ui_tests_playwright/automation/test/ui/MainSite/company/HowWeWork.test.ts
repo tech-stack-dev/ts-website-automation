@@ -115,6 +115,12 @@ test("Check the 'Get in Touch' section from the 'How we work' block @Regression 
 	await expect(getInTouchContainer.getByTestId(Buttons.Send)).toBeVisible();
 });
 
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+	const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+
+	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, HowWeWork.GetInTouch);
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

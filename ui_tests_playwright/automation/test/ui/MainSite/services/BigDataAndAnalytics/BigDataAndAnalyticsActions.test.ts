@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
@@ -44,18 +44,21 @@ test('Check redirect by links in "Industry-specific Big Data Solutions" containe
 			UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
 		],
 	]);
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.BigData));
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.BigData));
+	}
 });
 
 test('Check redirect to clutch in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const whyChooseTechstackBigDataContainer = driver.getByTestId(
 		BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 	);
-	await whyChooseTechstackBigDataContainer.getByTestId(Buttons.Clutch).click();
 
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(ClutchReviewLinks.MarkBeare);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		whyChooseTechstackBigDataContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.MarkBeare
+	);
 });
 
 test('Check redirects by LinkedIn buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
@@ -69,7 +72,9 @@ test('Check redirects by LinkedIn buttons in "Our Experts" container from the "B
 		[linkedInButtons.nth(3), ExpertsLinkedInLinks.IvanYeremenko],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 // Unskip after blog will be stable
@@ -85,7 +90,9 @@ test.skip('Check redirects by Blog buttons in in "Our Experts" container from th
 		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 test('Check redirects by arrows in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
@@ -102,7 +109,9 @@ test('Check redirects by arrows in "Related Services" container from the "Big Da
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.BigData));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.BigData));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
@@ -110,6 +119,19 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Big D
 	const expectedNumberOfSections = 4;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
+	const ctaButtons = [
+		driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver
+			.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
+			.getByTestId(MainSiteButtons.GetAConsultation),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, BigDataAndAnalytics.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {
