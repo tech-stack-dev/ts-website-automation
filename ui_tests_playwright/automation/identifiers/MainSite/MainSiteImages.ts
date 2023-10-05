@@ -8,6 +8,7 @@ export default class MainSiteImages {
 	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
 	static MobileCaseStudy = 'Img-MobileCaseStudy';
 	static MedicalDashboard = 'Img-Dashboard';
+	static IncorporatingAiMl = 'Img-IncorporatingAiMl';
 
 	// Big numbers on site, presented as images
 	static BigNumber = 'Img-BigNumbers';

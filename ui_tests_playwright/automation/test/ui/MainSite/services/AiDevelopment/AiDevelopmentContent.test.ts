@@ -24,8 +24,8 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
 		driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
 		driver.getByTestId(AiDevelopment.TechnologyStack),
-		// driver.getByTestId(AiDevelopment.IncorporatingAI), // Fix data-id in scope of TSWEB-1148
-		// driver.getByTestId(AiDevelopment.IndustriesWeServe), // Fix in scope of TSWEB-1148
+		driver.getByTestId(AiDevelopment.IncorporatingAI),
+		// driver.getByTestId(AiDevelopment.IndustriesWeServe), // Uncomment after adding data-id by devs
 		driver.getByTestId(AiDevelopment.TheWayWeWork),
 		driver.getByTestId(AiDevelopment.OurApproach),
 		driver.getByTestId(AiDevelopment.RelatedServices),
@@ -38,8 +38,8 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		['AI’s Beneficial \nImpact on \nIndustries', '01'],
 		['Our AI Development\nServices', '02'],
 		['Technology Stack', '03'],
-		// ['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
-		// ['Industries We Serve', '05'], // Fix in scope of TSWEB-1148
+		['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
+		// ['Industries We Serve', '05'], // Uncomment after adding data-id by devs
 		['The Way We work', '06'],
 		['Our approach', '07'],
 		['Related Services', '08'],
@@ -123,13 +123,13 @@ test('Check section titles, image and CTA in "Incorporating AI/ML into Existing 
 
 	await expect(allSectionTitles).toHaveText(testData);
 
-	await expect(IncorporatingAIContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-	// await expect(IncorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-	// 	'Read the full\nCase Study'
-	// ); // Fix data-id for button in scope of TSWEB-1148
+	await expect(IncorporatingAIContainer.getByTestId(MainSiteImages.IncorporatingAiMl)).toBeVisible();
+	await expect(IncorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
+		'Read the full\nCase Study'
+	);
 });
-
-test('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 TSWEB-1148', async () => {
+// Unskip after adding data-id by devs
+test.skip('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
 	await expect(industriesWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -185,9 +185,9 @@ test('Check section titles and CTA in "Our Approach" container from the "AI Deve
 
 	await expect(allSectionTitles).toHaveText(testData);
 
-	// await expect(ourApproachContainer.getByTestId(MainSiteButtons.ScheduleAFreeConsultation)).toHaveText(
-	// 	'Schedule\na Free Consultation'
-	// ); // Fix button data-id in scope of TSWEB-1148
+	await expect(ourApproachContainer.getByTestId(MainSiteButtons.ScheduleAFreeConsultation)).toHaveText(
+		'Schedule\na Free Consultation'
+	);
 });
 
 test('Check section titles in "Related Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
