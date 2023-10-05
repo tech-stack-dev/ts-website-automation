@@ -19,13 +19,13 @@ test('Check the info container from the "AI Development" page @Regression @AiDev
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 });
 
-test('Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
 	const containers = [
 		driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
 		driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
 		driver.getByTestId(AiDevelopment.TechnologyStack),
 		driver.getByTestId(AiDevelopment.IncorporatingAI),
-		// driver.getByTestId(AiDevelopment.IndustriesWeServe), // Uncomment after adding data-id by devs
+		driver.getByTestId(AiDevelopment.IndustriesWeServe),
 		driver.getByTestId(AiDevelopment.TheWayWeWork),
 		driver.getByTestId(AiDevelopment.OurApproach),
 		driver.getByTestId(AiDevelopment.RelatedServices),
@@ -39,7 +39,7 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		['Our AI Development\nServices', '02'],
 		['Technology Stack', '03'],
 		['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
-		// ['Industries We Serve', '05'], // Uncomment after adding data-id by devs
+		['Industries We Serve', '05'],
 		['The Way We work', '06'],
 		['Our approach', '07'],
 		['Related Services', '08'],
@@ -128,8 +128,8 @@ test('Check section titles, image and CTA in "Incorporating AI/ML into Existing 
 		'Read the full\nCase Study'
 	);
 });
-// Unskip after adding data-id by devs
-test.skip('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+
+test('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
 	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
 	await expect(industriesWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
