@@ -67,6 +67,10 @@ test('Check redirect by links in "Industries We Serve" container from the "AI De
 			industriesWeServeContainer.getByTestId(MainSiteLinks.TransportAndLogistics),
 			UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 		],
+		[
+			industriesWeServeContainer.getByTestId(MainSiteLinks.DigitalTransformation),
+			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
+		],
 	]);
 
 	for (const [link, url] of linksUrlMap) {
