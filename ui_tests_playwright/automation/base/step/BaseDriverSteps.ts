@@ -124,7 +124,7 @@ class BaseDriverSteps {
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			await newPage.waitForURL(expectedUrl);
+			await newPage.waitForURL(expectedUrl, {timeout: 15000});
 			expect(newPage.url()).toContain(expectedUrl);
 			await newPage.close();
 		}

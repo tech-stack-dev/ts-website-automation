@@ -54,7 +54,7 @@ test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthc
 	);
 });
 
-test('Check redirect by links in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
+test('Check redirect by links in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
 
 	const linksUrlMap = new Map([
@@ -116,7 +116,7 @@ test('Check sections expanding and collapsing in "FAQ" container from the "AI De
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const ctaButtons = [
 		driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds),
