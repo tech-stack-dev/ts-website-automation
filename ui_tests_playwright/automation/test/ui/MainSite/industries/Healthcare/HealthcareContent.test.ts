@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test("Check the header from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check the header from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const info = driver.getByTestId(Healthcare.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
 	await expect(info.getByTestId(Container.Title)).toHaveText(
@@ -21,7 +21,7 @@ test("Check the header from the 'Healthcare' block @Regression @Healthcare @TSWE
 	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 });
 
-test("Check the container title and number from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check the container title and number from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const containers = [
 		driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent),
 		driver.getByTestId(Healthcare.OurExpertise),
@@ -55,7 +55,7 @@ test("Check the container title and number from the 'Healthcare' block @Regressi
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check block titles in 'What Makes Our Team Different' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check block titles in "What Makes Our Team Different" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const whatMakesOurTeamDifferentContainer = driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent);
 	const allBlockTitles = whatMakesOurTeamDifferentContainer.getByTestId(Container.BlockTitle);
 	const testData = ['9\nyears', '16\ntech experts', '11\nprojects', '67\n%'];
@@ -63,7 +63,7 @@ test("Check block titles in 'What Makes Our Team Different' container from the '
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check section titles and CTA button in 'Our Expertise' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check section titles and CTA button in "Our Expertise" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
 	const allSectionTitles = ourExpertiseContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -80,7 +80,7 @@ test("Check section titles and CTA button in 'Our Expertise' container from the 
 	);
 });
 
-test("Check section titles, image and CTA button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check section titles, image and CTA button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 	const allSectionTitles = beatsScreeningModuleContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
@@ -94,7 +94,7 @@ test("Check section titles, image and CTA button in 'Beats Screening Module by T
 	);
 });
 
-test("Check section numbers and section titles in 'Patient-Centered Strategy' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check section numbers and section titles in "Patient-Centered Strategy" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const patientCenteredStrategyContainer = driver.getByTestId(Healthcare.PatientCenteredStrategy);
 	await expect(patientCenteredStrategyContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -113,7 +113,7 @@ test("Check section numbers and section titles in 'Patient-Centered Strategy' co
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check block titles in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check block titles in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	const allBlockTitles = mostRecentIndustryFactsContainer.getByTestId(Container.BlockTitle);
 	const testData = ['1.57\nbillion users', '82\n%', '$\n641\nPPM'];
@@ -121,7 +121,7 @@ test("Check block titles in 'Most Recent Industry Facts' container from the 'Hea
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check carousel sections and CTA button in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check carousel sections and CTA button in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
 	const carousel = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 
@@ -140,7 +140,7 @@ test("Check carousel sections and CTA button in 'How We Operate' container from 
 	await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toHaveText('Schedule a meeting');
 });
 
-test("Check section numbers and section titles in 'Our Workflow' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check section numbers and section titles in "Our Workflow" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const ourWorkflowContainer = driver.getByTestId(Healthcare.OurWorkflow);
 	await expect(ourWorkflowContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05']);
 
@@ -149,7 +149,7 @@ test("Check section numbers and section titles in 'Our Workflow' container from 
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check section titles in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
 
 	const allSectionTitles = corePracticesContainer.getByTestId(Container.SectionTitle);
@@ -165,13 +165,13 @@ test("Check section titles in 'Core Practices' container from the 'Healthcare' b
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check image in 'Serving Partners Worldwide' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check image in "Serving Partners Worldwide" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const servingPartnersWorldwideContainer = driver.getByTestId(Healthcare.ServingPartnersWorldwide);
 
 	await expect(servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
 });
 
-test("Check section titles in 'FAQ' container from the 'AI&ML Service' block @Regression @AiMlService @TSWEB-694", async () => {
+test('Check section titles in "FAQ" container from the "Healthcare" page @Regression @AiMlService @TSWEB-694', async () => {
 	const faqContainer = driver.getByTestId(Healthcare.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [

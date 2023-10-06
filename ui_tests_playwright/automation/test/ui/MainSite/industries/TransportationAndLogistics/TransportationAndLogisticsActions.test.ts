@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
 });
 
-test("Check redirect by 'Clutch Review' button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+test('Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
 
 	await caseStudyByTechstackContainer.getByTestId(Buttons.Clutch).click();
@@ -23,7 +23,7 @@ test("Check redirect by 'Clutch Review' button in 'Case Study by Techstack' cont
 	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousVehicle);
 });
 
-test("Check redirect by 'Read Full Case Study' button in 'Case Study by Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+test('Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
 
 	await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
@@ -32,7 +32,7 @@ test("Check redirect by 'Read Full Case Study' button in 'Case Study by Techstac
 	);
 });
 
-test("Check redirects by arrows in 'Our Expertise in Logistics Software Development Solutions' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+test('Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
 		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
 	);
@@ -53,7 +53,7 @@ test("Check redirects by arrows in 'Our Expertise in Logistics Software Developm
 	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
 });
 
-test("Check carousel arrows click in 'Transportation and Logistics Software Development at Techstack' container from the 'Transportation and Logistics' block @Regression @TransportationAndLogistics @TSWEB-956", async () => {
+test('Check carousel arrows click in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const transportationAndLogisticsContainer = driver.getByTestId(
 		TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack
 	);

@@ -10,7 +10,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 });
 
-test("Check the container title and number from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
+test('Check the container title and number from the "Contact Us" page @Regression @ContactUs @TSWEB-148', async () => {
 	const containers = [driver.getByTestId(ContactUs.GetInTouch), driver.getByTestId(ContactUs.Cooperation)];
 
 	const expectedData = [
@@ -21,21 +21,21 @@ test("Check the container title and number from the 'Contact Us' block @Regressi
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check images in 'Get in Touch' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
+test('Check images in "Get in Touch" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148', async () => {
 	const GetInTouchFormContainer = driver.getByTestId(ContactUs.GetInTouchForm);
 	const partnerLogos = GetInTouchFormContainer.getByTestId(Container.PartnerLogo);
 
 	await baseDriverSteps.checkImagesVisibility(partnerLogos, 8);
 });
 
-test("Check contact information in 'Cooperation' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
+test('Check contact information in "Cooperation" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148', async () => {
 	const cooperationContainer = driver.getByTestId(ContactUs.Cooperation);
 
 	await expect(cooperationContainer.getByTestId(Container.Email)).toHaveText('Email\nhello@tech-stack.io');
 	await expect(cooperationContainer.getByTestId(Container.Phone)).toHaveText('Phone number\n+1-312-442-0823');
 });
 
-test("Check section number, title and description in 'Cooperation' container from the 'Contact Us' block @Regression @ContactUs @TSWEB-148", async () => {
+test('Check section number, title and description in "Cooperation" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148', async () => {
 	const cooperationContainer = driver.getByTestId(ContactUs.Cooperation);
 
 	await expect(cooperationContainer.getByTestId(Container.SectionNumber)).toHaveText([

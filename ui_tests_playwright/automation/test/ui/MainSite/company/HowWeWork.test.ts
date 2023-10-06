@@ -14,14 +14,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
-test("Check the header from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the header and breadcrumbs from the "How we work" page @Regression @HowWeWork', async () => {
 	const info = driver.getByTestId(HowWeWork.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
 	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
 	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
-test("Check container titles and numbers from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check container titles and numbers from the "How we work" page @Regression @HowWeWork', async () => {
 	const containers = [
 		driver.getByTestId(HowWeWork.CooperationModels),
 		driver.getByTestId(HowWeWork.WorkProcess),
@@ -43,7 +43,7 @@ test("Check container titles and numbers from the 'How we work' block @Regressio
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check the 'Cooperation models' section title and number from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the "Cooperation models" container title and number from the "How we work" page @Regression @HowWeWork', async () => {
 	const cooperationModelsContainer = driver.getByTestId(HowWeWork.CooperationModels);
 	const allSectionTitles = cooperationModelsContainer.getByTestId(Container.SectionTitle);
 
@@ -54,7 +54,7 @@ test("Check the 'Cooperation models' section title and number from the 'How we w
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check the 'Work process' section title and number and carousel from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the "Work process" container title and number and carousel from the "How we work" page @Regression @HowWeWork', async () => {
 	const workProcessContainer = driver.getByTestId(HowWeWork.WorkProcess);
 	const allSectionTitles = workProcessContainer.getByTestId(Container.SectionTitle);
 
@@ -67,7 +67,7 @@ test("Check the 'Work process' section title and number and carousel from the 'H
 	await baseDriverSteps.checkCarouselArrowsClick(workProcessContainer);
 });
 
-test("Check the 'Technology stack' section from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the "Technology stack" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const technologyStackContainer = driver.getByTestId(HowWeWork.TechnologyStack);
 
 	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
@@ -81,7 +81,7 @@ test("Check the 'Technology stack' section from the 'How we work' block @Regress
 	);
 });
 
-test("Check the 'Techstack structure' section from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the "Techstack structure" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const techstackStructure = driver.getByTestId(HowWeWork.TechstackStructure);
 	const allSectionTitles = techstackStructure.getByTestId(Container.SectionTitle);
 
@@ -98,13 +98,7 @@ test("Check the 'Techstack structure' section from the 'How we work' block @Regr
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check the 'Tools we use' section from the 'How we work' block @Regression @HowWeWork", async () => {
-	const toolsWeUseContainer = driver.getByTestId(HowWeWork.ToolsWeUseToOrganize);
-
-	await expect(toolsWeUseContainer.getByTestId(Container.ContainerNumber)).toHaveText('05');
-});
-
-test("Check the 'Get in Touch' section from the 'How we work' block @Regression @HowWeWork", async () => {
+test('Check the elements in "Get in Touch" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const getInTouchContainer = driver.getByTestId(HowWeWork.GetInTouch);
 
 	await expect(getInTouchContainer.getByTestId(GetInTouchForm.Email)).toBeVisible();
