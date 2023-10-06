@@ -22,14 +22,14 @@ test.beforeEach(async () => {
 	await driver.Page.reload();
 });
 
-test.skip("Check google analytics in 'Info' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
+test("Check google analytics in 'Info' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const info = driver.getByTestId(Healthcare.Info);
 	const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
 	const infoGetInTouchButton: Locator = info.getByTestId(MainSiteButtons.GetInTouch);
 
 	await googleAnalyticsSteps.checkGoogleAnalytics(
 		breadcrumbsButton,
-		'HealthIndBreadHome',
+		'HeatlhIndBreadHome',
 		testInfo.title);
 	await baseDriverSteps.goToUrl(pageUrl);
 	await googleAnalyticsSteps.checkGoogleAnalytics(
@@ -83,16 +83,6 @@ test("Check google analytics in 'Most Recent Industry Facts' section. @Regressio
 		'HealthIndFactsMcKinsey',
 		testInfo.title
 	);
-	await baseDriverSteps.goToUrl(pageUrl);
-
-	//TODO: update after TSWEB-1139
-	/*const statistaButton: Locator = mostRecentIndustryFactsContainer.getByTestId(MainSiteButtons.Statista);
-	await googleAnalyticsSteps.checkGoogleAnalytics(
-		statistaButton,
-		'HealthIndFactsStatista',
-		testInfo.title
-	);
-	await baseDriverSteps.goToUrl(pageUrl);*/
 });
 
 test("Check google analytics in 'How We Operate' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
@@ -152,11 +142,11 @@ test("Check google analytics in 'Faq' section. @Regression @GoogleAnalytics @TSW
 	}
 });
 
-test.skip("Check google analytics in 'Related Articles' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
+test("Check google analytics in 'Related Articles' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const relatedArticlesContainer = driver.getByTestId(Healthcare.RelatedArticles);
 	const articleItemsList = await relatedArticlesContainer.getByTestId(RelatedArticles.ArticleItem).all();
 	const articleTitlesList = await relatedArticlesContainer.getByTestId(RelatedArticles.ArticleTitle).allTextContents();
-	const events = articleTitlesList.map((title) => `HealthIndArticle-${(stringUtils.encodeForUrl(title))}`);
+	const events = articleTitlesList.map((title) => `HealthIndArticle${stringUtils.encodeForUrl(title)}`);
 
 	for (let i = 0; i < articleItemsList.length; i++) {
 		await googleAnalyticsSteps.checkGoogleAnalytics(articleItemsList[i], events[i], testInfo.title);
