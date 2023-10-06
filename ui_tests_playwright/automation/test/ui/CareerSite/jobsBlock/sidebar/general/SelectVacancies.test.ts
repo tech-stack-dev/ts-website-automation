@@ -16,11 +16,9 @@ import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnu
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/Career/pages/Career';
 import {locatorUtils} from '../../../../../../utils/LocatorUtils';
-import Buttons from '../../../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 const testDataProvider = [

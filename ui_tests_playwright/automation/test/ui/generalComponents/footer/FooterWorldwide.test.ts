@@ -30,7 +30,6 @@ const testDataProvider: string[] = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
-	await driver.getByTestId(Buttons.AcceptCookies).click();
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 

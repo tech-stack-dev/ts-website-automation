@@ -56,15 +56,17 @@ test('Check redirects by arrows in "Our Key Areas of Expertise in Renewable Ener
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
+	}
 });
 
 test('Check redirect by "Clutch Review" button in "Why Choose Us?" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
 
-	await whyChooseUsContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.DarrenCody);
+	const clutchReviewButton = whyChooseUsContainer.getByTestId(Buttons.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.DarrenCody);
 });
 
 test('Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
@@ -78,6 +80,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Renew
 	const expectedNumberOfSections = 5;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
+	const ctaButtons = [
+		driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
+		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.BookAMeeting),
+		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.TalkToAnExpert),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, RenewableEnergy.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

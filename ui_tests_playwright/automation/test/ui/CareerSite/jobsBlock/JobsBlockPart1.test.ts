@@ -19,7 +19,6 @@ import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
 	await contentfulSteps.createCareerWithDefaultValue(
 		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,

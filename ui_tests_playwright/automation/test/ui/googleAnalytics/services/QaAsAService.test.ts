@@ -2,7 +2,6 @@ import {Locator, test} from '@playwright/test';
 import {startCase} from 'lodash';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Buttons from '../../../../identifiers/Buttons';
 import Container from '../../../../identifiers/Container';
 import CaseStudies from '../../../../identifiers/MainSite/CaseStudies';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
@@ -23,7 +22,6 @@ test.beforeEach(async () => {
 // Need to check why checks related to case study failed
 test.skip("Check google analytics for 'QA as a Service' page @Regression @GoogleAnalytics @TSWEB-794", async ({}, testInfo) => {
 	await driver.Page.waitForTimeout(10000);
-	await driver.Page.getByTestId(Buttons.AcceptCookies).nth(1).click();
 	await driver.Page.reload();
 
 	const info = driver.getByTestId(QaAsAService.Info);

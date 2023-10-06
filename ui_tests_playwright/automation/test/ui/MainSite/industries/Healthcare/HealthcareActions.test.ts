@@ -19,9 +19,9 @@ test.beforeEach(async () => {
 test('Check redirect by "Clutch Review" button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
-	await beatsScreeningModuleContainer.getByTestId(Buttons.Clutch).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toContain(ClutchReviewLinks.AnonymousMedicalDevice);
+	const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 });
 
 test('Check redirect by CTA button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
@@ -66,7 +66,9 @@ test('Check redirects by arrows in "Core Practices" container from the "Healthca
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.Healthcare));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.Healthcare));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
@@ -74,6 +76,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Healt
 	const expectedNumberOfSections = 3;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+	const ctaButtons = [
+		driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
+		driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
+		driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, Healthcare.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

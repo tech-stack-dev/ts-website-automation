@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
@@ -39,19 +39,21 @@ test("Check redirect by links in 'Industries We Serve' container from the 'Cloud
 		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
 	]);
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
+	}
 });
 
 test("Check redirect to clutch in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
 	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(
 		CloudDevelopment.OurApproachToCloudAppDevelopment
 	);
-	const clutchButton = ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch);
-	await clutchButton.click();
 
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(ClutchReviewLinks.MarkBeare);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.MarkBeare
+	);
 });
 
 test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
@@ -65,7 +67,9 @@ test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' contain
 		[linkedInButtons.nth(3), ExpertsLinkedInLinks.VladyslavUshakov],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 // Unskip after blog will be stable
@@ -81,7 +85,9 @@ test.skip("Check redirects by Blog buttons in 'Our Leading Cloud Experts' contai
 		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.VladyslavUshakov}`],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
@@ -98,7 +104,9 @@ test("Check redirects by arrows in 'Related Services' container from the 'Cloud 
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
@@ -106,6 +114,20 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Cloud
 	const expectedNumberOfSections = 7;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
+	const ctaButtons = [
+		driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver
+			.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
+			.getByTestId(MainSiteButtons.RequestMoreInformation),
+		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(MainSiteButtons.ScheduleAConsultation),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, CloudDevelopment.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

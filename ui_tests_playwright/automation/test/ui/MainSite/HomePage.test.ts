@@ -50,7 +50,7 @@ test("Check section titles in 'Industries we serve' block from the 'Home' page @
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check redirects by arrows in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test("Check redirects by blocks in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
 	const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
 	const containerSection = industriesServicesContainer.getByTestId(Container.ContainerBlock);
 	const blockUrlMap = new Map([
@@ -60,9 +60,7 @@ test("Check redirects by arrows in 'Industries we serve' block from the 'Home' p
 	]);
 
 	for (const [block, url] of blockUrlMap) {
-		await block.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
+		await baseDriverSteps.checkRedirectToPage(block, url, UrlProvider.webSiteUrl());
 	}
 });
 
@@ -104,9 +102,7 @@ test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regr
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.webSiteUrl());
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.webSiteUrl());
 	}
 });
 
@@ -124,10 +120,7 @@ test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -149,10 +142,7 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 // Unskip after Blog will be stable
