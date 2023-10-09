@@ -10,4 +10,5 @@ export default class TransportationAndLogistics extends GeneralContainersMainSit
 	static WhatMakesUsDifferent = 'Container-WhatMakesOurTeamDifferent';
 	static TransportationAndLogisticsSoftwareDevAtTechstack = 'Container-SoftwareDevelopment';
 	static DevelopmentWorkflowThatWeFollow = 'Container-OurWorkflow';
+	static asd = 'Container-WhoWeServe';
 }

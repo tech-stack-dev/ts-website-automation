@@ -9,4 +9,5 @@ export default class RenewableEnergy extends GeneralContainersMainSite {
 	static WhyChooseUs = 'Container-WhyChooseUs';
 	static HowWeOperateAtTechstack = 'Container-HowWeOperateAtTechstack';
 	static OurWorkflow = 'Container-OurWorkflow';
+	static ddd = 'Container-WhoWeServe';
 }
