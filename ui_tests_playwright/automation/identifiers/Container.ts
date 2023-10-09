@@ -15,6 +15,7 @@ export default class Container {
 	static BlockNumber = 'BlockNumber';
 	static BlockTitle = 'BlockTitle';
 	static BlockSection = 'BlockSection';
+	static SubTitle = 'SubTitle';
 
 	static MemberCard = 'MemberCard';
 	static MemberRole = 'MemberRole';

@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -48,7 +48,10 @@ test('Check redirect by links in "What Industries We Serve" container from the "
 			UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
 		],
 	]);
-	await baseDriverSteps.checkRedirectToPages(linksUrlMap, UrlProvider.urlBuilder(UrlPath.MobileDev));
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.MobileDev));
+	}
 });
 
 test('Check redirects by Clutch buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
@@ -61,11 +64,7 @@ test('Check redirects by Clutch buttons in "Our Approach to Mobile App Developme
 	]);
 
 	for (const [button, url] of buttonUrlMap) {
-		await button.hover();
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -87,7 +86,9 @@ test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Produ
 		[linkedInButtons.nth(4), ExpertsLinkedInLinks.VitaliiDolotov],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 test('Check redirects by arrows in "Related Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
@@ -104,7 +105,9 @@ test('Check redirects by arrows in "Related Services" container from the "Mobile
 		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, UrlProvider.urlBuilder(UrlPath.MobileDev));
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.MobileDev));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
@@ -112,6 +115,19 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Mobil
 	const expectedNumberOfSections = 4;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+	const ctaButtons = [
+		driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.MobileApplicationDevTechStack).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment).getByTestId(MainSiteButtons.ScheduleACall),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, MobileDevService.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

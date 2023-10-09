@@ -23,11 +23,10 @@ test.beforeEach(async () => {
 test('Check redirect to clutch in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-	await successStoriesContainer.getByTestId(Buttons.Clutch).click();
-
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(ClutchReviewLinks.AnonymousMedicalDevice);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		successStoriesContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.AnonymousMedicalDevice
+	);
 });
 
 test('Check redirect by "Read Full Case Studies" button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
@@ -51,11 +50,13 @@ test('Check carousel clicks in "Typical UX/UI Design Workflow" container from th
 test('Check redirects by links in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkUrlMap = new Map([
-		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.Instagram],
+		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign],
 		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(linkUrlMap);
+	for (const [link, url] of linkUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url);
+	}
 });
 
 test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
@@ -70,7 +71,9 @@ test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Produ
 		[linkedInButtons.nth(4), ExpertsLinkedInLinks.YelyzavetaLvova],
 	]);
 
-	await baseDriverSteps.checkRedirectToPages(buttonUrlMap);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
 // Unskip after Blog will be stable
@@ -88,11 +91,10 @@ test.skip('Check redirect by Blog button in "We Never Stop Improving Your Produc
 test('Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 
-	await weNeverStopImprovingContainer.getByTestId(Buttons.Behance).click();
-
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(ExpertsBehanceLinks.DmytroDytuk);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(
+		weNeverStopImprovingContainer.getByTestId(Buttons.Behance),
+		ExpertsBehanceLinks.DmytroDytuk
+	);
 });
 
 test('Check redirect by link in "Related Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
@@ -121,8 +123,9 @@ test('Check redirects by arrows in "Related Services" container from the "UX/UI 
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 	]);
 
-	const uxUiPageUrl = UrlProvider.urlBuilder(UrlPath.UiUxDesign);
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, uxUiPageUrl);
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.UiUxDesign));
+	}
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
@@ -130,6 +133,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "UX/UI
 	const expectedNumberOfSections = 8;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+	const ctaButtons = [
+		driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(UxUiDesign.OurUiUxServices).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, UxUiDesign.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

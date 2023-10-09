@@ -1,31 +1,23 @@
-import { expect, test } from '@playwright/test';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
-import { driver } from '../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { AuthorsEnum } from '../../../../../enum/AuthorsEnum';
-import { ServicesEnum } from '../../../../../enum/ServicesEnum';
+import {expect, test} from '@playwright/test';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
+import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import { ExpertsLinkedInLinks } from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import { serviceUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import { Environment } from '../../../../../providers/EnvProvider';
+import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
-});
-
-test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
-	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
-	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
-
-	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`, Environment.Production)
-	);
 });
 
 test('Check switching between layers in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
@@ -44,26 +36,47 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 	}
 });
 
+test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
+	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+
+	await baseDriverSteps.checkUrl(
+		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`, Environment.Production)
+	);
+});
+
+test('Check redirect by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+	const industriesWeDevelopContainer = driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions);
+	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
+
+	const linksUrlMap = new Map([
+		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
+		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
+		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+	]);
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+	}
+});
+
 test('Check carousel buttons in "IoT Engineering Process" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	await baseDriverSteps.checkCarouselArrowsClick(ioTEngineeringProcessContainer, 3);
 });
 
 test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
-	const expertCards = await driver.getByTestId(Container.MemberCard).all();
-	const expectedLinkedInLinks = [
-		ExpertsLinkedInLinks.IvanIeremenko,
-		ExpertsLinkedInLinks.OleksiiSvystun,
-		ExpertsLinkedInLinks.YevheniiKarachevtsev,
-	];
+	const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
+	const linkedInButtons = ourIoTExpertsContainer.getByTestId(Buttons.LinkedIn);
 
-	for (let i = 0; i < expertCards.length; i++) {
-		const memberCard = expertCards[i];
+	const buttonUrlMap = new Map([
+		[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[linkedInButtons.nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+	]);
 
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
-		await newPage.close();
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -97,32 +110,29 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.InternetOfThings));
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
 	}
 });
 
-test(qase(982, 'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'), async () => {
-	const requestAQuoteButtons = [
-		driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
-		driver
-			.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
-			.getByTestId(MainSiteButtons.RequestAQuote),
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
-	];
+test(
+	qase(
+		982,
+		'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'
+	),
+	async () => {
+		const requestAQuoteButtons = [
+			driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver
+				.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
+				.getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(MainSiteButtons.RequestAQuote),
+		];
 
-	for (const button of requestAQuoteButtons) {
-		await button.click();
-
-		await expect(driver.getByTestId(IoTEngineeringServices.GetInTouch)).toBeInViewport();
-
-		await driver.Page.evaluate(() => {
-			document.documentElement.scrollTop = 0;
-			document.body.scrollTop = 0;
-		});
+		for (const button of requestAQuoteButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, IoTEngineeringServices.GetInTouch);
+		}
 	}
-});
+);
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
 	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);

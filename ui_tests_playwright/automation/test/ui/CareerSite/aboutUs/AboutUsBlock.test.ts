@@ -4,14 +4,11 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import AboutUsCareer from '../../../../identifiers/Career/pages/AboutUsCareer';
-import Buttons from '../../../../identifiers/Buttons';
 
 let clicksAmountToDisableNextButton;
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
@@ -105,7 +102,9 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
 	const engineeringCulture = driver.Page.locator(`#${AboutUsCareer.EngineeringCultureId}`);
 
 	await expect(engineeringCulture.locator(`#${AboutUsCareer.EC_Meetups}`)).toContainText('Meetups');
-	await expect(engineeringCulture.locator(`#${AboutUsCareer.EC_TechCompetitions}`)).toContainText('Tech Competitions');
+	await expect(engineeringCulture.locator(`#${AboutUsCareer.EC_TechCompetitions}`)).toContainText(
+		'Tech Competitions'
+	);
 	await expect(engineeringCulture.locator(`#${AboutUsCareer.EC_TraineeCamps}`)).toContainText('Trainee Camps');
 	await expect(engineeringCulture.locator(`#${AboutUsCareer.EC_LoyaltyProgram}`)).toContainText('Loyalty Program');
 
@@ -115,7 +114,9 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
 	await expect(socialResponsibility.locator(`#${AboutUsCareer.SR_EnvironmentalSafety}`)).toContainText(
 		'Environmental Safety'
 	);
-	await expect(socialResponsibility.locator(`#${AboutUsCareer.SR_EducationSupport}`)).toContainText('Education Support');
+	await expect(socialResponsibility.locator(`#${AboutUsCareer.SR_EducationSupport}`)).toContainText(
+		'Education Support'
+	);
 });
 
 test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {

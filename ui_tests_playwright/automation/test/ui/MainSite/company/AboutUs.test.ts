@@ -1,18 +1,18 @@
 import {expect, test} from '@playwright/test';
 import AboutUs from '../../../../identifiers/MainSite/pages/company/AboutUs';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
-import { driver } from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Container from '../../../../identifiers/Container';
 import UrlPath from '../../../../providers/UrlPath';
-import { ExpertNames } from '../../../../preconditionsData/ExpertNames';
+import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Buttons from '../../../../identifiers/Buttons';
-import { ExpertsLinkedInLinks } from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import { Environment } from '../../../../providers/EnvProvider';
-import { AuthorsEnum } from '../../../../enum/AuthorsEnum';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {Environment} from '../../../../providers/EnvProvider';
+import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
-import { LinkedInReviewLinks } from '../../../../preconditionsData/Links/linkedInReviewLinks';
-import { ClutchReviewLinks } from '../../../../preconditionsData/Links/ClutchReviewLinks';
+import {LinkedInReviewLinks} from '../../../../preconditionsData/Links/linkedInReviewLinks';
+import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
@@ -22,6 +22,7 @@ test('Check the header from the "About Us" page @Regression @AboutUs @TSWEB-1022
 	const info = driver.getByTestId(AboutUs.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
 	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
+	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
 test('Check the container title and number from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
@@ -46,21 +47,20 @@ test('Check the container title and number from the "About Us" page @Regression 
 		['Our people', '07'],
 		['Get in Touch', '08'],
 	];
-	
+
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check section numbers and titles in "What’s at the Core" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+test('Check section numbers and titles, and subtitle in "What’s at the Core" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const whatAtTheCoreContainer = driver.getByTestId(AboutUs.WhatsAtTheCore);
 
-	await expect(whatAtTheCoreContainer.getByTestId(Container.SectionNumber)).toHaveText([
-		'01',
-		'02',
-	]);
+	await expect(whatAtTheCoreContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02']);
 	const allSectionTitles = whatAtTheCoreContainer.getByTestId(Container.SectionTitle);
 	const testData = [' Vision:', ' Mission:'];
 
 	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(whatAtTheCoreContainer.getByTestId(Container.SubTitle)).toHaveText('Our Values:');
 
 	await expect(whatAtTheCoreContainer.getByTestId(Container.BlockNumber)).toHaveText([
 		'01',
@@ -73,15 +73,7 @@ test('Check section numbers and titles in "What’s at the Core" container from 
 	]);
 
 	const allTableTitles = whatAtTheCoreContainer.getByTestId(Container.BlockTitle);
-	const tableTitles = [
-		'Quality:',
-		'Tech:',
-		'Bravery:',
-		'Creativity:',
-		'Ownership:',
-		'People:',
-		'Joy:',
-	];
+	const tableTitles = ['Quality:', 'Tech:', 'Bravery:', 'Creativity:', 'Ownership:', 'People:', 'Joy:'];
 
 	await expect(allTableTitles).toHaveText(tableTitles);
 });
@@ -97,7 +89,7 @@ test('Check member names and roles in "Our team" block from the "About Us" page 
 		'Sr. Director of Quality Engineering,\nOversees quality product development',
 		'Head of Human Resources,\nFinds the best talents and ensures their growth and fulfillment',
 		'VP of Engineering,\nLeads architecture and development in large-scale products',
-		'Chief Creative Officer,\nAligns UX with users\' needs and business goals',
+		`Chief Creative Officer,\nAligns UX with users' needs and business goals`,
 		'Head of Account Management,\nDrives cross-functional business process transformation',
 		'Head of Marketing,\nLeads the marketing strategy and growth of our tech community',
 	];
@@ -140,45 +132,35 @@ test('Check LinkedIn redirects by buttons in "Our team" block from the "About Us
 	for (let i = 0; i < expertCards.length; i++) {
 		const memberCard = expertCards[i];
 
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedLinkedInLinks[i]);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(memberCard.getByTestId(Buttons.LinkedIn), expectedLinkedInLinks[i]);
 	}
 });
 
 test('Check Blog link redirects by buttons in "Our team" block from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
-	const expertCards = await driver.getByTestId(Container.MemberCard).all();
+	const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
+	const blogButtons = await ourTeamContainer.getByTestId(Buttons.Blog).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const expectedBlogLinks = [
-		AuthorsEnum.IvanIeremenko, 
-		AuthorsEnum.OleksiiSvystun, 
+		AuthorsEnum.IvanIeremenko,
+		AuthorsEnum.OleksiiSvystun,
 		AuthorsEnum.VitaliiDolotov,
 		AuthorsEnum.IvanYeremenko,
 		AuthorsEnum.DmytroDytiuk,
-		AuthorsEnum.DmytroShtapauk
-	]
+		AuthorsEnum.DmytroShtapauk,
+	];
 
-	for (let i = 0; i < expertCards.length; i++) {
-		const memberCard = expertCards[i];
+	for (let i = 0; i < blogButtons.length; i++) {
+		const blogButton = blogButtons[i];
+		const expectedUrl = `${blogUri}${expectedBlogLinks[i]}`;
 
-		await memberCard.getByTestId(Buttons.Blog).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-
-		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(blogButton, expectedUrl);
 	}
 });
 
 test('Check section titles in "What makes us special" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const whatMakesUsSpecialContainer = driver.getByTestId(AboutUs.WhatMakesUsSpecial);
 	const allSectionTitles = whatMakesUsSpecialContainer.getByTestId(Container.SectionTitle);
-	const testData = [
-		'Focus on product',
-		'Team growth',
-		'Making an impact (CSR)',
-		'Sharing expertise',
-	];
+	const testData = ['Focus on product', 'Team growth', 'Making an impact (CSR)', 'Sharing expertise'];
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
@@ -189,11 +171,12 @@ test('Check "Learn more about how we work" button from the "Our partners" block 
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
-
 test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners" block from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const shoutoutFromOurPartnersContainer = driver.getByTestId(AboutUs.ShoutoutFromOurPartners);
 
-	const linkedInButtons = await shoutoutFromOurPartnersContainer.getByTestId(MainSiteButtons.LinkedInReviewArrow).all();
+	const linkedInButtons = await shoutoutFromOurPartnersContainer
+		.getByTestId(MainSiteButtons.LinkedInReviewArrow)
+		.all();
 
 	const linkedInReviewsTab = shoutoutFromOurPartnersContainer.getByTestId(MainSiteButtons.LinkedInReviews);
 	expect(await linkedInReviewsTab.getAttribute('class')).toContain('active');
@@ -204,10 +187,7 @@ test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners"
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -226,10 +206,7 @@ test('Check redirect by "Clutch Review" button in "Shoutout from our partners" c
 	]);
 
 	for (const [button, url] of buttonMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -251,6 +228,12 @@ test('Check "Join Us" button from the "Our people" block on the "About Us" page 
 
 	await ourPeopleBlock.getByTestId(MainSiteButtons.JoinUs).click();
 	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+	const ctaButton = driver.getByTestId(AboutUs.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+
+	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, AboutUs.GetInTouch);
 });
 
 test.afterEach(async () => {

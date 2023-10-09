@@ -9,9 +9,7 @@ import {formSteps} from '../../../../steps/ui/FormSteps';
 import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 

@@ -90,7 +90,10 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 	]);
 
 	const ourServicesUrl = UrlProvider.urlBuilder(UrlPath.OurServices);
-	await baseDriverSteps.checkRedirectToPages(arrowUrlMap, ourServicesUrl);
+
+	for (const [arrow, url] of arrowUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(arrow, url, ourServicesUrl);
+	}
 });
 
 test("Check section titles and navigation bar in 'Technology stack' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
@@ -134,10 +137,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Reviews' container from the 
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
@@ -165,6 +165,12 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Our S
 	const expectedNumberOfSections = 9;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
+	const requestAQuoteButton = driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote);
+
+	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(requestAQuoteButton, OurServices.GetInTouch);
 });
 
 test.afterEach(async () => {
