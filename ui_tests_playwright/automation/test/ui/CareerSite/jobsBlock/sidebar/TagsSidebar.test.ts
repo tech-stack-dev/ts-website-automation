@@ -3,6 +3,7 @@ import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
+import { playwrightUtils } from '../../../../../utils/PlaywrightUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -13,7 +14,7 @@ test(`Check that all tags dropdowns are expanded by default @Regression @FilterB
 
 	for (const dropdown of dropdowns) {
 		const expandedState = careerSteps.dropdownIsExpanded(dropdown);
-		expect(expandedState).toBeTruthy();
+		await playwrightUtils.expectWithRetries(expect(expandedState).toBeTruthy(), 5);
 	}
 });
 
