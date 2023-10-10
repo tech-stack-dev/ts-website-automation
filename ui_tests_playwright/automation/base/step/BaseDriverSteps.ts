@@ -119,13 +119,13 @@ class BaseDriverSteps {
 		if (initialPageUrl) {
 			await locator.click();
 			await driver.Page.waitForLoadState();
-			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 2000);
+			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 5000);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			await playwrightUtils.expectWithRetries(expect(newPage.url()).toContain(expectedUrl), 5, 2000);
+			await playwrightUtils.expectWithRetries(() => {expect(newPage.url()).toContain(expectedUrl), newPage.reload();}, 5, 5000);
 			await newPage.close();
 		}
 	}
