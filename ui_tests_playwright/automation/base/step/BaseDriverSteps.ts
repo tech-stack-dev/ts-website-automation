@@ -3,6 +3,7 @@ import {BrowsersEnum} from '../driver/BrowsersEnum';
 import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
+import {playwrightUtils} from '../../utils/PlaywrightUtils';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -118,13 +119,13 @@ class BaseDriverSteps {
 		if (initialPageUrl) {
 			await locator.click();
 			await driver.Page.waitForLoadState();
-			await baseDriverSteps.checkUrl(expectedUrl);
+			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 2000);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			expect(newPage.url()).toContain(expectedUrl);
+			await playwrightUtils.expectWithRetries(expect(newPage.url()).toContain(expectedUrl), 5, 2000);
 			await newPage.close();
 		}
 	}
