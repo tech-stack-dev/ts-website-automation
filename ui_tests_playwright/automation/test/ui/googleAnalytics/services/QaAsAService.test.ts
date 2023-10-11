@@ -15,7 +15,7 @@ import {googleAnalyticsSteps} from '../../../../steps/api/GoogleAnalyticsSteps';
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.QaAsAServ, Environment.Production);
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl, true);
 	await SlackProvider.getSlackSecret();
 });
 

@@ -17,7 +17,7 @@ import {stringUtils} from '../../../../utils/StringUtils';
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.InternetOfThings, Environment.Production);
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl, true);
 	await SlackProvider.getSlackSecret();
 	await driver.Page.reload();
 });
