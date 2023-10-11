@@ -6,7 +6,8 @@
 	"scripts": {
 		"lint": "eslint . --ext .ts",
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-		"jira-skip": "ts-node GetListOfJirasToSkip.ts"
+		"jira-skip": "ts-node GetListOfJirasToSkip.ts",
+		"unit-tests": "npx jest"
 	},
 	"repository": {
 		"type": "git",
@@ -47,6 +48,8 @@
 		"lodash": "^4.17.21",
 		"playwright-core": "^1.27.1",
 		"randomstring": "^1.2.3",
+		"ts-migrate": "^0.1.35",
+		"ts-migrate-plugins": "^0.1.35",
 		"ts-node": "^10.9.1",
 		"uuid": "^9.0.0"
 	}

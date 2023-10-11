@@ -7,4 +7,10 @@ export default class GeneralContainersMainSite {
 	static TechnologyStack = 'Container-TechnologyStack';
 	static OurExperts = 'Container-OurExperts';
 	static RelatedServices = 'Container-RelatedServices';
+	static WhoWeServe = 'Container-WhoWeServe';
+	static OurApproach = 'Container-OurApproach';
+	static IndustrySpecificSolution = 'Container-IndustrySpecificSolution';
+	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
+	static Services = 'Container-Services';
+	static IndustriesWeServe = 'Container-IndustriesWeServe';
 }

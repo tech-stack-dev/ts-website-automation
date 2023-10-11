@@ -22,7 +22,6 @@ test.beforeEach(async () => {
 
 test('Check redirect to clutch in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
-
 	await successStoriesContainer.getByTestId(Buttons.Clutch).click();
 
 	const newPage = await driver.DriverContext.waitForEvent('page');

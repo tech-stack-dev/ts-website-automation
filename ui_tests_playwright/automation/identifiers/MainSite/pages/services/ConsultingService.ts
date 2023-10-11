@@ -8,6 +8,5 @@ export default class ConsultingService extends GeneralContainersMainSite {
 	static SoftwareAudit = 'Container-SoftwareAudit';
 	static ConsultingProcess = 'Container-ConsultingProcess';
 	static ConsultingExperts = 'Container-ConsultingExperts';
-	static OurApproach = 'Container-OurApproach';
 	static WeMakeAnImpact = 'Container-WeMakeAnImpact';
 }

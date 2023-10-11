@@ -10,7 +10,6 @@ import SlackProvider from '../../../../providers/SlackProvider';
 import {Environment} from '../../../../providers/EnvProvider';
 import Buttons from '../../../../identifiers/Buttons';
 import CaseStudies from '../../../../identifiers/MainSite/CaseStudies';
-import RelatedArticles from '../../../../identifiers/MainSite/RelatedArticles';
 import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 

@@ -96,7 +96,7 @@ test("Check redirects by arrows in 'Related services' container from the 'AI&ML 
 
 	for (const [arrow, url] of arrowUrlMap) {
 		await arrow.first().click();
-		driver.DriverContext.waitForEvent('page', {timeout: 15000})
+		driver.DriverContext.waitForEvent('page', {timeout: 15000});
 		await baseDriverSteps.checkUrl(url);
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
 	}

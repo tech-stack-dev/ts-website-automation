@@ -59,12 +59,12 @@ for (const testData of testDataProvider) {
 		const filterGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
 			ContainersCareer.FilterGroupWrapper,
-			careerMainContainer
+			careerMainContainer.Element
 		);
 		const activeTagsGroupContainer = await containerSteps.getContainer(
 			ContainerByClass,
 			ContainersCareer.ActiveTagsGroupWrapper,
-			careerMainContainer
+			careerMainContainer.Element
 		);
 
 		for (const tag of testData.tagList) {
