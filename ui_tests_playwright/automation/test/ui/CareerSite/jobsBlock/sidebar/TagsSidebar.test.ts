@@ -3,7 +3,7 @@ import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
-import { playwrightUtils } from '../../../../../utils/PlaywrightUtils';
+import {playwrightUtils} from '../../../../../utils/PlaywrightUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
