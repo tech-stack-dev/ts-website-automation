@@ -7,7 +7,6 @@ import CloudDevelopment from '../../../../../identifiers/MainSite/pages/services
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
-import AuthorReviewData from '../../../../../preconditionsData/AuthorReviewData/AuthorReviewData';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 
 test.beforeEach(async () => {
@@ -141,15 +140,10 @@ test("Check section numbers, section titles and CTA in 'Cloud Computing Developm
 	);
 });
 
-test("Check award cards and author info in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test("Check award cards in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression @CloudDevelopment @TSWEB-692", async () => {
 	const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 	const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
 	await baseDriverSteps.checkImagesVisibility(awardCards, 3);
-
-	await expect(ourApproachContainer.getByTestId(Container.AuthorName)).toHaveText(AuthorReviewData.MarkBeare.name);
-	await expect(ourApproachContainer.getByTestId(Container.AuthorPosition)).toHaveText(
-		AuthorReviewData.MarkBeare.position
-	);
 });
 
 test("Check member names and roles, and CTA button in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {

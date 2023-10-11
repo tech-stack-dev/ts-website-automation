@@ -12,6 +12,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import Links from '../../../../../preconditionsData/Links/Links';
+import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
@@ -92,10 +93,7 @@ test("Check section titles and redirects in 'Our approach' container from the 'C
 
 	expect(allSectionTitles.sort()).toEqual(testData.sort());
 
-	ourApproachContainer.getByTestId(Container.Arrow).click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-
-	expect(newPage.url()).toContain(Links.Nuget);
+	await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
 });
 
 test("Check redirects by arrows in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
@@ -112,9 +110,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
-		await arrow.first().click();
-		await baseDriverSteps.checkUrl(url);
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.ConsultingServ));
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.ConsultingServ));
 	}
 });
 
@@ -123,6 +119,18 @@ test('Check sections expanding and collapsing in "FAQ" container from the "Consu
 	const expectedNumberOfSections = 5;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+	const ctaButtons = [
+		driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, ConsultingService.GetInTouch);
+	}
 });
 
 test.afterEach(async () => {

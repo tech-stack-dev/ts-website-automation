@@ -1,18 +1,15 @@
-import {test, expect} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
-import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
+import UrlProvider from '../../../../providers/UrlProvider';
 import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
@@ -27,7 +24,7 @@ test("Check error messages related to fields filled with spaces on 'Contact Us' 
 	await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces);
 	await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces);
 	await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces);
-	await driver.getByTestId(CareerButtons.SendButton).click();
+	await driver.getByTestId(Buttons.Send).click();
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,
@@ -80,7 +77,7 @@ test("Check error messages related to empty fields on 'Contact Us' form @Regress
 		PleaseEntryEmail: 'Please enter your email',
 		PleaseEntryPhone: 'Please enter your phone number',
 	};
-	await driver.getByTestId(CareerButtons.SendButton).click();
+	await driver.getByTestId(Buttons.Send).click();
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,

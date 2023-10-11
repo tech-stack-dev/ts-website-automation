@@ -4,8 +4,9 @@ export default class MainSiteLinks {
 	static Clutch = 'Link-Clutch';
 	static CaseStudy = 'Link-CaseStudy';
 
-	// Links to industries pages
+	// Links to pages
 	static Healthcare = 'Link-Healthcare';
 	static TransportAndLogistics = 'Link-TransportAndLogistics';
 	static RenewableEnergy = 'Link-RenewableEnergy';
+	static DigitalTransformation = 'Link-DigitalTransformation';
 }

@@ -12,12 +12,10 @@ import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariabl
 import Navigation from '../../../../identifiers/Career/Navigation';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
 });
 
 test("Check Slack notification from 'staging_techstack_hr_notify' channel from Contact Us page @Regression @ContactUs @TSWEB-606", async () => {

@@ -4,14 +4,11 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/Career/Navigation';
 import AboutUsCareer from '../../../../identifiers/Career/pages/AboutUsCareer';
-import Buttons from '../../../../identifiers/Buttons';
 
 let clicksAmountToDisableNextButton;
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
-	await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
-	await driver.getByTestId(Buttons.AcceptCookies).click();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 

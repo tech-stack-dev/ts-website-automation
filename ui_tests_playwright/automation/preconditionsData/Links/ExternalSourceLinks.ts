@@ -1,4 +1,5 @@
 export default class ExternalSourceLinks {
+	static QaseApiUrl = 'https://api.qase.io/v1/';
 	static PwcHealthcareTrends =
 		'https://www.pwc.com/us/en/industries/health-industries/library/healthcare-trends.html';
 	static McKinseyExpectInHealthcare =
@@ -12,4 +13,5 @@ export default class ExternalSourceLinks {
 		'https://www2.deloitte.com/cn/en/pages/consumer-industrial-products/articles/ai-manufacturing-application-survey.html';
 	static McKinseyImpactOfAi =
 		'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy';
+	static GoogleAnalytics = 'https://www.google-analytics.com';
 }

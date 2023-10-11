@@ -1,12 +1,16 @@
-import {PlaywrightTestConfig} from '@playwright/test';
+import { PlaywrightTestConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+import ExternalSourceLinks from './automation/preconditionsData/Links/ExternalSourceLinks';
+import { QaseAwsSecret } from './automation/providers/QaseAwsSecret';
+import EnvProvider, { Environment } from './automation/providers/EnvProvider';
+import DateTimeUtils from './automation/utils/DateTimeUtils';
 
 // Read from default ".env" file.
 dotenv.config();
 
 // Alternatively, read from "../my.env" file.
-dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
+dotenv.config({ path: path.resolve(__dirname, '..', 'my.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -43,7 +47,21 @@ const config: PlaywrightTestConfig = {
 	/* Opt out of parallel tests on CI. */
 	workers: 5,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: [['html', {open: 'never'}]],
+	reporter: [
+		['html', { open: 'never' }],
+		['list'],
+		['./TsQaseReporter', {
+			apiToken: QaseAwsSecret.getQaseApiToken(),
+			projectCode: 'TS',
+			basePath: ExternalSourceLinks.QaseApiUrl,
+			uploadAttachments: true,
+			runComplete: true,
+			logging: true,
+			rootSuiteTitle: `Automated run ${DateTimeUtils.currentDateTime}`,
+			environmentId: EnvProvider.qaseEnvironmentId,
+			}
+		]
+	],
 
 	/* Configure projects for major browsers */
 	projects: [

@@ -21,10 +21,12 @@ export default class MainSiteButtons extends Buttons {
 	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
 	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
+	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
 	static GetAConsultation = 'Button-GetAConsultation';
 	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 	static MoreProductDetails = 'Button-MoreProductDetails';
 	static ScheduleACall = 'Button-ScheduleACall';
+	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

@@ -2,15 +2,25 @@ import {driver} from '../driver/Driver';
 import {BrowsersEnum} from '../driver/BrowsersEnum';
 import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
+import Buttons from '../../identifiers/Buttons';
+import {playwrightUtils} from '../../utils/PlaywrightUtils';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
 	}
 
-	public async createsNewBrowserAndGoToUrl(url: string, browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
+	public async createsNewBrowserAndGoToUrl(
+		url: string,
+		acceptCookies = true,
+		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
+	) {
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
+
+		if (acceptCookies) {
+			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
+		}
 	}
 
 	public async createNewPage() {
@@ -105,18 +115,18 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToPages(locatorUrlMap: Map<Locator, string>, initialPageUrl?: string) {
-		for (const [locator, expectedUrl] of locatorUrlMap) {
+	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
+		if (initialPageUrl) {
 			await locator.click();
-
-			if (initialPageUrl) {
-				await baseDriverSteps.checkUrl(expectedUrl);
-				await baseDriverSteps.goToUrl(initialPageUrl);
-			} else {
-				const newPage = await driver.DriverContext.waitForEvent('page');
-				expect(newPage.url()).toContain(expectedUrl);
-				await newPage.close();
-			}
+			await driver.Page.waitForLoadState();
+			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 5000);
+			await baseDriverSteps.goToUrl(initialPageUrl);
+			await driver.Page.waitForLoadState();
+		} else {
+			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
+			await newPage.waitForLoadState();
+			await playwrightUtils.expectWithRetries(() => {expect(newPage.url()).toContain(expectedUrl), newPage.reload();}, 5, 5000);
+			await newPage.close();
 		}
 	}
 
@@ -143,6 +153,20 @@ class BaseDriverSteps {
 			await expect(shortAnswer).toBeVisible();
 			await expect(fullAnswer).toBeHidden();
 		}
+	}
+
+	public async checkScrollToContainerByCtaButtonClick(
+		ctaButton: Locator,
+		expectedContainer: string,
+		viewportPart = 0.8
+	) {
+		await ctaButton.click();
+		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});
+
+		await driver.Page.evaluate(() => {
+			document.documentElement.scrollTop = 0;
+			document.body.scrollTop = 0;
+		});
 	}
 }
 
