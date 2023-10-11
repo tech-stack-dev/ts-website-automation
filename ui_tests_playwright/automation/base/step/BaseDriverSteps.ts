@@ -12,7 +12,7 @@ class BaseDriverSteps {
 
 	public async createsNewBrowserAndGoToUrl(
 		url: string,
-		acceptCookies = true,
+		acceptCookies = false,
 		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
 	) {
 		await driver.createBrowser(browserName);

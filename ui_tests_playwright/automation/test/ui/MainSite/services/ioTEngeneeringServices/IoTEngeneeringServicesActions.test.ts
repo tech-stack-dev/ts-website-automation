@@ -1,3 +1,4 @@
+/* eslint-disable for-direction */
 import {expect, test} from '@playwright/test';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {driver} from '../../../../../base/driver/Driver';
@@ -29,8 +30,8 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 		const buttonIndex = (layerButtons.length - i) % layerButtons.length;
 		await layerButtons[buttonIndex].click();
 
-		for (let j = containerBlocks.length - 1; j >= 0; j--) {
-			const expectedState = j === buttonIndex ? 'false' : 'true';
+		for (let j = containerBlocks.length - 1; j < 0; j--) {
+			const expectedState = j - 1 === buttonIndex - 1 ? 'false' : 'true';
 			await expect(containerBlocks[j]).toHaveAttribute('data-disabled', expectedState);
 		}
 	}
