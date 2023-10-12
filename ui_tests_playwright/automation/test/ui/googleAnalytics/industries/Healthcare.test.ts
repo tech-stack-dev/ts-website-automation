@@ -18,11 +18,10 @@ const pageUrl: string = UrlProvider.urlBuilder(UrlPath.Healthcare, Environment.P
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(pageUrl);
 	await SlackProvider.getSlackSecret();
-	await driver.Page.getByTestId(Buttons.AcceptCookies).nth(1).click();
 	await driver.Page.reload();
 });
 
-test("Check google analytics in 'Info' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
+test("Check google analytics for 'Healthcare' page. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const info = driver.getByTestId(Healthcare.Info);
 	const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
 	const infoGetInTouchButton: Locator = info.getByTestId(MainSiteButtons.GetInTouch);
@@ -37,9 +36,7 @@ test("Check google analytics in 'Info' section. @Regression @GoogleAnalytics @TS
 		'HealthIndMainRequestQuote',
 		testInfo.title
 	);
-});
 
-test("Check google analytics in 'Our Expertise' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
 	const scheduleAMeetingNowButton: Locator = ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow);
 
@@ -48,9 +45,7 @@ test("Check google analytics in 'Our Expertise' section. @Regression @GoogleAnal
 		'HealthIndExpertiseMeeting',
 		testInfo.title
 	);
-});
 
-test("Check google analytics in 'Beats Screening Module' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 	const clutchButton: Locator = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
 	const readTheFullCaseStudyutton: Locator = beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy);
@@ -65,9 +60,7 @@ test("Check google analytics in 'Beats Screening Module' section. @Regression @G
 		'HealthIndReadCaseStudy',
 		testInfo.title
 	);
-});
 
-test("Check google analytics in 'Most Recent Industry Facts' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	const pwcButton: Locator = mostRecentIndustryFactsContainer.getByTestId(MainSiteButtons.Pwc);
 	const mcKinseyButton: Locator = mostRecentIndustryFactsContainer.getByTestId(MainSiteButtons.McKinsey);
@@ -83,9 +76,8 @@ test("Check google analytics in 'Most Recent Industry Facts' section. @Regressio
 		'HealthIndFactsMcKinsey',
 		testInfo.title
 	);
-});
+	await baseDriverSteps.goToUrl(pageUrl);
 
-test("Check google analytics in 'How We Operate' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
 	const carousel: Locator = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 	const carouselButtonNext: Locator = carousel.getByTestId(Container.CarouselButtonNext);
@@ -107,9 +99,7 @@ test("Check google analytics in 'How We Operate' section. @Regression @GoogleAna
 		'HealthIndOperateMeeting',
 		testInfo.title
 	);
-});
 
-test("Check google analytics in 'Core Practices' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const corePracticesEvents = [
 		'HealthIndServiceCustomDev',
 		'HealthIndServiceCloud',
@@ -126,9 +116,7 @@ test("Check google analytics in 'Core Practices' section. @Regression @GoogleAna
 		await googleAnalyticsSteps.checkGoogleAnalytics(arrows.nth(index), corePracticesEvents[index], testInfo.title);
 		await baseDriverSteps.goToUrl(pageUrl);
 	}
-});
 
-test("Check google analytics in 'Faq' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const faqBlockEvents = [
 		'HealthIndFaq1More',
 		'HealthIndFaq2More',
@@ -140,9 +128,7 @@ test("Check google analytics in 'Faq' section. @Regression @GoogleAnalytics @TSW
 	for (let index = 0; index < arrowList.length; index++) {
 		await googleAnalyticsSteps.checkGoogleAnalytics(arrowList[index], faqBlockEvents[index], testInfo.title);
 	}
-});
 
-test("Check google analytics in 'Related Articles' section. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const relatedArticlesContainer = driver.getByTestId(Healthcare.RelatedArticles);
 	const articleItemsList = await relatedArticlesContainer.getByTestId(RelatedArticles.ArticleItem).all();
 	const articleTitlesList = await relatedArticlesContainer.getByTestId(RelatedArticles.ArticleTitle).allTextContents();
@@ -152,9 +138,7 @@ test("Check google analytics in 'Related Articles' section. @Regression @GoogleA
 		await googleAnalyticsSteps.checkGoogleAnalytics(articleItemsList[i], events[i], testInfo.title);
 		await baseDriverSteps.goToUrl(pageUrl);
 	}
-});
 
-test("Check google analytics in 'Get in Touch' form. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
 	const sendRequestButton = driver.Page.getByTestId(Buttons.Send);
 	const attachFilesButton = driver.getByTestId(Buttons.AttachFiles);
 	const cancelButton = driver.getByTestId(Buttons.Cancel);
