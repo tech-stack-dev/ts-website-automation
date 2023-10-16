@@ -113,7 +113,7 @@ test('Check member names and roles in "Our team" container from the "About Us" p
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test('Check LinkedIn redirects by buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+test('Check redirects by LinkedIn buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
 	const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
 	const expectedLinkedInLinks = [
@@ -136,7 +136,7 @@ test('Check LinkedIn redirects by buttons in "Our team" container from the "Abou
 	}
 });
 
-test('Check Blog link redirects by buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
+test('Check redirects by Blog buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
 	const blogButtons = await ourTeamContainer.getByTestId(Buttons.Blog).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
@@ -164,7 +164,7 @@ test('Check section titles in "What makes us special" container from the "About 
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check "Learn more about how we work" button from the "Our partners" container on the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+test('Check "Learn more about how we work" button in the "Our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourPartnersBlock = driver.getByTestId(AboutUs.OurPartners);
 
 	await ourPartnersBlock.getByTestId(Container.Arrow).click();
@@ -210,7 +210,7 @@ test('Check redirect by "Clutch Review" button in "Shoutout from our partners" c
 	}
 });
 
-test('Check photo carousel from the "Our people" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+test('Check photo carousel in the "Our people" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const ourPeopleContainer = driver.getByTestId(AboutUs.OurPeople);
 
 	const carouselPhotoContainer = await ourPeopleContainer.getByTestId(Container.CarouselPhoto).all();

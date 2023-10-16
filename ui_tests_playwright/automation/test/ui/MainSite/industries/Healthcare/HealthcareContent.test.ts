@@ -94,7 +94,7 @@ test('Check section titles, image and CTA button in "Beats Screening Module by T
 	);
 });
 
-test('Check section numbers and section titles in "Patient-Centered Strategy" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+test('Check section numbers and titles in "Patient-Centered Strategy" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const patientCenteredStrategyContainer = driver.getByTestId(Healthcare.PatientCenteredStrategy);
 	await expect(patientCenteredStrategyContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',

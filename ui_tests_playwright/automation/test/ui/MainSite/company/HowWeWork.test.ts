@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
-test('Check the header and breadcrumbs from the "How we work" page @Regression @HowWeWork', async () => {
+test('Check the Info container from the "How we work" page @Regression @HowWeWork', async () => {
 	const info = driver.getByTestId(HowWeWork.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
 	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');

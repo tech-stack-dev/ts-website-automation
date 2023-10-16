@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
 });
 
-test('Check the header from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
+test('Check Info container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const info = driver.getByTestId(RenewableEnergy.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nRenewable Energy');
 	await expect(info.getByTestId(Container.Title)).toHaveText(

@@ -10,7 +10,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 });
 
-test("Check redirects to 'Main' page by clicking 'Home' breadcrumbs button from 'Industries' pages @Regression @Breadcrumbs", async () => {
+test('Check redirects to "Main" page by clicking "Home" breadcrumbs button from "Industries" pages @Regression @Breadcrumbs', async () => {
 	for (const url of Object.values(industryUrl)) {
 		await baseDriverSteps.goToUrl(url);
 		await driver.getByTestId(Container.BreadcrumbsPrev).click();
@@ -18,13 +18,13 @@ test("Check redirects to 'Main' page by clicking 'Home' breadcrumbs button from 
 	}
 });
 
-test("Check redirect to 'Main' page by clicking 'Home' breadcrumbs button from 'Our Services' page @Regression @Breadcrumbs", async () => {
+test('Check redirect to "Main" page by clicking "Home" breadcrumbs button from "Our Services" page @Regression @Breadcrumbs', async () => {
 	await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 	await driver.getByTestId(Container.BreadcrumbsPrev).click();
 	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 });
 
-test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcrumbs button from 'Services' pages @Regression @Breadcrumbs", async () => {
+test('Check redirects to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @Regression @Breadcrumbs', async () => {
 	const servicesUrlList = [
 		UrlProvider.urlBuilder(UrlPath.CustomDev),
 		UrlProvider.urlBuilder(UrlPath.DigitalTransform),
@@ -46,7 +46,7 @@ test("Check redirects to 'Our Services' page by clicking 'Our Services' breadcru
 	}
 });
 
-test("Check redirects to 'Main' page by clicking 'Home' breadcrumbs button from 'Company' pages @Regression @Breadcrumbs", async () => {
+test('Check redirects to "Main" page by clicking "Home" breadcrumbs button from "Company" pages @Regression @Breadcrumbs', async () => {
 	const companyUrlList = [UrlProvider.urlBuilder(UrlPath.AboutUs), UrlProvider.urlBuilder(UrlPath.HowWeWork)];
 
 	for (const url of companyUrlList) {
