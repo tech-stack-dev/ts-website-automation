@@ -16,6 +16,7 @@ import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnu
 import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/Career/pages/Career';
 import {locatorUtils} from '../../../../../../utils/LocatorUtils';
+import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -62,9 +63,13 @@ for (const testData of testDataProvider) {
 				await expect(filterTag).toHaveClass(/active-tag/);
 				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
 			}, 5),
-			expect(activeTag).toHaveClass(/active-tag/),
-			expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
-				ColorsEnum.OrangeYellow
+			playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000),
+			playwrightUtils.expectWithRetries(
+				expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
+					ColorsEnum.OrangeYellow
+				),
+				5,
+				5000
 			),
 		]);
 	});

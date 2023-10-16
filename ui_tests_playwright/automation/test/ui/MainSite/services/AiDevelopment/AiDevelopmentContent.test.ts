@@ -19,7 +19,7 @@ test('Check the info container from the "AI Development" page @Regression @AiDev
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 });
 
-test('Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
+test('Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const containers = [
 		driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
 		driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
@@ -41,7 +41,7 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
 		['Industries We Serve', '05'],
 		['The Way We work', '06'],
-		['Our approach', '07'],
+		['Our Approach', '07'],
 		['Related Services', '08'],
 		['Get in Touch', '09'],
 		['Related Articles', '10'],
@@ -129,7 +129,7 @@ test('Check section titles, image and CTA in "Incorporating AI/ML into Existing 
 	);
 });
 
-test('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694 @TSWEB-1099', async () => {
+test('Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
 	await expect(industriesWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -167,7 +167,7 @@ test('Check carousel section numbers and titles in "The Way We work" container f
 		'Build\nPOC',
 		'Tuning and\nadjustments',
 		'Build\nProduct',
-		'Release\nand Support',
+		'Release\nand Maintanence',
 	];
 
 	await expect(carouselSectionTitles).toHaveText(testData);
@@ -177,7 +177,7 @@ test('Check section titles and CTA in "Our Approach" container from the "AI Deve
 	const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
 	const testData = [
-		'Flexible AI\nDevelopment',
+		'Flexible AI\ndevelopment',
 		'Solutions for\nany environment',
 		'Balancing\ninnovation\nand practicality',
 		'Tech community',
@@ -208,8 +208,8 @@ test('Check section titles in "FAQ" container from the "AI Development" page @Re
 	const faqContainer = driver.getByTestId(AiDevelopment.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
-		'What are the benefits of\nimplementing AI and ML\nin my business?',
-		'How long does it take to\ndevelop an AI/ML solution?',
+		'What are the benefits of\nimplementing AI in my\nbusiness?',
+		'How long does it take to\ndevelop an AI solution?',
 		'How to choose an AI software development company?',
 		'What kind of data do I need to provide to get started with artificial intelligence app development services?',
 	];
