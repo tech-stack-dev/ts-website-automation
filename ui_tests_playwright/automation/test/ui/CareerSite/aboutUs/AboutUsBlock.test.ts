@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 
-test("Check the section title and number from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the section title and number from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
 	await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackNumber)).toHaveText('01');
 
@@ -38,7 +38,7 @@ test("Check the section title and number from the 'AboutUs' block @Regression @A
 	await expect(driver.getByTestId(AboutUsCareer.CandidatePathNumber)).toHaveText('08');
 });
 
-test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the "Our History" carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	const carousel = driver.getByTestId(AboutUsCareer.OurHistoryCarousel);
 
 	await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(0)).toContainText('01 2014');
@@ -52,7 +52,7 @@ test("Check the 'Our History' carousel from the 'AboutUs' block @Regression @Abo
 	await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(8)).toContainText('09 2022');
 });
 
-test("Check the buttons of the info carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the buttons of the info carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	const ourHistoryCarousel = driver.getByTestId(AboutUsCareer.OurHistoryCarousel);
 	const ourHistotyPrevButton = ourHistoryCarousel.getByTestId(AboutUsCareer.CarouselPrevButton);
 	const ourHistoryNextButton = ourHistoryCarousel.getByTestId(AboutUsCareer.CarouselNextButton);
@@ -90,7 +90,7 @@ test("Check the buttons of the info carousel from the 'AboutUs' block @Regressio
 	await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
 });
 // locator should be updated with getByTestId
-test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibility' blocks from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the "Techstack roles", "Engineering Culture" and "Social Responsibility" containers from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	const techstackRoles = driver.Page.locator(`#${AboutUsCareer.TechstackRolesId}`);
 
 	await expect(techstackRoles.locator(`#${AboutUsCareer.Roles_Mentor}`)).toContainText('Mentor');
@@ -119,7 +119,7 @@ test("Check the 'Techstack roles', 'Engineering Culture' and 'Social Responsibil
 	);
 });
 
-test("Check the buttons of the photo carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the buttons of the photo carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	const engineeringCultureCarousel = driver.getByTestId(AboutUsCareer.EngineeringCultureCarousel);
 	const engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUsCareer.CarouselPrevButton);
 	const engineeringCultureNextButton = engineeringCultureCarousel.getByTestId(AboutUsCareer.CarouselNextButton);
@@ -157,7 +157,7 @@ test("Check the buttons of the photo carousel from the 'AboutUs' block @Regressi
 	await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'true');
 });
 
-test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the "Candidate Path" carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	const carousel = driver.getByTestId(AboutUsCareer.CandidateCarousel);
 
 	await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(0)).toContainText('01 CV');
@@ -168,7 +168,7 @@ test("Check the 'Candidate Path' carousel from the 'AboutUs' block @Regression @
 	await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(5)).toContainText('06 Product owner interview');
 });
 // locator should be updated with getByTestId
-test("Check the 'Apply' block from the 'AboutUs' block @Regression @AboutUs @TSWEB-150", async () => {
+test('Check the "Apply" container from the "AboutUs" page @Regression @AboutUs @TSWEB-150', async () => {
 	await expect(driver.locator(`#${AboutUsCareer.ApplyTitle}`)).toContainText(
 		`Want to make an impact?You're in the right place.Check out our open positions!`
 	);
