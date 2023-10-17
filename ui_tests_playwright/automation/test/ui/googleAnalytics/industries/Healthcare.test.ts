@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 	await driver.Page.reload();
 });
 
-test("Check google analytics for 'Healthcare' page. @Regression @GoogleAnalytics @TSWEB-1137", async ({ }, testInfo) => {
+test('Check google analytics for "Healthcare" page @Regression @GoogleAnalytics @TSWEB-1137', async ({ }, testInfo) => {
 	const info = driver.getByTestId(Healthcare.Info);
 	const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
 	const infoGetInTouchButton: Locator = info.getByTestId(MainSiteButtons.GetInTouch);

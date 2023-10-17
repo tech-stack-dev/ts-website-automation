@@ -16,7 +16,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
 });
 
-test("Check redirect by source link in 'Techstack in Numbers' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test('Check redirect by source link in "Techstack in Numbers" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 	const buttonDeloitte = techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
 	const testData = ExternalSourceLinks.Deloitte100PercentRenewablesPdf;
@@ -34,7 +34,7 @@ test("Check redirect by source link in 'Techstack in Numbers' container from the
 	expect(checkPdfName).toBe(true);
 });
 
-test("Check redirect by 'Check out how we built it' button in 'The Solar Energy Data Portal by Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test('Check redirect by CTA button in "The Solar Energy Data Portal by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
 
 	await theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
@@ -43,7 +43,7 @@ test("Check redirect by 'Check out how we built it' button in 'The Solar Energy 
 	);
 });
 
-test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Energy' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test('Check redirects by arrows in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
 	const arrows = ourKeyAreasOfExpertiseContainer.getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([
@@ -61,7 +61,7 @@ test("Check redirects by arrows in 'Our Key Areas of Expertise in Renewable Ener
 	}
 });
 
-test("Check redirect by 'Clutch Review' button in 'Why Choose Us?' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test('Check redirect by "Clutch Review" button in "Why Choose Us?" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
 
 	const clutchReviewButton = whyChooseUsContainer.getByTestId(Buttons.Clutch);
@@ -69,7 +69,7 @@ test("Check redirect by 'Clutch Review' button in 'Why Choose Us?' container fro
 	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.DarrenCody);
 });
 
-test("Check carousel arrows click in 'How We Operate at Techstack' container from the 'Renewable Energy' block @Regression @RenewableEnergy @TSWEB-957", async () => {
+test('Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);

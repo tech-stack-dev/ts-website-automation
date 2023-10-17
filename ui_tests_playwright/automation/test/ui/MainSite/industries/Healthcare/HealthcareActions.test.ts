@@ -16,7 +16,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check redirect by "Clutch Review" button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
 	const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
@@ -24,7 +24,7 @@ test("Check redirect by 'Clutch Review' button in 'Beats Screening Module by Tec
 	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 });
 
-test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Module by Techstack' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check redirect by CTA button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 
 	await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
@@ -33,7 +33,7 @@ test("Check redirect by 'Read the full Case Study' button in 'Beats Screening Mo
 	);
 });
 
-test("Check redirect by links in 'Most Recent Industry Facts' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check redirect by links in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
 	// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
 	const buttonLinkMap = new Map([
@@ -47,13 +47,13 @@ test("Check redirect by links in 'Most Recent Industry Facts' container from the
 	}
 });
 
-test("Check carousel arrows click in 'How We Operate' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check carousel arrows click in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
 
 	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
 });
 
-test("Check redirects by arrows in 'Core Practices' container from the 'Healthcare' block @Regression @Healthcare @TSWEB-955", async () => {
+test('Check redirects by arrows in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
 	const arrows = corePracticesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([

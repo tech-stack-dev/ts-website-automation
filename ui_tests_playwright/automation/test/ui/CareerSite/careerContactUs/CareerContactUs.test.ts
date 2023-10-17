@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
-test("Check that 'Contact Us' form works correct with valid data @Regression @ContactUs @TSWEB-149", async () => {
+test('Check that "Contact Us" form works correct with valid data @Regression @ContactUs @TSWEB-149', async () => {
 	await driver.getByTestId(ContactUsForm.FullName).fill('test name');
 	await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 	await driver.getByTestId(ContactUsForm.Phone).fill('12345');

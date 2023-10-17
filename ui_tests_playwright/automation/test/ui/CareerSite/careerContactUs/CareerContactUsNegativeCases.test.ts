@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
-test("Check error messages related to fields filled with spaces on 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
+test('Check error messages related to fields filled with spaces on "Contact Us" form @Regression @ContactUs @TSWEB-76', async () => {
 	const lineWithSpaces = ' '.repeat(5);
 	const testData: Record<string, string> = {
 		PleaseEntryName: 'Please enter your name',
@@ -34,7 +34,7 @@ test("Check error messages related to fields filled with spaces on 'Contact Us' 
 	expect(messagesExistState).toBeTruthy();
 });
 
-test("Check error messages related to fields filled with invalid data on 'Contact Us' form @Regression @ContactUs @TSWEB-76", async () => {
+test('Check error messages related to fields filled with invalid data on "Contact Us" form @Regression @ContactUs @TSWEB-76', async () => {
 	const incorrectEmails: Record<string, string> = {
 		numberEmail: '12345',
 		withoutFirstEmail: '@test.com',
@@ -71,7 +71,7 @@ test("Check error messages related to fields filled with invalid data on 'Contac
 	}
 });
 
-test("Check error messages related to empty fields on 'Contact Us' form @Regression @ContactUs @TSWEB149", async () => {
+test('Check error messages related to empty fields on "Contact Us" form @Regression @ContactUs @TSWEB149', async () => {
 	const testData: Record<string, string> = {
 		PleaseEntryName: 'Please enter your name',
 		PleaseEntryEmail: 'Please enter your email',
