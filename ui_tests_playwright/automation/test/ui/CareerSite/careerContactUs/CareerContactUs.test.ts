@@ -23,7 +23,7 @@ test('Check that "Contact Us" form works correct with valid data @Regression @Co
 const files = ['automation/resources/test.docx', 'automation/resources/test.pdf'];
 
 for (const file of files) {
-	test(`Check that 'Contact Us' form works correct with valid files (${file}) @Regression @ContactUs @TSWEB-149`, async () => {
+	test(`Check that 'Contact Us' form works correct with valid files (${file}) @Regression @ContactUs @TSWEB-149 @TSWEB-1180`, async () => {
 		await driver.getByTestId(ContactUsForm.FullName).fill('test name');
 		await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 		await driver.getByTestId(ContactUsForm.Phone).fill('12345');
