@@ -25,6 +25,7 @@ export default class MainSiteButtons {
 	static MoreProductDetails = 'Button-MoreProductDetails';
 	static ScheduleACall = 'Button-ScheduleACall';
 	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
+	static LearnMore = 'Button-LearnMore';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

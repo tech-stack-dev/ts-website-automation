@@ -10,4 +10,6 @@ export default class CaseStudyPath {
 	static RedesignPatientDataSystem = '/redesign-of-a-patient-data-management-system';
 	static OneStopPlatformDesignHospitality = '/one-stop-platform-design-for-the-hospitality-industry';
 	static IncorporatingAimlIntoFlow = '/incorporating-al-ml-into-existing-healthcare-flow';
+	static SoftDevTransformExistingSystem =
+		'/how-software-development-consulting-transformed-the-existing-system-of-a-healthcare-provider';
 }
