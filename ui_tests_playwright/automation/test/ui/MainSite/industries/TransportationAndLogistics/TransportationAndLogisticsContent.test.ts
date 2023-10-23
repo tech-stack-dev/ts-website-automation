@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
 });
 
-test('Check the header from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
+test('Check Info container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const info = driver.getByTestId(TransportationAndLogistics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and\nLogistics Software\nDevelopment');

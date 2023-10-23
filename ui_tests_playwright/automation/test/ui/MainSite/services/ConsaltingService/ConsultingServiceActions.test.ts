@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -11,92 +11,114 @@ import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import Links from '../../../../../preconditionsData/Links/Links';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
+import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
 });
 
-test("Check carousel sections and arrows in 'Consulting process' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
-	const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
-	const carousel = consultingProcessContainer.getByTestId(Container.ContainerCarousel);
-	const allSectionTitles = await carousel.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = ['Discovery', 'Analysis', 'Brainstorming', 'Presentation', 'Implementation', 'Touch base'];
+test('Check redirect by "Clutch Review" button in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-956 @TSWEB-1181', async () => {
+	const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
+	await baseDriverSteps.checkRedirectToPage(
+		featuredCaseStudyContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.AnonymousMedicalDevice
+	);
+});
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
-	expect(await carousel.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-		'06',
+test('Check redirect by CTA button in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-956 @TSWEB-1181', async () => {
+	const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
+
+	await featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore).click();
+	await baseDriverSteps.checkUrl(
+		UrlProvider.urlBuilder(
+			`${UrlPath.CaseStudies}${CaseStudyPath.SoftDevTransformExistingSystem}`,
+			Environment.Production
+		)
+	);
+});
+
+test('Check redirect by links in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-956 @TSWEB-1181', async () => {
+	const industriesWeProvideContainer = driver.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo);
+
+	const linksUrlMap = new Map([
+		[
+			industriesWeProvideContainer.getByTestId(MainSiteLinks.Healthcare),
+			UrlProvider.urlBuilder(UrlPath.Healthcare),
+		],
+		[
+			industriesWeProvideContainer.getByTestId(MainSiteLinks.TransportAndLogistics),
+			UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
+		],
+		[
+			industriesWeProvideContainer.getByTestId(MainSiteLinks.RenewableEnergy),
+			UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
+		],
+		[
+			industriesWeProvideContainer.getByTestId(MainSiteLinks.DigitalTransformation),
+			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
+		],
 	]);
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.ConsultingServ));
+	}
+});
+
+test('Check carousel arrow clicks in "Consulting process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+	const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(consultingProcessContainer);
 });
 
-// Unskip after Blog will be stable
-test.skip("Check redirects by buttons in 'Consulting experts' container from the 'Consulting Service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test('Check redirects by LinkedIn buttons in "Consulting experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
+	const linkedInButtons = consultingExpertsContainer.getByTestId(Buttons.LinkedIn);
+
 	const buttonUrlMap = new Map([
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(0),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanIeremenko,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(1),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.OleksiiSvystun,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(2),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.YevheniiKarachevtsev,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(3), ExpertsLinkedInLinks.VitaliiDolotov],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(3),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.VitaliiDolotov,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(4), ExpertsLinkedInLinks.IvanYeremenko],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(4),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.IvanYeremenko,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(5),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroDytiuk,
-		],
-		[consultingExpertsContainer.getByTestId(Buttons.LinkedIn).nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
-		[
-			consultingExpertsContainer.getByTestId(Buttons.Blog).nth(6),
-			UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production) + AuthorsEnum.DmytroShtapauk,
-		],
+		[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+		[linkedInButtons.nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[linkedInButtons.nth(2), ExpertsLinkedInLinks.VitaliiDolotov],
+		[linkedInButtons.nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[linkedInButtons.nth(4), ExpertsLinkedInLinks.DmytroDytiuk],
+		[linkedInButtons.nth(5), ExpertsLinkedInLinks.DmytroShtapauk],
 	]);
 
-	for (const [button, url] of buttonUrlMap.entries()) {
-		await button.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(url);
-		await newPage.close();
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
-test("Check section titles and redirects in 'Our approach' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
-	const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
-	const allSectionTitles = await ourApproachContainer.getByTestId(Container.SectionTitle).allInnerTexts();
-	const testData = ['Open source contributions', 'Global certifications', 'Profound experience'];
+test('Check redirects by Blog buttons in "Consulting experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 TSWEB-1061', async () => {
+	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
+	const blogButtons = consultingExpertsContainer.getByTestId(Buttons.Blog);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	const buttonUrlMap = new Map([
+		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+		[blogButtons.nth(1), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+		[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VitaliiDolotov}`],
+		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+		[blogButtons.nth(4), `${blogUri}${AuthorsEnum.DmytroDytiuk}`],
+		[blogButtons.nth(5), `${blogUri}${AuthorsEnum.DmytroShtapauk}`],
+	]);
 
-	await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
 });
 
-test("Check redirects by arrows in 'Related Services' container from the 'Consulting service' block @Regression @ConsultingService @TSWEB-697", async () => {
+test('Check redirect by "Clutch Review" button in "Our Approach" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-956', async () => {
+	const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
+	await baseDriverSteps.checkRedirectToPage(
+		ourApproachContainer.getByTestId(Buttons.Clutch),
+		ClutchReviewLinks.AnonymousMedicalDevice
+	);
+});
+
+test('Check redirects by arrows in "Related Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const relatedServicesContainer = driver.getByTestId(ConsultingService.RelatedServices);
 	const containerSection = relatedServicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
@@ -107,6 +129,7 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
 		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[containerSection.nth(7).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
@@ -114,18 +137,18 @@ test("Check redirects by arrows in 'Related Services' container from the 'Consul
 	}
 });
 
-test('Check sections expanding and collapsing in "FAQ" container from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const faqContainer = driver.getByTestId(ConsultingService.Faq);
 	const expectedNumberOfSections = 5;
 
 	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
 	const ctaButtons = [
 		driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
 		driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote),
-		driver.getByTestId(ConsultingService.RelatedServices).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.ScheduleACall),
 	];
 
 	for (const button of ctaButtons) {

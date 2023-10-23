@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test('Check the header from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+test('Check Info container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const info = driver.getByTestId(Healthcare.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
 	await expect(info.getByTestId(Container.Title)).toHaveText(
