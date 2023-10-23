@@ -14,19 +14,21 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl(), true);
 });
 
 test('Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @Regression @JobsBlock @TSWEB-76', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
-	await driver.getByTestId(CareerButtons.ApplyNow).click();
+	await driver.getByTestId(CareerButtons.ApplyNowButton).click({timeout: 15000});
 
-	await driver.getByTestId(ApplyForAJobForm.FirstName).fill(' ');
-	await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
-	await driver.getByTestId(Buttons.Send).click();
+	await driver.getByTestId(ApplyForAJobForm.FirstName).fill(' ', {timeout: 15000});
+	await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99), {timeout: 15000}); // Field accepts up to 100 characters
+	await driver.getByTestId(Buttons.Send).click({timeout: 15000});
 
 	const actualErrorText_FirstName = driver.getByTestId(ApplyForAJobForm.FirstName).locator(Input.FieldErrorSelector);
+	await actualErrorText_FirstName.waitFor({timeout: 15000});
 	const actualErrorText_LastName = driver.getByTestId(ApplyForAJobForm.LastName).locator(Input.FieldErrorSelector);
+	await actualErrorText_LastName.waitFor({timeout: 15000});
 	await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
 	await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 });

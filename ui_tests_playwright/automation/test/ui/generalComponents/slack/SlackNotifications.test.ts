@@ -37,7 +37,7 @@ test('Check Slack notification from "staging_techstack_hr_notify" channel from C
 
 test('Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ContactUs @TSWEB-606', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
-	await driver.getByTestId(CareerButtons.ApplyNow).click();
+	await driver.getByTestId(CareerButtons.ApplyNowButton).click();
 	await formSteps.sendApplyForAJob();
 	const message = await slackSteps.getMessageWithValueFromChat(
 		slackDtoVariable.value.stagingTechstackHrNotifyId,

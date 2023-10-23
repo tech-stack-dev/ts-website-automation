@@ -52,6 +52,7 @@ for (const testData of testDataProvider) {
 			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
 		);
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+		await driver.getByTestId(Career.SarchCareerField).clear();
 
 		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 		const filterGroupContainer = await containerSteps.getContainer(
@@ -73,13 +74,11 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await Promise.all([
-			activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click(),
-			testData.tagList.forEach(async (tag) => {
-				const filterTag = filterGroupContainer.getByTestId(tag);
-				await expect(filterTag).not.toHaveClass(/active-tag/);
-			}),
-		]);
+		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click();
+		testData.tagList.forEach(async (tag) => {
+			const filterTag = filterGroupContainer.getByTestId(tag);
+			await expect(filterTag).not.toHaveClass(/active-tag/);
+		});
 	});
 }
 

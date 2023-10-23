@@ -18,7 +18,7 @@ import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl(), true);
 	await contentfulSteps.createCareerWithDefaultValue(
 		`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 		`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,

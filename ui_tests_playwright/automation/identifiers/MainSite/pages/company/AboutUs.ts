@@ -7,5 +7,4 @@ export default class CloudDevelopment extends GeneralContainersMainSite {
 	static WhatMakesUsSpecial = 'Container-WhatMakesUsSpecial';
 	static ShoutoutFromOurPartners = 'Container-ShoutoutFromOurPartners';
 	static OurPeople = 'Container-OurPeople';
-	static OurPartners = 'Container-OurPartners';
 }

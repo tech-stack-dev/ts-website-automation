@@ -34,7 +34,7 @@ test('Check redirect by CTA button in "Case Study by Techstack" container from t
 
 test('Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
-		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
+		TransportationAndLogistics.OurExpertise
 	);
 	const arrows = ourExpertiseInLogisticsSoftDevSolutionsContainer
 		.getByTestId(Container.ContainerSection)

@@ -8,7 +8,7 @@ import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
 import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl(), true);
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 

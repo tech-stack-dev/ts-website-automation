@@ -13,4 +13,10 @@ export default class GeneralContainersMainSite {
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static Services = 'Container-Services';
 	static IndustriesWeServe = 'Container-IndustriesWeServe';
+	static WhatMakesOurTeamDifferent = 'Container-WhatMakesOurTeamDifferent';
+	static OurWorkflow = 'Container-OurWorkflow';
+	static WhatWeDo = 'Container-WhatWeDo';
+	static OurPartners = 'Container-OurPartners';
+	static OurExpertise = 'Container-OurExpertise';
+	static TechstackInNumbers = 'Container-TechstackInNumbers';
 }

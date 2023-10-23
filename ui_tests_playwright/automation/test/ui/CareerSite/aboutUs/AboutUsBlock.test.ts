@@ -8,7 +8,7 @@ import AboutUsCareer from '../../../../identifiers/Career/pages/AboutUsCareer';
 let clicksAmountToDisableNextButton;
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl(), true);
 	await driver.getByTestId(Navigation.NavigationTab_AboutUs).click();
 });
 

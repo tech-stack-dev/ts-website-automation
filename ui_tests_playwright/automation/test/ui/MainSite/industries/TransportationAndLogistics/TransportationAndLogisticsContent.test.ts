@@ -27,9 +27,9 @@ test('Check the container title and number from the "Transportation and Logistic
 		driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
 		driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack),
 		driver.getByTestId(TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions),
-		driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent),
+		driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent),
 		driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
-		driver.getByTestId(TransportationAndLogistics.DevelopmentWorkflowThatWeFollow),
+		driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 		driver.getByTestId(TransportationAndLogistics.GetInTouch),
 		driver.getByTestId(TransportationAndLogistics.Faq),
 	];
@@ -117,7 +117,7 @@ test('Check section titles, image and CTA button in "Case Study by Techstack" co
 
 test('Check section titles in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
 	const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
-		TransportationAndLogistics.OurExpertiseInLogisticsSoftDevSolutions
+		TransportationAndLogistics.OurExpertise
 	);
 
 	const allSectionTitles = ourExpertiseInLogisticsSoftDevSolutionsContainer.getByTestId(Container.SectionTitle);
@@ -135,7 +135,7 @@ test('Check section titles in "Our Expertise in Logistics Software Development S
 });
 
 test('Check section titles in "What Makes Us Different" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
-	const whatMakesUsDifferentContainer = driver.getByTestId(TransportationAndLogistics.WhatMakesUsDifferent);
+	const whatMakesUsDifferentContainer = driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent);
 
 	const allSectionTitles = whatMakesUsDifferentContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Product-first approach', 'End-to-end development', 'Expert technology advice'];
@@ -160,9 +160,7 @@ test('Check carousel sections and CTA button in "Transportation and Logistics So
 });
 
 test('Check section titles and numbers in "Development Workflow That We Follow" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956', async () => {
-	const developmentWorkflowThatWeFollowContainer = driver.getByTestId(
-		TransportationAndLogistics.DevelopmentWorkflowThatWeFollow
-	);
+	const developmentWorkflowThatWeFollowContainer = driver.getByTestId(TransportationAndLogistics.OurWorkflow);
 
 	const allSectionTitles = developmentWorkflowThatWeFollowContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Investigation', 'Execution', 'Performance\nand Testing', 'Analysis', 'Support and\nMaintenance'];

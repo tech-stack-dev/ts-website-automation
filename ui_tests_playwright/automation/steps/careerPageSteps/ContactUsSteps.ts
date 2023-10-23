@@ -33,8 +33,9 @@ class ContactUsSteps {
 	}
 
 	public async checkSuccessModalMessage(expectedMessage: string) {
-		const page = driver.getPage(ContactUsPage);
-		const modalMessage = await (await page).successModalMessage().textContent();
+		const page = await driver.getPage(ContactUsPage);
+		await page.successModalMessage().waitFor({timeout: 15000});
+		const modalMessage = await page.successModalMessage().textContent();
 		expect(modalMessage).toBe(expectedMessage);
 	}
 }
