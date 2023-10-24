@@ -27,7 +27,7 @@ test("Check the container titles and numbers from the 'Cloud Development' page @
 		driver.getByTestId(CloudDevelopment.IndustriesWeServe),
 		driver.getByTestId(CloudDevelopment.TechnologyStack),
 		driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits),
-		driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment),
+		driver.getByTestId(CloudDevelopment.OurApproach),
 		driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts),
 		driver.getByTestId(CloudDevelopment.RelatedServices),
 		driver.getByTestId(CloudDevelopment.GetInTouch),
@@ -153,7 +153,7 @@ test("Check section numbers, section titles and CTA in 'Cloud Computing Developm
 });
 
 test("Check award cards in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
-	const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproachToCloudAppDevelopment);
+	const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 	const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
 	await baseDriverSteps.checkImagesVisibility(awardCards, 3);
 });

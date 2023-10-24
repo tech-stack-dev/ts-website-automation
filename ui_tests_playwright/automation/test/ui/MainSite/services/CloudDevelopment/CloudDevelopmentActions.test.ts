@@ -46,9 +46,7 @@ test("Check redirect by links in 'Industries We Serve' container from the 'Cloud
 });
 
 test("Check redirect to clutch in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
-	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(
-		CloudDevelopment.OurApproachToCloudAppDevelopment
-	);
+	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 
 	await baseDriverSteps.checkRedirectToPage(
 		ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
