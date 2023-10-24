@@ -1,10 +1,10 @@
-import { Locator, Request } from '@playwright/test';
-import { promisify } from 'util';
-import { driver } from '../../base/driver/Driver';
-import { HttpMethod } from '../../enum/HttpMethodEnum';
+import {Locator, Request} from '@playwright/test';
+import {promisify} from 'util';
+import {driver} from '../../base/driver/Driver';
+import {HttpMethod} from '../../enum/HttpMethodEnum';
 import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
-import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
-import { slackSteps } from './SlackSteps';
+import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
+import {slackSteps} from './SlackSteps';
 
 class GoogleAnalyticsSteps {
 	public async checkGoogleAnalytics(
@@ -43,5 +43,4 @@ class GoogleAnalyticsSteps {
 }
 
 const googleAnalyticsSteps = new GoogleAnalyticsSteps();
-export { googleAnalyticsSteps };
-
+export {googleAnalyticsSteps};

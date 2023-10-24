@@ -1,4 +1,4 @@
-import GeneralContainersMainSite from "../../GeneralContainersMainSite";
+import GeneralContainersMainSite from '../../GeneralContainersMainSite';
 
 export default class IoTEngineeringServices extends GeneralContainersMainSite {
 	static IoTEngineeringSolutions = 'Container-IoTEngineeringSolutions';

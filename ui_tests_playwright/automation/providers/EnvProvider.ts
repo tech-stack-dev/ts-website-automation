@@ -5,9 +5,9 @@ export enum Environment {
 	Production,
 }
 
-const QaseEnvironmentIdMapping: { [key in Environment]: number } = {
-    [Environment.Staging]: 2,
-    [Environment.Production]: 1,
+const QaseEnvironmentIdMapping: {[key in Environment]: number} = {
+	[Environment.Staging]: 2,
+	[Environment.Production]: 1,
 };
 
 export default class EnvProvider {
@@ -25,8 +25,8 @@ export default class EnvProvider {
 		}
 	}
 
-    public static get qaseEnvironmentId(): number {
-        const currentEnvironment = this.Environment;
-        return QaseEnvironmentIdMapping[currentEnvironment];
-    }
+	public static get qaseEnvironmentId(): number {
+		const currentEnvironment = this.Environment;
+		return QaseEnvironmentIdMapping[currentEnvironment];
+	}
 }

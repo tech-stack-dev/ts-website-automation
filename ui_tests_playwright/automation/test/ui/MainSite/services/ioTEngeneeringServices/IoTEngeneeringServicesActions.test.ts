@@ -1,3 +1,4 @@
+/* eslint-disable for-direction */
 import {expect, test} from '@playwright/test';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {driver} from '../../../../../base/driver/Driver';
