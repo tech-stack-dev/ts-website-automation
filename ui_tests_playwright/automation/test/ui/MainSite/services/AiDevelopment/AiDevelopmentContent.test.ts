@@ -102,7 +102,7 @@ test('Check section titles in "Technology stack" container from the "AI Developm
 	const technologyStackContainer = driver.getByTestId(AiDevelopment.TechnologyStack);
 	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 	const testData = [
-		'Computer vision',
+		'Computer Vision',
 		'Deep Learning\nand Machine Learning',
 		'Application',
 		'Data storage\nand manipulation',

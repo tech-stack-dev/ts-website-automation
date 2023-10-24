@@ -18,13 +18,13 @@ test('Check error messages related to fields filled with spaces on "Contact Us" 
 	const testData: Record<string, string> = {
 		PleaseEntryName: 'Please enter your name',
 		PleaseEntryEmail: 'Please enter a valid phone number',
-		PleaseEntryPhone: 'Please enter a valid email',
+		PleaseEntryPhone: 'Please enter your email',
 	};
 
-	await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces);
-	await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces);
-	await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces);
-	await driver.getByTestId(Buttons.Send).click();
+	await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces, {timeout: 10000});
+	await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces, {timeout: 10000});
+	await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces, {timeout: 10000});
+	await driver.getByTestId(Buttons.Send).click({timeout: 10000});
 	const listOfMessages = await formSteps.getErrorMessagesFromFields([
 		ContactUsForm.FullName,
 		ContactUsForm.Email,

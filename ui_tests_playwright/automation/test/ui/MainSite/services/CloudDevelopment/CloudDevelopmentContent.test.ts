@@ -106,7 +106,19 @@ test("Check section titles in 'Industries We Serve' container from the 'Cloud De
 test("Check section titles in 'Technology stack' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
 	const technologyStackContainer = driver.getByTestId(CloudDevelopment.TechnologyStack);
 	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
-	const testData = ['Cloud', 'CI/CD', 'Monitoring'];
+	const testData = [
+		'Cloud Platforms',
+		'Operating System\nManagement\nand Configuration',
+		'Platform-as-a-Service\n(PaaS)',
+		'CI/CD and Automation',
+		'Infrastructure as Code\n(IaC)',
+		'Monitoring',
+		'Resources Orchestration\nand Management',
+		'Security',
+		'Specialized Services for AI,\nMachine Learning,\nData Streaming, etc.',
+		'Programming Languages',
+		'Collaboration\nand Source Control',
+	];
 
 	await expect(allSectionTitles).toHaveText(testData);
 });
