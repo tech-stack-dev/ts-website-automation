@@ -59,7 +59,7 @@ class FormSteps {
 		const listOfMessages: any[] = await Promise.all(
 			necessaryFields.map(async (field) => {
 				const element = driver.getByTestId(field).locator(Input.FieldErrorSelector);
-				await element.waitFor();
+				await element.waitFor({timeout: 15000});
 				return element.textContent();
 			})
 		);

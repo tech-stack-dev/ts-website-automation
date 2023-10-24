@@ -129,6 +129,30 @@ test("Check section titles in 'Technology stack' container from the 'Custom Soft
 	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
 	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
 	const testDataSectionTitles = TechnologyStackData.SectionTitles;
+	// change test data
+	let frontEndSection: number | undefined;
+	let devOpsSection: number | undefined;
+
+	// Remove when all the data on the pages will be consistense
+	for (let i = 0; i < testDataSectionTitles.length; i++) {
+		if (testDataSectionTitles[i] && testDataSectionTitles[i][0] === 'Language') {
+			frontEndSection = i;
+		}
+		if (testDataSectionTitles[i] && testDataSectionTitles[i][0] === 'Cloud Platforms') {
+			devOpsSection = i;
+		}
+	}
+	if (frontEndSection !== undefined && devOpsSection !== undefined) {
+		testDataSectionTitles[frontEndSection] = [
+			'Languages',
+			'Frameworks',
+			'State\nmanagement',
+			'Build tools',
+			'Markup',
+			'Rich content',
+		];
+		testDataSectionTitles[devOpsSection] = ['Cloud', 'DevOps', 'CI/CD', 'Monitoring'];
+	}
 
 	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
 		navigationTabs,

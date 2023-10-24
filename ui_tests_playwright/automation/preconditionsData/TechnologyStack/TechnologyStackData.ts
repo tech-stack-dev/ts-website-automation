@@ -7,17 +7,19 @@ export default class TechnologyStackData {
 			// Back-End tab
 			'.NET Stack',
 			'JVM Stack',
-			'Node.js stack',
+			'Node.js Stack',
 			'Other',
 		],
 		[
 			// Front-End tab
-			'Languages',
+			'Language',
+			'State Management',
+			'Design',
+			'Web Optimization & Analytics',
 			'Frameworks',
-			'State\nmanagement',
-			'Build tools',
-			'Markup',
-			'Rich content',
+			'Build Tools',
+			'Rich Content',
+			'Content Management',
 		],
 		[
 			// Mobile tab
@@ -34,10 +36,17 @@ export default class TechnologyStackData {
 		],
 		[
 			// DevOps/Cloud tab
-			'Cloud',
-			'DevOps',
-			'CI/CD',
+			'Cloud Platforms',
+			'Operating System\nManagement\nand Configuration',
+			'Platform-as-a-Service\n(PaaS)',
+			'CI/CD and Automation',
+			'Infrastructure as Code\n(IaC)',
 			'Monitoring',
+			'Resources Orchestration\nand Management',
+			'Security',
+			'Specialized Services for AI,\nMachine Learning,\nData Streaming, etc.',
+			'Programming Languages',
+			'Collaboration\nand Source Control',
 		],
 		[
 			// AI&ML/Data science tab
