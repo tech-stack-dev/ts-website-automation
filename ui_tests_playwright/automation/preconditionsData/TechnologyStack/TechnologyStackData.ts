@@ -41,11 +41,11 @@ export default class TechnologyStackData {
 		],
 		[
 			// AI&ML/Data science tab
-			'Computer vision',
-			'Artificial intelligence, deep learning, and machine learning',
-			'Data visualization',
-			'Data storage & manipulation',
-			'Development environment',
+			'Computer Vision',
+			'Artificial Intelligence, Deep Learning, and Machine Learning',
+			'Data Visualization',
+			'Data Storage & Manipulation',
+			'Development Environment',
 		],
 	];
 
