@@ -17,8 +17,8 @@ test('Check error messages related to fields filled with spaces on "Contact Us" 
 	const lineWithSpaces = ' '.repeat(5);
 	const testData: Record<string, string> = {
 		PleaseEntryName: 'Please enter your name',
-		PleaseEntryEmail: 'Please enter a valid phone number',
-		PleaseEntryPhone: 'Please enter your email',
+		PleaseEntryPhone: 'Please enter a valid phone number',
+		PleaseEntryEmail: 'Please enter your email',
 	};
 
 	await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces, {timeout: 10000});
@@ -50,8 +50,8 @@ test('Check error messages related to fields filled with invalid data on "Contac
 	};
 
 	const testData: Record<string, string> = {
-		PleaseEntryEmail: 'Please enter a valid phone number',
-		PleaseEntryPhone: 'Please enter a valid email',
+		PleaseEntryPhone: 'Please enter a valid phone number',
+		PleaseEntryEmail: 'Please enter a valid email',
 	};
 
 	const testCases = [
