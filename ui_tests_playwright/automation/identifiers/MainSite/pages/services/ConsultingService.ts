@@ -10,6 +10,5 @@ export default class ConsultingService extends GeneralContainersMainSite {
 	static IndustriesWeProvideConsultancyTo = 'Container-IndustriesWeProvideConsultancyTo';
 	static ConsultingProcess = 'Container-ConsultingProcess';
 	static ConsultingExperts = 'Container-ConsultingExperts';
-	static OurApproach = 'Container-OurApproach';
 	static MakeAnImpactWithUs = 'Container-MakeAnImpactWithUs';
 }
