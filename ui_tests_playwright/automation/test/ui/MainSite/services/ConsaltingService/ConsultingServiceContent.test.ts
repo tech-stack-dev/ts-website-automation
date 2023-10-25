@@ -32,7 +32,7 @@ test('Check the container titles and numbers from the "Consulting service" page 
 		driver.getByTestId(ConsultingService.ConsultingProcess),
 		driver.getByTestId(ConsultingService.ConsultingExperts),
 		driver.getByTestId(ConsultingService.OurApproach),
-		driver.getByTestId(ConsultingService.MakeAnImpactWithUs),
+		driver.getByTestId(ConsultingService.WhatMakesUsSpecial),
 		driver.getByTestId(ConsultingService.RelatedServices),
 		driver.getByTestId(ConsultingService.GetInTouch),
 		driver.getByTestId(ConsultingService.RelatedArticles),
@@ -230,7 +230,7 @@ test('Check section titles and award cards in "Our Approach" container from the 
 });
 
 test('Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
-	const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
+	const makeAnImpactContainer = driver.getByTestId(ConsultingService.WhatMakesUsSpecial);
 	const allSectionTitles = makeAnImpactContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
 

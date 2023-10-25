@@ -10,6 +10,7 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "ignorePatterns": ["jest.config.js"],
   "rules": {
     "no-empty-pattern": "off",
     "@typescript-eslint/no-explicit-any": "off",

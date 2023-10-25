@@ -1,4 +1,6 @@
-export default class MainSiteButtons {
+import Buttons from '../Buttons';
+
+export default class MainSiteButtons extends Buttons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
@@ -32,9 +34,6 @@ export default class MainSiteButtons {
 	static JoinUs = 'Button-JoinUs';
 
 	// Services
-	static Forbes = 'Button-Forbes';
-	static Salesforce = 'Button-Salesforce';
-	static Deloitte = 'Button-Deloitte';
 	static McKinsey = 'Button-Mckinsey';
 	static Pwc = 'Button-Pwc';
 	static DeloitteSurvey = 'Button-DeloitteSurvey';
