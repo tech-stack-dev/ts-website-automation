@@ -14,4 +14,5 @@ export default class ExternalSourceLinks {
 	static McKinseyImpactOfAi =
 		'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy';
 	static GoogleAnalytics = 'https://www.google-analytics.com';
+	static ScrumOrg = 'https://www.scrum.org/';
 }

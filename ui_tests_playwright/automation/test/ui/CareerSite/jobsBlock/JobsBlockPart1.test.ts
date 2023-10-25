@@ -92,8 +92,8 @@ test('Check error messages related to empty fields in "Apply for a job" form @Re
 	const testData: Record<string, string> = {
 		PleaseEntryFirstName: 'Please enter your name',
 		PleaseEntryLastName: 'Please enter your last name',
-		PleaseEntryEmail: 'Please enter your phone number',
-		PleaseEntryPhone: 'Please enter your email',
+		PleaseEntryPhone: 'Please enter your phone number',
+		PleaseEntryEmail: 'Please enter your email',
 	};
 
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);

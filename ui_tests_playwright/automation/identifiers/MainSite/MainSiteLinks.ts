@@ -3,6 +3,8 @@ export default class MainSiteLinks {
 	static Instagram = 'Link-Instagram';
 	static Clutch = 'Link-Clutch';
 	static CaseStudy = 'Link-CaseStudy';
+	static Nuget = 'Link-Nuget';
+	static ScrumOrg = 'Link-Scrum';
 
 	// Links to pages
 	static Healthcare = 'Link-Healthcare';

@@ -22,7 +22,7 @@ test('Check Info container from the "Consulting Service" page @Regression @Consu
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuotebuttonText);
 });
 
-test('Check the container titles and numbers from the "Consulting service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
+test('Check the container titles and numbers from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const containers = [
 		driver.getByTestId(ConsultingService.InformationTechnologyConsultingServices),
 		driver.getByTestId(ConsultingService.ConsultingBenefits),
@@ -32,7 +32,7 @@ test('Check the container titles and numbers from the "Consulting service" page 
 		driver.getByTestId(ConsultingService.ConsultingProcess),
 		driver.getByTestId(ConsultingService.ConsultingExperts),
 		driver.getByTestId(ConsultingService.OurApproach),
-		driver.getByTestId(ConsultingService.WhatMakesUsSpecial),
+		driver.getByTestId(ConsultingService.MakeAnImpactWithUs),
 		driver.getByTestId(ConsultingService.RelatedServices),
 		driver.getByTestId(ConsultingService.GetInTouch),
 		driver.getByTestId(ConsultingService.RelatedArticles),
@@ -40,12 +40,12 @@ test('Check the container titles and numbers from the "Consulting service" page 
 	];
 
 	const expectedData = [
-		['Information technology\nconsulting services', '01'],
-		['Consulting benefits', '02'],
-		['Our IT consulting services', '03'],
+		['Information Technology\nConsulting Services', '01'],
+		['Consulting Benefits', '02'],
+		['Our IT Consulting\nServices', '03'],
 		['Featured Case Study', '04'],
 		['Industries We Provide\nConsultancy To', '05'],
-		['Consulting process', '06'],
+		['Consulting Process', '06'],
 		['Consulting Experts', '07'],
 		['Our Approach', '08'],
 		['Make an Impact\nWith Us', '09'],
@@ -60,14 +60,14 @@ test('Check the container titles and numbers from the "Consulting service" page 
 	// Checks for container titles from 'Our IT consulting services' container
 	await expect(
 		driver.getByTestId(ConsultingService.DevelopmentProcessAudit).getByTestId(Container.ContainerTitle)
-	).toHaveText('Development process audit');
+	).toHaveText('Development Process Audit');
 
 	await expect(driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Software audit'
+		'Software Audit'
 	);
 });
 
-test('Check section numbers and titles in "Information technology consulting services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check section numbers and titles in "Information Technology Consulting Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const informationTechnologyConsultingServicesContainer = driver.getByTestId(
 		ConsultingService.InformationTechnologyConsultingServices
 	);
@@ -84,7 +84,7 @@ test('Check section numbers and titles in "Information technology consulting ser
 	]);
 });
 
-test('Check section titles in "Consulting benefits" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check section titles in "Consulting Benefits" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const consultingBenefitsContainer = driver.getByTestId(ConsultingService.ConsultingBenefits);
 	const allSectionTitles = consultingBenefitsContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -99,7 +99,7 @@ test('Check section titles in "Consulting benefits" container from the "Consulti
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles in "Development process audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check section titles in "Development Process Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
 	const allSectionTitles = developmentProcessAuditContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -113,7 +113,7 @@ test('Check section titles in "Development process audit" container from the "Co
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles in "Software audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check section titles in "Software Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
 	const allSectionTitles = softwareAuditContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -129,7 +129,7 @@ test('Check section titles in "Software audit" container from the "Consulting Se
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
+test('Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 	const allSectionTitles = featuredCaseStudyContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Outdated Tech\nStack', 'Black Boxes in\nSystem Code'];
@@ -141,7 +141,7 @@ test('Check section titles, image and CTA in "Featured Case Study" container fro
 	await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore)).toHaveText('Learn more');
 });
 
-test('Check section numbers and titles in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
+test('Check section numbers and titles, and CTA in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const industriesWeProvideContainer = driver.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo);
 
 	await expect(industriesWeProvideContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -162,9 +162,11 @@ test('Check section numbers and titles in "Industries We Provide Consultancy To"
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
+
+	await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
 });
 
-test('Check carousel section numbers and titles, and CTA in "Consulting process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check carousel section numbers and titles, and CTA in "Consulting Process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
 	const carouselSections = consultingProcessContainer.getByTestId(Container.CarouselSection);
 
@@ -187,7 +189,7 @@ test('Check carousel section numbers and titles, and CTA in "Consulting process"
 	);
 });
 
-test('Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
+test('Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const allMemberRoles = consultingExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
@@ -228,7 +230,7 @@ test('Check section titles and award cards in "Our Approach" container from the 
 });
 
 test('Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
-	const makeAnImpactContainer = driver.getByTestId(ConsultingService.WhatMakesUsSpecial);
+	const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
 	const allSectionTitles = makeAnImpactContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
 
@@ -240,10 +242,10 @@ test('Check section titles in "Related Services" container from the "Consulting 
 	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'UX/UI Design',
-		'QA as a Service',
-		'Mobile \ndevelopment',
-		'Custom software \ndevelopment',
 		'AI',
+		'Custom software \ndevelopment',
+		'Mobile \ndevelopment',
+		'QA as a Service',
 		'Big Data & Analytics',
 		'Internet of Things',
 		'Cloud App Development',
@@ -252,7 +254,7 @@ test('Check section titles in "Related Services" container from the "Consulting 
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181', async () => {
+test('Check section titles in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697', async () => {
 	const faqContainer = driver.getByTestId(ConsultingService.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
