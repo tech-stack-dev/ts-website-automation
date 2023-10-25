@@ -6,7 +6,5 @@ export default class UxUiDesign extends GeneralContainersMainSite {
 	static OurUiUxServices = 'Container-OurUiUxServices';
 	static SuccessStories = 'Container-SuccessStories';
 	static TypicalUxUiDesignWorkflow = 'Container-TypicalUxUiDesignWorkflow';
-	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
-	static OurApproach = 'Container-OurApproach';
 	static DesignThinkingProcess = 'Container-DesignThinkingProcess';
 }

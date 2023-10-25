@@ -24,10 +24,10 @@ test('Check the container titles and numbers from the "Mobile App Development" p
 	const containers = [
 		driver.getByTestId(MobileDevService.WhatYouGet),
 		driver.getByTestId(MobileDevService.WhatWeDo),
-		driver.getByTestId(MobileDevService.MobileApplicationDevTechStack),
+		driver.getByTestId(MobileDevService.TechnologyStack),
 		driver.getByTestId(MobileDevService.IndustrySpecificSolution),
 		driver.getByTestId(MobileDevService.WhatIndustriesWeServe),
-		driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices),
+		driver.getByTestId(MobileDevService.OurApproach),
 		driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess),
 		driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct),
 		driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment),
@@ -95,7 +95,7 @@ test('Check block and section titles in "What We Do" container from the "Mobile 
 });
 
 test('Check section titles and CTA button in "Mobile Application Development Technology Stack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
-	const technologyStackContainer = driver.getByTestId(MobileDevService.MobileApplicationDevTechStack);
+	const technologyStackContainer = driver.getByTestId(MobileDevService.TechnologyStack);
 	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 	const testData = ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS'];
 
@@ -132,7 +132,7 @@ test('Check section titles in "What Industries We Serve" container from the "Mob
 });
 
 test('Check section titles and images in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
-	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproachToMobileAppDevServices);
+	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
 	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Domain\nproficiency', 'Be a part\nof the team', 'Data-driven\ndecisions'];
 

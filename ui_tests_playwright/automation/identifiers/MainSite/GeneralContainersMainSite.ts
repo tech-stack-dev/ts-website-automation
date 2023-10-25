@@ -7,4 +7,17 @@ export default class GeneralContainersMainSite {
 	static TechnologyStack = 'Container-TechnologyStack';
 	static OurExperts = 'Container-OurExperts';
 	static RelatedServices = 'Container-RelatedServices';
+	static IndustriesWeServe = 'Container-IndustriesWeServe';
+	static WhatWeDo = 'Container-WhatWeDo';
+	static OurPartners = 'Container-OurPartners';
+	static WhatMakesUsSpecial = 'Container-WhatMakesUsSpecial';
+	static WhatMakesOurTeamDifferent = 'Container-WhatMakesOurTeamDifferent';
+	static OurExpertise = 'Container-OurExpertise';
+	static OurWorkflow = 'Container-OurWorkflow';
+	static TechstackInNumbers = 'Container-TechstackInNumbers';
+	static WhoWeServe = 'Container-WhoWeServe';
+	static OurApproach = 'Container-OurApproach';
+	static IndustrySpecificSolution = 'Container-IndustrySpecificSolution';
+	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
+	static Services = 'Container-Services';
 }
