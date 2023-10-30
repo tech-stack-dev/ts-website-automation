@@ -5,10 +5,10 @@ import {sessionValue} from '../../../../../runtimeVariables/SessionValue';
 import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
 import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
 import {driver} from '../../../../../base/driver/Driver';
-import Career from '../../../../../identifiers/Career/pages/Career';
+import Career from '../../../../../identifiers/career/pages/Career';
 import {containerSteps} from '../../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../../identifiers/Career/ContainersCareer';
+import ContainersCareer from '../../../../../identifiers/career/ContainersCareer';
 import randomstring from 'randomstring';
 
 test.beforeEach(async () => {

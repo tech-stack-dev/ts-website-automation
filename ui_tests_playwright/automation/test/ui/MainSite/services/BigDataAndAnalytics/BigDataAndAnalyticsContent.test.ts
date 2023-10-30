@@ -2,12 +2,12 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import BigDataAndAnalytics from '../../../../../identifiers/MainSite/pages/services/BigDataAndAnalytics';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import BigDataAndAnalytics from '../../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));

@@ -3,12 +3,12 @@ import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import OurServices from '../../../../identifiers/MainSite/pages/services/OurServices';
+import OurServices from '../../../../identifiers/mainSite/pages/services/OurServices';
 import Container from '../../../../identifiers/Container';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
-import TechnologyStackData from '../../../../preconditionsData/TechnologyStack/TechnologyStackData';
+import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));

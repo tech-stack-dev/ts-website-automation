@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Container from '../../../../identifiers/Container';
-import ContactUs from '../../../../identifiers/MainSite/pages/contactUs/ContactUs';
+import ContactUs from '../../../../identifiers/mainSite/pages/contactUs/ContactUs';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 

@@ -3,17 +3,17 @@ import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import UxUiDesign from '../../../../../identifiers/MainSite/pages/services/UxUiDesign';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import UxUiDesign from '../../../../../identifiers/mainSite/pages/services/UxUiDesign';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {Environment} from '../../../../../providers/EnvProvider';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
-import Links from '../../../../../preconditionsData/Links/Links';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import Links from '../../../../../preconditionsData/links/Links';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import ExpertsBehanceLinks from '../../../../../preconditionsData/Links/ExpertsBehanceLinks';
+import ExpertsBehanceLinks from '../../../../../preconditionsData/links/ExpertsBehanceLinks';
 import Container from '../../../../../identifiers/Container';
 
 test.beforeEach(async () => {

@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Navigation from '../../../../identifiers/Career/Navigation';
+import Navigation from '../../../../identifiers/career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';

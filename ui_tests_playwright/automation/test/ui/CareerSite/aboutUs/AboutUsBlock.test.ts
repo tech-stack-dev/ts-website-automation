@@ -2,8 +2,8 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import Navigation from '../../../../identifiers/Career/Navigation';
-import AboutUsCareer from '../../../../identifiers/Career/pages/AboutUsCareer';
+import Navigation from '../../../../identifiers/career/Navigation';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 let clicksAmountToDisableNextButton;
 

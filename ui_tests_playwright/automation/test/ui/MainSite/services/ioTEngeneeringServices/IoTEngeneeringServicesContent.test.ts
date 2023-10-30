@@ -4,11 +4,11 @@ import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/services/IoTEngineeringServices';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import ContactUs from '../../../../../identifiers/MainSite/pages/contactUs/ContactUs';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import ContactUs from '../../../../../identifiers/mainSite/pages/contactUs/ContactUs';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 
 const requestAQuoteButtonText = 'Request a quote';
 

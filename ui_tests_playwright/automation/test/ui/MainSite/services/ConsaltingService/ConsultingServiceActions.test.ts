@@ -3,20 +3,20 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
-import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
+import ConsultingService from '../../../../../identifiers/mainSite/pages/services/ConsultingService';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
-import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
-import Links from '../../../../../preconditionsData/Links/Links';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
+import Links from '../../../../../preconditionsData/links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);

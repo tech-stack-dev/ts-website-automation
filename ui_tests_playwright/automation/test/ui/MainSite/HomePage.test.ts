@@ -1,13 +1,13 @@
 import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import Container from '../../../identifiers/Container';
-import HomePage from '../../../identifiers/MainSite/pages/HomePage';
-import {ClutchReviewLinks} from '../../../preconditionsData/Links/ClutchReviewLinks';
+import HomePage from '../../../identifiers/mainSite/pages/HomePage';
+import {ClutchReviewLinks} from '../../../preconditionsData/links/ClutchReviewLinks';
 import UrlProvider from '../../../providers/UrlProvider';
 import {driver} from '../../../base/driver/Driver';
 import UrlPath from '../../../providers/UrlPath';
-import MainSiteButtons from '../../../identifiers/MainSite/MainSiteButtons';
-import {LinkedInReviewLinks} from '../../../preconditionsData/Links/linkedInReviewLinks';
+import MainSiteButtons from '../../../identifiers/mainSite/MainSiteButtons';
+import {LinkedInReviewLinks} from '../../../preconditionsData/links/linkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());

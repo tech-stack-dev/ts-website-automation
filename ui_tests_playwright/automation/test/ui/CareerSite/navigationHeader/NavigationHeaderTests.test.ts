@@ -2,12 +2,12 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../identifiers/Career/ContainersCareer';
+import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import UrlPath from '../../../../providers/UrlPath';
 import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import Blog from '../../../../identifiers/Blog/Blog';
-import CareerButtons from '../../../../identifiers/Career/CareerButtons';
+import Blog from '../../../../identifiers/blog/Blog';
+import CareerButtons from '../../../../identifiers/career/CareerButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

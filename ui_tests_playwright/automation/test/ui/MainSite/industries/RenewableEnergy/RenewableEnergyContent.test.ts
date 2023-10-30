@@ -2,11 +2,11 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
-import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
+import RenewableEnergy from '../../../../../identifiers/mainSite/pages/industries/RenewableEnergy';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));

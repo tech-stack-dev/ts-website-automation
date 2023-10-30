@@ -3,10 +3,10 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
-import QaAsAService from '../../../../identifiers/MainSite/pages/services/QaAsAService';
+import QaAsAService from '../../../../identifiers/mainSite/pages/services/QaAsAService';
 import Container from '../../../../identifiers/Container';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
-import Links from '../../../../preconditionsData/Links/Links';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
+import Links from '../../../../preconditionsData/links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.QaAsAServ));

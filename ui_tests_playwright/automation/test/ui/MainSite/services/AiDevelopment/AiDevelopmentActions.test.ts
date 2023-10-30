@@ -4,14 +4,14 @@ import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
-import AiDevelopment from '../../../../../identifiers/MainSite/pages/services/AiDevelopment';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import AiDevelopment from '../../../../../identifiers/mainSite/pages/services/AiDevelopment';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import Buttons from '../../../../../identifiers/Buttons';
-import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
+import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
