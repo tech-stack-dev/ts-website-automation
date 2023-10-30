@@ -53,7 +53,6 @@ function checkFilesRecursively(root: string, failedFiles: string[]) {
 describe('Folder Name Case Test', () => {
 	const frameworkRoot = path.join(__dirname, '../..'); // Adjust the path as needed
 	const excludedFolders = ['node_modules', 'build']; // Add any folders to exclude here
-	const excludedExtensions = ['.js', '.json', '.md', '.DS_Store'];
 
 	it('should check that all folders have names starting with lowercase', () => {
 		const failedFolders: string[] = [];
