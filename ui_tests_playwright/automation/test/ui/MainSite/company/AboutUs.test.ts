@@ -11,8 +11,8 @@ import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsL
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
-import {LinkedInReviewLinks} from '../../../../preconditionsData/links/linkedInReviewLinks';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));

@@ -1,10 +1,10 @@
 import {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
 import {QaseAwsSecret} from './automation/providers/QaseAwsSecret';
 import EnvProvider from './automation/providers/EnvProvider';
 import DateTimeUtils from './automation/utils/DateTimeUtils';
+import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
 
 // Read from default ".env" file.
 dotenv.config();
