@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test('Check the header from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+test('Check the Info container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
 	const info = driver.getByTestId(AboutUs.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
 	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
@@ -169,6 +169,13 @@ test('Check "Learn more about how we work" button in the "Our partners" containe
 
 	await ourPartnersBlock.getByTestId(Container.Arrow).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
+});
+
+test('Check partner logos in "Our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
+	const ourPartnersContainer = driver.getByTestId(AboutUs.OurPartners);
+	const partnerLogos = ourPartnersContainer.getByTestId(Container.PartnerLogo);
+
+	await baseDriverSteps.checkImagesVisibility(partnerLogos, 10);
 });
 
 test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {

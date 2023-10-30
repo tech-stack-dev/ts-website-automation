@@ -16,6 +16,16 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 });
 
+test('Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061', async () => {
+	const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
+	const ctaButton = enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
+
+	await expect(ctaButton).toHaveText('Enhance Healthcare Strategy: Free Cloud Guide');
+
+	await ctaButton.click();
+	expect(driver.Page.url()).toBe(UrlProvider.urlBuilder(UrlPath.Whitepapers));
+});
+
 test('Check the Info container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const infoContainer = driver.getByTestId(HomePage.Info);
 	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
