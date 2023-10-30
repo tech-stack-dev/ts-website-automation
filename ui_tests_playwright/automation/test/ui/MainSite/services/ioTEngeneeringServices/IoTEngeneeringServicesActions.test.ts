@@ -7,15 +7,15 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/services/IoTEngineeringServices';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
+import {Environment} from '../../../../../providers/EnvProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);

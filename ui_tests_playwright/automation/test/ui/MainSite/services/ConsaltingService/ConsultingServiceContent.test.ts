@@ -2,12 +2,12 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
-import ConsultingService from '../../../../../identifiers/MainSite/pages/services/ConsultingService';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
+import ConsultingService from '../../../../../identifiers/mainSite/pages/services/ConsultingService';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 
 const requestAQuotebuttonText = 'Request a quote';
 

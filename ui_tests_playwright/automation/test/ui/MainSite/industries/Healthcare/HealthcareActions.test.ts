@@ -2,15 +2,15 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../../identifiers/Buttons';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import Healthcare from '../../../../../identifiers/MainSite/pages/industries/Healthcare';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {Environment} from '../../../../../providers/EnvProvider';
 import Container from '../../../../../identifiers/Container';
-import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
+import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
+import Healthcare from '../../../../../identifiers/mainSite/pages/industries/Healthcare';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));

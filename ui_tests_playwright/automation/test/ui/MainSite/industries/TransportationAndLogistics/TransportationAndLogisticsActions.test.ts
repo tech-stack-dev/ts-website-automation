@@ -1,15 +1,15 @@
 import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import TransportationAndLogistics from '../../../../../identifiers/MainSite/pages/industries/TransportationAndLogistics';
 import Container from '../../../../../identifiers/Container';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
+import TransportationAndLogistics from '../../../../../identifiers/mainSite/pages/industries/TransportationAndLogistics';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));

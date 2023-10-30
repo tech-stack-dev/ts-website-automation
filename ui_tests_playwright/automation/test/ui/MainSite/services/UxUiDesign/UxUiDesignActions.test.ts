@@ -1,20 +1,20 @@
 import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import UxUiDesign from '../../../../../identifiers/MainSite/pages/services/UxUiDesign';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import CaseStudyPath from '../../../../../providers/CaseStudyPath';
-import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
-import {Environment} from '../../../../../providers/EnvProvider';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
-import Links from '../../../../../preconditionsData/Links/Links';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import ExpertsBehanceLinks from '../../../../../preconditionsData/Links/ExpertsBehanceLinks';
+import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import UxUiDesign from '../../../../../identifiers/mainSite/pages/services/UxUiDesign';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import ExpertsBehanceLinks from '../../../../../preconditionsData/links/ExpertsBehanceLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
+import Links from '../../../../../preconditionsData/links/Links';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
+import UrlPath from '../../../../../providers/UrlPath';
+import {Environment} from '../../../../../providers/EnvProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));

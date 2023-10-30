@@ -4,16 +4,16 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import {CustomDev} from '../../../../../identifiers/MainSite/pages/services/CustomDev';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {Environment} from '../../../../../providers/EnvProvider';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import {CustomDev} from '../../../../../identifiers/mainSite/pages/services/CustomDev';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
+import Links from '../../../../../preconditionsData/links/Links';
+import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
-import Links from '../../../../../preconditionsData/Links/Links';
-import CaseStudyPath from '../../../../../providers/CaseStudyPath';
+import {Environment} from '../../../../../providers/EnvProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));

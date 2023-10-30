@@ -4,9 +4,9 @@ import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
-import AiDevelopment from '../../../../../identifiers/MainSite/pages/services/AiDevelopment';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
+import AiDevelopment from '../../../../../identifiers/mainSite/pages/services/AiDevelopment';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));

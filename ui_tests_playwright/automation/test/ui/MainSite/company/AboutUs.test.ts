@@ -1,5 +1,4 @@
 import {expect, test} from '@playwright/test';
-import AboutUs from '../../../../identifiers/MainSite/pages/company/AboutUs';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -7,12 +6,13 @@ import Container from '../../../../identifiers/Container';
 import UrlPath from '../../../../providers/UrlPath';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Buttons from '../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../preconditionsData/Links/ExpertsLinkedInLinks';
 import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
-import {LinkedInReviewLinks} from '../../../../preconditionsData/Links/linkedInReviewLinks';
-import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
+import AboutUs from '../../../../identifiers/mainSite/pages/company/AboutUs';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
+import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
+import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));

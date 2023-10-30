@@ -4,10 +4,10 @@ import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
+import MobileDevService from '../../../../../identifiers/mainSite/pages/services/MobileDevService';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);

@@ -7,13 +7,13 @@ import Container from '../../../../../identifiers/Container';
 import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/Links/ExpertsLinkedInLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
-import MobileDevService from '../../../../../identifiers/MainSite/pages/services/MobileDevService';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import MobileDevService from '../../../../../identifiers/mainSite/pages/services/MobileDevService';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
-import MainSiteLinks from '../../../../../identifiers/MainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);

@@ -2,12 +2,12 @@ import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
-import CloudDevelopment from '../../../../../identifiers/MainSite/pages/services/CloudDevelopment';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
+import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
-import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
+import CloudDevelopment from '../../../../../identifiers/mainSite/pages/services/CloudDevelopment';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));

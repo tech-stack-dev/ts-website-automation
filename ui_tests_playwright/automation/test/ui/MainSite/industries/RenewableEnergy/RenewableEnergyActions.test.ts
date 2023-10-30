@@ -3,14 +3,14 @@ import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
 import Buttons from '../../../../../identifiers/Buttons';
-import RenewableEnergy from '../../../../../identifiers/MainSite/pages/industries/RenewableEnergy';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/Links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
-import ExternalSourceLinks from '../../../../../preconditionsData/Links/ExternalSourceLinks';
+import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
+import RenewableEnergy from '../../../../../identifiers/mainSite/pages/industries/RenewableEnergy';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
