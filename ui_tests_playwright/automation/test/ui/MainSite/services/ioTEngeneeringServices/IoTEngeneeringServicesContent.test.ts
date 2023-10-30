@@ -7,7 +7,6 @@ import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/MainSite/pages/services/IoTEngineeringServices';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import ContactUs from '../../../../../identifiers/MainSite/pages/contactUs/ContactUs';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 
 const requestAQuoteButtonText = 'Request a quote';
@@ -16,100 +15,50 @@ test.beforeAll(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
 });
 
-test('Check the breadcrumbs and header. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check the Info container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const info = driver.getByTestId(IoTEngineeringServices.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
 	await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering\nServices');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 });
 
-test('Check the container titles and indexes @Regression @InternetOfThings @TSWEB-695', async () => {
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions).getByTestId(Container.ContainerTitle)
-	).toHaveText('IoT Engineering Solutions');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions).getByTestId(Container.ContainerNumber)
-	).toHaveText('01');
+test('Check the container titles and numbers from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
+	const containers = [
+		driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions),
+		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices),
+		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers),
+		driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies),
+		driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions),
+		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess),
+		driver.getByTestId(IoTEngineeringServices.OurApproachToIoTEngineering),
+		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts),
+		driver.getByTestId(IoTEngineeringServices.RelatedServices),
+		driver.getByTestId(IoTEngineeringServices.GetInTouch),
+		driver.getByTestId(IoTEngineeringServices.RelatedArticles),
+		driver.getByTestId(IoTEngineeringServices.Faq),
+	];
 
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our IoT Engineering Services');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('02');
+	const expectedText: [string, string][] = [
+		['IoT Engineering\nSolutions', '01'],
+		['Our IoT Engineering\nServices', '02'],
+		['IoT Technology Stack\nby Layers', '03'],
+		['IoT Engineering\nCase Studies', '04'],
+		['Industry-specific\nIoT Solutions', '05'],
+		['IoT Engineering\nProcess', '06'],
+		['Our Approach to\nIoT Engineering', '07'],
+		['Our Internet of Things\nEngineering Experts', '08'],
+		['Related Services', '09'],
+		['Get in Touch', '10'],
+		['Related Articles', '11'],
+		['FAQ', '12'],
+	];
 
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers).getByTestId(Container.ContainerTitle)
-	).toHaveText('IoT Technology Stack\nby Layers');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers).getByTestId(Container.ContainerNumber)
-	).toHaveText('03');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies).getByTestId(Container.ContainerTitle)
-	).toHaveText('IoT Engineering Case Studies');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies).getByTestId(Container.ContainerNumber)
-	).toHaveText('04');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions).getByTestId(Container.ContainerTitle)
-	).toHaveText('Industry-specific\nIoT Solutions');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions).getByTestId(Container.ContainerNumber)
-	).toHaveText('05');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(Container.ContainerTitle)
-	).toHaveText('IoT Engineering Process');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess).getByTestId(Container.ContainerNumber)
-	).toHaveText('06');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurApproachToIoTEngineering).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Approach to IoT Engineering');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurApproachToIoTEngineering).getByTestId(Container.ContainerNumber)
-	).toHaveText('07');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts).getByTestId(Container.ContainerTitle)
-	).toHaveText('Our Internet of Things\nEngineering Experts');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts).getByTestId(Container.ContainerNumber)
-	).toHaveText('08');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.RelatedServices).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related Services');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.RelatedServices).getByTestId(Container.ContainerNumber)
-	).toHaveText('09');
-
-	await expect(driver.getByTestId(ContactUs.GetInTouch).getByTestId(Container.ContainerTitle)).toHaveText(
-		'Get in Touch'
-	);
-	await expect(driver.getByTestId(ContactUs.GetInTouch).getByTestId(Container.ContainerNumber)).toHaveText('10');
-
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.RelatedArticles).getByTestId(Container.ContainerTitle)
-	).toHaveText('Related Articles');
-	await expect(
-		driver.getByTestId(IoTEngineeringServices.RelatedArticles).getByTestId(Container.ContainerNumber)
-	).toHaveText('11');
-
-	await expect(driver.getByTestId(IoTEngineeringServices.Faq).getByTestId(Container.ContainerTitle)).toHaveText(
-		'FAQ'
-	);
-	await expect(driver.getByTestId(IoTEngineeringServices.Faq).getByTestId(Container.ContainerNumber)).toHaveText(
-		'12'
-	);
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedText);
 });
 
-test('Check section numbers and section titles in "IoT Engineering Solutions" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section numbers and titles in "IoT Engineering Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringSolutionsContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions);
-	const actualTitles = await ioTEngineeringSolutionsContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const actualTitles = ioTEngineeringSolutionsContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = [
 		'Lack of necessary skill sets',
 		'Insufficient testing and updating',
@@ -120,8 +69,8 @@ test('Check section numbers and section titles in "IoT Engineering Solutions" co
 		'Data collection and processing',
 	];
 
-	expect(actualTitles).toEqual(expectedTitles);
-	expect(await ioTEngineeringSolutionsContainer.getByTestId(Container.SectionNumber).allInnerTexts()).toEqual([
+	await expect(actualTitles).toHaveText(expectedTitles);
+	await expect(ioTEngineeringSolutionsContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
 		'02',
 		'03',
@@ -132,7 +81,7 @@ test('Check section numbers and section titles in "IoT Engineering Solutions" co
 	]);
 });
 
-test('Check section titles in "Our IoT Engineering Services" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section numbers and titles in "Our IoT Engineering Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ourIoTEngineeringServicesContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices);
 	const containerBlocks = await ourIoTEngineeringServicesContainer.getByTestId(Container.ContainerSection).all();
 
@@ -155,7 +104,7 @@ test('Check section titles in "Our IoT Engineering Services" container. @Regress
 	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 });
 
-test('Check section titles and CTA button in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles and CTA button in "IoT Technology Stack by Layers" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTTechnologyStackByLayersContainer = driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers);
 	const containerBlocks = await ioTTechnologyStackByLayersContainer.getByTestId(Container.ContainerBlock).all();
 	const actualSectionTitles: string[] = [];
@@ -181,7 +130,7 @@ test('Check section titles and CTA button in "IoT Technology Stack by Layers" co
 	);
 });
 
-test('Check section titles, sensor image and CTA button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section numbers and titles, block title, image, and CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
 	const sectionIndexes = await ioTEngineeringCaseStudiesContainer
 		.getByTestId(Container.SectionNumber)
@@ -203,7 +152,7 @@ test('Check section titles, sensor image and CTA button in "IoT Engineering Case
 	]);
 
 	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
-	expect(await ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle).textContent()).toBe(
+	await expect(ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle)).toHaveText(
 		'IoT humidity\nsensors scheme'
 	);
 
@@ -212,13 +161,11 @@ test('Check section titles, sensor image and CTA button in "IoT Engineering Case
 	await expect(driver.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText('Read the Full Case Study');
 });
 
-test('Check section titles in "Industry-specific IoT Solutions" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const industrySpecificIoTSolutionsContainer = driver.getByTestId(
 		IoTEngineeringServices.IndustrySpecificIoTSolutions
 	);
-	const actualSectionTitles = await industrySpecificIoTSolutionsContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const actualSectionTitles = industrySpecificIoTSolutionsContainer.getByTestId(Container.SectionTitle);
 	const expectedSectionTitles = [
 		'AgriTech',
 		'Digital Transformation',
@@ -228,10 +175,10 @@ test('Check section titles in "Industry-specific IoT Solutions" container. @Regr
 		'Healthcare',
 	];
 
-	expect(actualSectionTitles.sort()).toEqual(expectedSectionTitles.sort());
+	await expect(actualSectionTitles).toHaveText(expectedSectionTitles);
 });
 
-test('Check section and block titles in "IoT Engineering Process" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check carousel section numbers and titles, section and block titles, and CTA in "IoT Engineering Process" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	const carouselSections = await ioTEngineeringProcessContainer.getByTestId(Container.CarouselSection).all();
 	const actualCarouselIndexesAndTitles: Map<string, string> = new Map();
@@ -274,32 +221,28 @@ test('Check section and block titles in "IoT Engineering Process" container. @Re
 	await expect(driver.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 });
 
-test('Check section titles and award images in "Our Approach to IoT Engineering" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles and award cards in "Our Approach to IoT Engineering" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ourApproachToIoTEngineeringContainer = driver.getByTestId(IoTEngineeringServices.OurApproachToIoTEngineering);
-	const actualSectionTitles = await ourApproachToIoTEngineeringContainer
-		.getByTestId(Container.SectionTitle)
-		.allInnerTexts();
+	const actualSectionTitles = ourApproachToIoTEngineeringContainer.getByTestId(Container.SectionTitle);
 	const expectedSectionTitles = ['Tech community', 'Ownership drives\nexcellence'];
 
-	expect(actualSectionTitles.sort()).toEqual(expectedSectionTitles.sort());
+	await expect(actualSectionTitles).toHaveText(expectedSectionTitles);
 
-	const awardCards = await ourApproachToIoTEngineeringContainer.getByTestId(Container.AwardCard).all();
+	const awardCards = ourApproachToIoTEngineeringContainer.getByTestId(Container.AwardCard);
 
-	for (const awardCard of awardCards) {
-		await expect(awardCard).toBeVisible();
-	}
+	await baseDriverSteps.checkImagesVisibility(awardCards, 2);
 });
 
-test('Check member names and roles in "Our Internet of Things Engineering Experts" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check member names and roles in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ourIoTEngineeringExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
-	const allMemberRoles = await ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberRole).allInnerTexts();
+	const allMemberRoles = ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
 		'CEO, Software Architect,\nRuns critical initiatives that make products grow',
 		'CTO, Software Architect,\nElaborates on the technology strategy',
 		'R&D Engineer, Software Engineering Lead,\nComes up with solutions for business tasks',
 	];
 
-	expect(allMemberRoles).toEqual(testDataRoles);
+	await expect(allMemberRoles).toHaveText(testDataRoles);
 
 	const allMemberNames = ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberName);
 	const testDataNames = [ExpertNames.IvanIeremenko, ExpertNames.OleksiiSvystun, ExpertNames.YevheniiKarachevtsev];
@@ -307,9 +250,9 @@ test('Check member names and roles in "Our Internet of Things Engineering Expert
 	await expect(allMemberNames).toHaveText(testDataNames);
 });
 
-test('Check section titles in "Related Services" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles in "Related Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
-	const allSectionTitles = await relatedServicesContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom software\ndevelopment',
 		'UX/UI Design',
@@ -319,19 +262,19 @@ test('Check section titles in "Related Services" container. @Regression @Interne
 		'Big Data & Analytics',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles in "FAQ" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check section titles in "FAQ" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);
-	const allSectionTitles = await faqContainer.getByTestId(Container.SectionTitle).allInnerTexts();
+	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Why choose Techstack for IoT engineering?',
 		'How does Techstack enhance the professional development of IoT engineers?',
 		'What is an enterprise IoT engineering service?',
 	];
 
-	expect(allSectionTitles.sort()).toEqual(testData.sort());
+	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test.afterAll(async () => {

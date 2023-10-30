@@ -8,19 +8,20 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
+import TechnologyStackData from '../../../../../preconditionsData/TechnologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
 });
 
-test("Check the info container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check the Info container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const info = driver.getByTestId(CloudDevelopment.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application\nDevelopment Services');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 });
 
-test("Check the container titles and numbers from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check the container titles and numbers from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const containers = [
 		driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ),
 		driver.getByTestId(CloudDevelopment.IndustrySpecificSolution),
@@ -51,7 +52,7 @@ test("Check the container titles and numbers from the 'Cloud Development' page @
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check section numbers and titles in 'Leverage Cloud Native Development Services' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section numbers and titles in "Leverage Cloud Native Development Services" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const leverageCloudNativeDevServContainer = driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ);
 	await expect(leverageCloudNativeDevServContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -73,7 +74,7 @@ test("Check section numbers and titles in 'Leverage Cloud Native Development Ser
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles, block title, image and CTA in 'Industry-Specific Solution' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section titles, block title, image and CTA in "Industry-Specific Solution" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.IndustrySpecificSolution);
 	const allSectionTitles = industrySpecificSolutionContainer.getByTestId(Container.SectionTitle);
 	const testData = ['High-load infrastructure', 'Data integrity', 'Scalability'];
@@ -90,7 +91,7 @@ test("Check section titles, block title, image and CTA in 'Industry-Specific Sol
 	);
 });
 
-test("Check section titles in 'Industries We Serve' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section titles in "Industries We Serve" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
 	const allSectionTitles = industriesWeServeContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -103,27 +104,14 @@ test("Check section titles in 'Industries We Serve' container from the 'Cloud De
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles in 'Technology stack' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section titles in "Technology stack" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const technologyStackContainer = driver.getByTestId(CloudDevelopment.TechnologyStack);
 	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
-	const testData = [
-		'Cloud Platforms',
-		'Operating System\nManagement\nand Configuration',
-		'Platform-as-a-Service\n(PaaS)',
-		'CI/CD and Automation',
-		'Infrastructure as Code\n(IaC)',
-		'Monitoring',
-		'Resources Orchestration\nand Management',
-		'Security',
-		'Specialized Services for AI,\nMachine Learning,\nData Streaming, etc.',
-		'Programming Languages',
-		'Collaboration\nand Source Control',
-	];
 
-	await expect(allSectionTitles).toHaveText(testData);
+	await expect(allSectionTitles).toHaveText(TechnologyStackData.DevOpsAndCloudTab);
 });
 
-test("Check section numbers, section titles and CTA in 'Cloud Computing Development Benefits' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section numbers and titles, and CTA in "Cloud Computing Development Benefits" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const cloudComputingDevBenefitsContainer = driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits);
 
 	await expect(cloudComputingDevBenefitsContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -152,13 +140,13 @@ test("Check section numbers, section titles and CTA in 'Cloud Computing Developm
 	);
 });
 
-test("Check award cards in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check award cards in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 	const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
 	await baseDriverSteps.checkImagesVisibility(awardCards, 3);
 });
 
-test("Check member names and roles, and CTA button in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check member names and roles, and CTA button in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const allMemberRoles = ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
@@ -183,7 +171,7 @@ test("Check member names and roles, and CTA button in 'Our Leading Cloud Experts
 	);
 });
 
-test("Check section titles in 'Related Services' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section titles in "Related Services" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
 	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -199,7 +187,7 @@ test("Check section titles in 'Related Services' container from the 'Cloud Devel
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check section titles in 'FAQ' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check section titles in "FAQ" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
 
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);

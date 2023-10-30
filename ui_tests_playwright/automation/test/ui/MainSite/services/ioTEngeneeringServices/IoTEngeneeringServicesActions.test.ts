@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
 });
 
-test('Check switching between layers in "IoT Technology Stack by Layers" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check switching between layers in "IoT Technology Stack by Layers" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTTechnologyStackByLayersContainer = driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers);
 	const layerButtons = await ioTTechnologyStackByLayersContainer.getByTestId(MainSiteButtons.Layer).all();
 	const containerBlocks = await ioTTechnologyStackByLayersContainer.getByTestId(Container.ContainerBlock).all();
@@ -37,7 +37,7 @@ test('Check switching between layers in "IoT Technology Stack by Layers" contain
 	}
 });
 
-test('Check redirect by "Read the full Case Study" button in "IoT Engineering Case Studies" container. @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check redirect by CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
 	await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 
@@ -46,14 +46,14 @@ test('Check redirect by "Read the full Case Study" button in "IoT Engineering Ca
 	);
 });
 
-test('Check redirect by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check redirect by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const industriesWeDevelopContainer = driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions);
 	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
 
 	const linksUrlMap = new Map([
 		[sections.getByTestId(MainSiteLinks.TransportAndLogistics), UrlProvider.urlBuilder(UrlPath.TransportAndLogist)],
-		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
 		[sections.getByTestId(MainSiteLinks.RenewableEnergy), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+		[sections.getByTestId(MainSiteLinks.Healthcare), UrlProvider.urlBuilder(UrlPath.Healthcare)],
 	]);
 
 	for (const [link, url] of linksUrlMap) {
@@ -61,12 +61,12 @@ test('Check redirect by links in "Industry-specific IoT Solutions" container fro
 	}
 });
 
-test('Check carousel buttons in "IoT Engineering Process" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check carousel buttons clicks in "IoT Engineering Process" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
 	await baseDriverSteps.checkCarouselArrowsClick(ioTEngineeringProcessContainer, 3);
 });
 
-test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check redirects by LinkedIn buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
 	const linkedInButtons = ourIoTExpertsContainer.getByTestId(Buttons.LinkedIn);
 
@@ -81,24 +81,23 @@ test('Check LinkedIn redirects in "Our Internet of Things Engineering Experts" c
 	}
 });
 
-test('Check Blog link redirects in "Our Internet of Things Engineering Experts" container. @Regression @IoTEngineeringServices @TSWEB-695, @TSWEB-1061', async () => {
-	const expertCards = await driver.getByTestId(Container.MemberCard).all();
+test('Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695, @TSWEB-1061', async () => {
+	const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
+	const blogButtons = ourIoTExpertsContainer.getByTestId(Buttons.Blog);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 
-	const expectedBlogLinks = [AuthorsEnum.IvanIeremenko, AuthorsEnum.OleksiiSvystun, AuthorsEnum.YevheniiKarachevtsev];
+	const buttonUrlMap = new Map([
+		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
+		[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+		[blogButtons.nth(2), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+	]);
 
-	for (let i = 0; i < expertCards.length; i++) {
-		const memberCard = expertCards[i];
-
-		await memberCard.getByTestId(Buttons.Blog).click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
-
-		await expect(newPage).toHaveURL(`${blogUri}${expectedBlogLinks[i]}`);
-		await newPage.close();
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
-test('Check redirects by arrows in "Related Services" container. @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check redirects by arrows in "Related Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 	const serviceArrows = await relatedServicesContainer.getByTestId(Container.Arrow).all();
 	const arrowUrlMap = new Map([
@@ -118,7 +117,7 @@ test('Check redirects by arrows in "Related Services" container. @Regression @Io
 test(
 	qase(
 		982,
-		'Check navigation to "Get in Touch" form after clicking "Request a quote" button in Info container. @Regression @IoTEngineeringServices @TSWEB-695'
+		'Check navigation to "Get in Touch" container after clicking after clicking CTA buttons from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const requestAQuoteButtons = [
@@ -135,7 +134,7 @@ test(
 	}
 );
 
-test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @IoTEngineeringServices @TSWEB-695', async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);
 	const expectedNumberOfSections = 3;
 

@@ -14,14 +14,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 });
 
-test("Check the header from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check Info section from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const info = driver.getByTestId(OurServices.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
-test("Check the container title and number from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check the container titles and numbers from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const containers = [
 		driver.getByTestId(OurServices.Services),
 		driver.getByTestId(OurServices.TechnologyStack),
@@ -43,7 +43,7 @@ test("Check the container title and number from the 'Our Services' block @Regres
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check section titles and numbers in 'Services' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check section titles and numbers in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const servicesContainer = driver.getByTestId(OurServices.Services);
 
 	await expect(servicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -74,7 +74,7 @@ test("Check section titles and numbers in 'Services' container from the 'Our Ser
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test("Check redirects by sections in 'Services' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check redirects by sections in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const servicesContainer = driver.getByTestId(OurServices.Services);
 	const servicresSections = servicesContainer.getByTestId(Container.ContainerSection);
 	const arrowUrlMap = new Map([
@@ -96,12 +96,12 @@ test("Check redirects by sections in 'Services' container from the 'Our Services
 	}
 });
 
-test("Check section titles and navigation bar in 'Technology stack' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check section titles and navigation bar in "Technology stack" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const technologyStackContainer = driver.getByTestId(OurServices.TechnologyStack);
 
 	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
 	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
-	const testDataSectionTitles = TechnologyStackData.SectionTitles;
+	const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
 	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
 		navigationTabs,
@@ -110,7 +110,7 @@ test("Check section titles and navigation bar in 'Technology stack' container fr
 	);
 });
 
-test("Check section titles and CTA button in 'Our approach' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check section titles and CTA button in "Our approach" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
 	const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
@@ -126,7 +126,7 @@ test("Check section titles and CTA button in 'Our approach' container from the '
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test("Check redirect by 'Clutch Review' buttons in 'Reviews' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check redirects by "Clutch Review" buttons in "Reviews" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const reviewsContainer = driver.getByTestId(OurServices.Reviews);
 	const clutchReviewButtons = reviewsContainer.getByTestId(Buttons.Clutch);
 
@@ -141,7 +141,7 @@ test("Check redirect by 'Clutch Review' buttons in 'Reviews' container from the 
 	}
 });
 
-test("Check section titles in 'FAQ' container from the 'Our Services' block @Regression @OurServices @TSWEB-681", async () => {
+test('Check section titles in "FAQ" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const faqContainer = driver.getByTestId(OurServices.Faq);
 
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);

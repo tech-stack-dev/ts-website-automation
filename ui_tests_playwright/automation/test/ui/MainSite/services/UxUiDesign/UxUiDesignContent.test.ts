@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
 
-test('Check the info container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test('Check the Info container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const info = driver.getByTestId(UxUiDesign.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 	await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');

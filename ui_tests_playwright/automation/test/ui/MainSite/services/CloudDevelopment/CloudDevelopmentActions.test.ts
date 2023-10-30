@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
 });
 
-test("Check redirect by 'Read Full Case Study' button in 'Industry-Specific Solution' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check redirect by CTA button in "Industry-Specific Solution" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.IndustrySpecificSolution);
 
 	await industrySpecificSolutionContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
@@ -30,7 +30,7 @@ test("Check redirect by 'Read Full Case Study' button in 'Industry-Specific Solu
 	);
 });
 
-test("Check redirect by links in 'Industries We Serve' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check redirect by links in "Industries We Serve" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
 	const sections = industriesWeServeContainer.getByTestId(Container.ContainerSection);
 
@@ -45,7 +45,7 @@ test("Check redirect by links in 'Industries We Serve' container from the 'Cloud
 	}
 });
 
-test("Check redirect to clutch in 'Our Approach to Cloud App Development' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check redirect by "Clutch Review" button in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 
 	await baseDriverSteps.checkRedirectToPage(
@@ -54,7 +54,7 @@ test("Check redirect to clutch in 'Our Approach to Cloud App Development' contai
 	);
 });
 
-test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check redirects by LinkedIn buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const linkedInButtons = ourLeadingCloudExperts.getByTestId(Buttons.LinkedIn);
 
@@ -70,8 +70,7 @@ test("Check redirects by LinkedIn buttons in 'Our Leading Cloud Experts' contain
 	}
 });
 
-// Unskip after blog will be stable
-test.skip("Check redirects by Blog buttons in 'Our Leading Cloud Experts' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692 @TSWEB-1061", async () => {
+test('Check redirects by Blog buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692 @TSWEB-1061', async () => {
 	const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
 	const blogButtons = ourLeadingCloudExperts.getByTestId(Buttons.Blog);
@@ -88,7 +87,7 @@ test.skip("Check redirects by Blog buttons in 'Our Leading Cloud Experts' contai
 	}
 });
 
-test("Check redirects by arrows in 'Related Services' container from the 'Cloud Development' page @Regression CloudDevelopment @TSWEB-692", async () => {
+test('Check redirects by arrows in "Related Services" container from the "Cloud Development" page @Regression CloudDevelopment @TSWEB-692', async () => {
 	const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
 	const arrows = relatedServicesContainer.getByTestId(Container.Arrow);
 
