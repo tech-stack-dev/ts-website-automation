@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 class FileSystemUtils {
-	// Function to read files recursively in a directory
 	readFilesRecursively(directoryPath: string, filter?: (filePath: string) => boolean): string[] {
 		try {
 			const strings: string[] = [];
@@ -13,7 +12,6 @@ class FileSystemUtils {
 				const stats = fs.statSync(filePath);
 
 				if (stats.isDirectory()) {
-					// Recursively read files in subdirectories
 					strings.push(...this.readFilesRecursively(filePath, filter));
 				} else if (stats.isFile() && (!filter || filter(filePath))) {
 					const fileContents = fs.readFileSync(filePath, 'utf-8');
@@ -23,12 +21,10 @@ class FileSystemUtils {
 
 			return strings;
 		} catch (error) {
-			console.error(`Error reading directory ${directoryPath}: ${error.message}`);
-			return [];
+			throw new Error(`Error reading directory ${directoryPath}: ${error.message}`);
 		}
 	}
 
-	// Function to find TypeScript files recursively in a directory
 	findTypeScriptFiles(directory: string): string[] {
 		try {
 			const fileNames: string[] = [];
@@ -39,21 +35,18 @@ class FileSystemUtils {
 				const stats = fs.statSync(filePath);
 
 				if (stats.isDirectory()) {
-					// Recursively find TypeScript files in subdirectories
 					fileNames.push(...this.findTypeScriptFiles(filePath));
 				} else if (stats.isFile() && filePath.endsWith('.ts')) {
-					fileNames.push(filePath); // Add the file name to the array
+					fileNames.push(filePath);
 				}
 			}
 
 			return fileNames;
 		} catch (error) {
-			console.error(`Error reading directory ${directory}: ${error.message}`);
-			return [];
+			throw new Error(`Error reading directory ${directory}: ${error.message}`);
 		}
 	}
 
-	// Function to extract locator values from strings
 	extractLocatorValues(strings: string[]): string[] {
 		const allValuesInDoubleQuotes: string[] = [];
 		const regex = /(\w+)\s*=\s*'([^']+)';/g;
