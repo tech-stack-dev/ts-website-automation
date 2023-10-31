@@ -27,5 +27,8 @@ jobs:
       - name: Move to tests folder
         run: cd ui_tests_playwright
 
+      - name: show path again
+        run: pwd
+
       - name: Run Unit Tests
         run: npm run unit-tests
