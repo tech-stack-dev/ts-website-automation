@@ -38,7 +38,6 @@ function checkFilesRecursively(root: string): string[] {
 
 	function checkRecursively(currentPath: string) {
 		const fileNames = fs.readdirSync(currentPath);
-
 		for (const file of fileNames) {
 			const filePath = path.join(currentPath, file);
 
