@@ -5,7 +5,7 @@ import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import HowWeWork from '../../../../identifiers/mainSite/pages/company/HowWeWork';
 import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
-import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
+import TechnologyStackData from '../../../../preconditionsData/technologyStacks/TechnologyStackData';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Buttons from '../../../../identifiers/Buttons';
