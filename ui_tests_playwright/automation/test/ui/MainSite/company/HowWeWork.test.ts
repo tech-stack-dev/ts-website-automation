@@ -67,12 +67,12 @@ test('Check the "Work process" container title and number and carousel from the 
 	await baseDriverSteps.checkCarouselArrowsClick(workProcessContainer);
 });
 
-test('Check the "Technology stack" container from the "How we work" page @Regression @HowWeWork', async () => {
+test('Check section titles and navigation bar in "Technology stack" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const technologyStackContainer = driver.getByTestId(HowWeWork.TechnologyStack);
 
 	const navigationTabs = await TechnologyStackData.getTechnologyStackTabs(technologyStackContainer);
 	const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
-	const testDataSectionTitles = TechnologyStackData.SectionTitles;
+	const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
 	await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
 		navigationTabs,
@@ -109,7 +109,7 @@ test('Check the elements in "Get in Touch" container from the "How we work" page
 	await expect(getInTouchContainer.getByTestId(Buttons.Send)).toBeVisible();
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA button from the "Consulting service" page @Regression @ConsultingService @TSWEB-697', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "How we work" page @Regression @HowWeWork', async () => {
 	const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
 
 	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, HowWeWork.GetInTouch);
