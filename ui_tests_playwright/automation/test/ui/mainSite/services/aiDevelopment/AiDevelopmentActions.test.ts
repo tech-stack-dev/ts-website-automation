@@ -93,7 +93,7 @@ test('Check redirect by "Clutch Review" button in "Our Approach" container from 
 	);
 });
 
-test('Check redirect by arrows in "Related services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check redirect by arrows in "Related Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const relatedServicesContainer = driver.getByTestId(AiDevelopment.RelatedServices);
 	const arrows = relatedServicesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([

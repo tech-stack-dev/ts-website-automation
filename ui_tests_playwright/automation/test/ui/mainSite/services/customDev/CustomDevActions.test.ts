@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
-test("Check redirect by link in 'Techstack’s Strengths in Custom Software Development' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
 
 	await baseDriverSteps.checkRedirectToPage(
@@ -28,7 +28,7 @@ test("Check redirect by link in 'Techstack’s Strengths in Custom Software Deve
 	);
 });
 
-test("Check redirects by arrows in 'Custom Development Services We Provide' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirects by arrows in "Custom Development Services We Provide" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 
 	const containerSection = servicesWeProvide.getByTestId(Container.ContainerSection);
@@ -53,7 +53,7 @@ test("Check redirects by arrows in 'Custom Development Services We Provide' cont
 	}
 });
 
-test("Check redirect by 'Read More' button in 'Our Featured Case Study' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirect by CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
 
 	await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore).click();
@@ -62,7 +62,7 @@ test("Check redirect by 'Read More' button in 'Our Featured Case Study' containe
 	);
 });
 
-test("Check redirect by links in 'Industries We Develop Software For' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirect by links in "Industries We Develop Software For" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
 	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
 
@@ -77,7 +77,7 @@ test("Check redirect by links in 'Industries We Develop Software For' container 
 	}
 });
 
-test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirects by "Clutch Review" buttons in "Why Choose Techstack" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
 	const clutchReviewButtons = whyChooseTechstackContainer.getByTestId(Buttons.Clutch);
 
@@ -91,43 +91,51 @@ test("Check redirect by 'Clutch Review' buttons in 'Why Choose Techstack' contai
 	}
 });
 
-// Unskip after Blog will be stable
-test.skip("Check social link redirects in 'Custom Software Development Experts' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
-	const devExperts = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
-	const memberCards = devExperts.getByTestId(Container.MemberCard);
-
+test('Check redirects by LinkedIn buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
+	const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const memberCards = customDeveExpertsContainer.getByTestId(Container.MemberCard);
 	const numOfMembers = 7;
 
 	await expect(memberCards).toHaveCount(numOfMembers);
 
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
-	const expectedMemberCardsLinks: {blogLink: string; linkedInLink: string}[] = [
-		{blogLink: blogUri + AuthorsEnum.IvanIeremenko, linkedInLink: ExpertsLinkedInLinks.IvanIeremenko},
-		{blogLink: blogUri + AuthorsEnum.OleksiiSvystun, linkedInLink: ExpertsLinkedInLinks.OleksiiSvystun},
-		{blogLink: blogUri + AuthorsEnum.VitaliiDolotov, linkedInLink: ExpertsLinkedInLinks.VitaliiDolotov},
-		{blogLink: blogUri + AuthorsEnum.IvanYeremenko, linkedInLink: ExpertsLinkedInLinks.IvanYeremenko},
-		{blogLink: blogUri + AuthorsEnum.YevheniiKarachevtsev, linkedInLink: ExpertsLinkedInLinks.YevheniiKarachevtsev},
-		{blogLink: blogUri + AuthorsEnum.DmytroDytiuk, linkedInLink: ExpertsLinkedInLinks.DmytroDytiuk},
-		{blogLink: blogUri + AuthorsEnum.DmytroShtapauk, linkedInLink: ExpertsLinkedInLinks.DmytroShtapauk},
-	];
+	const linkedInButtons = customDeveExpertsContainer.getByTestId(Buttons.LinkedIn);
 
-	for (let i = 0; i < numOfMembers; i++) {
-		const memberCard = memberCards.nth(i);
+	const buttonUrlMap = new Map([
+		[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
+		[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
+		[linkedInButtons.nth(2), ExpertsLinkedInLinks.VitaliiDolotov],
+		[linkedInButtons.nth(3), ExpertsLinkedInLinks.IvanYeremenko],
+		[linkedInButtons.nth(4), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+		[linkedInButtons.nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
+		[linkedInButtons.nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
+	]);
 
-		await memberCard.getByTestId(Buttons.Blog).click();
-		let newPage = await driver.DriverContext.waitForEvent('page');
-
-		await expect(newPage).toHaveURL(expectedMemberCardsLinks[i].blogLink);
-		await newPage.close();
-
-		await memberCard.getByTestId(Buttons.LinkedIn).click();
-		newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(expectedMemberCardsLinks[i].linkedInLink);
-		await newPage.close();
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
 
-test("Check carousel arrows from the 'Custom Software Development Process' container from the 'Custom Software Development' block @Regression @CustomDev @TSWEB-672", async () => {
+test('Check redirects by Blog buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672 @TSWEB-1061', async () => {
+	const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
+	const blogButtons = customDeveExpertsContainer.getByTestId(Buttons.Blog);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+
+	const buttonUrlMap = new Map([
+		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
+		[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+		[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VitaliiDolotov}`],
+		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+		[blogButtons.nth(4), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+		[blogButtons.nth(5), `${blogUri}${AuthorsEnum.DmytroDytiuk}`],
+		[blogButtons.nth(6), `${blogUri}${AuthorsEnum.DmytroShtapauk}`],
+	]);
+
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url);
+	}
+});
+
+test('Check carousel arrows clicks in "Custom Software Development Process" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(devProcessContainer);

@@ -111,7 +111,7 @@ class BaseDriverSteps {
 			await expect(currentBlock).toHaveClass(/--active/);
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
-			expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
+			await expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 		}
 	}
 

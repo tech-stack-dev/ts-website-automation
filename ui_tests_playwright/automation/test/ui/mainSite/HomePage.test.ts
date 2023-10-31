@@ -7,23 +7,37 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {driver} from '../../../base/driver/Driver';
 import UrlPath from '../../../providers/UrlPath';
 import MainSiteButtons from '../../../identifiers/mainSite/MainSiteButtons';
-import {LinkedInReviewsLinks} from '../../../preconditionsData/links/LinkedInReviewsLinks';
+import {LinkedInReviewLinks} from '../../../preconditionsData/links/LinkedInReviewLinks';
+import MainSiteImages from '../../../identifiers/mainSite/MainSiteImages';
+import MainSiteLinks from '../../../identifiers/mainSite/MainSiteLinks';
+import Links from '../../../preconditionsData/links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 });
 
-test("Check the header from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
-	const info = driver.getByTestId(HomePage.Info);
-	await expect(info.getByTestId(Container.Title)).toHaveText('Make\nan impact');
+test('Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061', async () => {
+	const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
+	const ctaButton = enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
+
+	await expect(ctaButton).toHaveText('Enhance Healthcare Strategy: Free Cloud Guide');
+
+	await ctaButton.click();
+	expect(driver.Page.url()).toBe(UrlProvider.urlBuilder(UrlPath.Whitepapers));
 });
 
-test("Check the container title and number from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check the Info container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
+	const infoContainer = driver.getByTestId(HomePage.Info);
+	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
+});
+
+test('Check the container titles and numbers from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const containers = [
 		driver.getByTestId(HomePage.IndustriesWeServe),
 		driver.getByTestId(HomePage.WhatWeDo),
 		driver.getByTestId(HomePage.PartnerTestimonials),
 		driver.getByTestId(HomePage.CaseStudies),
+		driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide),
 		driver.getByTestId(HomePage.OurPartners),
 		driver.getByTestId(HomePage.CompanyInsights),
 		driver.getByTestId(HomePage.GetInTouch),
@@ -34,6 +48,7 @@ test("Check the container title and number from the 'Home' page @Regression @Hom
 		['What we do', '02'],
 		['Partner testimonials', '03'],
 		['Case studies', '04'],
+		['Working with\nBusinesses Worldwide', '05'],
 		['Our partners', '06'],
 		['Company insights', '07'],
 		['Get in Touch', '08'],
@@ -42,7 +57,7 @@ test("Check the container title and number from the 'Home' page @Regression @Hom
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test("Check section titles in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check section titles in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const industriesWeServe = driver.getByTestId(HomePage.IndustriesWeServe);
 	const allBlockTitles = industriesWeServe.getByTestId(Container.BlockTitle);
 	const testData = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
@@ -50,7 +65,7 @@ test("Check section titles in 'Industries we serve' block from the 'Home' page @
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check redirects by blocks in 'Industries we serve' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check redirects by blocks in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
 	const containerSection = industriesServicesContainer.getByTestId(Container.ContainerBlock);
 	const blockUrlMap = new Map([
@@ -64,7 +79,7 @@ test("Check redirects by blocks in 'Industries we serve' block from the 'Home' p
 	}
 });
 
-test("Check section titles in 'What we do' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check section titles in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const whatWeDo = driver.getByTestId(HomePage.WhatWeDo);
 	const allBlockTitles = whatWeDo.getByTestId(Container.BlockTitle);
 	const testData = [
@@ -84,21 +99,21 @@ test("Check section titles in 'What we do' block from the 'Home' page @Regressio
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check redirects by arrows in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
-	const containerSection = whatWeDoContainer.getByTestId(Container.ContainerBlock);
+	const arrows = whatWeDoContainer.getByTestId(Container.ContainerBlock).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([
-		[containerSection.nth(0).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[containerSection.nth(1).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
-		[containerSection.nth(2).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(3).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[containerSection.nth(4).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(5).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[containerSection.nth(6).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
-		[containerSection.nth(7).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-		[containerSection.nth(8).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[containerSection.nth(9).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[containerSection.nth(10).getByTestId(Container.Arrow), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
+		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
+		[arrows.nth(7), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
+		[arrows.nth(8), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[arrows.nth(9), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[arrows.nth(10), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
@@ -106,7 +121,7 @@ test("Check redirects by arrows in 'What we do' block from the 'Home' page @Regr
 	}
 });
 
-test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check redirect by "LinkedIn Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
 
 	const linkedInButtons = await partnerTestimonialsContainer.getByTestId(MainSiteButtons.LinkedInReviewArrow).all();
@@ -115,8 +130,8 @@ test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block
 	expect(await linkedInReviewsTab.getAttribute('class')).toContain('active');
 
 	const buttonMap = new Map([
-		[linkedInButtons[0], LinkedInReviewsLinks.GrahamBrown],
-		[linkedInButtons[1], LinkedInReviewsLinks.MackenzieDaisley],
+		[linkedInButtons[0], LinkedInReviewLinks.GrahamBrown],
+		[linkedInButtons[1], LinkedInReviewLinks.MackenzieDaisley],
 	]);
 
 	for (const [button, url] of buttonMap) {
@@ -124,7 +139,7 @@ test("Check redirect by 'LinkedIn Review' button in 'Partner testimonials' block
 	}
 });
 
-test("Check redirect by 'Clutch Review' button in 'Partner testimonials' container from the 'Home' page @Regression @HomePage @TSWEB-1006", async () => {
+test('Check redirect by "Clutch Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
 	const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
 
 	const clutchReviewButton = partnerTestimonialsContainer.getByTestId(MainSiteButtons.ClutchReviews);
@@ -145,16 +160,36 @@ test("Check redirect by 'Clutch Review' button in 'Partner testimonials' contain
 		await baseDriverSteps.checkRedirectToPage(button, url);
 	}
 });
-// Unskip after Blog will be stable
-test.skip("Check 'See All News' button from the 'Company insights' block on the 'Home' page @Regression @HomePage @TSWEB-1006 @TSWEB-1061", async () => {
-	const companyInsightsblock = driver.getByTestId(HomePage.CompanyInsights);
-	const seeAllNewsButton = companyInsightsblock.getByTestId(MainSiteButtons.SeeAllNews);
+
+test('Check images in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
+	const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
+	const bigNumberImages = workingWithBusinessesContainer.getByTestId(MainSiteImages.BigNumber);
+
+	await baseDriverSteps.checkImagesVisibility(bigNumberImages, 3);
+
+	await expect(workingWithBusinessesContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
+});
+
+test('Check redirect by link in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
+	const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
+	const clutchLink = workingWithBusinessesContainer.getByTestId(MainSiteLinks.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchLink, Links.ClutchHighlights);
+});
+
+test('Check partner logos in "Our partners" container from the "Home" page @Regression @HomePage @TSWEB-1006', async () => {
+	const ourPartnersContainer = driver.getByTestId(HomePage.OurPartners);
+	const partnerLogos = ourPartnersContainer.getByTestId(Container.PartnerLogo);
+
+	await baseDriverSteps.checkImagesVisibility(partnerLogos, 10);
+});
+
+test('Check "See All News" button from the "Company insights" container on the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061', async () => {
+	const companyInsightsContainer = driver.getByTestId(HomePage.CompanyInsights);
+	const seeAllNewsButton = companyInsightsContainer.getByTestId(MainSiteButtons.SeeAllNews);
 
 	await expect(seeAllNewsButton).toHaveText('See All News');
-	await seeAllNewsButton.click();
-	const newPage = await driver.DriverContext.waitForEvent('page');
-
-	expect(newPage.url()).toContain(UrlPath.Blog);
+	await baseDriverSteps.checkRedirectToPage(seeAllNewsButton, UrlPath.Blog);
 });
 
 test.afterEach(async () => {

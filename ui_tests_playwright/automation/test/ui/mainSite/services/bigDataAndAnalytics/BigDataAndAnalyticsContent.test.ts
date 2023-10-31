@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
 });
 
-test('Check the info container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
+test('Check the Info container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693', async () => {
 	const info = driver.getByTestId(BigDataAndAnalytics.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');

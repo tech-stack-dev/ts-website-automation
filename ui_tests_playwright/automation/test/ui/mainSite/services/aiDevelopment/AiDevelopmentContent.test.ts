@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
 });
 
-test('Check the info container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+test('Check the Info container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
 	const info = driver.getByTestId(AiDevelopment.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');
 	await expect(info.getByTestId(Container.Title)).toHaveText('AI Development Services');

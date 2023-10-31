@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
 });
 
-test('Check redirect by "More product details" button in "Industry-Specific Solution" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check redirect by CTA button in "Industry-Specific Solution" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const industrySpecificSolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
 
 	await industrySpecificSolutionContainer.getByTestId(MainSiteButtons.MoreProductDetails).click();
@@ -54,7 +54,7 @@ test('Check redirect by links in "What Industries We Serve" container from the "
 	}
 });
 
-test('Check redirects by Clutch buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check redirects by "Clutch Review" buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
 	const clutchButtons = await ourApproachContainer.getByTestId(Buttons.Clutch).all();
 
@@ -68,7 +68,7 @@ test('Check redirects by Clutch buttons in "Our Approach to Mobile App Developme
 	}
 });
 
-test('Check carousel arrows in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check carousel arrows clicks in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
 
 	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, 3);

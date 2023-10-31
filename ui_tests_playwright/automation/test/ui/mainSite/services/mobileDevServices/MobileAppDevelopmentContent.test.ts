@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
 });
 
-test('Check the info container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check the Info container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const info = driver.getByTestId(MobileDevService.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nMobile App Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Custom Mobile App\nDevelopment Services');
@@ -143,7 +143,7 @@ test('Check section titles and images in "Our Approach to Mobile App Development
 	await baseDriverSteps.checkImagesVisibility(bigNumberImages, 3);
 });
 
-test('Check carousel section titles in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check carousel section numbers and titles in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
 	const carousel = mobileAppDevProcessContainer.getByTestId(Container.ContainerCarousel);
 	await expect(carousel.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);

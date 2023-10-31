@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../../providers/UrlPath';
@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
 
-test('Check redirect to clutch in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test('Check redirect by "Clutch Review" button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
 	await baseDriverSteps.checkRedirectToPage(
@@ -29,7 +29,7 @@ test('Check redirect to clutch in "Success Stories" container from the "UX/UI De
 	);
 });
 
-test('Check redirect by "Read Full Case Studies" button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test('Check redirect by CTA button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
 	await successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies).click();
@@ -41,7 +41,7 @@ test('Check redirect by "Read Full Case Studies" button in "Success Stories" con
 	);
 });
 
-test('Check carousel clicks in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test('Check carousel arrows clicks in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
 
 	await baseDriverSteps.checkCarouselArrowsClick(typicalUxUiDesignWorkflowContainer);
@@ -76,16 +76,12 @@ test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Produ
 	}
 });
 
-// Unskip after Blog will be stable
-test.skip('Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061', async () => {
+test('Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
-	await weNeverStopImprovingContainer.getByTestId(Buttons.Blog).click();
+	const blogButton = weNeverStopImprovingContainer.getByTestId(Buttons.Blog);
+	const url = UrlProvider.urlBuilder(`${UrlPath.AuthorPage}${AuthorsEnum.DmytroDytiuk}`, Environment.Production);
 
-	const newPage = await driver.DriverContext.waitForEvent('page');
-	expect(newPage.url()).toEqual(
-		UrlProvider.urlBuilder(`${UrlPath.AuthorPage}${AuthorsEnum.DmytroDytiuk}`, Environment.Production)
-	);
-	await newPage.close();
+	await baseDriverSteps.checkRedirectToPage(blogButton, url);
 });
 
 test('Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
