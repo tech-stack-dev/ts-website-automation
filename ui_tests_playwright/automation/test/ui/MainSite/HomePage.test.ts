@@ -7,7 +7,7 @@ import UrlProvider from '../../../providers/UrlProvider';
 import {driver} from '../../../base/driver/Driver';
 import UrlPath from '../../../providers/UrlPath';
 import MainSiteButtons from '../../../identifiers/MainSite/MainSiteButtons';
-import {LinkedInReviewLinks} from '../../../preconditionsData/Links/linkedInReviewLinks';
+import {LinkedInReviewLinks} from '../../../preconditionsData/Links/LinkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
