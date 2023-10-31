@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      -name: show path
+      - name: show path
         run: pwd
 
       - name: Move to tests folder
