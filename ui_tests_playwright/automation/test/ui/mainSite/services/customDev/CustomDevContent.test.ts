@@ -6,9 +6,9 @@ import {CustomDev} from '../../../../../identifiers/mainSite/pages/services/Cust
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import TechnologyStackData from '../../../../../preconditionsData/technologyStacks/TechnologyStackData';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));

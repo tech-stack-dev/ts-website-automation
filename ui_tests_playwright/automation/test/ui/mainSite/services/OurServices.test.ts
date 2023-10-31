@@ -8,7 +8,7 @@ import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
-import TechnologyStackData from '../../../../preconditionsData/technologyStacks/TechnologyStackData';
+import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
