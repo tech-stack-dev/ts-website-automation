@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      -name: show path
+        run: pwd
+
       - name: Move to tests folder
         run: cd ui_tests_playwright
 
