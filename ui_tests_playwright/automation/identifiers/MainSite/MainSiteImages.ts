@@ -10,6 +10,7 @@ export default class MainSiteImages {
 	static MedicalDashboard = 'Img-Dashboard';
 	static IncorporatingAiMl = 'Img-IncorporatingAiMl';
 	static FeaturedCaseStudy = 'Img-FeaturedCaseStudy';
+	static SuccessStories = 'Img-SuccessStories';
 
 	// Big numbers on site, presented as images
 	static BigNumber = 'Img-BigNumbers';
