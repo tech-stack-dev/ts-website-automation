@@ -2,14 +2,14 @@ import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import CareerButtons from '../../../../identifiers/Careers/CareerButtons';
+import CareerButtons from '../../../../identifiers/career/CareerButtons';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {slackSteps} from '../../../../steps/api/SlackSteps';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
-import Navigation from '../../../../identifiers/Careers/Navigation';
+import Navigation from '../../../../identifiers/career/Navigation';
 import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
