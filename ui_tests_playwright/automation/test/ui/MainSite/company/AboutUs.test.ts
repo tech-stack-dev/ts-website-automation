@@ -12,7 +12,7 @@ import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/Links/ClutchReviewLinks';
-import {LinkedInReviewLinks} from '../../../../preconditionsData/Links/LinkedInReviewLinks';
+import {LinkedInReviewsLinks} from '../../../../preconditionsData/Links/LinkedInReviewsLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
@@ -182,8 +182,8 @@ test('Check redirect by "LinkedIn Review" button in "Shoutout from our partners"
 	expect(await linkedInReviewsTab.getAttribute('class')).toContain('active');
 
 	const buttonMap = new Map([
-		[linkedInButtons[0], LinkedInReviewLinks.FerdiVanHeerden],
-		[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown],
+		[linkedInButtons[0], LinkedInReviewsLinks.FerdiVanHeerden],
+		[linkedInButtons[1], LinkedInReviewsLinks.GrahamBrown],
 	]);
 
 	for (const [button, url] of buttonMap) {
