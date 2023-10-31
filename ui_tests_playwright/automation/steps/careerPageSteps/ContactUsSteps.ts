@@ -2,7 +2,7 @@ import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
 import Buttons from '../../identifiers/Buttons';
 import ContactUsForm from '../../identifiers/forms/ContactUsForm';
-import ContactUsPage from '../../pages/CareerSite/ContactUsPage';
+import ContactUsPage from '../../pages/CareerSites/ContactUsPage';
 import {formSteps} from '../ui/FormSteps';
 
 class ContactUsSteps {

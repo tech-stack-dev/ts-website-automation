@@ -3,14 +3,14 @@ import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import Container from '../../../../identifiers/Container';
-import MainSiteButtons from '../../../../identifiers/MainSite/MainSiteButtons';
-import Healthcare from '../../../../identifiers/MainSite/pages/industries/Healthcare';
+import MainSiteButtons from '../../../../identifiers/MainSites/MainSiteButtons';
+import Healthcare from '../../../../identifiers/MainSites/pages/industries/Healthcare';
 import {Environment} from '../../../../providers/EnvProvider';
 import SlackProvider from '../../../../providers/SlackProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {googleAnalyticsSteps} from '../../../../steps/api/GoogleAnalyticsSteps';
-import RelatedArticles from '../../../../identifiers/MainSite/RelatedArticles';
+import RelatedArticles from '../../../../identifiers/MainSites/RelatedArticles';
 import {stringUtils} from '../../../../utils/StringUtils';
 
 const pageUrl: string = UrlProvider.urlBuilder(UrlPath.Healthcare, Environment.Production);

@@ -1,0 +1,176 @@
+import {expect, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
+import UrlProvider from '../../../../providers/UrlProvider';
+import UrlPath from '../../../../providers/UrlPath';
+import QaAsAService from '../../../../identifiers/MainSites/pages/services/QaAsAService';
+import Container from '../../../../identifiers/Container';
+import MainSiteButtons from '../../../../identifiers/MainSites/MainSiteButtons';
+import Links from '../../../../preconditionsData/Link/Links';
+
+test.beforeEach(async () => {
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.QaAsAServ));
+});
+
+test("Check the header from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const info = driver.getByTestId(QaAsAService.Info);
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nQA as a Service');
+	await expect(info.getByTestId(Container.Title)).toHaveText('QA as a Service — Vetted Experts Available on Demand');
+});
+
+test("Check 'Request a Quote' buttons on the 'QA as a Service' page @Regression @ConsultingService @TSWEB-603", async () => {
+	const containers = [QaAsAService.Info, QaAsAService.OurApproachAndAchievements];
+
+	for (const container of containers) {
+		expect(driver.getByTestId(container).getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+	}
+});
+
+test("Check the container title and number from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const containers = [
+		driver.getByTestId(QaAsAService.WhatIsQaAsAService),
+		driver.getByTestId(QaAsAService.WhoIsThisServiceFor),
+		driver.getByTestId(QaAsAService.Services),
+		driver.getByTestId(QaAsAService.CaseStudies),
+		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre),
+		driver.getByTestId(QaAsAService.OurApproachAndAchievements),
+		driver.getByTestId(QaAsAService.GetInTouch),
+		driver.getByTestId(QaAsAService.RelatedArticles),
+		driver.getByTestId(QaAsAService.Faq),
+	];
+
+	const expectedData = [
+		['What is QA \nas a Service?', '01'],
+		['Who is this \nservice for', '02'],
+		['Services', '03'],
+		['Case studies: \nQA as a Service', '04'],
+		['Services that \nmeet you where \nyou are', '05'],
+		['Our Approach \nand Achievements', '06'],
+		['Get in Touch', '07'],
+		['Related Articles', '08'],
+		['FAQ', '09'],
+	];
+
+	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+});
+
+test("Check the sections of the containers from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const whoIsThisServiceFor = driver.getByTestId(QaAsAService.WhoIsThisServiceFor);
+	await expect(whoIsThisServiceFor.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+		'06',
+	]);
+
+	const servicesThatMeetYouWhereYouAre = driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre);
+	await expect(servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+	]);
+	await expect(servicesThatMeetYouWhereYouAre.getByTestId(Container.SectionTitle)).toHaveText([
+		'Web',
+		'Mobile',
+		'Desktop',
+		'API & Web Services',
+	]);
+
+	const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
+	await expect(ourApproachAndAchievements.getByTestId(Container.SectionTitle)).toHaveText([
+		'Open Source \nContributions',
+		'Global \nCertifications',
+		'Profound \nExperience',
+	]);
+
+	const faq = driver.getByTestId(QaAsAService.Faq);
+	await expect(faq.getByTestId(Container.SectionTitle)).toHaveText([
+		'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
+		'Is QA as a service better\nthan a QA service?',
+		'We have an in-house QA\nteam. Why do we need your\nregression testing services?',
+		'Should we hire a\ntesting team or set up\nQA processes first?',
+		'What is crowdtesting?\nHow is it different from\nQA as a service?',
+		'Why is integrating QA\nprocesses into the CI/CD\nprocess important?',
+	]);
+});
+
+test("Check the 'Services' blocks from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const services = driver.getByTestId(QaAsAService.Services);
+	const containerBlocks = await services.getByTestId(Container.ContainerBlock).all();
+
+	await expect(containerBlocks[0].getByTestId(Container.BlockTitle)).toHaveText('Regression testing on demand');
+	await expect(containerBlocks[0].getByTestId(Container.SectionTitle)).toHaveText([
+		'When it is applicable',
+		'Required input',
+		'QA service output',
+		'Service flow',
+	]);
+
+	await expect(containerBlocks[1].getByTestId(Container.BlockTitle)).toHaveText('Exploratory and usability testing');
+	await expect(containerBlocks[1].getByTestId(Container.SectionTitle)).toHaveText([
+		'When it is applicable',
+		'Required input',
+		'QA service output',
+		'Service flow',
+	]);
+
+	await expect(containerBlocks[2].getByTestId(Container.BlockTitle)).toHaveText(
+		'Testing processes setup from scratch'
+	);
+	await expect(containerBlocks[2].getByTestId(Container.SectionTitle)).toHaveText([
+		'When it is applicable',
+		'Required input',
+		'QA service output',
+		'Service flow',
+	]);
+
+	await expect(containerBlocks[3].getByTestId(Container.BlockTitle)).toHaveText(
+		'Auditing existing company QA processes'
+	);
+	await expect(containerBlocks[3].getByTestId(Container.SectionTitle)).toHaveText([
+		'When it is applicable',
+		'Required input',
+		'QA service output',
+	]);
+
+	await expect(containerBlocks[4].getByTestId(Container.BlockTitle)).toHaveText(
+		'Testing automation and integrating CI/CD'
+	);
+	await expect(containerBlocks[4].getByTestId(Container.SectionTitle)).toHaveText([
+		'When it is applicable',
+		'Required input',
+		'QA service output',
+		'Service flow',
+	]);
+});
+
+test("Check redirect by arrow in 'Our Approach and Achievements' block from the 'QA as a Service' block @Regression @QaAsAService @TSWEB-603", async () => {
+	const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
+
+	await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
+});
+
+test('Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {
+	const faqContainer = driver.getByTestId(QaAsAService.Faq);
+	const expectedNumberOfSections = 6;
+
+	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+});
+
+test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {
+	const ctaButtons = [
+		driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(MainSiteButtons.RequestAQuote),
+	];
+
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, QaAsAService.GetInTouch);
+	}
+});
+
+test.afterEach(async () => {
+	await driver.closeDrivers();
+});

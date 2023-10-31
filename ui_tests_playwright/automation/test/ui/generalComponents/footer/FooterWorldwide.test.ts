@@ -11,7 +11,7 @@ import {containerSteps} from '../../../../steps/components/container/ContainerSt
 import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import Links from '../../../../preconditionsData/Links/Links';
+import Links from '../../../../preconditionsData/Link/Links';
 
 let footer: Locator;
 const testDataProvider: string[] = [
