@@ -46,7 +46,7 @@ test('Check redirect by CTA button in "IoT Engineering Case Studies" container f
 	);
 });
 
-test('Check redirect by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
+test('Check redirects by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const industriesWeDevelopContainer = driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions);
 	const sections = industriesWeDevelopContainer.getByTestId(Container.ContainerSection);
 
@@ -117,7 +117,7 @@ test('Check redirects by arrows in "Related Services" container from the "Intern
 test(
 	qase(
 		982,
-		'Check navigation to "Get in Touch" container after clicking after clicking CTA buttons from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const requestAQuoteButtons = [
