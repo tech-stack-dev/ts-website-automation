@@ -21,5 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Move to tests folder
+        run: cd ui_tests_playwright
+
       - name: Run Unit Tests
-        run: npx jest
+        run: npm run unit-tests
