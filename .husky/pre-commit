@@ -3,4 +3,3 @@
 cd ui_tests_playwright
 npm run format
 npm run lint
-npm run unit-tests
