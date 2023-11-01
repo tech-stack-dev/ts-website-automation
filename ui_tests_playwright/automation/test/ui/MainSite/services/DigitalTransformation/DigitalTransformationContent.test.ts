@@ -1,25 +1,25 @@
 import {expect, test} from '@playwright/test';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { driver } from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import MainSiteButtons from '../../../../../identifiers/MainSite/MainSiteButtons';
 import UrlPath from '../../../../../providers/UrlPath';
 import DigitalTransformation from '../../../../../identifiers/MainSite/pages/services/DigitalTransformation';
 import Container from '../../../../../identifiers/Container';
-import MainSiteImages from '../../../../../identifiers/MainSite/MainSiteImages';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.DigitalTransform));
 });
 
-test('Check the Info container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check the Info container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const info = driver.getByTestId(DigitalTransformation.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDigital Transformation');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Digital Transformation\nServices');
 	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 });
 
-test('Check the container titles and numbers from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check the container titles and numbers from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const containers = [
 		driver.getByTestId(DigitalTransformation.OurAchievementsInITTransformation),
 		driver.getByTestId(DigitalTransformation.DigitalBusinessTransformation),
@@ -29,7 +29,7 @@ test('Check the container titles and numbers from the "Digital Transformation Se
 		driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy),
 		driver.getByTestId(DigitalTransformation.HowTechstackInfluence),
 		driver.getByTestId(DigitalTransformation.DigitalTransformationProductMap),
-        driver.getByTestId(DigitalTransformation.TechnologyTransformationWorkflow),
+		driver.getByTestId(DigitalTransformation.TechnologyTransformationWorkflow),
 		driver.getByTestId(DigitalTransformation.GetInTouch),
 		driver.getByTestId(DigitalTransformation.RelatedArticles),
 		driver.getByTestId(DigitalTransformation.Faq),
@@ -53,18 +53,29 @@ test('Check the container titles and numbers from the "Digital Transformation Se
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check section titles in "Our Achievements in IT Transformation Services" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles in "Our Achievements in IT Transformation Services" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const ourAchievementsContainer = driver.getByTestId(DigitalTransformation.OurAchievementsInITTransformation);
 	const allSectionTitles = ourAchievementsContainer.getByTestId(Container.SectionTitle);
-	const testDataSectionTitles = ['Our partner grew from 10 to 60 with our expertise', 'Mobile app & IoT device in 1 month', 'From MVP to unicorn in 7 years'];
+	const testDataSectionTitles = [
+		'Our partner grew from 10 to 60 with our expertise',
+		'Mobile app & IoT device in 1 month',
+		'From MVP to unicorn in 7 years',
+	];
 
 	await expect(allSectionTitles).toHaveText(testDataSectionTitles);
 });
 
-test('Check section numbers and titles in "Digital Business Transformation Services" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
- 	const digitalBusinessTransformationContainer = driver.getByTestId(DigitalTransformation.DigitalBusinessTransformation);
+test('Check section numbers, titles and CTA button text in "Digital Business Transformation Services" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+	const digitalBusinessTransformationContainer = driver.getByTestId(
+		DigitalTransformation.DigitalBusinessTransformation
+	);
 
-	await expect(digitalBusinessTransformationContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
+	await expect(digitalBusinessTransformationContainer.getByTestId(Container.SectionNumber)).toHaveText([
+		'01',
+		'02',
+		'03',
+		'04',
+	]);
 
 	const allSectionTitles = digitalBusinessTransformationContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -75,9 +86,12 @@ test('Check section numbers and titles in "Digital Business Transformation Servi
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
+	await expect(digitalBusinessTransformationContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
+		'Get a Consultation'
+	);
 });
 
-test('Check section numbers and section titles in "Industries We Serve" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section numbers and titles in "Industries We Serve" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const industriesWeServeContainer = driver.getByTestId(DigitalTransformation.IndustriesWeServe);
 
 	await expect(industriesWeServeContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -108,7 +122,7 @@ test('Check section numbers and section titles in "Industries We Serve" containe
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles, image and CTA button`s title in "Success Stories" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles, image and CTA button`s title in "Success Stories" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
 	const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
 	const testDataSectionTitles = [
@@ -129,7 +143,7 @@ test('Check section titles, image and CTA button`s title in "Success Stories" co
 	);
 });
 
-test('Check section titles in "Technologies We Use for Digital Transformation" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles in "Technologies We Use for Digital Transformation" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const technologiesContainer = driver.getByTestId(DigitalTransformation.TechnologiesWeUse);
 	const allSectionTitles = technologiesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -147,14 +161,15 @@ test('Check section titles in "Technologies We Use for Digital Transformation" c
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles and award cards in "Digital Transformation Strategy" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles and award cards in "Digital Transformation Strategy" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const digitalTransformationContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
 	const allSectionTitles = digitalTransformationContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'High standards\nand tech culture',
 		'Customer-centric\napproach',
 		'Access our entire\ncompany\'s\nexpertise',
-		'Continuous\nevaluation and\nimprovement', 'Expertise you\ncan trust'
+		'Continuous\nevaluation and\nimprovement',
+		'Expertise you\ncan trust',
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
@@ -163,7 +178,7 @@ test('Check section titles and award cards in "Digital Transformation Strategy" 
 	await baseDriverSteps.checkImagesVisibility(awardCards, 8);
 });
 
-test('Check section titles and CTA button in "How Techstack Can Influence Your Digital Transformation" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles and CTA button in "How Techstack Can Influence Your Digital Transformation" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const ourUiUxServicesContainer = driver.getByTestId(DigitalTransformation.HowTechstackInfluence);
 	const allSectionTitles = ourUiUxServicesContainer.getByTestId(Container.SectionTitle);
 	const testDataSectionTitles = [
@@ -176,10 +191,12 @@ test('Check section titles and CTA button in "How Techstack Can Influence Your D
 
 	await expect(allSectionTitles).toHaveText(testDataSectionTitles);
 
-	await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText('Schedule a Consultation');
+	await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(
+		'Schedule a Consultation'
+	);
 });
 
-test('Check section titles and image in "Digital Transformation Product Map" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles and image in "Digital Transformation Product Map" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const digitalTransformationContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationProductMap);
 	const allSectionTitles = digitalTransformationContainer.getByTestId(Container.SectionTitle);
 	const testDataSectionTitles = [
@@ -196,7 +213,7 @@ test('Check section titles and image in "Digital Transformation Product Map" con
 	await expect(digitalTransformationContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
 });
 
-test('Check carousel section numbers and titles in "Technology Transformation Workflow" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check carousel section numbers and titles in "Technology Transformation Workflow" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const technologyWorkflowContainer = driver.getByTestId(DigitalTransformation.TechnologyTransformationWorkflow);
 	const carousel = technologyWorkflowContainer.getByTestId(Container.ContainerCarousel);
 	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
@@ -214,7 +231,7 @@ test('Check carousel section numbers and titles in "Technology Transformation Wo
 	]);
 });
 
-test('Check section titles in "FAQ" container from the "Digital Transformation Services" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check section titles in "FAQ" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const faqContainer = driver.getByTestId(DigitalTransformation.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
