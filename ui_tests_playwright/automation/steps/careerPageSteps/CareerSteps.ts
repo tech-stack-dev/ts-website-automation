@@ -1,11 +1,11 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
-import CareerButtons from '../../identifiers/Career/CareerButtons';
-import Career from '../../identifiers/Career/pages/Career';
-import ContainersCareer from '../../identifiers/Career/ContainersCareer';
+import CareerButtons from '../../identifiers/career/CareerButtons';
+import Career from '../../identifiers/career/pages/Career';
+import ContainersCareer from '../../identifiers/career/ContainersCareer';
 import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
-import JobsPage from '../../pages/CareerSite/JobsPage';
+import JobsPage from '../../pages/careerSite/JobsPage';
 import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
 

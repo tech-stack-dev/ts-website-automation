@@ -7,7 +7,7 @@ import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Buttons from '../../../../identifiers/Buttons';
-import Links from '../../../../preconditionsData/Links/Links';
+import Links from '../../../../preconditionsData/links/Links';
 
 let footer: Locator;
 const testDataProvider = [

@@ -22,7 +22,7 @@ export default class UrlPath {
 	static Blog = 'blog/';
 	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
 	static ContactUs = 'contact-us';
-	static Whitepapers = '/resources/cloud-based-healthcare-analytics-guide';
+	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';
