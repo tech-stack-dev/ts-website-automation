@@ -1,6 +1,6 @@
 import GeneralContainersMainSite from '../../GeneralContainersMainSite';
 
-export default class AiDevelopment extends GeneralContainersMainSite {
+export default class DigitalTransformation extends GeneralContainersMainSite {
 	static OurAchievementsInITTransformation = 'Container-OurAchievementsInITTransformationServices';
 	static DigitalBusinessTransformation = 'Container-DigitalBusinessTransformationServices';
 	static TechnologiesWeUse = 'Container-TechnologiesWeUse';
