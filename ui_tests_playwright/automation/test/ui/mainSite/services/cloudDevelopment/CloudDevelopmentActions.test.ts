@@ -83,7 +83,7 @@ test('Check redirects by Blog buttons in "Our Leading Cloud Experts" container f
 	]);
 
 	for (const [button, url] of buttonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToPage(button, url, UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
 	}
 });
 
