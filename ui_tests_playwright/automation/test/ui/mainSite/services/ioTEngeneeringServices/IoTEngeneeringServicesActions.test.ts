@@ -93,7 +93,7 @@ test('Check redirects by Blog buttons in "Our Internet of Things Engineering Exp
 	]);
 
 	for (const [button, url] of buttonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToPage(button, url, UrlProvider.urlBuilder(UrlPath.InternetOfThings));
 	}
 });
 

@@ -81,7 +81,7 @@ test('Check redirect by Blog button in "We Never Stop Improving Your Product" co
 	const blogButton = weNeverStopImprovingContainer.getByTestId(Buttons.Blog);
 	const url = UrlProvider.urlBuilder(`${UrlPath.AuthorPage}${AuthorsEnum.DmytroDytiuk}`, Environment.Production);
 
-	await baseDriverSteps.checkRedirectToPage(blogButton, url);
+	await baseDriverSteps.checkRedirectToPage(blogButton, url, UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
 
 test('Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {

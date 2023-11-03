@@ -131,7 +131,7 @@ test('Check redirects by Blog buttons in "Custom Software Development Experts" c
 	]);
 
 	for (const [button, url] of buttonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToPage(button, url, UrlProvider.urlBuilder(UrlPath.CustomDev));
 	}
 });
 

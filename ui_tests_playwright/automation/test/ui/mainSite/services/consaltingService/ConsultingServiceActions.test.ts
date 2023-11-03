@@ -108,7 +108,7 @@ test('Check redirects by Blog buttons in "Consulting Experts" container from the
 	]);
 
 	for (const [button, url] of buttonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToPage(button, url, UrlProvider.urlBuilder(UrlPath.ConsultingServ));
 	}
 });
 

@@ -74,7 +74,7 @@ test('Check carousel arrows clicks in "Mobile App Development Process" container
 	await baseDriverSteps.checkCarouselArrowsClick(mobileAppDevProcessContainer, 3);
 });
 
-test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696 @TSWEB-945', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct);
 	const linkedInButtons = weNeverStopImprovingContainer.getByTestId(Buttons.LinkedIn);
 
