@@ -103,7 +103,7 @@ test('Check section titles and CTA button in "Our UI/UX Services" container from
 	);
 });
 
-test('Check section titles, image and CTA button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
+test('Check section titles, image and CTA button`s title in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 	const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
 	const testDataSectionTitles = [

@@ -4,6 +4,7 @@ export default class MainSiteImages {
 	static CaseStudy = 'Img-CaseStudy';
 	static SolarEnergy = 'Img-SolarEnergy';
 	static SensorsScheme = 'Img-SensorsScheme';
+	static SuccessStories = 'Img-SuccessStories';
 	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
 	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
 	static MobileCaseStudy = 'Img-MobileCaseStudy';
