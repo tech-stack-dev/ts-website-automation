@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 
 test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const ctaButtons = [
-		driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetInTouch),
 		driver.getByTestId(DigitalTransformation.DigitalBusinessTransformation).getByTestId(MainSiteButtons.GetAConsultation),
 		driver.getByTestId(DigitalTransformation.HowTechstackInfluence).getByTestId(MainSiteButtons.ScheduleAConsultation),
 	];
@@ -39,7 +39,7 @@ test('Check redirects by links in "Industries We Serve" container from the "Digi
 	]);
 
 	for (const [link, url] of linksUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.CustomDev));
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.DigitalTransform));
 	}
 });
 
@@ -64,12 +64,11 @@ test('Check redirects by arrows in "Technologies We Use for Digital Transformati
 		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.MobileDev)],
 		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
-		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
 		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[arrows.nth(7), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
 	]);
 
 	for (const [arrow, url] of arrowUrlMap) {
@@ -77,11 +76,11 @@ test('Check redirects by arrows in "Technologies We Use for Digital Transformati
 	}
 });
 
-test('Check redirects by "Clutch Review" button in "Digital Transformation Strategy" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
+test('Check redirect by "Clutch Review" button in "Digital Transformation Strategy" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const digitalStrategyContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
-	const clutchReviewButtons = digitalStrategyContainer.getByTestId(Buttons.Clutch);
+	const clutchReviewButton = digitalStrategyContainer.getByTestId(Buttons.Clutch);
 
-	await baseDriverSteps.checkRedirectToPage(clutchReviewButtons, ClutchReviewLinks.MarkBeare);
+	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.MarkBeare);
 });
 
 test('Check carousel arrows clicks in "Technology Transformation Workflow" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
