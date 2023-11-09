@@ -204,7 +204,7 @@ test('Check section titles and image in "Digital Transformation Product Map" con
 		'USA, Georgia',
 		'USA, Illinois',
 		'Switzerland, Zurich',
-		'Ottawa, Canada',
+		'Canada, Ottawa',
 		'Australia',
 	];
 
