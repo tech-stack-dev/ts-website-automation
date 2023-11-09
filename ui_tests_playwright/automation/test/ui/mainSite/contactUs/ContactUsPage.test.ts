@@ -11,8 +11,8 @@ test.beforeEach(async () => {
 });
 
 test('Check the Title from the "Contact Us" page @Regression @ContactUs @TSWEB-1082', async () => {
-	const title = driver.getByTestId(ContactUs.Title);
-	await expect(title.getByTestId(ContactUs.Title)).toHaveText('Contact Our Team of Experts');
+	const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
+	await expect(infoContainer.getByTestId(ContactUs.Title)).toHaveText('Contact Our Team of Experts');
 });
 
 test('Check the container title and number from the "Contact Us" page @Regression @ContactUs @TSWEB-148 @TSWEB-1082', async () => {
