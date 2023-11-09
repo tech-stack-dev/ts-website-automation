@@ -10,6 +10,11 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 });
 
+test('Check the Title from the "Contact Us" page @Regression @ContactUs @TSWEB-1082', async () => {
+	const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
+	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Contact Our Team of Experts');
+});
+
 test('Check the container title and number from the "Contact Us" page @Regression @ContactUs @TSWEB-148 @TSWEB-1082', async () => {
 	const containers = [driver.getByTestId(ContactUs.GetInTouch), driver.getByTestId(ContactUs.Cooperation)];
 
