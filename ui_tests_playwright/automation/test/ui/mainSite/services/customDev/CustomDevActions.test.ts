@@ -34,16 +34,17 @@ test('Check redirects by arrows in "Custom Development Services We Provide" cont
 	const containerSection = servicesWeProvide.getByTestId(Container.ContainerSection);
 	const sectionUrlMap = new Map([
 		[containerSection.nth(0), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		// [containerSection.nth(1), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
-		[containerSection.nth(2), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[containerSection.nth(3), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[containerSection.nth(4), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[containerSection.nth(5), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-		[containerSection.nth(6), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		// [containerSection.nth(7), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
-		[containerSection.nth(8), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[containerSection.nth(9), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
-		// [containerSection.nth(10), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
+		[containerSection.nth(1), UrlProvider.urlBuilder(UrlPath.BackEndDevelopment)],
+		[containerSection.nth(2), UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment)],
+		[containerSection.nth(3), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+		[containerSection.nth(4), UrlProvider.urlBuilder(UrlPath.BigData)],
+		[containerSection.nth(5), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[containerSection.nth(6), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
+		[containerSection.nth(7), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+		// [containerSection.nth(8), UrlProvider.urlBuilder(UrlPath.CustomDev)], // Section without link yet
+		[containerSection.nth(9), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[containerSection.nth(10), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[containerSection.nth(11), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
 	]);
 
 	const pageUrl = UrlProvider.urlBuilder(UrlPath.CustomDev);
