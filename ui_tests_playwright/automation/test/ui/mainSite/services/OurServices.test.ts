@@ -46,8 +46,9 @@ test('Check the container titles and numbers from the "Our Services" page @Regre
 test('Check section titles and numbers in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const servicesContainer = driver.getByTestId(OurServices.Services);
 	const containerSection = servicesContainer.getByTestId(Container.ContainerSection);
+	const numOfSections = 12;
 
-	for (let i = 1; i <= 11; i++) {
+	for (let i = 1; i < numOfSections; i++) {
 		const sectionNumber = i.toString().padStart(2, '0');
 		await expect(containerSection.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
 	}
