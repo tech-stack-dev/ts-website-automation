@@ -102,7 +102,7 @@ test('Check section titles and numbers, and CTA button in "Custom Development Se
 	const expectedText: [string, string][] = [
 		['Mobile\nDevelopment', '01'],
 		['Back-End Development\nServices', '02'],
-		['Front-End and Back-End Development', '03'],
+		['Front-End Development\nServices', '03'],
 		['Cloud App\nDevelopment', '04'],
 		['Big Data & Analytics', '05'],
 		['UX/UI Design', '06'],
