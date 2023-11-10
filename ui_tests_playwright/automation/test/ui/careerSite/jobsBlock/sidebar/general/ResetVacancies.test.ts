@@ -76,7 +76,7 @@ for (const testData of testDataProvider) {
 
 		await Promise.all([
 			activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click(),
-			await driver.Page.waitForLoadState(),
+			driver.Page.waitForLoadState(),
 			testData.tagList.forEach(async (tag) => {
 				const filterTag = filterGroupContainer.getByTestId(tag);
 				await expect(filterTag).not.toHaveClass(/active-tag/);
