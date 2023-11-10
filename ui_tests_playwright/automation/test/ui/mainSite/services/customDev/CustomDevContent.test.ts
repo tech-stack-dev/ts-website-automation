@@ -96,21 +96,22 @@ test('Check section titles and numbers, and CTA button in "Custom Development Se
 	const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
 	const sections = servicesWeProvide.getByTestId(Container.ContainerSection);
 
-	const numOfSections = 11;
+	const numOfSections = 12;
 	await expect(sections).toHaveCount(numOfSections);
 
 	const expectedText: [string, string][] = [
 		['Mobile\nDevelopment', '01'],
-		['Front-End and Back-End Development', '02'],
-		['Cloud App\nDevelopment', '03'],
-		['Big Data & Analytics', '04'],
-		['UX/UI Design', '05'],
-		['AI & ML', '06'],
-		['Internet\nof Things', '07'],
-		['Building Software Products\nfrom Scratch', '08'],
-		['QA as a Service', '09'],
-		['Custom Software\nDevelopment Consulting', '10'],
-		['Digital\nTransformation', '11'],
+		['Back-End Development\nServices', '02'],
+		['Front-End and Back-End Development', '03'],
+		['Cloud App\nDevelopment', '04'],
+		['Big Data & Analytics', '05'],
+		['UX/UI Design', '06'],
+		['AI & ML', '07'],
+		['Internet\nof Things', '08'],
+		['Building Software Products\nfrom Scratch', '09'],
+		['QA as a Service', '10'],
+		['Custom Software\nDevelopment Consulting', '11'],
+		['Digital\nTransformation', '12'],
 	];
 
 	for (let i = 0; i < numOfSections; i++) {
