@@ -11,6 +11,8 @@ export default class MainSiteImages {
 	static MedicalDashboard = 'Img-Dashboard';
 	static IncorporatingAiMl = 'Img-IncorporatingAiMl';
 	static FeaturedCaseStudy = 'Img-FeaturedCaseStudy';
+	static Terraform = 'Img-Terraform';
+	static Kubernetes = 'Img-Kubernetes';
 
 	// Big numbers on site, presented as images
 	static BigNumber = 'Img-BigNumbers';
