@@ -68,6 +68,7 @@ for (const testData of testDataProvider) {
 		for (const tag of testData.tagList) {
 			const filterTag = filterGroupContainer.getByTestId(tag);
 			await filterTag.click();
+			await driver.Page.waitForLoadState();
 			await expect(filterTag).toHaveClass(/active-tag/);
 			const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
 			await expect(activeTag).toHaveClass(/active-tag/);
@@ -75,6 +76,7 @@ for (const testData of testDataProvider) {
 
 		await Promise.all([
 			activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click(),
+			driver.Page.waitForLoadState(),
 			testData.tagList.forEach(async (tag) => {
 				const filterTag = filterGroupContainer.getByTestId(tag);
 				await expect(filterTag).not.toHaveClass(/active-tag/);

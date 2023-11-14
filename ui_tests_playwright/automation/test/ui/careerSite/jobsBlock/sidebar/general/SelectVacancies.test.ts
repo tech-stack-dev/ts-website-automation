@@ -59,6 +59,7 @@ for (const testData of testDataProvider) {
 
 		await Promise.all([
 			filterTag.click(),
+			driver.Page.waitForLoadState(),
 			driver.executeFunc(async () => {
 				await expect(filterTag).toHaveClass(/active-tag/);
 				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();

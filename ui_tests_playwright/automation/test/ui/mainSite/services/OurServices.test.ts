@@ -45,18 +45,13 @@ test('Check the container titles and numbers from the "Our Services" page @Regre
 
 test('Check section titles and numbers in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681', async () => {
 	const servicesContainer = driver.getByTestId(OurServices.Services);
+	const containerSection = servicesContainer.getByTestId(Container.ContainerSection);
+	const numOfSections = 12;
 
-	await expect(servicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
-		'01',
-		'02',
-		'03',
-		'04',
-		'05',
-		'06',
-		'07',
-		'08',
-		'09',
-	]);
+	for (let i = 1; i < numOfSections; i++) {
+		const sectionNumber = i.toString().padStart(2, '0');
+		await expect(containerSection.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
+	}
 
 	const allSectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -64,6 +59,9 @@ test('Check section titles and numbers in "Services" container from the "Our Ser
 		'Cloud Development',
 		'Big Data & Analytics',
 		'Internet of Things',
+		'Back-End Development Services',
+		'Front-End Development Services',
+		'DevOps Services\n& Solutions',
 		'Artificial Intelligence & Machine Learning',
 		'Mobile Development',
 		'UI/UX Design',
@@ -82,17 +80,18 @@ test('Check redirects by sections in "Services" container from the "Our Services
 		[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
 		[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
 		[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-		[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-		[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-		[servicresSections.nth(8), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+		[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.BackEndDevelopment)],
+		[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment)],
+		[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
+		[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
+		[servicresSections.nth(8), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+		[servicresSections.nth(9), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		[servicresSections.nth(10), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+		[servicresSections.nth(11), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 	]);
 
-	const ourServicesUrl = UrlProvider.urlBuilder(UrlPath.OurServices);
-
 	for (const [arrow, url] of arrowUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(arrow, url, ourServicesUrl);
+		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.OurServices));
 	}
 });
 
