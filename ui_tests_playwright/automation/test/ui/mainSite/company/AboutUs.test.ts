@@ -138,22 +138,21 @@ test('Check redirects by LinkedIn buttons in "Our team" container from the "Abou
 
 test('Check redirects by Blog buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
-	const blogButtons = await ourTeamContainer.getByTestId(Buttons.Blog).all();
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
-	const expectedBlogLinks = [
-		AuthorsEnum.IvanIeremenko,
-		AuthorsEnum.OleksiiSvystun,
-		AuthorsEnum.VitaliiDolotov,
-		AuthorsEnum.IvanYeremenko,
-		AuthorsEnum.DmytroDytiuk,
-		AuthorsEnum.DmytroShtapauk,
-	];
 
-	for (let i = 0; i < blogButtons.length; i++) {
-		const blogButton = blogButtons[i];
-		const expectedUrl = `${blogUri}${expectedBlogLinks[i]}`;
+	const blogButtons = ourTeamContainer.getByTestId(Buttons.Blog);
 
-		await baseDriverSteps.checkRedirectToPage(blogButton, expectedUrl);
+	const buttonUrlMap = new Map([
+		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
+		[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+		[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VitaliiDolotov}`],
+		[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+		[blogButtons.nth(4), `${blogUri}${AuthorsEnum.DmytroDytiuk}`],
+		[blogButtons.nth(5), `${blogUri}${AuthorsEnum.DmytroShtapauk}`],
+	]);
+
+	for (const [button, url] of buttonUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(button, url, UrlProvider.urlBuilder(UrlPath.AboutUs));
 	}
 });
 

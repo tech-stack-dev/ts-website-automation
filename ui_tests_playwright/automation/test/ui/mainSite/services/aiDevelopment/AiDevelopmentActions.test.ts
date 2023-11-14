@@ -124,7 +124,7 @@ test('Check navigation to "Get in Touch" container after clicking CTA buttons fr
 	];
 
 	for (const button of ctaButtons) {
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, AiDevelopment.GetInTouch, 0.7);
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, AiDevelopment.GetInTouch);
 	}
 });
 
