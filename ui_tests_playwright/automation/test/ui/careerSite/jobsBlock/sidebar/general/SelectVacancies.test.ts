@@ -62,7 +62,6 @@ for (const testData of testDataProvider) {
 			await expect(filterTag).toHaveClass(/active-tag/);
 			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
 		}, 5);
-
 		await playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000);
 		await playwrightUtils.expectWithRetries(
 			expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(

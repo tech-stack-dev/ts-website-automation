@@ -75,7 +75,6 @@ for (const testData of testDataProvider) {
 		}
 
 		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
-
 		testData.tagList.forEach(async (tag) => {
 			playwrightUtils.expectWithRetries(async () => {
 				const filterTag = filterGroupContainer.getByTestId(tag);
