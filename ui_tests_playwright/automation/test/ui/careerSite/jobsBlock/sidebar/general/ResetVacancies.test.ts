@@ -15,6 +15,7 @@ import {containerSteps} from '../../../../../../steps/components/container/Conta
 import Career from '../../../../../../identifiers/career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
+import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -24,7 +25,7 @@ const testDataProvider = [
 	{
 		filterBlock: 'seniority level',
 		createTags: [SeniorityLevelsEnum.Trainee, SeniorityLevelsEnum.Junior],
-		tagList: [TagsCareer.JuniorTag, TagsCareer.TraineeTag],
+		tagList: [TagsCareer.TraineeTag, TagsCareer.JuniorTag],
 	},
 	{
 		filterBlock: 'direction',
@@ -74,14 +75,15 @@ for (const testData of testDataProvider) {
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await Promise.all([
-			activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click(),
-			driver.Page.waitForLoadState(),
-			testData.tagList.forEach(async (tag) => {
-				const filterTag = filterGroupContainer.getByTestId(tag);
-				await expect(filterTag).not.toHaveClass(/active-tag/);
-			}),
-		]);
+		await playwrightUtils.expectWithRetries(
+			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click()
+		);
+		await driver.Page.waitForLoadState();
+
+		testData.tagList.forEach(async (tag) => {
+			const filterTag = filterGroupContainer.getByTestId(tag);
+			await expect(filterTag).not.toHaveClass(/active-tag/);
+		});
 	});
 }
 
