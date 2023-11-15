@@ -56,7 +56,7 @@ class CareerSteps {
 	}
 
 	public async clickOnCareerCard(careerName: string) {
-		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click();
+		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click({timeout: 5000});
 	}
 
 	public async getPaginationNumberButton(pageNumber: number) {

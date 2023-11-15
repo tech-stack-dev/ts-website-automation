@@ -15,7 +15,6 @@ import {containerSteps} from '../../../../../../steps/components/container/Conta
 import Career from '../../../../../../identifiers/career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
-import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -69,16 +68,12 @@ for (const testData of testDataProvider) {
 		for (const tag of testData.tagList) {
 			const filterTag = filterGroupContainer.getByTestId(tag);
 			await filterTag.click();
-			await driver.Page.waitForLoadState();
 			await expect(filterTag).toHaveClass(/active-tag/);
 			const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
 			await expect(activeTag).toHaveClass(/active-tag/);
 		}
 
-		await playwrightUtils.expectWithRetries(
-			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click()
-		);
-		await driver.Page.waitForLoadState();
+		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
 
 		testData.tagList.forEach(async (tag) => {
 			const filterTag = filterGroupContainer.getByTestId(tag);
