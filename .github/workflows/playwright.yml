@@ -13,7 +13,7 @@ jobs:
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    # To set up queue for parallel actions
     concurrency:
       group: ${{ github.event_name }}
 
