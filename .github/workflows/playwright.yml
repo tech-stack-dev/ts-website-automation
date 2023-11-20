@@ -26,12 +26,12 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "18"
 
       - name: Install dependencies
         run: npm ci
@@ -49,7 +49,7 @@ jobs:
           else
             ticketStatuses=""
           fi
-          echo "::set-output name=ticketStatuses::$ticketStatuses"
+          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_ENV
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
