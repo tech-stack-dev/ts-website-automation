@@ -16,7 +16,6 @@ jobs:
     if: github.event_name == 'pull_request'
     concurrency:
       group: ${{ github.event_name }}
-      cancel-in-progress: true
 
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
