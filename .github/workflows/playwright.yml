@@ -49,7 +49,7 @@ jobs:
           else
             ticketStatuses=""
           fi
-          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_ENV
+          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps

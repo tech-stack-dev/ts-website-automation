@@ -19,7 +19,6 @@ test('Check Info container from the "Healthcare" page @Regression @Healthcare @T
 		'Software Development\nSolutions For\nthe Healthcare Industry'
 	);
 	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
-	// Test Comment
 });
 
 test('Check the container title and number from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
