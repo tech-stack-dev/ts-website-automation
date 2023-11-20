@@ -19,6 +19,15 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
 });
 
+test('TEST queue1 @Regression @CustomDev @TSWEB-672', async () => {
+	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+
+	await baseDriverSteps.checkRedirectToPage(
+		techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
+		Links.ClutchReviews
+	);
+});
+
 test('Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672', async () => {
 	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
 
