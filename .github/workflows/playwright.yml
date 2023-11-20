@@ -13,6 +13,11 @@ jobs:
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    concurrency:
+      group: ${{ github.event_name }}
+      cancel-in-progress: true
+
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
@@ -23,12 +28,6 @@ jobs:
         working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
-
-      - name: Acquire Lock
-        run: |
-          exec 9>"pr-lock"
-          flock -n 9 || exit 1
-          trap 'rm -f "pr-lock"' EXIT
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -62,9 +61,6 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
-      
-      - name: Release Lock
-        run: echo "Lock released"
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
