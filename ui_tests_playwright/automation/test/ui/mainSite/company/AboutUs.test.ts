@@ -233,7 +233,7 @@ test('Check CTA button from the "Our people" container from the "About Us" page 
 	const ourPeopleBlock = driver.getByTestId(AboutUs.OurPeople);
 
 	await ourPeopleBlock.getByTestId(MainSiteButtons.JoinUs).click();
-	await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
+	await baseDriverSteps.checkUrl(UrlProvider.careerUrl(Environment.Production));
 });
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "About Us" page @Regression @AboutUs @TSWEB-1022', async () => {
