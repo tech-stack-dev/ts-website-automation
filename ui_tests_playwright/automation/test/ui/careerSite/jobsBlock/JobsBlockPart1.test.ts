@@ -16,6 +16,7 @@ import CareerButtons from '../../../../identifiers/career/CareerButtons';
 import {formSteps} from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
+import Job from '../../../../identifiers/Job';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -37,6 +38,7 @@ test('Check that breadcrumbs displays correctly on job page @Regression @JobsBlo
 test('Check localization on job page @Regression @JobsBlock @TSWEB-560', async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	await expect(driver.getByTestId(Job.AboutTheProductBlock)).toBeVisible();
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
