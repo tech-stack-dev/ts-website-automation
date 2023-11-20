@@ -13,8 +13,6 @@ jobs:
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
-    concurrency:
-      group: my-global-concurrency-group
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
@@ -25,6 +23,14 @@ jobs:
         working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v3
+
+      - name: Acquire queue file
+        run: |
+          while [ -f queue.txt ]; do
+            echo "Queue is busy, waiting..."
+            sleep 10
+          done
+          touch queue.txt
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -79,6 +85,10 @@ jobs:
         if: always()
         run: |
           echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
+
+      - name: Release queue
+        run: |
+          rm -f queue.txt
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
