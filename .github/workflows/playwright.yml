@@ -24,13 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Acquire queue file
+      - name: Acquire Lock
         run: |
-          while [ -f queue.txt ]; do
-            echo "Queue is busy, waiting..."
-            sleep 10
-          done
-          touch queue.txt
+          exec 9>"pr-lock"
+          flock -n 9 || exit 1
+          trap 'rm -f "pr-lock"' EXIT
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -64,6 +62,9 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
+      
+      - name: Release Lock
+        run: echo "Lock released"
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -85,10 +86,6 @@ jobs:
         if: always()
         run: |
           echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
-
-      - name: Release queue
-        run: |
-          rm -f queue.txt
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
