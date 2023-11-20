@@ -22,7 +22,6 @@ test.beforeEach(async () => {
 test('TEST queue1 @Regression @CustomDev @TSWEB-672', async () => {
 	// added test line
 	// added test line1
-	// added test line2
 	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
 
 	await baseDriverSteps.checkRedirectToPage(
