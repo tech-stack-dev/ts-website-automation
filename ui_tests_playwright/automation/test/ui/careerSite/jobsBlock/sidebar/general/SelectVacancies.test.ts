@@ -57,22 +57,19 @@ for (const testData of testDataProvider) {
 		);
 		const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
 
-		await Promise.all([
-			filterTag.click(),
-			driver.Page.waitForLoadState(),
-			driver.executeFunc(async () => {
-				await expect(filterTag).toHaveClass(/active-tag/);
-				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
-			}, 5),
-			playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000),
-			playwrightUtils.expectWithRetries(
-				expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
-					ColorsEnum.OrangeYellow
-				),
-				5,
-				5000
+		await filterTag.click();
+		await playwrightUtils.expectWithRetries(async () => {
+			await expect(filterTag).toHaveClass(/active-tag/);
+			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
+		}, 5);
+		await playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000);
+		await playwrightUtils.expectWithRetries(
+			expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
+				ColorsEnum.OrangeYellow
 			),
-		]);
+			5,
+			5000
+		);
 	});
 }
 
