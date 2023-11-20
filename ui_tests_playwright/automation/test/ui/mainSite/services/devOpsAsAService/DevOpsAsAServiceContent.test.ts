@@ -24,7 +24,7 @@ test('Check the Info container from the "DevOps as a Service" page @Regression @
 test('Check the container titles and numbers from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136', async () => {
 	const containers = [
 		driver.getByTestId(DevOpsAsAService.DevOpsSolutionBenefits),
-		driver.getByTestId(DevOpsAsAService.LeverageDevOpsServicesr),
+		driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices),
 		driver.getByTestId(DevOpsAsAService.TechnologyStack),
 		driver.getByTestId(DevOpsAsAService.SuccessStories),
 		driver.getByTestId(DevOpsAsAService.IndustriesWeServe),
@@ -80,7 +80,7 @@ test('Check section numbers and titles in "DevOps Solution Benefits" container f
 });
 
 test('Check section titles, images and CTA button in "Leverage DevOps Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136', async () => {
-	const leverageDevOpsServicesrContainer = driver.getByTestId(DevOpsAsAService.LeverageDevOpsServicesr);
+	const leverageDevOpsServicesrContainer = driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices);
 	const allSectionTitles = leverageDevOpsServicesrContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'AWS, Google Cloud,\nand Azure',
