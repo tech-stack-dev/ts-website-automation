@@ -10,13 +10,18 @@ on:
       - "ui_tests_playwright/**"
 
 jobs:
+  check_lock:
+    runs-on: ubuntu-latest
+    outputs:
+      steps: ${{ steps }}
+    steps:
+      - name: Check lock
+        id: lock
+        run: echo "::set-output name=lock::$(date)"
   tests_e2e:
+    needs: check_lock
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    concurrency:
-      group: ${{ github.event_name }}-${{ github.sha }}
-      cancel-in-progress: true
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
