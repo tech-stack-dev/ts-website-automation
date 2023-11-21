@@ -97,7 +97,7 @@ test('Check redirects by LinkedIn buttons in "Our DevOps Experts" container from
 test('Check redirects by Blog buttons in "Our DevOps Experts" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136 @TSWEB-1061', async () => {
 	const ourExpertsContainer = driver.getByTestId(DevOpsAsAService.OurExperts);
 	const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 	const buttonUrlMap = new Map([
 		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],

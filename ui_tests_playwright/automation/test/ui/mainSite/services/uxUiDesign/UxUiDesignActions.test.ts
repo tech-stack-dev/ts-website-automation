@@ -79,7 +79,7 @@ test('Check redirects by LinkedIn buttons in "We Never Stop Improving Your Produ
 test('Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const blogButton = weNeverStopImprovingContainer.getByTestId(Buttons.Blog);
-	const url = UrlProvider.urlBuilder(`${UrlPath.AuthorPage}${AuthorsEnum.DmytroDytiuk}`, Environment.Production);
+	const url = UrlProvider.urlBuilder(`${UrlPath.AuthorPage}${AuthorsEnum.DmytroDytiuk}`);
 
 	await baseDriverSteps.checkRedirectToPage(blogButton, url, UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
