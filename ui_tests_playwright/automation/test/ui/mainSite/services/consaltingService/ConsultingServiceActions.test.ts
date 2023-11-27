@@ -96,7 +96,7 @@ test('Check redirects by LinkedIn buttons in "Consulting Experts" container from
 test('Check redirects by Blog buttons in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 TSWEB-1061', async () => {
 	const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
 	const blogButtons = consultingExpertsContainer.getByTestId(Buttons.Blog);
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 	const buttonUrlMap = new Map([
 		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
@@ -129,7 +129,7 @@ test('Check redirect by "Clutch Review" button in "Our Approach" container from 
 	const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 	await baseDriverSteps.checkRedirectToPage(
 		ourApproachContainer.getByTestId(Buttons.Clutch),
-		ClutchReviewLinks.AnonymousMedicalDevice
+		ClutchReviewLinks.AnonymousVehicle
 	);
 });
 

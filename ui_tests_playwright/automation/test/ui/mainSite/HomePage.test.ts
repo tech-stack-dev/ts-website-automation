@@ -11,7 +11,6 @@ import {LinkedInReviewLinks} from '../../../preconditionsData/links/LinkedInRevi
 import MainSiteImages from '../../../identifiers/mainSite/MainSiteImages';
 import MainSiteLinks from '../../../identifiers/mainSite/MainSiteLinks';
 import Links from '../../../preconditionsData/links/Links';
-import {Environment} from '../../../providers/EnvProvider';
 import BlogTagPath from '../../../providers/BlogTagPath';
 
 test.beforeEach(async () => {
@@ -192,7 +191,7 @@ test('Check "See All News" button from the "Company insights" container on the "
 
 	await expect(seeAllNewsButton).toHaveText('See All News');
 	await seeAllNewsButton.click();
-	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(BlogTagPath.TechstackNews, Environment.Production));
+	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(BlogTagPath.TechstackNews));
 });
 
 test.afterEach(async () => {

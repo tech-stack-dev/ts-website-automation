@@ -84,7 +84,7 @@ test('Check redirects by LinkedIn buttons in "Our Internet of Things Engineering
 test('Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695, @TSWEB-1061', async () => {
 	const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
 	const blogButtons = ourIoTExpertsContainer.getByTestId(Buttons.Blog);
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 	const buttonUrlMap = new Map([
 		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
