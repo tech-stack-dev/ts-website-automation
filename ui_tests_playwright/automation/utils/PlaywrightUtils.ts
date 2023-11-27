@@ -4,7 +4,7 @@ class PlaywrightUtils {
 	async expectWithRetries(func: any, retriesCount = 5, timeout = 1000) {
 		const intervalsFromRetries = Array.from({length: retriesCount}, () => timeout);
 		return await expect(async () => {
-			await func;
+			func;
 		}).toPass({timeout: timeout, intervals: intervalsFromRetries});
 	}
 }
