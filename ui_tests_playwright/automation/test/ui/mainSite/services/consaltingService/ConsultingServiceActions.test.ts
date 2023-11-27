@@ -129,7 +129,7 @@ test('Check redirect by "Clutch Review" button in "Our Approach" container from 
 	const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 	await baseDriverSteps.checkRedirectToPage(
 		ourApproachContainer.getByTestId(Buttons.Clutch),
-		ClutchReviewLinks.AnonymousMedicalDevice
+		ClutchReviewLinks.AnonymousVehicle
 	);
 });
 
