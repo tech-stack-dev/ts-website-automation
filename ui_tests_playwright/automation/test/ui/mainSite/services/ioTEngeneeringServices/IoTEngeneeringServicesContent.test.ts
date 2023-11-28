@@ -39,7 +39,7 @@ test('Check the container titles and numbers from the "Internet of Things" page 
 	];
 
 	const expectedText: [string, string][] = [
-		['IoT Engineering\nSolutions', '01'],
+		['IoT Engineering\nSolutions', 'Check slack numbers in git actions update'],
 		['Our IoT Engineering\nServices', '02'],
 		['IoT Technology Stack\nby Layers', '03'],
 		['IoT Engineering\nCase Studies', '04'],
