@@ -125,14 +125,7 @@ class BaseDriverSteps {
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			await playwrightUtils.expectWithRetries(
-				() => {
-					expect(newPage.url()).toContain(expectedUrl), newPage.reload();
-				},
-				5,
-				5000
-			);
-			await newPage.close();
+			await playwrightUtils.expectWithRetries(expect(newPage.url()).toContain(expectedUrl), 5, 5000);
 		}
 	}
 

@@ -23,6 +23,7 @@ export default class MainSiteButtons extends Buttons {
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
 	static GetAConsultation = 'Button-GetAConsultation';
+	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 	static MoreProductDetails = 'Button-MoreProductDetails';
 	static ScheduleACall = 'Button-ScheduleACall';

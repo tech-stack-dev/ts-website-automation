@@ -119,7 +119,7 @@ test('Check redirects by LinkedIn buttons in "Custom Software Development Expert
 test('Check redirects by Blog buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672 @TSWEB-1061', async () => {
 	const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
 	const blogButtons = customDeveExpertsContainer.getByTestId(Buttons.Blog);
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 	const buttonUrlMap = new Map([
 		[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
