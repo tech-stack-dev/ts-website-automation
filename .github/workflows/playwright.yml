@@ -58,8 +58,19 @@ jobs:
         run: npm run unit-tests
 
       - name: Run UI tests
+        id: playwright_tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
+        run: |
+          QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee tests_output.txt
+          passed_tests=$(grep -oP "✅ Passed: \K\d+" tests_output.txt)
+          failed_tests=$(grep -oP "❌ Failed: \K\d+" tests_output.txt)
+          skipped_tests=$(grep -oP "⚠️ Skipped: \K\d+" tests_output.txt)
+          total_tests=$((passed_tests + failed_tests + skipped_tests))
+          echo "passed_tests=$passed_tests" >> $GITHUB_ENV
+          echo "failed_tests=$failed_tests" >> $GITHUB_ENV
+          echo "skipped_tests=$skipped_tests" >> $GITHUB_ENV
+          echo "total_tests=$total_tests" >> $GITHUB_ENV
+
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -122,6 +133,11 @@ jobs:
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
+          SLACK_EXTRA_FIELDS: |
+          "Total Tests": ${{ env.total_tests }}
+          "Passed Tests": ${{ env.passed_tests }}
+          "Failed Tests": ${{ env.failed_tests }}
+          "Skipped Tests": ${{ env.skipped_tests }}}}
 
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -136,3 +152,8 @@ jobs:
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
+          SLACK_EXTRA_FIELDS: |
+          "Total Tests": ${{ env.total_tests }}
+          "Passed Tests": ${{ env.passed_tests }}
+          "Failed Tests": ${{ env.failed_tests }}
+          "Skipped Tests": ${{ env.skipped_tests }}
