@@ -129,15 +129,14 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          SLACK_TITLE: TypeScript UI tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
-          SLACK_EXTRA_FIELDS: |
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|
           "Total Tests": ${{ env.total_tests }}
           "Passed Tests": ${{ env.passed_tests }}
           "Failed Tests": ${{ env.failed_tests }}
-          "Skipped Tests": ${{ env.skipped_tests }}}}
+          "Skipped Tests": ${{ env.skipped_tests }}
+          SLACK_TITLE: TypeScript UI tests
+          MSG_MINIMAL: true
+          SLACK_FOOTER: TS website
 
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -148,12 +147,11 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          SLACK_TITLE: TypeScript UI tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
-          SLACK_EXTRA_FIELDS: |
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|
           "Total Tests": ${{ env.total_tests }}
           "Passed Tests": ${{ env.passed_tests }}
           "Failed Tests": ${{ env.failed_tests }}
           "Skipped Tests": ${{ env.skipped_tests }}
+          SLACK_TITLE: TypeScript UI tests
+          MSG_MINIMAL: true
+          SLACK_FOOTER: TS website
