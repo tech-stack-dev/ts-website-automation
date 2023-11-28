@@ -8,7 +8,6 @@ import UrlPath from '../../../../providers/UrlPath';
 import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Buttons from '../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
-import {Environment} from '../../../../providers/EnvProvider';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
@@ -138,7 +137,7 @@ test('Check redirects by LinkedIn buttons in "Our team" container from the "Abou
 
 test('Check redirects by Blog buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061', async () => {
 	const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
-	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage, Environment.Production);
+	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 	const blogButtons = ourTeamContainer.getByTestId(Buttons.Blog);
 
