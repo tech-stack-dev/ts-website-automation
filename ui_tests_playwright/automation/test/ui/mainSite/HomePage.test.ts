@@ -22,9 +22,6 @@ test('Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from t
 	const ctaButton = enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
 
 	await expect(ctaButton).toHaveText('Enhance Healthcare Strategy: Free Cloud Guide');
-	await expect(ctaButton).toHaveText('Added changes 1');
-	await expect(ctaButton).toHaveText('Added changes 2');
-	await expect(ctaButton).toHaveText('Added changes 3');
 
 	await ctaButton.click();
 	expect(driver.Page.url()).toBe(UrlProvider.urlBuilder(UrlPath.Whitepapers));
