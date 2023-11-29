@@ -19,6 +19,7 @@ test('Check the Info container from the "QA as a Service" page @Regression @QaAs
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('External Cnahges 1');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Try to push commit to external PR 1');
+	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Try to push commit to external PR 2');
 });
 
 test('Check the container titles and numbers from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603', async () => {
