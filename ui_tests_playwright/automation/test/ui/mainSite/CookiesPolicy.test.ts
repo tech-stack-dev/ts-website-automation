@@ -5,6 +5,7 @@ import {driver} from '../../../base/driver/Driver';
 import Container from '../../../identifiers/Container';
 import CookiePolicy from '../../../identifiers/mainSite/pages/CookiePolicy';
 import UrlPath from '../../../providers/UrlPath';
+import Buttons from '../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CookiesPolicy));
@@ -45,6 +46,14 @@ test('Check the container title and number from the "Cookie policy" page @Regres
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+});
+
+test('Check "Change consent" button from the "Cookie policy" page @Regression @CookiePolicy @TSWEB-1186', async () => {
+	const container = driver.getByTestId(CookiePolicy.HowToManageCookies);
+	await container.getByTestId(Buttons.ChangeConsent).click({timeout: 5000});
+
+	await expect(driver.getByTestId(Buttons.AcceptCookieSettings)).toBeVisible();
+	await expect(driver.getByTestId(Buttons.Decline)).toBeVisible()
 });
 
 test.afterEach(async () => {

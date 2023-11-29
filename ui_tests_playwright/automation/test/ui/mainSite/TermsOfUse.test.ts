@@ -29,7 +29,7 @@ test('Check the container title and number from the "Terms of use" page @Regress
 		['1. Terms of use\n of the website', '02'],
 		['2. The use of \nthe Site', '03'],
 		['3. Personal information \nof the User', '04'],
-		['4. Limitation \nof liability', '05'],
+		['4. Limitation\nof liability(of the Site Administration)', '05'],
 		['5. Procedure of the Agreement', '06'],
 		['6. Exclusive \nRights', '07'],
 	];
