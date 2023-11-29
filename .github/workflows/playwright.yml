@@ -9,6 +9,10 @@ on:
     paths:
       - "ui_tests_playwright/**"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:        
   tests_e2e:
     name: Playwright end-to-end tests
