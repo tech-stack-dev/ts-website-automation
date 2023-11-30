@@ -50,7 +50,7 @@ test('Check carousel arrows clicks in "Typical UX/UI Design Workflow" container 
 test('Check redirects by links in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670', async () => {
 	const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 	const linkUrlMap = new Map([
-		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign],
+		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.Instagram],
 		[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 	]);
 

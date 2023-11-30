@@ -40,7 +40,7 @@ test('Check the container title and number from the "Healthcare" page @Regressio
 	const expectedData = [
 		['What Makes Our Team Different', '01'],
 		['Our Expertise', '02'],
-		['Beats Screening Module by Techstack', '03'],
+		['Case Study by Techstack', '03'],
 		['Patient-Centered\nStrategy', '04'],
 		['Most Recent\nIndustry Facts', '05'],
 		['How We Operate', '06'],
@@ -80,7 +80,7 @@ test('Check section titles and CTA button in "Our Expertise" container from the 
 	);
 });
 
-test('Check section titles, image and CTA button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+test('Check section titles, image and CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
 	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
 	const allSectionTitles = beatsScreeningModuleContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
