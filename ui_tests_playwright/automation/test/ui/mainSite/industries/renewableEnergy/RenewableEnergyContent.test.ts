@@ -39,7 +39,7 @@ test('Check the container title and number from the "Renewable Energy" page @Reg
 		['Techstack in Numbers', '01'],
 		['Who We Serve', '02'],
 		['Renewable Energy Software Development Services', '03'],
-		['The Solar Energy Data Portal by Techstack', '04'],
+		['Case Study by Techstack', '04'],
 		['Our Key Areas of Expertise in Renewable Energy', '05'],
 		['Why Choose Us?', '06'],
 		['How We Operate at Techstack', '07'],
@@ -98,7 +98,7 @@ test('Check block titles, section titles and CTA button in "Renewable Energy Sof
 	);
 });
 
-test('Check section titles, block title, image and CTA button in "The Solar Energy Data Portal by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
+test('Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
 	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
 	const allSectionTitles = theSolarEnergyContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
