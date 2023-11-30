@@ -122,7 +122,7 @@ test(
 test(
 	qase(
 		5111,
-		'Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695, @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695 @TSWEB-1061'
 	),
 	async () => {
 		const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
