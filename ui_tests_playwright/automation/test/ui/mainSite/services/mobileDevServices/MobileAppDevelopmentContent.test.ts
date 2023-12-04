@@ -41,7 +41,7 @@ test('Check the container titles and numbers from the "Mobile App Development" p
 		['What You Get', '01'],
 		['What We Do', '02'],
 		['Mobile Application\nDevelopment\nTechnology Stack', '03'],
-		['Industry-Specific Solution', '04'],
+		['Case Study by Techstack', '04'],
 		['What Industries\nWe Serve', '05'],
 		['Our Approach\nto Mobile App\nDevelopment\nServices', '06'],
 		['Mobile App Development Process', '07'],
@@ -103,7 +103,7 @@ test('Check section titles and CTA button in "Mobile Application Development Tec
 	await expect(technologyStackContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
-test('Check section titles, image, and CTA button in "Industry-Specific Solution" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check section titles, image, and CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const industrySolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
 	const allSectionTitles = industrySolutionContainer.getByTestId(Container.SectionTitle);
 	const testData = ['User experience', 'Moving to IaaS', 'Third-party\nservices'];

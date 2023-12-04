@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
 });
 
-test('Check redirect by CTA button in "Industry-Specific Solution" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
+test('Check redirect by CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
 	const industrySpecificSolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
 
 	await industrySpecificSolutionContainer.getByTestId(MainSiteButtons.MoreProductDetails).click();
