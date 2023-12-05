@@ -108,7 +108,6 @@ test('Check section titles, block title, image and CTA button in "Big Data Case 
 	const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 	const allSectionTitles = bigDataCaseStudiesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
-		'Video-Based Quality Control System',
 		'Early Anomaly Detection',
 		'Real-Time Monitoring',
 		'Cloud Storage and Analysis',

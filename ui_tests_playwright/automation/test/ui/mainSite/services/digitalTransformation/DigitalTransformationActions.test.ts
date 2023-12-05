@@ -86,7 +86,7 @@ test('Check redirect by "Clutch Review" button in "Digital Transformation Strate
 test('Check carousel arrows clicks in "Technology Transformation Workflow" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
 	const technologyWorkflowContainer = driver.getByTestId(DigitalTransformation.TechnologyTransformationWorkflow);
 
-	await baseDriverSteps.checkCarouselArrowsClick(technologyWorkflowContainer);
+	await baseDriverSteps.checkCarouselArrowsClick(technologyWorkflowContainer, 3);
 });
 
 test('Check sections expanding and collapsing in "FAQ" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135', async () => {
