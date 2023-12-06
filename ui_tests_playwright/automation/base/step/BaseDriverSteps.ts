@@ -62,6 +62,7 @@ class BaseDriverSteps {
 
 		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'true');
 		await expect(carouselButtonNext).toHaveAttribute(attribute, 'false');
+		await carouselButtonNext.hover({timeout: 5000});
 		await carouselButtonNext.click({delay: 1000});
 
 		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'false');
@@ -126,6 +127,7 @@ class BaseDriverSteps {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
 			await playwrightUtils.expectWithRetries(expect(newPage.url()).toContain(expectedUrl), 5, 5000);
+			await newPage.close();
 		}
 	}
 

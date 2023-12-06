@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
 });
 
-test('Check redirect by CTA button in "Industry-Specific Solution" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692', async () => {
+test('Check redirect by CTA button in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692', async () => {
 	const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.IndustrySpecificSolution);
 
 	await industrySpecificSolutionContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
