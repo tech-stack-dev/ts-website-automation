@@ -61,16 +61,8 @@ jobs:
         id: playwright_tests
         shell: bash
         run: |
-          QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee tests_output.txt
-          passed_tests=$(grep -oP "✅ Passed: \K\d+" tests_output.txt)
-          failed_tests=$(grep -oP "❌ Failed: \K\d+" tests_output.txt)
-          skipped_tests=$(grep -oP "⚠️ Skipped: \K\d+" tests_output.txt)
-          total_tests=$((passed_tests + failed_tests + skipped_tests))
-          echo "passed_tests=$passed_tests" >> $GITHUB_ENV
-          echo "failed_tests=$failed_tests" >> $GITHUB_ENV
-          echo "skipped_tests=$skipped_tests" >> $GITHUB_ENV
-          echo "total_tests=$total_tests" >> $GITHUB_ENV
-
+          QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=tests_output.txt
+          
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
         if: always()
@@ -128,7 +120,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n ${{ env.total_tests }} \n ${{ env.passed_tests }} \n ${{ env.failed_tests }} \n ${{ env.skipped_tests }} 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) + $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) + $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) )) \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) )) \n $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) \n $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -142,7 +134,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n ${{ env.total_tests }} \n ${{ env.passed_tests }} \n ${{ env.failed_tests }} \n ${{ env.skipped_tests }} 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) + $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) + $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) )) \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) )) \n $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) \n $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
