@@ -9,7 +9,7 @@ on:
     paths:
       - "ui_tests_playwright/**"
 
-jobs:        
+jobs:
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
@@ -71,7 +71,6 @@ jobs:
           echo "skipped_tests=$skipped_tests" >> $GITHUB_ENV
           echo "total_tests=$total_tests" >> $GITHUB_ENV
 
-
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
         if: always()
@@ -123,17 +122,38 @@ jobs:
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
+        with:
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Regression tests results: \n ${{ env.total_tests }} \n ${{ env.passed_tests }} \n ${{ env.failed_tests }} \n ${{ env.skipped_tests }}"
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+
         env:
           SLACK_USERNAME: Tests execution report
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} | 
-          "Total Tests": ${{ env.total_tests }}
-          "Passed Tests": ${{ env.passed_tests }}
-          "Failed Tests": ${{ env.failed_tests }}
-          "Skipped Tests": ${{ env.skipped_tests }}
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -147,11 +167,6 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} | 
-          "Total Tests": ${{ env.total_tests }}
-          "Passed Tests": ${{ env.passed_tests }}
-          "Failed Tests": ${{ env.failed_tests }}
-          "Skipped Tests": ${{ env.skipped_tests }}
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
