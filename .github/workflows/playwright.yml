@@ -9,6 +9,11 @@ on:
     paths:
       - "ui_tests_playwright/**"
 
+# To cancel previous run within one PR after pushing new commit (if previous still in progress)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:        
   tests_e2e:
     name: Playwright end-to-end tests
