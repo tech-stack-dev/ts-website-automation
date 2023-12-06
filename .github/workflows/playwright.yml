@@ -64,6 +64,7 @@ jobs:
           QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=tests_output.txt
 
       - name: Set Test Counts
+        id: testsCount
         run: |
           total_tests=$(grep -c "✅\|❌\|⚠️" ui_tests_playwright/tests_output.txt)
           passed_tests=$(grep -c "Passed" ui_tests_playwright/tests_output.txt)
@@ -71,11 +72,11 @@ jobs:
           skipped_tests=$(grep -c "Skipped" ui_tests_playwright/tests_output.txt)
           test_var="check if this vars is called"
 
-          echo "TOTAL_TESTS=$total_tests" >> $GITHUB_ENV
-          echo "PASSED_TESTS=$passed_tests" >> $GITHUB_ENV
-          echo "FAILED_TESTS=$failed_tests" >> $GITHUB_ENV
-          echo "SKIPPED_TESTS=$skipped_tests" >> $GITHUB_ENV
-          echo "TEST_VAR=$test_var" >> $GITHUB_ENV
+          echo "total_tests=$total_tests" >> $GITHUB_OUTPUT
+          echo "passed_tests=$passed_tests" >> $GITHUB_OUTPUT
+          echo "failed_tests=$failed_tests" >> $GITHUB_OUTPUT
+          echo "skipped_tests=$skipped_tests" >> $GITHUB_OUTPUT
+          echo "test_var=$test_var" >> $GITHUB_OUTPUT
           
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -134,7 +135,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n Total tests: $TOTAL_TESTS \n Passed Tests: $PASSED_TESTS \n Failed Tests: $FAILED_TESTS \n Skipped Tests: $SKIPPED_TESTS 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n Total tests: ${{ steps.testsCount.outputs.total_tests }} \n Passed Tests: ${{ steps.testsCount.outputs.passed_tests }} \n Failed Tests: ${{ steps.testsCount.outputs.failed_tests }} \n Skipped Tests: ${{ steps.testsCount.outputs.skipped_tests }} \n Test var: ${{ steps.testsCount.outputs.test_var }} \n 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
