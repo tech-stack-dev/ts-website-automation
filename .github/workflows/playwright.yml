@@ -62,6 +62,20 @@ jobs:
         shell: bash
         run: |
           QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --output=tests_output.txt
+
+      - name: Set Test Counts
+        run: |
+          total_tests=$(grep -c "✅\|❌\|⚠️" ui_tests_playwright/tests_output.txt)
+          passed_tests=$(grep -c "Passed" ui_tests_playwright/tests_output.txt)
+          failed_tests=$(grep -c "Failed" ui_tests_playwright/tests_output.txt)
+          skipped_tests=$(grep -c "Skipped" ui_tests_playwright/tests_output.txt)
+          test_var="check if this vars is called"
+
+          echo "TOTAL_TESTS=$total_tests" >> $GITHUB_ENV
+          echo "PASSED_TESTS=$passed_tests" >> $GITHUB_ENV
+          echo "FAILED_TESTS=$failed_tests" >> $GITHUB_ENV
+          echo "SKIPPED_TESTS=$skipped_tests" >> $GITHUB_ENV
+          echo "TEST_VAR=$test_var" >> $GITHUB_ENV
           
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -111,20 +125,6 @@ jobs:
           if_true: test_slack_notifications
           if_false: ts_website_automation
 
-      - name: Slack Notification for UI tests production
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) + $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) + $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) )) \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) )) \n $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) \n $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          SLACK_TITLE: TypeScript UI tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
-
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
@@ -134,7 +134,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) + $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) + $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) )) \n $(( $(grep -c '✅ Passed' ui_tests_playwright/tests_output.txt) )) \n $(grep -c '❌ Failed' ui_tests_playwright/tests_output.txt) \n $(grep -c '⚠️ Skipped' ui_tests_playwright/tests_output.txt) 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n Total tests: $TOTAL_TESTS \n Passed Tests: $PASSED_TESTS \n Failed Tests: $FAILED_TESTS \n Skipped Tests: $SKIPPED_TESTS 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
