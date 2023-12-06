@@ -1,7 +1,6 @@
 import GeneralContainersMainSite from '../../GeneralContainersMainSite';
 
 export default class Healthcare extends GeneralContainersMainSite {
-	static BeatsScreeningModuleByTechstack = 'Container-BeatsScreeningModule';
 	static PatientCenteredStrategy = 'Container-PatientCenteredStrategy';
 	static MostRecentIndustryFacts = 'Container-MostRecentIndustryFacts';
 	static HowWeOperate = 'Container-HowWeOperate';
