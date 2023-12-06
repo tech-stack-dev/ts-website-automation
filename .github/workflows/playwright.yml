@@ -129,7 +129,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} | 
           "Total Tests": ${{ env.total_tests }}
           "Passed Tests": ${{ env.passed_tests }}
           "Failed Tests": ${{ env.failed_tests }}
@@ -147,7 +147,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|
+          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} | 
           "Total Tests": ${{ env.total_tests }}
           "Passed Tests": ${{ env.passed_tests }}
           "Failed Tests": ${{ env.failed_tests }}
