@@ -64,12 +64,12 @@ jobs:
           QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --output=tests_output.txt
 
       - name: Set Test Counts
-        id: testsCount
+        id: tests_count
         run: | 
-          total_tests=$(grep -c "✅\|❌\|⚠️" ui_tests_playwright/tests_output.txt)
-          passed_tests=$(grep -c "Passed" ui_tests_playwright/tests_output.txt)
-          failed_tests=$(grep -c "Failed" ui_tests_playwright/tests_output.txt)
-          skipped_tests=$(grep -c "Skipped" ui_tests_playwright/tests_output.txt)
+          total_tests=$(grep -c "✅\|❌\|⚠️" tests_output.txt)
+          passed_tests=$(grep -c "Passed" tests_output.txt)
+          failed_tests=$(grep -c "Failed" tests_output.txt)
+          skipped_tests=$(grep -c "Skipped" tests_output.txt)
           test_var="check if this vars is called"
           echo "total_tests=$total_tests" >> $GITHUB_OUTPUT
           echo "passed_tests=$passed_tests" >> $GITHUB_OUTPUT
@@ -134,7 +134,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n Total tests: ${{ steps.testsCount.outputs.total_tests }} \n Passed Tests: ${{ steps.testsCount.outputs.passed_tests }} \n Failed Tests: ${{ steps.testsCount.outputs.failed_tests }} \n Skipped Tests: ${{ steps.testsCount.outputs.skipped_tests }} \n Test var: ${{ steps.testsCount.outputs.test_var }} \n 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n Total tests: ${{ steps.tests_count.outputs.total_tests }} \n Passed Tests: ${{ steps.tests_count.outputs.passed_tests }} \n Failed Tests: ${{ steps.tests_count.outputs.failed_tests }} \n Skipped Tests: ${{ steps.tests_count.outputs.skipped_tests }} \n Test var: ${{ steps.tests_count.outputs.test_var }} \n 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
