@@ -64,7 +64,7 @@ jobs:
           QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --output=tests_output.txt
 
       - name: Set Test Counts
-        id: tests-сount
+        id: testsCount
         run: | 
           total_tests=$(grep -c "✅\|❌\|⚠️" ui_tests_playwright/tests_output.txt)
           passed_tests=$(grep -c "Passed" ui_tests_playwright/tests_output.txt)
@@ -134,7 +134,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Regression tests results: \n Total tests: ${{ steps.tests-сount.outputs.total_tests }} \n Passed Tests: ${{ steps.tests-сount.outputs.passed_tests }} \n Failed Tests: ${{ steps.tests-сount.outputs.failed_tests }} \n Skipped Tests: ${{ steps.tests-сount.outputs.skipped_tests }} \n Test var: ${{ steps.tests-сount.outputs.test_var }} \n 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Regression tests results: \n Total tests: ${{ steps.testsCount.outputs.total_tests }} \n Passed Tests: ${{ steps.testsCount.outputs.passed_tests }} \n Failed Tests: ${{ steps.testsCount.outputs.failed_tests }} \n Skipped Tests: ${{ steps.testsCount.outputs.skipped_tests }} \n Test var: ${{ steps.testsCount.outputs.test_var }} \n 👀 Check the report with the link below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
