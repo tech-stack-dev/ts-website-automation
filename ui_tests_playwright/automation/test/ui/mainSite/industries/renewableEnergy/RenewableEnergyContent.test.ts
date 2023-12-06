@@ -26,7 +26,7 @@ test('Check the container title and number from the "Renewable Energy" page @Reg
 		driver.getByTestId(RenewableEnergy.TechstackInNumbers),
 		driver.getByTestId(RenewableEnergy.WhoWeServe),
 		driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ),
-		driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack),
+		driver.getByTestId(RenewableEnergy.CaseStudy),
 		driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise),
 		driver.getByTestId(RenewableEnergy.WhyChooseUs),
 		driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack),
@@ -99,7 +99,7 @@ test('Check block titles, section titles and CTA button in "Renewable Energy Sof
 });
 
 test('Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957', async () => {
-	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.TheSolarEnergyDataPortalByTechstack);
+	const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
 	const allSectionTitles = theSolarEnergyContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
 	await expect(allSectionTitles).toHaveText(testData);
