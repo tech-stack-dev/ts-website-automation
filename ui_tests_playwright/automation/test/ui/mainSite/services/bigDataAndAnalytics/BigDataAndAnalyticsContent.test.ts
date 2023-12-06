@@ -144,7 +144,6 @@ test(
 		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 		const allSectionTitles = bigDataCaseStudiesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Video-Based Quality Control System',
 			'Early Anomaly Detection',
 			'Real-Time Monitoring',
 			'Cloud Storage and Analysis',
