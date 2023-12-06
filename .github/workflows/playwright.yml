@@ -61,7 +61,7 @@ jobs:
         id: playwright_tests
         shell: bash
         run: |
-          QASE_REPORT="1" npx playwright test --grep "@TSWEB-603 " --output=tests_output.txt
+          QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --output=tests_output.txt
 
       - name: Set Test Counts
         id: tests-сount
