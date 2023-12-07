@@ -121,10 +121,10 @@ jobs:
           passed=$(jq '.passed' test-results.json)
           failed=$(jq '.failed' test-results.json)
           skipped=$(jq '.skipped' test-results.json)
-          echo "::set-output name=total::$total"
-          echo "::set-output name=passed::$passed"
-          echo "::set-output name=failed::$failed"
-          echo "::set-output name=skipped::$skipped"
+          echo "total=$total" >> $GITHUB_OUTPUT
+          echo "passed=$passed" >> $GITHUB_OUTPUT
+          echo "failed=$failed" >> $GITHUB_OUTPUT
+          echo "skipped=$skipped" >> $GITHUB_OUTPUT
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
