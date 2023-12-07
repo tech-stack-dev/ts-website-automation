@@ -1,0 +1,17 @@
+ #!/bin/bash
+          # Debugging output
+          echo "Contents of test-results.json:"
+          cat ./test-results.json
+          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
+          echo "Final Result: $final_result"
+          total=$(jq '.status' <<< "$final_result" | grep -c "passed\|failed\|skipped")
+          passed=$(jq -r '.status' <<< "$final_result" | grep -c "passed")
+          failed=$(jq -r '.status' <<< "$final_result" | grep -c "failed")
+          skipped=$(jq -r '.status' <<< "$final_result" | grep -c "skipped")
+          # Debugging output
+          echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
+          # Set output variables
+          echo "::set-output name=total::$total"
+          echo "::set-output name=passed::$passed"
+          echo "::set-output name=failed::$failed"
+          echo "::set-output name=skipped::$skipped"
