@@ -1,18 +1,49 @@
- #!/bin/bash
-          # Debugging output
-          echo "Contents of test-results.json:"
-          cat ./test-results.json
-          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
-          echo "Final Result: $final_result"
-          total=$(jq '.status' <<< "$final_result" | grep -c "passed\|failed\|skipped")
-          passed=$(jq -r '.status' <<< "$final_result" | grep -c "passed")
-          failed=$(jq -r '.status' <<< "$final_result" | grep -c "failed")
-          skipped=$(jq -r '.status' <<< "$final_result" | grep -c "skipped")
-          # Debugging output
-          echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
-          # Set output variables
-          
-          echo "passed=$passed" >> $GITHUB_ENV
-          echo "failed=$failed" >> $GITHUB_ENV
-          echo "skipped=$skipped" >> $GITHUB_ENV
-          echo "total=$total" >> $GITHUB_ENV
+#!/bin/bash
+
+# Initialize counts
+total=0
+passed=0
+failed=0
+skipped=0
+
+# Debugging output
+echo "Contents of test-results.json:"
+cat ./test-results.json
+
+# Iterate over suites
+for suite in $(jq -c '.suites[]' ./test-results.json); do
+  # Iterate over specs in the current suite
+  for spec in $(echo "$suite" | jq -c '.specs[]'); do
+    # Get the final test result in the current spec
+    test=$(echo "$spec" | jq '.tests[-1]')
+
+    # Extract relevant information from the current test
+    status=$(echo "$test" | jq -r '.status')
+
+    # If the status is retry, find the last actual result
+    if [ "$status" == "retry" ]; then
+      for retry in $(echo "$spec" | jq -c '.tests[] | select(.status != "retry")'); do
+        test=$retry
+      done
+    fi
+
+    # Increment counts based on test status
+    ((total++))
+    if [ "$status" == "passed" ]; then
+      ((passed++))
+    elif [ "$status" == "failed" ]; then
+      ((failed++))
+    elif [ "$status" == "skipped" ]; then
+      ((skipped++))
+    fi
+  done
+done
+
+# Debugging output
+echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
+
+# Set output variables
+ echo "passed=$passed" >> $GITHUB_ENV
+echo "failed=$failed" >> $GITHUB_ENV
+echo "skipped=$skipped" >> $GITHUB_ENV
+echo "total=$total" >> $GITHUB_ENV
