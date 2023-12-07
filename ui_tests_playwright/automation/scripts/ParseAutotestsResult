@@ -2,6 +2,8 @@
 
 json_file="./summary.json"
 
+echo "report file: "
+cat ./summary.json
 # Use jq to extract the count of passed, failed, skipped tests
 passed=$(jq '.passed | length' "$json_file")
 failed=$(jq '.failed | length' "$json_file")
