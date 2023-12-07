@@ -8,7 +8,7 @@ failed=$(jq '.failed | length' "$json_file")
 skipped=$(jq '.skipped | length' "$json_file")
 
 # Calculate the total count
-total=$((passed_count + failed_count + skipped_count + warned_count + timed_out_count))
+total=$((passed + failed + skipped))
 
 # Pass the resuls to the env variables
 
