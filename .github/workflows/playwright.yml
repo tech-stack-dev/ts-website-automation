@@ -64,7 +64,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep-invert "@TSWEB-695" --reporter json > test-results.json
+        run: QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --reporter json > test-results.json
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -115,18 +115,31 @@ jobs:
           if_false: ts_website_automation
 
       - name: Parse Test Results
+        shell: bash
         id: parse-results
-        run: | 
-          # Add the script/command to parse test results and store them as variables
-          total=$(jq '.total' test-results.json)
-          passed=$(jq '.passed' test-results.json)
-          failed=$(jq '.failed' test-results.json)
-          skipped=$(jq '.skipped' test-results.json)
+        run: |
+          #!/bin/bash
+
+          # Debugging output
+          echo "Contents of test-results.json:"
+          cat ./test-results.json
+
+          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
+          echo "Final Result: $final_result"
+
+          total=$(jq '.status' <<< "$final_result" | grep -c "passed\|failed\|skipped")
+          passed=$(jq -r '.status' <<< "$final_result" | grep -c "passed")
+          failed=$(jq -r '.status' <<< "$final_result" | grep -c "failed")
+          skipped=$(jq -r '.status' <<< "$final_result" | grep -c "skipped")
+
+          # Debugging output
+          echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
+
           # Set output variables
-          echo "Total=$total" >> $GITHUB_ENV
-          echo "Passed=$passed" >> $GITHUB_ENV
-          echo "Failed=$failed" >> $GITHUB_ENV
-          echo "Skipped=$skipped" >> $GITHUB_ENV
+          echo "::set-output name=total::$total"
+          echo "::set-output name=passed::$passed"
+          echo "::set-output name=failed::$failed"
+          echo "::set-output name=skipped::$skipped"
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -137,7 +150,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, Passed: ${{ steps.parse-results.outputs.passed }}, Failed: ${{ steps.parse-results.outputs.failed }}, Skipped: ${{ steps.parse-results.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -152,7 +165,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, \nPassed: ${{ steps.parse-results.outputs.passed }}, \nFailed: ${{ steps.parse-results.outputs.failed }}, \nSkipped: ${{ steps.parse-results.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
