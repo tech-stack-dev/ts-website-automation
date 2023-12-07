@@ -118,6 +118,7 @@ jobs:
         shell: bash
         id: parse-results
         run: |
+          #!/bin/bash
           final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' test-results.json)
           total=$(jq '.status' <<< "$final_result" | grep -c "passed\|failed\|skipped")
           passed=$(jq -r '.status' <<< "$final_result" | grep -c "passed")
