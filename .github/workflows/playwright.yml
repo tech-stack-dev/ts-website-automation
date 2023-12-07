@@ -129,7 +129,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -143,7 +143,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.total }}, \n✅Passed: ${{ env.passed }} \\ ${{ env.total }} \n❌Failed: ${{ env.failed }} \\ ${{ env.total }}, \n⚠️Skipped: ${{ env.skipped }} \\ ${{ env.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
