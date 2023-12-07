@@ -43,7 +43,7 @@ done
 echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
 
 # Set output variables
- echo "passed=$passed" >> $GITHUB_ENV
+echo "passed=$passed" >> $GITHUB_ENV
 echo "failed=$failed" >> $GITHUB_ENV
 echo "skipped=$skipped" >> $GITHUB_ENV
 echo "total=$total" >> $GITHUB_ENV
