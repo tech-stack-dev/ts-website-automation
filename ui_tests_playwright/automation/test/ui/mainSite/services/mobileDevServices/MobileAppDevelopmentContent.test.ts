@@ -25,7 +25,7 @@ test('Check the container titles and numbers from the "Mobile App Development" p
 		driver.getByTestId(MobileDevService.WhatYouGet),
 		driver.getByTestId(MobileDevService.WhatWeDo),
 		driver.getByTestId(MobileDevService.TechnologyStack),
-		driver.getByTestId(MobileDevService.IndustrySpecificSolution),
+		driver.getByTestId(MobileDevService.CaseStudy),
 		driver.getByTestId(MobileDevService.WhatIndustriesWeServe),
 		driver.getByTestId(MobileDevService.OurApproach),
 		driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess),
@@ -104,7 +104,7 @@ test('Check section titles and CTA button in "Mobile Application Development Tec
 });
 
 test('Check section titles, image, and CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696', async () => {
-	const industrySolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
+	const industrySolutionContainer = driver.getByTestId(MobileDevService.CaseStudy);
 	const allSectionTitles = industrySolutionContainer.getByTestId(Container.SectionTitle);
 	const testData = ['User experience', 'Moving to IaaS', 'Third-party\nservices'];
 
