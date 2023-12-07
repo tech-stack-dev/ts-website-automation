@@ -3,13 +3,13 @@ name: Playwright UI E2E
 on:
   workflow_dispatch:
   schedule:
-    # Run each day at 21:10
+    #  each day at 21:10
     - cron: "10 21 * * *"
   pull_request:
     paths:
       - "ui_tests_playwright/**"
 
-# To cancel previous run within one PR after pushing new commit (if previous still in progress)
+# To cancel previous  within one PR after pushing new commit (if previous still in progress)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -116,9 +116,7 @@ jobs:
 
       - name: Parse Test Results
         id: parseResults
-        run: |
-          chmod +x ./automation/scripts/ParseAutotestsResult
-          ./automation/scripts/ParseAutotestsResult
+        run: ./automation/scripts/ParseAutotestsResult
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -129,7 +127,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, Passed: ${{ steps.parseResults.outputs.passed }}, Failed: ${{ steps.parseResults.outputs.failed }}, Skipped: ${{ steps.parseResults.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, Passed: ${{ steps.parseResults.outputs.passed }}, Failed: ${{ steps.parseResults.outputs.failed }}, Skipped: ${{ steps.parseResults.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -144,7 +142,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, \nPassed: ${{ steps.parseResults.outputs.passed }}, \nFailed: ${{ steps.parseResults.outputs.failed }}, \nSkipped: ${{ steps.parseResults.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, \nPassed: ${{ steps.parseResults.outputs.passed }}, \nFailed: ${{ steps.parseResults.outputs.failed }}, \nSkipped: ${{ steps.parseResults.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
