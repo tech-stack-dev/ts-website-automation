@@ -115,8 +115,7 @@ jobs:
           if_false: ts_website_automation
 
       - name: Parse Test Results
-        shell: bash
-        id: parse-results
+        id: parseResults
         run: |
           chmod +x ./automation/scripts/ParseAutotestsResult
           ./automation/scripts/ParseAutotestsResult
@@ -130,7 +129,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, Passed: ${{ steps.parse-results.outputs.passed }}, Failed: ${{ steps.parse-results.outputs.failed }}, Skipped: ${{ steps.parse-results.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, Passed: ${{ steps.parseResults.outputs.passed }}, Failed: ${{ steps.parseResults.outputs.failed }}, Skipped: ${{ steps.parseResults.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -145,7 +144,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, \nPassed: ${{ steps.parse-results.outputs.passed }}, \nFailed: ${{ steps.parse-results.outputs.failed }}, \nSkipped: ${{ steps.parse-results.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, \nPassed: ${{ steps.parseResults.outputs.passed }}, \nFailed: ${{ steps.parseResults.outputs.failed }}, \nSkipped: ${{ steps.parseResults.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
