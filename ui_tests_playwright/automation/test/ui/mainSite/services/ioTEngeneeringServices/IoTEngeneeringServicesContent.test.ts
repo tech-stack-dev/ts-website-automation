@@ -18,7 +18,7 @@ test.beforeAll(async () => {
 test('Check the Info container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695', async () => {
 	const info = driver.getByTestId(IoTEngineeringServices.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
-	await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering\nServices');
+	await expect(info.getByTestId(Container.Title)).toHaveText('change text to check slack report');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 });
 
