@@ -117,16 +117,14 @@ jobs:
       - name: Parse Test Results
         id: parse-results
         run: | 
-          # Add the script/command to parse test results and store them as variables
           total=$(jq '.total' test-results.json)
           passed=$(jq '.passed' test-results.json)
           failed=$(jq '.failed' test-results.json)
           skipped=$(jq '.skipped' test-results.json)
-          # Set output variables
-          echo "Total=$total" >> $GITHUB_ENV
-          echo "Passed=$passed" >> $GITHUB_ENV
-          echo "Failed=$failed" >> $GITHUB_ENV
-          echo "Skipped=$skipped" >> $GITHUB_ENV
+          echo "::set-output name=total::$total"
+          echo "::set-output name=passed::$passed"
+          echo "::set-output name=failed::$failed"
+          echo "::set-output name=skipped::$skipped"
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -137,7 +135,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.Total }}, Passed: ${{ env.Passed }}, Failed: ${{ env.Failed }}, Skipped: ${{ env.Skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, Passed: ${{ steps.parse-results.outputs.passed }}, Failed: ${{ steps.parse-results.outputs.failed }}, Skipped: ${{ steps.parse-results.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -152,7 +150,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.Total }}, Passed: ${{ env.Passed }}, Failed: ${{ env.Failed }}, Skipped: ${{ env.Skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "Total: ${{ steps.parse-results.outputs.total }}, \nPassed: ${{ steps.parse-results.outputs.passed }}, \nFailed: ${{ steps.parse-results.outputs.failed }}, \nSkipped: ${{ steps.parse-results.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
