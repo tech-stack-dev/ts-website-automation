@@ -66,6 +66,13 @@ jobs:
         shell: bash
         run: QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --reporter json > test-results.json
 
+      - name: Debug step
+        run: | 
+          echo "Contents of test-results.json:"
+          cat ./test-results.json
+          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
+          echo "Final Result: $final_result"
+
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
         if: always()
