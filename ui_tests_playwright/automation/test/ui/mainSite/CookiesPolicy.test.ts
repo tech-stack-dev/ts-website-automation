@@ -53,7 +53,7 @@ test('Check "Change consent" button from the "Cookie policy" page @Regression @C
 	await container.getByTestId(Buttons.ChangeConsent).click({timeout: 5000});
 
 	await expect(driver.getByTestId(Buttons.AcceptCookieSettings)).toBeVisible();
-	await expect(driver.getByTestId(Buttons.Decline)).toBeVisible()
+	await expect(driver.getByTestId(Buttons.Decline)).toBeVisible();
 });
 
 test.afterEach(async () => {
