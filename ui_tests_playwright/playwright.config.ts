@@ -49,7 +49,6 @@ const config: PlaywrightTestConfig = {
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [
 		['html', {open: 'never'}],
-		['./automation/scripts/ParseTestResults.ts'],
 		['list'],
 		[
 			'./TsQaseReporter',
