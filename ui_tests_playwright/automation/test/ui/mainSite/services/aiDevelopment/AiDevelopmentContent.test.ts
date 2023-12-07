@@ -24,7 +24,7 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
 		driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
 		driver.getByTestId(AiDevelopment.TechnologyStack),
-		driver.getByTestId(AiDevelopment.IncorporatingAI),
+		driver.getByTestId(AiDevelopment.CaseStudy),
 		driver.getByTestId(AiDevelopment.IndustriesWeServe),
 		driver.getByTestId(AiDevelopment.TheWayWeWork),
 		driver.getByTestId(AiDevelopment.OurApproach),
@@ -38,7 +38,7 @@ test('Check the container titles and numbers from the "AI Development" page @Reg
 		['AI’s Beneficial \nImpact on \nIndustries', '01'],
 		['Our AI Development\nServices', '02'],
 		['Technology Stack', '03'],
-		['Incorporating\nAI/ML into Existing\nHealthcare Flow', '04'],
+		['Case Study by Techstack', '04'],
 		['Industries We Serve', '05'],
 		['The Way We work', '06'],
 		['Our Approach', '07'],
@@ -116,8 +116,8 @@ test('Check section titles in "Technology stack" container from the "AI Developm
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles, image and CTA in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
-	const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
+test('Check section titles, image and CTA in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 	const allSectionTitles = IncorporatingAIContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Seamless integration into\nexisting software system', 'Security and data integrity'];
 

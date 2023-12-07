@@ -16,16 +16,16 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test('Check redirect by "Clutch Review" button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
+test('Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
 	const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
 
 	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 });
 
-test('Check redirect by CTA button in "Beats Screening Module by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
+test('Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
+	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
 	await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(

@@ -4,6 +4,7 @@ export default class GeneralContainersMainSite {
 	static RelatedArticles = 'Container-RelatedArticles';
 	static GetInTouch = 'Container-GetInTouch';
 	static CaseStudies = 'Container-CaseStudies';
+	static CaseStudy = 'Container-CaseStudy';
 	static TechnologyStack = 'Container-TechnologyStack';
 	static OurExperts = 'Container-OurExperts';
 	static RelatedServices = 'Container-RelatedServices';
@@ -18,7 +19,6 @@ export default class GeneralContainersMainSite {
 	static TechstackInNumbers = 'Container-TechstackInNumbers';
 	static WhoWeServe = 'Container-WhoWeServe';
 	static OurApproach = 'Container-OurApproach';
-	static IndustrySpecificSolution = 'Container-IndustrySpecificSolution';
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static Services = 'Container-Services';
 }

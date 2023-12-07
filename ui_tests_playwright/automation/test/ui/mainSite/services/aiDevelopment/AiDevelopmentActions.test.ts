@@ -33,8 +33,8 @@ test('Check redirect by links in "AI’s Beneficial Impact on Industries" contai
 	}
 });
 
-test('Check redirect by "Clutch Review" button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
-	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
+test('Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
 	await baseDriverSteps.checkRedirectToPage(
 		incorporatingAIContainer.getByTestId(Buttons.Clutch),
@@ -42,8 +42,8 @@ test('Check redirect by "Clutch Review" button in "Incorporating AI/ML into Exis
 	);
 });
 
-test('Check redirect by CTA button in "Incorporating AI/ML into Existing Healthcare Flow" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
-	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
+test('Check redirect by CTA button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694', async () => {
+	const incorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
 	await incorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
