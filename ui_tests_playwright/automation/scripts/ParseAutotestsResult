@@ -1,48 +1,17 @@
 #!/bin/bash
 
-# Initialize counts
-total=0
-passed=0
-failed=0
-skipped=0
+json_file="./summary.json"
 
-# Debugging output
-echo "Contents of test-results.json:"
-cat ./test-results.json
+# Use jq to extract the count of passed, failed, skipped tests
+passed=$(jq '.passed | length' "$json_file")
+failed=$(jq '.failed | length' "$json_file")
+skipped=$(jq '.skipped | length' "$json_file")
 
-# Iterate over suites
-for suite in $(jq -c '.suites[]' ./test-results.json); do
-  # Iterate over specs in the current suite
-  for spec in $(echo "$suite" | jq -c '.specs[]'); do
-    # Get the final test result in the current spec
-    test=$(echo "$spec" | jq '.tests[-1]')
+# Calculate the total count
+total=$((passed_count + failed_count + skipped_count + warned_count + timed_out_count))
 
-    # Extract relevant information from the current test
-    status=$(echo "$test" | jq -r '.status')
+# Pass the resuls to the env variables
 
-    # If the status is retry, find the last actual result
-    if [ "$status" == "retry" ]; then
-      for retry in $(echo "$spec" | jq -c '.tests[] | select(.status != "retry")'); do
-        test=$retry
-      done
-    fi
-
-    # Increment counts based on test status
-    ((total++))
-    if [ "$status" == "passed" ]; then
-      ((passed++))
-    elif [ "$status" == "failed" ]; then
-      ((failed++))
-    elif [ "$status" == "skipped" ]; then
-      ((skipped++))
-    fi
-  done
-done
-
-# Debugging output
-echo "Total: $total, Passed: $passed, Failed: $failed, Skipped: $skipped"
-
-# Set output variables
 echo "passed=$passed" >> $GITHUB_ENV
 echo "failed=$failed" >> $GITHUB_ENV
 echo "skipped=$skipped" >> $GITHUB_ENV
