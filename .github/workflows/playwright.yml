@@ -88,7 +88,7 @@ jobs:
           echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
           chmod +x ./automation/scripts/ParseAutotestsResult
           ./automation/scripts/ParseAutotestsResult
-          echo "Debug: ${{ env.total }}
+          echo "Debug: ${{ env.total }}"
           echo "Contents of test-results.json:"
           cat ./test-results.json
           final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
