@@ -114,6 +114,11 @@ jobs:
           if_true: test_slack_notifications
           if_false: ts_website_automation
 
+      - name: Parse Test Results
+        if: always()
+        id: tests-count
+        run: npx ts-node automation/scripts/GetAutotestsCount.ts
+          
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
@@ -123,7 +128,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -137,7 +142,8 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
+          
