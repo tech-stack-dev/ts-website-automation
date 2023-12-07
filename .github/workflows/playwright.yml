@@ -3,13 +3,13 @@ name: Playwright UI E2E
 on:
   workflow_dispatch:
   schedule:
-    #  each day at 21:10
+    # Run each day at 21:10
     - cron: "10 21 * * *"
   pull_request:
     paths:
       - "ui_tests_playwright/**"
 
-# To cancel previous  within one PR after pushing new commit (if previous still in progress)
+# To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -64,7 +64,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep "@TSWEB-695" --reporter json > test-results.json
+        run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --reporter json > test-results.json
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -82,7 +82,7 @@ jobs:
           publish_dir: ui_tests_playwright/playwright-report
           publish_branch: gh-pages
 
-      - name: Display Playwright Report Link
+      - name: Display Playwright Report Link And Parse Test Result
         if: always()
         run: |
           echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
@@ -115,8 +115,15 @@ jobs:
           if_false: ts_website_automation
 
       - name: Parse Test Results
-        id: parseResults
-        run: ./automation/scripts/ParseAutotestsResult
+        if: always()
+        run: | 
+          chmod +x ./automation/scripts/ParseAutotestsResult
+          ./automation/scripts/ParseAutotestsResult
+          echo "Debug: ${{ env.total }}"
+          echo "Contents of test-results.json:"
+          cat ./test-results.json
+          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
+          echo "Final Result: $final_result"
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -127,11 +134,10 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, Passed: ${{ steps.parseResults.outputs.passed }}, Failed: ${{ steps.parseResults.outputs.failed }}, Skipped: ${{ steps.parseResults.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-          SLACK_EXTRA: "Total: ${{ env.Total }}, Passed: ${{ env.Passed }}, Failed: ${{ env.Failed }}, Skipped: ${{ env.Skipped }}"
 
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -142,9 +148,8 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, \nPassed: ${{ steps.parseResults.outputs.passed }}, \nFailed: ${{ steps.parseResults.outputs.failed }}, \nSkipped: ${{ steps.parseResults.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }}, \n✅Passed: ${{ env.passed }} \ ${{ env.total }} \n❌Failed: ${{ env.failed }} \ ${{ env.total }}, \n⚠️Skipped: ${{ env.skipped }} \ ${{ env.total }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-          SLACK_EXTRA: "Total: ${{ env.Total }}, Passed: ${{ env.Passed }}, Failed: ${{ env.Failed }}, Skipped: ${{ env.Skipped }}"
           
