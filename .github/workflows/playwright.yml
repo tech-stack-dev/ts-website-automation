@@ -115,7 +115,6 @@ jobs:
           if_false: ts_website_automation
 
       - name: Parse Test Results
-        id: parseResults
         run: ./automation/scripts/ParseAutotestsResult
           
       - name: Slack Notification for UI tests production
@@ -127,11 +126,11 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, Passed: ${{ steps.parseResults.outputs.passed }}, Failed: ${{ steps.parseResults.outputs.failed }}, Skipped: ${{ steps.parseResults.outputs.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }}, Passed: ${{ env.passed }}, Failed: ${{ env.failed }}, Skipped: ${{ env.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-          SLACK_EXTRA: "Total: ${{ env.Total }}, Passed: ${{ env.Passed }}, Failed: ${{ env.Failed }}, Skipped: ${{ env.Skipped }}"
+          SLACK_EXTRA: "Total: ${{ env.total }}, Passed: ${{ env.passed }}, Failed: ${{ env.failed }}, Skipped: ${{ env.skipped }}"
 
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -142,7 +141,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.parseResults.outputs.total }}, \nPassed: ${{ steps.parseResults.outputs.passed }}, \nFailed: ${{ steps.parseResults.outputs.failed }}, \nSkipped: ${{ steps.parseResults.outputs.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }}, Passed: ${{ env.passed }}, Failed: ${{ env.failed }}, Skipped: ${{ env.skipped }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
