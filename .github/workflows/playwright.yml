@@ -82,7 +82,7 @@ jobs:
           publish_dir: ui_tests_playwright/playwright-report
           publish_branch: gh-pages
 
-      - name: Display Playwright Report Link And Parse Test Result
+      - name: Display Playwright Report Link
         if: always()
         run: |
           echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
@@ -119,11 +119,6 @@ jobs:
         run: | 
           chmod +x ./automation/scripts/ParseAutotestsResult
           ./automation/scripts/ParseAutotestsResult
-          echo "Debug: ${{ env.total }}"
-          echo "Contents of test-results.json:"
-          cat ./test-results.json
-          final_result=$(jq '.suites[-1].specs[-1].tests[-1].results[-1]' ./test-results.json)
-          echo "Final Result: $final_result"
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -134,7 +129,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }} \n✅Passed: ${{ env.passed }} \n❌Failed: ${{ env.failed }} \n⚠️Skipped: ${{ env.skipped }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -148,7 +143,7 @@ jobs:
           SLACK_CHANNEL: test_slack_notifications
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.total }}, \n✅Passed: ${{ env.passed }} \ ${{ env.total }} \n❌Failed: ${{ env.failed }} \ ${{ env.total }}, \n⚠️Skipped: ${{ env.skipped }} \ ${{ env.total }}, \nlink for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
+          SLACK_MESSAGE: "Total: ${{ env.total }}, \n✅Passed: ${{ env.passed }} \\ ${{ env.total }} \n❌Failed: ${{ env.failed }} \\ ${{ env.total }}, \n⚠️Skipped: ${{ env.skipped }} \\ ${{ env.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/s/${{ github._id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
