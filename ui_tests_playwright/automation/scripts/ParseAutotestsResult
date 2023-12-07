@@ -11,7 +11,6 @@ skipped=$(jq '.skipped | length' "$json_file")
 total=$((passed + failed + skipped))
 
 # Pass the resuls to the env variables
-
 echo "passed=$passed" >> $GITHUB_ENV
 echo "failed=$failed" >> $GITHUB_ENV
 echo "skipped=$skipped" >> $GITHUB_ENV
