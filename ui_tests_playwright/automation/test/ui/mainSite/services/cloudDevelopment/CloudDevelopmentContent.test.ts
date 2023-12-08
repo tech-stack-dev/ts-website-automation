@@ -33,7 +33,7 @@ test(
 	async () => {
 		const containers = [
 			driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ),
-			driver.getByTestId(CloudDevelopment.IndustrySpecificSolution),
+			driver.getByTestId(CloudDevelopment.CaseStudy),
 			driver.getByTestId(CloudDevelopment.IndustriesWeServe),
 			driver.getByTestId(CloudDevelopment.TechnologyStack),
 			driver.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits),
@@ -96,7 +96,7 @@ test(
 		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
-		const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.IndustrySpecificSolution);
+		const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
 		const allSectionTitles = industrySpecificSolutionContainer.getByTestId(Container.SectionTitle);
 		const testData = ['High-load infrastructure', 'Data integrity', 'Scalability'];
 

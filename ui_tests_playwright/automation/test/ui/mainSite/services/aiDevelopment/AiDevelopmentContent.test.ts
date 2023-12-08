@@ -33,7 +33,7 @@ test(
 			driver.getByTestId(AiDevelopment.AiBeneficialImpactOnIndustries),
 			driver.getByTestId(AiDevelopment.OurAiDevelopmentServices),
 			driver.getByTestId(AiDevelopment.TechnologyStack),
-			driver.getByTestId(AiDevelopment.IncorporatingAI),
+			driver.getByTestId(AiDevelopment.CaseStudy),
 			driver.getByTestId(AiDevelopment.IndustriesWeServe),
 			driver.getByTestId(AiDevelopment.TheWayWeWork),
 			driver.getByTestId(AiDevelopment.OurApproach),
@@ -152,7 +152,7 @@ test(
 		'Check section titles, image and CTA in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
-		const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.IncorporatingAI);
+		const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 		const allSectionTitles = IncorporatingAIContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Seamless integration into\nexisting software system', 'Security and data integrity'];
 

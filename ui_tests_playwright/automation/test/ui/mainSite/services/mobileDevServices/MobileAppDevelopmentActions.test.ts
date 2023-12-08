@@ -26,7 +26,7 @@ test(
 		'Check redirect by CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
-		const industrySpecificSolutionContainer = driver.getByTestId(MobileDevService.IndustrySpecificSolution);
+		const industrySpecificSolutionContainer = driver.getByTestId(MobileDevService.CaseStudy);
 
 		await industrySpecificSolutionContainer.getByTestId(MainSiteButtons.MoreProductDetails).click();
 		await baseDriverSteps.checkUrl(
