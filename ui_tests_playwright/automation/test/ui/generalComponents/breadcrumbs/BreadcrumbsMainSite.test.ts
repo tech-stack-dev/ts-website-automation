@@ -37,6 +37,8 @@ test('Check redirects to "Our Services" page by clicking "Our Services" breadcru
 		UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 		UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 		UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+		UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+		UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
 	];
 
 	for (const url of servicesUrlList) {

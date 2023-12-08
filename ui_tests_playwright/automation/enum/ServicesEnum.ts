@@ -11,4 +11,6 @@ export enum ServicesEnum {
 	UiUxDesign,
 	QaAsAServ,
 	ConsultingServ,
+	BackEndDevelopment,
+	FrontEndDevelopment,
 }
