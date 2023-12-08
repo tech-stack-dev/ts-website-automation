@@ -23,7 +23,7 @@ test(
 		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
-		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
+		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
 		const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
 
@@ -37,7 +37,7 @@ test(
 		'Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
-		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
+		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
 		await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 		await baseDriverSteps.checkUrl(

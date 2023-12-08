@@ -22,7 +22,7 @@ test(
 		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
-		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
+		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 		await baseDriverSteps.checkRedirectToPage(
 			caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
@@ -36,7 +36,7 @@ test(
 		'Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
-		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
+		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 
 		await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
 		await baseDriverSteps.checkUrl(

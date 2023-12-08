@@ -28,7 +28,7 @@ test(
 		const containers = [
 			driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent),
 			driver.getByTestId(Healthcare.OurExpertise),
-			driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack),
+			driver.getByTestId(Healthcare.CaseStudy),
 			driver.getByTestId(Healthcare.PatientCenteredStrategy),
 			driver.getByTestId(Healthcare.MostRecentIndustryFacts),
 			driver.getByTestId(Healthcare.HowWeOperate),
@@ -102,7 +102,7 @@ test(
 		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
-		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.BeatsScreeningModuleByTechstack);
+		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 		const allSectionTitles = beatsScreeningModuleContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
 

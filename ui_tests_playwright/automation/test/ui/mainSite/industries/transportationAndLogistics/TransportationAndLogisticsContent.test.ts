@@ -39,7 +39,7 @@ test(
 			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
 			driver.getByTestId(TransportationAndLogistics.WhoWeServe),
 			driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
-			driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack),
+			driver.getByTestId(TransportationAndLogistics.CaseStudy),
 			driver.getByTestId(TransportationAndLogistics.OurExpertise),
 			driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent),
 			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
@@ -140,7 +140,7 @@ test(
 		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
-		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudyByTechstack);
+		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 
 		const allSectionTitles = caseStudyByTechstackContainer.getByTestId(Container.SectionTitle);
 		const testData = [
