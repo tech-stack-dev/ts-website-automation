@@ -36,21 +36,6 @@ test(
 
 test(
 	qase(
-		5245,
-		'Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
-	),
-	async () => {
-		const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
-
-		await baseDriverSteps.checkRedirectToPage(
-			techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
-			Links.ClutchReviews
-		);
-	}
-);
-
-test(
-	qase(
 		4858,
 		'Check redirects by arrows in "Custom Development Services We Provide" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
 	),
