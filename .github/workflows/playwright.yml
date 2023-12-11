@@ -9,14 +9,18 @@ on:
     paths:
       - "ui_tests_playwright/**"
 
+# To cancel previous run within one PR after pushing new commit (if previous still in progress)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:        
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    # Set up queue for parallel actions
     concurrency:
       group: ${{ github.event_name }}
-      cancel-in-progress: true
 
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
@@ -27,12 +31,12 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "18"
 
       - name: Install dependencies
         run: npm ci
@@ -50,7 +54,7 @@ jobs:
           else
             ticketStatuses=""
           fi
-          echo "::set-output name=ticketStatuses::$ticketStatuses"
+          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
@@ -110,6 +114,11 @@ jobs:
           if_true: test_slack_notifications
           if_false: ts_website_automation
 
+      - name: Parse Test Results
+        if: always()
+        id: tests-count
+        run: npx ts-node automation/scripts/GetAutotestsCount.ts
+          
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
@@ -119,7 +128,7 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -133,7 +142,8 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
+          
