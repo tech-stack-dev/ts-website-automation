@@ -11,84 +11,130 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import {Environment} from '../../../../../providers/EnvProvider';
 import Container from '../../../../../identifiers/Container';
 import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test('Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
+test(
+	qase(
+		5115,
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
-	const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
+		const clutchReviewButton = beatsScreeningModuleContainer.getByTestId(Buttons.Clutch);
 
-	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
-});
-
-test('Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
-
-	await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
-	await baseDriverSteps.checkUrl(
-		UrlProvider.urlBuilder(`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`, Environment.Production)
-	);
-});
-
-test('Check redirect by links in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
-	// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
-	const buttonLinkMap = new Map([
-		[MainSiteButtons.Pwc, ExternalSourceLinks.PwcHealthcareTrends],
-		[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyExpectInHealthcare],
-	]);
-
-	for (const entries of buttonLinkMap.entries()) {
-		const actualLink = await mostRecentIndustryFactsContainer.getByTestId(entries[0]).getAttribute('href');
-		expect(actualLink).toEqual(entries[1]);
+		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 	}
-});
+);
 
-test('Check carousel arrows click in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
+test(
+	qase(
+		5110,
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
 
-	await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
-});
-
-test('Check redirects by arrows in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
-	const arrows = corePracticesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
-	const arrowUrlMap = new Map([
-		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-		[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-		[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
-		[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-		[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-		[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-		[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-	]);
-
-	for (const [arrow, url] of arrowUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.Healthcare));
+		await beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`,
+				Environment.Production
+			)
+		);
 	}
-});
+);
 
-test('Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const faqContainer = driver.getByTestId(Healthcare.Faq);
-	const expectedNumberOfSections = 3;
+test(
+	qase(
+		5104,
+		'Check redirect by links in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
+		// Replace with checks for redirect to pages and check url after investigate the "chrome-error://chromewebdata/" error
+		const buttonLinkMap = new Map([
+			[MainSiteButtons.Pwc, ExternalSourceLinks.PwcHealthcareTrends],
+			[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyExpectInHealthcare],
+		]);
 
-	await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
-});
-
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @Regression @Healthcare @TSWEB-955', async () => {
-	const ctaButtons = [
-		driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
-		driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
-		driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
-	];
-
-	for (const button of ctaButtons) {
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, Healthcare.GetInTouch);
+		for (const entries of buttonLinkMap.entries()) {
+			const actualLink = await mostRecentIndustryFactsContainer.getByTestId(entries[0]).getAttribute('href');
+			expect(actualLink).toEqual(entries[1]);
+		}
 	}
-});
+);
+
+test(
+	qase(
+		5142,
+		'Check carousel arrows click in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
+
+		await baseDriverSteps.checkCarouselArrowsClick(howWeOperateContainer);
+	}
+);
+
+test(
+	qase(
+		5208,
+		'Check redirects by arrows in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
+		const arrows = corePracticesContainer.getByTestId(Container.ContainerSection).getByTestId(Container.Arrow);
+		const arrowUrlMap = new Map([
+			[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+			[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
+			[arrows.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
+			[arrows.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
+			[arrows.nth(4), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
+			[arrows.nth(5), UrlProvider.urlBuilder(UrlPath.MobileDev)],
+			[arrows.nth(6), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
+		]);
+
+		for (const [arrow, url] of arrowUrlMap) {
+			await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.Healthcare));
+		}
+	}
+);
+
+test(
+	qase(
+		5122,
+		'Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const faqContainer = driver.getByTestId(Healthcare.Faq);
+		const expectedNumberOfSections = 3;
+
+		await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
+	}
+);
+
+test(
+	qase(
+		5136,
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+	),
+	async () => {
+		const ctaButtons = [
+			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
+			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
+		];
+
+		for (const button of ctaButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, Healthcare.GetInTouch);
+		}
+	}
+);
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
