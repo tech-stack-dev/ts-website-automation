@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 test('Check the Info container from the "How we work" page @Regression @HowWeWork', async () => {
 	const info = driver.getByTestId(HowWeWork.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
-	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
+	await expect(info.getByTestId(Container.Title)).toHaveText('Mistake here'); // Mistake here
 	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 });
 
