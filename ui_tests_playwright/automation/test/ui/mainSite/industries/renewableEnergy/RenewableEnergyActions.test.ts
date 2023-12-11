@@ -93,7 +93,7 @@ test(
 
 		const clutchReviewButton = whyChooseUsContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.DarrenCody);
+		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.HenriYoki);
 	}
 );
 
