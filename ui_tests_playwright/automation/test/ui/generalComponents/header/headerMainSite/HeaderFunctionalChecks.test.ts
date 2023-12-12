@@ -34,13 +34,13 @@ for (const url of testDataProvider) {
 
 	test(`Check the redirection for the Industries block in the "Header" on the "${url}" page @Regression @Header @TSWEB-656`, async () => {
 		await baseDriverSteps.goToUrl(url);
-		// const servicesList = new Map([
-		// [Header.Industries_Healthcare, industryUrl[IndustriesEnum.Healthcare]],
+		// const industriesList = new Map([
+		// 	[Header.Industries_Healthcare, industryUrl[IndustriesEnum.Healthcare]],
 		// 	[Header.Industries_TransportationAndLogistics, industryUrl[IndustriesEnum.TransportAndLogist]],
 		// 	[Header.Industries_RenewableEnergy, industryUrl[IndustriesEnum.RenewableEnergy]],
 		// ]);
 
-		const links = driver.locator('//div[@id="header-industries-menu"]//a[@class="header-menu-link"]');
+		const links = driver.locator('//div[@id="header-industries-menu"]//a[contains (@class, "header-menu-link")]');
 		const linksNumber = await links.count();
 		const expectedUrls = Object.values(industryUrl);
 

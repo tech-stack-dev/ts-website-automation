@@ -1,5 +1,7 @@
 export default class Buttons {
+	static Logo = 'Logo-Techstack';
 	static ContactUs = 'Button-ContactUs';
+	static Blog = 'Button-Blog';
 	static Close = 'CloseButton-Close';
 
 	// Social links
@@ -34,8 +36,4 @@ export default class Buttons {
 	static Send = 'SubmitButton-SharedSendMessage';
 	static AttachFiles = 'Button-AttachFiles';
 	static Cancel = 'Icon-Cancel';
-
-	// Other
-	static Logo = 'Logo-Techstack';
-	static Blog = 'Button-Blog';
 }

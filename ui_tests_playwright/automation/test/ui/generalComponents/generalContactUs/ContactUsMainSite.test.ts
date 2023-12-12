@@ -19,72 +19,14 @@ test.beforeEach(async () => {
 	contactUsButton = header.getByTestId(Buttons.ContactUs);
 });
 
-test('Check "Contact Us" button from "Main", "Contact Us", and "Pricing" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: Array<string> = [
-		UrlProvider.webSiteUrl(),
-		UrlProvider.urlBuilder(UrlPath.ContactUs),
-		UrlProvider.urlBuilder(UrlPath.Pricing),
-	];
-
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Industries" pages @Regression @ContactUs', async () => {
-	for (const url of Object.values(industryUrl)) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Services" pages @Regression @ContactUs @TSWEB-532', async () => {
-	for (const url of Object.values(serviceUrl)) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Company" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: string[] = [
-		companyUrl[CompanyEnum.AboutUs],
-		companyUrl[CompanyEnum.HowWeWork],
-		companyUrl[CompanyEnum.Pricing],
-		companyUrl[CompanyEnum.CaseStudies],
-		companyUrl[CompanyEnum.Whitepapers],
-	];
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Terms of use", "Cookie Policy", and "Sitemap" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: string[] = [
-		UrlProvider.urlBuilder(UrlPath.Terms),
-		UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
-		UrlProvider.urlBuilder(UrlPath.Sitemap),
-	];
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
 const urlList: Array<string> = [
 	UrlProvider.webSiteUrl(),
 	companyUrl[CompanyEnum.AboutUs],
 	companyUrl[CompanyEnum.HowWeWork],
 	companyUrl[CompanyEnum.CaseStudies],
 	companyUrl[CompanyEnum.Pricing],
+	companyUrl[CompanyEnum.Whitepapers],
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.Whitepapers),
 	UrlProvider.urlBuilder(UrlPath.Terms),
 	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
@@ -106,6 +48,12 @@ for (const url of urlList) {
 			return getComputedStyle(el).backgroundColor;
 		});
 		expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+	});
+
+	test(`Check redirection by "Contact Us" button on the "${url}" page @Regression @ContactUs @TSWEB-532`, async () => {
+		await baseDriverSteps.goToUrl(url);
+		await contactUsButton.click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	});
 }
 
