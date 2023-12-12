@@ -1,6 +1,7 @@
 export default class Buttons {
 	static ContactUs = 'Button-ContactUs';
-	
+	static Close = 'CloseButton-Close';
+
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';
 	static Facebook = 'Button-Facebook';

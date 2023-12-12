@@ -1,8 +1,7 @@
 export default class Header {
-	static Container_Header = 'Container-Header'
+	static Container_Header = 'Container-Header';
 
 	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
-	static Close = 'CloseButton-Close';
 
 	static Logo = 'HeaderLogo-HeaderLogo';
 	static Industries = 'Header-Industries';
@@ -12,7 +11,7 @@ export default class Header {
 
 	// Menu components
 	static Industries_Healthcare = 'Industries-Healthcare';
-	static Industries_TransportationAndLogistics= 'Industries-TransportationAndLogistics';
+	static Industries_TransportationAndLogistics = 'Industries-TransportationAndLogistics';
 	static Industries_RenewableEnergy = 'Industries-RenewableEnergy';
 
 	static Services_OurServices = 'Services-OurServices';
