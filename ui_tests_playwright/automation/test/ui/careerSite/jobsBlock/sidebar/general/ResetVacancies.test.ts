@@ -16,6 +16,7 @@ import Career from '../../../../../../identifiers/career/pages/Career';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -45,43 +46,51 @@ const testDataProvider = [
 ];
 
 for (const testData of testDataProvider) {
-	test(`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
-		contentfulUtils.AddTagsToCareerBody(testData.createTags);
-		await contentfulSteps.createCareerWithDefaultValue(
-			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
-		);
-		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	test(
+		qase(
+			[4797, 4812, 4819, 4832],
+			`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
+		),
+		async () => {
+			contentfulUtils.AddTagsToCareerBody(testData.createTags);
+			await contentfulSteps.createCareerWithDefaultValue(
+				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+				`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+				`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+			);
+			await careerSteps.verifyThatCareerWasCreated(
+				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+			);
 
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
-		const filterGroupContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.FilterGroupWrapper,
-			careerMainContainer
-		);
-		const activeTagsGroupContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.ActiveTagsGroupWrapper,
-			careerMainContainer
-		);
+			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+			const filterGroupContainer = await containerSteps.getContainer(
+				ContainerByClass,
+				ContainersCareer.FilterGroupWrapper,
+				careerMainContainer
+			);
+			const activeTagsGroupContainer = await containerSteps.getContainer(
+				ContainerByClass,
+				ContainersCareer.ActiveTagsGroupWrapper,
+				careerMainContainer
+			);
 
-		for (const tag of testData.tagList) {
-			const filterTag = filterGroupContainer.getByTestId(tag);
-			await filterTag.click();
-			await expect(filterTag).toHaveClass(/active-tag/);
-			const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
-			await expect(activeTag).toHaveClass(/active-tag/);
-		}
-
-		await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
-		testData.tagList.forEach(async (tag) => {
-			playwrightUtils.expectWithRetries(async () => {
+			for (const tag of testData.tagList) {
 				const filterTag = filterGroupContainer.getByTestId(tag);
-				await expect(filterTag).not.toHaveClass(/active-tag/);
+				await filterTag.click();
+				await expect(filterTag).toHaveClass(/active-tag/);
+				const activeTag = activeTagsGroupContainer.Element.getByTestId(tag);
+				await expect(activeTag).toHaveClass(/active-tag/);
+			}
+
+			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
+			testData.tagList.forEach(async (tag) => {
+				playwrightUtils.expectWithRetries(async () => {
+					const filterTag = filterGroupContainer.getByTestId(tag);
+					await expect(filterTag).not.toHaveClass(/active-tag/);
+				});
 			});
-		});
-	});
+		}
+	);
 }
 
 test.afterEach(async () => {
