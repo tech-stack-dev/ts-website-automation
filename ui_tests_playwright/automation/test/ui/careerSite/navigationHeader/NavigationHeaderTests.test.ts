@@ -8,19 +8,20 @@ import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Blog from '../../../../identifiers/blog/Blog';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
-test('Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560', async () => {
+test(qase(4868, 'Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560'), async () => {
 	const headerContainer = await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass);
 	const uaButtonSwitcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
 	await uaButtonSwitcher.click();
 	await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 });
 
-test.skip('Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132', async () => {
+test(qase(4872, 'Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'), async () => {
 	const SWUFrame = await containerSteps.getContainer(ContainerByClass, ContainersCareer.StandWithUkraineClass);
 	await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
 		'Techstack stands with Ukraine'
