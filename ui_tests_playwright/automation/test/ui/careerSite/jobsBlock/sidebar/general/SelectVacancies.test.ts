@@ -17,6 +17,7 @@ import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
 import Career from '../../../../../../identifiers/career/pages/Career';
 import {locatorUtils} from '../../../../../../utils/LocatorUtils';
 import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -34,43 +35,51 @@ const testDataProvider = [
 ];
 
 for (const testData of testDataProvider) {
-	test(`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`, async () => {
-		contentfulUtils.AddTagsToCareerBody(testData.createTag);
-		await contentfulSteps.createCareerWithDefaultValue(
-			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
-			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
-			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
-		);
-		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+	test(
+		qase(
+			[4825, 4837, 4842, 4856],
+			`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
+		),
+		async () => {
+			contentfulUtils.AddTagsToCareerBody(testData.createTag);
+			await contentfulSteps.createCareerWithDefaultValue(
+				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+				`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+				`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+			);
+			await careerSteps.verifyThatCareerWasCreated(
+				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
+			);
 
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
-		const filterGroupContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.FilterGroupWrapper,
-			careerMainContainer
-		);
-		const filterTag = filterGroupContainer.getByTestId(testData.tagName);
-		const activeTagsGroupContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.ActiveTagsGroupWrapper,
-			careerMainContainer
-		);
-		const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
+			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+			const filterGroupContainer = await containerSteps.getContainer(
+				ContainerByClass,
+				ContainersCareer.FilterGroupWrapper,
+				careerMainContainer
+			);
+			const filterTag = filterGroupContainer.getByTestId(testData.tagName);
+			const activeTagsGroupContainer = await containerSteps.getContainer(
+				ContainerByClass,
+				ContainersCareer.ActiveTagsGroupWrapper,
+				careerMainContainer
+			);
+			const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
 
-		await filterTag.click();
-		await playwrightUtils.expectWithRetries(async () => {
-			await expect(filterTag).toHaveClass(/active-tag/);
-			expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
-		}, 5);
-		await playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000);
-		await playwrightUtils.expectWithRetries(
-			expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
-				ColorsEnum.OrangeYellow
-			),
-			5,
-			5000
-		);
-	});
+			await filterTag.click();
+			await playwrightUtils.expectWithRetries(async () => {
+				await expect(filterTag).toHaveClass(/active-tag/);
+				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
+			}, 5);
+			await playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000);
+			await playwrightUtils.expectWithRetries(
+				expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
+					ColorsEnum.OrangeYellow
+				),
+				5,
+				5000
+			);
+		}
+	);
 }
 
 test.afterEach(async () => {

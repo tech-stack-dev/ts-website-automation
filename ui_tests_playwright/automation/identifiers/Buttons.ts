@@ -53,6 +53,9 @@ export default class Buttons {
 
 	// Cookies
 	static AcceptCookies = 'Button-AcceptCookie';
+	static ChangeConsent = 'Button-ChangeConsent';
+	static AcceptCookieSettings = 'Button-AcceptCookieSettings';
+	static Decline = 'Button-Decline';
 
 	// Form
 	static Send = 'SubmitButton-SharedSendMessage';
