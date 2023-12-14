@@ -37,7 +37,7 @@ export default class Buttons {
 	static Career_Jobs = 'Career-Jobs';
 	static Career_AboutUs = 'Career-AboutUs';
 	static Career_Reviews = 'Career-Reviews';
-	static Career_ContactUs = 'Career-Reviews';
+	static Career_ContactUs = 'Career-ContactUs';
 
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';

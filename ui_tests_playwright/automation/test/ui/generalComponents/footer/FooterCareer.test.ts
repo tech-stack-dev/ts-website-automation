@@ -4,7 +4,6 @@ import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
-import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 
@@ -29,7 +28,7 @@ test(`Check the footer information from the 'Footer' container on all pages @Reg
 		const year = new Date().getFullYear();
 
 		await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
-		await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
+		await expect(companyBlock).toHaveText('Company');
 		const companyList = new Map([
 			[Buttons.Company_TechstackWorldwide, 'Techstack Worldwide'],
 			[Buttons.Company_Services, 'Services'],
@@ -41,7 +40,7 @@ test(`Check the footer information from the 'Footer' container on all pages @Reg
 			await expect(footer.getByTestId(element)).toHaveText(title);
 		}
 
-		await expect(careerBlock.getByTestId(Container.BlockTitle)).toHaveText('Career');
+		await expect(careerBlock).toHaveText('Career');
 		const careerList = new Map([
 			[Buttons.Career_Jobs, 'Jobs'],
 			[Buttons.Career_AboutUs, 'About us'],
