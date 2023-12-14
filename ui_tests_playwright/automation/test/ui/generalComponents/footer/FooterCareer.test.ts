@@ -5,7 +5,6 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 
@@ -22,85 +21,101 @@ test.beforeEach(async () => {
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
-for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @FooterCareer @TSWEB-655`, async () => {
+test(`Check the footer information from the 'Footer' container on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
-
-		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
-		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
+		const companyBlock = footer.getByTestId(Footer.CompanyBlock);
+		const careerBlock = footer.getByTestId(Footer.CareerBlock);
 		const year = new Date().getFullYear();
 
 		await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 		await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
+		const companyList = new Map([
+			[Buttons.Company_TechstackWorldwide, 'Techstack Worldwide'],
+			[Buttons.Company_Services, 'Services'],
+			[Buttons.Company_CaseStudies, 'Case Studies'],
+			[Buttons.Company_Blog, 'Blog'],
+		]);
+
+		for (const [element, title] of companyList) {
+			await expect(footer.getByTestId(element)).toHaveText(title);
+		}
+
 		await expect(careerBlock.getByTestId(Container.BlockTitle)).toHaveText('Career');
+		const careerList = new Map([
+			[Buttons.Career_Jobs, 'Jobs'],
+			[Buttons.Career_AboutUs, 'About us'],
+			[Buttons.Career_Reviews, 'Reviews'],
+			[Buttons.Career_ContactUs, 'Contact us'],
+		]);
+
+		for (const [element, title] of careerList) {
+			await expect(footer.getByTestId(element)).toHaveText(title);
+		}
+
 		await expect(footer.getByTestId(Footer.Info).nth(0)).toHaveText(`© ${year} Techstack. All rights reserved.`);
-		expect(await companyBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-			'Techstack Worldwide',
-			'Services',
-			'Case Studies',
-			'Blog',
-		]);
-		expect(await careerBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
-			'Jobs',
-			'About us',
-			'Reviews',
-			'Contact us',
-		]);
+
 		await expect(driver.getByTestId(Footer.TermsOfUse)).toHaveText('Terms of use');
 		await expect(driver.getByTestId(Footer.CookiesPolicy)).toHaveText('Cookies Policy');
-	});
+	}
+});
 
-	test(`Check the redirection by the "Techstack" logo on the '${url}' page @Regression @FooterCareer @TSWEB-655`, async () => {
+test(`Check the redirection by the "Techstack" logo on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		await footer.getByTestId(Buttons.Logo).click();
 		await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
-	});
+	}
+});
 
-	test(`Check the redirection for the Company block on the '${url}' page @Regression @FooterCareer @TSWEB-655`, async () => {
-		const companyUrlList = [
-			UrlProvider.webSiteUrl(),
-			UrlProvider.urlBuilder(UrlPath.OurServices),
-			UrlProvider.urlBuilder(UrlPath.CaseStudies),
-			UrlProvider.urlBuilder(UrlPath.Blog),
-		];
+test(`Check the redirection for the Company block on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	const companyUrlList = new Map([
+		[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
+		[Buttons.Company_Services, UrlProvider.urlBuilder(UrlPath.OurServices)],
+		[Buttons.Company_CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
+		[Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)],
+	]);
 
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
-		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
-		const companyList = await companyBlock.getByTestId(Container.SectionTitle).all();
 
-		for (let index = 0; index < companyList.length; index++) {
-			await companyList[index].click();
-			await baseDriverSteps.checkUrl(companyUrlList[index]);
+		for (const [element, companyUrl] of companyUrlList) {
+			await footer.getByTestId(element).click();
+			await baseDriverSteps.checkUrl(companyUrl);
 			await baseDriverSteps.goToUrl(url);
 		}
-	});
+	}
+});
 
-	test(`Check the redirection for the Career block on the '${url}' page @Regression @FooterCareer @TSWEB-655`, async () => {
-		const careerUrlList = [
-			UrlProvider.careerUrl(),
-			UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
-			UrlProvider.careerUrlBuilder(UrlPath.Reviews),
-			UrlProvider.careerUrlBuilder(UrlPath.ContactUs),
-		];
+test(`Check the redirection for the Career block on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	const careerUrlList = new Map([
+		[Buttons.Career_Jobs, UrlProvider.careerUrl()],
+		[Buttons.Career_AboutUs, UrlProvider.careerUrlBuilder(UrlPath.AboutUs)],
+		[Buttons.Career_Reviews, UrlProvider.careerUrlBuilder(UrlPath.Reviews)],
+		[Buttons.Career_ContactUs, UrlProvider.careerUrlBuilder(UrlPath.ContactUs)],
+	]);
 
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
-		const careerBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Career'))!;
-		const careerList = await careerBlock.getByTestId(Container.SectionTitle).all();
 
-		for (let index = 0; index < careerList.length; index++) {
-			await careerList[index].click();
-			await baseDriverSteps.checkUrl(careerUrlList[index]);
+		for (const [element, careerUrl] of careerUrlList) {
+			await footer.getByTestId(element).click();
+			await baseDriverSteps.checkUrl(careerUrl);
 			await baseDriverSteps.goToUrl(url);
 		}
-	});
+	}
+});
 
-	test(`Check the redirection for the social links on the '${url}' page @Regression @FooterCareer @TSWEB-655`, async () => {
-		const linkMap = new Map([
-			[Buttons.Behance, Links.Behance],
-			[Buttons.LinkedIn, Links.LinkedIn],
-			[Buttons.Facebook, Links.Facebook],
-			[Buttons.Instagram, Links.Instagram],
-		]);
+test(`Check the redirection for the social links on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	const linkMap = new Map([
+		[Buttons.Behance, Links.Behance],
+		[Buttons.LinkedIn, Links.LinkedIn],
+		[Buttons.Facebook, Links.Facebook],
+		[Buttons.Instagram, Links.Instagram],
+	]);
+
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
 
 		for (const entries of linkMap.entries()) {
 			const [newPage] = await Promise.all([
@@ -117,20 +132,25 @@ for (const url of testDataProvider) {
 		]);
 		expect(newPage.url()).toContain(Links.Clutch);
 		await newPage.close();
-	});
+	}
+});
 
-	test(`Check redirection to the Terms and Cookies Policy pages on the '${url}' page @Regression @FooterCareer @TSWEB-655`, async () => {
-		const linkMap = new Map([
-			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
-			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
-		]);
+test(`Check redirection to the Terms and Cookies Policy pages on all pages @Regression @FooterCareer @TSWEB-655`, async () => {
+	const linkMap = new Map([
+		[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
+		[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
+	]);
+
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
+
 		for (const entries of linkMap.entries()) {
-			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(entries[0]).click();
 			await baseDriverSteps.checkUrl(entries[1]);
+			await baseDriverSteps.goToUrl(url);
 		}
-	});
-}
+	}
+});
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
