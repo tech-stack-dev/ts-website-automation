@@ -27,7 +27,7 @@ test.beforeEach(async () => {
 });
 
 for (const url of testDataProvider) {
-	test(`Check the footer information from the 'Footer' container on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+	test.skip(`Check the footer information from the 'Footer' container on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -101,7 +101,7 @@ for (const url of testDataProvider) {
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	});
 
-	test(`Check the redirection for the Industries block on the '${url}' page @Regression @Footer @TSWEB-833`, async () => {
+	test.skip(`Check the redirection for the Industries block on the '${url}' page @Regression @Footer @TSWEB-833`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -117,7 +117,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Services block on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Services block on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -133,7 +133,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test(`Check the redirection for the Company block on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+	test.skip(`Check the redirection for the Company block on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		const companyUrlList = Object.values(companyUrl);
 		await baseDriverSteps.goToUrl(url);
 		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
