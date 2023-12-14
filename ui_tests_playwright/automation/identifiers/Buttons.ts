@@ -4,6 +4,41 @@ export default class Buttons {
 	static Blog = 'Button-Blog';
 	static Close = 'CloseButton-Close';
 
+	// Pages list
+	static Industries_Healthcare = 'Industries-Healthcare';
+	static Industries_TransportationAndLogistics = 'Industries-TransportationAndLogistics';
+	static Industries_RenewableEnergy = 'Industries-RenewableEnergy';
+
+	static Services_OurServices = 'Services-OurServices';
+	static Services_CustomDev = 'Services-CustomDev';
+	static Services_DigitalTransform = 'Services-DigitalTransformation';
+	static Services_CloudDev = 'Services-CloudDev';
+	static Services_MobileDev = 'Services-MobileDev';
+	static Services_BigData = 'Services-BigData';
+	static Services_InternetOfThings = 'Services-InternetOfThings';
+	static Services_DevOps = 'Services-DevOps';
+	static Services_AiDevelopment = 'Services-AIML';
+	static Services_UiUxDesign = 'Services-UiUxDesign';
+	static Services_QaAsAServ = 'Services-QaAsAServ';
+	static Services_ConsultingServ = 'Services-ConsultingServ';
+
+	static Company_AboutUs = 'Company-AboutUs';
+	static Company_HowWeWork = 'Company-HowWeWork';
+	static Company_Pricing = 'Company-Pricing';
+	static Company_Career = 'Company-Career';
+	static Company_CaseStudies = 'Company-CaseStudies';
+	static Company_Blog = 'Company-Blog';
+	static Company_Whitepapers = 'Company-Whitepapers';
+
+	// Career pages list
+	static Company_TechstackWorldwide = 'Company-TechstackWorldwide';
+	static Company_Services = 'Company-Services';
+
+	static Career_Jobs = 'Career-Jobs';
+	static Career_AboutUs = 'Career-AboutUs';
+	static Career_Reviews = 'Career-Reviews';
+	static Career_ContactUs = 'Career-Reviews';
+
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';
 	static Facebook = 'Button-Facebook';

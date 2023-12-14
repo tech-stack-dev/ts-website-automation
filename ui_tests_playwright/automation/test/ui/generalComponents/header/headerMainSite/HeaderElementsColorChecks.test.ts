@@ -7,6 +7,7 @@ import Header from '../../../../../identifiers/mainSite/Header';
 import {companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
+import Buttons from '../../../../../identifiers/Buttons';
 
 let header: Locator;
 let logo: Locator;
@@ -18,19 +19,20 @@ let pricingButton: Locator;
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
-	// UrlProvider.urlBuilder(UrlPath.CaseStudies), // DO NOT MERGE. Uncomment after adding data-ids
+	UrlProvider.urlBuilder(UrlPath.Healthcare),
+	UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
+	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 ];
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 
 	header = driver.getByTestId(Header.Container_Header);
-	logo = header.getByTestId(Header.Logo);
+	logo = header.getByTestId(Buttons.Logo);
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
@@ -38,8 +40,8 @@ test.beforeEach(async () => {
 	buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
 });
 
-for (const url of testDataProvider) {
-	test(`Check buttons background color in the "Header" on the "${url}" page @Regression @Header @TSWEB-656`, async () => {
+test(`Check buttons background color in the "Header" on the all pages @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 
 		for (const button of buttonHeaderslist) {
@@ -47,15 +49,21 @@ for (const url of testDataProvider) {
 				return getComputedStyle(el).backgroundColor;
 			});
 
-			if (url === UrlProvider.webSiteUrl() || url === companyUrl[CompanyEnum.CaseStudies]) {
+			if (
+				url === UrlProvider.webSiteUrl() ||
+				url === companyUrl[CompanyEnum.CaseStudies] ||
+				url === UrlProvider.urlBuilder(UrlPath.CookiesPolicy)
+			) {
 				expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
 			} else {
 				expect(actualColor).toBe(ColorsEnum.Grey_434343);
 			}
 		}
-	});
+	}
+});
 
-	test(`Check buttons background color after hovering in the "Header" on the "${url}" page @Regression @Header @TSWEB-656`, async () => {
+test(`Check buttons background color after hovering on it in the "Header" on all pages @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 
 		for (const button of buttonHeaderslist) {
@@ -65,15 +73,21 @@ for (const url of testDataProvider) {
 				return getComputedStyle(el).backgroundColor;
 			});
 
-			if (url === UrlProvider.webSiteUrl() || url === companyUrl[CompanyEnum.CaseStudies]) {
+			if (
+				url === UrlProvider.webSiteUrl() ||
+				url === companyUrl[CompanyEnum.CaseStudies] ||
+				url === UrlProvider.urlBuilder(UrlPath.CookiesPolicy)
+			) {
 				expect(actualColor).toBe(ColorsEnum.Grey_Hover_D3D4D4);
 			} else {
 				expect(actualColor).toBe(ColorsEnum.Grey_Hover_2E3032);
 			}
 		}
-	});
+	}
+});
 
-	test(`Check buttons background color after clicking in the "Header" on the "${url}" page @Regression @Header @TSWEB-656`, async () => {
+test(`Check buttons background color after clicking on it in the "Header" on all pages @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
@@ -88,9 +102,11 @@ for (const url of testDataProvider) {
 
 			expect(actualColor).toBe(ColorsEnum.Yellow_FFC600);
 		}
-	});
+	}
+});
 
-	test(`Check buttons background color after clicking and hovering in the "Header" on the "${url}" page @Regression @Header @TSWEB-656`, async () => {
+test(`Check buttons background color after clicking and hovering on it in the "Header" on all pages @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
@@ -105,8 +121,8 @@ for (const url of testDataProvider) {
 
 			expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
 		}
-	});
-}
+	}
+});
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
