@@ -9,6 +9,7 @@ import TechnologyStackData from '../../../../preconditionsData/technologyStack/T
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Buttons from '../../../../identifiers/Buttons';
+import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
@@ -96,6 +97,38 @@ test('Check section titles in "Techstack structure" container from the "How we w
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
+});
+
+test('Check images visibility in "Tools we use to organize the workflow" container from the "How we work" page @Regression @HowWeWork', async () => {
+	const toolsWeUseContainer = driver.getByTestId(HowWeWork.ToolsWeUseToOrganize);
+	await toolsWeUseContainer.scrollIntoViewIfNeeded(); // To scroll to images that have loading="lazy" attribute
+
+	const toolLogos = [
+		toolsWeUseContainer.getByTestId(MainSiteImages.MicrosoftLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.SalesforceLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.AwsLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.GoogleLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.AtlassianLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.AppleLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.OktaLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.OracleLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.SnowflakeLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.SplunkLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.CustomerLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.VmwareLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.RetoolLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.StripeLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.AmplitudeLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.SegmentLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.SentryLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.GainsightLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.TableauLogo),
+		toolsWeUseContainer.getByTestId(MainSiteImages.FullStoryLogo),
+	];
+
+	for (const logo of toolLogos) {
+		await expect(logo).toBeVisible();
+	}
 });
 
 test('Check the elements in "Get in Touch" container from the "How we work" page @Regression @HowWeWork', async () => {
