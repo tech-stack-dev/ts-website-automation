@@ -32,30 +32,32 @@ const urlList: Array<string> = [
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
-for (const url of urlList) {
-	test(`Check "Contact Us" button color on the "${url}" page @Regression @ContactUs @TSWEB-532`, async () => {
+test(`Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`, async () => {
+	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
 		expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
-	});
+	}
+});
 
-	test(`Check "Contact Us" button color after hovering on the "${url}" page @Regression @ContactUs @TSWEB-532`, async () => {
+test(`Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`, async () => {
+	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-
 		await contactUsButton.hover();
-		// Wait for changing the color
-		await driver.Page.waitForTimeout(1000);
+		await driver.Page.waitForTimeout(1000); // Wait for changing the color
 		const actualColor = await contactUsButton.evaluate(async (el) => {
 			return getComputedStyle(el).backgroundColor;
 		});
 		expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
-	});
+	}
+});
 
-	test(`Check redirection by "Contact Us" button on the "${url}" page @Regression @ContactUs @TSWEB-532`, async () => {
+test(`Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`, async () => {
+	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
 		await contactUsButton.click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	});
-}
+	}
+});
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
