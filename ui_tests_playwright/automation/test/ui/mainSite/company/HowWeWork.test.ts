@@ -43,7 +43,7 @@ test('Check container titles and numbers from the "How we work" page @Regression
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check the "Cooperation models" container title and number from the "How we work" page @Regression @HowWeWork', async () => {
+test('Check section titles and numbers in "Cooperation models" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const cooperationModelsContainer = driver.getByTestId(HowWeWork.CooperationModels);
 	const allSectionTitles = cooperationModelsContainer.getByTestId(Container.SectionTitle);
 
@@ -54,7 +54,7 @@ test('Check the "Cooperation models" container title and number from the "How we
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check the "Work process" container title and number and carousel from the "How we work" page @Regression @HowWeWork', async () => {
+test('Check section titles and numbers, and carousel in "Work process" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const workProcessContainer = driver.getByTestId(HowWeWork.WorkProcess);
 	const allSectionTitles = workProcessContainer.getByTestId(Container.SectionTitle);
 
@@ -81,7 +81,7 @@ test('Check section titles and navigation bar in "Technology stack" container fr
 	);
 });
 
-test('Check the "Techstack structure" container from the "How we work" page @Regression @HowWeWork', async () => {
+test('Check section titles in "Techstack structure" container from the "How we work" page @Regression @HowWeWork', async () => {
 	const techstackStructure = driver.getByTestId(HowWeWork.TechstackStructure);
 	const allSectionTitles = techstackStructure.getByTestId(Container.SectionTitle);
 

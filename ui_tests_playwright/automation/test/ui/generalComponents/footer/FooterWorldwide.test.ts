@@ -5,38 +5,30 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
-import {Environment} from '../../../../providers/EnvProvider';
 import Buttons from '../../../../identifiers/Buttons';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
 import Links from '../../../../preconditionsData/links/Links';
 
 let footer: Locator;
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
+	UrlProvider.urlBuilder(UrlPath.Healthcare),
+	UrlProvider.urlBuilder(UrlPath.OurServices),
+	UrlProvider.urlBuilder(UrlPath.CaseStudies),
+	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.OpenCase),
-	UrlProvider.urlBuilder(UrlPath.ArticlePageDescription),
-	UrlProvider.urlBuilder(UrlPath.AuthorPage + AuthorsEnum.VitaliiDolotov),
-	companyUrl[CompanyEnum.AboutUs],
-	companyUrl[CompanyEnum.HowWeWork],
-	companyUrl[CompanyEnum.CaseStudies],
-	companyUrl[CompanyEnum.Blog],
-]
-	.concat(Object.values(serviceUrl))
-	.concat(Object.values(industryUrl));
+	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+];
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
 });
 
 for (const url of testDataProvider) {
-	test.skip(`Check the footer information from the 'Footer' container on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+	test.skip(`Check the footer information from the 'Footer' container on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
 		await baseDriverSteps.goToUrl(url);
-
 		const contactBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
 			Container.SectionTitle,
@@ -64,33 +56,52 @@ for (const url of testDataProvider) {
 		await expect(contactBlock.getByTestId(Container.Phone)).toContainText('+1-312-442-0823');
 		await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
+		await expect(industriesBlock.getByTestId(Container.BlockTitle)).toHaveText('Industries');
 		expect(await industriesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'Healthcare',
 			'Transportation and Logistics',
 			'Renewable Energy',
 		]);
+
+		await expect(servicesBlock.getByTestId(Container.BlockTitle)).toHaveText('Services');
 		expect(await servicesBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'Our Services',
 			'Custom Software Development',
-			'Cloud & DevOps',
-			'Big Data & Analytics',
-			'AI & ML',
-			'Internet of Things',
+			'Digital Transformation',
+			'Cloud Development',
 			'Mobile Development',
+			'Big Data & Analytics',
+			'Internet of Things',
+			'DevOps as a Service',
+			'AI Development',
 			'UX / UI Design',
 			'QA as a Service',
 			'Consulting Services',
 		]);
+
+		await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
 		expect(await companyBlock.getByTestId(Container.SectionTitle).allInnerTexts()).toEqual([
 			'About Us',
 			'How we work',
+			'Pricing',
 			'Career',
 			'Case Studies',
 			'Blog',
+			'Whitepapers',
 		]);
+
+		await expect(footer.getByTestId(Footer.TermsOfUse)).toHaveText('Terms of use');
+		await expect(footer.getByTestId(Footer.CookiesPolicy)).toHaveText('Cookies Policy');
+		await expect(footer.getByTestId(Footer.Sitemap)).toHaveText('Sitemap');
 	});
 
-	test.skip(`Check the redirection for the Industries block on the '${url}' link @Regression @Footer @TSWEB-833`, async () => {
+	test(`Check the redirection by the "Techstack" logo on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
+		await baseDriverSteps.goToUrl(url);
+		await footer.getByTestId(Buttons.Logo).click();
+		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
+	});
+
+	test.skip(`Check the redirection for the Industries block on the '${url}' page @Regression @Footer @TSWEB-833`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const industriesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -106,7 +117,7 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check the redirection for the Services block on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test.skip(`Check the redirection for the Services block on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
 		await baseDriverSteps.goToUrl(url);
 		const servicesBlock = (await containerSteps.getContainerBlockByTitle(
 			footer,
@@ -122,15 +133,8 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check the redirection for the Company block on the '${url}' link @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
-		const companyUrlList: string[] = [
-			companyUrl[CompanyEnum.AboutUs],
-			companyUrl[CompanyEnum.HowWeWork],
-			UrlProvider.careerUrl(Environment.Production),
-			companyUrl[CompanyEnum.CaseStudies],
-			companyUrl[CompanyEnum.Blog],
-		];
-
+	test.skip(`Check the redirection for the Company block on the '${url}' page @Regression @Footer @TSWEB-655 @TSWEB-674`, async () => {
+		const companyUrlList = Object.values(companyUrl);
 		await baseDriverSteps.goToUrl(url);
 		const companyBlock = (await containerSteps.getContainerBlockByTitle(footer, Container.BlockTitle, 'Company'))!;
 		const companyList = await companyBlock.getByTestId(Container.SectionTitle).all();
@@ -142,7 +146,13 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check the redirection for the social links on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check the redirection by the "Contact us" button on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
+		await baseDriverSteps.goToUrl(url);
+		await footer.getByTestId(Buttons.ContactUs).click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+	});
+
+	test(`Check the redirection for the social links on the '${url}' page @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Buttons.LinkedIn, Links.LinkedIn],
 			[Buttons.Facebook, Links.Facebook],
@@ -166,13 +176,11 @@ for (const url of testDataProvider) {
 		}
 	});
 
-	test.skip(`Check redirection to the Terms, Cookies Policy, Sitemap, Contact us and main pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
+	test(`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on the '${url}' link @Regression @Footer @TSWEB-655`, async () => {
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
 			[Footer.Sitemap, UrlProvider.urlBuilder(UrlPath.Sitemap)],
-			[Buttons.ContactUs, UrlProvider.urlBuilder(UrlPath.ContactUs)],
-			[Buttons.Logo, UrlProvider.webSiteUrl()],
 		]);
 
 		for (const entries of linkMap.entries()) {
