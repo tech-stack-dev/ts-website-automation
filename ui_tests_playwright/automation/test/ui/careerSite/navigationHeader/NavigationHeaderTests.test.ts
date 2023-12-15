@@ -52,7 +52,7 @@ test(
 		await SWUFrame.getByTestId(CareerButtons.LearnMoreButton2).click();
 
 		const newPage = await driver.DriverContext.waitForEvent('page');
-		await expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
+		expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
 		await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText(
 			'Techstack Stands with Ukraine'
 		);
