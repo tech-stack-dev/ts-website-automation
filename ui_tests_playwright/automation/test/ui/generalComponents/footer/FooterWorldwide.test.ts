@@ -18,7 +18,7 @@ const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.Healthcare),
 	UrlProvider.urlBuilder(UrlPath.OurServices),
-	// UrlProvider.urlBuilder(UrlPath.CaseStudies),
+	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
@@ -40,10 +40,19 @@ test(`Check the footer information from the 'Footer' container on all pages @Reg
 
 		await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 		await expect(contactBlock.getByTestId(Container.SectionTitle)).toHaveText('Contacts');
-		await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
-			'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
-		);
-		await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+
+		if (url === UrlProvider.urlBuilder(UrlPath.CaseStudies)) {
+			await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
+				'Headquarters:Poland, Wroclaw,\n9 Rybacka street, 53-656'
+			);
+			await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:+1-312-442-0823');
+		} else {
+			await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
+				'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
+			);
+			await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+		}
+
 		await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
 		await expect(industriesBlock.getByTestId(Container.BlockTitle)).toHaveText('Industries');
