@@ -9,6 +9,7 @@ import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {
@@ -82,7 +83,7 @@ test.describe('with many precondition vacancy', () => {
 		);
 	});
 
-	test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', async () => {
+	test(qase(5260, 'Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146'), async () => {
 		await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 		const nextButton = await careerSteps.getPaginationNavigationArrowButton('Next');
 		expect(await nextButton.isVisible()).toBeTruthy();
