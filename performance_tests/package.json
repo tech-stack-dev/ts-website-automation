@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.27.2",
-    "dom-parser": "^0.1.6"
-  }
-}

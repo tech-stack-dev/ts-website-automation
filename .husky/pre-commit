@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-cd ui_tests_playwright
-npm run format
-npm run lint
