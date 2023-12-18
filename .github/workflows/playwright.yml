@@ -93,6 +93,8 @@ jobs:
           fi
           new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
           mkdir -p $new_report_folder
+          git commit -m 'create new report folder'
+          git push
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
 
@@ -102,13 +104,20 @@ jobs:
         with:
           name: playwright-report
           path: ${{ env.REPORT_FOLDER }}
+      
+      - name: Run script to create 
+        if: always()
+        run: | 
+          npx ts-node automation/scripts/GetAutotestsCount.ts
+          git commit -m "update main report file"
+          git push
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/
+          publish_dir: ui_tests_playwright/automation/
           publish_branch: gh-pages
 
       - name: Preparing Slack emoji
