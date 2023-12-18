@@ -91,7 +91,6 @@ jobs:
           elif [ "${{ github.event_name }}" == "pull_request" ]; then
             report_folder="${report_folder}pull-requests"
           fi
-
           new_report_folder="${{ report_folder }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
           mkdir -p $new_report_folder
           echo "Created folder: $new_report_folder"
