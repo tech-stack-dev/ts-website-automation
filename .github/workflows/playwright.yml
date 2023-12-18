@@ -88,7 +88,9 @@ jobs:
           # Create a unique branch name based on the current timestamp
           timestamp=$(date "+%Y%m%d%H%M%S")
           branch_name="gh-pages-${timestamp}"
-        
+          # Set up Git configuration
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
           git checkout -b "$branch_name"
           git add .
           git commit -m "AutoTests report for ${timestamp}"
