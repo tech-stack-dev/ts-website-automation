@@ -47,7 +47,7 @@ jobs:
       - name: Set current time as an environment variable
         run: | 
           echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-          echo "CURRENT_TIME=$(date '%H-%M-%S')" >> $GITHUB_ENV
+          echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
@@ -82,8 +82,9 @@ jobs:
       - name: Switch to gh-pages branch and create folder
         if: always()
         run: |
-          git checkout gh-pages
-          timestamp=$(date "+%Y%m%d%H%M%S")
+          git remote update
+          git fetch 
+          git checkout --track origin/gh-pages
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -91,7 +92,7 @@ jobs:
             report_folder="${report_folder}pull-requests"
           fi
 
-          new_report_folder="${report_folder}/${{ env.CURRENT_DAY }}/${ env.CURRENT_TIME }"
+          new_report_folder="${{ report_folder }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
           mkdir -p $new_report_folder
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
@@ -101,7 +102,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: playwright-report
-          path: ${ env.REPORT_FOLDER }
+          path: ${{ env.REPORT_FOLDER }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
