@@ -44,6 +44,9 @@ jobs:
       - name: Install TypeScript and ts-node
         run: npm install -g typescript ts-node
 
+      - name: Set current time as an environment variable
+        run: echo "CURRENT_TIME=$(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
         run: |
@@ -70,7 +73,7 @@ jobs:
         name: Upload Playwright report
         if: always()
         with:
-          name: playwright-report
+          name: playwright-report-$CURRENT_TIME
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
       
@@ -78,14 +81,14 @@ jobs:
       - name: Debug
         if: always()
         run: |
-          echo ls ui_tests_playwright/
+          echo ls
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report
+          publish_dir: ui_tests_playwright/playwright-report-$CURRENT_TIME
           publish_branch: gh-pages
 
       - name: Display Playwright Report Link
