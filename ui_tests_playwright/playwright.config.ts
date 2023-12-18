@@ -51,8 +51,8 @@ const config: PlaywrightTestConfig = {
 		['html', {open: 'never'}],
 		['list'],
 		[
-			'./TsQaseReporter', // Report to Qase
-			// 'playwright-qase-reporter', // Report to Qase with automatic creation of test cases, for tests that have no matches by ID and title
+			// './TsQaseReporter', // Report to Qase
+			'playwright-qase-reporter', // Report to Qase with automatic creation of test cases, for tests that have no matches by ID and title
 			{
 				apiToken: QaseAwsSecret.getQaseApiToken(),
 				projectCode: 'TS',
