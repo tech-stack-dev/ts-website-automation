@@ -80,6 +80,7 @@ jobs:
           retention-days: 30
 
       - name: Switch to gh-pages branch and create folder
+        if: always()
         run: |
           git checkout gh-pages
           timestamp=$(date "+%Y%m%d%H%M%S")
