@@ -74,7 +74,7 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: ui_tests_playwright/playwright-report-$CURRENT_TIME/
+          path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
       - name: Debug
