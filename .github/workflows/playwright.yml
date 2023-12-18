@@ -76,7 +76,6 @@ jobs:
           name: playwright-report
           path: ui_tests_playwright/playwright-report-$CURRENT_TIME/
           retention-days: 30
-      
 
       - name: Debug
         if: always()
@@ -135,6 +134,4 @@ jobs:
         if: always()
         id: tests-count
         run: npx ts-node automation/scripts/GetAutotestsCount.ts
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
           
