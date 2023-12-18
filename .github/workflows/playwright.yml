@@ -95,10 +95,11 @@ jobs:
           fi
           new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
           mkdir -p $new_report_folder
-          git commit -m 'create new report folder'
-          git push
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
+          git add $new_report_folder
+          git commit -m 'create new report folder'
+          git push
 
       - name: Download Playwright report artifact
         if: always()
