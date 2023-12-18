@@ -103,16 +103,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
 
-      - name: Display GitHub Pages link
-        if: always()
+      - name: Debug information
         run: |
-          # Extract GitHub username and repository name
-          repo_url=$(git remote get-url origin)
-          IFS='/' read -r -a parts <<< "$repo_url"
-          username="${parts[-2]}"
-          reponame="${parts[-1]%.git}"
-
-          # Display the GitHub Pages link
+          pwd
+          ls -al
+          git status
+          git remote -v
           echo "GitHub Pages link: https://${username}.github.io/${reponame}/${branch_name}/"
 
       - name: Preparing Slack emoji
