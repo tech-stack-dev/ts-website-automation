@@ -78,8 +78,7 @@ jobs:
       - name: Debug
         if: always()
         run: |
-          contents=$(ls "ui_tests_playwright/")
-          echo "$contents"
+          echo ls ui_tests_playwright/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
