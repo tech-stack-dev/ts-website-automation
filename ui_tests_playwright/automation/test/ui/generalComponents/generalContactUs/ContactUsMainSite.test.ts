@@ -9,6 +9,7 @@ import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import Header from '../../../../identifiers/mainSite/Header';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 let header: Locator;
 let contactUsButton: Locator;
@@ -32,32 +33,38 @@ const urlList: Array<string> = [
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
-test(`Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`, async () => {
+test(qase(5455, `Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`), async () => {
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
 		expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 	}
 });
 
-test(`Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`, async () => {
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.hover();
-		await driver.Page.waitForTimeout(1000); // Wait for changing the color
-		const actualColor = await contactUsButton.evaluate(async (el) => {
-			return getComputedStyle(el).backgroundColor;
-		});
-		expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+test(
+	qase(5456, `Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`),
+	async () => {
+		for (const url of urlList) {
+			await baseDriverSteps.goToUrl(url);
+			await contactUsButton.hover();
+			await driver.Page.waitForTimeout(1000); // Wait for changing the color
+			const actualColor = await contactUsButton.evaluate(async (el) => {
+				return getComputedStyle(el).backgroundColor;
+			});
+			expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+		}
 	}
-});
+);
 
-test(`Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`, async () => {
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		await contactUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+test(
+	qase(5457, `Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`),
+	async () => {
+		for (const url of urlList) {
+			await baseDriverSteps.goToUrl(url);
+			await contactUsButton.click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+		}
 	}
-});
+);
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
