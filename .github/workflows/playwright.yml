@@ -45,7 +45,9 @@ jobs:
         run: npm install -g typescript ts-node
 
       - name: Set current time as an environment variable
-        run: echo "CURRENT_TIME=$(date '+%Y-%m-%d-%H:%M:%S')" >> $GITHUB_ENV
+        run: | 
+          echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+          echo "CURRENT_TIME=$(date '%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
@@ -77,37 +79,36 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Debug
-        if: always()
-        run: ls
+      - name: Switch to gh-pages branch and create folder
+        run: |
+          git checkout gh-pages
+          timestamp=$(date "+%Y%m%d%H%M%S")
+          report_folder="automation/reports/"
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            report_folder="${report_folder}regression"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            report_folder="${report_folder}pull-requests"
+          fi
+
+          new_report_folder="${report_folder}/${{ env.CURRENT_DAY }}/${ env.CURRENT_TIME }"
+          mkdir -p $new_report_folder
+          echo "Created folder: $new_report_folder"
+          echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
 
       - name: Download Playwright report artifact
         if: always()
         uses: actions/download-artifact@v2
         with:
           name: playwright-report
-          path: playwright-report
-
-      - name: Build GitHub Pages
-        if: always()
-        run: |
-          # Create a folder for the new report based on the current timestamp
-          timestamp=$(date "+%Y%m%d%H%M%S")
-          new_report_folder="report-${timestamp}"
-          mkdir -p gh-pages/${new_report_folder}
-
-          # Copy the contents of the downloaded report to the new folder
-          cp -r playwright-report/* gh-pages/${new_report_folder}
-          # Display the GitHub Pages link
-          echo "GitHub Pages link: https://${{ github.repository_owner }}.github.io/${{ github.repository_name }}/gh-pages-${timestamp}/"
-
+          path: ${ env.REPORT_FOLDER }
 
       - name: Deploy to GitHub Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh-pages
+          publish_dir: ui_tests_playwright/
+          publish_branch: gh-pages
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
