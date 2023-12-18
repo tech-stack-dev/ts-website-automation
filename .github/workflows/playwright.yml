@@ -95,6 +95,7 @@ jobs:
           git add .
           git commit -m "AutoTests report for ${timestamp}"
           git push origin "$branch_name"
+          "GitHub Pages link: https://${username}.github.io/${reponame}/${branch_name}/"
 
       - name: Deploy to GitHub Pages
         if: always()
@@ -102,20 +103,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-
-      - name: Debug information
-        if: always()
-        run: |
-          pwd
-          ls -al
-          git status
-          git remote -v
-          echo "GitHub Pages link: https://${username}.github.io/${reponame}/${branch_name}/"
-          
-      - name: Link
-        if: always()
-        run: |
-          echo "GitHub Pages link: https://${username}.github.io/${reponame}/${branch_name}/"
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
