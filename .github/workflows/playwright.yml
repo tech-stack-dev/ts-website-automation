@@ -82,6 +82,8 @@ jobs:
       - name: Switch to gh-pages branch and create folder
         if: always()
         run: |
+          git config user.email "githubPages@gmail.com"
+          git config user.name "Git Pages"
           git remote update
           git fetch 
           git checkout --track origin/gh-pages
