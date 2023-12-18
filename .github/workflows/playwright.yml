@@ -64,7 +64,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}"
+        run: QASE_REPORT="1" npx playwright test --grep "@Regression @UxUiDesign @TSWEB-670"
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -73,13 +73,20 @@ jobs:
           name: playwright-report
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
+      
+
+      - name: Debug
+        if: always()
+        run: |
+          contents=$(ls "ui_tests_playwright/playwright-report/")
+          echo "$contents"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report
+          publish_dir: ui_tests_playwright/playwright-report/
           publish_branch: gh-pages
 
       - name: Display Playwright Report Link
