@@ -81,27 +81,33 @@ jobs:
         if: always()
         run: ls
 
-      - name: Create new branch for GitHub Pages
+      - name: Download Playwright report artifact
+        if: always()
+        uses: actions/download-artifact@v2
+        with:
+          name: playwright-report
+          path: playwright-report
+
+      - name: Build GitHub Pages
         if: always()
         run: |
-          # Create a unique branch name based on the current timestamp
+          # Create a folder for the new report based on the current timestamp
           timestamp=$(date "+%Y%m%d%H%M%S")
-          branch_name="gh-pages-${timestamp}"
-          # Set up Git configuration
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git checkout -b "$branch_name"
-          git add .
-          git commit -m "AutoTests report for ${timestamp}"
-          git push origin "$branch_name"
-          "GitHub Pages link: https://${username}.github.io/${reponame}/${branch_name}/"
+          new_report_folder="report-${timestamp}"
+          mkdir -p gh-pages/${new_report_folder}
+
+          # Copy the contents of the downloaded report to the new folder
+          cp -r playwright-report/* gh-pages/${new_report_folder}
+          # Display the GitHub Pages link
+          echo "GitHub Pages link: https://${{ github.repository_owner }}.github.io/${{ github.repository_name }}/gh-pages-${timestamp}/"
+
 
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./gh-pages
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
