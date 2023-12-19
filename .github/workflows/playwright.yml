@@ -84,7 +84,9 @@ jobs:
         run: |
           git config user.email "githubPages@gmail.com"
           git config user.name "Git Pages"
-          git checkout -b reports-history --track origin/reports-history
+          git remote update
+          git fetch 
+          git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -95,7 +97,6 @@ jobs:
           mkdir -p $new_report_folder
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
-          git pull origin reports-history --rebase
           git add .
           git commit -m 'create new report folder'
           git push origin reports-history
