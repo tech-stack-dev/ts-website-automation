@@ -112,6 +112,7 @@ jobs:
         if: always()
         run: | 
           cd automation
+          ls
           npx ts-node /scripts/GetReportsContent.ts
           git add .
           git commit -m "update main report file"
