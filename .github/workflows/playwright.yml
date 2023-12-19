@@ -86,7 +86,8 @@ jobs:
           git config user.name "Git Pages"
           git remote update
           git fetch 
-          rm ui_tests_playwright/ticketStatuses.json
+          echo "here's a branch"
+          git branch
           git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
@@ -116,6 +117,8 @@ jobs:
           ls
           cd scripts
           ls
+          echo "here's a branch"
+          git branch
           npx ts-node /GetReportsContent.ts
           git add .
           git commit -m "update main report file"
