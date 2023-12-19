@@ -56,7 +56,7 @@ const htmlContent = `
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 20px;
       color: #333;
-      background-image: url(images/lockscreen.png); /* Add the path to your background image */
+      background-image: url(ui_tests_playwright/automation/images/lockscreen.png); /* Add the path to your background image */
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
