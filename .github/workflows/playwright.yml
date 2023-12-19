@@ -112,7 +112,7 @@ jobs:
           git branch
           echo "here's a script"
           npx ts-node ./automation/scripts/GetReportsContent.ts
-          git add .
+          git add ../index.html
           git commit -m "update main report file"
           git push origin reports-history
 
