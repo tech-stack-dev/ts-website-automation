@@ -138,6 +138,6 @@ const htmlContent: string = `
 </html>
 `;
 
-fs.writeFileSync("index.html", htmlContent, "utf-8");
+fs.writeFileSync("mainReport/index.html", htmlContent, "utf-8");
 
 console.log("HTML file generated successfully.");
