@@ -108,22 +108,11 @@ jobs:
       - name: Run script to create report
         if: always()
         run: | 
-          cd automation
-          ls
-          cd scripts
-          ls
           echo "here's a branch"
           git branch
-          npx ts-node /GetReportsContent.ts
+          npx ts-node ./automation/scripts/GetReportsContent.ts
           git add .
           git commit -m "update main report file"
-          git push
-
-      - name: Commit and Push Aggregated Report
-        if: always()
-        run: |
-          git add .
-          git commit -m "Update aggregated report"
           git push origin reports-history
           
       - name: Preparing Slack emoji
