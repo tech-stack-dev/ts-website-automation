@@ -1,55 +1,50 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from 'fs';
+import * as path from 'path';
 
 const generateReportLinks = (basePath: string, type: string): string => {
-  const typePath = path.join(basePath, "reports", type);
+	const typePath = path.join(basePath, 'reports', type);
 
-  // Read dates from reports
-  const dates = fs
-    .readdirSync(typePath, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dateDirent) => {
-      const datePath = path.join(typePath, dateDirent.name);
+	// Read dates from reports
+	const dates = fs
+		.readdirSync(typePath, {withFileTypes: true})
+		.filter((dirent) => dirent.isDirectory())
+		.map((dateDirent) => {
+			const datePath = path.join(typePath, dateDirent.name);
 
-      // Read IDs within each date
-      const ids = fs
-        .readdirSync(datePath, { withFileTypes: true })
-        .filter((subdirent) => subdirent.isDirectory())
-        .map((subdirent) => subdirent.name);
+			// Read IDs within each date
+			const ids = fs
+				.readdirSync(datePath, {withFileTypes: true})
+				.filter((subdirent) => subdirent.isDirectory())
+				.map((subdirent) => subdirent.name);
 
-      // Generate links for each ID
-      const links = ids.map((id) => {
-        return `<p><a class="idLink" href="javascript:void(0);" onclick="toggleId('${type}', '${dateDirent.name}', '${id}')">${id}</a></p>`;
-      });
+			// Generate links for each ID
+			const links = ids.map((id) => {
+				return `<p><a class="idLink" href="javascript:void(0);" onclick="toggleId('${type}', '${dateDirent.name}', '${id}')">${id}</a></p>`;
+			});
 
-      // Return a string for the date with links
-      return `<div class="dateContainer">
-                <a class="dateLink" href="javascript:void(0);" onclick="toggleDate('${type}', '${
-        dateDirent.name
-      }')">${dateDirent.name}</a>
-                <div class="idSection" id="${type}${
-        dateDirent.name
-      }Content" style="display: none;">
-                  ${links.join("")}
+			// Return a string for the date with links
+			return `<div class="dateContainer">
+                <a class="dateLink" href="javascript:void(0);" onclick="toggleDate('${type}', '${dateDirent.name}')">${
+				dateDirent.name
+			}</a>
+                <div class="idSection" id="${type}${dateDirent.name}Content" style="display: none;">
+                  ${links.join('')}
                 </div>
               </div>`;
-    });
+		});
 
-  return dates.join("\n");
+	return dates.join('\n');
 };
 
 // Base path to the reports directory
-const basePath: string = path.join(__dirname, "..");
+const basePath: string = path.join(__dirname, '..');
 
 // Generate HTML content for Regression and Pull Requests
-const regressionContent: string = generateReportLinks(basePath, "regression");
-const pullRequestsContent: string = generateReportLinks(
-  basePath,
-  "pull-requests"
-);
+const regressionContent: string = generateReportLinks(basePath, 'regression');
+const pullRequestsContent: string = generateReportLinks(basePath, 'pull-requests');
 
 // Write the generated content to an HTML file
-const htmlContent: string = `
+const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,23 +111,37 @@ const htmlContent: string = `
   </div>
 
   <script>
-    function toggleSection(sectionId) {
-      const section = document.getElementById(sectionId + 'Content');
-      section.style.display = section.style.display === 'none' ? 'block' : 'none';
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+     function toggleSection(sectionId) {
+       const section = document.getElementById(sectionId + 'Content');
+       section.style.display = section.style.display === 'none' ? 'block' : 'none';
+     }
 
-    function toggleDate(type, dateId) {
-      const dateSection = document.getElementById(type + dateId + 'Content');
-      dateSection.style.display = dateSection.style.display === 'none' ? 'block' : 'none';
-    }
+      function toggleDate(type, dateId) {
+       const dateSection = document.getElementById(type + dateId + 'Content');
+       dateSection.style.display = dateSection.style.display === 'none' ? 'block' : 'none';
+     }
 
-    function toggleId(type, dateId, id) {
-      // Add logic to open index.html in a new window or redirect the current window
-      const link = \`ui_tests_playwright/automation/reports/\${type}/\${dateId}/\${id}/index.html\`;
-      window.open(link, '_blank'); // Open in a new tab
-      // or
-      // window.location.href = link; // Redirect the current window
-    }
+      function toggleId(type, dateId, id) {
+        const link = \`ui_tests_playwright/automation/reports/\${type}/\${dateId}/\${id}/index.html\`;
+        window.open(link, '_blank'); // Open in a new tab
+      }
+
+      const regressionHeader = document.getElementById('regressionHeader');
+     const pullRequestsHeader = document.getElementById('pullRequestsHeader');
+
+     if (regressionHeader) {
+        regressionHeader.addEventListener('click', function() {
+          toggleSection('regression');
+        });
+      }
+
+     if (pullRequestsHeader) {
+        pullRequestsHeader.addEventListener('click', function() {
+          toggleSection('pullRequests');
+        });
+      }
+    });
   </script>
 </body>
 </html>
@@ -140,4 +149,4 @@ const htmlContent: string = `
 const filePath = path.resolve(__dirname, '..', '..', '..', 'index.html');
 fs.writeFileSync(filePath, htmlContent, 'utf-8');
 
-console.log("HTML file generated successfully.");
+console.log('HTML file generated successfully.');
