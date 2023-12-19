@@ -117,14 +117,6 @@ jobs:
           git commit -m "update main report file"
           git push
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/automation/
-          publish_branch: reports-history
-
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
