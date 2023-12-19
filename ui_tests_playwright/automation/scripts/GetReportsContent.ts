@@ -137,7 +137,7 @@ const htmlContent: string = `
 </body>
 </html>
 `;
-
-fs.writeFileSync("mainReport/index.html", htmlContent, "utf-8");
+const filePath = path.resolve(__dirname, '..', '..', 'index.html');
+fs.writeFileSync(filePath, htmlContent, 'utf-8');
 
 console.log("HTML file generated successfully.");
