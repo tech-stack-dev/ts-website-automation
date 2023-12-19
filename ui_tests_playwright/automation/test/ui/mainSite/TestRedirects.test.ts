@@ -1,16 +1,16 @@
 import {test, expect} from '@playwright/test';
-import AboutUs from '../../../../identifiers/mainSite/pages/company/AboutUs';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
-import UrlProvider from '../../../../providers/UrlProvider';
-import Container from '../../../../identifiers/Container';
-import UrlPath from '../../../../providers/UrlPath';
-import Buttons from '../../../../identifiers/Buttons';
-import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
-import BigDataAndAnalytics from '../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
-import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
-import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
-import HomePage from '../../../../identifiers/mainSite/pages/HomePage';
+import AboutUs from '../../../identifiers/mainSite/pages/company/AboutUs';
+import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
+import {driver} from '../../../base/driver/Driver';
+import UrlProvider from '../../../providers/UrlProvider';
+import Container from '../../../identifiers/Container';
+import UrlPath from '../../../providers/UrlPath';
+import Buttons from '../../../identifiers/Buttons';
+import {ExpertsLinkedInLinks} from '../../../preconditionsData/links/ExpertsLinkedInLinks';
+import BigDataAndAnalytics from '../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
+import {ClutchReviewLinks} from '../../../preconditionsData/links/ClutchReviewLinks';
+import MainSiteButtons from '../../../identifiers/mainSite/MainSiteButtons';
+import HomePage from '../../../identifiers/mainSite/pages/HomePage';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
