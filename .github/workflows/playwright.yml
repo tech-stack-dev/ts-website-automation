@@ -86,6 +86,7 @@ jobs:
           git config user.name "Git Pages"
           git remote update
           git fetch 
+          git add .
           git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
