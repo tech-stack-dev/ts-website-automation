@@ -128,7 +128,7 @@ const htmlContent: string = `
 
     function toggleId(type, dateId, id) {
       // Add logic to open index.html in a new window or redirect the current window
-      const link = \`reports/\${type}/\${dateId}/\${id}/index.html\`;
+      const link = \`ui_tests_playwright/automation/reports/\${type}/\${dateId}/\${id}/index.html\`;
       window.open(link, '_blank'); // Open in a new tab
       // or
       // window.location.href = link; // Redirect the current window
