@@ -111,8 +111,8 @@ jobs:
       - name: Run script to create 
         if: always()
         run: | 
-          ls
-          npx ts-node .automation/scripts/GetReportsContent.ts
+          cd automation
+          npx ts-node /scripts/GetReportsContent.ts
           git add .
           git commit -m "update main report file"
           git push
