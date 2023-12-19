@@ -82,8 +82,8 @@ jobs:
       - name: Switch to reports-history Branch
         if: always()
         run: |
-          git config --global user.email "githubPages@gmail.com"
-          git config --global user.name "Git Pages"
+          git config --global user.email "daniil.vostrikov@tech-stack.com"
+          git config --global user.name "DaniilVostrikov"
           git remote update
           git fetch 
           git add .
