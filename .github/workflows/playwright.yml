@@ -44,6 +44,11 @@ jobs:
       - name: Install TypeScript and ts-node
         run: npm install -g typescript ts-node
 
+      - name: Set current time as an environment variable
+        run: | 
+          echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+          echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
+
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
         run: |
@@ -74,18 +79,42 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ui_tests_playwright/playwright-report
-          publish_branch: gh-pages
-
-      - name: Display Playwright Report Link
+      - name: Switch to reports-history Branch
         if: always()
         run: |
-          echo "::warning ::Tests execution report: https://tech-stack-dev.github.io/ts-website-automation/index.html"
+          git config --global user.email "daniil.vostrikov@tech-stack.com"
+          git config --global user.name "DaniilVostrikov"
+          git remote update
+          git fetch 
+          git add .
+          git checkout --track origin/reports-history
+
+      - name: Update reports
+        if: always()
+        run: |
+          report_folder="automation/reports/"
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            report_folder="${report_folder}regression"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            report_folder="${report_folder}pull-requests"
+          fi
+          new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
+          mkdir -p $new_report_folder
+          cp ${{ github.workspace }}/ui_tests_playwright/playwright-report/index.html $new_report_folder
+          git add $new_report_folder
+          git commit -m "Update test report"
+          git push origin reports-history
+      
+      - name: Run script to create report
+        if: always()
+        run: | 
+          echo "here's a branch"
+          git branch
+          echo "here's a Script"
+          npx ts-node ./automation/scripts/GetReportsContent.ts
+          git add ../index.html
+          git commit -m "update main report file"
+          git push origin reports-history
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
@@ -113,11 +142,6 @@ jobs:
           cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
           if_true: test_slack_notifications
           if_false: ts_website_automation
-
-      - name: Parse Test Results
-        if: always()
-        id: tests-count
-        run: npx ts-node automation/scripts/GetAutotestsCount.ts
           
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
@@ -128,7 +152,8 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "<-- Message is on break, so please check the results on the git actions (the color is still actual)"
+          #SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
@@ -142,8 +167,8 @@ jobs:
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          SLACK_MESSAGE: "<-- Message is on break, so please check the results on the git actions (the color is still actual)"
+          #SLACK_MESSAGE: "Total: ${{ steps.tests-count.outputs.total }} \n✅Passed: ${{ steps.tests-count.outputs.passed }}\\${{ steps.tests-count.outputs.total }} \n❌Failed: ${{ steps.tests-count.outputs.failed }}\\${{ steps.tests-count.outputs.total }} \n⚠️Skipped: ${{ steps.tests-count.outputs.skipped }}\\${{ steps.tests-count.outputs.total }}, \n:eyes: link for report below \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           SLACK_TITLE: TypeScript UI tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-          
