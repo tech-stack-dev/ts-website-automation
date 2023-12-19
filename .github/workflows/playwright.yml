@@ -81,11 +81,16 @@ jobs:
 
       - name: Switch to reports-history Branch
         if: always()
-        run: git checkout reports-history
+        run: |
+          git remote update
+          git fetch 
+          git checkout --track origin/reports-history
 
       - name: Update Reports
         if: always()
         run: |
+          git config --global user.email "githubPages@gmail.com"
+          git config --global user.name "Git Pages"
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -112,10 +117,6 @@ jobs:
           git add .
           git commit -m "update main report file"
           git push
-
-      - name: Run GetReportsContent
-        if: always()
-        run: npx ts-node GetReportsContent.ts
 
       - name: Commit and Push Aggregated Report
         if: always()
