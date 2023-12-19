@@ -25,6 +25,7 @@ export default class UrlPath {
 	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
+	static Pricing = 'software-development-costs';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
 	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';

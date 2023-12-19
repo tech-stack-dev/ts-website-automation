@@ -24,9 +24,8 @@ test(
 	qase(
 		5245,
 		'Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
-	),
-	async () => {
-		const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
+	),async () => {
+	const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
 
 		await baseDriverSteps.checkRedirectToPage(
 			techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
