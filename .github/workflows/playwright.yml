@@ -79,15 +79,13 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Switch to reports-history branch and create reports folder
+      - name: Switch to reports-history Branch
+        if: always()
+        run: git checkout reports-history
+
+      - name: Update Reports
         if: always()
         run: |
-          git config user.email "githubPages@gmail.com"
-          git config user.name "Git Pages"
-          git remote update
-          git fetch 
-          git add .
-          git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -96,18 +94,12 @@ jobs:
           fi
           new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
           mkdir -p $new_report_folder
-          echo "Created folder: $new_report_folder"
-          echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
-          git commit -m 'create new report folder'
-          git push
-
-      - name: Download Playwright report artifact
-        if: always()
-        uses: actions/download-artifact@v2
-        with:
-          path: ${{ env.REPORT_FOLDER }}
+          cp ${{ github.workspace }}/ui_tests_playwright/playwright-report/index.html $new_report_folder
+          git add $new_report_folder
+          git commit -m "Update test report"
+          git push origin reports-history
       
-      - name: Run script to create 
+      - name: Run script to create report
         if: always()
         run: | 
           cd automation
@@ -121,13 +113,16 @@ jobs:
           git commit -m "update main report file"
           git push
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Run GetReportsContent
         if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: reports-history
+        run: npx ts-node GetReportsContent.ts
+
+      - name: Commit and Push Aggregated Report
+        if: always()
+        run: |
+          git add .
+          git commit -m "Update aggregated report"
+          git push origin reports-history
           
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
