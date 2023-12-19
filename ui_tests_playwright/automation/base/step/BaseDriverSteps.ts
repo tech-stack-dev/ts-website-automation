@@ -125,7 +125,7 @@ class BaseDriverSteps {
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
-			await newPage.waitForURL(expectedUrl);
+			await newPage.waitForURL(expectedUrl, {timeout: 10000});
 			await playwrightUtils.expectWithRetries(
 				async () => {
 					expect(newPage.url()).toContain(expectedUrl);
