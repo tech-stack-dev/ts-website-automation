@@ -9,6 +9,7 @@ import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {
@@ -82,16 +83,16 @@ test.describe('with many precondition vacancy', () => {
 		);
 	});
 
-	test('Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146', async () => {
+	test(qase(5260, 'Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146'), async () => {
 		await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 		const nextButton = await careerSteps.getPaginationNavigationArrowButton('Next');
 		expect(await nextButton.isVisible()).toBeTruthy();
 		const firstPageButton = await careerSteps.getPaginationNumberButton(1);
-		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		await nextButton.click();
 		const secondPageButton = await careerSteps.getPaginationNumberButton(2);
 		await driver.Page.waitForTimeout(1000); // Timeout for page reloading and getting correct button background
-		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		const prevButton = await careerSteps.getPaginationNavigationArrowButton('Prev');
 		expect(await prevButton.isVisible()).toBeTruthy();
 	});
