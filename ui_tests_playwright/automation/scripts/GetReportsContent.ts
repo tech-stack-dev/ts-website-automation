@@ -137,7 +137,7 @@ const htmlContent: string = `
 </body>
 </html>
 `;
-const filePath = path.resolve(__dirname, '..', '..', 'index.html');
+const filePath = path.resolve(__dirname, '..', '..', '..', 'index.html');
 fs.writeFileSync(filePath, htmlContent, 'utf-8');
 
 console.log("HTML file generated successfully.");
