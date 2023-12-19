@@ -84,9 +84,7 @@ jobs:
         run: |
           git config user.email "githubPages@gmail.com"
           git config user.name "Git Pages"
-          git remote update
-          git fetch 
-          git checkout --track origin/reports-history
+          git checkout origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -112,7 +110,7 @@ jobs:
       - name: Run script to create 
         if: always()
         run: | 
-          npx ts-node automation/scripts/GetReportsContent.ts
+          npx ts-node /scripts/GetReportsContent.ts
           git add .
           git commit -m "update main report file"
           git push
