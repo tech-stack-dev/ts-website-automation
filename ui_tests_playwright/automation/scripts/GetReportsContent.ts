@@ -111,37 +111,23 @@ const htmlContent = `
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-     function toggleSection(sectionId) {
-       const section = document.getElementById(sectionId + 'Content');
-       section.style.display = section.style.display === 'none' ? 'block' : 'none';
-     }
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId + 'Content');
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
 
-      function toggleDate(type, dateId) {
-       const dateSection = document.getElementById(type + dateId + 'Content');
-       dateSection.style.display = dateSection.style.display === 'none' ? 'block' : 'none';
-     }
+    function toggleDate(type, dateId) {
+      const dateSection = document.getElementById(type + dateId + 'Content');
+      dateSection.style.display = dateSection.style.display === 'none' ? 'block' : 'none';
+    }
 
-      function toggleId(type, dateId, id) {
-        const link = \`ui_tests_playwright/automation/reports/\${type}/\${dateId}/\${id}/index.html\`;
-        window.open(link, '_blank'); // Open in a new tab
-      }
-
-      const regressionHeader = document.getElementById('regressionHeader');
-     const pullRequestsHeader = document.getElementById('pullRequestsHeader');
-
-     if (regressionHeader) {
-        regressionHeader.addEventListener('click', function() {
-          toggleSection('regression');
-        });
-      }
-
-     if (pullRequestsHeader) {
-        pullRequestsHeader.addEventListener('click', function() {
-          toggleSection('pullRequests');
-        });
-      }
-    });
+    function toggleId(type, dateId, id) {
+      // Add logic to open index.html in a new window or redirect the current window
+      const link = \`ui_tests_playwright/automation/reports/\${type}/\${dateId}/\${id}/index.html\`;
+      window.open(link, '_blank'); // Open in a new tab
+      // or
+      // window.location.href = link; // Redirect the current window
+    }
   </script>
 </body>
 </html>
