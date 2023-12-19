@@ -50,7 +50,7 @@ test(
 		const expectedData = [
 			['Get Custom UX and UI\nDesign Services', '01'],
 			['We Build UX/UI\nfor Mobile & Web', '02'],
-			['Our UI/UX Services', '04'],
+			['Our UI/UX Services', '03'],
 			['Success Stories', '04'],
 			['Typical UX/UI Design Workflow', '05'],
 			['We Never Stop\nImproving Your Product', '06'],
