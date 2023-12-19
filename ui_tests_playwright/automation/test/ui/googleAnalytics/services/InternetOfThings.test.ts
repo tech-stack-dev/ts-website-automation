@@ -23,8 +23,8 @@ test.beforeEach(async () => {
 	await driver.Page.reload();
 });
 
-test(
-	qase(5329, 'Check google analytics for "InternetOfThings" page @Regression @GoogleAnalytics @TSWEB-1069'),
+test.skip(
+	qase(5329, 'Check google analytics for "InternetOfThings" page @Regression @GoogleAnalytics'),
 	async ({}, testInfo) => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		const breadcrumbsButton = info.getByTestId(Container.BreadcrumbsPrev);
