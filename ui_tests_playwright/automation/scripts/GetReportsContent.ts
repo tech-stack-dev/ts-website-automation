@@ -4,7 +4,7 @@ import * as path from "path";
 const generateReportLinks = (basePath: string, type: string): string => {
   const typePath = path.join(basePath, "reports", type);
 
-  // Read dates
+  // Read dates from reports
   const dates = fs
     .readdirSync(typePath, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
