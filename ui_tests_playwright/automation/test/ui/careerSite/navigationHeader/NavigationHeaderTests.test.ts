@@ -58,6 +58,13 @@ test(
 		);
 	}
 );
+		const newPage = await driver.DriverContext.waitForEvent('page');
+		expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
+		await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText(
+			'Techstack Stands with Ukraine'
+		);
+	}
+);
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
