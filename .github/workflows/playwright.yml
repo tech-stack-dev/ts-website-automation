@@ -79,15 +79,13 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Switch to reports-history branch and create report folder
+      - name: Switch to reports-history branch and create reports folder
         if: always()
         run: |
           git config user.email "githubPages@gmail.com"
           git config user.name "Git Pages"
           git remote update
           git fetch 
-          echo "here's a branch"
-          git branch
           git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
@@ -99,15 +97,13 @@ jobs:
           mkdir -p $new_report_folder
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
-          git add .
           git commit -m 'create new report folder'
-          git push origin reports-history
+          git push
 
       - name: Download Playwright report artifact
         if: always()
         uses: actions/download-artifact@v2
         with:
-          name: playwright-report
           path: ${{ env.REPORT_FOLDER }}
       
       - name: Run script to create 
@@ -124,6 +120,14 @@ jobs:
           git commit -m "update main report file"
           git push
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: reports-history
+          
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
