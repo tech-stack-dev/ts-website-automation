@@ -110,6 +110,7 @@ jobs:
         run: | 
           echo "here's a branch"
           git branch
+          echo "here's a script"
           npx ts-node ./automation/scripts/GetReportsContent.ts
           git add .
           git commit -m "update main report file"
