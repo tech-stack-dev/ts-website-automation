@@ -8,7 +8,7 @@ import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Blog from '../../../../identifiers/blog/Blog';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -53,13 +53,6 @@ test(
 
 		const newPage = await driver.DriverContext.waitForEvent('page');
 		await expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
-		await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText(
-			'Techstack Stands with Ukraine'
-		);
-	}
-);
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
 		await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitile)).toContainText(
 			'Techstack Stands with Ukraine'
 		);
