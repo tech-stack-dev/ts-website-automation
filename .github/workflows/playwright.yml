@@ -89,7 +89,7 @@ jobs:
           git add .
           git checkout --track origin/reports-history
 
-      - name: Update Reports
+      - name: Update reports
         if: always()
         run: |
           report_folder="automation/reports/"
