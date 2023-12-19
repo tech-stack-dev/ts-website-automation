@@ -79,14 +79,14 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
-      - name: Switch to gh-pages branch and create folder
+      - name: Switch to reports-history branch and create report folder
         if: always()
         run: |
           git config user.email "githubPages@gmail.com"
           git config user.name "Git Pages"
           git remote update
           git fetch 
-          git checkout --track origin/gh-pages
+          git checkout --track origin/reports-history
           report_folder="automation/reports/"
           if [ "${{ github.event_name }}" == "schedule" ]; then
             report_folder="${report_folder}regression"
@@ -97,7 +97,8 @@ jobs:
           mkdir -p $new_report_folder
           echo "Created folder: $new_report_folder"
           echo "REPORT_FOLDER=$new_report_folder" >> $GITHUB_ENV
-          git add $new_report_folder
+          git pull origin reports-history
+          git add .
           git commit -m 'create new report folder'
           git push
 
@@ -111,7 +112,8 @@ jobs:
       - name: Run script to create 
         if: always()
         run: | 
-          npx ts-node automation/scripts/GetAutotestsCount.ts
+          npx ts-node automation/scripts/GetReportsContent.ts
+          git add .
           git commit -m "update main report file"
           git push
 
@@ -121,7 +123,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ui_tests_playwright/automation/
-          publish_branch: gh-pages
+          publish_branch: reports-history
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
