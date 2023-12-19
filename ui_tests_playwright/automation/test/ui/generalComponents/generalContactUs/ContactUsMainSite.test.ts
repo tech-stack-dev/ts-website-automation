@@ -1,4 +1,4 @@
-import {test} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
@@ -6,65 +6,55 @@ import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {serviceUrl, companyUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import {ColorsEnum} from '../../../../enum/ColorsEnum';
+import Header from '../../../../identifiers/mainSite/Header';
+import {locatorUtils} from '../../../../utils/LocatorUtils';
+
+let header: Locator;
+let contactUsButton: Locator;
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
+	header = driver.getByTestId(Header.Container_Header);
+	contactUsButton = header.getByTestId(Buttons.ContactUs);
 });
 
-test('Check "Contact Us" button from "Main", "Contact Us", and "Pricing" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: Array<string> = [
-		UrlProvider.webSiteUrl(),
-		UrlProvider.urlBuilder(UrlPath.ContactUs),
-		UrlProvider.urlBuilder(UrlPath.Pricing),
-	];
+const urlList: Array<string> = [
+	UrlProvider.webSiteUrl(),
+	companyUrl[CompanyEnum.AboutUs],
+	companyUrl[CompanyEnum.HowWeWork],
+	companyUrl[CompanyEnum.CaseStudies],
+	companyUrl[CompanyEnum.Pricing],
+	companyUrl[CompanyEnum.Whitepapers],
+	UrlProvider.urlBuilder(UrlPath.ContactUs),
+	UrlProvider.urlBuilder(UrlPath.Terms),
+	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
+	UrlProvider.urlBuilder(UrlPath.Sitemap),
+].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
+test(`Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`, async () => {
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.ContactUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+		expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 	}
 });
 
-test('Check "Contact Us" button from "Industries" pages @Regression @ContactUs', async () => {
-	for (const url of Object.values(industryUrl)) {
-		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.ContactUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Services" pages @Regression @ContactUs @TSWEB-532', async () => {
-	for (const url of Object.values(serviceUrl)) {
-		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.ContactUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-	}
-});
-
-test('Check "Contact Us" button from "Company" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: string[] = [
-		companyUrl[CompanyEnum.AboutUs],
-		companyUrl[CompanyEnum.HowWeWork],
-		companyUrl[CompanyEnum.Pricing],
-		companyUrl[CompanyEnum.CaseStudies],
-		companyUrl[CompanyEnum.Whitepapers],
-	];
+test(`Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`, async () => {
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.ContactUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+		await contactUsButton.hover();
+		await driver.Page.waitForTimeout(1000); // Wait for changing the color
+		const actualColor = await contactUsButton.evaluate(async (el) => {
+			return getComputedStyle(el).backgroundColor;
+		});
+		expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
 	}
 });
 
-test('Check "Contact Us" button from "Terms of use", "Cookie Policy", and "Sitemap" pages @Regression @ContactUs @TSWEB-532', async () => {
-	const urlList: string[] = [
-		UrlProvider.urlBuilder(UrlPath.Terms),
-		UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
-		UrlProvider.urlBuilder(UrlPath.Sitemap),
-	];
+test(`Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`, async () => {
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
-		await driver.getByTestId(Buttons.ContactUs).click();
+		await contactUsButton.click();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	}
 });
