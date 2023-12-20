@@ -82,12 +82,12 @@ jobs:
       - name: Parse Test Results Data
         if: always()
         run: npx ts-node automation/scripts/GetAutotestsCount.ts
-         env:
-           PASSED: ${{ env.PASSED }}
-           FAILED: ${{ env.FAILED }}
-           FLAKY: ${{ env.FLAKY }}
-           SKIPPED: ${{ env.SKIPPED }}
-           TOTAL: ${{ env.TOTAL }}
+        env:
+          PASSED: ${{ env.PASSED }}
+          FAILED: ${{ env.FAILED }}
+          FLAKY: ${{ env.FLAKY }}
+          SKIPPED: ${{ env.SKIPPED }}
+          TOTAL: ${{ env.TOTAL }}
 
       - name: Switch to reports-history Branch
         if: always()
