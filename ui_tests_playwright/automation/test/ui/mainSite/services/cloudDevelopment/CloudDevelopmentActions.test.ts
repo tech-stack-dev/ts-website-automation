@@ -93,7 +93,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(button, url);
 		}
 	}
 );

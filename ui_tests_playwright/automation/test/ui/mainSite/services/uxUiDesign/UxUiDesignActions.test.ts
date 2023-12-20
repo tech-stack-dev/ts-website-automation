@@ -79,7 +79,7 @@ test(
 		]);
 
 		for (const [link, url] of linkUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(link, url);
+			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(link, url);
 		}
 	}
 );
@@ -102,7 +102,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(button, url);
 		}
 	}
 );

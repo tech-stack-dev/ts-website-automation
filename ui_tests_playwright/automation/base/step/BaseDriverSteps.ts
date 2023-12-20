@@ -138,6 +138,19 @@ class BaseDriverSteps {
 		}
 	}
 
+	public async checkRedirectToExternalSourceInNewTab(locator: Locator, expectedUrl: string) {
+		await locator.click();
+		const newPage = await driver.DriverContext.waitForEvent('page');
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				expect(newPage.url()).toContain(expectedUrl);
+			},
+			5,
+			3000
+		);
+		await newPage.close();
+	}
+
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
 		const sections = container.getByTestId(Container.ContainerSection);
 		await expect(sections).toHaveCount(numberOfSections);

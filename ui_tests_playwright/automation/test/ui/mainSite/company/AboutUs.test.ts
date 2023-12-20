@@ -152,7 +152,7 @@ test(
 		for (let i = 0; i < expertCards.length; i++) {
 			const memberCard = expertCards[i];
 
-			await baseDriverSteps.checkRedirectToPage(
+			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(
 				memberCard.getByTestId(Buttons.LinkedIn),
 				expectedLinkedInLinks[i]
 			);
