@@ -14,8 +14,10 @@ const skipped = skippedMatches ? Number(skippedMatches[1]) : 0;
 
 const total = passed + failed + flaky + skipped;
 
-console.log(`::set-env name=PASSED::${passed}`);
-console.log(`::set-env name=FAILED::${failed}`);
-console.log(`::set-env name=FLAKY::${flaky}`);
-console.log(`::set-env name=SKIPPED::${skipped}`);
-console.log(`::set-env name=TOTAL::${total}`);
+fs.unlinkSync('ui_tests_playwright/automation/test-output.txt');
+
+console.log(`::set-output name=PASSED::${passed}`);
+console.log(`::set-output name=FAILED::${failed}`);
+console.log(`::set-output name=FLAKY::${flaky}`);
+console.log(`::set-output name=SKIPPED::${skipped}`);
+console.log(`::set-output name=TOTAL::${total}`);

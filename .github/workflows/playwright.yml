@@ -79,6 +79,16 @@ jobs:
           path: ui_tests_playwright/playwright-report/
           retention-days: 30
 
+      - name: Parse Test Results Data
+        if: always()
+        run: npx ts-node automation/scripts/GetAutotestsCount.ts
+        env:
+          PASSED: ${{ steps.step-id.outputs.PASSED }}
+          FAILED: ${{ steps.step-id.outputs.FAILED }}
+          FLAKY: ${{ steps.step-id.outputs.FLAKY }}
+          SKIPPED: ${{ steps.step-id.outputs.SKIPPED }}
+          TOTAL: ${{ steps.step-id.outputs.TOTAL }}
+
       - name: Switch to reports-history Branch
         if: always()
         run: |
@@ -142,7 +152,3 @@ jobs:
           cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
           if_true: test_slack_notifications
           if_false: ts_website_automation
-
-      - name: Parse Test Results Data
-        if: always()
-        run: npx ts-node automation/scripts/GetAutotestsCount.ts
