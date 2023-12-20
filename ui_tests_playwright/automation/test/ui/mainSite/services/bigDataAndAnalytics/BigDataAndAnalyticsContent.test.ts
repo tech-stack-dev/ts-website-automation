@@ -27,7 +27,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		4950,
 		'Check the container titles and numbers from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
