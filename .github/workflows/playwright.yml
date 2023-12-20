@@ -69,7 +69,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="0" npx playwright test --grep "@Regression @BigDataAndAnalytics @TSWEB-693 | Api" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -82,16 +82,6 @@ jobs:
       - name: Parse Test Results Data
         if: always()
         run: npx ts-node automation/scripts/GetAutotestsCount.ts
-        id: test-results
-
-      - name: Use test data
-        if: always()
-        run: |
-          echo "Passed is a ${{ env.PASSED }}"
-          echo "Failed is a ${{ env.FAILED }}"
-          echo "Skipped is a ${{ env.SKIPPED }}"
-          echo "Flaky is a ${{ env.FLAKY }}"
-          echo "Total is a ${{ env.TOTAL }}"
 
       - name: Switch to reports-history Branch
         if: always()

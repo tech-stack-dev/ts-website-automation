@@ -27,7 +27,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		4950,
 		'Check the container titles and numbers from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
@@ -176,7 +176,7 @@ test(
 			'Digital Transformation',
 			'Fintech',
 			'Manufacturing',
-			'E-CommercASDJKANSFJKNASJ',
+			'E-Commerce',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 	}
