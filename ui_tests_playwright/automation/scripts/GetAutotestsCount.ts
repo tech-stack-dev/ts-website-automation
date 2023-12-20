@@ -14,7 +14,7 @@ const skipped = skippedMatches ? Number(skippedMatches[1]) : 0;
 
 const total = passed + failed + flaky + skipped;
 
-fs.unlinkSync('ui_tests_playwright/automation/test-output.txt');
+fs.unlinkSync('test-output.txt');
 
 console.log(`::set-output name=PASSED::${passed}`);
 console.log(`::set-output name=FAILED::${failed}`);
