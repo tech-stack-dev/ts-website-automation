@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as core from '@actions/core';
 
 const content = fs.readFileSync('test-output.txt', 'utf-8');
 
@@ -16,8 +17,8 @@ const total = passed + failed + flaky + skipped;
 
 fs.unlinkSync('test-output.txt');
 
-console.log(`echo "PASSED=${passed}" >> $GITHUB_OUTPUT`);
-console.log(`echo "FAILED=${failed}" >> $GITHUB_OUTPUT`);
-console.log(`echo "FLAKY=${flaky}" >> $GITHUB_OUTPUT`);
-console.log(`echo "SKIPPED=${skipped}" >> $GITHUB_OUTPUT`);
-console.log(`echo "TOTAL=${total}" >> $GITHUB_OUTPUT`);
+core.setOutput('PASSED', `${passed}`);
+core.setOutput('FAILED', `${failed}`);
+core.setOutput('FLAKY', `${flaky}`);
+core.setOutput('SKIPPED', `${skipped}`);
+core.setOutput('TOTAL', `${total}`);
