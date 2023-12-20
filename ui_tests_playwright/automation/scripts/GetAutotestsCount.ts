@@ -16,8 +16,8 @@ const total = passed + failed + flaky + skipped;
 
 fs.unlinkSync('test-output.txt');
 
-console.log(`::set-env name=PASSED::${passed}`);
-console.log(`::set-env name=FAILED::${failed}`);
-console.log(`::set-env name=FLAKY::${flaky}`);
-console.log(`::set-env name=SKIPPED::${skipped}`);
-console.log(`::set-env name=TOTAL::${total}`);
+console.log(`echo "PASSED=${passed}" >> "$GITHUB_OUTPUT"`);
+console.log(`echo "FAILED=${failed}" >> "$GITHUB_OUTPUT"`);
+console.log(`echo "FLAKY=${flaky}" >> "$GITHUB_OUTPUT"`);
+console.log(`echo "SKIPPED=${skipped}" >> "$GITHUB_OUTPUT"`);
+console.log(`echo "TOTAL=${total}" >> "$GITHUB_OUTPUT"`);
