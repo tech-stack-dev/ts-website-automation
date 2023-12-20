@@ -1,34 +1,24 @@
-import {chromium} from 'playwright';
+import * as fs from 'fs';
+import * as core from '@actions/core';
 
-async function run() {
-	const browser = await chromium.launch();
-	const page = await browser.newPage();
-	await page.goto('https://tech-stack-dev.github.io/ts-website-automation/index.html');
+const content = fs.readFileSync('test-output.txt', 'utf-8');
 
-	// Extract values from fields using XPath
-	const passed = await page.$eval(
-		'//a[contains(text(),"Passed")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const failed = await page.$eval(
-		'//a[contains(text(),"Failed")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const skipped = await page.$eval(
-		'//a[contains(text(),"Skipped")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const total = await page.$eval('//a[contains(text(),"All")]/span', (element: HTMLElement) => element.textContent);
+const passedMatches = content.match(/(\d+) passed/);
+const failedMatches = content.match(/(\d+) failed/);
+const flakyMatches = content.match(/(\d+) flaky/);
+const skippedMatches = content.match(/(\d+) skipped/);
 
-	console.log(`::set-output name=passed::${passed}`);
-	console.log(`::set-output name=failed::${failed}`);
-	console.log(`::set-output name=skipped::${skipped}`);
-	console.log(`::set-output name=total::${total}`);
+const passed = passedMatches ? Number(passedMatches[1]) : 0;
+const failed = failedMatches ? Number(failedMatches[1]) : 0;
+const flaky = flakyMatches ? Number(flakyMatches[1]) : 0;
+const skipped = skippedMatches ? Number(skippedMatches[1]) : 0;
 
-	await browser.close();
-}
+const total = passed + failed + flaky + skipped;
 
-run().catch((error) => {
-	console.error('An error occurred:', error);
-	process.exit(1);
-});
+fs.unlinkSync('test-output.txt');
+
+core.exportVariable('PASSED', `${passed}`);
+core.exportVariable('FAILED', `${failed}`);
+core.exportVariable('FLAKY', `${flaky}`);
+core.exportVariable('SKIPPED', `${skipped}`);
+core.exportVariable('TOTAL', `${total}`);

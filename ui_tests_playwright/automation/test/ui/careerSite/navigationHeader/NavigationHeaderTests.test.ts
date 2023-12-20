@@ -8,7 +8,7 @@ import {driver} from '../../../../base/driver/Driver';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import Blog from '../../../../identifiers/blog/Blog';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
