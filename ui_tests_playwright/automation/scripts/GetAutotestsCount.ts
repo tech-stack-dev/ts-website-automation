@@ -1,34 +1,26 @@
-import {chromium} from 'playwright';
+import * as fs from 'fs';
 
-async function run() {
-	const browser = await chromium.launch();
-	const page = await browser.newPage();
-	await page.goto('https://tech-stack-dev.github.io/ts-website-automation/index.html');
+// Чтение содержимого файла
+const content = fs.readFileSync('test-output.txt', 'utf-8');
 
-	// Extract values from fields using XPath
-	const passed = await page.$eval(
-		'//a[contains(text(),"Passed")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const failed = await page.$eval(
-		'//a[contains(text(),"Failed")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const skipped = await page.$eval(
-		'//a[contains(text(),"Skipped")]/span',
-		(element: HTMLElement) => element.textContent
-	);
-	const total = await page.$eval('//a[contains(text(),"All")]/span', (element: HTMLElement) => element.textContent);
+// Нахождение чисел перед "passed", "failed", "flaky" и "skipped"
+const passedMatches = content.match(/(\d+) passed/);
+const failedMatches = content.match(/(\d+) failed/);
+const flakyMatches = content.match(/(\d+) flaky/);
+const skippedMatches = content.match(/(\d+) skipped/);
 
-	console.log(`::set-output name=passed::${passed}`);
-	console.log(`::set-output name=failed::${failed}`);
-	console.log(`::set-output name=skipped::${skipped}`);
-	console.log(`::set-output name=total::${total}`);
+// Извлечение найденных чисел
+const passed = passedMatches ? Number(passedMatches[1]) : 0;
+const failed = failedMatches ? Number(failedMatches[1]) : 0;
+const flaky = flakyMatches ? Number(flakyMatches[1]) : 0;
+const skipped = skippedMatches ? Number(skippedMatches[1]) : 0;
 
-	await browser.close();
-}
+// Вычисление общего числа тестов
+const total = passed + failed + flaky + skipped;
 
-run().catch((error) => {
-	console.error('An error occurred:', error);
-	process.exit(1);
-});
+// Вывод результатов в формате, понятном GitHub Actions
+console.log(`::set-env name=PASSED::${passed}`);
+console.log(`::set-env name=FAILED::${failed}`);
+console.log(`::set-env name=FLAKY::${flaky}`);
+console.log(`::set-env name=SKIPPED::${skipped}`);
+console.log(`::set-env name=TOTAL::${total}`);
