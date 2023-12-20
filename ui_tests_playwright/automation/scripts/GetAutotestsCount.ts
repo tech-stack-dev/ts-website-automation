@@ -17,8 +17,8 @@ const total = passed + failed + flaky + skipped;
 
 fs.unlinkSync('test-output.txt');
 
-core.setOutput('PASSED', `${passed}`);
-core.setOutput('FAILED', `${failed}`);
-core.setOutput('FLAKY', `${flaky}`);
-core.setOutput('SKIPPED', `${skipped}`);
-core.setOutput('TOTAL', `${total}`);
+core.exportVariable('PASSED', `${passed}`);
+core.exportVariable('FAILED', `${failed}`);
+core.exportVariable('FLAKY', `${flaky}`);
+core.exportVariable('SKIPPED', `${skipped}`);
+core.exportVariable('TOTAL', `${total}`);
