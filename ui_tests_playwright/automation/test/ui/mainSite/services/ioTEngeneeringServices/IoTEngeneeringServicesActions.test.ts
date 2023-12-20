@@ -114,7 +114,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(button, url);
+			await baseDriverSteps.checkRedirectToLinkedinInNewTab(button, url);
 		}
 	}
 );

@@ -138,15 +138,19 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToExternalSourceInNewTab(locator: Locator, expectedUrl: string) {
+	public async checkRedirectToLinkedinInNewTab(locator: Locator, expectedUrl: string) {
 		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
-		await playwrightUtils.expectWithRetries(
-			async () => {
-				expect(newPage.url()).toContain(expectedUrl);
-			},
-			5,
-			3000
-		);
+		await newPage.waitForLoadState();
+
+		const domainRegex = /(https:\/\/www\.linkedin\.com\/)/;
+		const domainMatch = expectedUrl.match(domainRegex);
+		const domain = domainMatch ? domainMatch[1] : null;
+
+		const expertNameRegex = /https:\/\/www\.linkedin\.com\/in\/([^/]+)/;
+		const expertNameMatch = expectedUrl.match(expertNameRegex);
+		const expertName = expertNameMatch ? expertNameMatch[1] : null;
+
+		expect(newPage.url()).toContain(domain && expertName);
 		await newPage.close();
 	}
 

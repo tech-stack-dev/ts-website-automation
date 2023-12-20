@@ -79,7 +79,7 @@ test(
 		]);
 
 		for (const [link, url] of linkUrlMap) {
-			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(link, url);
+			await baseDriverSteps.checkRedirectToPage(link, url);
 		}
 	}
 );
@@ -102,7 +102,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToExternalSourceInNewTab(button, url);
+			await baseDriverSteps.checkRedirectToLinkedinInNewTab(button, url);
 		}
 	}
 );
