@@ -1,0 +1,30 @@
+qase: Current PID: 4465
+
+Running 21 tests using 6 workers
+
+qase: Project TS exists
+qase: Error on creating run Error: Request failed with status code 403
+  ✓  5 [Google Chrome] › test/api/API.test.ts:12:5 › Api test GET (93ms)
+  ✓  3 [Google Chrome] › test/api/API.test.ts:17:5 › Api test POST (432ms)
+  ✓  6 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:69:5 › Check redirect by "Clutch Review" button in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4912) (9.9s)
+  ✓  1 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:22:5 › Check redirect by CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4909) (10.7s)
+  ✓  4 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:86:5 › Check redirects by LinkedIn buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4918) (11.0s)
+  ✓  11 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:17:5 › Check the Info container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4938) (4.1s)
+  -  12 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:30:6 › Check the container titles and numbers from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4950)
+  ✓  10 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:169:5 › Check navigation to "Get in Touch" container after clicking CTA buttons from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4944) (5.7s)
+  ✓  9 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:156:5 › Check sections expanding and collapsing in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4930) (6.6s)
+  ✓  13 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:68:5 › Check section numbers and titles in "How Big Data Will Help You" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4962) (3.7s)
+  ✓  2 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:40:5 › Check redirect by links in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4925) (20.1s)
+  ✓  14 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:89:5 › Check section titles and CTA button in "Big Data Software Development With Techstack" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4967) (3.8s)
+  ✓  15 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:116:5 › Check section titles in "Big Data Solutions Technology Stack" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4972) (3.9s)
+  ✓  16 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:138:5 › Check section titles, block title, image and CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4978) (3.4s)
+  ✓  17 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:165:5 › Check section titles in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4984) (3.9s)
+  ✓  7 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:108:5 › Check redirects by Blog buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061 (Qase ID: 4956) (23.7s)
+  ✓  19 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:203:5 › Check member names and roles in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4994) (3.5s)
+  ✓  18 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:185:5 › Check section titles and award cards in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4989) (4.3s)
+  ✓  20 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:232:5 › Check section titles in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 4999) (3.3s)
+  ✓  21 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsContent.test.ts:254:5 › Check section titles in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 5005) (2.7s)
+  ✓  8 [Google Chrome] › test/ui/mainSite/services/bigDataAndAnalytics/BigDataAndAnalyticsActions.test.ts:131:5 › Check redirects by arrows in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 (Qase ID: 5012) (28.8s)
+
+  1 skipped
+  20 passed (30.8s)
