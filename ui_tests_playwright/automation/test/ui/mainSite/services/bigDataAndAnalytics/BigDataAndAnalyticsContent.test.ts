@@ -176,7 +176,7 @@ test(
 			'Digital Transformation',
 			'Fintech',
 			'Manufacturing',
-			'E-Commerce',
+			'E-CommercASDJKANSFJKNASJ',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 	}
