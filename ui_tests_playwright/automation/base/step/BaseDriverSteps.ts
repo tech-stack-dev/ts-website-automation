@@ -139,8 +139,7 @@ class BaseDriverSteps {
 	}
 
 	public async checkRedirectToExternalSourceInNewTab(locator: Locator, expectedUrl: string) {
-		await locator.click();
-		const newPage = await driver.DriverContext.waitForEvent('page');
+		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 		await playwrightUtils.expectWithRetries(
 			async () => {
 				expect(newPage.url()).toContain(expectedUrl);
