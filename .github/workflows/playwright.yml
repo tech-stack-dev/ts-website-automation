@@ -82,12 +82,16 @@ jobs:
       - name: Parse Test Results Data
         if: always()
         run: npx ts-node automation/scripts/GetAutotestsCount.ts
-        env:
-          PASSED: ${{ env.PASSED }}
-          FAILED: ${{ env.FAILED }}
-          FLAKY: ${{ env.FLAKY }}
-          SKIPPED: ${{ env.SKIPPED }}
-          TOTAL: ${{ env.TOTAL }}
+        id: test-results
+
+      - name: Use test data
+        if: always()
+        run: |
+          echo "Passed is a ${ steps.test-result.outputs.PASSED }"
+          echo "Failed is a ${ steps.test-result.outputs.FAILED }"
+          echo "Skipped is a ${ steps.test-result.outputs.SKIPPED }"
+          echo "Flaky is a ${ steps.test-result.outputs.FLAKY }"
+          echo "Total is a ${ steps.test-result.outputs.TOTAL }"
 
       - name: Switch to reports-history Branch
         if: always()
