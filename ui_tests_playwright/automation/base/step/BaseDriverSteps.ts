@@ -4,6 +4,7 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
+import Links from '../../preconditionsData/links/Links';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -128,7 +129,6 @@ class BaseDriverSteps {
 			await newPage.waitForLoadState();
 			await playwrightUtils.expectWithRetries(
 				async () => {
-					await newPage.waitForURL(expectedUrl);
 					expect(newPage.url()).toContain(expectedUrl);
 				},
 				5,
@@ -142,15 +142,12 @@ class BaseDriverSteps {
 		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 		await newPage.waitForLoadState();
 
-		const domainRegex = /(https:\/\/www\.linkedin\.com\/)/;
-		const domainMatch = expectedUrl.match(domainRegex);
-		const domain = domainMatch ? domainMatch[1] : null;
+		const baseUrl = Links.LinkedIn;
+		const expertLinkRegex = new RegExp(`${baseUrl}(?:/in/)?([^/?]+)`);
+		const expertNameMatch = expectedUrl.match(expertLinkRegex);
+		const expertNamePart = expertNameMatch ? expertNameMatch[1] : null;
 
-		const expertNameRegex = /https:\/\/www\.linkedin\.com\/in\/([^/]+)/;
-		const expertNameMatch = expectedUrl.match(expertNameRegex);
-		const expertName = expertNameMatch ? expertNameMatch[1] : null;
-
-		expect(newPage.url()).toContain(domain && expertName);
+		expect(newPage.url()).toContain(baseUrl && expertNamePart);
 		await newPage.close();
 	}
 

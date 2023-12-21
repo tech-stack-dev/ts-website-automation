@@ -74,7 +74,7 @@ test(
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 		const linkUrlMap = new Map([
-			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign],
+			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.Instagram],
 			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 		]);
 
