@@ -21,4 +21,6 @@ export enum ExpertNames {
 	AndriiDumych = 'Andrii Dumych',
 	SerhiiYevdokymenko = 'Serhii Yevdokymenko',
 	DmytroPakki = 'Dmytro Pakki',
+	DmytroBohdanov = 'Dmytro Bohdanov',
+	PavloGrydzhuk = 'Pavlo Grydzhuk',
 }
