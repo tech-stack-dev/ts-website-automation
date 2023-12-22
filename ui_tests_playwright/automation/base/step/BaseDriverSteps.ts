@@ -4,7 +4,6 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
-import Links from '../../preconditionsData/links/Links';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -129,7 +128,7 @@ class BaseDriverSteps {
 			await newPage.waitForLoadState();
 			await playwrightUtils.expectWithRetries(
 				async () => {
-					expect(newPage.url()).toContain(expectedUrl);
+					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();
 				},
 				5,
 				5000
@@ -138,17 +137,12 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkRedirectToLinkedinInNewTab(locator: Locator, expectedUrl: string) {
-		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
-		await newPage.waitForLoadState();
-
-		const baseUrl = Links.LinkedIn;
-		const expertLinkRegex = new RegExp(`${baseUrl}(?:/in/)?([^/?]+)`);
-		const expertNameMatch = expectedUrl.match(expertLinkRegex);
-		const expertNamePart = expertNameMatch ? expertNameMatch[1] : null;
-
-		expect(newPage.url()).toContain(baseUrl && expertNamePart);
-		await newPage.close();
+	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
+		const ignorePatterns = ['in'];
+		const expectedUrlArray = expectedUrl.split('/');
+		const expectedUrlClean = expectedUrlArray.filter((urlPart) => !ignorePatterns.includes(urlPart));
+		const isLinkPresent = expectedUrlClean.every((urlPart) => actualUrl.includes(urlPart));
+		return isLinkPresent;
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {

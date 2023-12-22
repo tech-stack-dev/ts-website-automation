@@ -100,7 +100,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToLinkedinInNewTab(button, url);
+			await baseDriverSteps.checkRedirectToPage(button, url);
 		}
 	}
 );
