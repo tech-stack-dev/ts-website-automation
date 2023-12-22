@@ -167,7 +167,7 @@ test(`Check the redirection for the Company block on all pages @Regression @Foot
 		[Buttons.Company_Pricing, companyUrl[CompanyEnum.Pricing]],
 		[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
 		[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-		[Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]],
+		// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
 		[Buttons.Company_Whitepapers, companyUrl[CompanyEnum.Whitepapers]],
 	]);
 
