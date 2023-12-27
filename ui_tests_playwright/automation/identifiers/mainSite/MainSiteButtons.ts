@@ -23,14 +23,19 @@ export default class MainSiteButtons extends Buttons {
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
 	static GetAConsultation = 'Button-GetAConsultation';
+	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
+	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
 	static MoreProductDetails = 'Button-MoreProductDetails';
+	static MoreDetails = 'Button-MoreDetails';
 	static ScheduleACall = 'Button-ScheduleACall';
 	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
 	static LearnMore = 'Button-LearnMore';
 	static GetAQuote = 'Button-GetAQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
+	static BoostYourBackend = 'Button-BoostYourBackend';
+	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

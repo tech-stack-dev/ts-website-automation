@@ -8,6 +8,7 @@ export default class MainSiteImages {
 	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
 	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
 	static MobileCaseStudy = 'Img-MobileCaseStudy';
+	static BackendCaseStudy = 'Img-BackendCaseStudy';
 	static MedicalDashboard = 'Img-Dashboard';
 	static IncorporatingAiMl = 'Img-IncorporatingAiMl';
 	static FeaturedCaseStudy = 'Img-FeaturedCaseStudy';
