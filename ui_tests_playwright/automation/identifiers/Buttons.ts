@@ -1,18 +1,17 @@
 export default class Buttons {
-	// Header components
-	static Menu = 'HeaderOpenMenuButton-HeaderOpenMenuButton';
-	static HeaderLogo = 'HeaderLogo-HeaderLogo';
+	static Logo = 'Logo-Techstack';
 	static ContactUs = 'Button-ContactUs';
-
-	// Menu components
+	static Blog = 'Button-Blog';
 	static Close = 'CloseButton-Close';
-	static Menu_Services = 'ServicesHeader-ServicesHeader';
-	static Menu_Company = 'CompanyHeader-CompanyHeader';
-	static Menu_ContactUs = 'ContactUsHeader-ContactUsHeader';
+
+	// Pages list
+	static Industries_Healthcare = 'Industries-Healthcare';
+	static Industries_TransportationAndLogistics = 'Industries-TransportationAndLogistics';
+	static Industries_RenewableEnergy = 'Industries-RenewableEnergy';
 
 	static Services_OurServices = 'Services-OurServices';
 	static Services_CustomDev = 'Services-CustomDev';
-	static Services_DigitalTransform = 'Services_DigitalTransformation';
+	static Services_DigitalTransform = 'Services-DigitalTransformation';
 	static Services_CloudDev = 'Services-CloudDev';
 	static Services_MobileDev = 'Services-MobileDev';
 	static Services_BigData = 'Services-BigData';
@@ -25,9 +24,20 @@ export default class Buttons {
 
 	static Company_AboutUs = 'Company-AboutUs';
 	static Company_HowWeWork = 'Company-HowWeWork';
+	static Company_Pricing = 'Company-Pricing';
 	static Company_Career = 'Company-Career';
 	static Company_CaseStudies = 'Company-CaseStudies';
 	static Company_Blog = 'Company-Blog';
+	static Company_Whitepapers = 'Company-Whitepapers';
+
+	// Career pages list
+	static Company_TechstackWorldwide = 'Company-TechstackWorldwide';
+	static Company_Services = 'Company-Services';
+
+	static Career_Jobs = 'Career-Jobs';
+	static Career_AboutUs = 'Career-AboutUs';
+	static Career_Reviews = 'Career-Reviews';
+	static Career_ContactUs = 'Career-ContactUs';
 
 	// Social links
 	static LinkedIn = 'Button-LinkedIn';
@@ -61,8 +71,4 @@ export default class Buttons {
 	static Send = 'SubmitButton-SharedSendMessage';
 	static AttachFiles = 'Button-AttachFiles';
 	static Cancel = 'Icon-Cancel';
-
-	// Other
-	static Logo = 'Logo-Techstack';
-	static Blog = 'Button-Blog';
 }

@@ -10,7 +10,7 @@ import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../../identifiers/career/Navigation';
-import {companyUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 
 test.beforeEach(async () => {
@@ -35,7 +35,7 @@ test('Check Slack notification from "staging_techstack_hr_notify" channel from C
 	});
 });
 
-test('Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ContactUs @TSWEB-606', async () => {
+test('Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ApplyForAJob @TSWEB-606', async () => {
 	await driver.getByTestId(/CardWrapper/).click();
 	await driver.getByTestId(CareerButtons.ApplyNow).click();
 	await formSteps.sendApplyForAJob();
@@ -53,8 +53,9 @@ test('Check Slack notification from "staging_techstack_hr_notify" channel from A
 	});
 });
 
-test('Check Slack notification from "staging_techstack_notify" channel from "About Us", "How We Work" and "Contact Us" pages @Regression @ContactUs @TSWEB-606', async () => {
+test('Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @Regression @GetInTouchExtended @TSWEB-606', async () => {
 	const urlList: string[] = [
+		UrlProvider.webSiteUrl(),
 		companyUrl[CompanyEnum.AboutUs],
 		companyUrl[CompanyEnum.HowWeWork],
 		UrlProvider.urlBuilder(UrlPath.ContactUs),
@@ -77,8 +78,27 @@ test('Check Slack notification from "staging_techstack_notify" channel from "Abo
 	}
 });
 
-test('Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @Regression @ContactUs @TSWEB-606', async () => {
+test('Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @Regression @GetInTouchShort @TSWEB-606', async () => {
 	for (const url of Object.values(serviceUrl)) {
+		await baseDriverSteps.goToUrl(url);
+		await formSteps.sendGetInTouchMessage();
+		const message = await slackSteps.getMessageWithValueFromChat(
+			slackDtoVariable.value.stagingTechstackNotifyId,
+			`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`
+		);
+
+		slackSteps.checkMessageFromNotifyChannel(message, {
+			fullName: `Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`,
+			email: `test${sessionValue.stringValue}@test.com`,
+			message: `TestMessage${sessionValue.stringValue}`,
+		});
+	}
+});
+
+test('Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @Regression @GetInTouchShort @TSWEB-606', async () => {
+	const testDataProvider: string[] = Object.values(industryUrl).concat(companyUrl[CompanyEnum.Pricing]);
+
+	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		await formSteps.sendGetInTouchMessage();
 		const message = await slackSteps.getMessageWithValueFromChat(

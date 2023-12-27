@@ -17,7 +17,9 @@ test(
 
 		for (const dropdown of dropdowns) {
 			const expandedState = careerSteps.dropdownIsExpanded(dropdown);
-			await playwrightUtils.expectWithRetries(expect(expandedState).toBeTruthy(), 5);
+			await playwrightUtils.expectWithRetries(async () => {
+				expect(expandedState).toBeTruthy();
+			}, 5);
 		}
 	}
 );

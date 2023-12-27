@@ -68,13 +68,21 @@ for (const testData of testDataProvider) {
 			await filterTag.click();
 			await playwrightUtils.expectWithRetries(async () => {
 				await expect(filterTag).toHaveClass(/active-tag/);
-				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.OrangeYellow)).toBeTruthy();
+				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 			}, 5);
-			await playwrightUtils.expectWithRetries(expect(activeTag).toHaveClass(/active-tag/), 5, 5000);
 			await playwrightUtils.expectWithRetries(
-				expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
-					ColorsEnum.OrangeYellow
-				),
+				async () => {
+					expect(activeTag).toHaveClass(/active-tag/);
+				},
+				5,
+				5000
+			);
+			await playwrightUtils.expectWithRetries(
+				async () => {
+					expect(await activeTag.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(
+						ColorsEnum.Yellow_FFC600
+					);
+				},
 				5,
 				5000
 			);
