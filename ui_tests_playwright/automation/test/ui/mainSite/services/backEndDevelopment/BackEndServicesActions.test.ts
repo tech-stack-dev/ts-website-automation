@@ -4,7 +4,6 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import BackEndDevelopment from '../../../../../identifiers/mainSite/pages/services/BackEndDevelopment';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
@@ -13,6 +12,7 @@ import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/Exper
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import Container from '../../../../../identifiers/Container';
+import BackEndServices from '../../../../../identifiers/mainSite/pages/services/BackEndServices';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BackEndDevelopment));
@@ -20,25 +20,25 @@ test.beforeEach(async () => {
 
 test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
 	const ctaButtons = [
-		driver.getByTestId(BackEndDevelopment.Info).getByTestId(MainSiteButtons.GetAQuote),
+		driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetAQuote),
 		driver
-			.getByTestId(BackEndDevelopment.BackendForAnySoftwareProduct)
+			.getByTestId(BackEndServices.BackendForAnySoftwareProduct)
 			.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation),
-		driver.getByTestId(BackEndDevelopment.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
+		driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
 
-		driver.getByTestId(BackEndDevelopment.PeekIntoBackend).getByTestId(MainSiteButtons.BoostYourBackend),
+		driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.BoostYourBackend),
 		driver
-			.getByTestId(BackEndDevelopment.HowWeCanWorkTogether)
+			.getByTestId(BackEndServices.HowWeCanWorkTogether)
 			.getByTestId(MainSiteButtons.LetsDiscussOurPartnership),
 	];
 
 	for (const button of ctaButtons) {
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, BackEndDevelopment.GetInTouch);
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, BackEndServices.GetInTouch);
 	}
 });
 
 test('Check redirect by CTA button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const caseStudyContainer = driver.getByTestId(BackEndDevelopment.CaseStudy);
+	const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 	await caseStudyContainer.getByTestId(MainSiteButtons.MoreDetails).click();
 	await baseDriverSteps.checkUrl(
 		UrlProvider.urlBuilder(
@@ -49,7 +49,7 @@ test('Check redirect by CTA button in "Our Featured Back-End Case Study" contain
 });
 
 test('Check redirect by "Clutch Review" button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const caseStudyContainer = driver.getByTestId(BackEndDevelopment.CaseStudy);
+	const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 
 	await baseDriverSteps.checkRedirectToPage(
 		caseStudyContainer.getByTestId(Buttons.Clutch),
@@ -58,7 +58,7 @@ test('Check redirect by "Clutch Review" button in "Our Featured Back-End Case St
 });
 
 test('Check redirects by LinkedIn buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const ourExpertsContainer = driver.getByTestId(BackEndDevelopment.OurExperts);
+	const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
 	const linkedInButtons = ourExpertsContainer.getByTestId(Buttons.LinkedIn);
 
 	const buttonUrlMap = new Map([
@@ -76,7 +76,7 @@ test('Check redirects by LinkedIn buttons in "Our Leading Back-End Engineers" co
 });
 
 test('Check redirects by Blog buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const ourExpertsContainer = driver.getByTestId(BackEndDevelopment.OurExperts);
+	const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
 	const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
@@ -92,7 +92,7 @@ test('Check redirects by Blog buttons in "Our Leading Back-End Engineers" contai
 });
 
 test('Check redirect by "Clutch Review" button in "Why Techstack Stands Out" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const whyTechstackContainer = driver.getByTestId(BackEndDevelopment.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
 
 	await baseDriverSteps.checkRedirectToPage(
 		whyTechstackContainer.getByTestId(Buttons.Clutch),
@@ -101,13 +101,13 @@ test('Check redirect by "Clutch Review" button in "Why Techstack Stands Out" con
 });
 
 test('Check carousel arrows clicks in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const peekIntoBackendContainer = driver.getByTestId(BackEndDevelopment.PeekIntoBackend);
+	const peekIntoBackendContainer = driver.getByTestId(BackEndServices.PeekIntoBackend);
 
 	await baseDriverSteps.checkCarouselArrowsClick(peekIntoBackendContainer);
 });
 
 test('Check redirect by links in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const BackendDevelopmentServicesContainer = driver.getByTestId(BackEndDevelopment.BackendDevelopmentServices);
+	const BackendDevelopmentServicesContainer = driver.getByTestId(BackEndServices.BackendDevelopmentServices);
 
 	const linksUrlMap = new Map([
 		[
@@ -134,7 +134,7 @@ test('Check redirect by links in "Back-End Development Services for Any Industry
 });
 
 test('Check redirect by arrows in "Related Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const relatedServicesContainer = driver.getByTestId(BackEndDevelopment.RelatedServices);
+	const relatedServicesContainer = driver.getByTestId(BackEndServices.RelatedServices);
 	const arrows = relatedServicesContainer.getByTestId(Container.BlockSection).getByTestId(Container.Arrow);
 	const arrowUrlMap = new Map([
 		[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
@@ -154,7 +154,7 @@ test('Check redirect by arrows in "Related Services" container from the "Back-En
 });
 
 test('Check sections expanding and collapsing in "FAQ" from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const faqContainer = driver.getByTestId(BackEndDevelopment.Faq);
+	const faqContainer = driver.getByTestId(BackEndServices.Faq);
 
 	const expectedNumberOfSections = 5;
 

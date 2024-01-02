@@ -7,15 +7,15 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import BackEndDevelopment from '../../../../../identifiers/mainSite/pages/services/BackEndDevelopment';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
+import BackEndServices from '../../../../../identifiers/mainSite/pages/services/BackEndServices';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BackEndDevelopment));
 });
 
 test('Check the Info container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const info = driver.getByTestId(BackEndDevelopment.Info);
+	const info = driver.getByTestId(BackEndServices.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development\nServices');
 	await expect(info.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a Quote');
@@ -23,21 +23,21 @@ test('Check the Info container from the "Back-End Development" page @Regression 
 
 test('Check the container titles and numbers from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
 	const containers = [
-		driver.getByTestId(BackEndDevelopment.TechstackPowers),
-		driver.getByTestId(BackEndDevelopment.ExpertServices),
-		driver.getByTestId(BackEndDevelopment.BackendForAnySoftwareProduct),
-		driver.getByTestId(BackEndDevelopment.TechArsenal),
-		driver.getByTestId(BackEndDevelopment.CaseStudy),
-		driver.getByTestId(BackEndDevelopment.OurExperts),
-		driver.getByTestId(BackEndDevelopment.WhyTechstack),
-		driver.getByTestId(BackEndDevelopment.Partnering),
-		driver.getByTestId(BackEndDevelopment.PeekIntoBackend),
-		driver.getByTestId(BackEndDevelopment.BackendDevelopmentServices),
-		driver.getByTestId(BackEndDevelopment.HowWeCanWorkTogether),
-		driver.getByTestId(BackEndDevelopment.RelatedServices),
-		driver.getByTestId(BackEndDevelopment.GetInTouch),
-		driver.getByTestId(BackEndDevelopment.RelatedArticles),
-		driver.getByTestId(BackEndDevelopment.Faq),
+		driver.getByTestId(BackEndServices.TechstackPowers),
+		driver.getByTestId(BackEndServices.ExpertServices),
+		driver.getByTestId(BackEndServices.BackendForAnySoftwareProduct),
+		driver.getByTestId(BackEndServices.TechArsenal),
+		driver.getByTestId(BackEndServices.CaseStudy),
+		driver.getByTestId(BackEndServices.OurExperts),
+		driver.getByTestId(BackEndServices.WhyTechstack),
+		driver.getByTestId(BackEndServices.Partnering),
+		driver.getByTestId(BackEndServices.PeekIntoBackend),
+		driver.getByTestId(BackEndServices.BackendDevelopmentServices),
+		driver.getByTestId(BackEndServices.HowWeCanWorkTogether),
+		driver.getByTestId(BackEndServices.RelatedServices),
+		driver.getByTestId(BackEndServices.GetInTouch),
+		driver.getByTestId(BackEndServices.RelatedArticles),
+		driver.getByTestId(BackEndServices.Faq),
 	];
 
 	const expectedData = [
@@ -62,14 +62,14 @@ test('Check the container titles and numbers from the "Back-End Development" pag
 });
 
 test('Check section titles in "Techstack’s Powers in Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const techstackPowersContainer = driver.getByTestId(BackEndDevelopment.TechstackPowers);
+	const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
 	const allSectionTitles = techstackPowersContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Architect Tech Guild', 'Back-End Development as\nOur Core Expertise', 'Rising Tech Talent'];
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
 test('Check section titles and numbers in "Expert Back-End Development Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const expertServicesContainer = driver.getByTestId(BackEndDevelopment.ExpertServices);
+	const expertServicesContainer = driver.getByTestId(BackEndServices.ExpertServices);
 
 	await expect(expertServicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -96,7 +96,7 @@ test('Check section titles and numbers in "Expert Back-End Development Services"
 });
 
 test('Check section titles, numbers and CTA in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const expertServicesContainer = driver.getByTestId(BackEndDevelopment.BackendForAnySoftwareProduct);
+	const expertServicesContainer = driver.getByTestId(BackEndServices.BackendForAnySoftwareProduct);
 
 	await expect(expertServicesContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
 
@@ -116,13 +116,13 @@ test('Check section titles, numbers and CTA in "Back-End Development Services fo
 });
 
 test('Check section titles in "Our Tech Arsenal for Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const techArsenalContainer = driver.getByTestId(BackEndDevelopment.TechArsenal);
+	const techArsenalContainer = driver.getByTestId(BackEndServices.TechArsenal);
 	const allSectionTitles = techArsenalContainer.getByTestId(Container.SectionTitle);
 	await expect(allSectionTitles).toHaveText(TechnologyStackData.BackEndTab);
 });
 
 test('Check section titles, image and CTA in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const caseStudyContainer = driver.getByTestId(BackEndDevelopment.CaseStudy);
+	const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 
 	const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 	const testData = ['Complexity of\nData Management', 'Integration with\nExisting Systems'];
@@ -133,7 +133,7 @@ test('Check section titles, image and CTA in "Our Featured Back-End Case Study" 
 });
 
 test('Check member names, roles and CTA in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const ourExpertsContainer = driver.getByTestId(BackEndDevelopment.OurExperts);
+	const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
 	const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
 	const testDataRoles = [
 		'CTO, Software Architect,\nElaborates on the technology strategy',
@@ -164,7 +164,7 @@ test('Check member names, roles and CTA in "Our Leading Back-End Engineers" cont
 });
 
 test('Check section titles and award cards in "Why Techstack Stands Out" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const whyTechstackContainer = driver.getByTestId(BackEndDevelopment.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
 
 	const sections = whyTechstackContainer.getByTestId(Container.ContainerSection);
 	const numOfSections = 3;
@@ -179,7 +179,7 @@ test('Check section titles and award cards in "Why Techstack Stands Out" contain
 });
 
 test('Check section titles and numbers in "Partnering for Effective Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const partneringContainer = driver.getByTestId(BackEndDevelopment.Partnering);
+	const partneringContainer = driver.getByTestId(BackEndServices.Partnering);
 
 	await expect(partneringContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -202,11 +202,11 @@ test('Check section titles and numbers in "Partnering for Effective Back-End Dev
 		'Future-proofing',
 	];
 
-	await expect(allSectionTitles).toHaveText(testData);
+	await expect(allSectionTitles).toHaveText(testData); BackEndServices
 });
 
 test('Check carousel section numbers and titles in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const peekIntoBackendContainer = driver.getByTestId(BackEndDevelopment.PeekIntoBackend);
+	const peekIntoBackendContainer = driver.getByTestId(BackEndServices.PeekIntoBackend);
 	const carouselSections = await peekIntoBackendContainer.getByTestId(Container.CarouselSection).all();
 	const actualCarouselIndexesAndTitles: Map<string, string> = new Map();
 
@@ -239,7 +239,7 @@ test('Check carousel section numbers and titles in "A Peek Into Our Back-End Dev
 });
 
 test('Check section titles in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const backendDevelopmentServicesContainer = driver.getByTestId(BackEndDevelopment.BackendDevelopmentServices);
+	const backendDevelopmentServicesContainer = driver.getByTestId(BackEndServices.BackendDevelopmentServices);
 	const allSectionTitles = backendDevelopmentServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Healthcare',
@@ -255,7 +255,7 @@ test('Check section titles in "Back-End Development Services for Any Industry" c
 });
 
 test('Check section titles, numbers and CTA in "How We Can Work Together" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const howWeCanWorkTogetherContainer = driver.getByTestId(BackEndDevelopment.HowWeCanWorkTogether);
+	const howWeCanWorkTogetherContainer = driver.getByTestId(BackEndServices.HowWeCanWorkTogether);
 
 	await expect(howWeCanWorkTogetherContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03']);
 
@@ -270,7 +270,7 @@ test('Check section titles, numbers and CTA in "How We Can Work Together" contai
 });
 
 test('Check section titles in "Related Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const relatedServicesContainer = driver.getByTestId(BackEndDevelopment.RelatedServices);
+	const relatedServicesContainer = driver.getByTestId(BackEndServices.RelatedServices);
 	const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'Custom Software\nDevelopment',
@@ -288,7 +288,7 @@ test('Check section titles in "Related Services" container from the "Back-End De
 });
 
 test('Check section titles in "FAQ" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208', async () => {
-	const faqContainer = driver.getByTestId(BackEndDevelopment.Faq);
+	const faqContainer = driver.getByTestId(BackEndServices.Faq);
 	const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const testData = [
 		'What is back-end development, and why is it important for my product?',

@@ -1,6 +1,6 @@
 import GeneralContainersMainSite from '../../GeneralContainersMainSite';
 
-export default class BackEndDevelopment extends GeneralContainersMainSite {
+export default class BackEndServices extends GeneralContainersMainSite {
 	static TechstackPowers = 'Container-TechstackPowers';
 	static ExpertServices = 'Container-ExpertServices';
 	static BackendForAnySoftwareProduct = 'Container-BackendForAnySoftwareProduct';
