@@ -15,4 +15,5 @@ export default class CaseStudyPath {
 		'/how-software-development-consulting-transformed-the-existing-system-of-a-healthcare-provider';
 	static IntegrationManyMonolithSystems =
 		'/integration-many-monolith-systems-in-single-ecosystem-via-9-dots-menu-pattern';
+	static AnalyticsSubsystemForASalesEngagementPlatform = '/analytics-subsystem-for-a-sales-engagement-platform';
 }
