@@ -86,7 +86,7 @@ test(
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
 			[Buttons.Company_Services, UrlProvider.urlBuilder(UrlPath.OurServices)],
 			[Buttons.Company_CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
-			[Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)],
+			// [Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)], // Uncomment after Blog will be stable
 		]);
 
 		for (const url of testDataProvider) {

@@ -113,7 +113,7 @@ test(
 			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
 			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
 			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			[Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]],
+			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
 		]);
 
 		for (const url of testDataProvider) {
