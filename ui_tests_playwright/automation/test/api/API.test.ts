@@ -4,17 +4,18 @@ import {ClientsEnum} from '../../base/client/ClientsEnum';
 import RequestOptions from '../../base/client/RequestOptions';
 import {apiSteps} from '../../steps/api/ApiSteps';
 import {baseApiSteps} from '../../base/step/BaseApiSteps';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseApiSteps.createClient(ClientsEnum.Client_1);
 });
 
-test('Api test GET', async () => {
+test(qase(4742, 'Api test GET'), async () => {
 	await apiSteps.executeGetRequest('/api/users?page=2');
 	await apiSteps.checkPropertyValue('page', 2);
 });
 
-test('Api test POST', async () => {
+test(qase(4743, 'Api test POST'), async () => {
 	userDtoVariable.value = {
 		name: 'morpheus',
 		job: 'leader',

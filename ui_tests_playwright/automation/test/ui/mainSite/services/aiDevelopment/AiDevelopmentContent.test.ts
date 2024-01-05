@@ -152,14 +152,14 @@ test(
 		'Check section titles, image and CTA in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
-		const IncorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
-		const allSectionTitles = IncorporatingAIContainer.getByTestId(Container.SectionTitle);
+		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
+		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Seamless integration into\nexisting software system', 'Security and data integrity'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(IncorporatingAIContainer.getByTestId(MainSiteImages.IncorporatingAiMl)).toBeVisible();
-		await expect(IncorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.IncorporatingAiMl)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
 			'Read the full\nCase Study'
 		);
 	}

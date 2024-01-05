@@ -21,7 +21,7 @@ test.describe('With one precondition vacancy', () => {
 		);
 	});
 
-	test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
+	test(qase(5480, 'Check job description fields @Regression @JobsBlock @TSWEB-146'), async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		const twitter = await careerSteps.checkSocialMediaButtonRedirect(
