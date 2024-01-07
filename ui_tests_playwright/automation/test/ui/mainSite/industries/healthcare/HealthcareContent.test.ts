@@ -102,15 +102,15 @@ test(
 		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
-		const beatsScreeningModuleContainer = driver.getByTestId(Healthcare.CaseStudy);
-		const allSectionTitles = beatsScreeningModuleContainer.getByTestId(Container.SectionTitle);
+		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
+		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(beatsScreeningModuleContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
 
-		await expect(beatsScreeningModuleContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
 			'Read the full Case Study'
 		);
 	}

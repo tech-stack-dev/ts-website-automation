@@ -47,9 +47,9 @@ test(
 		'Check redirect by CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
-		const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
+		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
 
-		await theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`,

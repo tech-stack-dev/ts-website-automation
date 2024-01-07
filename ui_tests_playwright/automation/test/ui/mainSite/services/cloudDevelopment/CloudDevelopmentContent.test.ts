@@ -96,18 +96,18 @@ test(
 		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
-		const industrySpecificSolutionContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
-		const allSectionTitles = industrySpecificSolutionContainer.getByTestId(Container.SectionTitle);
+		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
+		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['High-load infrastructure', 'Data integrity', 'Scalability'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industrySpecificSolutionContainer.getByTestId(Container.BlockTitle)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(Container.BlockTitle)).toHaveText(
 			'Cloud platform for car charging stations'
 		);
 
-		await expect(industrySpecificSolutionContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(industrySpecificSolutionContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
 			'Read Full Case Study'
 		);
 	}
