@@ -16,6 +16,7 @@ test.beforeEach(async () => {
 test(qase(5149, 'Check Info container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'), async () => {
 	const info = driver.getByTestId(Healthcare.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
 	await expect(info.getByTestId(Container.Title)).toHaveText(
 		'Software Development\nSolutions For\nthe Healthcare Industry'
 	);
