@@ -21,7 +21,7 @@ test.describe('With one precondition vacancy', () => {
 		);
 	});
 
-	test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
+	test(qase(5480, 'Check job description fields @Regression @JobsBlock @TSWEB-146'), async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		const twitter = await careerSteps.checkSocialMediaButtonRedirect(
@@ -88,11 +88,11 @@ test.describe('with many precondition vacancy', () => {
 		const nextButton = await careerSteps.getPaginationNavigationArrowButton('Next');
 		expect(await nextButton.isVisible()).toBeTruthy();
 		const firstPageButton = await careerSteps.getPaginationNumberButton(1);
-		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		expect(await locatorUtils.checkBackgroundColor(firstPageButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		await nextButton.click();
 		const secondPageButton = await careerSteps.getPaginationNumberButton(2);
 		await driver.Page.waitForTimeout(1000); // Timeout for page reloading and getting correct button background
-		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.OrangeYellow)).toBeTruthy();
+		expect(await locatorUtils.checkBackgroundColor(secondPageButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		const prevButton = await careerSteps.getPaginationNavigationArrowButton('Prev');
 		expect(await prevButton.isVisible()).toBeTruthy();
 	});

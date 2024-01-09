@@ -141,15 +141,15 @@ test(
 		'Check section titles, image, and CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
-		const industrySolutionContainer = driver.getByTestId(MobileDevService.CaseStudy);
-		const allSectionTitles = industrySolutionContainer.getByTestId(Container.SectionTitle);
+		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
+		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['User experience', 'Moving to IaaS', 'Third-party\nservices'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industrySolutionContainer.getByTestId(MainSiteImages.MobileCaseStudy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.MobileCaseStudy)).toBeVisible();
 
-		await expect(industrySolutionContainer.getByTestId(MainSiteButtons.MoreProductDetails)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.MoreProductDetails)).toHaveText(
 			'More product details'
 		);
 	}

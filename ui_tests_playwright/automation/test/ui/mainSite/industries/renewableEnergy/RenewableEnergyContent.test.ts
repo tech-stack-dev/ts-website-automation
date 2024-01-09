@@ -132,16 +132,16 @@ test(
 		'Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
-		const theSolarEnergyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
-		const allSectionTitles = theSolarEnergyContainer.getByTestId(Container.SectionTitle);
+		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
+		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
 		await expect(allSectionTitles).toHaveText(testData);
 
-		const blockTitle = theSolarEnergyContainer.getByTestId(Container.BlockTitle);
+		const blockTitle = caseStudyContainer.getByTestId(Container.BlockTitle);
 		await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
-		await expect(theSolarEnergyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
-		await expect(theSolarEnergyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
 			'Check out how\nwe built it'
 		);
 	}

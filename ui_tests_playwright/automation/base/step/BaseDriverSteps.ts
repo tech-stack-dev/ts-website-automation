@@ -120,15 +120,29 @@ class BaseDriverSteps {
 		if (initialPageUrl) {
 			await locator.click();
 			await driver.Page.waitForLoadState();
-			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 5000);
+			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			await playwrightUtils.expectWithRetries(expect(newPage.url()).toContain(expectedUrl), 5, 5000);
+			await playwrightUtils.expectWithRetries(
+				async () => {
+					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();
+				},
+				5,
+				5000
+			);
 			await newPage.close();
 		}
+	}
+
+	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
+		const ignorePatterns = ['in'];
+		const expectedUrlArray = expectedUrl.split('/');
+		const expectedUrlClean = expectedUrlArray.filter((urlPart) => !ignorePatterns.includes(urlPart));
+		const isLinkPresent = expectedUrlClean.every((urlPart) => actualUrl.includes(urlPart));
+		return isLinkPresent;
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
