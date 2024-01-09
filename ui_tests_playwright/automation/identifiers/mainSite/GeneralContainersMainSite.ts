@@ -21,4 +21,5 @@ export default class GeneralContainersMainSite {
 	static OurApproach = 'Container-OurApproach';
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static Services = 'Container-Services';
+	static CooperationModels = 'Container-CooperationModels';
 }
