@@ -1,6 +1,6 @@
 import { sleep } from 'k6';
 import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
-import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToReviews, getToWebsite } from '../steps/career-steps.js';
+import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToReviews, getToWebsite } from '../../steps/career-steps.js';
 
 export let options = {
 	thresholds: {

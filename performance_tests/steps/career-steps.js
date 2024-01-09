@@ -40,7 +40,7 @@ export function getBack(buildId){
 
     check(response, {
         'is status 200 - Home page back from Career page': (r) => r.status === 200,
-        'Home page opened back from career check': (r) => r.body.includes('https://staging-career.tech-stack.io')
+        'Home page opened back from career check': (r) => r.body.includes('https://staging-career.tech-stack.com')
     });
 };
 
@@ -51,7 +51,7 @@ export function getToContactUs(buildId){
 
     check(response, {
         'is status 200 - Contact Us page': (r) => r.status === 200,
-        'Contact Us page check': (r) => r.body.includes('https://staging-career.tech-stack.io/ContactUs')
+        'Contact Us page check': (r) => r.body.includes('https://staging-career.tech-stack.com/contact-us')
     });
 };
 
@@ -62,7 +62,7 @@ export function getToAboutUs(buildId){
 
     check(response, {
         'is status 200 - About Us page': (r) => r.status === 200,
-        'About Us page check': (r) => r.body.includes('https://staging-career.tech-stack.io/AboutUs')
+        'About Us page check': (r) => r.body.includes('https://staging-career.tech-stack.com/about-us')
     });
 };
 
@@ -73,6 +73,6 @@ export function getToReviews(buildId){
 
     check(response, {
         'is status 200 - Reviews page': (r) => r.status === 200,
-        'Reviews page check': (r) => r.body.includes('https://staging-career.tech-stack.io/Rev')
+        'Reviews page check': (r) => r.body.includes('https://staging-career.tech-stack.com/reviews')
     });
 };
