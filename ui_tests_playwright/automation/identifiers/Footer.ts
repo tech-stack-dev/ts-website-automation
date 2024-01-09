@@ -1,7 +1,14 @@
 export default class Footer {
 	static Container_Footer = 'Container-Footer';
 
-	static Headquarters = 'Headquarters';
+	static ContactsBlock = 'ContactsBlock';
+	static IndustriesBlock = 'IndustriesBlock';
+	static ServicesBlock = 'ServicesBlock';
+	static CompanyBlock = 'CompanyBlock';
+	static CareerBlock = 'CareerBlock';
+
+	static Headquarters = 'Contacts-Headquarters';
+	static Phone = 'Contacts-Phone';
 	static Info = 'Info';
 
 	// Button

@@ -18,17 +18,21 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
 	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
 	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-	// [ServicesEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ), // Uncomment in scope of TSWEB-1134
+	[ServicesEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 	[ServicesEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 	[ServicesEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
 	[ServicesEnum.QaAsAServ]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+	[ServicesEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	[ServicesEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
 };
 
 export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.AboutUs]: UrlProvider.urlBuilder(UrlPath.AboutUs),
 	[CompanyEnum.HowWeWork]: UrlProvider.urlBuilder(UrlPath.HowWeWork),
+	[CompanyEnum.Pricing]: UrlProvider.urlBuilder(UrlPath.Pricing),
 	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
+	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
 };
