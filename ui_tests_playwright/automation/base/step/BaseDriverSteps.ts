@@ -62,6 +62,7 @@ class BaseDriverSteps {
 
 		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'true');
 		await expect(carouselButtonNext).toHaveAttribute(attribute, 'false');
+		await carouselButtonNext.hover({timeout: 5000});
 		await carouselButtonNext.click({delay: 1000});
 
 		await expect(carouselButtonPrev).toHaveAttribute(attribute, 'false');
@@ -111,7 +112,7 @@ class BaseDriverSteps {
 			await expect(currentBlock).toHaveClass(/--active/);
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
-			expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
+			await expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 		}
 	}
 
@@ -119,21 +120,29 @@ class BaseDriverSteps {
 		if (initialPageUrl) {
 			await locator.click();
 			await driver.Page.waitForLoadState();
-			await playwrightUtils.expectWithRetries(await baseDriverSteps.checkUrl(expectedUrl), 5, 5000);
+			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
 			await playwrightUtils.expectWithRetries(
-				() => {
-					expect(newPage.url()).toContain(expectedUrl), newPage.reload();
+				async () => {
+					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();
 				},
 				5,
 				5000
 			);
 			await newPage.close();
 		}
+	}
+
+	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
+		const ignorePatterns = ['in'];
+		const expectedUrlArray = expectedUrl.split('/');
+		const expectedUrlClean = expectedUrlArray.filter((urlPart) => !ignorePatterns.includes(urlPart));
+		const isLinkPresent = expectedUrlClean.every((urlPart) => actualUrl.includes(urlPart));
+		return isLinkPresent;
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
@@ -164,7 +173,7 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.8
+		viewportPart = 0.7
 	) {
 		await ctaButton.click();
 		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});

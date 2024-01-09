@@ -1,8 +1,10 @@
 export default class UrlPath {
+	// Industries pages
 	static Healthcare = 'industries/healthcare';
 	static TransportAndLogist = 'industries/transportation-and-logistics';
 	static RenewableEnergy = 'industries/renewable-energy';
 
+	// Services pages
 	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
 	static DigitalTransform = 'services/digital-transformation-services';
@@ -16,13 +18,19 @@ export default class UrlPath {
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';
 
+	// Services pages that not present in menu and footer lists
+	static BackEndDevelopment = 'services/backend-development-services';
+	static FrontEndDevelopment = 'services/front-end-development-services';
+
+	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
+	static Pricing = 'software-development-costs';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
-	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
+	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
+
 	static ContactUs = 'contact-us';
-	static Whitepapers = '/resources/cloud-based-healthcare-analytics-guide';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';
@@ -36,6 +44,7 @@ export default class UrlPath {
 	static Reviews = 'reviews';
 
 	static OpenCase = 'case-studies/test-case';
+	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
 	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
 	static AuthorPage = 'blog/author/';
 }

@@ -1,7 +1,7 @@
 import {PlaywrightTestConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import ExternalSourceLinks from './automation/preconditionsData/Links/ExternalSourceLinks';
+import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
 import {QaseAwsSecret} from './automation/providers/QaseAwsSecret';
 import EnvProvider from './automation/providers/EnvProvider';
 import DateTimeUtils from './automation/utils/DateTimeUtils';
@@ -45,13 +45,14 @@ const config: PlaywrightTestConfig = {
 	/* Retry on CI only */
 	retries: 2,
 	/* Opt out of parallel tests on CI. */
-	workers: 5,
+	workers: 10,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [
 		['html', {open: 'never'}],
 		['list'],
 		[
-			'./TsQaseReporter',
+			'./TsQaseReporter', // Report to Qase
+			// 'playwright-qase-reporter', // Report to Qase with automatic creation of test cases, for tests that have no matches by ID and title
 			{
 				apiToken: QaseAwsSecret.getQaseApiToken(),
 				projectCode: 'TS',

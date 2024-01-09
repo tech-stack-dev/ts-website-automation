@@ -6,9 +6,11 @@ export enum ServicesEnum {
 	MobileDev,
 	BigData,
 	InternetOfThings,
-	// DevOpsAsAServ, // Uncomment in scope of TSWEB-1134
+	DevOpsAsAServ,
 	AiDevelopment,
 	UiUxDesign,
 	QaAsAServ,
 	ConsultingServ,
+	BackEndDevelopment,
+	FrontEndDevelopment,
 }

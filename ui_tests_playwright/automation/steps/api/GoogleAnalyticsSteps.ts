@@ -2,7 +2,7 @@ import {Locator, Request} from '@playwright/test';
 import {promisify} from 'util';
 import {driver} from '../../base/driver/Driver';
 import {HttpMethod} from '../../enum/HttpMethodEnum';
-import ExternalSourceLinks from '../../preconditionsData/Links/ExternalSourceLinks';
+import ExternalSourceLinks from '../../preconditionsData/links/ExternalSourceLinks';
 import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
 import {slackSteps} from './SlackSteps';
 
