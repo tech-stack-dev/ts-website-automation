@@ -4,7 +4,7 @@ import { parseHTML } from 'k6/html';
 import jsonpath from "https://jslib.k6.io/jsonpath/1.0.2/index.js";
 import { URL_PROVIDER } from '../providers/url-provider.js';
 
-export function getBuildId(){
+export function getBuildId() {
     const response = http.get(URL_PROVIDER.webApp);
     const doc = parseHTML(response.body);
     const nextDataJson = doc.find('body script#__NEXT_DATA__').text();
@@ -12,7 +12,7 @@ export function getBuildId(){
     return buildId;
 }
 
-export function getToWebsite(){
+export function getToWebsite() {
     let response = http.get(URL_PROVIDER.webApp);
 
     check(response, {
@@ -21,7 +21,7 @@ export function getToWebsite(){
     });
 }
 
-export function getToCareer(carrerId, careerTitle, buildId){
+export function getToCareer(carrerId, careerTitle, buildId) {
     const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/${carrerId}.json`;
 
     let response = http.get(url);
@@ -33,7 +33,7 @@ export function getToCareer(carrerId, careerTitle, buildId){
 };
 
 // navaiget back from career page
-export function getBack(buildId){
+export function getBack(buildId) {
     const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US.json`;
 
     let response = http.get(url);
@@ -44,7 +44,7 @@ export function getBack(buildId){
     });
 };
 
-export function getToContactUs(buildId){
+export function getToContactUs(buildId) {
     const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/contact-us.json`;
 
     let response = http.get(url);
@@ -55,7 +55,7 @@ export function getToContactUs(buildId){
     });
 };
 
-export function getToAboutUs(buildId){
+export function getToAboutUs(buildId) {
     const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/about-us.json`;
 
     let response = http.get(url);
@@ -66,7 +66,7 @@ export function getToAboutUs(buildId){
     });
 };
 
-export function getToReviews(buildId){
+export function getToReviews(buildId) {
     const url = `${URL_PROVIDER.webApp}/_next/data/${buildId}/en-US/reviews.json`;
 
     let response = http.get(url);

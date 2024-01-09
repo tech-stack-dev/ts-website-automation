@@ -4,8 +4,8 @@ import { getQualityEngineering, getTechStackNews, goToBlog } from '../../steps/b
 
 
 export let options = {
-    vus: 3,
-    duration: '1m',
+	vus: 3,
+	duration: '1m',
 	thresholds: {
 		http_req_failed: ['rate<0.01'], // http errors should be less than 1%
 		http_req_duration: ['p(95)<400'], // 95% of requests should be below 400ms
@@ -14,7 +14,7 @@ export let options = {
 
 export default function () {
 	sleep(randomIntBetween(1, 3));
-    
+
 	goToBlog();
 	sleep(randomIntBetween(1, 5));
 
@@ -24,6 +24,6 @@ export default function () {
 	getQualityEngineering();
 	sleep(randomIntBetween(1, 5));
 
-    goToBlog();
+	goToBlog();
 	sleep(randomIntBetween(1, 5));
 };

@@ -4,7 +4,7 @@ import { getToMainSite, getToQaServise, getToContactUs } from '../../steps/main-
 
 
 export let options = {
-    vus: 3,
+	vus: 3,
 	duration: '1m',
 	thresholds: {
 		http_req_failed: ['rate<0.01'], // http errors should be less than 1%

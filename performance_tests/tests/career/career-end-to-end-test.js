@@ -12,7 +12,7 @@ export let options = {
 		{ duration: '20s', target: 60 },
 		{ duration: '2m', target: 100 },
 		{ duration: '30s', target: 0 },
-	  ],
+	],
 	insecureSkipTLSVerify: true,
 	noConnectionReuse: false
 };
@@ -20,7 +20,7 @@ export let options = {
 export function setup() {
 	const buildId = getBuildId();
 	return { buildId: buildId }
-  }
+}
 
 export default function (data) {
 	sleep(randomIntBetween(1, 3));

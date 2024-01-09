@@ -2,7 +2,7 @@ import { check } from 'k6';
 import http from 'k6/http';
 import { URL_PROVIDER } from '../providers/url-provider.js';
 
-export function getToMainSite(){
+export function getToMainSite() {
     let response = http.get(URL_PROVIDER.mainSiteUrl);
 
     check(response, {
@@ -11,7 +11,7 @@ export function getToMainSite(){
     });
 }
 
-export function getToQaServise(){
+export function getToQaServise() {
     let response = http.get(URL_PROVIDER.qaServise);
 
     check(response, {
@@ -20,7 +20,7 @@ export function getToQaServise(){
     });
 };
 
-export function getToContactUs(){
+export function getToContactUs() {
     let response = http.get(URL_PROVIDER.contactUs);
 
     check(response, {

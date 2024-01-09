@@ -2,7 +2,7 @@ import { check } from 'k6';
 import http from 'k6/http';
 import { URL_PROVIDER } from '../providers/url-provider.js';
 
-export function goToBlog(){
+export function goToBlog() {
     let response = http.get(URL_PROVIDER.blog);
 
     check(response, {
@@ -11,7 +11,7 @@ export function goToBlog(){
     });
 }
 
-export function getTechStackNews(){
+export function getTechStackNews() {
     let response = http.get(URL_PROVIDER.techStackNews);
 
     check(response, {
@@ -20,7 +20,7 @@ export function getTechStackNews(){
     });
 };
 
-export function getQualityEngineering(){
+export function getQualityEngineering() {
     let response = http.get(URL_PROVIDER.qualityEngineering);
 
     check(response, {
