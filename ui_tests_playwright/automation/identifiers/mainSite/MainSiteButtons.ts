@@ -60,6 +60,6 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
 
 	// Pricing Tabs
-	static Pricing_FullCycle = 'NavigationTab-FullCycle'
+	static Pricing_FullCycle = 'NavigationTab-FullCycle';
 	static Pricing_ExtendedTeam = 'NavigationTab-ExtendedTeam';
 }
