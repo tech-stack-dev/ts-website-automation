@@ -50,10 +50,10 @@ test(
 		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
-		const incorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
+		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
 		await baseDriverSteps.checkRedirectToPage(
-			incorporatingAIContainer.getByTestId(Buttons.Clutch),
+			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
 	}
@@ -65,9 +65,9 @@ test(
 		'Check redirect by CTA button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
-		const incorporatingAIContainer = driver.getByTestId(AiDevelopment.CaseStudy);
+		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
-		await incorporatingAIContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.IncorporatingAimlIntoFlow}`,

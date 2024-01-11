@@ -91,7 +91,7 @@ jobs:
           git remote update
           git fetch 
           git add .
-          git checkout --track origin/reports-history
+          git checkout -f --track origin/reports-history
 
       - name: Update reports
         if: always()
