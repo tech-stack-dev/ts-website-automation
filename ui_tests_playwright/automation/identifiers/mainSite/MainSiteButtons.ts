@@ -31,6 +31,9 @@ export default class MainSiteButtons extends Buttons {
 	static LearnMore = 'Button-LearnMore';
 	static GetAQuote = 'Button-GetAQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
+	static BookYourTime = 'Button-BookYourTime';
+	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
+	static ChooseThisModel = 'Button-ChooseThisModel';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
@@ -55,4 +58,8 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_Iot = 'Button-IoT';
 	static Technology_DevOpsCloud = 'Button-DevopsCloud';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
+
+	// Pricing Tabs
+	static Pricing_FullCycle = 'NavigationTab-FullCycle'
+	static Pricing_ExtendedTeam = 'NavigationTab-ExtendedTeam';
 }
