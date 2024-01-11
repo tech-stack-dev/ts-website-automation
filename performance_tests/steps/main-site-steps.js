@@ -1,9 +1,9 @@
 import { check } from 'k6';
 import http from 'k6/http';
-import { URL_PROVIDER } from '../providers/url-provider.js';
+import { BASE_URL_PROVIDER, URL_PROVIDER } from '../providers/url-provider.js';
 
 export function getToMainSite() {
-    let response = http.get(URL_PROVIDER.mainSiteUrl);
+    let response = http.get(BASE_URL_PROVIDER.mainSiteUrl());
 
     check(response, {
         'is status 200 - Home page': (r) => r.status === 200,

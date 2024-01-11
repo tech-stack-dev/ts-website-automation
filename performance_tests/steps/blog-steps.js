@@ -16,7 +16,7 @@ export function getTechStackNews() {
 
     check(response, {
         'is status 200 - TechStackNews page': (r) => r.status === 200,
-        'Techstack News tag check': (r) => r.body.includes('Techstack News - tag')
+        'Techstack News tag check': (r) => r.body.includes('tag-template tag-techstack-news')
     });
 };
 
@@ -25,6 +25,6 @@ export function getQualityEngineering() {
 
     check(response, {
         'is status 200 - QualityEngineering tag': (r) => r.status === 200,
-        'QualityEngineering tag check': (r) => r.body.includes('Quality Engineering - tag')
+        'QualityEngineering tag check': (r) => r.body.includes('tag-template tag-quality-engineering')
     });
 };
