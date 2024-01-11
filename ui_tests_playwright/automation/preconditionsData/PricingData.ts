@@ -1,7 +1,7 @@
 import {Locator} from 'playwright-core';
 import MainSiteButtons from '../identifiers/mainSite/MainSiteButtons';
 
-export default class TechnologyStackData {
+export default class PricingData {
 	static CustomOfferFullCycleSoftwareDevvelopment = [
 		'First consultation',
 		'Needs analysis and planning',
