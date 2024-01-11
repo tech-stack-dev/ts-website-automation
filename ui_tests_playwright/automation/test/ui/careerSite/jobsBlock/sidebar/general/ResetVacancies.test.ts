@@ -1,22 +1,21 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
-import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
-import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
+import { driver } from '../../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../../base/step/BaseDriverSteps';
+import { SeniorityLevelsEnum } from '../../../../../../enum/tag/SeniorityLevelsEnum';
+import { TagsEnum } from '../../../../../../enum/tag/TagsEnum';
 import ContainersCareer from '../../../../../../identifiers/career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
-import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
+import { sessionValue } from '../../../../../../runtimeVariables/SessionValue';
 import TagsCareer from '../../../../../../identifiers/career/TagsCareer';
 import CareerButtons from '../../../../../../identifiers/career/CareerButtons';
-import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
-import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
+import { DirectionsEnum } from '../../../../../../enum/tag/DirectionsEnum';
+import { careerSteps, expect, test } from '../../../../../../fixtures/DesktopMobileSetup';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
-import {containerSteps} from '../../../../../../steps/components/container/ContainerSteps';
+import { containerSteps } from '../../../../../../steps/components/container/ContainerSteps';
 import Career from '../../../../../../identifiers/career/pages/Career';
-import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
-import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
-import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { contentfulSteps } from '../../../../../../steps/contentful/ContentfulSteps';
+import { contentfulUtils } from '../../../../../../utils/ContentfulUtils';
+import { playwrightUtils } from '../../../../../../utils/PlaywrightUtils';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -49,9 +48,9 @@ for (const testData of testDataProvider) {
 	test(
 		qase(
 			[4797, 4812, 4819, 4832],
-			`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
+			`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 		),
-		async () => {
+		async ({ isMobile }) => {
 			contentfulUtils.AddTagsToCareerBody(testData.createTags);
 			await contentfulSteps.createCareerWithDefaultValue(
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -62,7 +61,8 @@ for (const testData of testDataProvider) {
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 			);
 
-			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+			const careerMainContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, Career.FilterList)
+				: await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
 			const filterGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
 				ContainersCareer.FilterGroupWrapper,
@@ -74,6 +74,10 @@ for (const testData of testDataProvider) {
 				careerMainContainer
 			);
 
+			if (isMobile) {
+				await driver.getByTestId(CareerButtons.FilterButton).click();
+			};
+
 			for (const tag of testData.tagList) {
 				const filterTag = filterGroupContainer.getByTestId(tag);
 				await filterTag.click();
@@ -82,7 +86,7 @@ for (const testData of testDataProvider) {
 				await expect(activeTag).toHaveClass(/active-tag/);
 			}
 
-			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
+			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({ timeout: 5000 });
 			testData.tagList.forEach(async (tag) => {
 				playwrightUtils.expectWithRetries(async () => {
 					const filterTag = filterGroupContainer.getByTestId(tag);

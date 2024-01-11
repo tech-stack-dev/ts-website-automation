@@ -1,8 +1,7 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
+import { careerSteps, expect, test } from '../../../../../fixtures/DesktopMobileSetup';
 import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Career from '../../../../../identifiers/career/pages/Career';
@@ -24,7 +23,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4879,
-		`Check that user sees correct results when entering vacancy in 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees correct results when entering vacancy in 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const careerName = `JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`;
@@ -37,7 +36,7 @@ test(
 test(
 	qase(
 		4850,
-		`Check that user sees correct results when entering part of name vacancy in 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees correct results when entering part of name vacancy in 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const careerSessionName = sessionValue.stringValue.toLocaleUpperCase();
@@ -50,7 +49,7 @@ test(
 test(
 	qase(
 		4898,
-		`Check that user sees failed search result message after clearing 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees failed search result message after clearing 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const textData = randomstring.generate(50);
@@ -74,7 +73,7 @@ test(
 test(
 	qase(
 		5315,
-		`Check that user sees the same careers as on start page after inputting and clearing 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees the same careers as on start page after inputting and clearing 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const careerListBefore = await (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).all();

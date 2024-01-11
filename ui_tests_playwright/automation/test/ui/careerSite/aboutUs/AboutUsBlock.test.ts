@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4744, 'Check the section title and number from the "AboutUs" page @Regression @AboutUs @TSWEB-150'),
+	qase(4744, 'Check the section title and number from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'),
 	async () => {
 		await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
 		await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackNumber)).toHaveText('01');
@@ -43,7 +43,7 @@ test(
 );
 
 test(
-	qase(4745, 'Check the "Our History" carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150'),
+	qase(4745, 'Check the "Our History" carousel from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'),
 	async () => {
 		const carousel = driver.getByTestId(AboutUsCareer.OurHistoryCarousel);
 
@@ -60,7 +60,7 @@ test(
 );
 
 test(
-	qase(4748, 'Check the buttons of the info carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150'),
+	qase(4748, 'Check the buttons of the info carousel from the "AboutUs" page @desktop @Regression @AboutUs @TSWEB-150'),
 	async () => {
 		const ourHistoryCarousel = driver.getByTestId(AboutUsCareer.OurHistoryCarousel);
 		const ourHistotyPrevButton = ourHistoryCarousel.getByTestId(AboutUsCareer.CarouselPrevButton);
@@ -103,7 +103,7 @@ test(
 test(
 	qase(
 		4746,
-		'Check the "Techstack roles", "Engineering Culture" and "Social Responsibility" containers from the "AboutUs" page @Regression @AboutUs @TSWEB-150'
+		'Check the "Techstack roles", "Engineering Culture" and "Social Responsibility" containers from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'
 	),
 	async () => {
 		const techstackRoles = driver.Page.locator(`#${AboutUsCareer.TechstackRolesId}`);
@@ -138,7 +138,7 @@ test(
 );
 
 test(
-	qase(4747, 'Check the buttons of the photo carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150'),
+	qase(4747, 'Check the buttons of the photo carousel from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'),
 	async () => {
 		const engineeringCultureCarousel = driver.getByTestId(AboutUsCareer.EngineeringCultureCarousel);
 		const engineeringCulturePrevButton = engineeringCultureCarousel.getByTestId(AboutUsCareer.CarouselPrevButton);
@@ -183,7 +183,7 @@ test(
 );
 
 test(
-	qase(4750, 'Check the "Candidate Path" carousel from the "AboutUs" page @Regression @AboutUs @TSWEB-150'),
+	qase(4750, 'Check the "Candidate Path" carousel from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'),
 	async () => {
 		const carousel = driver.getByTestId(AboutUsCareer.CandidateCarousel);
 
@@ -200,7 +200,7 @@ test(
 	}
 );
 // locator should be updated with getByTestId
-test(qase(4751, 'Check the "Apply" container from the "AboutUs" page @Regression @AboutUs @TSWEB-150'), async () => {
+test(qase(4751, 'Check the "Apply" container from the "AboutUs" page @desktop @mobile @Regression @AboutUs @TSWEB-150'), async () => {
 	await expect(driver.locator(`#${AboutUsCareer.ApplyTitle}`)).toContainText(
 		`Want to make an impact?You're in the right place.Check out our open positions!`
 	);

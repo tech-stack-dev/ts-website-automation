@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4759, 'Check that "Contact Us" form works correct with valid data @Regression @ContactUs @TSWEB-149'),
+	qase(4759, 'Check that "Contact Us" form works correct with valid data @desktop @mobile @Regression @ContactUs @TSWEB-149'),
 	async () => {
 		await driver.getByTestId(ContactUsForm.FullName).fill('test name');
 		await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
@@ -30,7 +30,7 @@ for (const file of files) {
 	test(
 		qase(
 			[4755, 4757],
-			`Check that 'Contact Us' form works correct with valid files (${file}) @Regression @ContactUs @TSWEB-149`
+			`Check that 'Contact Us' form works correct with valid files (${file}) @desktop @mobile @Regression @ContactUs @TSWEB-149`
 		),
 		async () => {
 			await driver.getByTestId(ContactUsForm.FullName).fill('test name');

@@ -9,7 +9,7 @@ import JobsPage from '../../pages/careerSite/JobsPage';
 import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
 
-class CareerSteps {
+export abstract class CareerSteps {
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
 		await driver.executeFunc(async () => {
 			await driver.Page.reload();
@@ -37,23 +37,24 @@ class CareerSteps {
 		}
 	}
 
-	public async switchLanguageViaHeader(language: string) {
-		const headerContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.JobPageHeaderWrapper
-		);
-		let switcher: any;
-		switch (language.toLowerCase()) {
-			case 'ua':
-				switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
-				break;
-			case 'en':
-				switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
-		}
+	abstract switchLanguageViaHeader(language: string): Promise<void>;
+	// public async switchLanguageViaHeader(language: string) {
+	// 	const headerContainer = await containerSteps.getContainer(
+	// 		ContainerByClass,
+	// 		ContainersCareer.JobPageHeaderWrapper
+	// 	);
+	// 	let switcher: any;
+	// 	switch (language.toLowerCase()) {
+	// 		case 'ua':
+	// 			switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+	// 			break;
+	// 		case 'en':
+	// 			switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
+	// 	}
 
-		await switcher.click();
-		await expect(switcher).toHaveClass(/active-locale/);
-	}
+	// 	await switcher.click();
+	// 	await expect(switcher).toHaveClass(/active-locale/);
+	// }
 
 	public async clickOnCareerCard(careerName: string) {
 		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click({timeout: 5000});
@@ -105,5 +106,5 @@ class CareerSteps {
 	}
 }
 
-const careerSteps = new CareerSteps();
-export {careerSteps};
+// const careerSteps = new CareerSteps();
+// export {careerSteps};

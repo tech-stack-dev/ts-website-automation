@@ -1,9 +1,8 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
+import { careerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
 import Job from '../../../../identifiers/Job';
 import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
@@ -21,7 +20,7 @@ test.describe('With one precondition vacancy', () => {
 		);
 	});
 
-	test('Check job description fields @Regression @JobsBlock @TSWEB-146', async () => {
+	test('Check job description fields @desktop @mobile @Regression @JobsBlock @TSWEB-146', async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		const twitter = await careerSteps.checkSocialMediaButtonRedirect(
@@ -83,7 +82,7 @@ test.describe('with many precondition vacancy', () => {
 		);
 	});
 
-	test(qase(5260, 'Check pagination on "Career" page @Regression @JobsBlock @TSWEB-146'), async () => {
+	test(qase(5260, 'Check pagination on "Career" page @desktop @mobile @Regression @JobsBlock @TSWEB-146'), async () => {
 		await baseDriverSteps.goToUrl(UrlProvider.careerUrl());
 		const nextButton = await careerSteps.getPaginationNavigationArrowButton('Next');
 		expect(await nextButton.isVisible()).toBeTruthy();

@@ -1,23 +1,23 @@
-import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
+import { sessionValue } from '../../../../runtimeVariables/SessionValue';
+import { careerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
+import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
 import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import Career from '../../../../identifiers/career/pages/Career';
-import {driver} from '../../../../base/driver/Driver';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import { driver } from '../../../../base/driver/Driver';
+import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Navigation from '../../../../identifiers/career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
-import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
+import { descriptionSteps } from '../../../../steps/components/job/DescriptionSteps';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
-import {formSteps} from '../../../../steps/ui/FormSteps';
+import { formSteps } from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
 import Job from '../../../../identifiers/Job';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -29,7 +29,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4775, 'Check that breadcrumbs displays correctly on job page @Regression @JobsBlock @TSWEB-560'),
+	qase(4775, 'Check that breadcrumbs displays correctly on job page @desktop @mobile @Regression @JobsBlock @TSWEB-560'),
 	async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
@@ -39,7 +39,7 @@ test(
 	}
 );
 
-test(qase(4778, 'Check localization on job page @Regression @JobsBlock @TSWEB-560'), async () => {
+test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @JobsBlock @TSWEB-560'), async () => {
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await expect(driver.getByTestId(Job.AboutTheProductBlock)).toBeVisible();
@@ -69,32 +69,36 @@ test(qase(4778, 'Check localization on job page @Regression @JobsBlock @TSWEB-56
 test(
 	qase(
 		4790,
-		'Check that user can switch language in navigation header in job page @Regression @JobsBlock @TSWEB-146'
+		'Check that user can switch language in navigation header in job page @mobile @Regression @JobsBlock @TSWEB-146'
 	),
-	async () => {
+	async ({ isMobile }) => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-		const jobPageHeaderContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.JobPageHeaderWrapper
-		);
+
+		const jobPageHeaderContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, ContainersCareer.JobPageMobileHeaderWrapper)
+			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.JobPageHeaderWrapper);
 
 		expect(await careerSteps.getBreadcrumbsText()).toBe(
 			`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 		);
 
-		const logo = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
-		await logo.waitFor({state: 'visible'});
+		const logo = isMobile ? jobPageHeaderContainer.Element.locator("//img[contains(@class,'globalStyles__Logo')]")
+			: jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
+		await logo.waitFor({ state: 'visible' });
 
 		await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
 		await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');
 		await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 		await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
-		await expect(jobPageHeaderContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
+
+		if (isMobile) {
+			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
+		}
+		await expect(driver.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
 			/active-locale/
 		);
 
-		const uaButtonSwitcher = jobPageHeaderContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+		const uaButtonSwitcher = driver.getByTestId(CareerButtons.UaLanguageSwitcher);
 		await uaButtonSwitcher.click();
 		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 	}
@@ -103,9 +107,9 @@ test(
 test(
 	qase(
 		4784,
-		'Check error messages related to empty fields in "Apply for a job" form @Regression @JobsBlock @TSWEB-145'
+		'Check error messages related to empty fields in "Apply for a job" form @desktop @mobile @Regression @JobsBlock @TSWEB-145'
 	),
-	async () => {
+	async ({ isMobile }) => {
 		const testData: Record<string, string> = {
 			PleaseEntryFirstName: 'Please enter your name',
 			PleaseEntryLastName: 'Please enter your last name',
@@ -115,7 +119,13 @@ test(
 
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-		await driver.getByTestId(CareerButtons.ApplyNow).click();
+
+		if (isMobile) {
+			await driver.getByTestId(AboutUsCareer.ApplyNowButton).click();
+		} else {
+			await driver.getByTestId(CareerButtons.ApplyNow).click();
+		}
+
 		await driver.getByTestId(Buttons.Send).click();
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([
 			ApplyForAJobForm.FirstName,

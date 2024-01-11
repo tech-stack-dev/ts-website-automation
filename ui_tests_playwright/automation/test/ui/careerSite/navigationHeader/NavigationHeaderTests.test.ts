@@ -1,27 +1,31 @@
-import {expect, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { expect, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import UrlPath from '../../../../providers/UrlPath';
-import {driver} from '../../../../base/driver/Driver';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
+import { driver } from '../../../../base/driver/Driver';
+import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
 import Blog from '../../../../identifiers/blog/Blog';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
 test(
-	qase(4868, 'Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560'),
-	async () => {
-		const headerContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.NavigationHeaderClass
-		);
+	qase(4868, 'Check that user can switch language in navigation header @mobile @Regression @NavigationHeader @TSWEB-560'),
+	async ({ isMobile }) => {
+		const headerContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, ContainersCareer.MainModalMenuWrapper)
+			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass);
+
 		const uaButtonSwitcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+
+		if (isMobile) {
+			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
+		}
+
 		await uaButtonSwitcher.click();
 		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
 	}
@@ -30,18 +34,28 @@ test(
 test(
 	qase(
 		4872,
-		'Check that the "Stand with Ukraine" block with localization @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'
+		'Check that the "Stand with Ukraine" block with localization @mobile @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'
 	),
-	async () => {
+	async ({ isMobile }) => {
 		const SWUFrame = await containerSteps.getContainer(ContainerByClass, ContainersCareer.StandWithUkraineClass);
 		await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
 			'Techstack stands with Ukraine'
 		);
 		await expect(SWUFrame.getByTestId(CareerButtons.LearnMoreButton2)).toHaveText('Learn More');
 
-		(
-			await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass)
-		).Element.getByTestId(CareerButtons.UaLanguageSwitcher).click();
+		if (!isMobile) {
+			(
+				await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass)
+			).Element.getByTestId(CareerButtons.UaLanguageSwitcher).click();
+		} else {
+			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
+			((await containerSteps.getContainer(ContainerByClass, ContainersCareer.MainModalMenuWrapper))
+				.Element.getByTestId(CareerButtons.UaLanguageSwitcher)).click();
+			// await driver.Page.waitForTimeout(1500);
+			// await driver.Page.waitForURL(`${UrlProvider.careerUrl()}uk-UA`);
+			await driver.Page.waitForLoadState('networkidle');
+			await driver.Page.locator("//button[@class='close-button-wrapper']").click();
+		}
 
 		await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
 		await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(

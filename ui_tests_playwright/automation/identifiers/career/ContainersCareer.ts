@@ -7,7 +7,11 @@ export default class ContainersCareer {
 	// Job page
 	static JobPageApplyProposition = 'styledComponents__ApplyPropositionWrapper';
 	static JobPageHeaderWrapper = 'styledComponents__NavigationHeaderWrapper';
+	static JobPageMobileHeaderWrapper = 'styledComponents__NavigationMobileHeaderWrapper';
 	static LocaleSwitcherBlock = 'styledComponents__LocaleSwitcherBlock';
+	
+	// Delete before push (For mobile)
+	static MainModalMenuWrapper = 'styledComponents__MainModalMenuWrapper';
 
 	// Side Bar
 	static ActiveTagsGroupWrapper = 'styledComponents__ActiveTagsGroupWrapper';
