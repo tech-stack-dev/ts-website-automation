@@ -51,10 +51,11 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
+
 		await caseStudyContainer.getByTestId(MainSiteButtons.MoreDetails).click();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
-				`${UrlPath.CaseStudies}${CaseStudyPath.AnalyticsSubsystemForASalesEngagementPlatform}`,
+				`${UrlPath.CaseStudies}${CaseStudyPath.AnalyticsSubsystemEngagementPlatform}`,
 				Environment.Production
 			)
 		);
@@ -127,6 +128,7 @@ test(
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
+		
 		await baseDriverSteps.checkRedirectToPage(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare

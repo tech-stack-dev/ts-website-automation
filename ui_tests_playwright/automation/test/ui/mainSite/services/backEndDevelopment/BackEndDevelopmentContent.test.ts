@@ -84,7 +84,7 @@ test(
 		const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
 		const allSectionTitles = techstackPowersContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Architect Tech Guild', 'Back-End Development as\nOur Core Expertise', 'Rising Tech Talent'];
-		
+
 		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
@@ -218,10 +218,11 @@ test(
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
-
 		const sections = whyTechstackContainer.getByTestId(Container.ContainerSection);
 		const numOfSections = 3;
+
 		await expect(sections).toHaveCount(numOfSections);
+
 		const sectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 		const expectedText = [
 			'Solid back-end\nexpertise',
@@ -232,6 +233,7 @@ test(
 		await expect(sectionTitles).toHaveText(expectedText);
 
 		const awardCards = whyTechstackContainer.getByTestId(Container.AwardCard);
+		
 		await baseDriverSteps.checkImagesVisibility(awardCards, 6);
 	}
 );
