@@ -7,12 +7,13 @@ import Pricing from '../../../../identifiers/mainSite/pages/Pricing';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Pricing));
 });
 
-test('Check navigation to "What Is Your Cooperation Type?" container after clicking Get Estimate button from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check navigation to "What Is Your Cooperation Type?" container after clicking CTA button from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
 	const ctaButton = driver
 		.getByTestId(Pricing.SimplifiedPaymentProcess)
 		.getByTestId(MainSiteButtons.GetYourFreeEstimate);
@@ -24,6 +25,12 @@ test('Check navigation to "Get in Touch" container after clicking CTA button fro
 	const ctaButton = driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime);
 
 	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.GetInTouch);
+});
+
+test('Check redirect by LinkedIn button in the Quote container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+	const linkedInButton = driver.getByTestId(Pricing.Believe).getByTestId(MainSiteButtons.LinkedInReviewArrow);
+
+	await baseDriverSteps.checkRedirectToPage(linkedInButton, ExpertsLinkedInLinks.MaxLevytskyi);
 });
 
 test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About Us" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {

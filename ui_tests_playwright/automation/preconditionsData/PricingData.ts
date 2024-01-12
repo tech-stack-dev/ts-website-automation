@@ -2,7 +2,7 @@ import {Locator} from 'playwright-core';
 import MainSiteButtons from '../identifiers/mainSite/MainSiteButtons';
 
 export default class PricingData {
-	static CustomOfferFullCycleSoftwareDevvelopment = [
+	static CustomOfferFullCycleSoftwareDevelopment = [
 		'First consultation',
 		'Needs analysis and planning',
 		'Customized offer',
@@ -18,7 +18,7 @@ export default class PricingData {
 	static CostExtendedTeam = ['Skill set', 'Seniority level', 'Technology stack'];
 
 	public static async getAllCustomOfferTabsData() {
-		return [this.CustomOfferFullCycleSoftwareDevvelopment, this.CustomOfferExtendedTeam];
+		return [this.CustomOfferFullCycleSoftwareDevelopment, this.CustomOfferExtendedTeam];
 	}
 	public static async getAllCostTabsData() {
 		return [this.CostFullCycleSoftwareDevelopment, this.CostExtendedTeam];

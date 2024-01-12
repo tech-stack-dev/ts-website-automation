@@ -6,6 +6,7 @@ import {driver} from '../../../../base/driver/Driver';
 import Container from '../../../../identifiers/Container';
 import Pricing from '../../../../identifiers/mainSite/pages/Pricing';
 import PricingData from '../../../../preconditionsData/PricingData';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Pricing));
@@ -13,7 +14,18 @@ test.beforeEach(async () => {
 
 test('Check the Info container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
 	const info = driver.getByTestId(Pricing.Info);
-	await expect(info.getByTestId(Container.Title)).toHaveText('Our Software\nDevelopment Cost');
+	const infoTitle = info.getByTestId(Container.Title);
+	const infoBlockTitles = info.getByTestId(Container.BlockTitle);
+	const expectedBlockTitles = [
+		'$\n28-50\n+ / hr\n',
+		'$\n28-45\n+ / hr\n',
+		'$\n30-40\n+ / hr\n',
+		'$\n35-65\n+ / hr\n',
+		'$\n35-40\n+ / hr\n',
+	];
+
+	await expect(infoTitle).toHaveText('Our Software\nDevelopment Cost');
+	await expect(infoBlockTitles).toHaveText(expectedBlockTitles);
 });
 
 test('Check the container titles and numbers from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
@@ -49,14 +61,26 @@ test('Check section titles in "What Is Your Cooperation Type?" container from th
 	await expect(coopTypeSectionTitles).toHaveText(expectedTitles);
 });
 
-test('Check section titles and navigation bar in "From Consultation To Custom Offer" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles, navigation bar and CTA button text in "From Consultation To Custom Offer" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
 	const customOfferContainer = driver.getByTestId(Pricing.CustomOffer);
 
 	const navigationTabs = await PricingData.getPricingTabs(customOfferContainer);
 	const containerBlocks = customOfferContainer.getByTestId(Container.ContainerBlock);
 	const testDataSectionTitles = await PricingData.getAllCustomOfferTabsData();
 
+	const ctaButton = customOfferContainer.getByTestId(MainSiteButtons.BookYourTime);
+
 	await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
+	await expect(ctaButton).toHaveText('Book your time');
+});
+
+test('Check section quote on the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+	const quoteContainer = driver.getByTestId(Pricing.Believe);
+	const quote = quoteContainer.getByTestId(Container.ContainerContent);
+	const expectedQuote =
+		'At Techstack, we believe that the foundation of a successful partnership in software development lies in transparency, collaboration, and a firm commitment to meeting all your product objectives.';
+
+	await expect(quote).toHaveText(expectedQuote);
 });
 
 test('Check section titles and navigation bar in "What Influences The Cost of Software Development" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
@@ -69,11 +93,14 @@ test('Check section titles and navigation bar in "What Influences The Cost of So
 	await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
 });
 
-test('Check section titles in "Simplified Payment Process for Your Software Development Needs" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles and CTA button text in "Simplified Payment Process for Your Software Development Needs" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
 	const simplifiedPaymentContainer = driver.getByTestId(Pricing.SimplifiedPaymentProcess);
 	const simplifiedSectionTitles = simplifiedPaymentContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = ['Time & Material', 'Monthly Invoices', 'Multi-Currency Payments', 'Payment Flexibility'];
+	const ctaButton = simplifiedPaymentContainer.getByTestId(MainSiteButtons.GetYourFreeEstimate);
+
 	await expect(simplifiedSectionTitles).toHaveText(expectedTitles);
+	await expect(ctaButton).toHaveText('Get your free \nestimate');
 });
 
 test('Check section titles and numbers in "Why Partner with Us" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
