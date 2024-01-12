@@ -84,6 +84,7 @@ test(
 		const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
 		const allSectionTitles = techstackPowersContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Architect Tech Guild', 'Back-End Development as\nOur Core Expertise', 'Rising Tech Talent'];
+		
 		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
