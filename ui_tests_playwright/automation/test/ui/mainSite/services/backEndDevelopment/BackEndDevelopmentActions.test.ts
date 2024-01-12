@@ -84,7 +84,6 @@ test(
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
 		const linkedInButtons = ourExpertsContainer.getByTestId(Buttons.LinkedIn);
-
 		const buttonUrlMap = new Map([
 			[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
 			[linkedInButtons.nth(1), ExpertsLinkedInLinks.IvanYeremenko],
@@ -109,7 +108,6 @@ test(
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
 		const blogButtons = ourExpertsContainer.getByTestId(Buttons.Blog);
 		const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
-
 		const buttonUrlMap = new Map([
 			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
 			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
@@ -129,7 +127,6 @@ test(
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
-
 		await baseDriverSteps.checkRedirectToPage(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
@@ -156,7 +153,6 @@ test(
 	),
 	async () => {
 		const BackendDevelopmentServicesContainer = driver.getByTestId(BackEndServices.BackendDevelopmentServices);
-
 		const linksUrlMap = new Map([
 			[
 				BackendDevelopmentServicesContainer.getByTestId(MainSiteLinks.Healthcare),

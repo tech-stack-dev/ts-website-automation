@@ -22,6 +22,7 @@ test(
 	),
 	async () => {
 		const info = driver.getByTestId(BackEndServices.Info);
+
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development\nServices');
 		await expect(info.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a Quote');
@@ -139,7 +140,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
-
 		await expect(expertServicesContainer.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation)).toHaveText(
 			'Schedule a Free Back-End Consultation'
 		);
@@ -165,7 +165,6 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
-
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
 		const testData = ['Complexity of\nData Management', 'Integration with\nExisting Systems'];
 
@@ -205,7 +204,6 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
-
 		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.BookYourExpertConsultation)).toHaveText(
 			'Book Your Expert Consultation'
 		);
@@ -267,7 +265,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		BackEndServices;
 	}
 );
 
@@ -328,6 +325,7 @@ test(
 			'Fintech',
 			'Digital transformation',
 		];
+
 		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
@@ -346,7 +344,6 @@ test(
 		const testData = ['Full-Cycle Back-End\nDevelopment', 'Back-End Audit', 'Back-End Engineers\nfor Your Product'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-
 		await expect(howWeCanWorkTogetherContainer.getByTestId(MainSiteButtons.LetsDiscussOurPartnership)).toHaveText(
 			'Let’s Discuss Our Partnership'
 		);
