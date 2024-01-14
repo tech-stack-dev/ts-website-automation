@@ -33,7 +33,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5485,
-		`Check the footer information from the 'Footer' container on all pages @Regression @Footer @TSWEB-655 @TSWEB-674`
+		`Check the footer information from the 'Footer' container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -115,7 +115,7 @@ test(
 );
 
 test(
-	qase(5487, `Check the redirection by the "Techstack" logo on all pages @Regression @Footer @TSWEB-655`),
+	qase(5487, `Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -126,7 +126,7 @@ test(
 );
 
 test(
-	qase(5488, `Check the redirection for the Industries block on all pages @Regression @Footer @TSWEB-833`),
+	qase(5488, `Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -147,7 +147,7 @@ test(
 );
 
 test(
-	qase(5492, `Check the redirection for the Services block on all pages @Regression @Footer @TSWEB-655`),
+	qase(5492, `Check the redirection for the Services block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -177,7 +177,7 @@ test(
 );
 
 test(
-	qase(5491, `Check the redirection for the Company block on all pages @Regression @Footer @TSWEB-655 @TSWEB-674`),
+	qase(5491, `Check the redirection for the Company block on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`),
 	async () => {
 		const companyList = new Map([
 			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
@@ -202,7 +202,7 @@ test(
 );
 
 test(
-	qase(5486, `Check the redirection by the "Contact us" button on all pages @Regression @Footer @TSWEB-655`),
+	qase(5486, `Check the redirection by the "Contact us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -212,7 +212,7 @@ test(
 	}
 );
 
-test(qase(5490, `Check the redirection for the social links on all pages @Regression @Footer @TSWEB-655`), async () => {
+test(qase(5490, `Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`), async () => {
 	const linkMap = new Map([
 		[Buttons.LinkedIn, Links.LinkedIn],
 		[Buttons.Facebook, Links.Facebook],
@@ -241,7 +241,7 @@ test(qase(5490, `Check the redirection for the social links on all pages @Regres
 test(
 	qase(
 		5489,
-		`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on all pages @Regression @Footer @TSWEB-655`
+		`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
 	),
 	async () => {
 		const linkMap = new Map([

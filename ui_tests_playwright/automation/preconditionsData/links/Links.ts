@@ -1,6 +1,6 @@
 export default class Links {
 	static LinkedIn = 'https://www.linkedin.com';
-	static Facebook = 'https://www.facebook.com';
+	static Facebook = 'facebook.com'; /* || 'https://m.facebook.com'; */
 	static Instagram = 'https://www.instagram.com';
 	static Behance = 'https://www.behance.net/Techstack_Ltd';
 	static Dribbble = 'https://dribbble.com/techstackdesign';

@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4868, 'Check that user can switch language in navigation header @mobile @Regression @NavigationHeader @TSWEB-560'),
+	qase(4868, 'Check that user can switch language in navigation header @desktop @mobile @Regression @NavigationHeader @TSWEB-560'),
 	async ({ isMobile }) => {
 		const headerContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, ContainersCareer.MainModalMenuWrapper)
 			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.NavigationHeaderClass);
@@ -34,7 +34,7 @@ test(
 test(
 	qase(
 		4872,
-		'Check that the "Stand with Ukraine" block with localization @mobile @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'
+		'Check that the "Stand with Ukraine" block with localization @desktop @mobile @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'
 	),
 	async ({ isMobile }) => {
 		const SWUFrame = await containerSteps.getContainer(ContainerByClass, ContainersCareer.StandWithUkraineClass);
@@ -51,8 +51,6 @@ test(
 			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
 			((await containerSteps.getContainer(ContainerByClass, ContainersCareer.MainModalMenuWrapper))
 				.Element.getByTestId(CareerButtons.UaLanguageSwitcher)).click();
-			// await driver.Page.waitForTimeout(1500);
-			// await driver.Page.waitForURL(`${UrlProvider.careerUrl()}uk-UA`);
 			await driver.Page.waitForLoadState('networkidle');
 			await driver.Page.locator("//button[@class='close-button-wrapper']").click();
 		}

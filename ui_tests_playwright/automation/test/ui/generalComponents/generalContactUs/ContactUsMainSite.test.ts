@@ -14,9 +14,9 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 let header: Locator;
 let contactUsButton: Locator;
 
-test.beforeEach(async () => {
+test.beforeEach(async ({isMobile}) => {
 	await baseDriverSteps.createsNewBrowser();
-	header = driver.getByTestId(Header.Container_Header);
+	header = isMobile ? driver.locator(Header.ContainerMenu) : driver.getByTestId(Header.Container_Header);
 	contactUsButton = header.getByTestId(Buttons.ContactUs);
 });
 
@@ -33,7 +33,7 @@ const urlList: Array<string> = [
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
-test(qase(5455, `Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`), async () => {
+test(qase(5455, `Check "Contact Us" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`), async () => {
 	for (const url of urlList) {
 		await baseDriverSteps.goToUrl(url);
 		expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
@@ -41,7 +41,7 @@ test(qase(5455, `Check "Contact Us" button color on all pages @Regression @Conta
 });
 
 test(
-	qase(5456, `Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`),
+	qase(5456, `Check "Contact Us" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
@@ -56,10 +56,11 @@ test(
 );
 
 test(
-	qase(5457, `Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`),
-	async () => {
+	qase(5457, `Check redirection by "Contact Us" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	async ({isMobile}) => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
+			if (isMobile) await driver.getByTestId(Header.Menu).click();
 			await contactUsButton.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}

@@ -29,20 +29,20 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 ];
 
-test.beforeEach(async () => {
+test.beforeEach(async ({isMobile}) => {
 	await baseDriverSteps.createsNewBrowser();
 
-	header = driver.getByTestId(Header.Container_Header);
+	header = isMobile ? driver.locator(Header.ContainerMenu) : driver.getByTestId(Header.Container_Header);
 	logo = header.getByTestId(Buttons.Logo);
-	industriesDropdownButton = header.getByTestId(Header.Industries);
-	servicesDropdownButton = header.getByTestId(Header.Services);
-	companyDropdownButton = header.getByTestId(Header.Company);
+	industriesDropdownButton = driver.Page.locator('//div[@class="h2"]', {hasText:'Industries'}); /* header.getByTestId(Header.Industries); */ 
+	servicesDropdownButton = driver.Page.locator('//div[@class="h2"]', {hasText:'Services'}); /* header.getByTestId(Header.Services); */
+	companyDropdownButton = driver.Page.locator('//div[@class="h2"]', {hasText:'Company'}); /* header.getByTestId(Header.Company); */
 	pricingButton = header.getByTestId(Header.Pricing);
 	buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
 });
 
 test(
-	qase(5504, `Check buttons background color in the "Header" on the all pages @Regression @Header @TSWEB-656`),
+	qase(5504, `Check buttons background color in the "Header" on the all pages @mobile @Regression @Header @TSWEB-656`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -69,7 +69,7 @@ test(
 test(
 	qase(
 		5507,
-		`Check buttons background color after hovering on it in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check buttons background color after hovering on it in the "Header" on all pages @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -99,16 +99,17 @@ test(
 test(
 	qase(
 		5505,
-		`Check buttons background color after clicking on it in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check buttons background color after clicking on it in the "Header" on all pages @mobile @Regression @Header @TSWEB-656`
 	),
-	async () => {
+	async ({isMobile}) => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
 			for (const button of buttonHeaderslist) {
+				if (isMobile) await driver.getByTestId(Header.Menu).click();
 				await button.click();
-				await logo.hover(); // To remove hover from button
+				// await logo.hover(); // To remove hover from button
 				await driver.Page.waitForTimeout(1000); // Wait for changing color
 
 				const actualColor = await button.evaluate(async (el) => {
@@ -124,7 +125,7 @@ test(
 test(
 	qase(
 		5506,
-		`Check buttons background color after clicking and hovering on it in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check buttons background color after clicking and hovering on it in the "Header" on all pages @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {

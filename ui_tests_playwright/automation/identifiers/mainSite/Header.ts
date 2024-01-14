@@ -7,4 +7,8 @@ export default class Header {
 	static Services = 'Header-Services';
 	static Company = 'Header-Company';
 	static Pricing = 'Header-Pricing';
+
+	// Mobile
+	// Replace to data-id
+	static ContainerMenu = '//div[contains(@class,"row url-container-touch")]'
 }

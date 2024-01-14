@@ -19,4 +19,9 @@ export default class ContainersCareer {
 
 	// Footer
 	static FooterWrapper = 'styledComponents__FooterWrapper';
+
+	//for test (delete before push)
+	static FooterBasementBlock = 'styledComponents__FooterBasementBlock';
+	static test = 'styledComponents__IconsLinksBlock';
+	static FooterBasementBlockSmall = 'styledComponents__FooterBasementBlockSmall';
 }

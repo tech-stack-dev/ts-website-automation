@@ -1,15 +1,13 @@
-import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
-import CareerButtons from '../../identifiers/career/CareerButtons';
 import Career from '../../identifiers/career/pages/Career';
-import ContainersCareer from '../../identifiers/career/ContainersCareer';
-import {containerSteps} from '../components/container/ContainerSteps';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import JobsPage from '../../pages/careerSite/JobsPage';
 import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
 
 export abstract class CareerSteps {
+	abstract switchLanguageViaHeader(language: string): Promise<void>;
+
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
 		await driver.executeFunc(async () => {
 			await driver.Page.reload();
@@ -36,25 +34,6 @@ export abstract class CareerSteps {
 			}, 5);
 		}
 	}
-
-	abstract switchLanguageViaHeader(language: string): Promise<void>;
-	// public async switchLanguageViaHeader(language: string) {
-	// 	const headerContainer = await containerSteps.getContainer(
-	// 		ContainerByClass,
-	// 		ContainersCareer.JobPageHeaderWrapper
-	// 	);
-	// 	let switcher: any;
-	// 	switch (language.toLowerCase()) {
-	// 		case 'ua':
-	// 			switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
-	// 			break;
-	// 		case 'en':
-	// 			switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
-	// 	}
-
-	// 	await switcher.click();
-	// 	await expect(switcher).toHaveClass(/active-locale/);
-	// }
 
 	public async clickOnCareerCard(careerName: string) {
 		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click({timeout: 5000});
