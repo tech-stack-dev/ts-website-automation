@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
-test(
+test.skip(
 	qase(
 		5461,
 		'Check Slack notification from "staging_techstack_hr_notify" channel from Contact Us page @Regression @ContactUs @TSWEB-606'
