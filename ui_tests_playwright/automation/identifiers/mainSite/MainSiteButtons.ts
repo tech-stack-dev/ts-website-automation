@@ -34,6 +34,11 @@ export default class MainSiteButtons extends Buttons {
 	static BookYourTime = 'Button-BookYourTime';
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
+	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
+	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
+	static MoreDetails = 'Button-MoreDetails';
+	static BoostYourBackend = 'Button-BoostYourBackend';
+	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
