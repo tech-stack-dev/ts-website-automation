@@ -138,7 +138,7 @@ test(
 		const expertCards = await ourTeamExperts.getByTestId(Container.MemberCard).all();
 		const expectedLinkedInLinks = [
 			ExpertsLinkedInLinks.IvanIeremenko,
-			ExpertsLinkedInLinks.MaximLevytskyi,
+			ExpertsLinkedInLinks.MaxLevytskyi,
 			ExpertsLinkedInLinks.ArtemDolotov,
 			ExpertsLinkedInLinks.OleksiiSvystun,
 			ExpertsLinkedInLinks.VitaliiDolotov,
