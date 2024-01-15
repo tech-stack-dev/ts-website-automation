@@ -12,6 +12,8 @@ import {Environment} from '../../../../../providers/EnvProvider';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Container from '../../../../../identifiers/Container';
+import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
+import Links from '../../../../../preconditionsData/links/Links';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
@@ -31,6 +33,25 @@ test('Check navigation to "Get in Touch" container after clicking CTA buttons fr
 	}
 });
 
+test('Check redirect by links in "Frontend Web Development Services" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+	const frontendWebServicesContainer = driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment);
+
+	const linksUrlMap = new Map([
+		[
+			frontendWebServicesContainer.getByTestId(MainSiteLinks.MobileAppDevelopment),
+			UrlProvider.urlBuilder(UrlPath.MobileDev),
+		],
+		[
+			frontendWebServicesContainer.getByTestId(MainSiteLinks.UxUiDesign),
+			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+		],
+	]);
+
+	for (const [link, url] of linksUrlMap) {
+		await baseDriverSteps.checkRedirectToPage(link, url, UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
+	}
+});
+
 test('Check redirect by "Clutch Review" button in "Front-End Development Services Case Studies" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontEndCaseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
 	const clutchReviewButton = frontEndCaseStudiesContainer.getByTestId(Buttons.Clutch);
@@ -38,10 +59,10 @@ test('Check redirect by "Clutch Review" button in "Front-End Development Service
 	await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.MarkBeare);
 });
 
-test('Check redirect by CTA button in "Case Studies" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const caseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
+test('Check redirect by CTA button in "Front-End Development Services Case Studies" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+	const frontEndСaseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
 
-	await caseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+	await frontEndСaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
 	await baseDriverSteps.checkUrl(
 		UrlProvider.urlBuilder(
 			`${UrlPath.CaseStudies}${CaseStudyPath.DesignSystemForVideoStreamingPlatform}`,
@@ -50,12 +71,19 @@ test('Check redirect by CTA button in "Case Studies" container from the "Front E
 	);
 });
 
+test('Check redirect by links in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
+	const clutchLink = whyTechstackContainer.getByTestId(MainSiteLinks.Clutch);
+
+	await baseDriverSteps.checkRedirectToPage(clutchLink, Links.ClutchReviews);
+});
+
 test('Check redirect by "Clutch Review" button in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
 
 	await baseDriverSteps.checkRedirectToPage(
 		whyTechstackContainer.getByTestId(Buttons.Clutch),
-		ClutchReviewLinks.Anonymous
+		ClutchReviewLinks.AnonymousNjorda
 	);
 });
 

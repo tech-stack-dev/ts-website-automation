@@ -177,7 +177,7 @@ test('Check section numbers and titles, and CTA in "Cooperation Models" containe
 	);
 });
 
-test('Check section titles in "How We Can Help" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section numbers and titles in "How We Can Help" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const howWeCanHelpContainer = driver.getByTestId(FrontEndDevelopment.HowWeCanHelp);
 	await expect(howWeCanHelpContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -209,7 +209,7 @@ test('Check section titles in "How We Can Help" container from the "Front End De
 	await expect(actualSectionTitles).toHaveText(expectedData);
 });
 
-test('Check carousel section numbers and titles in "Front-End Development Process" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB - 1274', async () => {
+test('Check carousel section numbers and titles in "Front-End Development Process" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontEndDevelopmentProcessContainer = driver.getByTestId(FrontEndDevelopment.FrontEndDevelopmentProcess);
 	const carousel = frontEndDevelopmentProcessContainer.getByTestId(Container.ContainerCarousel);
 	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
@@ -228,7 +228,7 @@ test('Check carousel section numbers and titles in "Front-End Development Proces
 	]);
 });
 
-test('Check section titles in "Related Services" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB - 1274', async () => {
+test('Check section titles in "Related Services" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const relatedServicesContainer = driver.getByTestId(FrontEndDevelopment.RelatedServices);
 
 	const actualSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
@@ -245,7 +245,7 @@ test('Check section titles in "Related Services" container from the "Front End D
 	await expect(actualSectionTitles).toHaveText(expectedData);
 });
 
-test('Check section titles in "FAQ" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB - 1274', async () => {
+test('Check section titles in "FAQ" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const faqContainer = driver.getByTestId(FrontEndDevelopment.Faq);
 
 	const actualSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
