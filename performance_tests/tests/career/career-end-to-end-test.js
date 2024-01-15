@@ -1,6 +1,6 @@
 import { sleep } from 'k6';
 import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
-import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToReviews, getToWebsite } from '../steps/career-steps.js';
+import { getBack, getBuildId, getToAboutUs, getToCareer, getToContactUs, getToReviews, getToWebsite } from '../../steps/career-steps.js';
 
 export let options = {
 	thresholds: {
@@ -12,7 +12,7 @@ export let options = {
 		{ duration: '20s', target: 60 },
 		{ duration: '2m', target: 100 },
 		{ duration: '30s', target: 0 },
-	  ],
+	],
 	insecureSkipTLSVerify: true,
 	noConnectionReuse: false
 };
@@ -20,7 +20,7 @@ export let options = {
 export function setup() {
 	const buildId = getBuildId();
 	return { buildId: buildId }
-  }
+}
 
 export default function (data) {
 	sleep(randomIntBetween(1, 3));
