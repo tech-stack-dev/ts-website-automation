@@ -13,6 +13,8 @@ import Navigation from '../../../../identifiers/career/Navigation';
 import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
+import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -48,7 +50,14 @@ test(
 		'Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ApplyForAJob @TSWEB-606'
 	),
 	async () => {
-		await driver.getByTestId(/CardWrapper/).click();
+		await contentfulSteps.createCareerWithDefaultValue(
+			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
+		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+
 		await driver.getByTestId(CareerButtons.ApplyNow).click();
 		await formSteps.sendApplyForAJob();
 		const message = await slackSteps.getMessageWithValueFromChat(
@@ -63,6 +72,11 @@ test(
 			tel: sessionValue.numberValue,
 			message: `TestMessage${sessionValue.stringValue}`,
 		});
+
+		await contentfulSteps.deleteAndUnpublishCareer(
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
 	}
 );
 
