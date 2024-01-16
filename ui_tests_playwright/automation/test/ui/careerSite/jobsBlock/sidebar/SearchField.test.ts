@@ -64,7 +64,7 @@ test(
 			(
 				await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)
 			).Element
-		).toHaveText(`${textData},0`);
+		).toHaveText(`${textData},0 Jobs`);
 		await expect(careerList).toHaveText(
 			'Sorry, no matching jobs found :( Please refine your search criteria and try again'
 		);
