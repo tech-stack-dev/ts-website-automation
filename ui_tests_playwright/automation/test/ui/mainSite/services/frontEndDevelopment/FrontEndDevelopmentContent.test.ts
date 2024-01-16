@@ -8,6 +8,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import FrontEndDevelopment from '../../../../../identifiers/mainSite/pages/services/FrontEndDevelopment';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
+import GeneralContainersMainSite from '../../../../../identifiers/mainSite/GeneralContainersMainSite';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
@@ -26,7 +27,7 @@ test('Check the container titles and numbers from the "Front End Development" pa
 		driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment),
 		driver.getByTestId(FrontEndDevelopment.TechnologyStack),
 		driver.getByTestId(FrontEndDevelopment.CaseStudy),
-		driver.getByTestId(FrontEndDevelopment.WhyTechstack),
+		driver.getByTestId(GeneralContainersMainSite.WhyTechstack),
 		driver.getByTestId(FrontEndDevelopment.OurExperts),
 		driver.getByTestId(FrontEndDevelopment.CooperationModels),
 		driver.getByTestId(FrontEndDevelopment.HowWeCanHelp),
@@ -132,7 +133,7 @@ test('Check section titles, image and CTA in "Front-End Development Services Cas
 });
 
 test('Check section titles in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
 	const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
 		'Our approach\nto front-end\ndevelopment\nservices',

@@ -14,6 +14,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Container from '../../../../../identifiers/Container';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import Links from '../../../../../preconditionsData/links/Links';
+import GeneralContainersMainSite from '../../../../../identifiers/mainSite/GeneralContainersMainSite';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
@@ -72,14 +73,14 @@ test('Check redirect by CTA button in "Front-End Development Services Case Studi
 });
 
 test('Check redirect by links in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
 	const clutchLink = whyTechstackContainer.getByTestId(MainSiteLinks.Clutch);
 
 	await baseDriverSteps.checkRedirectToPage(clutchLink, Links.ClutchReviews);
 });
 
 test('Check redirect by "Clutch Review" button in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
 
 	await baseDriverSteps.checkRedirectToPage(
 		whyTechstackContainer.getByTestId(Buttons.Clutch),

@@ -22,4 +22,5 @@ export default class GeneralContainersMainSite {
 	static WeNeverStopImprovingYourProduct = 'Container-WeNeverStopImprovingYourProduct';
 	static Services = 'Container-Services';
 	static CooperationModels = 'Container-CooperationModels';
+	static WhyTechstack = 'Container-WhyTechstack';
 }
