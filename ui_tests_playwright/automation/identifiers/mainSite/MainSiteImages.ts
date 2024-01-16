@@ -6,6 +6,7 @@ export default class MainSiteImages {
 	static SensorsScheme = 'Img-SensorsScheme';
 	static SuccessStories = 'Img-SuccessStories';
 	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
+	static BackendCaseStudy = 'Img-BackendCaseStudy';
 	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
 	static MobileCaseStudy = 'Img-MobileCaseStudy';
 	static MedicalDashboard = 'Img-Dashboard';
