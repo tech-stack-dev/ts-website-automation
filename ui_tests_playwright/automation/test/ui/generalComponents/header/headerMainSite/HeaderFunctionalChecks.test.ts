@@ -10,6 +10,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import Links from '../../../../../preconditionsData/links/Links';
 
 let header: Locator;
 
@@ -139,6 +140,20 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
+		}
+	}
+);
+
+test(
+	qase(
+		5555,
+		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @Regression @Header @TSWEB-1267`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await header.getByTestId(Header.IotForEnergy).click();
+			await baseDriverSteps.checkUrl(Links.IotForEnergy);
 		}
 	}
 );
