@@ -128,7 +128,7 @@ test(
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
-		
+
 		await baseDriverSteps.checkRedirectToPage(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
