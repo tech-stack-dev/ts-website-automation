@@ -103,7 +103,7 @@ test(
 test(
 	qase(
 		5522,
-		'Check redirects by Blog buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirects by Blog buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208 @TSWEB-1061'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
