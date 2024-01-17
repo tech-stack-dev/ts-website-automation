@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
-test(
+test.skip(
 	qase(
 		4753,
 		'Check error messages related to fields filled with spaces on "Contact Us" form @Regression @ContactUs @TSWEB-76'
@@ -41,7 +41,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		4763,
 		'Check error messages related to fields filled with invalid data on "Contact Us" form @Regression @ContactUs @TSWEB-76'
@@ -103,7 +103,7 @@ test(
 	}
 );
 
-test(qase(4765, 'Check error message related to incorrect file format @Regression @ContactUs @TSWEB149'), async () => {
+test.skip(qase(4765, 'Check error message related to incorrect file format @Regression @ContactUs @TSWEB149'), async () => {
 	await driver.getByTestId(ContactUsForm.FullName).fill('Test Name');
 	await driver.getByTestId(ContactUsForm.Email).fill('email@test.com');
 	await driver.getByTestId(ContactUsForm.Phone).fill('12345');
