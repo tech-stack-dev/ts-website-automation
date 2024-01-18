@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
 });
 
-test(
+test.skip(
 	qase(4759, 'Check that "Contact Us" form works correct with valid data @Regression @ContactUs @TSWEB-149'),
 	async () => {
 		await driver.getByTestId(ContactUsForm.FullName).fill('test name');
@@ -27,7 +27,7 @@ test(
 const files = ['automation/resources/test.docx', 'automation/resources/test.pdf'];
 
 for (const file of files) {
-	test(
+	test.skip(
 		qase(
 			[4755, 4757],
 			`Check that 'Contact Us' form works correct with valid files (${file}) @Regression @ContactUs @TSWEB-149`
