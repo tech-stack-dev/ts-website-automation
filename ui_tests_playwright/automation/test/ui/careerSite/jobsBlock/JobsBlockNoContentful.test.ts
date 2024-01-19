@@ -9,7 +9,6 @@ import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import Navigation from '../../../../identifiers/career/Navigation';
 import Career from '../../../../identifiers/career/pages/Career';
 import Input from '../../../../identifiers/Input';
-import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -27,15 +26,15 @@ test(
 		await driver.getByTestId(/CardWrapper/).click();
 		await driver.getByTestId(CareerButtons.ApplyNow).click();
 
-		await driver.getByTestId(ApplyForAJobForm.FirstName).fill(' ');
-		await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
+		await driver.getByTestId(Input.FirstName).fill(' ');
+		await driver.getByTestId(Input.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
 		await driver.getByTestId(Buttons.Send).click();
 
 		const actualErrorText_FirstName = driver
-			.getByTestId(ApplyForAJobForm.FirstName)
+			.getByTestId(Input.FirstName)
 			.locator(Input.FieldErrorSelector);
 		const actualErrorText_LastName = driver
-			.getByTestId(ApplyForAJobForm.LastName)
+			.getByTestId(Input.LastName)
 			.locator(Input.FieldErrorSelector);
 		await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
 		await expect(actualErrorText_LastName).toHaveText('Please enter your last name');

@@ -14,10 +14,10 @@ import JobPagePreconditions from '../../../../preconditionsData/JobPagePrecondit
 import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
 import {formSteps} from '../../../../steps/ui/FormSteps';
-import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
 import Job from '../../../../identifiers/Job';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import Input from '../../../../identifiers/Input';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -118,10 +118,10 @@ test(
 		await driver.getByTestId(CareerButtons.ApplyNow).click();
 		await driver.getByTestId(Buttons.Send).click();
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([
-			ApplyForAJobForm.FirstName,
-			ApplyForAJobForm.LastName,
-			ApplyForAJobForm.Email,
-			ApplyForAJobForm.Phone,
+			Input.FirstName,
+			Input.LastName,
+			Input.Email,
+			Input.PhoneNumber,
 		]);
 		const messagesExistState = Object.values(testData).every((message) => listOfMessages.includes(message));
 		expect(messagesExistState).toBeTruthy();
