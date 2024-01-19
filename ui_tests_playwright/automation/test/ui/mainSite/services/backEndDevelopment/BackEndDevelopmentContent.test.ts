@@ -233,7 +233,7 @@ test(
 		await expect(sectionTitles).toHaveText(expectedText);
 
 		const awardCards = whyTechstackContainer.getByTestId(Container.AwardCard);
-		
+
 		await baseDriverSteps.checkImagesVisibility(awardCards, 6);
 	}
 );

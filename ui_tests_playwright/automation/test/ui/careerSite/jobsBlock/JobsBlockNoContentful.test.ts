@@ -30,12 +30,8 @@ test(
 		await driver.getByTestId(Input.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
 		await driver.getByTestId(Buttons.Send).click();
 
-		const actualErrorText_FirstName = driver
-			.getByTestId(Input.FirstName)
-			.locator(Input.FieldErrorSelector);
-		const actualErrorText_LastName = driver
-			.getByTestId(Input.LastName)
-			.locator(Input.FieldErrorSelector);
+		const actualErrorText_FirstName = driver.getByTestId(Input.FirstName).locator(Input.FieldErrorSelector);
+		const actualErrorText_LastName = driver.getByTestId(Input.LastName).locator(Input.FieldErrorSelector);
 		await expect(actualErrorText_FirstName).toHaveText('Please enter your name');
 		await expect(actualErrorText_LastName).toHaveText('Please enter your last name');
 	}
