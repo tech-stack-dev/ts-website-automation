@@ -80,7 +80,7 @@ test.skip(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5462,
 		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @Regression @GetInTouchExtended @TSWEB-606'
@@ -111,7 +111,7 @@ test.skip(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5464,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @Regression @GetInTouchShort @TSWEB-606'
@@ -134,7 +134,7 @@ test.skip(
 	}
 );
 
-test.skip(
+test    (
 	qase(
 		5463,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @Regression @GetInTouchShort @TSWEB-606'
