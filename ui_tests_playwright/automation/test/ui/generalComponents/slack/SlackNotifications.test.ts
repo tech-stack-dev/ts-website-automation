@@ -134,7 +134,7 @@ test(
 	}
 );
 
-test    (
+test(
 	qase(
 		5463,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @Regression @GetInTouchShort @TSWEB-606'
