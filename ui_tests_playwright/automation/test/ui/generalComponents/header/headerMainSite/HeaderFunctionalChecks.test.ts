@@ -11,6 +11,7 @@ import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import Links from '../../../../../preconditionsData/links/Links';
+import {Environment} from '../../../../../providers/EnvProvider';
 
 let header: Locator;
 
@@ -112,7 +113,7 @@ test(
 		const companyList = new Map([
 			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
 			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
+			[Buttons.Company_Career, UrlProvider.careerUrl(Environment.Production)],
 			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
 			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
 		]);
