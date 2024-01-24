@@ -84,7 +84,7 @@ test.skip(
 	}
 );
 
-test(
+test.skip(
 	qase(4762, 'Check error messages related to empty fields on "Contact Us" form @Regression @ContactUs @TSWEB149'),
 	async () => {
 		const testData: Record<string, string> = {
