@@ -103,18 +103,15 @@ test(
 	}
 );
 
-test(
-	qase(4765, 'Check error message related to incorrect file format @Regression @ContactUs @TSWEB149'),
-	async () => {
-		await driver.getByTestId(Input.FullName).fill('Test Name');
-		await driver.getByTestId(Input.Email).fill('email@test.com');
-		await driver.getByTestId(Input.PhoneNumber).fill('12345');
-		await contactUsSteps.attachFileToContactUsForm('automation/resources/test.jpg');
-		await contactUsSteps.checkFileAttachErrorMessage(
-			'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text, and *.log extensions'
-		);
-	}
-);
+test(qase(4765, 'Check error message related to incorrect file format @Regression @ContactUs @TSWEB149'), async () => {
+	await driver.getByTestId(Input.FullName).fill('Test Name');
+	await driver.getByTestId(Input.Email).fill('email@test.com');
+	await driver.getByTestId(Input.PhoneNumber).fill('12345');
+	await contactUsSteps.attachFileToContactUsForm('automation/resources/test.jpg');
+	await contactUsSteps.checkFileAttachErrorMessage(
+		'You can only attach the file in *.doc, *.pdf, *.docx, *.txt, *.text, and *.log extensions'
+	);
+});
 
 test.afterEach(async () => {
 	await driver.closeDrivers();
