@@ -203,7 +203,6 @@ test(
 		const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 		const allMemberRoles = ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
-			'CEO, Software Architect,\nRuns critical initiatives that make products grow',
 			'CTO, Software Architect,\nElaborates on the technology strategy',
 			'VP of Engineering,\nLeads the Tech Experts program and team',
 			'Senior Full Stack Software Engineer,\nLeads vital development initiatives',
@@ -211,12 +210,7 @@ test(
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
 		const allMemberNames = ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberName);
-		const testDataNames = [
-			ExpertNames.IvanIeremenko,
-			ExpertNames.OleksiiSvystun,
-			ExpertNames.IvanYeremenko,
-			ExpertNames.VladyslavUshakov,
-		];
+		const testDataNames = [ExpertNames.OleksiiSvystun, ExpertNames.IvanYeremenko, ExpertNames.VladyslavUshakov];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
 		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(

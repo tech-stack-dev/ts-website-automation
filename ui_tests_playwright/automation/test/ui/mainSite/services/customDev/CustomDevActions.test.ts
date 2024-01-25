@@ -137,20 +137,19 @@ test(
 	async () => {
 		const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
 		const memberCards = customDeveExpertsContainer.getByTestId(Container.MemberCard);
-		const numOfMembers = 7;
+		const numOfMembers = 6;
 
 		await expect(memberCards).toHaveCount(numOfMembers);
 
 		const linkedInButtons = customDeveExpertsContainer.getByTestId(Buttons.LinkedIn);
 
 		const buttonUrlMap = new Map([
-			[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-			[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-			[linkedInButtons.nth(2), ExpertsLinkedInLinks.VitaliiDolotov],
-			[linkedInButtons.nth(3), ExpertsLinkedInLinks.IvanYeremenko],
-			[linkedInButtons.nth(4), ExpertsLinkedInLinks.YevheniiKarachevtsev],
-			[linkedInButtons.nth(5), ExpertsLinkedInLinks.DmytroDytiuk],
-			[linkedInButtons.nth(6), ExpertsLinkedInLinks.DmytroShtapauk],
+			[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+			[linkedInButtons.nth(1), ExpertsLinkedInLinks.VitaliiDolotov],
+			[linkedInButtons.nth(2), ExpertsLinkedInLinks.IvanYeremenko],
+			[linkedInButtons.nth(3), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+			[linkedInButtons.nth(4), ExpertsLinkedInLinks.DmytroDytiuk],
+			[linkedInButtons.nth(5), ExpertsLinkedInLinks.DmytroShtapauk],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
