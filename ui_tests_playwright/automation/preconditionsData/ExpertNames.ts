@@ -8,8 +8,6 @@ export enum ExpertNames {
 	DmytroDytiuk = 'Dmytro Dytiuk',
 	DmytroShtapauk = 'Dmytro Shtapauk',
 	MariaDarmanian = 'Maria Darmanian',
-	YuliaMelnychenko = 'Yulia Melnychenko',
-	ElizabethMalygina = 'Elizabeth Malygina',
 	HannaZhyhan = 'Hanna Zhyhan',
 	VladyslavUshakov = 'Vladyslav Ushakov',
 	YelyzavetaLvova = 'Yelyzaveta Lvova',
@@ -24,4 +22,5 @@ export enum ExpertNames {
 	SerhiiLedniov = 'Serhii Ledniov',
 	OleksandrMakarov = 'Oleksandr Makarov',
 	DmitryValko = 'Dmitry Valko',
+	MariiaPetrovych = 'Mariia Petrovych',
 }

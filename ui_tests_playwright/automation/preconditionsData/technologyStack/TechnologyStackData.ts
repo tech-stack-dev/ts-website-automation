@@ -2,7 +2,19 @@ import {Locator} from 'playwright-core';
 import MainSiteButtons from '../../identifiers/mainSite/MainSiteButtons';
 
 export default class TechnologyStackData {
-	static BackEndTab = ['.NET Stack', 'JVM Stack', 'Node.js Stack', 'Other'];
+	static BackEndTab = [
+		'Programming\nLanguages',
+		'Server-Side\nTechnologies',
+		'Database\nTechnologies',
+		'Messaging',
+		'API',
+		'Caching',
+		'Unit testing',
+		'Cloud Services\nand Deployment\nPlatforms',
+		'SDLC enabling\ntechnologies',
+		'Servers',
+		'Scripting\nand Miscellaneous',
+	];
 	static FrontEndTab = [
 		'Language',
 		'State Management',
@@ -13,9 +25,8 @@ export default class TechnologyStackData {
 		'Rich Content',
 		'Content Management',
 	];
-	static MobileTab = ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS'];
-	static IoTTab = ['Devices', 'Gateways'];
-	static DevOpsAndCloudTab = [
+	static MobileTab = ['Android', 'iOS', 'React Native', 'API', 'Flutter', 'Ionic'];
+	static CloudAndDevOpsTab = [
 		'Cloud Platforms',
 		'Operating System\nManagement\nand Configuration',
 		'Platform-as-a-Service\n(PaaS)',
@@ -29,11 +40,41 @@ export default class TechnologyStackData {
 		'Collaboration\nand Source Control',
 	];
 	static AiMLDataScieceTab = [
-		'Computer Vision',
-		'Artificial Intelligence, Deep Learning, and Machine Learning',
+		'Computer vision',
+		'Artificial Intelligence,\nDeep Learning,\nand Machine Learning',
+		'Data Ingestion\nand Manipulation',
 		'Data Visualization',
-		'Data Storage & Manipulation',
+		'Data Storage',
 		'Development Environment',
+		'Cloud',
+		'MLOps',
+	];
+	static EmbededDevelopmentTab = [
+		'Gateway',
+		'Microcontrollers',
+		'Single-board\nComputers',
+		'Hardware Protocols\n(Interfaces)',
+		'Wireless Network',
+		'Network Protocols',
+		'PCB Design\nSoftware & Tools',
+		'CAD Software',
+		'Software for IoT\nand Embedded\ndevelopment',
+	];
+	static QalityAssuranceTab = [
+		'Languages',
+		'Frameworks',
+		'DB',
+		'CI/CD',
+		'Report tools',
+		'Performance Tools',
+		'Test Management\nSystems',
+		'Cloud-Based\nTesting Services',
+		'Key Management\nServices',
+		'Documentation\nManagement Systems',
+		'API Testing Tools',
+		'Mocking',
+		'Virtualization',
+		'VCS',
 	];
 
 	public static async getAllTechnologyStackTabsData() {
@@ -41,9 +82,10 @@ export default class TechnologyStackData {
 			this.BackEndTab,
 			this.FrontEndTab,
 			this.MobileTab,
-			this.IoTTab,
-			this.DevOpsAndCloudTab,
+			this.CloudAndDevOpsTab,
 			this.AiMLDataScieceTab,
+			this.EmbededDevelopmentTab,
+			this.QalityAssuranceTab,
 		];
 	}
 
@@ -51,9 +93,10 @@ export default class TechnologyStackData {
 		const navigationTabs = [
 			container.getByTestId(MainSiteButtons.Technology_FrontEnd),
 			container.getByTestId(MainSiteButtons.Technology_Mobile),
-			container.getByTestId(MainSiteButtons.Technology_Iot),
 			container.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
 			container.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
+			container.getByTestId(MainSiteButtons.Technology_EmbededDevelopment),
+			container.getByTestId(MainSiteButtons.Technology_QualityAssurance),
 			container.getByTestId(MainSiteButtons.Technology_BackEnd), // To click this item last because it selected by default on page
 		];
 
