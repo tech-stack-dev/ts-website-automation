@@ -2,7 +2,6 @@ import {Locator} from 'playwright-core';
 import MainSiteButtons from '../../identifiers/mainSite/MainSiteButtons';
 
 export default class TechnologyStackData {
-	// static BackEndTab = ['.NET Stack', 'JVM Stack', 'Node.js Stack', 'Other'];
 	static BackEndTab = [
 		'Programming\nLanguages',
 		'Server-Side\nTechnologies',
