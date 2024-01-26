@@ -86,10 +86,9 @@ test(
 		const linkedInButtons = ourLeadingCloudExperts.getByTestId(Buttons.LinkedIn);
 
 		const buttonUrlMap = new Map([
-			[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-			[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-			[linkedInButtons.nth(2), ExpertsLinkedInLinks.IvanYeremenko],
-			[linkedInButtons.nth(3), ExpertsLinkedInLinks.VladyslavUshakov],
+			[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+			[linkedInButtons.nth(1), ExpertsLinkedInLinks.IvanYeremenko],
+			[linkedInButtons.nth(2), ExpertsLinkedInLinks.VladyslavUshakov],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {

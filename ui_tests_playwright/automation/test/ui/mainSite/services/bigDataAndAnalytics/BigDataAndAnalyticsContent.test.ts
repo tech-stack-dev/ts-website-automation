@@ -9,6 +9,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -121,15 +122,7 @@ test(
 	async () => {
 		const bigDataTechnologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
 		const allSectionTitles = bigDataTechnologyStackContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Computer vision',
-			'Deep learning\nand machine learning',
-			'Data ingestion\nand manipulation',
-			'Data visualization',
-			'Data storage',
-			'Development\nenvironment',
-			'Cloud',
-		];
+		const testData = TechnologyStackData.AiMLDataScieceTab;
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
