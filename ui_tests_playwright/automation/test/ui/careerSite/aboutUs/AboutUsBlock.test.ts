@@ -1,10 +1,10 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { expect, test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/career/Navigation';
 import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 let clicksAmountToDisableNextButton;
 
@@ -75,7 +75,7 @@ test(
 		await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'false');
 
 		clicksAmountToDisableNextButton = 7;
-		await ourHistoryNextButton.click({clickCount: clicksAmountToDisableNextButton});
+		await ourHistoryNextButton.click({ clickCount: clicksAmountToDisableNextButton });
 
 		await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
 		await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'true');
@@ -93,7 +93,7 @@ test(
 		await expect(candidateNextButton).toHaveAttribute('data-disabled', 'false');
 
 		clicksAmountToDisableNextButton = 4;
-		await candidateNextButton.click({clickCount: clicksAmountToDisableNextButton});
+		await candidateNextButton.click({ clickCount: clicksAmountToDisableNextButton });
 
 		await expect(candidatePrevButton).toHaveAttribute('data-disabled', 'false');
 		await expect(candidateNextButton).toHaveAttribute('data-disabled', 'true');
@@ -153,7 +153,7 @@ test(
 		await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'false');
 
 		clicksAmountToDisableNextButton = 3;
-		await engineeringCultureNextButton.click({clickCount: clicksAmountToDisableNextButton});
+		await engineeringCultureNextButton.click({ clickCount: clicksAmountToDisableNextButton });
 
 		await expect(engineeringCulturePrevButton).toHaveAttribute('data-disabled', 'false');
 		await expect(engineeringCultureNextButton).toHaveAttribute('data-disabled', 'true');
@@ -175,7 +175,7 @@ test(
 		await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'false');
 
 		clicksAmountToDisableNextButton = 3;
-		await socialResponsibilityNextButton.click({clickCount: clicksAmountToDisableNextButton});
+		await socialResponsibilityNextButton.click({ clickCount: clicksAmountToDisableNextButton });
 
 		await expect(socialResponsibilityPrevButton).toHaveAttribute('data-disabled', 'false');
 		await expect(socialResponsibilityNextButton).toHaveAttribute('data-disabled', 'true');

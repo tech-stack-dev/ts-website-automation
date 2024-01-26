@@ -79,6 +79,9 @@ export default class BaseDriver {
 		} else {
 			component.Element = component.Page.locator(`xpath=${component.ComponentContext}`);
 		}
+		if (!component.ComponentContext.includes('//')) {
+			component.Element = component.Page.getByTestId(component.ComponentContext);
+		}
 		return component;
 	}
 

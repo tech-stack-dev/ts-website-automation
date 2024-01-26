@@ -1,9 +1,9 @@
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import { careerSteps, expect, test } from '../../../../../fixtures/DesktopMobileSetup';
-import {playwrightUtils} from '../../../../../utils/PlaywrightUtils';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { playwrightUtils } from '../../../../../utils/PlaywrightUtils';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());

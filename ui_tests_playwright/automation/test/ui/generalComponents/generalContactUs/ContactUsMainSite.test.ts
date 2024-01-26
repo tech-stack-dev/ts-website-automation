@@ -1,22 +1,31 @@
-import {test, expect, Locator} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { Locator } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {serviceUrl, companyUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {ColorsEnum} from '../../../../enum/ColorsEnum';
+import { serviceUrl, companyUrl, industryUrl } from '../../../../preconditionsData/UrlPreconditions';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { ColorsEnum } from '../../../../enum/ColorsEnum';
 import Header from '../../../../identifiers/mainSite/Header';
-import {locatorUtils} from '../../../../utils/LocatorUtils';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { locatorUtils } from '../../../../utils/LocatorUtils';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { careerSteps, containerSteps, test, expect } from '../../../../fixtures/DesktopMobileSetup';
+import { IContainerOptions } from '../../../../steps/components/container/ContainerSteps';
+import ContainerByDataId from '../../../../components/container/ContainerByDataId';
 
 let header: Locator;
 let contactUsButton: Locator;
 
-test.beforeEach(async ({isMobile}) => {
+test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
-	header = isMobile ? driver.locator(Header.ContainerMenu) : driver.getByTestId(Header.Container_Header);
+
+	const identifiers: IContainerOptions = {
+		desktopLocator: Header.Container_Header,
+		mobileLocator: Header.ContainerMenu
+	}
+
+	header = await containerSteps.getContainer(ContainerByDataId, identifiers);
 	contactUsButton = header.getByTestId(Buttons.ContactUs);
 });
 
@@ -57,10 +66,10 @@ test(
 
 test(
 	qase(5457, `Check redirection by "Contact Us" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
-	async ({isMobile}) => {
+	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
-			if (isMobile) await driver.getByTestId(Header.Menu).click();
+			await careerSteps.clickOnBurgerMenu();
 			await contactUsButton.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}

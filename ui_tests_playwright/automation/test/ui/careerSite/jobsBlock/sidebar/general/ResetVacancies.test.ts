@@ -8,14 +8,14 @@ import { sessionValue } from '../../../../../../runtimeVariables/SessionValue';
 import TagsCareer from '../../../../../../identifiers/career/TagsCareer';
 import CareerButtons from '../../../../../../identifiers/career/CareerButtons';
 import { DirectionsEnum } from '../../../../../../enum/tag/DirectionsEnum';
-import { careerSteps, expect, test } from '../../../../../../fixtures/DesktopMobileSetup';
+import { careerSteps, containerSteps, expect, test } from '../../../../../../fixtures/DesktopMobileSetup';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
-import { containerSteps } from '../../../../../../steps/components/container/ContainerSteps';
 import Career from '../../../../../../identifiers/career/pages/Career';
 import { contentfulSteps } from '../../../../../../steps/contentful/ContentfulSteps';
 import { contentfulUtils } from '../../../../../../utils/ContentfulUtils';
 import { playwrightUtils } from '../../../../../../utils/PlaywrightUtils';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { IContainerOptions } from '../../../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -50,7 +50,7 @@ for (const testData of testDataProvider) {
 			[4797, 4812, 4819, 4832],
 			`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 		),
-		async ({ isMobile }) => {
+		async () => {
 			contentfulUtils.AddTagsToCareerBody(testData.createTags);
 			await contentfulSteps.createCareerWithDefaultValue(
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
@@ -61,22 +61,24 @@ for (const testData of testDataProvider) {
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 			);
 
-			const careerMainContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, Career.FilterList)
-				: await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+			const identifiers: IContainerOptions = {
+				desktopLocator: Career.CareerMainBody,
+				mobileLocator: Career.FilterList
+			}
+
+			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, identifiers);
 			const filterGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				ContainersCareer.FilterGroupWrapper,
+				{ desktopLocator: ContainersCareer.FilterGroupWrapper },
 				careerMainContainer
 			);
 			const activeTagsGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				ContainersCareer.ActiveTagsGroupWrapper,
+				{ desktopLocator: ContainersCareer.ActiveTagsGroupWrapper },
 				careerMainContainer
 			);
 
-			if (isMobile) {
-				await driver.getByTestId(CareerButtons.FilterButton).click();
-			};
+			await careerSteps.clickOnFilter();
 
 			for (const tag of testData.tagList) {
 				const filterTag = filterGroupContainer.getByTestId(tag);

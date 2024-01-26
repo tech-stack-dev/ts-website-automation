@@ -1,15 +1,15 @@
-import {Locator, test} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {CompanyEnum} from '../../../../../enum/CompanyEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import { Locator, test } from '@playwright/test';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { CompanyEnum } from '../../../../../enum/CompanyEnum';
+import { ServicesEnum } from '../../../../../enum/ServicesEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {industryUrl, serviceUrl, companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import { industryUrl, serviceUrl, companyUrl } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
+import { IndustriesEnum } from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 let header: Locator;
 
@@ -32,7 +32,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5500,
-		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -46,7 +46,7 @@ test(
 test(
 	qase(
 		5501,
-		`Check the redirection for the Industries block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Industries block in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const industriesList = new Map([
@@ -71,7 +71,7 @@ test(
 test(
 	qase(
 		5503,
-		`Check the redirection for the Services block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Services block in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const servicesList = new Map([
@@ -105,7 +105,7 @@ test(
 test(
 	qase(
 		5502,
-		`Check the redirection for the Company block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Company block in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const companyList = new Map([
@@ -132,7 +132,7 @@ test(
 test(
 	qase(
 		5499,
-		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {

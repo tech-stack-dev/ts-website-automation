@@ -1,15 +1,12 @@
-import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { expect, Locator, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 let footer: Locator;
 const testDataProvider = [
@@ -27,7 +24,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5493,
-		`Check the footer information from the 'Footer' container on all pages @mobile @Regression @FooterCareer @TSWEB-655`
+		`Check the footer information from the 'Footer' container on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -72,7 +69,7 @@ test(
 );
 
 test(
-	qase(5494, `Check the redirection by the "Techstack" logo on all pages @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(5494, `Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -83,7 +80,7 @@ test(
 );
 
 test(
-	qase(5497, `Check the redirection for the Company block on all pages @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(5497, `Check the redirection for the Company block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
 	async () => {
 		const companyUrlList = new Map([
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
@@ -105,7 +102,7 @@ test(
 );
 
 test(
-	qase(5496, `Check the redirection for the Career block on all pages @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(5496, `Check the redirection for the Career block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
 	async () => {
 		const careerUrlList = new Map([
 			[Buttons.Career_Jobs, UrlProvider.careerUrl()],
@@ -128,11 +125,9 @@ test(
 
 test(
 	qase(5498, `Check the redirection for the social links on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
-	async ({isMobile}) => {
-		const footerContainer = isMobile ?  await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterBasementBlockSmall)
-			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.test);
-		
-			const linkMap = new Map([
+	async () => {
+
+		const linkMap = new Map([
 			[Buttons.Behance, Links.Behance],
 			[Buttons.LinkedIn, Links.LinkedIn],
 			[Buttons.Facebook, Links.Facebook],
@@ -143,17 +138,23 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
+				let socialLinkButton = footer.getByTestId(entries[0]);
+				socialLinkButton = await socialLinkButton.nth(0).isVisible() ? socialLinkButton.nth(0) : socialLinkButton.nth(1);
+				
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
-					await footerContainer.getByTestId(entries[0]).first().click()
+					await socialLinkButton.click()
 				]);
 				expect(newPage.url().includes(entries[1])).toBeTruthy();
 				await newPage.close();
 			}
 
+			let clutchButton = footer.getByTestId(Buttons.Clutch);
+			clutchButton = await clutchButton.nth(1).isVisible() ? clutchButton.nth(1) : clutchButton.nth(2);
+
 			const [newPage] = await Promise.all([
 				driver.DriverContext.waitForEvent('page'),
-				await footerContainer.getByTestId(Buttons.Clutch).click({button: 'middle'})
+				await clutchButton.click({ button: 'middle' })
 			]);
 			await newPage.waitForLoadState('networkidle');
 			expect(newPage.url()).toContain(Links.Clutch);
@@ -167,10 +168,7 @@ test(
 		5495,
 		`Check redirection to the Terms and Cookies Policy pages on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
 	),
-	async ({isMobile}) => {
-		const footerContainer = isMobile ?  await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterBasementBlockSmall)
-			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterBasementBlock);
-
+	async () => {
 
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
@@ -181,8 +179,9 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
-				// await driver.getByTestId(entries[0]).click();
-				await footerContainer.getByTestId(entries[0]).first().click();
+				let linkButton = driver.getByTestId(entries[0]);
+				linkButton = await linkButton.isVisible() ? linkButton : footer.getByTestId(entries[0]).nth(1);				
+				linkButton.click();
 				await baseDriverSteps.checkUrl(entries[1]);
 				await baseDriverSteps.goToUrl(url);
 			}

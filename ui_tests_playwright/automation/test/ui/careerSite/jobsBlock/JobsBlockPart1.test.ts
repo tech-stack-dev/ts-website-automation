@@ -1,12 +1,11 @@
 import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import { sessionValue } from '../../../../runtimeVariables/SessionValue';
-import { careerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
+import { careerSteps, containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
 import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
 import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import Career from '../../../../identifiers/career/pages/Career';
 import { driver } from '../../../../base/driver/Driver';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Navigation from '../../../../identifiers/career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
@@ -17,7 +16,7 @@ import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
 import Job from '../../../../identifiers/Job';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
-import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
+import { IContainerOptions } from '../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -46,7 +45,7 @@ test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @Jo
 	await careerSteps.switchLanguageViaHeader('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
-		ContainersCareer.JobPageApplyProposition
+		{ desktopLocator: ContainersCareer.JobPageApplyProposition }
 	);
 
 	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
@@ -69,21 +68,23 @@ test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @Jo
 test(
 	qase(
 		4790,
-		'Check that user can switch language in navigation header in job page @mobile @Regression @JobsBlock @TSWEB-146'
+		'Check that user can switch language in navigation header in job page @desktop @mobile @Regression @JobsBlock @TSWEB-146'
 	),
-	async ({ isMobile }) => {
+	async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		const jobPageHeaderContainer = isMobile ? await containerSteps.getContainer(ContainerByClass, ContainersCareer.JobPageMobileHeaderWrapper)
-			: await containerSteps.getContainer(ContainerByClass, ContainersCareer.JobPageHeaderWrapper);
+		const identifiers: IContainerOptions = {
+			desktopLocator: ContainersCareer.JobPageHeaderWrapper,
+			mobileLocator: ContainersCareer.JobPageMobileHeaderWrapper
+		}
+		const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, identifiers);
 
 		expect(await careerSteps.getBreadcrumbsText()).toBe(
 			`Jobs / JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 		);
 
-		const logo = isMobile ? jobPageHeaderContainer.Element.locator("//img[contains(@class,'globalStyles__Logo')]")
-			: jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
+		const logo = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 		await logo.waitFor({ state: 'visible' });
 
 		await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
@@ -91,9 +92,7 @@ test(
 		await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 		await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 
-		if (isMobile) {
-			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
-		}
+		await careerSteps.clickOnBurgerMenu();
 		await expect(driver.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
 			/active-locale/
 		);
@@ -109,7 +108,7 @@ test(
 		4784,
 		'Check error messages related to empty fields in "Apply for a job" form @desktop @mobile @Regression @JobsBlock @TSWEB-145'
 	),
-	async ({ isMobile }) => {
+	async () => {
 		const testData: Record<string, string> = {
 			PleaseEntryFirstName: 'Please enter your name',
 			PleaseEntryLastName: 'Please enter your last name',
@@ -120,11 +119,7 @@ test(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		if (isMobile) {
-			await driver.getByTestId(AboutUsCareer.ApplyNowButton).click();
-		} else {
-			await driver.getByTestId(CareerButtons.ApplyNow).click();
-		}
+		await careerSteps.clickOnApply();
 
 		await driver.getByTestId(Buttons.Send).click();
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([

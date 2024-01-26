@@ -1,17 +1,17 @@
-import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { expect, Locator, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
-import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
+import { companyUrl, serviceUrl, industryUrl } from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
-import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
-import {ServicesEnum} from '../../../../enum/ServicesEnum';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { IndustriesEnum } from '../../../../enum/IndustriesEnum';
+import { ServicesEnum } from '../../../../enum/ServicesEnum';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 let footer: Locator;
 

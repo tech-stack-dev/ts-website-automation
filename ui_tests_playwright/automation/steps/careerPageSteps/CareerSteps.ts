@@ -1,12 +1,20 @@
-import {driver} from '../../base/driver/Driver';
+import { driver } from '../../base/driver/Driver';
 import Career from '../../identifiers/career/pages/Career';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import JobsPage from '../../pages/careerSite/JobsPage';
-import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
+import { SocialMediaLinksEnum } from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
 
 export abstract class CareerSteps {
 	abstract switchLanguageViaHeader(language: string): Promise<void>;
+
+	abstract clickOnFilter(): Promise<void>;
+
+	abstract clickOnApply(): Promise<void>;
+
+	abstract clickOnBurgerMenu(): Promise<void>;
+
+	abstract switchLanguage(language: string): Promise<void>;
 
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {
 		await driver.executeFunc(async () => {
@@ -23,7 +31,7 @@ export abstract class CareerSteps {
 		countOfCareers: number,
 		searchString: string = careerName
 	) {
-		const indexes = Array.from({length: countOfCareers}, (_, index) => index + 1);
+		const indexes = Array.from({ length: countOfCareers }, (_, index) => index + 1);
 		for (const index of indexes) {
 			await driver.executeFunc(async () => {
 				await driver.Page.reload();
@@ -36,7 +44,7 @@ export abstract class CareerSteps {
 	}
 
 	public async clickOnCareerCard(careerName: string) {
-		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click({timeout: 5000});
+		await driver.getByTestId(`${Career.CareerCardWithoutModifier}${careerName}`).click({ timeout: 5000 });
 	}
 
 	public async getPaginationNumberButton(pageNumber: number) {
@@ -84,6 +92,3 @@ export abstract class CareerSteps {
 		return applyJobText;
 	}
 }
-
-// const careerSteps = new CareerSteps();
-// export {careerSteps};

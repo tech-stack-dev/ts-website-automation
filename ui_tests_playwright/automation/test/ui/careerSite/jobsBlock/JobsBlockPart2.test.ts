@@ -1,14 +1,14 @@
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
+import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
+import { sessionValue } from '../../../../runtimeVariables/SessionValue';
 import { careerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
 import Job from '../../../../identifiers/Job';
-import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
-import {driver} from '../../../../base/driver/Driver';
-import {ColorsEnum} from '../../../../enum/ColorsEnum';
-import {locatorUtils} from '../../../../utils/LocatorUtils';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { SocialMediaLinksEnum } from '../../../../enum/SocialMediaLinksEnum';
+import { driver } from '../../../../base/driver/Driver';
+import { ColorsEnum } from '../../../../enum/ColorsEnum';
+import { locatorUtils } from '../../../../utils/LocatorUtils';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {

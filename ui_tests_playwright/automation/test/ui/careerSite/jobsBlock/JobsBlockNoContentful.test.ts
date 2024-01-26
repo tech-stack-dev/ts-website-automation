@@ -1,4 +1,3 @@
-import { expect, test } from '@playwright/test';
 import randomstring from 'randomstring';
 import { driver } from '../../../../base/driver/Driver';
 import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
@@ -11,9 +10,9 @@ import Career from '../../../../identifiers/career/pages/Career';
 import Input from '../../../../identifiers/Input';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import UrlProvider from '../../../../providers/UrlProvider';
-import { containerSteps } from '../../../../steps/components/container/ContainerSteps';
+import { careerSteps, containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
-import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
+import { IContainerOptions } from '../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -24,14 +23,10 @@ test(
 		4773,
 		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @desktop @mobile @Regression @JobsBlock @TSWEB-76'
 	),
-	async ({ isMobile }) => {
+	async () => {
 		await driver.getByTestId(/CardWrapper/).click();
 
-		if (isMobile) {
-			await driver.getByTestId(AboutUsCareer.ApplyNowButton).click();
-		} else {
-			await driver.getByTestId(CareerButtons.ApplyNow).click();
-		}
+		await careerSteps.clickOnApply();
 
 		await driver.getByTestId(ApplyForAJobForm.FirstName).fill(' ');
 		await driver.getByTestId(ApplyForAJobForm.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters
@@ -92,15 +87,15 @@ test(
 		4769,
 		'Check that user can switch language in navigation header in career page @desktop @mobile @Regression @JobsBlock @TSWEB-146'
 	),
-	async ({ isMobile }) => {
+	async () => {
 		const jobPageHeaderContainer = await containerSteps.getContainer(
 			ContainerByClass,
-			ContainersCareer.NavigationHeaderClass
+			{ desktopLocator: ContainersCareer.NavigationHeaderClass }
 		);
 		const logoHeader = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
 
 		// A footer element is created to navigate to it and make the navigation bar appear.
-		const footerContainer = await containerSteps.getContainer(ContainerByClass, ContainersCareer.FooterWrapper);
+		const footerContainer = await containerSteps.getContainer(ContainerByClass, { desktopLocator: ContainersCareer.FooterWrapper });
 		const logoFooter = footerContainer.getByTestId(Buttons.Logo);
 		await logoFooter.focus();
 
@@ -110,16 +105,17 @@ test(
 		await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 		await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 
-		const localeSwitcherBlock = isMobile ? await containerSteps.getContainer(ContainerByClass, ContainersCareer.MainModalMenuWrapper) :
-			await containerSteps.getContainer(ContainerByClass, ContainersCareer.LocaleSwitcherBlock);
+		const identifiers: IContainerOptions = {
+			desktopLocator: ContainersCareer.LocaleSwitcherBlock,
+			mobileLocator: ContainersCareer.MainModalMenuWrapper
+		}
+		const localeSwitcherBlock = await containerSteps.getContainer(ContainerByClass, identifiers);
 
 		await expect(localeSwitcherBlock.Element.getByTestId(CareerButtons.EnLanguageSwitcher).first()).toHaveClass(
 			/active-locale/
 		);
 
-		if (isMobile) {
-			await driver.Page.locator("//div[contains(@class,'styledComponents__BurgerMenuWrapper')]").first().click();
-		};
+		await careerSteps.clickOnBurgerMenu();
 
 		const uaButtonSwitcher = localeSwitcherBlock.getByTestId(CareerButtons.UaLanguageSwitcher).first();
 
