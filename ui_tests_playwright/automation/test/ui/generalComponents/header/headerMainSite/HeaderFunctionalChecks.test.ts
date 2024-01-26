@@ -9,7 +9,9 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import { IndustriesEnum } from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import Links from '../../../../../preconditionsData/links/Links';
+import {Environment} from '../../../../../providers/EnvProvider';
 
 let header: Locator;
 
@@ -111,7 +113,7 @@ test(
 		const companyList = new Map([
 			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
 			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
+			[Buttons.Company_Career, UrlProvider.careerUrl(Environment.Production)],
 			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
 			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
 		]);
@@ -139,6 +141,20 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
+		}
+	}
+);
+
+test(
+	qase(
+		5555,
+		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @Regression @Header @TSWEB-1267`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await header.getByTestId(Header.IotForEnergy).click();
+			await baseDriverSteps.checkUrl(Links.IotForEnergy);
 		}
 	}
 );

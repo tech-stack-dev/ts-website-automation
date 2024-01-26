@@ -69,7 +69,7 @@ test(
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 		const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
-		const testData = ['9\nyears', '20\nexperts', '91\n%', '2 of 3\nclients'];
+		const testData = ['10\nyears', '20\nexperts', '91\n%', '2 of 3\nclients'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}

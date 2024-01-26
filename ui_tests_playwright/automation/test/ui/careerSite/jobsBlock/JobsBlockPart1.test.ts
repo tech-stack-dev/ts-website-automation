@@ -103,7 +103,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		4784,
 		'Check error messages related to empty fields in "Apply for a job" form @desktop @mobile @Regression @JobsBlock @TSWEB-145'

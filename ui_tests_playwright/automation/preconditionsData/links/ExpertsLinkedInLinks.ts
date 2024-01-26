@@ -10,8 +10,6 @@ export enum ExpertsLinkedInLinks {
 	MariaDarmanian = 'https://www.linkedin.com/in/maria-darmanian-8349458a/',
 	OleksandrBezrukov = 'https://www.linkedin.com/in/oleksandr-bezrukov-568852213/',
 	VladyslavUshakov = 'https://www.linkedin.com/in/vladyslav-ushakov-086924124/',
-	YuliaMelnychenko = 'https://www.linkedin.com/in/yuliima/',
-	ElizabethMalygina = 'https://www.linkedin.com/in/elisabeth-malyhina-27883712a/',
 	HannaZhyhan = 'https://www.linkedin.com/in/hanna-zhygan-8a2158234/',
 	YelyzavetaLvova = 'https://www.linkedin.com/in/yelyzaveta-lvova-b6b6b5199/',
 	MaxLevytskyi = 'https://www.linkedin.com/in/maxim-levitskiy/',
@@ -21,4 +19,8 @@ export enum ExpertsLinkedInLinks {
 	AndriiDumych = 'https://www.linkedin.com/in/andrii-dumych-10b945171/',
 	SerhiiYevdokymenko = 'https://www.linkedin.com/in/devops-yevdokymenko/',
 	DmytroPakki = 'https://www.linkedin.com/in/dmytro-pakki-530406161/',
+	SerhiiLedniov = 'https://www.linkedin.com/in/serhii-lednov/',
+	OleksandrMakarov = 'https://www.linkedin.com/in/oleksandr-makarov-/',
+	DmitryValko = 'https://www.linkedin.com/in/dima-valko/',
+	MariiaPetrovych = 'https://www.linkedin.com/in/mpetrovych/',
 }

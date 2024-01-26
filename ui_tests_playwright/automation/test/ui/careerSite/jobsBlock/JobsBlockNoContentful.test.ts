@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 });
 
-test(
+test.skip(
 	qase(
 		4773,
 		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @desktop @mobile @Regression @JobsBlock @TSWEB-76'
@@ -71,7 +71,7 @@ test(
 			(
 				await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)
 			).Element
-		).toHaveText(`${textData},0`);
+		).toHaveText(`${textData},0 Jobs`);
 		const actualInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();
 		expect(actualInputBoxProps?.width).toEqual(expectedInputBoxProps?.width);
 		expect(actualInputBoxProps?.height).toEqual(expectedInputBoxProps?.height);

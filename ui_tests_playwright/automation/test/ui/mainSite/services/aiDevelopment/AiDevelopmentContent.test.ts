@@ -8,6 +8,7 @@ import AiDevelopment from '../../../../../identifiers/mainSite/pages/services/Ai
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
@@ -130,17 +131,7 @@ test(
 	async () => {
 		const technologyStackContainer = driver.getByTestId(AiDevelopment.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Computer Vision',
-			'Deep Learning\nand Machine Learning',
-			'Application',
-			'Data storage\nand manipulation',
-			'DevOps',
-			'QA',
-			'Data Visualization',
-			'CI/CD',
-			'Development\nEnvironment',
-		];
+		const testData = TechnologyStackData.AiMLDataScieceTab;
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}

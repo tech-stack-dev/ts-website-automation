@@ -9,6 +9,7 @@ import MobileDevService from '../../../../../identifiers/mainSite/pages/services
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
@@ -123,15 +124,14 @@ test(
 test(
 	qase(
 		5287,
-		'Check section titles and CTA button in "Mobile Application Development Technology Stack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles in "Mobile Application Development Technology Stack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(MobileDevService.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
-		const testData = ['React Native', 'Cordova', 'Flutter', 'Android', 'iOS'];
+		const testData = TechnologyStackData.MobileTab;
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(technologyStackContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 

@@ -8,10 +8,11 @@ import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
 import { companyUrl, serviceUrl, industryUrl } from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
-import { IndustriesEnum } from '../../../../enum/IndustriesEnum';
-import { ServicesEnum } from '../../../../enum/ServicesEnum';
-import { CompanyEnum } from '../../../../enum/CompanyEnum';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
+import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
+import {ServicesEnum} from '../../../../enum/ServicesEnum';
+import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {Environment} from '../../../../providers/EnvProvider';
 
 let footer: Locator;
 
@@ -183,7 +184,7 @@ test(
 			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
 			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
 			[Buttons.Company_Pricing, companyUrl[CompanyEnum.Pricing]],
-			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
+			[Buttons.Company_Career, UrlProvider.careerUrl(Environment.Production)],
 			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
 			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
 			[Buttons.Company_Whitepapers, companyUrl[CompanyEnum.Whitepapers]],

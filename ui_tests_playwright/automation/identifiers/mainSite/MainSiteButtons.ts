@@ -31,6 +31,11 @@ export default class MainSiteButtons extends Buttons {
 	static LearnMore = 'Button-LearnMore';
 	static GetAQuote = 'Button-GetAQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
+	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
+	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
+	static MoreDetails = 'Button-MoreDetails';
+	static BoostYourBackend = 'Button-BoostYourBackend';
+	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
@@ -52,7 +57,8 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_BackEnd = 'Button-BackEnd';
 	static Technology_FrontEnd = 'Button-FrontEnd';
 	static Technology_Mobile = 'Button-Mobile';
-	static Technology_Iot = 'Button-IoT';
 	static Technology_DevOpsCloud = 'Button-DevopsCloud';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
+	static Technology_EmbededDevelopment = 'Button-IoT';
+	static Technology_QualityAssurance = 'Button-QA';
 }
