@@ -10,7 +10,6 @@ export default class TechnologyStackData {
 		'API',
 		'Caching',
 		'Unit testing',
-		'Cloud Services\nand Deployment\nPlatforms',
 		'SDLC enabling\ntechnologies',
 		'Servers',
 		'Scripting\nand Miscellaneous',
