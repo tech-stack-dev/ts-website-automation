@@ -145,7 +145,8 @@ test(
 	}
 );
 
-test(
+// Unskip after this button will be in header again
+test.skip(
 	qase(
 		5555,
 		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @Regression @Header @TSWEB-1267`
