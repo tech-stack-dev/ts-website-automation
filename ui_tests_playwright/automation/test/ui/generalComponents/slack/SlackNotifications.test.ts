@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5461,
-		'Check Slack notification from "staging_techstack_hr_notify" channel from Contact Us page @Regression @ContactUs @TSWEB-606'
+		'Check Slack notification from "staging_techstack_hr_notify" channel from Contact Us page @Regression @ContactUs @TSWEB-606 @TSWEB-1313'
 	),
 	async () => {
 		await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
