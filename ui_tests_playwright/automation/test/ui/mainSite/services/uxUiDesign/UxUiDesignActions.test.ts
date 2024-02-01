@@ -95,10 +95,9 @@ test(
 
 		const buttonUrlMap = new Map([
 			[linkedInButtons.nth(0), ExpertsLinkedInLinks.DmytroDytiuk],
-			[linkedInButtons.nth(1), ExpertsLinkedInLinks.YuliaMelnychenko],
-			[linkedInButtons.nth(2), ExpertsLinkedInLinks.ElizabethMalygina],
-			[linkedInButtons.nth(3), ExpertsLinkedInLinks.HannaZhyhan],
-			[linkedInButtons.nth(4), ExpertsLinkedInLinks.YelyzavetaLvova],
+			[linkedInButtons.nth(1), ExpertsLinkedInLinks.HannaZhyhan],
+			[linkedInButtons.nth(2), ExpertsLinkedInLinks.YelyzavetaLvova],
+			[linkedInButtons.nth(3), ExpertsLinkedInLinks.MariiaPetrovych],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {

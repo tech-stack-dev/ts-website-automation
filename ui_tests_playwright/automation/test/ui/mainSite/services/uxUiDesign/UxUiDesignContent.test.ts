@@ -198,10 +198,9 @@ test(
 		const allMemberNames = weNeverStopImprovingYourProductContainer.getByTestId(Container.MemberName);
 		const testDataNames = [
 			ExpertNames.DmytroDytiuk,
-			ExpertNames.YuliaMelnychenko,
-			ExpertNames.ElizabethMalygina,
 			ExpertNames.HannaZhyhan,
 			ExpertNames.YelyzavetaLvova,
+			ExpertNames.MariiaPetrovych,
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
@@ -209,7 +208,6 @@ test(
 		const allMemberRoles = weNeverStopImprovingYourProductContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
 			'Head of Design, Product Designer',
-			'UX/UI Designer',
 			'UX/UI Designer',
 			'UX/UI Designer',
 			'UX/UI Designer',

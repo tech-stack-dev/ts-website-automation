@@ -73,7 +73,7 @@ test(
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(TransportationAndLogistics.TechstackInNumbers);
 		const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
-		const testData = ['11\ntech specialists', '9\nyear-long', '91\n%', '67\n%'];
+		const testData = ['11\ntech specialists', '10\nyear-long', '91\n%', '67\n%'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}

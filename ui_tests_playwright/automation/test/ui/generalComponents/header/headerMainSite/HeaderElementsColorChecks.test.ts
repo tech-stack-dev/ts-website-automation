@@ -16,7 +16,7 @@ let buttonHeaderslist: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
-let iotForEnergyButton: Locator;
+// let iotForEnergyButton: Locator; // Uncomment after this button will be in header again
 let pricingButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
@@ -45,13 +45,13 @@ test.beforeEach(async () => {
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
-	iotForEnergyButton = header.getByTestId(Header.IotForEnergy);
+	// iotForEnergyButton = header.getByTestId(Header.IotForEnergy); // Uncomment after this button will be in header again
 	pricingButton = header.getByTestId(Header.Pricing);
 	buttonHeaderslist = [
 		industriesDropdownButton,
 		servicesDropdownButton,
 		companyDropdownButton,
-		iotForEnergyButton,
+		// iotForEnergyButton, // Uncomment after this button will be in header again
 		pricingButton,
 	];
 });

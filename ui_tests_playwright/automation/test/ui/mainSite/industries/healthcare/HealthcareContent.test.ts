@@ -67,7 +67,7 @@ test(
 	async () => {
 		const whatMakesOurTeamDifferentContainer = driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent);
 		const allBlockTitles = whatMakesOurTeamDifferentContainer.getByTestId(Container.BlockTitle);
-		const testData = ['9\nyears', '16\ntech experts', '11\nprojects', '67\n%'];
+		const testData = ['10\nyears', '16\ntech experts', '11\nprojects', '67\n%'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}
