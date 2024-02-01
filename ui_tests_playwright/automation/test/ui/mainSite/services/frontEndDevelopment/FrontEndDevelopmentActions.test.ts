@@ -102,7 +102,7 @@ test('Check redirects by LinkedIn buttons in "Our Front End Development Experts"
 	}
 });
 
-test('Check redirects by Blog buttons in "Our Front End Development Experts" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check redirects by Blog buttons in "Our Front End Development Experts" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1061', async () => {
 	const ourFrontEndExperts = driver.getByTestId(FrontEndDevelopment.OurExperts);
 	const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 	const blogButtons = ourFrontEndExperts.getByTestId(Buttons.Blog);
