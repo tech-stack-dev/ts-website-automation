@@ -14,7 +14,8 @@ class FormSteps {
 
 		await driver.executeFunc(async () => {
 			await driver.getByTestId(Buttons.Send).click();
-			await driver.getByTestId(Buttons.Close).waitFor({state: 'visible'});
+			const successModal = driver.locator('//div[@id="modal"]')
+			await successModal.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
 
