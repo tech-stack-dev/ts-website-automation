@@ -48,6 +48,7 @@ export default class Buttons {
 	static Twitter = 'Button-Twitter';
 	static GoodFirms = 'Button-GoodFirms';
 	static Clutch = 'Button-Clutch';
+	static DesignRush = 'Button-DesignRush';
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
