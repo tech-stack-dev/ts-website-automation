@@ -6,8 +6,6 @@ import { SocialMediaLinksEnum } from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
 
 export abstract class CareerSteps {
-	abstract switchLanguageViaHeader(language: string): Promise<void>;
-
 	abstract clickOnFilter(): Promise<void>;
 
 	abstract clickOnApply(): Promise<void>;

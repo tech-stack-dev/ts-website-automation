@@ -11,13 +11,13 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Sitemap));
 });
 
-test(qase(5476, 'Check title from the "Sitemap" page @Regression @Sitemap @TSWEB-1186'), async () => {
+test(qase(5476, 'Check title from the "Sitemap" page @desktop @mobile @Regression @Sitemap @TSWEB-1186'), async () => {
 	const infoContainer = driver.getByTestId(Sitemap.Info);
 	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Sitemap');
 });
 
 test(
-	qase(5477, 'Check the container title and number from the "Sitemap" page @Regression @Sitemap @TSWEB-1186'),
+	qase(5477, 'Check the container title and number from the "Sitemap" page @desktop @mobile @Regression @Sitemap @TSWEB-1186'),
 	async () => {
 		const containers = [
 			driver.getByTestId(Sitemap.CompanyPages),

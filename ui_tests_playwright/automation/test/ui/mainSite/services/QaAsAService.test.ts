@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5345, 'Check the Info container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'),
+	qase(5345, 'Check the Info container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'),
 	async () => {
 		const info = driver.getByTestId(QaAsAService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nQA as a Service');
@@ -28,7 +28,7 @@ test(
 test(
 	qase(
 		5352,
-		'Check the container titles and numbers from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check the container titles and numbers from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const containers = [
@@ -62,7 +62,7 @@ test(
 test(
 	qase(
 		5350,
-		'Check section numbers and titles in containers from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check section numbers and titles in containers from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const whoIsThisServiceFor = driver.getByTestId(QaAsAService.WhoIsThisServiceFor);
@@ -122,7 +122,7 @@ test(
 test(
 	qase(
 		5356,
-		'Check block and section titles in "Services" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check block and section titles in "Services" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const services = driver.getByTestId(QaAsAService.Services);
@@ -161,7 +161,7 @@ test(
 test(
 	qase(
 		5362,
-		'Check CTA button and redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check CTA button and redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
@@ -175,7 +175,7 @@ test(
 test(
 	qase(
 		4783,
-		'Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(QaAsAService.Faq);
@@ -188,7 +188,7 @@ test(
 test(
 	qase(
 		5360,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const ctaButtons = [

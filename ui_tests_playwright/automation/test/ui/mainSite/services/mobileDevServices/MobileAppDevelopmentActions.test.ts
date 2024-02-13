@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5216,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
@@ -41,7 +41,7 @@ test(
 test(
 	qase(
 		5241,
-		'Check redirect by links in "What Industries We Serve" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check redirect by links in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const whatIndustriesWeServeContainer = driver.getByTestId(MobileDevService.WhatIndustriesWeServe);
@@ -70,7 +70,7 @@ test(
 test(
 	qase(
 		5227,
-		'Check redirects by "Clutch Review" buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check redirects by "Clutch Review" buttons in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
@@ -90,7 +90,7 @@ test(
 test(
 	qase(
 		5251,
-		'Check carousel arrows clicks in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check carousel arrows clicks in "Mobile App Development Process" container from the "Mobile App Development" page @desktop @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
@@ -102,7 +102,7 @@ test(
 test(
 	qase(
 		5233,
-		'Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696 @TSWEB-945'
+		'Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696 @TSWEB-945'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct);
@@ -125,7 +125,7 @@ test(
 test(
 	qase(
 		5317,
-		'Check redirects by arrows in "Related Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check redirects by arrows in "Related Services" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(MobileDevService.RelatedServices);
@@ -150,7 +150,7 @@ test(
 test(
 	qase(
 		5246,
-		'Check sections expanding and collapsing in "FAQ" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check sections expanding and collapsing in "FAQ" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(MobileDevService.Faq);
@@ -163,7 +163,7 @@ test(
 test(
 	qase(
 		5270,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const ctaButtons = [

@@ -15,4 +15,5 @@ export default class CareerButtons {
 	
 	// Mobile
 	static FilterButton = 'FileButton-Filter';
+	static BurgerMenuButton = 'Button-BurgerMenu';
 }

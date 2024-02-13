@@ -10,7 +10,6 @@ import ContainerByClass from '../../../../components/container/ContainerByClass'
 import Navigation from '../../../../identifiers/career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
 import { descriptionSteps } from '../../../../steps/components/job/DescriptionSteps';
-import CareerButtons from '../../../../identifiers/career/CareerButtons';
 import { formSteps } from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
@@ -42,7 +41,7 @@ test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @Jo
 	await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await expect(driver.getByTestId(Job.AboutTheProductBlock)).toBeVisible();
-	await careerSteps.switchLanguageViaHeader('ua');
+	await careerSteps.switchLanguage('ua');
 	const applyPropositionWrapper = await containerSteps.getContainer(
 		ContainerByClass,
 		{ desktopLocator: ContainersCareer.JobPageApplyProposition }
@@ -92,14 +91,7 @@ test(
 		await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Reviews');
 		await expect(driver.getByTestId(Navigation.NavigationTab_ContactUs)).toHaveText('Contact us');
 
-		await careerSteps.clickOnBurgerMenu();
-		await expect(driver.getByTestId(CareerButtons.EnLanguageSwitcher)).toHaveClass(
-			/active-locale/
-		);
-
-		const uaButtonSwitcher = driver.getByTestId(CareerButtons.UaLanguageSwitcher);
-		await uaButtonSwitcher.click();
-		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+		await careerSteps.switchLanguage('ua');
 	}
 );
 

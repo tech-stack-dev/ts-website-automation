@@ -115,13 +115,7 @@ test(
 			/active-locale/
 		);
 
-		await careerSteps.clickOnBurgerMenu();
-
-		const uaButtonSwitcher = localeSwitcherBlock.getByTestId(CareerButtons.UaLanguageSwitcher).first();
-
-		await expect(uaButtonSwitcher).toBeVisible();
-		await uaButtonSwitcher.click();
-		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+		await careerSteps.switchLanguage('ua');
 	}
 );
 

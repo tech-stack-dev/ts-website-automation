@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5332,
-		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
@@ -33,7 +33,7 @@ test(
 test(
 	qase(
 		5328,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
@@ -51,7 +51,7 @@ test(
 test(
 	qase(
 		4779,
-		'Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
@@ -80,7 +80,7 @@ test(
 test(
 	qase(
 		5348,
-		'Check carousel arrows click in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check carousel arrows click in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @desktop @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportationAndLogisticsContainer = driver.getByTestId(
@@ -94,7 +94,7 @@ test(
 test(
 	qase(
 		5336,
-		'Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);
@@ -107,7 +107,7 @@ test(
 test(
 	qase(
 		5338,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ctaButtons = [

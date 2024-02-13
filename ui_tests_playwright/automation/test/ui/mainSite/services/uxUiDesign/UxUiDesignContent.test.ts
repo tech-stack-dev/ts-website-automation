@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4855, 'Check the Info container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'),
+	qase(4855, 'Check the Info container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'),
 	async () => {
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
@@ -29,7 +29,7 @@ test(
 test(
 	qase(
 		4871,
-		'Check the container titles and numbers from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check the container titles and numbers from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const containers = [
@@ -69,7 +69,7 @@ test(
 test(
 	qase(
 		4878,
-		'Check section numbers and titles in "Get Custom UX and UI Design Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section numbers and titles in "Get Custom UX and UI Design Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const getCustomUxUiContainer = driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices);
@@ -91,7 +91,7 @@ test(
 test(
 	qase(
 		4885,
-		'Check section titles in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weBuildUxUiForMobileWebContainer = driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb);
@@ -105,7 +105,7 @@ test(
 test(
 	qase(
 		4897,
-		'Check section titles and CTA button in "Our UI/UX Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles and CTA button in "Our UI/UX Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const ourUiUxServicesContainer = driver.getByTestId(UxUiDesign.OurUiUxServices);
@@ -134,7 +134,7 @@ test(
 test(
 	qase(
 		4906,
-		'Check section titles, image and CTA button`s title in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles, image and CTA button`s title in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
@@ -160,7 +160,7 @@ test(
 test(
 	qase(
 		4923,
-		'Check carousel section numbers and titles in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check carousel section numbers and titles in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
@@ -191,7 +191,7 @@ test(
 test(
 	qase(
 		4928,
-		'Check member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weNeverStopImprovingYourProductContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
@@ -224,7 +224,7 @@ test(
 test(
 	qase(
 		4934,
-		'Check section titles in "Our Approach" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "Our Approach" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(UxUiDesign.OurApproach);
@@ -238,7 +238,7 @@ test(
 test(
 	qase(
 		4940,
-		'Check section numbers and titles in "Design Thinking Process" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section numbers and titles in "Design Thinking Process" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const designThinkingProcessContainer = driver.getByTestId(UxUiDesign.DesignThinkingProcess);
@@ -261,7 +261,7 @@ test(
 test(
 	qase(
 		4946,
-		'Check section titles in "Related Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "Related Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
@@ -282,7 +282,7 @@ test(
 test(
 	qase(
 		4954,
-		'Check section titles in "FAQ" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "FAQ" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(UxUiDesign.Faq);

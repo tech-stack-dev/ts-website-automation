@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5272, 'Check Info container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'),
+	qase(5272, 'Check Info container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'),
 	async () => {
 		const info = driver.getByTestId(RenewableEnergy.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nRenewable Energy');
@@ -28,7 +28,7 @@ test(
 test(
 	qase(
 		5286,
-		'Check the container title and number from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check the container title and number from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const containers = [
@@ -64,7 +64,7 @@ test(
 test(
 	qase(
 		5281,
-		'Check block titles in "Techstack in Numbers" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check block titles in "Techstack in Numbers" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
@@ -78,7 +78,7 @@ test(
 test(
 	qase(
 		5291,
-		'Check section titles and numbers in "Who We Serve" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles and numbers in "Who We Serve" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const whoWeServeContainer = driver.getByTestId(RenewableEnergy.WhoWeServe);
@@ -100,7 +100,7 @@ test(
 test(
 	qase(
 		5300,
-		'Check block titles, section titles and CTA button in "Renewable Energy Software Development Services" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check block titles, section titles and CTA button in "Renewable Energy Software Development Services" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const renewableEnergySoftDevServContainer = driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ);
@@ -129,7 +129,7 @@ test(
 test(
 	qase(
 		5305,
-		'Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
@@ -150,7 +150,7 @@ test(
 test(
 	qase(
 		5308,
-		'Check section titles in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
@@ -173,7 +173,7 @@ test(
 test(
 	qase(
 		5313,
-		'Check section titles in "Why Choose Us?" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles in "Why Choose Us?" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
@@ -188,7 +188,7 @@ test(
 test(
 	qase(
 		5316,
-		'Check carousel sections and CTA button in "How We Operate at Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check carousel sections and CTA button in "How We Operate at Techstack" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
@@ -213,7 +213,7 @@ test(
 test(
 	qase(
 		5319,
-		'Check section titles and numbers in "Our Workflow" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles and numbers in "Our Workflow" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ourWorkflowContainer = driver.getByTestId(RenewableEnergy.OurWorkflow);
@@ -242,7 +242,7 @@ test(
 test(
 	qase(
 		5325,
-		'Check section titles in "FAQ" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check section titles in "FAQ" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(RenewableEnergy.Faq);

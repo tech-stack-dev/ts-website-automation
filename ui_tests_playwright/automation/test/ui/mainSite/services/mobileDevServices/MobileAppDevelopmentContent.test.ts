@@ -16,7 +16,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5258, 'Check the Info container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'),
+	qase(5258, 'Check the Info container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'),
 	async () => {
 		const info = driver.getByTestId(MobileDevService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nMobile App Development');
@@ -28,7 +28,7 @@ test(
 test(
 	qase(
 		5363,
-		'Check the container titles and numbers from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check the container titles and numbers from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const containers = [
@@ -70,7 +70,7 @@ test(
 test(
 	qase(
 		5276,
-		'Check section numbers and titles in "What You Get" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section numbers and titles in "What You Get" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const whatYouGetContainer = driver.getByTestId(MobileDevService.WhatYouGet);
@@ -89,7 +89,7 @@ test(
 test(
 	qase(
 		5282,
-		'Check block and section titles in "What We Do" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check block and section titles in "What We Do" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(MobileDevService.WhatWeDo);
@@ -124,7 +124,7 @@ test(
 test(
 	qase(
 		5287,
-		'Check section titles in "Mobile Application Development Technology Stack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles in "Mobile Application Development Technology Stack" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(MobileDevService.TechnologyStack);
@@ -138,7 +138,7 @@ test(
 test(
 	qase(
 		5299,
-		'Check section titles, image, and CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles, image, and CTA button in "Case Study by Techstack" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
@@ -158,7 +158,7 @@ test(
 test(
 	qase(
 		5294,
-		'Check section titles in "What Industries We Serve" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const WhatIndustriesWeServeContainer = driver.getByTestId(MobileDevService.WhatIndustriesWeServe);
@@ -178,7 +178,7 @@ test(
 test(
 	qase(
 		5304,
-		'Check section titles and images in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles and images in "Our Approach to Mobile App Development Services" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
@@ -196,7 +196,7 @@ test(
 test(
 	qase(
 		5310,
-		'Check carousel section numbers and titles in "Mobile App Development Process" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check carousel section numbers and titles in "Mobile App Development Process" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
@@ -213,7 +213,7 @@ test(
 test(
 	qase(
 		5314,
-		'Check section titles, member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles, member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct);
@@ -253,7 +253,7 @@ test(
 test(
 	qase(
 		5321,
-		'Check section titles, block title, and CTA button in "The Cost of Mobile App Development" container from the "Mobile App" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles, block title, and CTA button in "The Cost of Mobile App Development" container from the "Mobile App" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const theCostOfMobAppDevContainer = driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment);
@@ -279,7 +279,7 @@ test(
 test(
 	qase(
 		5324,
-		'Check section titles in "Related Services" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles in "Related Services" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(MobileDevService.RelatedServices);
@@ -301,7 +301,7 @@ test(
 test(
 	qase(
 		5327,
-		'Check section titles in "FAQ" container from the "Mobile App Development" page @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles in "FAQ" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(MobileDevService.Faq);

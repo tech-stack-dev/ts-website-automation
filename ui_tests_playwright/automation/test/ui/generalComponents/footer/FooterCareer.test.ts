@@ -1,4 +1,4 @@
-import { expect, Locator, test } from '@playwright/test';
+import {Locator} from '@playwright/test';
 import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -7,8 +7,11 @@ import Footer from '../../../../identifiers/Footer';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
+import ContainerByDataId from '../../../../components/container/ContainerByDataId';
 
 let footer: Locator;
+let socialBlock: Locator;
 const testDataProvider = [
 	UrlProvider.careerUrl(),
 	UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
@@ -19,6 +22,10 @@ const testDataProvider = [
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
+	socialBlock = await containerSteps.getContainer(ContainerByDataId, {
+		desktopLocator: Footer.FooterLinkDesktop,
+		mobileLocator: Footer.FooterLinkMobile
+	});
 });
 
 test(
@@ -126,7 +133,6 @@ test(
 test(
 	qase(5498, `Check the redirection for the social links on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
 	async () => {
-
 		const linkMap = new Map([
 			[Buttons.Behance, Links.Behance],
 			[Buttons.LinkedIn, Links.LinkedIn],
@@ -138,8 +144,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
-				let socialLinkButton = footer.getByTestId(entries[0]);
-				socialLinkButton = await socialLinkButton.nth(0).isVisible() ? socialLinkButton.nth(0) : socialLinkButton.nth(1);
+				let socialLinkButton = socialBlock.getByTestId(entries[0]);
 				
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
@@ -149,8 +154,7 @@ test(
 				await newPage.close();
 			}
 
-			let clutchButton = footer.getByTestId(Buttons.Clutch);
-			clutchButton = await clutchButton.nth(1).isVisible() ? clutchButton.nth(1) : clutchButton.nth(2);
+			let clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
 
 			const [newPage] = await Promise.all([
 				driver.DriverContext.waitForEvent('page'),
@@ -169,7 +173,6 @@ test(
 		`Check redirection to the Terms and Cookies Policy pages on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
 	),
 	async () => {
-
 		const linkMap = new Map([
 			[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 			[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
@@ -179,9 +182,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
-				let linkButton = driver.getByTestId(entries[0]);
-				linkButton = await linkButton.isVisible() ? linkButton : footer.getByTestId(entries[0]).nth(1);				
-				linkButton.click();
+				socialBlock.getByTestId(entries[0]).click();
 				await baseDriverSteps.checkUrl(entries[1]);
 				await baseDriverSteps.goToUrl(url);
 			}

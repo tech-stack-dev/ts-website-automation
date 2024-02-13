@@ -17,7 +17,7 @@ test.beforeAll(async () => {
 });
 
 test(
-	qase(5126, 'Check the Info container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'),
+	qase(5126, 'Check the Info container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'),
 	async () => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
@@ -29,7 +29,7 @@ test(
 test(
 	qase(
 		5132,
-		'Check the container titles and numbers from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check the container titles and numbers from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const containers = [
@@ -69,7 +69,7 @@ test(
 test(
 	qase(
 		5139,
-		'Check section numbers and titles in "IoT Engineering Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section numbers and titles in "IoT Engineering Solutions" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTEngineeringSolutionsContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions);
@@ -100,7 +100,7 @@ test(
 test(
 	qase(
 		5151,
-		'Check section numbers and titles in "Our IoT Engineering Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section numbers and titles in "Our IoT Engineering Services" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ourIoTEngineeringServicesContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices);
@@ -129,7 +129,7 @@ test(
 test(
 	qase(
 		5158,
-		'Check section titles and CTA button in "IoT Technology Stack by Layers" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section titles and CTA button in "IoT Technology Stack by Layers" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTTechnologyStackByLayersContainer = driver.getByTestId(
@@ -163,7 +163,7 @@ test(
 test(
 	qase(
 		5180,
-		'Check section numbers and titles, block title, image, and CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section numbers and titles, block title, image, and CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
@@ -202,7 +202,7 @@ test(
 test(
 	qase(
 		5167,
-		'Check section titles in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section titles in "Industry-specific IoT Solutions" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const industrySpecificIoTSolutionsContainer = driver.getByTestId(
@@ -225,7 +225,7 @@ test(
 test(
 	qase(
 		5174,
-		'Check carousel section numbers and titles, section and block titles, and CTA in "IoT Engineering Process" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check carousel section numbers and titles, section and block titles, and CTA in "IoT Engineering Process" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
@@ -274,7 +274,7 @@ test(
 test(
 	qase(
 		5185,
-		'Check section titles and award cards in "Our Approach to IoT Engineering" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section titles and award cards in "Our Approach to IoT Engineering" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ourApproachToIoTEngineeringContainer = driver.getByTestId(
@@ -294,7 +294,7 @@ test(
 test(
 	qase(
 		5194,
-		'Check member names and roles in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check member names and roles in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ourIoTEngineeringExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
@@ -317,7 +317,7 @@ test(
 test(
 	qase(
 		5200,
-		'Check section titles in "Related Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section titles in "Related Services" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
@@ -338,7 +338,7 @@ test(
 test(
 	qase(
 		5207,
-		'Check section titles in "FAQ" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check section titles in "FAQ" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);

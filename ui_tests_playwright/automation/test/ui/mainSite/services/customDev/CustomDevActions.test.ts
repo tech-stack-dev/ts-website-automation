@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5245,
-		'Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirect by link in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
@@ -38,7 +38,7 @@ test(
 test(
 	qase(
 		4858,
-		'Check redirects by arrows in "Custom Development Services We Provide" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirects by arrows in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
@@ -70,7 +70,7 @@ test(
 test(
 	qase(
 		5249,
-		'Check redirect by CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirect by CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
@@ -88,7 +88,7 @@ test(
 test(
 	qase(
 		5261,
-		'Check redirect by links in "Industries We Develop Software For" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirect by links in "Industries We Develop Software For" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
@@ -112,7 +112,7 @@ test(
 test(
 	qase(
 		5256,
-		'Check redirects by "Clutch Review" buttons in "Why Choose Techstack" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirects by "Clutch Review" buttons in "Why Choose Techstack" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
@@ -132,7 +132,7 @@ test(
 test(
 	qase(
 		5266,
-		'Check redirects by LinkedIn buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check redirects by LinkedIn buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
@@ -161,7 +161,7 @@ test(
 test(
 	qase(
 		5309,
-		'Check redirects by Blog buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672 @TSWEB-1061'
 	),
 	async () => {
 		const customDeveExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
@@ -187,7 +187,7 @@ test(
 test(
 	qase(
 		5279,
-		'Check carousel arrows clicks in "Custom Software Development Process" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check carousel arrows clicks in "Custom Software Development Process" container from the "Custom Software Development" page @desktop @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
@@ -199,7 +199,7 @@ test(
 test(
 	qase(
 		5271,
-		'Check sections expanding and collapsing in "FAQ" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check sections expanding and collapsing in "FAQ" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CustomDev.Faq);
@@ -212,7 +212,7 @@ test(
 test(
 	qase(
 		5274,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const ctaButtons = [

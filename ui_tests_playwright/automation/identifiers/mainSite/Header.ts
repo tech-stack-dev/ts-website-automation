@@ -10,6 +10,5 @@ export default class Header {
 	static Pricing = 'Header-Pricing';
 
 	// Mobile
-	// Replace to data-id
-	static ContainerMenu = '//div[contains(@class,"row url-container-touch")]'
+	static ContainerMenu = 'Container-Menu'
 }

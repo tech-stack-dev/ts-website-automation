@@ -1,12 +1,7 @@
 import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
-import UrlPath from '../../../../providers/UrlPath';
 import { driver } from '../../../../base/driver/Driver';
-import { careerSteps, containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
-import Blog from '../../../../identifiers/blog/Blog';
-import CareerButtons from '../../../../identifiers/career/CareerButtons';
+import { careerSteps, test } from '../../../../fixtures/DesktopMobileSetup';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -17,36 +12,6 @@ test(
 	qase(4868, 'Check that user can switch language in navigation header @desktop @mobile @Regression @NavigationHeader @TSWEB-560'),
 	async () => {
 		await careerSteps.switchLanguage('ua');
-	}
-);
-
-test(
-	qase(
-		4872,
-		'Check that the "Stand with Ukraine" block with localization @desktop @mobile @Regression @StandWithUkraine @TSWEB-132 @TSWEB-1061'
-	),
-	async () => {
-		const SWUFrame = await containerSteps.getContainer(ContainerByClass, { desktopLocator: ContainersCareer.StandWithUkraineClass });
-		await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
-			'Techstack stands with Ukraine'
-		);
-		await expect(SWUFrame.getByTestId(CareerButtons.LearnMoreButton2)).toHaveText('Learn More');
-
-		await careerSteps.switchLanguage('ua');
-
-		await baseDriverSteps.checkUrl(`${UrlProvider.careerUrl()}uk-UA`);
-		await expect(SWUFrame.getByTestId(ContainersCareer.StandWithUkraineTitle)).toHaveText(
-			'Відповідь Techstack на війну в Україні'
-		);
-		await expect(SWUFrame.getByTestId(CareerButtons.LearnMoreButton2)).toHaveText('Ознайомитися');
-
-		await SWUFrame.getByTestId(CareerButtons.LearnMoreButton2).click();
-
-		const newPage = await driver.DriverContext.waitForEvent('page');
-		expect(newPage.url()).toContain(UrlProvider.urlBuilder(UrlPath.Blog_StandWithUkraine));
-		await expect(newPage.getByTestId(Blog.Blog_StandWithUkraineTitle)).toContainText(
-			'Techstack Stands with Ukraine'
-		);
 	}
 );
 

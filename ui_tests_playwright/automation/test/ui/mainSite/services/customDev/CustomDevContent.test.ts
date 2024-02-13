@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5285,
-		'Check the Info container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check the Info container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const info = driver.getByTestId(CustomDev.Info);
@@ -31,7 +31,7 @@ test(
 test(
 	qase(
 		5289,
-		'Check container titles and numbers from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check container titles and numbers from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const containers = [
@@ -73,7 +73,7 @@ test(
 test(
 	qase(
 		5293,
-		'Check section titles in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles in "Techstack’s Strengths in Custom Software Development" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
@@ -91,7 +91,7 @@ test(
 test(
 	qase(
 		5296,
-		'Check section titles and numbers in "Custom Software Development for Your Product" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles and numbers in "Custom Software Development for Your Product" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
@@ -120,7 +120,7 @@ test(
 test(
 	qase(
 		5298,
-		'Check section titles and numbers, and CTA button in "Custom Development Services We Provide" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles and numbers, and CTA button in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
@@ -160,7 +160,7 @@ test(
 test(
 	qase(
 		5306,
-		'Check section titles and navigation bar in "Technology stack" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles and navigation bar in "Technology stack" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(CustomDev.TechnologyStack);
@@ -180,7 +180,7 @@ test(
 test(
 	qase(
 		5302,
-		'Check section titles, image and CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles, image and CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
@@ -202,7 +202,7 @@ test(
 test(
 	qase(
 		5312,
-		'Check section numbers and titles in "Industries We Develop Software For" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section numbers and titles in "Industries We Develop Software For" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
@@ -236,7 +236,7 @@ test(
 test(
 	qase(
 		4867,
-		'Check section titles in "Why Choose Techstack" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles in "Why Choose Techstack" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
@@ -255,7 +255,7 @@ test(
 test(
 	qase(
 		4782,
-		'Check award cards in "Why Choose Techstack" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check award cards in "Why Choose Techstack" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const whyChooseTechstackContainer = driver.getByTestId(CustomDev.WhyChooseTechstack);
@@ -267,7 +267,7 @@ test(
 test(
 	qase(
 		4789,
-		'Check section titles, member names and roles, and CTA button in "Custom Software Development Experts" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles, member names and roles, and CTA button in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
@@ -324,7 +324,7 @@ test(
 test(
 	qase(
 		4793,
-		'Check section titles and CTA button in "Our Tailored Collaboration and Pricing Models" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles and CTA button in "Our Tailored Collaboration and Pricing Models" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const ourTailoredCollaborationContainer = driver.getByTestId(
@@ -344,7 +344,7 @@ test(
 test(
 	qase(
 		4802,
-		'Check carousel section titles and numbers in "Custom Software Development Process" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check carousel section titles and numbers in "Custom Software Development Process" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const customSoftDevProcessContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentProcess);
@@ -365,7 +365,7 @@ test(
 test(
 	qase(
 		4810,
-		'Check section titles in "FAQ" container from the "Custom Software Development" page @Regression @CustomDev @TSWEB-672'
+		'Check section titles in "FAQ" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CustomDev.Faq);

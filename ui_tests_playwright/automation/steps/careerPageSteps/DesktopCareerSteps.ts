@@ -7,24 +7,6 @@ import { CareerSteps } from "./CareerSteps";
 import { driver } from '../../base/driver/Driver';
 
 class DesktopCareerSteps extends CareerSteps {
-    async switchLanguageViaHeader(language: string): Promise<void> {
-        const headerContainer = await containerSteps.getContainer(
-            ContainerByClass,
-            { desktopLocator: ContainersCareer.JobPageHeaderWrapper }
-        );
-        let switcher: any;
-        switch (language.toLowerCase()) {
-            case 'ua':
-                switcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
-                break;
-            case 'en':
-                switcher = headerContainer.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
-        }
-
-        await switcher.click();
-        await expect(switcher).toHaveClass(/active-locale/);
-    }
-
     async clickOnFilter(): Promise<void> {
         console.log('This step is skipped for desktop');
         return Promise.resolve();
@@ -41,15 +23,16 @@ class DesktopCareerSteps extends CareerSteps {
 
     async switchLanguage(language: string): Promise<void> {
         let switcher;
-        const parent = await containerSteps.getContainer(ContainerByClass, { desktopLocator: ContainersCareer.NavigationHeaderClass });
+        const parentIdentifier = await driver.getByTestId(ContainersCareer.NavigationHeaderClass).isVisible() ? ContainersCareer.NavigationHeaderClass : ContainersCareer.JobPageHeaderWrapper;
+        const parent = await containerSteps.getContainer(ContainerByClass, { desktopLocator: parentIdentifier });
 
         switch (language) {
             case 'ua': {
-                switcher = parent.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
+                switcher = parent.getByTestId(CareerButtons.UaLanguageSwitcher);
                 break;
             }
             case 'en': {
-                switcher = parent.Element.getByTestId(CareerButtons.EnLanguageSwitcher);
+                switcher = parent.getByTestId(CareerButtons.EnLanguageSwitcher);
                 break;
             }
             default: {

@@ -19,7 +19,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test(qase(4787, 'Check the Info container from the "About Us" page @mobile @Regression @AboutUs @TSWEB-1022'), async () => {
+test(qase(4787, 'Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'), async () => {
 	const info = driver.getByTestId(AboutUs.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
 	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');

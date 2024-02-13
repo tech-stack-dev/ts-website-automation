@@ -1,4 +1,4 @@
-import { Locator, expect, test } from '@playwright/test';
+import { Locator } from '@playwright/test';
 import { driver } from '../../../../../base/driver/Driver';
 import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
 import { ColorsEnum } from '../../../../../enum/ColorsEnum';
@@ -9,6 +9,8 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
 import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { buttonSteps, careerSteps, containerSteps, expect, test } from '../../../../../fixtures/DesktopMobileSetup';
+import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 let header: Locator;
 let logo: Locator;
@@ -40,7 +42,11 @@ const testDataProvider: string[] = [
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 
-	header = driver.getByTestId(Header.Container_Header);
+	const identifier = await containerSteps.getContainer(ContainerByDataId, {
+		desktopLocator: Header.Container_Header,
+		mobileLocator: Header.ContainerMenu
+	});
+	header = driver.getByTestId(identifier.ComponentContext);
 	logo = header.getByTestId(Buttons.Logo);
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
@@ -106,23 +112,17 @@ test(
 test(
 	qase(
 		5505,
-		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
+		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
+			await careerSteps.clickOnBurgerMenu();
+
 			for (const button of buttonHeaderslist) {
-				await button.click();
-				await logo.hover(); // To remove hover from button
-				await driver.Page.waitForTimeout(1000); // Wait for changing color
-
-				const actualColor = await button.evaluate(async (el) => {
-					return getComputedStyle(el).backgroundColor;
-				});
-
-				expect(actualColor).toBe(ColorsEnum.Yellow_FFC600);
+				await buttonSteps.elementsHeaderColorCheck(button, ColorsEnum.Yellow_FFC600);
 			}
 		}
 	}

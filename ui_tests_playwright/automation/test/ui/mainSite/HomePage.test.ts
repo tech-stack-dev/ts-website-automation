@@ -1,4 +1,3 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
 import Container from '../../../identifiers/Container';
 import HomePage from '../../../identifiers/mainSite/pages/HomePage';
@@ -13,6 +12,8 @@ import MainSiteLinks from '../../../identifiers/mainSite/MainSiteLinks';
 import Links from '../../../preconditionsData/links/Links';
 import BlogTagPath from '../../../providers/BlogTagPath';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {containerSteps, test, expect} from '../../../fixtures/DesktopMobileSetup';
+import ContainerByDataId from '../../../components/container/ContainerByDataId';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -21,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5011,
-		'Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
+		'Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
 	),
 	async () => {
 		const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
@@ -34,13 +35,13 @@ test(
 	}
 );
 
-test(qase(5018, 'Check the Info container from the "Home" page @Regression @HomePage @TSWEB-1006'), async () => {
+test(qase(5018, 'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'), async () => {
 	const infoContainer = driver.getByTestId(HomePage.Info);
 	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
 });
 
 test(
-	qase(5034, 'Check the container titles and numbers from the "Home" page @Regression @HomePage @TSWEB-1006'),
+	qase(5034, 'Check the container titles and numbers from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const containers = [
 			driver.getByTestId(HomePage.IndustriesWeServe),
@@ -71,7 +72,7 @@ test(
 test(
 	qase(
 		5043,
-		'Check section titles in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check section titles in "Industries we serve" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const industriesWeServe = driver.getByTestId(HomePage.IndustriesWeServe);
@@ -85,7 +86,7 @@ test(
 test(
 	qase(
 		5062,
-		'Check redirects by blocks in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check redirects by blocks in "Industries we serve" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
@@ -109,7 +110,7 @@ test(
 );
 
 test(
-	qase(5049, 'Check section titles in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006'),
+	qase(5049, 'Check section titles in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const whatWeDo = driver.getByTestId(HomePage.WhatWeDo);
 		const allBlockTitles = whatWeDo.getByTestId(Container.BlockTitle);
@@ -134,7 +135,7 @@ test(
 test(
 	qase(
 		5130,
-		'Check redirects by arrows in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check redirects by arrows in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
@@ -162,7 +163,7 @@ test(
 test(
 	qase(
 		5055,
-		'Check redirect by "LinkedIn Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check redirect by "LinkedIn Review" buttons in "Partner testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
@@ -188,7 +189,7 @@ test(
 test(
 	qase(
 		5076,
-		'Check redirect by "Clutch Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check redirect by "Clutch Review" buttons in "Partner testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
@@ -216,7 +217,7 @@ test(
 test(
 	qase(
 		5069,
-		'Check images in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check images in "Working with Businesses Worldwide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
@@ -224,14 +225,22 @@ test(
 
 		await baseDriverSteps.checkImagesVisibility(bigNumberImages, 3);
 
-		await expect(workingWithBusinessesContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
+		const mobileMaps = [MainSiteImages.NorthAmericaMap, MainSiteImages.EuropeMap, MainSiteImages.AustraliaMap];
+		mobileMaps.forEach(async (mobileMap) => {
+			const mapIdentifiers = await containerSteps.getContainer(ContainerByDataId, {
+				desktopLocator: MainSiteImages.CompleteMap,
+				mobileLocator: mobileMap
+			});
+
+			await expect(mapIdentifiers.Element).toBeVisible();
+		})
 	}
 );
 
 test(
 	qase(
 		5090,
-		'Check redirect by link in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check redirect by link in "Working with Businesses Worldwide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
@@ -244,7 +253,7 @@ test(
 test(
 	qase(
 		5084,
-		'Check partner logos in "Our partners" container from the "Home" page @Regression @HomePage @TSWEB-1006'
+		'Check partner logos in "Our partners" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const ourPartnersContainer = driver.getByTestId(HomePage.OurPartners);
@@ -257,7 +266,7 @@ test(
 test(
 	qase(
 		5095,
-		'Check "See All News" button from the "Company insights" container on the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
+		'Check "See All News" button from the "Company insights" container on the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
 	),
 	async () => {
 		const companyInsightsContainer = driver.getByTestId(HomePage.CompanyInsights);
