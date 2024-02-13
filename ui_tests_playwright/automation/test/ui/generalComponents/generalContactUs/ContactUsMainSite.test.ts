@@ -26,7 +26,7 @@ test.beforeEach(async () => {
 	}
 
 	header = await containerSteps.getContainer(ContainerByDataId, identifiers);
-	contactUsButton = header.getByTestId(Buttons.ContactUs);
+	contactUsButton = header.getByTestId(Buttons.ContactUs).last();
 });
 
 const urlList: Array<string> = [
@@ -65,12 +65,12 @@ test(
 );
 
 test(
-	qase(5457, `Check redirection by "Contact Us" button on all pages @desktop @Regression @ContactUs @TSWEB-532`),
+	qase(5457, `Check redirection by "Contact Us" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
 			await careerSteps.clickOnBurgerMenu();
-			await contactUsButton.last().click();
+			await contactUsButton.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}
 	}
