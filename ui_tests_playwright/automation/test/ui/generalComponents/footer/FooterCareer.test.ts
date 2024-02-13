@@ -140,6 +140,7 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
+		await driver.executeFunc(async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
@@ -163,7 +164,7 @@ test(
 			await newPage.waitForLoadState('networkidle');
 			expect(newPage.url()).toContain(Links.Clutch);
 			await newPage.close();
-		}
+		}}, 3);
 	}
 );
 
