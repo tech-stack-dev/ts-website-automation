@@ -7,7 +7,6 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 import BackEndServices from '../../../../../identifiers/mainSite/pages/services/BackEndServices';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
@@ -155,7 +154,20 @@ test(
 	async () => {
 		const techArsenalContainer = driver.getByTestId(BackEndServices.TechArsenal);
 		const allSectionTitles = techArsenalContainer.getByTestId(Container.SectionTitle);
-		await expect(allSectionTitles).toHaveText(TechnologyStackData.BackEndTab);
+		const BackEndTabData = [
+			'Programming\nLanguages',
+			'Server-Side\nTechnologies',
+			'Database\nTechnologies',
+			'Messaging',
+			'API',
+			'Caching',
+			'Unit testing',
+			'Cloud Services\nand Deployment\nPlatforms',
+			'SDLC enabling\ntechnologies',
+			'Servers',
+			'Scripting\nand Miscellaneous',
+		];
+		await expect(allSectionTitles).toHaveText(BackEndTabData);
 	}
 );
 
