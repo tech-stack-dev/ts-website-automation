@@ -108,7 +108,6 @@ test(
 		const blogButtons = ourLeadingCloudExperts.getByTestId(Buttons.Blog);
 
 		const buttonUrlMap = new Map([
-			/* [blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`], */
 			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
 			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
 			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VladyslavUshakov}`],

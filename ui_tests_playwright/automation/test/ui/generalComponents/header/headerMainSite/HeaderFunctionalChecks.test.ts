@@ -33,9 +33,7 @@ test.beforeEach(async () => {
 	const identifiers = await containerSteps.getContainer(ContainerByDataId, {
 		desktopLocator: Header.Container_Header,
 		mobileLocator: Header.ContainerMenu
-		/* mobileLocator: '//div[@class="row url-container-touch animated slideInUp faster"]' */
 	});
-	// header = driver.getByTestId(Header.Container_Header);
 	header = driver.getByTestId(identifiers.ComponentContext);
 });
 
