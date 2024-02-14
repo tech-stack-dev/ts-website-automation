@@ -1,6 +1,7 @@
 import {driver} from '../../base/driver/Driver';
 import Buttons from '../../identifiers/Buttons';
 import Input from '../../identifiers/Input';
+import Modal from '../../identifiers/Modal';
 import {sessionValue} from '../../runtimeVariables/SessionValue';
 
 class FormSteps {
@@ -14,7 +15,7 @@ class FormSteps {
 
 		await driver.executeFunc(async () => {
 			await driver.getByTestId(Buttons.Send).click();
-			const successModal = driver.locator('//div[@id="modal"]');
+			const successModal = driver.getByTestId(Modal.ApplyForAJob);
 			await successModal.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
