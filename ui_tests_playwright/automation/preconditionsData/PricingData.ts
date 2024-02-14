@@ -26,8 +26,8 @@ export default class PricingData {
 
 	public static async getPricingTabs(container: Locator) {
 		const navigationTabs = [
+			container.getByTestId(MainSiteButtons.Pricing_FullCycle),
 			container.getByTestId(MainSiteButtons.Pricing_ExtendedTeam),
-			container.getByTestId(MainSiteButtons.Pricing_FullCycle), // To click this item last because it selected by default on page
 		];
 
 		return navigationTabs;
