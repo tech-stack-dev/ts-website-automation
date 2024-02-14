@@ -90,13 +90,13 @@ export default class TechnologyStackData {
 
 	public static async getTechnologyStackTabs(container: Locator) {
 		const navigationTabs = [
+			container.getByTestId(MainSiteButtons.Technology_BackEnd),
 			container.getByTestId(MainSiteButtons.Technology_FrontEnd),
 			container.getByTestId(MainSiteButtons.Technology_Mobile),
 			container.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
 			container.getByTestId(MainSiteButtons.Technology_AiMlDataScience),
 			container.getByTestId(MainSiteButtons.Technology_EmbededDevelopment),
 			container.getByTestId(MainSiteButtons.Technology_QualityAssurance),
-			container.getByTestId(MainSiteButtons.Technology_BackEnd), // To click this item last because it selected by default on page
 		];
 
 		return navigationTabs;
