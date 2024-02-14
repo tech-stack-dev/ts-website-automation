@@ -85,7 +85,7 @@ test(
 		await driver.getByTestId(Career.SearchButton).click();
 		await driver.getByTestId(Career.SarchCareerField).clear();
 		const careerListAfter = await (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).all();
-		expect(careerListBefore).toMatchObject(careerListAfter);
+		expect(careerListBefore).toEqual(careerListAfter);
 	}
 );
 
