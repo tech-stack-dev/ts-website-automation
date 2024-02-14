@@ -88,7 +88,7 @@ test(
 		const careerListAfter = await (
 			await containerSteps.getContainer(ContainerByClass, {desktopLocator: Career.CareerList})
 		).all();
-		expect(careerListBefore).toMatchObject(careerListAfter);
+		expect(careerListBefore).toEqual(careerListAfter);
 	}
 );
 
