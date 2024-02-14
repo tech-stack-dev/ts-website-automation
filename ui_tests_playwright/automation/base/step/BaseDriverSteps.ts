@@ -109,9 +109,9 @@ class BaseDriverSteps {
 			const currentBlock = containerBlocks.nth(tab);
 			const tabSectionTitles = testDataSectionTitles[tab];
 
-			await expect(currentBlock).toHaveClass(/--active/);
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
+			await expect(currentBlock).toHaveClass(/--active/);
 			await expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 		}
 	}
