@@ -60,9 +60,10 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_BackEnd = 'Button-BackEnd';
 	static Technology_FrontEnd = 'Button-FrontEnd';
 	static Technology_Mobile = 'Button-Mobile';
-	static Technology_Iot = 'Button-IoT';
 	static Technology_DevOpsCloud = 'Button-DevopsCloud';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
+	static Technology_EmbededDevelopment = 'Button-IoT';
+	static Technology_QualityAssurance = 'Button-QA';
 
 	// Pricing Tabs
 	static Pricing_FullCycle = 'NavigationTab-FullCycle';

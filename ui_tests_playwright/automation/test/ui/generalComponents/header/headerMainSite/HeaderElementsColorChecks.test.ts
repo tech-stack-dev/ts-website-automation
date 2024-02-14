@@ -16,8 +16,16 @@ let buttonHeaderslist: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
+// let iotForEnergyButton: Locator; // Uncomment after this button will be in header again
 let pricingButton: Locator;
 
+const pagesWithWhiteHeader: string[] = [
+	UrlProvider.webSiteUrl(),
+	companyUrl[CompanyEnum.CaseStudies],
+	companyUrl[CompanyEnum.Blog],
+	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
+	UrlProvider.urlBuilder(UrlPath.Sitemap),
+];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.Healthcare),
@@ -37,8 +45,15 @@ test.beforeEach(async () => {
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
+	// iotForEnergyButton = header.getByTestId(Header.IotForEnergy); // Uncomment after this button will be in header again
 	pricingButton = header.getByTestId(Header.Pricing);
-	buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
+	buttonHeaderslist = [
+		industriesDropdownButton,
+		servicesDropdownButton,
+		companyDropdownButton,
+		// iotForEnergyButton, // Uncomment after this button will be in header again
+		pricingButton,
+	];
 });
 
 test(
@@ -52,11 +67,7 @@ test(
 					return getComputedStyle(el).backgroundColor;
 				});
 
-				if (
-					url === UrlProvider.webSiteUrl() ||
-					url === companyUrl[CompanyEnum.CaseStudies] ||
-					url === UrlProvider.urlBuilder(UrlPath.CookiesPolicy)
-				) {
+				if (pagesWithWhiteHeader.includes(url)) {
 					expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
 				} else {
 					expect(actualColor).toBe(ColorsEnum.Grey_434343);
@@ -82,11 +93,7 @@ test(
 					return getComputedStyle(el).backgroundColor;
 				});
 
-				if (
-					url === UrlProvider.webSiteUrl() ||
-					url === companyUrl[CompanyEnum.CaseStudies] ||
-					url === UrlProvider.urlBuilder(UrlPath.CookiesPolicy)
-				) {
+				if (pagesWithWhiteHeader.includes(url)) {
 					expect(actualColor).toBe(ColorsEnum.Grey_Hover_D3D4D4);
 				} else {
 					expect(actualColor).toBe(ColorsEnum.Grey_Hover_2E3032);

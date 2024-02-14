@@ -13,6 +13,7 @@ import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchRevie
 import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {Environment} from '../../../../providers/EnvProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
@@ -306,7 +307,7 @@ test(
 		const ourPeopleBlock = driver.getByTestId(AboutUs.OurPeople);
 
 		await ourPeopleBlock.getByTestId(MainSiteButtons.JoinUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
+		await baseDriverSteps.checkUrl(UrlProvider.careerUrl(Environment.Production));
 	}
 );
 

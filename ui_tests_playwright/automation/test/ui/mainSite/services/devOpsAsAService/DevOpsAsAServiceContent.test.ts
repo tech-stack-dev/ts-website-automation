@@ -142,7 +142,7 @@ test(
 		const technologyStackContainer = driver.getByTestId(DevOpsAsAService.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 
-		await expect(allSectionTitles).toHaveText(TechnologyStackData.DevOpsAndCloudTab);
+		await expect(allSectionTitles).toHaveText(TechnologyStackData.CloudAndDevOpsTab);
 	}
 );
 

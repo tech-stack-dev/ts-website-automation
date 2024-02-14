@@ -279,15 +279,11 @@ test(
 
 		const memberCards = devExpertsContainer.getByTestId(Container.MemberCard);
 
-		const numOfMembers = 7;
+		const numOfMembers = 6;
 
 		await expect(memberCards).toHaveCount(numOfMembers);
 
 		const expectedMemberCardsText: {name: string; role: string}[] = [
-			{
-				name: ExpertNames.IvanIeremenko,
-				role: 'CEO, Software Architect,\nRuns critical initiatives that make products grow',
-			},
 			{name: ExpertNames.OleksiiSvystun, role: 'CTO, Software Architect,\nElaborates on the technology strategy'},
 			{
 				name: ExpertNames.VitaliiDolotov,

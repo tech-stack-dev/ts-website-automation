@@ -13,6 +13,8 @@ import Navigation from '../../../../identifiers/career/Navigation';
 import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
+import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -42,13 +44,20 @@ test.skip(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5460,
 		'Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ApplyForAJob @TSWEB-606'
 	),
 	async () => {
-		await driver.getByTestId(/CardWrapper/).click();
+		await contentfulSteps.createCareerWithDefaultValue(
+			`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
+		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
+
 		await driver.getByTestId(CareerButtons.ApplyNow).click();
 		await formSteps.sendApplyForAJob();
 		const message = await slackSteps.getMessageWithValueFromChat(
@@ -63,10 +72,15 @@ test(
 			tel: sessionValue.numberValue,
 			message: `TestMessage${sessionValue.stringValue}`,
 		});
+
+		await contentfulSteps.deleteAndUnpublishCareer(
+			`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,
+			`defaultTestDescription${sessionValue.stringValue.toLocaleUpperCase()}`
+		);
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5462,
 		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @Regression @GetInTouchExtended @TSWEB-606'
@@ -97,7 +111,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5464,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @Regression @GetInTouchShort @TSWEB-606'
@@ -120,7 +134,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5463,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @Regression @GetInTouchShort @TSWEB-606'

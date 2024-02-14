@@ -168,7 +168,6 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(MobileDevService.TechnologyStack).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct)
 				.getByTestId(MainSiteButtons.RequestAQuote),
