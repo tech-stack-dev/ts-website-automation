@@ -1,18 +1,18 @@
-import { Locator } from '@playwright/test';
-import { driver } from '../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { CompanyEnum } from '../../../../../enum/CompanyEnum';
-import { ServicesEnum } from '../../../../../enum/ServicesEnum';
+import {Locator} from '@playwright/test';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {CompanyEnum} from '../../../../../enum/CompanyEnum';
+import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import { industryUrl, serviceUrl, companyUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import {industryUrl, serviceUrl, companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import { IndustriesEnum } from '../../../../../enum/IndustriesEnum';
+import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import Links from '../../../../../preconditionsData/links/Links';
 import {Environment} from '../../../../../providers/EnvProvider';
-import { careerSteps, containerSteps, test } from '../../../../../fixtures/DesktopMobileSetup';
+import {careerSteps, containerSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 let header: Locator;
@@ -32,7 +32,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	const identifiers = await containerSteps.getContainer(ContainerByDataId, {
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu
+		mobileLocator: Header.ContainerMenu,
 	});
 	header = driver.getByTestId(identifiers.ComponentContext);
 });
@@ -68,7 +68,7 @@ test(
 
 			for (const [element, industryUrl] of industriesList) {
 				await careerSteps.clickOnBurgerMenu();
-				
+
 				await header.getByTestId(Header.Industries).click();
 				await header.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(industryUrl);
@@ -151,7 +151,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			
+
 			await careerSteps.clickOnBurgerMenu();
 
 			await header.getByTestId(Header.Pricing).click();
@@ -169,7 +169,7 @@ test.skip(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			
+
 			await careerSteps.clickOnBurgerMenu();
 
 			await header.getByTestId(Header.IotForEnergy).click();

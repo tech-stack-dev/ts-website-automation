@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import {Locator, Page} from '@playwright/test';
 import BaseComponent from '../../base/component/BaseComponent';
 
 export default class ContainerByDataId extends BaseComponent {

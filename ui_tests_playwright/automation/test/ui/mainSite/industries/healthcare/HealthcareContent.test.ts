@@ -7,24 +7,30 @@ import Healthcare from '../../../../../identifiers/mainSite/pages/industries/Hea
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { containerSteps, test, expect } from '../../../../../fixtures/DesktopMobileSetup';
+import {containerSteps, test, expect} from '../../../../../fixtures/DesktopMobileSetup';
 import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test(qase(5149, 'Check Info container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'), async () => {
-	const info = driver.getByTestId(Healthcare.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
-	await expect(info.getByTestId(Container.Title)).toHaveText(
-		'Software Development\nSolutions For\nthe Healthcare Industry'
-	);
-	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
-});
+test(
+	qase(5149, 'Check Info container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'),
+	async () => {
+		const info = driver.getByTestId(Healthcare.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
+		await expect(info.getByTestId(Container.Title)).toHaveText(
+			'Software Development\nSolutions For\nthe Healthcare Industry'
+		);
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+	}
+);
 
 test(
-	qase(5156, 'Check the container title and number from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'),
+	qase(
+		5156,
+		'Check the container title and number from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent),
@@ -244,11 +250,11 @@ test(
 	),
 	async () => {
 		const mobileMaps = [MainSiteImages.NorthAmericaMap, MainSiteImages.EuropeMap];
-		
+
 		mobileMaps.forEach(async (mobileMap) => {
 			const mapIdentifiers = await containerSteps.getContainer(ContainerByDataId, {
 				desktopLocator: MainSiteImages.CompleteMap,
-				mobileLocator: mobileMap
+				mobileLocator: mobileMap,
 			});
 
 			await expect(mapIdentifiers.Element).toBeVisible();

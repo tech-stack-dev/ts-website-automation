@@ -35,13 +35,19 @@ test(
 	}
 );
 
-test(qase(5018, 'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'), async () => {
-	const infoContainer = driver.getByTestId(HomePage.Info);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
-});
+test(
+	qase(5018, 'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
+	async () => {
+		const infoContainer = driver.getByTestId(HomePage.Info);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
+	}
+);
 
 test(
-	qase(5034, 'Check the container titles and numbers from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
+	qase(
+		5034,
+		'Check the container titles and numbers from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(HomePage.IndustriesWeServe),
@@ -110,7 +116,10 @@ test(
 );
 
 test(
-	qase(5049, 'Check section titles in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
+	qase(
+		5049,
+		'Check section titles in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
 	async () => {
 		const whatWeDo = driver.getByTestId(HomePage.WhatWeDo);
 		const allBlockTitles = whatWeDo.getByTestId(Container.BlockTitle);
@@ -229,11 +238,11 @@ test(
 		mobileMaps.forEach(async (mobileMap) => {
 			const mapIdentifiers = await containerSteps.getContainer(ContainerByDataId, {
 				desktopLocator: MainSiteImages.CompleteMap,
-				mobileLocator: mobileMap
+				mobileLocator: mobileMap,
 			});
 
 			await expect(mapIdentifiers.Element).toBeVisible();
-		})
+		});
 	}
 );
 

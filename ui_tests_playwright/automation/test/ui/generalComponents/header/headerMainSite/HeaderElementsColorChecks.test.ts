@@ -1,19 +1,17 @@
-import { Locator } from '@playwright/test';
-import { driver } from '../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
-import { ColorsEnum } from '../../../../../enum/ColorsEnum';
-import { CompanyEnum } from '../../../../../enum/CompanyEnum';
+import {Locator} from '@playwright/test';
+import {driver} from '../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
+import {ColorsEnum} from '../../../../../enum/ColorsEnum';
+import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import { companyUrl } from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Buttons from '../../../../../identifiers/Buttons';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
-import { buttonSteps, careerSteps, containerSteps, expect, test } from '../../../../../fixtures/DesktopMobileSetup';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {buttonSteps, careerSteps, containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
 import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 let header: Locator;
-let logo: Locator;
 let buttonHeaderslist: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
@@ -44,10 +42,9 @@ test.beforeEach(async () => {
 
 	const identifier = await containerSteps.getContainer(ContainerByDataId, {
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu
+		mobileLocator: Header.ContainerMenu,
 	});
 	header = driver.getByTestId(identifier.ComponentContext);
-	logo = header.getByTestId(Buttons.Logo);
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
@@ -63,7 +60,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5504, `Check buttons background color in the "Header" on the all pages @desktop @Regression @Header @TSWEB-656`),
+	qase(
+		5504,
+		`Check buttons background color in the "Header" on the all pages @desktop @Regression @Header @TSWEB-656`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);

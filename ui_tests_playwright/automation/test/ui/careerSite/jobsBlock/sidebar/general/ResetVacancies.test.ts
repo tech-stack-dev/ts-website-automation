@@ -1,21 +1,21 @@
-import { driver } from '../../../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../../../base/step/BaseDriverSteps';
-import { SeniorityLevelsEnum } from '../../../../../../enum/tag/SeniorityLevelsEnum';
-import { TagsEnum } from '../../../../../../enum/tag/TagsEnum';
+import {driver} from '../../../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
+import {SeniorityLevelsEnum} from '../../../../../../enum/tag/SeniorityLevelsEnum';
+import {TagsEnum} from '../../../../../../enum/tag/TagsEnum';
 import ContainersCareer from '../../../../../../identifiers/career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
-import { sessionValue } from '../../../../../../runtimeVariables/SessionValue';
+import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
 import TagsCareer from '../../../../../../identifiers/career/TagsCareer';
 import CareerButtons from '../../../../../../identifiers/career/CareerButtons';
-import { DirectionsEnum } from '../../../../../../enum/tag/DirectionsEnum';
-import { careerSteps, containerSteps, expect, test } from '../../../../../../fixtures/DesktopMobileSetup';
+import {DirectionsEnum} from '../../../../../../enum/tag/DirectionsEnum';
+import {careerSteps, containerSteps, expect, test} from '../../../../../../fixtures/DesktopMobileSetup';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
 import Career from '../../../../../../identifiers/career/pages/Career';
-import { contentfulSteps } from '../../../../../../steps/contentful/ContentfulSteps';
-import { contentfulUtils } from '../../../../../../utils/ContentfulUtils';
-import { playwrightUtils } from '../../../../../../utils/PlaywrightUtils';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
-import { IContainerOptions } from '../../../../../../steps/components/container/ContainerSteps';
+import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
+import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
+import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {IContainerOptions} from '../../../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -63,18 +63,18 @@ for (const testData of testDataProvider) {
 
 			const identifiers: IContainerOptions = {
 				desktopLocator: Career.CareerMainBody,
-				mobileLocator: Career.FilterList
-			}
+				mobileLocator: Career.FilterList,
+			};
 
 			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, identifiers);
 			const filterGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				{ desktopLocator: ContainersCareer.FilterGroupWrapper },
+				{desktopLocator: ContainersCareer.FilterGroupWrapper},
 				careerMainContainer
 			);
 			const activeTagsGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				{ desktopLocator: ContainersCareer.ActiveTagsGroupWrapper },
+				{desktopLocator: ContainersCareer.ActiveTagsGroupWrapper},
 				careerMainContainer
 			);
 
@@ -88,7 +88,7 @@ for (const testData of testDataProvider) {
 				await expect(activeTag).toHaveClass(/active-tag/);
 			}
 
-			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({ timeout: 5000 });
+			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
 			testData.tagList.forEach(async (tag) => {
 				playwrightUtils.expectWithRetries(async () => {
 					const filterTag = filterGroupContainer.getByTestId(tag);

@@ -10,5 +10,5 @@ export default class Header {
 	static Pricing = 'Header-Pricing';
 
 	// Mobile
-	static ContainerMenu = 'Container-Menu'
+	static ContainerMenu = 'Container-Menu';
 }

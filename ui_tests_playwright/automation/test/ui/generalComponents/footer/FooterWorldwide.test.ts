@@ -1,12 +1,12 @@
-import { expect, Locator, test } from '@playwright/test';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
-import { driver } from '../../../../base/driver/Driver';
+import {expect, Locator, test} from '@playwright/test';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
-import { companyUrl, serviceUrl, industryUrl } from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
 import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
 import {ServicesEnum} from '../../../../enum/ServicesEnum';
@@ -116,7 +116,10 @@ test(
 );
 
 test(
-	qase(5487, `Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
+	qase(
+		5487,
+		`Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -127,7 +130,10 @@ test(
 );
 
 test(
-	qase(5488, `Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`),
+	qase(
+		5488,
+		`Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -148,7 +154,10 @@ test(
 );
 
 test(
-	qase(5492, `Check the redirection for the Services block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
+	qase(
+		5492,
+		`Check the redirection for the Services block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -178,7 +187,10 @@ test(
 );
 
 test(
-	qase(5491, `Check the redirection for the Company block on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`),
+	qase(
+		5491,
+		`Check the redirection for the Company block on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
+	),
 	async () => {
 		const companyList = new Map([
 			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
@@ -203,7 +215,10 @@ test(
 );
 
 test(
-	qase(5486, `Check the redirection by the "Contact us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`),
+	qase(
+		5486,
+		`Check the redirection by the "Contact us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -213,31 +228,37 @@ test(
 	}
 );
 
-test(qase(5490, `Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`), async () => {
-	const linkMap = new Map([
-		[Buttons.LinkedIn, Links.LinkedIn],
-		[Buttons.Facebook, Links.Facebook],
-		[Buttons.Instagram, Links.Instagram],
-		[Buttons.Behance, Links.Behance],
-		[Buttons.Dribbble, Links.Dribbble],
-		[Buttons.Twitter, Links.Twitter],
-		[Buttons.GoodFirms, Links.GoodFirms],
-		[Buttons.Clutch, Links.Clutch],
-	]);
+test(
+	qase(
+		5490,
+		`Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
+	async () => {
+		const linkMap = new Map([
+			[Buttons.LinkedIn, Links.LinkedIn],
+			[Buttons.Facebook, Links.Facebook],
+			[Buttons.Instagram, Links.Instagram],
+			[Buttons.Behance, Links.Behance],
+			[Buttons.Dribbble, Links.Dribbble],
+			[Buttons.Twitter, Links.Twitter],
+			[Buttons.GoodFirms, Links.GoodFirms],
+			[Buttons.Clutch, Links.Clutch],
+		]);
 
-	for (const url of testDataProvider) {
-		await baseDriverSteps.goToUrl(url);
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
 
-		for (const entries of linkMap.entries()) {
-			const [newPage] = await Promise.all([
-				driver.DriverContext.waitForEvent('page'),
-				await footer.getByTestId(entries[0]).click(),
-			]);
-			expect(newPage.url().includes(entries[1])).toBeTruthy();
-			await newPage.close();
+			for (const entries of linkMap.entries()) {
+				const [newPage] = await Promise.all([
+					driver.DriverContext.waitForEvent('page'),
+					await footer.getByTestId(entries[0]).click(),
+				]);
+				expect(newPage.url().includes(entries[1])).toBeTruthy();
+				await newPage.close();
+			}
 		}
 	}
-});
+);
 
 test(
 	qase(

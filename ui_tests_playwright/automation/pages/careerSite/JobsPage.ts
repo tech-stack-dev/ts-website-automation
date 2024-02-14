@@ -9,7 +9,9 @@ export default class JobsPage extends BasePage {
 	}
 
 	public async getDropdownByName(name: string) {
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, {desktopLocator: Career.CareerMainBody});
+		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, {
+			desktopLocator: Career.CareerMainBody,
+		});
 		return careerMainContainer.locator(`//div[@class='group-title' and text()='${name}']//ancestor::span`);
 	}
 }

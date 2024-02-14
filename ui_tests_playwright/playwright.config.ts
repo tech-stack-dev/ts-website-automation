@@ -1,8 +1,8 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
+import {PlaywrightTestConfig, devices} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
-import { QaseAwsSecret } from './automation/providers/QaseAwsSecret';
+import {QaseAwsSecret} from './automation/providers/QaseAwsSecret';
 import EnvProvider from './automation/providers/EnvProvider';
 import DateTimeUtils from './automation/utils/DateTimeUtils';
 
@@ -10,7 +10,7 @@ import DateTimeUtils from './automation/utils/DateTimeUtils';
 dotenv.config();
 
 // Alternatively, read from "../my.env" file.
-dotenv.config({ path: path.resolve(__dirname, '..', 'my.env') });
+dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -48,7 +48,7 @@ const config: PlaywrightTestConfig = {
 	workers: 10,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [
-		['html', { open: 'never' }],
+		['html', {open: 'never'}],
 		['list'],
 		[
 			'./TsQaseReporter', // Report to Qase
@@ -73,14 +73,14 @@ const config: PlaywrightTestConfig = {
 			use: {
 				...devices['iPhone 13'],
 			},
-			grep: [new RegExp('@mobile')]
+			grep: [new RegExp('@mobile')],
 		},
 		{
 			name: 'Desktop_Chrome',
 			use: {
 				channel: 'chrome',
 			},
-			grep: [new RegExp("@desktop")]
+			grep: [new RegExp('@desktop')],
 		},
 		// {
 		//   name: 'chromium',

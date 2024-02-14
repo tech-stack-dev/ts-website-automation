@@ -17,7 +17,10 @@ test.beforeAll(async () => {
 });
 
 test(
-	qase(5126, 'Check the Info container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'),
+	qase(
+		5126,
+		'Check the Info container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
+	),
 	async () => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');

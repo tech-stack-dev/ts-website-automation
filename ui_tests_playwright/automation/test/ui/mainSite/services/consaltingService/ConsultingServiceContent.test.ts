@@ -17,7 +17,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5159, 'Check Info container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'),
+	qase(
+		5159,
+		'Check Info container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
+	),
 	async () => {
 		const info = driver.getByTestId(ConsultingService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');

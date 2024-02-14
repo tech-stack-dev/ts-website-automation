@@ -11,10 +11,13 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 });
 
-test(qase(4968, 'Check the Title from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1082'), async () => {
-	const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Contact Our Team of Experts');
-});
+test(
+	qase(4968, 'Check the Title from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1082'),
+	async () => {
+		const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Contact Our Team of Experts');
+	}
+);
 
 test(
 	qase(
@@ -34,7 +37,10 @@ test(
 );
 
 test(
-	qase(4981, 'Check images in "Get in Touch" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'),
+	qase(
+		4981,
+		'Check images in "Get in Touch" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
+	),
 	async () => {
 		const GetInTouchFormContainer = driver.getByTestId(ContactUs.GetInTouchForm);
 		const partnerLogos = GetInTouchFormContainer.getByTestId(Container.PartnerLogo);

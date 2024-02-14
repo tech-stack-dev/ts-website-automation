@@ -15,12 +15,18 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 });
 
-test(qase(5330, 'Check Info container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'), async () => {
-	const info = driver.getByTestId(OurServices.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
-	await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
-	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
-});
+test(
+	qase(
+		5330,
+		'Check Info container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const info = driver.getByTestId(OurServices.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
+		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+	}
+);
 
 test(
 	qase(

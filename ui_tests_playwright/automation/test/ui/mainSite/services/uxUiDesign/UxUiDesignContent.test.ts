@@ -17,7 +17,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4855, 'Check the Info container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'),
+	qase(
+		4855,
+		'Check the Info container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+	),
 	async () => {
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');

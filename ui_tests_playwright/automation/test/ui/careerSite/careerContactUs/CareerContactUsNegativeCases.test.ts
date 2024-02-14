@@ -1,13 +1,13 @@
-import { expect, test } from '@playwright/test';
-import { driver } from '../../../../base/driver/Driver';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import {expect, test} from '@playwright/test';
+import {driver} from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Navigation from '../../../../identifiers/career/Navigation';
 import ContactUsForm from '../../../../identifiers/forms/ContactUsForm';
 import UrlProvider from '../../../../providers/UrlProvider';
-import { contactUsSteps } from '../../../../steps/careerPageSteps/ContactUsSteps';
-import { formSteps } from '../../../../steps/ui/FormSteps';
+import {contactUsSteps} from '../../../../steps/careerPageSteps/ContactUsSteps';
+import {formSteps} from '../../../../steps/ui/FormSteps';
 import Buttons from '../../../../identifiers/Buttons';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -27,10 +27,10 @@ test.skip(
 			PleaseEntryEmail: 'Please enter your email',
 		};
 
-		await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces, { timeout: 10000 });
-		await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces, { timeout: 10000 });
-		await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces, { timeout: 10000 });
-		await driver.getByTestId(Buttons.Send).click({ timeout: 10000 });
+		await driver.getByTestId(ContactUsForm.FullName).fill(lineWithSpaces, {timeout: 10000});
+		await driver.getByTestId(ContactUsForm.Email).fill(lineWithSpaces, {timeout: 10000});
+		await driver.getByTestId(ContactUsForm.Phone).fill(lineWithSpaces, {timeout: 10000});
+		await driver.getByTestId(Buttons.Send).click({timeout: 10000});
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([
 			ContactUsForm.FullName,
 			ContactUsForm.Email,
@@ -67,10 +67,10 @@ test.skip(
 		};
 
 		const testCases = [
-			{ email: incorrectEmails.numberEmail, phone: incorrectPhones.minusNumbers },
-			{ email: incorrectEmails.withoutFirstEmail, phone: incorrectPhones.textPhone },
-			{ email: incorrectEmails.incorrectFormatEmail, phone: incorrectPhones.symbolsPhone },
-			{ email: incorrectEmails.symbolsEmail, phone: incorrectPhones.plusNumbers },
+			{email: incorrectEmails.numberEmail, phone: incorrectPhones.minusNumbers},
+			{email: incorrectEmails.withoutFirstEmail, phone: incorrectPhones.textPhone},
+			{email: incorrectEmails.incorrectFormatEmail, phone: incorrectPhones.symbolsPhone},
+			{email: incorrectEmails.symbolsEmail, phone: incorrectPhones.plusNumbers},
 		];
 
 		for (const testCase of testCases) {

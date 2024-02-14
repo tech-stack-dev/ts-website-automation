@@ -1,12 +1,12 @@
-import { Locator, expect } from '@playwright/test';
-import { driver } from '../../../base/driver/Driver';
+import {Locator, expect} from '@playwright/test';
+import {driver} from '../../../base/driver/Driver';
 import ContainerById from '../../../components/container/ContainerById';
 import Container from '../../../identifiers/Container';
 import BaseComponent from '../../../base/component/BaseComponent';
 
 export interface IContainerOptions {
-	mobileLocator?: string,
-	desktopLocator: string
+	mobileLocator?: string;
+	desktopLocator: string;
 }
 
 export abstract class ContainerSteps {

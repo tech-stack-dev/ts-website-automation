@@ -12,10 +12,13 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CookiesPolicy));
 });
 
-test(qase(5473, 'Check title from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'), async () => {
-	const infoContainer = driver.getByTestId(CookiePolicy.Info);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Cookie policy');
-});
+test(
+	qase(5473, 'Check title from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'),
+	async () => {
+		const infoContainer = driver.getByTestId(CookiePolicy.Info);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Cookie policy');
+	}
+);
 
 test(
 	qase(
@@ -56,7 +59,10 @@ test(
 );
 
 test(
-	qase(5474, 'Check "Change consent" button from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'),
+	qase(
+		5474,
+		'Check "Change consent" button from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'
+	),
 	async () => {
 		const container = driver.getByTestId(CookiePolicy.HowToManageCookies);
 		await container.getByTestId(Buttons.ChangeConsent).click({timeout: 5000});

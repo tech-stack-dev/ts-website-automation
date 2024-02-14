@@ -1,13 +1,13 @@
 import {Locator} from '@playwright/test';
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
-import { driver } from '../../../../base/driver/Driver';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
-import { containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
 import ContainerByDataId from '../../../../components/container/ContainerByDataId';
 
 let footer: Locator;
@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 	footer = driver.getByTestId(Footer.Container_Footer);
 	socialBlock = await containerSteps.getContainer(ContainerByDataId, {
 		desktopLocator: Footer.FooterLinkDesktop,
-		mobileLocator: Footer.FooterLinkMobile
+		mobileLocator: Footer.FooterLinkMobile,
 	});
 });
 
@@ -76,7 +76,10 @@ test(
 );
 
 test(
-	qase(5494, `Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5494,
+		`Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -87,7 +90,10 @@ test(
 );
 
 test(
-	qase(5497, `Check the redirection for the Company block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5497,
+		`Check the redirection for the Company block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const companyUrlList = new Map([
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
@@ -109,7 +115,10 @@ test(
 );
 
 test(
-	qase(5496, `Check the redirection for the Career block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5496,
+		`Check the redirection for the Career block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const careerUrlList = new Map([
 			[Buttons.Career_Jobs, UrlProvider.careerUrl()],
@@ -131,7 +140,10 @@ test(
 );
 
 test(
-	qase(5498, `Check the redirection for the social links on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5498,
+		`Check the redirection for the social links on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const linkMap = new Map([
 			[Buttons.Behance, Links.Behance],
@@ -141,30 +153,31 @@ test(
 		]);
 
 		await driver.executeFunc(async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
+			for (const url of testDataProvider) {
+				await baseDriverSteps.goToUrl(url);
 
-			for (const entries of linkMap.entries()) {
-				let socialLinkButton = socialBlock.getByTestId(entries[0]);
-				
+				for (const entries of linkMap.entries()) {
+					const socialLinkButton = socialBlock.getByTestId(entries[0]);
+
+					const [newPage] = await Promise.all([
+						driver.DriverContext.waitForEvent('page'),
+						await socialLinkButton.click(),
+					]);
+					expect(newPage.url().includes(entries[1])).toBeTruthy();
+					await newPage.close();
+				}
+
+				const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
+
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
-					await socialLinkButton.click()
+					await clutchButton.click({button: 'middle'}),
 				]);
-				expect(newPage.url().includes(entries[1])).toBeTruthy();
+				await newPage.waitForLoadState('networkidle');
+				expect(newPage.url()).toContain(Links.Clutch);
 				await newPage.close();
 			}
-
-			let clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
-
-			const [newPage] = await Promise.all([
-				driver.DriverContext.waitForEvent('page'),
-				await clutchButton.click({ button: 'middle' })
-			]);
-			await newPage.waitForLoadState('networkidle');
-			expect(newPage.url()).toContain(Links.Clutch);
-			await newPage.close();
-		}}, 3);
+		}, 3);
 	}
 );
 

@@ -7,7 +7,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import DigitalTransformation from '../../../../../identifiers/mainSite/pages/services/DigitalTransformation';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { containerSteps, expect, test } from '../../../../../fixtures/DesktopMobileSetup';
+import {containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
 import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 test.beforeEach(async () => {
@@ -277,11 +277,11 @@ test(
 		mobileMaps.forEach(async (mobileMap) => {
 			const mapIdentifiers = await containerSteps.getContainer(ContainerByDataId, {
 				desktopLocator: MainSiteImages.CompleteMap,
-				mobileLocator: mobileMap
+				mobileLocator: mobileMap,
 			});
 
 			await expect(mapIdentifiers.Element).toBeVisible();
-		})
+		});
 	}
 );
 

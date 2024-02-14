@@ -15,7 +15,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4826, 'Check the Info container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'),
+	qase(
+		4826,
+		'Check the Info container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
 	async () => {
 		const info = driver.getByTestId(AiDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');

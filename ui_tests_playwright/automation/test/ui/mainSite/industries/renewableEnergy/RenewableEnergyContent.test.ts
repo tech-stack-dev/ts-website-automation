@@ -14,7 +14,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5272, 'Check Info container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'),
+	qase(
+		5272,
+		'Check Info container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
+	),
 	async () => {
 		const info = driver.getByTestId(RenewableEnergy.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nRenewable Energy');

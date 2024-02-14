@@ -17,7 +17,10 @@ test(qase(5476, 'Check title from the "Sitemap" page @desktop @mobile @Regressio
 });
 
 test(
-	qase(5477, 'Check the container title and number from the "Sitemap" page @desktop @mobile @Regression @Sitemap @TSWEB-1186'),
+	qase(
+		5477,
+		'Check the container title and number from the "Sitemap" page @desktop @mobile @Regression @Sitemap @TSWEB-1186'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(Sitemap.CompanyPages),

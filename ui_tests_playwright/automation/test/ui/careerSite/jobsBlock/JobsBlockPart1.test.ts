@@ -1,21 +1,21 @@
-import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import { sessionValue } from '../../../../runtimeVariables/SessionValue';
-import { careerSteps, containerSteps, expect, test } from '../../../../fixtures/DesktopMobileSetup';
-import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
+import {sessionValue} from '../../../../runtimeVariables/SessionValue';
+import {careerSteps, containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
+import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import Career from '../../../../identifiers/career/pages/Career';
-import { driver } from '../../../../base/driver/Driver';
+import {driver} from '../../../../base/driver/Driver';
 import ContainerByClass from '../../../../components/container/ContainerByClass';
 import Navigation from '../../../../identifiers/career/Navigation';
 import JobPagePreconditions from '../../../../preconditionsData/JobPagePreconditions';
-import { descriptionSteps } from '../../../../steps/components/job/DescriptionSteps';
-import { formSteps } from '../../../../steps/ui/FormSteps';
+import {descriptionSteps} from '../../../../steps/components/job/DescriptionSteps';
+import {formSteps} from '../../../../steps/ui/FormSteps';
 import ApplyForAJobForm from '../../../../identifiers/forms/ApplyForAJobForm';
 import Buttons from '../../../../identifiers/Buttons';
 import Job from '../../../../identifiers/Job';
-import { qase } from 'playwright-qase-reporter/dist/playwright';
-import { IContainerOptions } from '../../../../steps/components/container/ContainerSteps';
+import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {IContainerOptions} from '../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -27,7 +27,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4775, 'Check that breadcrumbs displays correctly on job page @desktop @mobile @Regression @JobsBlock @TSWEB-560'),
+	qase(
+		4775,
+		'Check that breadcrumbs displays correctly on job page @desktop @mobile @Regression @JobsBlock @TSWEB-560'
+	),
 	async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
@@ -42,10 +45,9 @@ test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @Jo
 	await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 	await expect(driver.getByTestId(Job.AboutTheProductBlock)).toBeVisible();
 	await careerSteps.switchLanguage('ua');
-	const applyPropositionWrapper = await containerSteps.getContainer(
-		ContainerByClass,
-		{ desktopLocator: ContainersCareer.JobPageApplyProposition }
-	);
+	const applyPropositionWrapper = await containerSteps.getContainer(ContainerByClass, {
+		desktopLocator: ContainersCareer.JobPageApplyProposition,
+	});
 
 	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
 		'Тестова Вакансія'
@@ -75,8 +77,8 @@ test(
 
 		const identifiers: IContainerOptions = {
 			desktopLocator: ContainersCareer.JobPageHeaderWrapper,
-			mobileLocator: ContainersCareer.JobPageMobileHeaderWrapper
-		}
+			mobileLocator: ContainersCareer.JobPageMobileHeaderWrapper,
+		};
 		const jobPageHeaderContainer = await containerSteps.getContainer(ContainerByClass, identifiers);
 
 		expect(await careerSteps.getBreadcrumbsText()).toBe(
@@ -84,7 +86,7 @@ test(
 		);
 
 		const logo = jobPageHeaderContainer.Element.getByTestId(Buttons.Logo);
-		await logo.waitFor({ state: 'visible' });
+		await logo.waitFor({state: 'visible'});
 
 		await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Jobs');
 		await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('About us');

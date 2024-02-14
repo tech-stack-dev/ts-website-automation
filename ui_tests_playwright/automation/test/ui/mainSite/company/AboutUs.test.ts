@@ -19,15 +19,23 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test(qase(4787, 'Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'), async () => {
-	const info = driver.getByTestId(AboutUs.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
-	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
-	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
-});
+test(
+	qase(4787, 'Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'),
+	async () => {
+		const info = driver.getByTestId(AboutUs.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
+		await expect(info.getByTestId(Container.Title)).toHaveText(
+			'We Make an Impact on\nthe Product, People, and\nWorld'
+		);
+		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+	}
+);
 
 test(
-	qase(4792, 'Check the container title and number from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'),
+	qase(
+		4792,
+		'Check the container title and number from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(AboutUs.OurStory),

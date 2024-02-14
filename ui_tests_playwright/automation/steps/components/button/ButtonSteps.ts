@@ -1,6 +1,6 @@
 import {Locator} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
-import { ColorsEnum } from '../../../enum/ColorsEnum';
+import {ColorsEnum} from '../../../enum/ColorsEnum';
 
 export abstract class ButtonSteps {
 	abstract elementsHeaderColorCheck(button: Locator, color: ColorsEnum): Promise<void>;
