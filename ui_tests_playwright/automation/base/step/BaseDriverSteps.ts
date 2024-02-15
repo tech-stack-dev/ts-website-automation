@@ -99,7 +99,7 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkTechnologyStackTabsAndSectionTitles(
+	public async checkTabsAndSectionTitles(
 		navigationTabs: Locator[],
 		containerBlocks: Locator,
 		testDataSectionTitles: string[][]
