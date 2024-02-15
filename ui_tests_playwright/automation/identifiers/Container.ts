@@ -4,6 +4,7 @@ export default class Container {
 	static Title = 'Title';
 	static ContainerTitle = 'ContainerTitle';
 	static ContainerNumber = 'ContainerNumber';
+	static ContainerContent = 'ContainerContent';
 	static Arrow = 'Arrow';
 
 	static ContainerSection = 'ContainerSection';
