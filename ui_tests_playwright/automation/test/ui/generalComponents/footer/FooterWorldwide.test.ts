@@ -243,6 +243,7 @@ test(
 			[Buttons.Twitter, Links.Twitter],
 			[Buttons.GoodFirms, Links.GoodFirms],
 			[Buttons.Clutch, Links.Clutch],
+			[Buttons.DesignRush, Links.DesignRush],
 		]);
 
 		for (const url of testDataProvider) {
