@@ -1,9 +1,9 @@
 import {expect} from '@playwright/test';
 import {driver} from '../../base/driver/Driver';
 import Buttons from '../../identifiers/Buttons';
-import ContactUsForm from '../../identifiers/forms/ContactUsForm';
 import ContactUsPage from '../../pages/careerSite/ContactUsPage';
 import {formSteps} from '../ui/FormSteps';
+import Input from '../../identifiers/Input';
 
 class ContactUsSteps {
 	public async sendDataToFieldsAndCheckErrorMessages(
@@ -11,11 +11,11 @@ class ContactUsSteps {
 		phone: string,
 		testData: Record<string, string>
 	): Promise<boolean> {
-		await driver.getByTestId(ContactUsForm.Email).fill(email);
-		await driver.getByTestId(ContactUsForm.Phone).fill(phone);
+		await driver.getByTestId(Input.Email).fill(email);
+		await driver.getByTestId(Input.PhoneNumber).fill(phone);
 		await driver.getByTestId(Buttons.Send).click();
 
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([ContactUsForm.Email, ContactUsForm.Phone]);
+		const listOfMessages = await formSteps.getErrorMessagesFromFields([Input.Email, Input.PhoneNumber]);
 
 		return Object.values(testData).every((message) => listOfMessages.includes(message));
 	}
