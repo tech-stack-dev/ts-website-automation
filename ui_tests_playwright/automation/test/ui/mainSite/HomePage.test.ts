@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5011,
-		'Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
+		'Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
