@@ -126,11 +126,7 @@ test(
 		const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
 		const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
-		await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
-			navigationTabs,
-			containerBlocks,
-			testDataSectionTitles
-		);
+		await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
 	}
 );
 

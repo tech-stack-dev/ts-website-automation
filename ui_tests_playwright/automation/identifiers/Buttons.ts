@@ -2,7 +2,7 @@ export default class Buttons {
 	static Logo = 'Logo-Techstack';
 	static ContactUs = 'Button-ContactUs';
 	static Blog = 'Button-Blog';
-	static Close = 'CloseButton-Close';
+	static Close = 'Button-Close';
 
 	// Pages list
 	static Industries_Healthcare = 'Industries-Healthcare';
@@ -48,6 +48,7 @@ export default class Buttons {
 	static Twitter = 'Button-Twitter';
 	static GoodFirms = 'Button-GoodFirms';
 	static Clutch = 'Button-Clutch';
+	static DesignRush = 'Button-DesignRush';
 	static Forbes = 'Button-Forbes';
 	static Salesforce = 'Button-Salesforce';
 	static Deloitte = 'Button-Deloitte';
@@ -68,7 +69,7 @@ export default class Buttons {
 	static Decline = 'Button-Decline';
 
 	// Form
-	static Send = 'SubmitButton-SharedSendMessage';
+	static Send = 'Button-SendRequest';
 	static AttachFiles = 'Button-AttachFiles';
 	static Cancel = 'Icon-Cancel';
 }

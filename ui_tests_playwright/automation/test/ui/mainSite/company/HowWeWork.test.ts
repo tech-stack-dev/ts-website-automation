@@ -4,13 +4,13 @@ import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import HowWeWork from '../../../../identifiers/mainSite/pages/company/HowWeWork';
-import GetInTouchForm from '../../../../identifiers/forms/GetInTouchForm';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import Buttons from '../../../../identifiers/Buttons';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import Input from '../../../../identifiers/Input';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
@@ -104,11 +104,7 @@ test(
 		const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
 		const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
-		await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
-			navigationTabs,
-			containerBlocks,
-			testDataSectionTitles
-		);
+		await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
 	}
 );
 
@@ -173,16 +169,16 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @Regression @HowWeWork'),
 	async () => {
 		const getInTouchContainer = driver.getByTestId(HowWeWork.GetInTouch);
 
-		await expect(getInTouchContainer.getByTestId(GetInTouchForm.Email)).toBeVisible();
-		await expect(getInTouchContainer.getByTestId(GetInTouchForm.FirstName)).toBeVisible();
-		await expect(getInTouchContainer.getByTestId(GetInTouchForm.LastName)).toBeVisible();
-		await expect(getInTouchContainer.getByTestId(GetInTouchForm.Email)).toBeVisible();
-		await expect(getInTouchContainer.getByTestId(GetInTouchForm.Message)).toBeVisible();
+		await expect(getInTouchContainer.getByTestId(Input.Email)).toBeVisible();
+		await expect(getInTouchContainer.getByTestId(Input.FirstName)).toBeVisible();
+		await expect(getInTouchContainer.getByTestId(Input.LastName)).toBeVisible();
+		await expect(getInTouchContainer.getByTestId(Input.Email)).toBeVisible();
+		await expect(getInTouchContainer.getByTestId(Input.Message)).toBeVisible();
 		await expect(getInTouchContainer.getByTestId(Buttons.Send)).toBeVisible();
 	}
 );
