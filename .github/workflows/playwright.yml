@@ -69,7 +69,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep "@desktop" --param=device=desktop --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=Desktop_Chrome --grep "@desktop" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
