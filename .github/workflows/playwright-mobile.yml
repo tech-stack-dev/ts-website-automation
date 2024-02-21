@@ -1,4 +1,4 @@
-name: Playwright UI E2E
+name: Playwright UI E2E Mobile
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   tests_e2e:
-    name: Playwright end-to-end tests
+    name: Playwright end-to-end mobile tests
     runs-on: ubuntu-latest
     # Set up queue for parallel actions
     concurrency:
@@ -69,7 +69,7 @@ jobs:
 
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep "@desktop" --param=device=desktop --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --grep "@mobile" --param=device=iphone --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output-mobile.txt
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
@@ -157,7 +157,7 @@ jobs:
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI tests
+          SLACK_TITLE: TypeScript UI mobile tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
 
@@ -171,6 +171,6 @@ jobs:
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI tests
+          SLACK_TITLE: TypeScript UI mobile tests
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
