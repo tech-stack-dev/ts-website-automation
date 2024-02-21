@@ -30,10 +30,10 @@ class SlackSteps {
 	) {
 		const fields = actualMessage.attachments![0].fields;
 
-		expect(fields?.find((x) => x.title === 'Name')?.value).toBe(expectedMessage.name);
+		expect(fields?.find((x) => x.title === 'first Name')?.value).toBe(expectedMessage.name);
 		expect(fields?.find((x) => x.title === 'last Name')?.value).toBe(expectedMessage.lastName);
 		expect(fields?.find((x) => x.title === 'Email')?.value).toContain(expectedMessage.email);
-		expect(fields?.find((x) => x.title === 'Tel')?.value).toBe(expectedMessage.tel);
+		expect(fields?.find((x) => x.title === 'PhoneNumber')?.value).toBe(expectedMessage.tel);
 		expect(fields?.find((x) => x.title === 'Message')?.value).toBe(expectedMessage.message);
 	}
 

@@ -69,7 +69,7 @@ export default class Buttons {
 	static Decline = 'Button-Decline';
 
 	// Form
-	static Send = 'SubmitButton-SharedSendMessage';
+	static Send = 'Button-SendRequest';
 	static AttachFiles = 'Button-AttachFiles';
 	static Cancel = 'Icon-Cancel';
 }

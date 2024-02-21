@@ -17,11 +17,11 @@ test('Check the Info container from the "Pricing" page @desktop @mobile @Regress
 	const infoTitle = info.getByTestId(Container.Title);
 	const infoBlockTitles = info.getByTestId(Container.BlockTitle);
 	const expectedBlockTitles = [
-		'$\n28-50\n+ / hr\n',
-		'$\n28-45\n+ / hr\n',
-		'$\n30-40\n+ / hr\n',
-		'$\n35-65\n+ / hr\n',
-		'$\n35-40\n+ / hr\n',
+		'\n                5.0\n                rate\n              ',
+		'\n                10\n                +\n              ',
+		'\n                12\n                +\n              ',
+		'\n                67\n                %\n              ',
+		'\n                  91\n                  %\n                ',
 	];
 
 	await expect(infoTitle).toHaveText('Our Software\nDevelopment Cost');

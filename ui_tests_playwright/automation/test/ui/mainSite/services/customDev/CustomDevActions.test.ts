@@ -169,13 +169,12 @@ test(
 		const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 		const buttonUrlMap = new Map([
-			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
-			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
-			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VitaliiDolotov}`],
-			[blogButtons.nth(3), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
-			[blogButtons.nth(4), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
-			[blogButtons.nth(5), `${blogUri}${AuthorsEnum.DmytroDytiuk}`],
-			[blogButtons.nth(6), `${blogUri}${AuthorsEnum.DmytroShtapauk}`],
+			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.VitaliiDolotov}`],
+			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+			[blogButtons.nth(3), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+			[blogButtons.nth(4), `${blogUri}${AuthorsEnum.DmytroDytiuk}`],
+			[blogButtons.nth(5), `${blogUri}${AuthorsEnum.DmytroShtapauk}`],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
