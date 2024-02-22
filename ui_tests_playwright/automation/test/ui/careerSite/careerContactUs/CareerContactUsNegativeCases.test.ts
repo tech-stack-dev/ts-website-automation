@@ -85,7 +85,7 @@ test(
 );
 
 test(
-	qase(4762, 'Check error messages related to empty fields on "Contact Us" form @Regression @ContactUs @TSWEB149'),
+	qase(4762, 'Check error messages related to empty fields on "Contact Us" form @desktop @mobile @Regression @ContactUs @TSWEB149'),
 	async () => {
 		const testData: Record<string, string> = {
 			PleaseEntryName: 'Please enter your name',

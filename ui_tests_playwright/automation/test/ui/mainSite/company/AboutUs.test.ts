@@ -55,7 +55,7 @@ test(
 			['What makes\nus special', '04'],
 			['Our partners', '05'],
 			['Shoutout from\nour partners', '06'],
-			['Our people', '07'],
+			['Our people', '007'],
 			['Get in Touch', '08'],
 		];
 

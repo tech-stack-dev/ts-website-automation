@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4759, 'Check that "Contact Us" form works correct with valid data @Regression @ContactUs @TSWEB-149'),
+	qase(4759, 'Check that "Contact Us" form works correct with valid data @desktop @mobile @Regression @ContactUs @TSWEB-149'),
 	async () => {
 		await driver.getByTestId(Input.FullName).fill('test name');
 		await driver.getByTestId(Input.Email).fill('email@test.com');
