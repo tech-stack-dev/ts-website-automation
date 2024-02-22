@@ -72,7 +72,7 @@ for (const testData of testDataProvider) {
 			await careerSteps.clickOnFilter();
 
 			await filterTag.click();
-			await driver.Page.mouse.move(0, 0);
+			// await driver.Page.mouse.move(0, 0);
 			await playwrightUtils.expectWithRetries(async () => {
 				await expect(filterTag).toHaveClass(/active-tag/);
 				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.Yellow_FFC600)).toBeTruthy();
