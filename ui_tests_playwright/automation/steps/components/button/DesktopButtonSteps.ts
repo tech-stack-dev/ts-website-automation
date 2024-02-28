@@ -6,7 +6,7 @@ import Buttons from '../../../identifiers/Buttons';
 import {Locator, expect} from '@playwright/test';
 
 class DesktopButtonSteps extends ButtonSteps {
-	async elementsHeaderColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
+	async buttonColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
 		const header = driver.getByTestId(Header.Container_Header);
 		const logo = header.getByTestId(Buttons.Logo);
 

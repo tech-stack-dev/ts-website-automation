@@ -12,6 +12,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import {careerSteps, containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {IContainerOptions} from '../../../../steps/components/container/ContainerSteps';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -20,12 +21,15 @@ test.beforeEach(async () => {
 test.skip(
 	qase(
 		4773,
-		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @desktop @mobile @Regression @JobsBlock @TSWEB-76'
+		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @mobile @Regression @JobsBlock @TSWEB-76'
 	),
 	async () => {
 		await driver.getByTestId(/CardWrapper/).click();
 
-		await careerSteps.clickOnApply();
+		(await containerSteps.getDynamicLocator({
+			desktopLocator: CareerButtons.ApplyNow,
+			mobileLocator: AboutUsCareer.ApplyNowButton
+		})).click();
 
 		await driver.getByTestId(Input.FirstName).fill(' ');
 		await driver.getByTestId(Input.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters

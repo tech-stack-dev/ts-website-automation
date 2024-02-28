@@ -11,8 +11,6 @@ import Header from '../../../../identifiers/mainSite/Header';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {careerSteps, containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
-import {IContainerOptions} from '../../../../steps/components/container/ContainerSteps';
-import ContainerByDataId from '../../../../components/container/ContainerByDataId';
 
 let header: Locator;
 let contactUsButton: Locator;
@@ -20,12 +18,10 @@ let contactUsButton: Locator;
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 
-	const identifiers: IContainerOptions = {
+	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu,
-	};
-
-	header = await containerSteps.getContainer(ContainerByDataId, identifiers);
+		mobileLocator: Header.ContainerMenu
+	});
 	contactUsButton = header.getByTestId(Buttons.ContactUs).last();
 });
 

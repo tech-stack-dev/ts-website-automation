@@ -10,6 +10,10 @@ class MobileContainerSteps extends ContainerSteps {
 
 		return driver.component(type, typeOfIdentidier, parent);
 	}
+
+	async getDynamicLocator(identifier: IContainerOptions): Promise<Locator> {
+		return driver.getByTestId(identifier.mobileLocator!);
+	};
 }
 const mobileContainerSteps = new MobileContainerSteps();
 

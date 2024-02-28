@@ -16,6 +16,8 @@ import Job from '../../../../identifiers/Job';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {IContainerOptions} from '../../../../steps/components/container/ContainerSteps';
 import Input from '../../../../identifiers/Input';
+import CareerButtons from '../../../../identifiers/career/CareerButtons';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -113,7 +115,10 @@ test.skip(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		await careerSteps.clickOnApply();
+		(await containerSteps.getDynamicLocator({
+			desktopLocator: CareerButtons.ApplyNow,
+			mobileLocator: AboutUsCareer.ApplyNowButton
+		})).click();
 
 		await driver.getByTestId(Buttons.Send).click();
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([

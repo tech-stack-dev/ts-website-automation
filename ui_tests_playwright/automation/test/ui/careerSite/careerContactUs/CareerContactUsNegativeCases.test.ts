@@ -103,7 +103,7 @@ test(
 	}
 );
 
-test(qase(4765, 'Check error message related to incorrect file format @Regression @ContactUs @TSWEB149'), async () => {
+test(qase(4765, 'Check error message related to incorrect file format @desktop @mobile @Regression @ContactUs @TSWEB149'), async () => {
 	await driver.getByTestId(Input.FullName).fill('Test Name');
 	await driver.getByTestId(Input.Email).fill('email@test.com');
 	await driver.getByTestId(Input.PhoneNumber).fill('12345');

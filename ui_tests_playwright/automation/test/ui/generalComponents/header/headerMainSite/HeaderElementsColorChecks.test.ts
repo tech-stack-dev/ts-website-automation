@@ -9,7 +9,6 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {buttonSteps, careerSteps, containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
-import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 let header: Locator;
 let buttonHeaderslist: Locator[];
@@ -40,11 +39,10 @@ const testDataProvider: string[] = [
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 
-	const identifier = await containerSteps.getContainer(ContainerByDataId, {
+	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu,
+		mobileLocator: Header.ContainerMenu
 	});
-	header = driver.getByTestId(identifier.ComponentContext);
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
@@ -122,7 +120,7 @@ test(
 			await careerSteps.clickOnBurgerMenu();
 
 			for (const button of buttonHeaderslist) {
-				await buttonSteps.elementsHeaderColorCheck(button, ColorsEnum.Yellow_FFC600);
+				await buttonSteps.buttonColorCheck(button, ColorsEnum.Yellow_FFC600);
 			}
 		}
 	}

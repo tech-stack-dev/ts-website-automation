@@ -13,7 +13,6 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import Links from '../../../../../preconditionsData/links/Links';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {careerSteps, containerSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
-import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 let header: Locator;
 
@@ -30,11 +29,10 @@ const testDataProvider: string[] = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
-	const identifiers = await containerSteps.getContainer(ContainerByDataId, {
+	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu,
+		mobileLocator: Header.ContainerMenu
 	});
-	header = driver.getByTestId(identifiers.ComponentContext);
 });
 
 test(
@@ -151,9 +149,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-
 			await careerSteps.clickOnBurgerMenu();
-
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
 		}

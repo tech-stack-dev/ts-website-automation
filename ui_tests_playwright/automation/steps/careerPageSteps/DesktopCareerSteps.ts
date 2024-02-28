@@ -12,10 +12,6 @@ class DesktopCareerSteps extends CareerSteps {
 		return Promise.resolve();
 	}
 
-	async clickOnApply(): Promise<void> {
-		await driver.getByTestId(CareerButtons.ApplyNow).click();
-	}
-
 	async clickOnBurgerMenu(): Promise<void> {
 		console.log('This step is skipped for desktop');
 		return Promise.resolve();

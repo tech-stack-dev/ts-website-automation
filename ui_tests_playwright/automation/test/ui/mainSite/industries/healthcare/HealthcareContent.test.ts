@@ -8,7 +8,6 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect} from '../../../../../fixtures/DesktopMobileSetup';
-import ContainerByDataId from '../../../../../components/container/ContainerByDataId';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
@@ -252,12 +251,12 @@ test(
 		const mobileMaps = [MainSiteImages.NorthAmericaMap, MainSiteImages.EuropeMap];
 
 		mobileMaps.forEach(async (mobileMap) => {
-			const mapIdentifiers = await containerSteps.getContainer(ContainerByDataId, {
+			const mapIdentifiers = await containerSteps.getDynamicLocator({
 				desktopLocator: MainSiteImages.CompleteMap,
 				mobileLocator: mobileMap,
 			});
 
-			await expect(mapIdentifiers.Element).toBeVisible();
+			await expect(mapIdentifiers).toBeVisible();
 		});
 	}
 );

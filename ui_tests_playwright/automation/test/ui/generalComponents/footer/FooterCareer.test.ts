@@ -8,7 +8,6 @@ import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
-import ContainerByDataId from '../../../../components/container/ContainerByDataId';
 
 let footer: Locator;
 let socialBlock: Locator;
@@ -22,9 +21,9 @@ const testDataProvider = [
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
-	socialBlock = await containerSteps.getContainer(ContainerByDataId, {
+	socialBlock = await containerSteps.getDynamicLocator({
 		desktopLocator: Footer.FooterLinkDesktop,
-		mobileLocator: Footer.FooterLinkMobile,
+		mobileLocator: Footer.FooterLinkMobile
 	});
 });
 
@@ -196,7 +195,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
-				socialBlock.getByTestId(entries[0]).click();
+				await socialBlock.getByTestId(entries[0]).click();
 				await baseDriverSteps.checkUrl(entries[1]);
 				await baseDriverSteps.goToUrl(url);
 			}

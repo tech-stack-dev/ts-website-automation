@@ -2,7 +2,6 @@ import {expect} from '@playwright/test';
 import CareerButtons from '../../identifiers/career/CareerButtons';
 import {CareerSteps} from './CareerSteps';
 import {driver} from '../../base/driver/Driver';
-import AboutUsCareer from '../../identifiers/career/pages/AboutUsCareer';
 import {containerSteps} from '../../fixtures/DesktopMobileSetup';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import ContainersCareer from '../../identifiers/career/ContainersCareer';
@@ -11,10 +10,6 @@ import Buttons from '../../identifiers/Buttons';
 class MobileCareerSteps extends CareerSteps {
 	async clickOnFilter(): Promise<void> {
 		await driver.getByTestId(CareerButtons.FilterButton).click();
-	}
-
-	async clickOnApply(): Promise<void> {
-		await driver.getByTestId(AboutUsCareer.ApplyNowButton).click();
 	}
 
 	async clickOnBurgerMenu(): Promise<void> {

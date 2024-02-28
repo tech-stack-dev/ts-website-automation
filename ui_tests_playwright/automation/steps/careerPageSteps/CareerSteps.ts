@@ -8,8 +8,6 @@ import Buttons from '../../identifiers/Buttons';
 export abstract class CareerSteps {
 	abstract clickOnFilter(): Promise<void>;
 
-	abstract clickOnApply(): Promise<void>;
-
 	abstract clickOnBurgerMenu(): Promise<void>;
 
 	abstract switchLanguage(language: string): Promise<void>;

@@ -12,6 +12,8 @@ export interface IContainerOptions {
 export abstract class ContainerSteps {
 	abstract getContainer(type: any, identifier: IContainerOptions, parent?: Locator): Promise<BaseComponent>;
 
+	abstract getDynamicLocator(identifier: IContainerOptions): Promise<Locator>;
+
 	public async checkContainerNumber(identifier: string, expectedNumber: string) {
 		const sectionNumber = (await driver.component(ContainerById, identifier)).sectionNumber;
 		await expect(sectionNumber).toHaveText(expectedNumber);

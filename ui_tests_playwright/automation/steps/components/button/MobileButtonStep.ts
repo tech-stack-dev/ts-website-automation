@@ -5,7 +5,7 @@ import Buttons from '../../../identifiers/Buttons';
 import {ButtonSteps} from './ButtonSteps';
 
 class MobileButtonSteps extends ButtonSteps {
-	async elementsHeaderColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
+	async buttonColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
 		const elemetColor = driver.locator('//preceding-sibling::div//div');
 
 		await button.click();
