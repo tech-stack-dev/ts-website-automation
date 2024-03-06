@@ -39,6 +39,8 @@ export default class MainSiteButtons extends Buttons {
 	static MoreDetails = 'Button-MoreDetails';
 	static BoostYourBackend = 'Button-BoostYourBackend';
 	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
+	static SubmitYourServiceRequestNow = 'Button-SubmitYourServiceRequestNow';
+	static ContactUsToDiscuss = 'Button-ContactUsToDiscuss';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

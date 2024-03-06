@@ -14,6 +14,7 @@ export default class MainSiteImages {
 	static FeaturedCaseStudy = 'Img-FeaturedCaseStudy';
 	static Terraform = 'Img-Terraform';
 	static Kubernetes = 'Img-Kubernetes';
+	static FrontendCaseStudy = 'Img-FrontendCaseStudy';
 
 	// Tool logos
 	static MicrosoftLogo = 'Img-MicrosoftLogo';

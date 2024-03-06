@@ -10,4 +10,5 @@ export enum AuthorsEnum {
 	VladyslavUshakov = 'vladyslav/',
 	DmytroGamanenko = 'dmytro-gamanenko/',
 	AndriiDumych = 'andrii-dumych/',
+	DmytroBohdanov = 'dmytro/',
 }

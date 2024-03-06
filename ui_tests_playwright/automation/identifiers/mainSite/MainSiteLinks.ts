@@ -11,4 +11,6 @@ export default class MainSiteLinks {
 	static TransportAndLogistics = 'Link-TransportAndLogistics';
 	static RenewableEnergy = 'Link-RenewableEnergy';
 	static DigitalTransformation = 'Link-DigitalTransformation';
+	static MobileAppDevelopment = 'Link-DevelopMobileApplication';
+	static UxUiDesign = 'Link-DesignSystems';
 }
