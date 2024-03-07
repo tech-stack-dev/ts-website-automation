@@ -119,7 +119,9 @@ class BaseDriverSteps {
 	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
 		if (initialPageUrl) {
 			await locator.click();
-			await driver.Page.waitForLoadState();
+			await playwrightUtils.expectWithRetries(async () => {
+				await driver.Page.waitForLoadState('load', {timeout: 15000});
+			});
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
