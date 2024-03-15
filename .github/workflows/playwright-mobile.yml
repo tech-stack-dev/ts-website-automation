@@ -24,7 +24,7 @@ jobs:
         working-directory: ./ui_tests_playwright
     steps:
       - name: Use shared job
-        uses: .github/workflows/.shared-steps.yml
+        uses: .github/workflows/.shared-steps.yml@ref
         with:
           job: job1
       # - uses: actions/checkout@v4
@@ -68,7 +68,7 @@ jobs:
         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       - name: Use shared job
-        uses: .github/workflows/.shared-steps.yml
+        uses: .github/workflows/.shared-steps.yml@ref
         with:
           job: job2
 
