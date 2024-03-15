@@ -1,6 +1,6 @@
 name: Shared Steps
 
-on: [push, pull_request]
+on: []
 
 jobs:
     job1:
