@@ -30,7 +30,7 @@ jobs:
     defaults:
       run:
         working-directory: ./ui_tests_playwright
-    steps:
+    steps: &steps
       - uses: actions/checkout@v4
 
       - name: Install Node.js
