@@ -1,6 +1,7 @@
 name: Shared Steps
 
-on: []
+on: 
+  workflow_call:
 
 jobs:
     job1:
