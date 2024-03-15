@@ -71,7 +71,7 @@ jobs:
         shell: bash
         run: QASE_REPORT="1" npx playwright test --project=Desktop_Chrome --grep "@desktop" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         name: Upload Playwright report
         if: always()
         with:
