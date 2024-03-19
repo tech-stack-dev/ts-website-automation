@@ -23,10 +23,7 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
-      - name: Use shared job
-        uses: .github/workflows/.shared-steps.yml@ref
-        with:
-          job: job1
+      - uses: .github/workflows/playwright.yml@ref
       # - uses: actions/checkout@v4
 
       # - name: Install Node.js
@@ -66,11 +63,6 @@ jobs:
       - name: Run UI tests
         shell: bash
         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
-
-      - name: Use shared job
-        uses: .github/workflows/.shared-steps.yml@ref
-        with:
-          job: job2
 
       # - uses: actions/upload-artifact@v3
       #   name: Upload Playwright report
