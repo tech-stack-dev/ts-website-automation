@@ -6,7 +6,7 @@ on:
 # To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   tests_e2e:
