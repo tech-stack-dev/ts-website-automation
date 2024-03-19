@@ -1,9 +1,7 @@
 name: Playwright UI E2E Mobile
 
 on:
-  workflow_run:
-    workflows: [Playwright UI E2E]
-    types: [completed]
+  workflow_call:
 
 # To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
@@ -11,16 +9,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  on-success:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      - run: echo 'The triggering worflow passed'
-  on-failure:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - run: echo 'The triggering workflow failed'
   tests_e2e:
     name: Playwright end-to-end mobile tests
     runs-on: ubuntu-latest
