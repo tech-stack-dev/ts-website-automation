@@ -22,27 +22,19 @@ jobs:
     concurrency:
       group: ${{ github.event_name }}
 
-    env:
-      AWS_KEY: ${{ secrets.AWS_KEY }}
-      AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-      JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
-      CI: true
-    defaults:
-      run:
-        working-directory: ./ui_tests_playwright
+    # env:
+    #   AWS_KEY: ${{ secrets.AWS_KEY }}
+    #   AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+    #   JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
+    #   CI: true
+    # defaults:
+    #   run:
+    #     working-directory: ./ui_tests_playwright
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: List directory contents
-        run: ls -la ../.github/workflows
-      - name: Print current working directory
-        run: pwd
-      - name: List contents of my directory
-        run: ls -la ../.github/workflows/playwright.yml
-      - name: List contents of the parent directory
-        run: ls -la ${{ github.workspace }}/.github/workflows/
-      # - uses: ../.github/workflows/playwright.yml@ref
-
+      - name: Call Common Steps
+        uses: ./.github/workflows/.shared-steps.yml
+        with:
+          project: 'Mobile'
       # - uses: actions/checkout@v4
 
       # - name: Install Node.js
@@ -159,30 +151,30 @@ jobs:
       #     if_true: test_slack_notifications
       #     if_false: ts_website_automation
 
-      - name: Slack Notification for UI tests production
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI mobile tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
+      # - name: Slack Notification for UI tests production
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   uses: rtCamp/action-slack-notify@v2.2.0
+      #   env:
+      #     SLACK_USERNAME: Tests execution report
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      #     SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
+      #     SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+      #     SLACK_COLOR: ${{ job.status }}
+      #     SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
+      #     SLACK_TITLE: TypeScript UI mobile tests
+      #     MSG_MINIMAL: true
+      #     SLACK_FOOTER: TS website
 
-      - name: Slack Notification for UI tests automation
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI mobile tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
+      # - name: Slack Notification for UI tests automation
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   uses: rtCamp/action-slack-notify@v2.2.0
+      #   env:
+      #     SLACK_USERNAME: Tests execution report
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      #     SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
+      #     SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+      #     SLACK_COLOR: ${{ job.status }}
+      #     SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
+      #     SLACK_TITLE: TypeScript UI mobile tests
+      #     MSG_MINIMAL: true
+      #     SLACK_FOOTER: TS website
