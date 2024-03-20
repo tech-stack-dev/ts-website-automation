@@ -34,13 +34,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: List directory contents
-        run: ls -la ..
+        run: ls -la ../.github/workflows
       - name: Print current working directory
         run: pwd
       - name: List contents of my directory
         run: ls -la ../.github/workflows/playwright.yml
       - name: List contents of the parent directory
-        run: ls -la ${{ github.workspace }}/..
+        run: ls -la ${{ github.workspace }}/.github/workflows/
       # - uses: ../.github/workflows/playwright.yml@ref
 
       # - uses: actions/checkout@v4
