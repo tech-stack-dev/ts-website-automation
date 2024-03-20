@@ -31,11 +31,11 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
       - name: List directory contents
-        run: ls -la
-      # - uses: /tech-stack-dev/ts-website-automation/.github/workflows/playwright.yml
+        run: ls -la ..
+      - uses: ../.github/workflows/playwright.yml@ref
       - name: Print current working directory
         run: pwd
       - name: List contents of my directory
