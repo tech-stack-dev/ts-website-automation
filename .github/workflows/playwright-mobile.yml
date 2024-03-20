@@ -31,6 +31,7 @@ jobs:
     #   run:
     #     working-directory: ./ui_tests_playwright
     steps:
+      - uses: action/checkout@v4
       - name: Call Common Steps
         uses: ./.github/workflows/.shared-steps.yml
         with:
