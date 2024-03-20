@@ -1,11 +1,17 @@
 name: Playwright UI E2E Mobile
 
 on:
-  workflow_call:
-
+  workflow_dispatch:
+  schedule:
+    # Run each day at 21:10
+    - cron: "10 21 * * *"
+  pull_request:
+    paths:
+      - "ui_tests_playwright/**"
+  
 # To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}mobile
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -25,121 +31,122 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
-      - uses: actions/checkout@v4
+      - uses: .github/workflows/playwright.yml@ref
+      # - uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+      # - name: Install Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "18"
 
-      - name: Install dependencies
-        run: npm ci
+      # - name: Install dependencies
+      #   run: npm ci
 
-      - name: Install TypeScript and ts-node
-        run: npm install -g typescript ts-node
+      # - name: Install TypeScript and ts-node
+      #   run: npm install -g typescript ts-node
 
-      - name: Set current time as an environment variable
-        run: |
-          echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-          echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
+      # - name: Set current time as an environment variable
+      #   run: |
+      #     echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+      #     echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
 
-      - name: Run Search and Collect Ticket Statuses
-        id: ticket-statuses
-        run: |
-          npx ts-node automation/scripts/GetListOfJirasToSkip.ts
-          ticketStatusesFile="ticketStatuses.json"
-          if [[ -f "$ticketStatusesFile" ]]; then
-            ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
-          else
-            ticketStatuses=""
-          fi
-          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
+      # - name: Run Search and Collect Ticket Statuses
+      #   id: ticket-statuses
+      #   run: |
+      #     npx ts-node automation/scripts/GetListOfJirasToSkip.ts
+      #     ticketStatusesFile="ticketStatuses.json"
+      #     if [[ -f "$ticketStatusesFile" ]]; then
+      #       ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
+      #     else
+      #       ticketStatuses=""
+      #     fi
+      #     echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
 
-      - name: Install playwright browsers
-        run: npx playwright install --with-deps
+      # - name: Install playwright browsers
+      #   run: npx playwright install --with-deps
 
-      - name: Run Unit Tests
-        run: npm run unit-tests
+      # - name: Run Unit Tests
+      #   run: npm run unit-tests
 
       - name: Run UI tests
         shell: bash
         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
-      - uses: actions/upload-artifact@v3
-        name: Upload Playwright report
-        if: always()
-        with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30
+      # - uses: actions/upload-artifact@v3
+      #   name: Upload Playwright report
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: ui_tests_playwright/playwright-report/
+      #     retention-days: 30
 
-      - name: Parse Test Results Data
-        if: always()
-        run: npx ts-node automation/scripts/GetAutotestsCount.ts
+      # - name: Parse Test Results Data
+      #   if: always()
+      #   run: npx ts-node automation/scripts/GetAutotestsCount.ts
 
-      - name: Switch to reports-history Branch
-        if: always()
-        run: |
-          git config --global user.email "daniil.vostrikov@tech-stack.com"
-          git config --global user.name "DaniilVostrikov"
-          git remote update
-          git fetch 
-          git add .
-          git checkout -f --track origin/reports-history
+      # - name: Switch to reports-history Branch
+      #   if: always()
+      #   run: |
+      #     git config --global user.email "daniil.vostrikov@tech-stack.com"
+      #     git config --global user.name "DaniilVostrikov"
+      #     git remote update
+      #     git fetch 
+      #     git add .
+      #     git checkout -f --track origin/reports-history
 
-      - name: Update reports
-        if: always()
-        run: |
-          report_folder="automation/reports/"
-          if [ "${{ github.event_name }}" == "schedule" ]; then
-            report_folder="${report_folder}regression"
-          elif [ "${{ github.event_name }}" == "pull_request" ]; then
-            report_folder="${report_folder}pull-requests"
-          fi
-          new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
-          mkdir -p $new_report_folder
-          cp ${{ github.workspace }}/ui_tests_playwright/playwright-report/index.html $new_report_folder
-          git add $new_report_folder
-          git commit -m "Update test report"
-          git push origin reports-history
+      # - name: Update reports
+      #   if: always()
+      #   run: |
+      #     report_folder="automation/reports/"
+      #     if [ "${{ github.event_name }}" == "schedule" ]; then
+      #       report_folder="${report_folder}regression"
+      #     elif [ "${{ github.event_name }}" == "pull_request" ]; then
+      #       report_folder="${report_folder}pull-requests"
+      #     fi
+      #     new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
+      #     mkdir -p $new_report_folder
+      #     cp ${{ github.workspace }}/ui_tests_playwright/playwright-report/index.html $new_report_folder
+      #     git add $new_report_folder
+      #     git commit -m "Update test report"
+      #     git push origin reports-history
 
-      - name: Run script to create report
-        if: always()
-        run: |
-          echo "here's a branch"
-          git branch
-          echo "here's a Script"
-          npx ts-node ./automation/scripts/GetReportsContent.ts
-          git add ../index.html
-          git commit -m "update main report file"
-          git push origin reports-history
+      # - name: Run script to create report
+      #   if: always()
+      #   run: |
+      #     echo "here's a branch"
+      #     git branch
+      #     echo "here's a Script"
+      #     npx ts-node ./automation/scripts/GetReportsContent.ts
+      #     git add ../index.html
+      #     git commit -m "update main report file"
+      #     git push origin reports-history
 
-      - name: Preparing Slack emoji
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_icon_emoji
-        with:
-          cond: ${{ job.status == 'failure' }}
-          if_true: ":finnadie:"
-          if_false: ":aw_yeah:"
+      # - name: Preparing Slack emoji
+      #   uses: haya14busa/action-cond@v1
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   id: slack_icon_emoji
+      #   with:
+      #     cond: ${{ job.status == 'failure' }}
+      #     if_true: ":finnadie:"
+      #     if_false: ":aw_yeah:"
 
-      - name: Set Slack Channel production
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_channel_production
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: ts_website_automation
-          if_false: ts_website
+      # - name: Set Slack Channel production
+      #   uses: haya14busa/action-cond@v1
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   id: slack_channel_production
+      #   with:
+      #     cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+      #     if_true: ts_website_automation
+      #     if_false: ts_website
 
-      - name: Set Slack Channel automation
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_channel_automation
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: test_slack_notifications
-          if_false: ts_website_automation
+      # - name: Set Slack Channel automation
+      #   uses: haya14busa/action-cond@v1
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   id: slack_channel_automation
+      #   with:
+      #     cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
+      #     if_true: test_slack_notifications
+      #     if_false: ts_website_automation
 
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}

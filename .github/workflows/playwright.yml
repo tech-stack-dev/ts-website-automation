@@ -15,8 +15,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  call-workflow:
-    uses: ./.github/workflows/playwright-mobile.yml
   tests_e2e:
     name: Playwright end-to-end tests
     runs-on: ubuntu-latest
