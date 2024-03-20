@@ -39,7 +39,7 @@ jobs:
       - name: Print current working directory
         run: pwd
       - name: List contents of my directory
-        run: ls -la ./.github/workflows/playwright.yml
+        run: ls -la ../.github/workflows/playwright.yml
       # - uses: actions/checkout@v4
 
       # - name: Install Node.js
