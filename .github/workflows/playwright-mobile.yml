@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: ./.github/workfloows/actions/shared-steps.yml
+        uses: ../.github/workfloows/actions/shared-steps.yml
 
       - name: Run UI tests
         shell: bash
