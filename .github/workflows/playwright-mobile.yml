@@ -15,6 +15,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+#   tests_e2e:
+#     name: Playwright end-to-end mobile tests
+#     uses: ./.github/workflows/actions/actions.yml
+#     env:
+#       AWS_KEY: ${{ secrets.AWS_KEY }}
+#       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+#       JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
+#       CI: true
+#     steps:
+#       - name: Run UI tests
+#         shell: bash
+#         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+
   tests_e2e:
     name: Playwright end-to-end mobile tests
     runs-on: ubuntu-latest
@@ -22,20 +35,28 @@ jobs:
     concurrency:
       group: ${{ github.event_name }}
 
-    # env:
-    #   AWS_KEY: ${{ secrets.AWS_KEY }}
-    #   AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-    #   JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
-    #   CI: true
-    # defaults:
-    #   run:
-    #     working-directory: ./ui_tests_playwright
+    env:
+      AWS_KEY: ${{ secrets.AWS_KEY }}
+      AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+      JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
+      CI: true
+    defaults:
+      run:
+        working-directory: ./ui_tests_playwright
     steps:
-      - uses: action/checkout@v4
-      - name: Call Common Steps
-        uses: ./.github/workflows/.shared-steps.yml
-        with:
-          project: 'Mobile'
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: ./.github/workfloows/actions/shared-steps.yml@ref
+
+      - name: Run UI tests
+        shell: bash
+        run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+
+    #   - uses: action/checkout@v4
+    #   - name: Call Common Steps
+    #     uses: ./.github/workflows/.shared-steps.yml
+    #     with:
+    #       project: 'Mobile'
       # - uses: actions/checkout@v4
 
       # - name: Install Node.js
@@ -72,9 +93,9 @@ jobs:
       # - name: Run Unit Tests
       #   run: npm run unit-tests
 
-      - name: Run UI tests
-        shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+      # - name: Run UI tests
+      #   shell: bash
+      #   run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       # - uses: actions/upload-artifact@v3
       #   name: Upload Playwright report
