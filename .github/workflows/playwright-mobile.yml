@@ -47,6 +47,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
+      - name: Direction
+        run: ls -la
       - name: Check path
         run: pwd
       - uses: ../.github/workflows/actions/shared-steps
