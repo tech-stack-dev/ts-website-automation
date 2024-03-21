@@ -47,7 +47,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - uses: ./.github/workflows/actions/shared-steps
+      - name: Check path
+        run: pwd
+      - uses: ../.github/workflows/actions/shared-steps
 
       - name: Run UI tests
         shell: bash
