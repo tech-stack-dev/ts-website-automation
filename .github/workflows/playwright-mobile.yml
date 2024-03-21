@@ -51,13 +51,13 @@ jobs:
         run: ls -la
       - name: Check path
         run: pwd
-      - uses: ./.github/workflows/actions/shared-steps
+      - uses: ../.github/workflows/actions/shared-steps
 
       - name: Run UI tests
         shell: bash
         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
-     #   - uses: action/checkout@v4
+    #   - uses: action/checkout@v4
     #   - name: Call Common Steps
     #     uses: ./.github/workflows/.shared-steps.yml
     #     with:
