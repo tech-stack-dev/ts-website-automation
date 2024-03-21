@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - uses: ./.github/workfloows/actions/shared-steps
+      - uses: ./.github/workflows/actions/shared-steps
 
       - name: Run UI tests
         shell: bash
