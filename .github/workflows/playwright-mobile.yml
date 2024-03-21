@@ -45,6 +45,8 @@ jobs:
         working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
       - uses: ./.github/workfloows/actions/shared-steps
 
       - name: Run UI tests
