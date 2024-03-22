@@ -58,10 +58,12 @@ runs:
           retention-days: 30
 
       - name: Parse Test Results Data
+        shell: bash
         if: always()
         run: npx ts-node automation/scripts/GetAutotestsCount.ts
 
       - name: Switch to reports-history Branch
+        shell: bash
         if: always()
         run: |
           git config --global user.email "daniil.vostrikov@tech-stack.com"
@@ -72,6 +74,7 @@ runs:
           git checkout -f --track origin/reports-history
 
       - name: Update reports
+        shell: bash
         if: always()
         run: |
           report_folder="automation/reports/"
@@ -88,6 +91,7 @@ runs:
           git push origin reports-history
 
       - name: Run script to create report
+        shell: bash
         if: always()
         run: |
           echo "here's a branch"
@@ -131,7 +135,7 @@ runs:
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ inputs.slack_webhook }}
           SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
@@ -145,7 +149,7 @@ runs:
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ inputs.slack_webhook }}
           SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}

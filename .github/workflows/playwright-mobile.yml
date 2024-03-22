@@ -51,6 +51,7 @@ jobs:
         with:
           project: Mobile\ Safari
           grep: "@mobile"
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           slack_title: TypeScript UI mobile tests
 
       # - name: Run UI tests
