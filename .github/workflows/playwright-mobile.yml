@@ -47,15 +47,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - name: Direction
-        run: ls -la
-      - name: Check path
-        run: pwd
       - uses: ./.github/shared-steps
+        with:
+          project: Mobile\ Safari
+          grep: "@mobile"
+          slack_title: TypeScript UI mobile tests
 
-      - name: Run UI tests
-        shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+      # - name: Run UI tests
+      #   shell: bash
+      #   run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
     #   - uses: action/checkout@v4
     #   - name: Call Common Steps
