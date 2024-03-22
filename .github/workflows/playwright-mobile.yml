@@ -47,6 +47,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/shared-steps
         with:
+          aws_key: ${{ secrets.AWS_KEY }}
+          aws_password: ${{ secrets.AWS_PASSWORD }}
+          jira_token: ${{ secrets.JIRA_AUTH_TOKEN }}
+          ci: true
           working_directory: ./ui_tests_playwright
           project: Mobile\ Safari
           grep: "@mobile"
