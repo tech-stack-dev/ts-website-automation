@@ -60,7 +60,7 @@ runs:
       - name: Parse Test Results Data
         shell: bash
         if: always()
-        run: npx ts-node automation/scripts/GetAutotestsCount.ts
+        run: npx ts-node ui_tests_playwright/automation/scripts/GetAutotestsCount.ts
 
       - name: Switch to reports-history Branch
         shell: bash
