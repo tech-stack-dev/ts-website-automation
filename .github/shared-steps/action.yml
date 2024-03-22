@@ -1,5 +1,18 @@
 name: Shared Steps
 description: run ui tests
+inputs:
+  project:
+    description: 'Playwright project to run tests for'
+    required: true
+  grep:
+    description: 'The grep pattern to filter tests'
+    required: true
+  slack_title:
+    description: 'Slack title message'
+    required: true
+  slack_webhook:
+    description: 'Slack webhook URL for notification'
+    required: true
 
 runs:
     using: "composite"
@@ -60,7 +73,7 @@ runs:
       - name: Parse Test Results Data
         shell: bash
         if: always()
-        run: npx ts-node ui_tests_playwright/automation/scripts/GetAutotestsCount.ts
+        run: npx ts-node automation/scripts/GetAutotestsCount.ts
 
       - name: Switch to reports-history Branch
         shell: bash
