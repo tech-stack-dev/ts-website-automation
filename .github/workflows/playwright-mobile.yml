@@ -51,7 +51,7 @@ jobs:
         run: ls -la
       - name: Check path
         run: pwd
-      - uses: ./shared-steps
+      - uses: ./.github/shared-steps/action
 
       - name: Run UI tests
         shell: bash
