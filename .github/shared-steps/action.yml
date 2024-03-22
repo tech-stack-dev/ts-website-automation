@@ -37,7 +37,7 @@ runs:
         run: |
           echo "AWS_KEY": ${{ inputs.aws_key }}
           echo "AWS_PASSWORD": ${{ inputs.aws_password }}
-          echo "JIRA_TOKEN": ${{ inputs.jira_token }}
+          echo "JIRA_AUTH_TOKEN": ${{ inputs.jira_auth_token }}
           echo "CI": ${{ inputs.ci }}
       - name: Install Node.js
         uses: actions/setup-node@v4
