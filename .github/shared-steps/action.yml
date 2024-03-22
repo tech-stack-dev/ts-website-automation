@@ -10,17 +10,21 @@ runs:
           node-version: "18"
 
       - name: Install dependencies
+        shell: bash
         run: npm ci
 
       - name: Install TypeScript and ts-node
+        shell: bash
         run: npm install -g typescript ts-node
 
       - name: Set current time as an environment variable
+        shell: bash
         run: |
           echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
           echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Run Search and Collect Ticket Statuses
+        shell: bash
         id: ticket-statuses
         run: |
           npx ts-node automation/scripts/GetListOfJirasToSkip.ts
@@ -33,9 +37,11 @@ runs:
           echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
 
       - name: Install playwright browsers
+        shell: bash
         run: npx playwright install --with-deps
 
       - name: Run Unit Tests
+        shell: bash
         run: npm run unit-tests
 
       - name: Run UI tests
