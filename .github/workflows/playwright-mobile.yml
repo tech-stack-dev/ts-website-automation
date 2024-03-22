@@ -45,10 +45,9 @@ jobs:
         working-directory: ./ui_tests_playwright
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
       - uses: ./.github/shared-steps
         with:
+          working_directory: ./ui_tests_playwright
           project: Mobile\ Safari
           grep: "@mobile"
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
