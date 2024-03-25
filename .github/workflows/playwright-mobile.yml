@@ -30,6 +30,9 @@ jobs:
 
   tests_e2e:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ui_tests_playwright
     steps:
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
