@@ -34,6 +34,7 @@ jobs:
       run:
         working-directory: ./ui_tests_playwright
     steps:
+      - uses: actions/checkout@v4
       - name: Run Search and Collect Ticket Statuses
         id: ticket-statuses
         run: |
