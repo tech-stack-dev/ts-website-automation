@@ -9,6 +9,13 @@ on:
         grep:
             required: true
             type: string
+    secrets:
+        awsKey:
+            required: true
+        awsPassword:
+            required: true
+        jiraAuthToken:
+            required: true
     outputs:
         ticket_statuses:
             description: Ticket Status
@@ -20,9 +27,9 @@ jobs:
     outputs:
         ticket_statuses: ${{ steps.ticket-statuses.outputs.ticketStatuses }}
     env:
-      AWS_KEY: ${{ secrets.AWS_KEY }}
-      AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-      JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
+      AWS_KEY: ${{ secrets.awsKey }}
+      AWS_PASSWORD: ${{ secrets.awsPassword }}
+      JIRA_AUTH_TOKEN: ${{ secrets.jiraAuthToken }}
       CI: true
     defaults:
       run:
@@ -53,6 +60,7 @@ jobs:
             ticketStatuses=""
           fi
           echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
+
               
       - name: Install playwright browsers
         run: npx playwright install --with-deps
