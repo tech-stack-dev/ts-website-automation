@@ -2,6 +2,13 @@ name: Common UI Test Steps
 
 on:
   workflow_call:
+    inputs:
+        project:
+            required: true
+            type: string
+        grep:
+            required: true
+            type: string
     outputs:
         ticket_statuses:
             description: Ticket Status
@@ -53,7 +60,7 @@ jobs:
         run: npm run unit-tests
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=Desktop_Chrome --grep "@desktop" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep ${{ inputs.grep }} --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report
