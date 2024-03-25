@@ -29,12 +29,12 @@ jobs:
 #         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
   tests_e2e:
-      uses: ./.github/workflows/common-test-steps.yml
-      with:
-        steps: |
-          - name: Run UI tests
-            shell: bash
-            run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ needs.common_steps.outputs.ticket_statuses }}" | tee test-output.txt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/common-test-steps.yml
+      - name: Run UI tests
+        shell: bash
+        run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ needs.common_steps.outputs.ticket_statuses }}" | tee test-output.txt
       # name: Playwright end-to-end mobile tests
     # runs-on: ubuntu-latest
     # # Set up queue for parallel actions
