@@ -2,14 +2,16 @@ name: Common UI Test Steps
 
 on:
   workflow_call:
-    inputs:
+    outputs:
         ticket_statuses:
-            required: true
-            type: string
+            description: Ticket Status
+            value: ${{ jobs.common_steps.outputs.ticket_statuses }}
 
 jobs:
   common_steps:
     runs-on: ubuntu-latest
+    outputs:
+        ticket_statuses: ${{ steps.ticket-statuses.outputs.ticketStatuses }}
     env:
       AWS_KEY: ${{ secrets.AWS_KEY }}
       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
@@ -33,24 +35,25 @@ jobs:
         run: |
           echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
           echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
-    #   - name: Run Search and Collect Ticket Statuses
-    #     id: ticket-statuses
-    #     run: |
-    #       npx ts-node automation/scripts/GetListOfJirasToSkip.ts
-    #       ticketStatusesFile="ticketStatuses.json"
-    #       if [[ -f "$ticketStatusesFile" ]]; then
-    #         ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
-    #       else
-    #         ticketStatuses=""
-    #       fi
-    #       echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
+      - name: Run Search and Collect Ticket Statuses
+        id: ticket-statuses
+        run: |
+          npx ts-node automation/scripts/GetListOfJirasToSkip.ts
+          ticketStatusesFile="ticketStatuses.json"
+          if [[ -f "$ticketStatusesFile" ]]; then
+            ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
+          else
+            ticketStatuses=""
+          fi
+          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
+              
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run Unit Tests
         run: npm run unit-tests
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=Desktop_Chrome --grep "@desktop" --grep-invert "${{ inputs.ticket_statuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=Desktop_Chrome --grep "@desktop" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
       - uses: actions/upload-artifact@v3
         name: Upload Playwright report

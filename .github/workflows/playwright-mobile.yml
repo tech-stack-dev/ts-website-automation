@@ -29,31 +29,13 @@ jobs:
 #         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
   tests_e2e:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./ui_tests_playwright
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Search and Collect Ticket Statuses
-        id: ticket-statuses
-        run: |
-          npx ts-node automation/scripts/GetListOfJirasToSkip.ts
-          ticketStatusesFile="ticketStatuses.json"
-          if [[ -f "$ticketStatusesFile" ]]; then
-            ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
-          else
-            ticketStatuses=""
-          fi
-          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
-
-      - uses: ./.github/workflows/common-test-steps.yml
-        with:
-          steps: |
-            - name: Run UI tests
-              shell: bash
-              run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
-    # name: Playwright end-to-end mobile tests
+      uses: ./.github/workflows/common-test-steps.yml
+      with:
+        steps: |
+          - name: Run UI tests
+            shell: bash
+            run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ needs.common_steps.outputs.ticket_statuses }}" | tee test-output.txt
+      # name: Playwright end-to-end mobile tests
     # runs-on: ubuntu-latest
     # # Set up queue for parallel actions
     # concurrency:
