@@ -29,33 +29,53 @@ jobs:
 #         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
 
   tests_e2e:
-    name: Playwright end-to-end mobile tests
     runs-on: ubuntu-latest
-    # Set up queue for parallel actions
-    concurrency:
-      group: ${{ github.event_name }}
-
-    env:
-      AWS_KEY: ${{ secrets.AWS_KEY }}
-      AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-      JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
-      CI: true
-    defaults:
-      run:
-        working-directory: ./ui_tests_playwright
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/shared-steps
+      - name: Run Search and Collect Ticket Statuses
+        id: ticket-statuses
+        run: |
+          npx ts-node automation/scripts/GetListOfJirasToSkip.ts
+          ticketStatusesFile="ticketStatuses.json"
+          if [[ -f "$ticketStatusesFile" ]]; then
+            ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
+          else
+            ticketStatuses=""
+          fi
+          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
+
+      - uses: ./.github/workflows/common-test-steps.yml
         with:
-          aws_key: ${{ secrets.AWS_KEY }}
-          aws_password: ${{ secrets.AWS_PASSWORD }}
-          jira_auth_token: ${{ secrets.JIRA_AUTH_TOKEN }}
-          ci: true
-          working_directory: ./ui_tests_playwright
-          project: Mobile\ Safari
-          grep: "@mobile"
-          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
-          slack_title: TypeScript UI mobile tests
+          steps: |
+            - name: Run UI tests
+              shell: bash
+              run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+    # name: Playwright end-to-end mobile tests
+    # runs-on: ubuntu-latest
+    # # Set up queue for parallel actions
+    # concurrency:
+    #   group: ${{ github.event_name }}
+
+    # env:
+    #   AWS_KEY: ${{ secrets.AWS_KEY }}
+    #   AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+    #   JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
+    #   CI: true
+    # defaults:
+    #   run:
+    #     working-directory: ./ui_tests_playwright
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - uses: ./.github/shared-steps
+    #     with:
+    #       aws_key: ${{ secrets.AWS_KEY }}
+    #       aws_password: ${{ secrets.AWS_PASSWORD }}
+    #       jira_auth_token: ${{ secrets.JIRA_AUTH_TOKEN }}
+    #       ci: true
+    #       working_directory: ./ui_tests_playwright
+    #       project: Mobile\ Safari
+    #       grep: "@mobile"
+    #       slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+    #       slack_title: TypeScript UI mobile tests
 
       # - name: Run UI tests
       #   shell: bash
