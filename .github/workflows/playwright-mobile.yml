@@ -2,8 +2,9 @@ name: Playwright UI E2E Mobile
 
 on:
   workflow_run:
-    workflows: ["Playwright UI E2E"]
-    types: [completed]
+    workflows: [Playwright UI E2E]
+    types: 
+      - completed
     branches:
       - '**'
   # workflow_dispatch:
