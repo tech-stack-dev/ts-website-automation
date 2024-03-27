@@ -1,19 +1,19 @@
 name: Playwright UI E2E Mobile
 
 on:
-  workflow_run:
-    workflows: [Playwright UI E2E]
-    types: 
-      - completed
-    branches:
-      - "solution-for-mobile-tests"
-  # workflow_dispatch:
-  # schedule:
-  #   # Run each day at 21:10
-  #   - cron: "10 21 * * *"
-  # pull_request:
-  #   paths:
-  #     - "ui_tests_playwright/**"
+  # workflow_run:
+    # workflows: [Playwright UI E2E]
+    # types: 
+    #   - completed
+    # branches:
+    #   - "solution-for-mobile-tests"
+  workflow_dispatch:
+  schedule:
+    # Run each day at 21:10
+    - cron: "10 21 * * *"
+  pull_request:
+    paths:
+      - "ui_tests_playwright/**"
   
 # To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
@@ -21,24 +21,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-#   tests_e2e:
-#     name: Playwright end-to-end mobile tests
-#     uses: ./.github/workflows/actions/actions.yml
-#     env:
-#       AWS_KEY: ${{ secrets.AWS_KEY }}
-#       AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-#       JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
-#       CI: true
-#     steps:
-#       - name: Run UI tests
-#         shell: bash
-#         run: QASE_REPORT="1" npx playwright test --project=Mobile\ Safari --grep "@mobile" --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
-
   tests_e2e:
     uses: ./.github/workflows/common-test-steps.yml
     with:
       project: Mobile\ Safari
       grep: "@mobile"
+      slackTitle: TypeScript UI mobile tests
     secrets:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}
