@@ -45,7 +45,7 @@ jobs:
               workflow_id: 'Playwright UI E2E Mobile.yml',
               ref: github.sha,
               inputs: {
-                run_mobile: 'false' // Don't trigger mobile tests again
+                run_mobile: 'true' // Don't trigger mobile tests again
               }
             })
     # runs-on: ubuntu-latest
