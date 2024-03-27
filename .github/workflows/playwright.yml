@@ -39,7 +39,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.actions.createWorkflowDispatch({
+            github.actions.version
+            github.rest.actions.version
+            github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'Playwright UI E2E Mobile.yml',
