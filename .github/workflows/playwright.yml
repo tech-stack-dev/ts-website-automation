@@ -32,20 +32,22 @@ jobs:
       jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
     
   run_mobile_tests:
-      needs: tests_e2e
-      if: ${{ github.event.inputs.run_mobile == 'true' }}
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'Playwright UI E2E Mobile.yml',
-            ref: github.sha,
-            inputs: {
-              run_mobile: 'true' // Don't trigger mobile tests again
-            }
-          })
+    needs: tests_e2e
+    if: ${{ github.event.inputs.run_mobile == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'Playwright UI E2E Mobile.yml',
+              ref: github.sha,
+              inputs: {
+                run_mobile: 'false' // Don't trigger mobile tests again
+              }
+            })
     # runs-on: ubuntu-latest
     # # Set up queue for parallel actions
     # concurrency:
