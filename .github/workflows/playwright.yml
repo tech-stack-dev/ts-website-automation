@@ -44,7 +44,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'playwright-mobile.yml',
-              ref: github.sha,
+              ref: ${{ github.sha }},
               inputs: {
                 run_mobile: 'true' // Don't trigger mobile tests again
               }
