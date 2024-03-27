@@ -2,11 +2,11 @@ name: Playwright UI E2E
 
 on:
   workflow_dispatch:
-    inputs:
-      run_mobile:
-        description: 'Run mobile tests after desktop tests?'
-        required: true
-        default: 'true'
+    # inputs:
+    #   run_mobile:
+    #     description: 'Run mobile tests after desktop tests?'
+    #     required: true
+    #     default: 'true'
   schedule:
     # Run each day at 21:10
     - cron: "10 21 * * *"
@@ -33,7 +33,6 @@ jobs:
     
   run_mobile_tests:
     needs: tests_e2e
-    if: ${{ github.event.inputs.run_mobile == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
