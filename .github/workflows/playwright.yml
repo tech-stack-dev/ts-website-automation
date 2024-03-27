@@ -43,7 +43,7 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'Playwright UI E2E Mobile.yml',
+              workflow_id: 'playwright-mobile.yml',
               ref: github.sha,
               inputs: {
                 run_mobile: 'true' // Don't trigger mobile tests again
