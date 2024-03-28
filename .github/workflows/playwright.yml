@@ -38,16 +38,18 @@ jobs:
       - uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |-
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'playwright-mobile.yml',
-              ref: ${{ github.event.pull_request.head.ref }},
-              inputs: {
-                run_mobile: 'true' // Don't trigger mobile tests again
-              }
-            })
+          script: |
+            async () => {
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'playwright-mobile.yml',
+                ref: ${{ github.event.pull_request.head.ref }},
+                inputs: {
+                  run_mobile: 'true' // Don't trigger mobile tests again
+                }
+              });
+            }
     # runs-on: ubuntu-latest
     # # Set up queue for parallel actions
     # concurrency:
