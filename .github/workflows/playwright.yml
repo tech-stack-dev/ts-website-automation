@@ -30,6 +30,7 @@ jobs:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}
       jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
+      slackWebHook: ${{ secrets.SLACK_WEBHOOK }}
     
   run_mobile_tests:
     needs: tests_e2e
