@@ -30,7 +30,7 @@ jobs:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}
       jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
-    # runs-on: ubuntu-latest
+    #  runs-on: ubuntu-latest
     # steps:
     #   - uses: actions/checkout@v4
     #   - uses: ./.github/workflows/common-test-steps.yml
