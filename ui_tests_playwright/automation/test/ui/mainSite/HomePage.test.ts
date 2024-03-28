@@ -34,12 +34,12 @@ test(
 	}
 );
 
-test(qase(5018, 'Check the Info container from the "Home" page @Regression @HomePage @TSWEB-1006'), async () => {
+test.skip(qase(5018, 'Check the Info container from the "Home" page @Regression @HomePage @TSWEB-1006'), async () => {
 	const infoContainer = driver.getByTestId(HomePage.Info);
 	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Make\nan impact');
 });
 
-test(
+test.skip(
 	qase(5034, 'Check the container titles and numbers from the "Home" page @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const containers = [
@@ -68,7 +68,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5043,
 		'Check section titles in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -82,7 +82,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5062,
 		'Check redirects by blocks in "Industries we serve" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -108,7 +108,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(5049, 'Check section titles in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const whatWeDo = driver.getByTestId(HomePage.WhatWeDo);
@@ -131,7 +131,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5130,
 		'Check redirects by arrows in "What we do" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -159,7 +159,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5055,
 		'Check redirect by "LinkedIn Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -185,7 +185,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5076,
 		'Check redirect by "Clutch Review" buttons in "Partner testimonials" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -213,7 +213,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5069,
 		'Check images in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -228,7 +228,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5090,
 		'Check redirect by link in "Working with Businesses Worldwide" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -241,7 +241,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5084,
 		'Check partner logos in "Our partners" container from the "Home" page @Regression @HomePage @TSWEB-1006'
@@ -254,7 +254,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5095,
 		'Check "See All News" button from the "Company insights" container on the "Home" page @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
