@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4909,
-		'Check redirect by CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirect by CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
@@ -40,7 +40,7 @@ test(
 test(
 	qase(
 		4925,
-		'Check redirect by links in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirect by links in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const industriesSpecificContainer = driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions);
@@ -69,7 +69,7 @@ test(
 test(
 	qase(
 		4912,
-		'Check redirect by "Clutch Review" button in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirect by "Clutch Review" button in "Why Choose Techstack’s Big Data Software Development Services?" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const whyChooseTechstackBigDataContainer = driver.getByTestId(
@@ -86,7 +86,7 @@ test(
 test(
 	qase(
 		4918,
-		'Check redirects by LinkedIn buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirects by LinkedIn buttons in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
@@ -108,7 +108,7 @@ test(
 test(
 	qase(
 		4956,
-		'Check redirects by Blog buttons in "Our Experts" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693 @TSWEB-1061'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
@@ -131,7 +131,7 @@ test(
 test(
 	qase(
 		5012,
-		'Check redirects by arrows in "Related Services" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirects by arrows in "Related Services" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
@@ -156,7 +156,7 @@ test(
 test(
 	qase(
 		4930,
-		'Check sections expanding and collapsing in "FAQ" container from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check sections expanding and collapsing in "FAQ" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(BigDataAndAnalytics.Faq);
@@ -169,7 +169,7 @@ test(
 test(
 	qase(
 		4944,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Big Data & Analytics" page @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const ctaButtons = [

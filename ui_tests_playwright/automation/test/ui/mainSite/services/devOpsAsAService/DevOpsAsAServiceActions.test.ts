@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4824,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ctaButtons = [
@@ -40,7 +40,7 @@ test(
 test(
 	qase(
 		4818,
-		'Check redirect by "Clutch Review" button in "Success Stories" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by "Clutch Review" button in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
@@ -55,7 +55,7 @@ test(
 test(
 	qase(
 		4834,
-		'Check redirect by CTA button in "Success Stories" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by CTA button in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
@@ -73,7 +73,7 @@ test(
 test(
 	qase(
 		4873,
-		'Check redirect by links in "Industries We Serve" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by links in "Industries We Serve" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(DevOpsAsAService.IndustriesWeServe);
@@ -101,7 +101,7 @@ test(
 test(
 	qase(
 		4841,
-		'Check redirect by "Clutch Review" button in "Our Approach to DevOps" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by "Clutch Review" button in "Our Approach to DevOps" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(DevOpsAsAService.OurApproach);
@@ -116,7 +116,7 @@ test(
 test(
 	qase(
 		4848,
-		'Check redirects by LinkedIn buttons in "Our DevOps Experts" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirects by LinkedIn buttons in "Our DevOps Experts" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(DevOpsAsAService.OurExperts);
@@ -140,7 +140,7 @@ test(
 test(
 	qase(
 		4892,
-		'Check redirects by Blog buttons in "Our DevOps Experts" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our DevOps Experts" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136 @TSWEB-1061'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(DevOpsAsAService.OurExperts);
@@ -162,7 +162,7 @@ test(
 test(
 	qase(
 		4964,
-		'Check redirects by arrows in "Related Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirects by arrows in "Related Services" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(DevOpsAsAService.RelatedServices);
@@ -185,7 +185,7 @@ test(
 test(
 	qase(
 		4910,
-		'Check sections expanding and collapsing in "FAQ" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check sections expanding and collapsing in "FAQ" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(DevOpsAsAService.Faq);

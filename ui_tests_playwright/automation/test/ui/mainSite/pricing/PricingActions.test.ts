@@ -13,7 +13,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Pricing));
 });
 
-test('Check navigation to "What Is Your Cooperation Type?" container after clicking CTA button from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check navigation to "What Is Your Cooperation Type?" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const ctaButton = driver
 		.getByTestId(Pricing.SimplifiedPaymentProcess)
 		.getByTestId(MainSiteButtons.GetYourFreeEstimate);
@@ -21,19 +21,19 @@ test('Check navigation to "What Is Your Cooperation Type?" container after click
 	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.WhatIsCooperationType);
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const ctaButton = driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime);
 
 	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.GetInTouch);
 });
 
-test('Check redirect by LinkedIn button in the Quote container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check redirect by LinkedIn button in the Quote container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const linkedInButton = driver.getByTestId(Pricing.Believe).getByTestId(MainSiteButtons.LinkedInReviewArrow);
 
 	await baseDriverSteps.checkRedirectToPage(linkedInButton, ExpertsLinkedInLinks.MaxLevytskyi);
 });
 
-test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About Us" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About Us" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const reviewsContainer = driver.getByTestId(Pricing.WhatClientsSay);
 	const clutchReviewButtons = reviewsContainer.getByTestId(Buttons.Clutch);
 
@@ -47,7 +47,7 @@ test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About 
 	}
 });
 
-test('Check sections expanding and collapsing in "FAQ" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check sections expanding and collapsing in "FAQ" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const faqContainer = driver.getByTestId(Pricing.Faq);
 	const expectedNumberOfSections = 6;
 

@@ -18,7 +18,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4883,
-		'Check the Info container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check the Info container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const info = driver.getByTestId(DevOpsAsAService.Info);
@@ -31,7 +31,7 @@ test(
 test(
 	qase(
 		4904,
-		'Check the container titles and numbers from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check the container titles and numbers from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const containers = [
@@ -72,7 +72,7 @@ test(
 test(
 	qase(
 		4899,
-		'Check section numbers and titles in "DevOps Solution Benefits" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "DevOps Solution Benefits" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const devOpsSolutionBenefitsContainer = driver.getByTestId(DevOpsAsAService.DevOpsSolutionBenefits);
@@ -101,7 +101,7 @@ test(
 test(
 	qase(
 		4922,
-		'Check section titles, images and CTA button in "Leverage DevOps Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles, images and CTA button in "Leverage DevOps Services" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const leverageDevOpsServicesrContainer = driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices);
@@ -136,7 +136,7 @@ test(
 test(
 	qase(
 		4916,
-		'Check section titles in "Technology stack" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "Technology stack" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(DevOpsAsAService.TechnologyStack);
@@ -149,7 +149,7 @@ test(
 test(
 	qase(
 		4929,
-		'Check section titles and CTA in "Success Stories" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles and CTA in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
@@ -171,7 +171,7 @@ test(
 test(
 	qase(
 		4939,
-		'Check section numbers and titles in "Industries We Serve" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "Industries We Serve" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(DevOpsAsAService.IndustriesWeServe);
@@ -200,7 +200,7 @@ test(
 test(
 	qase(
 		4948,
-		'Check section titles and images in "Our Approach to DevOps" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles and images in "Our Approach to DevOps" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourApproachToDevOpsContainer = driver.getByTestId(DevOpsAsAService.OurApproach);
@@ -224,7 +224,7 @@ test(
 test(
 	qase(
 		4957,
-		'Check section numbers and titles in "The Value Techstack Adds to Products" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "The Value Techstack Adds to Products" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const theValueToProductsContainer = driver.getByTestId(DevOpsAsAService.TheValueTechstackAddsToProducts);
@@ -241,7 +241,7 @@ test(
 test(
 	qase(
 		4973,
-		'Check member names and roles, and CTA button in "Our DevOps experts" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check member names and roles, and CTA button in "Our DevOps experts" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourDevOpsExpertsContainer = driver.getByTestId(DevOpsAsAService.OurExperts);
@@ -276,7 +276,7 @@ test(
 test(
 	qase(
 		4979,
-		'Check section numbers and titles in "DevOps as a Service: Pipeline" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "DevOps as a Service: Pipeline" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const devOpsAsAServiceContainer = driver.getByTestId(DevOpsAsAService.DevOpsAsAServicePipeline);
@@ -303,7 +303,7 @@ test(
 test(
 	qase(
 		4991,
-		'Check section titles in "Related Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "Related Services" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(DevOpsAsAService.RelatedServices);
@@ -325,7 +325,7 @@ test(
 test(
 	qase(
 		4985,
-		'Check section titles in "FAQ" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "FAQ" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(DevOpsAsAService.Faq);

@@ -11,13 +11,19 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Terms));
 });
 
-test(qase(5478, 'Check title from the "Terms of use" page @Regression @TermsOfUse @TSWEB-1186'), async () => {
-	const infoContainer = driver.getByTestId(TermsOfUse.Info);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Terms of use');
-});
+test(
+	qase(5478, 'Check title from the "Terms of use" page @desktop @mobile @Regression @TermsOfUse @TSWEB-1186'),
+	async () => {
+		const infoContainer = driver.getByTestId(TermsOfUse.Info);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Terms of use');
+	}
+);
 
 test(
-	qase(5479, 'Check the container title and number from the "Terms of use" page @Regression @TermsOfUse @TSWEB-1186'),
+	qase(
+		5479,
+		'Check the container title and number from the "Terms of use" page @desktop @mobile @Regression @TermsOfUse @TSWEB-1186'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(TermsOfUse.TermsOfUseOfTheWebsite),

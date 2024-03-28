@@ -1,12 +1,10 @@
-import {expect, test} from '@playwright/test';
 import {driver} from '../../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../../base/step/BaseDriverSteps';
 import ContainerByClass from '../../../../../../components/container/ContainerByClass';
 import ContainersCareer from '../../../../../../identifiers/career/ContainersCareer';
 import UrlProvider from '../../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../../../steps/careerPageSteps/CareerSteps';
-import {containerSteps} from '../../../../../../steps/components/container/ContainerSteps';
+import {careerSteps, containerSteps, expect, test} from '../../../../../../fixtures/DesktopMobileSetup';
 import {contentfulSteps} from '../../../../../../steps/contentful/ContentfulSteps';
 import {contentfulUtils} from '../../../../../../utils/ContentfulUtils';
 import {ColorsEnum} from '../../../../../../enum/ColorsEnum';
@@ -18,6 +16,7 @@ import Career from '../../../../../../identifiers/career/pages/Career';
 import {locatorUtils} from '../../../../../../utils/LocatorUtils';
 import {playwrightUtils} from '../../../../../../utils/PlaywrightUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {IContainerOptions} from '../../../../../../steps/components/container/ContainerSteps';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -38,7 +37,7 @@ for (const testData of testDataProvider) {
 	test(
 		qase(
 			[4825, 4837, 4842, 4856],
-			`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
+			`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 		),
 		async () => {
 			contentfulUtils.AddTagsToCareerBody(testData.createTag);
@@ -51,21 +50,29 @@ for (const testData of testDataProvider) {
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`
 			);
 
-			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+			const identifiers: IContainerOptions = {
+				desktopLocator: Career.CareerMainBody,
+				mobileLocator: Career.FilterList,
+			};
+
+			const careerMainContainer = await containerSteps.getContainer(ContainerByClass, identifiers);
 			const filterGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				ContainersCareer.FilterGroupWrapper,
+				{desktopLocator: ContainersCareer.FilterGroupWrapper},
 				careerMainContainer
 			);
 			const filterTag = filterGroupContainer.getByTestId(testData.tagName);
 			const activeTagsGroupContainer = await containerSteps.getContainer(
 				ContainerByClass,
-				ContainersCareer.ActiveTagsGroupWrapper,
+				{desktopLocator: ContainersCareer.ActiveTagsGroupWrapper},
 				careerMainContainer
 			);
 			const activeTag = activeTagsGroupContainer.getByTestId(testData.tagName);
 
+			await careerSteps.clickOnFilter();
+
 			await filterTag.click();
+			await driver.Page.mouse.move(0, 0);
 			await playwrightUtils.expectWithRetries(async () => {
 				await expect(filterTag).toHaveClass(/active-tag/);
 				expect(await locatorUtils.checkBackgroundColor(filterTag, ColorsEnum.Yellow_FFC600)).toBeTruthy();

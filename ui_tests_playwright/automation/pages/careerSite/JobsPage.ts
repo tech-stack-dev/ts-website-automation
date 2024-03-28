@@ -1,7 +1,7 @@
 import BasePage from '../../base/page/BasePage';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import Career from '../../identifiers/career/pages/Career';
-import {containerSteps} from '../../steps/components/container/ContainerSteps';
+import {containerSteps} from '../../fixtures/DesktopMobileSetup';
 
 export default class JobsPage extends BasePage {
 	public applyJobBlock() {
@@ -9,7 +9,9 @@ export default class JobsPage extends BasePage {
 	}
 
 	public async getDropdownByName(name: string) {
-		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, Career.CareerMainBody);
+		const careerMainContainer = await containerSteps.getContainer(ContainerByClass, {
+			desktopLocator: Career.CareerMainBody,
+		});
 		return careerMainContainer.locator(`//div[@class='group-title' and text()='${name}']//ancestor::span`);
 	}
 }

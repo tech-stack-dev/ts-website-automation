@@ -1,6 +1,10 @@
 export default class MainSiteImages {
 	static BeatsScreening = 'Img-BeatsScreening';
 	static CompleteMap = 'Map-CompleteMap';
+	static UsaMap = 'Map-UsaMap';
+	static NorthAmericaMap = 'Map-NorthAmericaMap';
+	static EuropeMap = 'Map-EuropeMap';
+	static AustraliaMap = 'Map-AustraliaMap';
 	static CaseStudy = 'Img-CaseStudy';
 	static SolarEnergy = 'Img-SolarEnergy';
 	static SensorsScheme = 'Img-SensorsScheme';

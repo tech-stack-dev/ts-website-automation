@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5527,
-		'Check the Info container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check the Info container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const info = driver.getByTestId(BackEndServices.Info);
@@ -31,7 +31,7 @@ test(
 test(
 	qase(
 		5528,
-		'Check the container titles and numbers from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check the container titles and numbers from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const containers = [
@@ -77,7 +77,7 @@ test(
 test(
 	qase(
 		5532,
-		'Check section titles in "Techstack’s Powers in Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles in "Techstack’s Powers in Back-End Development" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
@@ -91,7 +91,7 @@ test(
 test(
 	qase(
 		5526,
-		'Check section titles and numbers in "Expert Back-End Development Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers in "Expert Back-End Development Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.ExpertServices);
@@ -124,7 +124,7 @@ test(
 test(
 	qase(
 		5534,
-		'Check section titles, numbers and CTA in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles, numbers and CTA in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.BackendForAnySoftwareProduct);
@@ -149,7 +149,7 @@ test(
 test(
 	qase(
 		5529,
-		'Check section titles in "Our Tech Arsenal for Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles in "Our Tech Arsenal for Back-End Development" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const techArsenalContainer = driver.getByTestId(BackEndServices.TechArsenal);
@@ -174,7 +174,7 @@ test(
 test(
 	qase(
 		5530,
-		'Check section titles, image and CTA in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles, image and CTA in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
@@ -190,7 +190,7 @@ test(
 test(
 	qase(
 		5533,
-		'Check member names, roles and CTA in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check member names, roles and CTA in "Our Leading Back-End Engineers" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
@@ -226,7 +226,7 @@ test(
 test(
 	qase(
 		5535,
-		'Check section titles and award cards in "Why Techstack Stands Out" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and award cards in "Why Techstack Stands Out" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
@@ -253,7 +253,7 @@ test(
 test(
 	qase(
 		5531,
-		'Check section titles and numbers in "Partnering for Effective Back-End Development" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers in "Partnering for Effective Back-End Development" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const partneringContainer = driver.getByTestId(BackEndServices.Partnering);
@@ -286,7 +286,7 @@ test(
 test(
 	qase(
 		5540,
-		'Check carousel section numbers, titles and CTA in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check carousel section numbers, titles and CTA in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const peekIntoBackendContainer = driver.getByTestId(BackEndServices.PeekIntoBackend);
@@ -325,7 +325,7 @@ test(
 test(
 	qase(
 		5537,
-		'Check section titles in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const backendDevelopmentServicesContainer = driver.getByTestId(BackEndServices.BackendDevelopmentServices);
@@ -348,7 +348,7 @@ test(
 test(
 	qase(
 		5539,
-		'Check section titles, numbers and CTA in "How We Can Work Together" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles, numbers and CTA in "How We Can Work Together" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const howWeCanWorkTogetherContainer = driver.getByTestId(BackEndServices.HowWeCanWorkTogether);
@@ -368,7 +368,7 @@ test(
 test(
 	qase(
 		5536,
-		'Check section titles in "Related Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles in "Related Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(BackEndServices.RelatedServices);
@@ -392,7 +392,7 @@ test(
 test(
 	qase(
 		5538,
-		'Check section titles in "FAQ" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles in "FAQ" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(BackEndServices.Faq);

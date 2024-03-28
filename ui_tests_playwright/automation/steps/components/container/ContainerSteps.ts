@@ -2,11 +2,17 @@ import {Locator, expect} from '@playwright/test';
 import {driver} from '../../../base/driver/Driver';
 import ContainerById from '../../../components/container/ContainerById';
 import Container from '../../../identifiers/Container';
+import BaseComponent from '../../../base/component/BaseComponent';
 
-class ContainerSteps {
-	public async getContainer(type: any, identifier: string, parent?: Locator) {
-		return await driver.component(type, identifier, parent);
-	}
+export interface IContainerOptions {
+	mobileLocator?: string;
+	desktopLocator: string;
+}
+
+export abstract class ContainerSteps {
+	abstract getContainer(type: any, identifier: IContainerOptions, parent?: Locator): Promise<BaseComponent>;
+
+	abstract getDynamicLocator(identifier: IContainerOptions): Promise<Locator>;
 
 	public async checkContainerNumber(identifier: string, expectedNumber: string) {
 		const sectionNumber = (await driver.component(ContainerById, identifier)).sectionNumber;
@@ -30,6 +36,3 @@ class ContainerSteps {
 		}
 	}
 }
-
-const containerSteps = new ContainerSteps();
-export {containerSteps};

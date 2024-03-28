@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5073,
-		'Check switching between layers in "IoT Technology Stack by Layers" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check switching between layers in "IoT Technology Stack by Layers" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTTechnologyStackByLayersContainer = driver.getByTestId(
@@ -48,7 +48,7 @@ test(
 test(
 	qase(
 		5079,
-		'Check redirect by CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check redirect by CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
@@ -66,7 +66,7 @@ test(
 test(
 	qase(
 		5097,
-		'Check redirects by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check redirects by links in "Industry-specific IoT Solutions" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const industriesWeDevelopContainer = driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions);
@@ -90,7 +90,7 @@ test(
 test(
 	qase(
 		5103,
-		'Check carousel buttons clicks in "IoT Engineering Process" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check carousel buttons clicks in "IoT Engineering Process" container from the "Internet of Things" page @desktop @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ioTEngineeringProcessContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess);
@@ -101,7 +101,7 @@ test(
 test(
 	qase(
 		5089,
-		'Check redirects by LinkedIn buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check redirects by LinkedIn buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
@@ -122,7 +122,7 @@ test(
 test(
 	qase(
 		5111,
-		'Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Internet of Things Engineering Experts" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695 @TSWEB-1061'
 	),
 	async () => {
 		const ourIoTExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
@@ -144,7 +144,7 @@ test(
 test(
 	qase(
 		5222,
-		'Check redirects by arrows in "Related Services" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check redirects by arrows in "Related Services" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
@@ -167,7 +167,7 @@ test(
 test(
 	qase(
 		5118,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const requestAQuoteButtons = [
@@ -186,7 +186,7 @@ test(
 test(
 	qase(
 		5145,
-		'Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @Regression @InternetOfThings @TSWEB-695'
+		'Check sections expanding and collapsing in "FAQ" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(IoTEngineeringServices.Faq);

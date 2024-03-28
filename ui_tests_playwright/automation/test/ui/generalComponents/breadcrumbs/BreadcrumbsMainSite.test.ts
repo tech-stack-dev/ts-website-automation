@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5483,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Industries" pages @Regression @Breadcrumbs'
+		'Check redirect to main page by clicking "Home" breadcrumbs button from "Industries" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
 		for (const url of Object.values(industryUrl)) {
@@ -28,7 +28,7 @@ test(
 test(
 	qase(
 		5481,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Our Services" page @Regression @Breadcrumbs'
+		'Check redirect to main page by clicking "Home" breadcrumbs button from "Our Services" page @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -40,7 +40,7 @@ test(
 test(
 	qase(
 		5484,
-		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @Regression @Breadcrumbs'
+		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
 		const servicesUrlList = [
@@ -70,7 +70,7 @@ test(
 test(
 	qase(
 		5482,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" pages @Regression @Breadcrumbs'
+		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
 		const companyUrlList = [UrlProvider.urlBuilder(UrlPath.AboutUs), UrlProvider.urlBuilder(UrlPath.HowWeWork)];

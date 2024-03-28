@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5370,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const ctaButtons = [
@@ -42,7 +42,7 @@ test(
 test(
 	qase(
 		5372,
-		'Check redirects by links in "Industries We Serve" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirects by links in "Industries We Serve" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const industriesContainer = driver.getByTestId(DigitalTransformation.IndustriesWeServe);
@@ -66,7 +66,7 @@ test(
 test(
 	qase(
 		5368,
-		'Check redirect by CTA button in "Success Stories" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirect by CTA button in "Success Stories" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
@@ -84,7 +84,7 @@ test(
 test(
 	qase(
 		5374,
-		'Check redirects by arrows in "Technologies We Use for Digital Transformation" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirects by arrows in "Technologies We Use for Digital Transformation" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const technologiesContainer = driver.getByTestId(DigitalTransformation.TechnologiesWeUse);
@@ -111,7 +111,7 @@ test(
 test(
 	qase(
 		5369,
-		'Check redirect by "Clutch Review" button in "Digital Transformation Strategy" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirect by "Clutch Review" button in "Digital Transformation Strategy" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const digitalStrategyContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
@@ -124,7 +124,7 @@ test(
 test(
 	qase(
 		5373,
-		'Check carousel arrows clicks in "Technology Transformation Workflow" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check carousel arrows clicks in "Technology Transformation Workflow" container from the "Digital Transformation" page @desktop @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const technologyWorkflowContainer = driver.getByTestId(DigitalTransformation.TechnologyTransformationWorkflow);
@@ -136,7 +136,7 @@ test(
 test(
 	qase(
 		5371,
-		'Check sections expanding and collapsing in "FAQ" container from the "Digital Transformation" page @Regression @DigitalTransformation @TSWEB-1135'
+		'Check sections expanding and collapsing in "FAQ" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(DigitalTransformation.Faq);
