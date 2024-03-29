@@ -25,7 +25,7 @@ jobs:
     with:
       project: Mobile\ Safari
       grep: "@mobile"
-      slackTitle: TypeScript UI mobile tests
+      slackTitle: "TypeScript UI mobile tests :iphone:"
     secrets:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}
