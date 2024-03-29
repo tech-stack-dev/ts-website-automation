@@ -2,11 +2,11 @@ name: Playwright UI E2E Mobile
 
 on:
   workflow_dispatch:
-    inputs:
-      run_mobile:
-        description: 'Run mobile tests after desktop?'
-        required: true
-        default: 'true'
+    # inputs:
+    #   run_mobile:
+    #     description: 'Run mobile tests after desktop?'
+    #     required: true
+    #     default: 'false'
   # schedule:
   #   # Run each day at 21:10
   #   - cron: "10 21 * * *"

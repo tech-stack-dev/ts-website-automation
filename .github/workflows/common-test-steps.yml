@@ -161,17 +161,17 @@ jobs:
       #     MSG_MINIMAL: true
       #     SLACK_FOOTER: TS website
 
-      - name: Slack Notification for UI tests automation
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.slackWebHook }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/${{ github.event_name == 'schedule' && 'regression' || 'pull-requests' }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: ${{ inputs.slackTitle }}
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
+      # - name: Slack Notification for UI tests automation
+      #   if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
+      #   uses: rtCamp/action-slack-notify@v2.2.0
+      #   env:
+      #     SLACK_USERNAME: Tests execution report
+      #     SLACK_WEBHOOK: ${{ secrets.slackWebHook }}
+      #     SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
+      #     SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
+      #     SLACK_COLOR: ${{ job.status }}
+      #     SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/${{ github.event_name == 'schedule' && 'regression' || 'pull-requests' }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
+      #     SLACK_TITLE: ${{ inputs.slackTitle }}
+      #     MSG_MINIMAL: true
+      #     SLACK_FOOTER: TS website
   
