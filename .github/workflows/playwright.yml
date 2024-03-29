@@ -35,7 +35,7 @@ jobs:
   run_mobile_tests:
     needs: tests_e2e
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.run_mobile == 'true' }}
+    # if: ${{ github.event.inputs.run_mobile == 'true' }}
     steps:
       - uses: actions/github-script@v6
         with:
