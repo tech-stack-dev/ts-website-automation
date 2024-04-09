@@ -5,7 +5,7 @@ on:
     inputs:
       eventName:
         description: 'Send report if event was started by schhedule'
-        required: true
+        required: false
         type: string
         # default: 'false'
   # schedule:
