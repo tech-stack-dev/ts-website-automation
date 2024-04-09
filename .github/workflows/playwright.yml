@@ -41,13 +41,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            let eventName = '';
+            if ('${{ github.event_name }}' === 'schedule') {
+              eventName = 'schedule';
+            }
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'playwright-mobile.yml',
               ref: '${{ github.event.pull_request.head.ref }}',
-              if: ${{ github.event_name == 'schedule' }}
               inputs: {
-                eventName: 'schedule'
+                eventName: eventName
               }
             });
