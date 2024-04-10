@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       runMobile:
-        description: 'Run mobile tests after desktop tests?'
+        description: 'Run mobile tests after desktop tests? (true or false)'
         required: true
         default: 'true' # If you don't want to run mobile tests after desktop, set the value to false
   schedule:
@@ -31,7 +31,8 @@ jobs:
       awsPassword: ${{ secrets.AWS_PASSWORD }}
       jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
       slackWebHook: ${{ secrets.SLACK_WEBHOOK }}
-    
+  
+  # Logic in inputs was created for send mobile report of scheduled runs to Slack chanels
   run_mobile_tests:
     needs: tests_e2e
     runs-on: ubuntu-latest

@@ -7,13 +7,6 @@ on:
         description: 'Send report if event was started by schhedule'
         required: false
         type: string
-        # default: 'false'
-  # schedule:
-  #   # Run each day at 21:10
-  #   - cron: "10 21 * * *"
-  # pull_request:
-  #   paths:
-  #     - "ui_tests_playwright/**"
   
 # To cancel previous run within one PR after pushing new commit (if previous still in progress)
 concurrency:
