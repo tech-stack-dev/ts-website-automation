@@ -17,7 +17,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5334,
-		'Check Info container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check Info container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
@@ -32,7 +32,7 @@ test(
 test(
 	qase(
 		5341,
-		'Check the container title and number from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check the container title and number from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const containers = [
@@ -68,7 +68,7 @@ test(
 test(
 	qase(
 		5342,
-		'Check block titles in "Techstack in Numbers" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check block titles in "Techstack in Numbers" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(TransportationAndLogistics.TechstackInNumbers);
@@ -82,7 +82,7 @@ test(
 test(
 	qase(
 		5344,
-		'Check section titles and numbers in "Who We Serve" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whoWeServeContainer = driver.getByTestId(TransportationAndLogistics.WhoWeServe);
@@ -112,7 +112,7 @@ test(
 test(
 	qase(
 		5346,
-		'Check section titles in "Transportation and Logistics Software Development Services at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "Transportation and Logistics Software Development Services at Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportAndLogisticsSoftDevServContainer = driver.getByTestId(
@@ -137,7 +137,7 @@ test(
 test(
 	qase(
 		5349,
-		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
@@ -161,7 +161,7 @@ test(
 test(
 	qase(
 		5351,
-		'Check section titles in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
@@ -186,7 +186,7 @@ test(
 test(
 	qase(
 		5353,
-		'Check section titles in "What Makes Us Different" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "What Makes Us Different" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whatMakesUsDifferentContainer = driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent);
@@ -201,7 +201,7 @@ test(
 test(
 	qase(
 		5355,
-		'Check carousel sections and CTA button in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check carousel sections and CTA button in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportationAndLogisticsContainer = driver.getByTestId(
@@ -228,7 +228,7 @@ test(
 test(
 	qase(
 		5357,
-		'Check section titles and numbers in "Development Workflow That We Follow" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers in "Development Workflow That We Follow" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const developmentWorkflowThatWeFollowContainer = driver.getByTestId(TransportationAndLogistics.OurWorkflow);
@@ -257,7 +257,7 @@ test(
 test(
 	qase(
 		5359,
-		'Check section titles in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "FAQ" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);

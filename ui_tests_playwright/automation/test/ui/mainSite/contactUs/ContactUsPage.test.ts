@@ -11,15 +11,18 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 });
 
-test(qase(4968, 'Check the Title from the "Contact Us" page @Regression @ContactUs @TSWEB-1082'), async () => {
-	const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Contact Our Team of Experts');
-});
+test(
+	qase(4968, 'Check the Title from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1082'),
+	async () => {
+		const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Contact Our Team of Experts');
+	}
+);
 
 test(
 	qase(
 		4974,
-		'Check the container title and number from the "Contact Us" page @Regression @ContactUs @TSWEB-148 @TSWEB-1082'
+		'Check the container title and number from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148 @TSWEB-1082'
 	),
 	async () => {
 		const containers = [driver.getByTestId(ContactUs.GetInTouch), driver.getByTestId(ContactUs.Cooperation)];
@@ -34,7 +37,10 @@ test(
 );
 
 test(
-	qase(4981, 'Check images in "Get in Touch" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148'),
+	qase(
+		4981,
+		'Check images in "Get in Touch" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
+	),
 	async () => {
 		const GetInTouchFormContainer = driver.getByTestId(ContactUs.GetInTouchForm);
 		const partnerLogos = GetInTouchFormContainer.getByTestId(Container.PartnerLogo);
@@ -46,7 +52,7 @@ test(
 test(
 	qase(
 		5025,
-		'Check contact information in "Cooperation" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148'
+		'Check contact information in "Cooperation" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
 	),
 	async () => {
 		const cooperationContainer = driver.getByTestId(ContactUs.Cooperation);
@@ -59,7 +65,7 @@ test(
 test(
 	qase(
 		5003,
-		'Check section number, title and description in "Cooperation" container from the "Contact Us" page @Regression @ContactUs @TSWEB-148'
+		'Check section number, title and description in "Cooperation" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
 	),
 	async () => {
 		const cooperationContainer = driver.getByTestId(ContactUs.Cooperation);

@@ -12,7 +12,7 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Pricing));
 });
 
-test('Check the Info container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check the Info container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const info = driver.getByTestId(Pricing.Info);
 	const infoTitle = info.getByTestId(Container.Title);
 	const infoBlockTitles = info.getByTestId(Container.BlockTitle);
@@ -28,7 +28,7 @@ test('Check the Info container from the "Pricing" page @Regression @Pricing @TSW
 	await expect(infoBlockTitles).toHaveText(expectedBlockTitles);
 });
 
-test('Check the container titles and numbers from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check the container titles and numbers from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const containers = [
 		driver.getByTestId(Pricing.WhatIsCooperationType),
 		driver.getByTestId(Pricing.CustomOffer),
@@ -54,14 +54,14 @@ test('Check the container titles and numbers from the "Pricing" page @Regression
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check section titles in "What Is Your Cooperation Type?" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles in "What Is Your Cooperation Type?" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const coopTypeContainer = driver.getByTestId(Pricing.WhatIsCooperationType);
 	const coopTypeSectionTitles = coopTypeContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = ['Full-cycle software development', 'Team extension'];
 	await expect(coopTypeSectionTitles).toHaveText(expectedTitles);
 });
 
-test('Check section titles, navigation bar and CTA button text in "From Consultation To Custom Offer" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles, navigation bar and CTA button text in "From Consultation To Custom Offer" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const customOfferContainer = driver.getByTestId(Pricing.CustomOffer);
 
 	const navigationTabs = await PricingData.getPricingTabs(customOfferContainer);
@@ -74,7 +74,7 @@ test('Check section titles, navigation bar and CTA button text in "From Consulta
 	await expect(ctaButton).toHaveText('Book your time');
 });
 
-test('Check section quote on the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section quote on the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const quoteContainer = driver.getByTestId(Pricing.Believe);
 	const quote = quoteContainer.getByTestId(Container.ContainerContent);
 	const expectedQuote =
@@ -83,7 +83,7 @@ test('Check section quote on the "Pricing" page @Regression @Pricing @TSWEB-1297
 	await expect(quote).toHaveText(expectedQuote);
 });
 
-test('Check section titles and navigation bar in "What Influences The Cost of Software Development" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles and navigation bar in "What Influences The Cost of Software Development" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const pricingInfluencesContainer = driver.getByTestId(Pricing.PricingInfluences);
 
 	const navigationTabs = await PricingData.getPricingTabs(pricingInfluencesContainer);
@@ -93,7 +93,7 @@ test('Check section titles and navigation bar in "What Influences The Cost of So
 	await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
 });
 
-test('Check section titles and CTA button text in "Simplified Payment Process for Your Software Development Needs" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles and CTA button text in "Simplified Payment Process for Your Software Development Needs" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const simplifiedPaymentContainer = driver.getByTestId(Pricing.SimplifiedPaymentProcess);
 	const simplifiedSectionTitles = simplifiedPaymentContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = ['Time & Material', 'Monthly Invoices', 'Multi-Currency Payments', 'Payment Flexibility'];
@@ -103,7 +103,7 @@ test('Check section titles and CTA button text in "Simplified Payment Process fo
 	await expect(ctaButton).toHaveText('Get your free \nestimate');
 });
 
-test('Check section titles and numbers in "Why Partner with Us" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles and numbers in "Why Partner with Us" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const whyPartnerWithUsContainer = driver.getByTestId(Pricing.WhyPartnerWithUs);
 	const sections = whyPartnerWithUsContainer.getByTestId(Container.ContainerSection);
 
@@ -125,7 +125,7 @@ test('Check section titles and numbers in "Why Partner with Us" container from t
 	}
 });
 
-test('Check section titles in "FAQ" container from the "Pricing" page @Regression @Pricing @TSWEB-1297', async () => {
+test('Check section titles in "FAQ" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const faqContainer = driver.getByTestId(Pricing.Faq);
 
 	const sections = faqContainer.getByTestId(Container.ContainerSection);

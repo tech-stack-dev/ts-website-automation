@@ -1,0 +1,28 @@
+name: Playwright UI E2E Mobile
+
+on:
+  workflow_dispatch:
+    inputs:
+      eventName:
+        description: 'Send report if event was started by schhedule'
+        required: false
+        type: string
+  
+# To cancel previous run within one PR after pushing new commit (if previous still in progress)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests_e2e:
+    uses: ./.github/workflows/common-test-steps.yml
+    with:
+      project: Mobile\ Safari
+      grep: "@mobile"
+      slackTitle: "TypeScript UI mobile tests :iphone:"
+      eventName: ${{ inputs.eventName == 'schedule' && 'schedule' || '' }}
+    secrets:
+      awsKey: ${{ secrets.AWS_KEY }}
+      awsPassword: ${{ secrets.AWS_PASSWORD }}
+      jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
+      slackWebHook: ${{ secrets.SLACK_WEBHOOK }}

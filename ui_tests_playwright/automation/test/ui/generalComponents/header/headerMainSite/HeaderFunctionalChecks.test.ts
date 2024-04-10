@@ -1,4 +1,4 @@
-import {Locator, test} from '@playwright/test';
+import {Locator} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
@@ -12,6 +12,7 @@ import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import Links from '../../../../../preconditionsData/links/Links';
 import {Environment} from '../../../../../providers/EnvProvider';
+import {careerSteps, containerSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 
 let header: Locator;
 
@@ -28,18 +29,21 @@ const testDataProvider: string[] = [
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
-	header = driver.getByTestId(Header.Container_Header);
+	header = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.Container_Header,
+		mobileLocator: Header.ContainerMenu
+	});
 });
 
 test(
 	qase(
 		5500,
-		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await header.getByTestId(Buttons.Logo).click();
+			await driver.getByTestId(Buttons.Logo).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
@@ -48,7 +52,7 @@ test(
 test(
 	qase(
 		5501,
-		`Check the redirection for the Industries block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Industries block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const industriesList = new Map([
@@ -61,8 +65,10 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const [element, industryUrl] of industriesList) {
-				await driver.getByTestId(Header.Industries).click();
-				await driver.getByTestId(element).click();
+				await careerSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Industries).click();
+				await header.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(industryUrl);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -73,7 +79,7 @@ test(
 test(
 	qase(
 		5503,
-		`Check the redirection for the Services block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const servicesList = new Map([
@@ -95,8 +101,10 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const [element, serviceUrl] of servicesList) {
-				await driver.getByTestId(Header.Services).click();
-				await driver.getByTestId(element).click();
+				await careerSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Services).click();
+				await header.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(serviceUrl);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -107,7 +115,7 @@ test(
 test(
 	qase(
 		5502,
-		`Check the redirection for the Company block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Company block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const companyList = new Map([
@@ -122,8 +130,10 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const [element, companyUrl] of companyList) {
-				await driver.getByTestId(Header.Company).click();
-				await driver.getByTestId(element).click();
+				await careerSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Company).click();
+				await header.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(companyUrl);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -134,11 +144,12 @@ test(
 test(
 	qase(
 		5499,
-		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
+			await careerSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
 		}
@@ -149,11 +160,14 @@ test(
 test.skip(
 	qase(
 		5555,
-		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @Regression @Header @TSWEB-1267`
+		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1267`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
+
+			await careerSteps.clickOnBurgerMenu();
+
 			await header.getByTestId(Header.IotForEnergy).click();
 			await baseDriverSteps.checkUrl(Links.IotForEnergy);
 		}

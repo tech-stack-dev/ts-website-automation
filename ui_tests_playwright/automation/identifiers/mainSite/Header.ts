@@ -8,4 +8,7 @@ export default class Header {
 	static Company = 'Header-Company';
 	static IotForEnergy = 'Header-IotForEnergy';
 	static Pricing = 'Header-Pricing';
+
+	// Mobile
+	static ContainerMenu = 'Container-Menu';
 }

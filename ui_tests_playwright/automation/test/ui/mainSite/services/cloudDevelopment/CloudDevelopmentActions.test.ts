@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5017,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
@@ -40,7 +40,7 @@ test(
 test(
 	qase(
 		5032,
-		'Check redirect by links in "Industries We Serve" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by links in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
@@ -64,7 +64,7 @@ test(
 test(
 	qase(
 		5022,
-		'Check redirect by "Clutch Review" button in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by "Clutch Review" button in "Our Approach to Cloud App Development" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
@@ -79,7 +79,7 @@ test(
 test(
 	qase(
 		5028,
-		'Check redirects by LinkedIn buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirects by LinkedIn buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
@@ -100,7 +100,7 @@ test(
 test(
 	qase(
 		5061,
-		'Check redirects by Blog buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692 @TSWEB-1061'
 	),
 	async () => {
 		const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
@@ -122,7 +122,7 @@ test(
 test(
 	qase(
 		5092,
-		'Check redirects by arrows in "Related Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirects by arrows in "Related Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
@@ -147,7 +147,7 @@ test(
 test(
 	qase(
 		5042,
-		'Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
@@ -160,7 +160,7 @@ test(
 test(
 	qase(
 		5047,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ctaButtons = [
