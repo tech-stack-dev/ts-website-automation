@@ -35,7 +35,7 @@ jobs:
   run_mobile_tests:
     needs: tests_e2e
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.run_mobile == 'true' || github.event_name == 'schedule' || github.event_name == 'pull_request' }} 
+    if: ${{ github.event.inputs.runMobile == 'true' || github.event_name == 'schedule' || github.event_name == 'pull_request' }} 
     steps:
       - uses: actions/github-script@v6
         with:
@@ -47,6 +47,6 @@ jobs:
               workflow_id: 'playwright-mobile.yml',
               ref: '${{ github.event.pull_request.head.ref }}',
               inputs: {
-                eventName: ${{ inputs.eventName == 'schedule' && 'schedule' || '' }}
+                eventName: ${{ github.event_name == 'schedule' && 'schedule' || '' }}
               }
             });
