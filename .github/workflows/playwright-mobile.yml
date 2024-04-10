@@ -27,8 +27,7 @@ jobs:
       project: Mobile\ Safari
       grep: "@mobile"
       slackTitle: "TypeScript UI mobile tests :iphone:"
-      if: ${{ inputs.eventName == 'schedule' }}
-      eventName: schedule
+      eventName: ${{ inputs.eventName == 'schedule' && 'schedule' || '' }}
     secrets:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}
