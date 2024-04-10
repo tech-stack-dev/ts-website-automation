@@ -47,6 +47,6 @@ jobs:
               workflow_id: 'playwright-mobile.yml',
               ref: '${{ github.event.pull_request.head.ref }}',
               inputs: {
-                eventName: ${{ github.event_name == 'schedule' && 'schedule' || '' }}
+                eventName: '${{ github.event_name == 'schedule' && 'schedule' || '' }}'
               }
             });
