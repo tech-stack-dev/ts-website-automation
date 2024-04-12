@@ -46,7 +46,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'playwright-mobile.yml',
-              ref: '${{ github.event.pull_request.head.ref }}',
+              ref: ${{ github.event_name == 'schedule' && 'main' || github.event.pull_request.head.ref }},
               inputs: {
                 eventName: '${{ github.event_name == 'schedule' && 'schedule' || '' }}'
               }

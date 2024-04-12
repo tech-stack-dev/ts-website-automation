@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 test.skip(
 	qase(
 		4773,
-		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @mobile @Regression @JobsBlock @TSWEB-76'
+		'Check that "First Name" and "Last Name" input fields does not accept only spaces in "Apply for a Job" modal window on job page @desktop @mobile @Regression @JobsBlock @TSWEB-76'
 	),
 	async () => {
 		await driver.getByTestId(/CardWrapper/).click();
