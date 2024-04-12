@@ -19,24 +19,34 @@ test(
 	// Add Qase id!!!!
 	qase(1000, 'Create Case study using object'),
 	async () => {
-		// Create an interface for images
+		// Full object
+		// caseStudyDtoVariable.value = {
+		// 	caseStudyImage: CaseStudyImagesPath.PreviewImageGray,
+		// 	summary: {
+		// 		review: {entity: CaseStudyEntityEnum.Review, link: ClutchReviewLinks.AnonymousMedicalDevice},
+		// 		technologiesUsed: {
+		// 			entity: CaseStudyEntityEnum.Technologies,
+		// 			image: CaseStudyImagesPath.TechnologiesUsedImage,
+		// 		},
+		// 		solution: {entity: CaseStudyEntityEnum.Solution, image: CaseStudyImagesPath.SolutionImage},
+		// 		workflow: CaseStudyEntityEnum.Workflow,
+		// 		aboutTheTeam: CaseStudyEntityEnum.AboutTheTeam,
+		// 	},
+		// };
 		caseStudyDtoVariable.value = {
-			caseStudy: CaseStudyEntityEnum.CaseStudy,
-			summary: CaseStudyEntityEnum.Summary,
-			review: CaseStudyEntityEnum.Review,
-			technologiesUsed: CaseStudyEntityEnum.Technologies,
-			solution: CaseStudyEntityEnum.Solution,
-			workflow: CaseStudyEntityEnum.Workflow,
-			aboutTheTeam: CaseStudyEntityEnum.AboutTheTeam,
-			reviewLink: ClutchReviewLinks.DerickDaily,
-			caseStudyImage: CaseStudyImagesPath.PreviewImageGray,
-			solutionImage: CaseStudyImagesPath.SolutionImage,
-			technologiesUsedImage: CaseStudyImagesPath.TechnologiesUsedImage,
+			summary: {
+				review: {entity: CaseStudyEntityEnum.Review},
+				technologiesUsed: {
+					entity: CaseStudyEntityEnum.Technologies,
+				},
+				solution: {entity: CaseStudyEntityEnum.Solution},
+				workflow: CaseStudyEntityEnum.Workflow,
+			},
 		};
 		const caseStudyDto = caseStudyDtoVariable.value;
 
-		// await contentfulSteps.createCaseStudyEntity('Case Studi', 1, caseStudyDto);
-		await contentfulSteps.createCaseStudyEntity('Several Case Studies with DRT', 3, caseStudyDto);
+		await contentfulSteps.createCaseStudyEntity('2 Case Staaady', 2, caseStudyDto);
+		// await contentfulSteps.createCaseStudyEntity('Several Case Studies with DRT', 3, caseStudyDto);
 
 		// await contentfulUtils.UnpublishCaseStudySolution(1);
 	}

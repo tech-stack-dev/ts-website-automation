@@ -17,35 +17,37 @@ class ContentfulSteps {
 	) {
 		const summaryFields: {fields: {[key: string]: any}} = ContentfulCaseStudyData.getCaseStudySummaryFields();
 
-		if (caseStudyObject?.review) {
-			const reviewLink = caseStudyObject.reviewLink; // || undefined !!!!
+		if (caseStudyObject?.summary.review) {
+			const reviewLink = caseStudyObject.summary.review.link; // || undefined !!!!
 			await contentfulUtils.CreateAndPublishSummaryReview(reviewLink);
 			summaryFields.fields['review'] = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().review;
 		}
 
-		if (caseStudyObject?.technologiesUsed) {
-			const technologiesUsedImage = caseStudyObject.technologiesUsedImage
-				? caseStudyObject.technologiesUsedImage.toString()
+		if (caseStudyObject?.summary.technologiesUsed) {
+			const technologiesUsedImage = caseStudyObject.summary.technologiesUsed.image
+				? caseStudyObject.summary.technologiesUsed.image.toString()
 				: undefined;
 			await contentfulUtils.CreateAndPublishSummaryTechnologiesUsed(technologiesUsedImage);
 			summaryFields.fields['technologiesUsed'] =
 				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().technologiesUsed;
 		}
 
-		if (caseStudyObject?.solution) {
-			const solutionImage = caseStudyObject.solutionImage ? caseStudyObject.solutionImage.toString() : undefined;
+		if (caseStudyObject?.summary.solution) {
+			const solutionImage = caseStudyObject.summary.solution.image
+				? caseStudyObject.summary.solution.image.toString()
+				: undefined;
 			await contentfulUtils.CreateAndPublishSummarySolution(solutionImage);
 			summaryFields.fields['newSolution'] =
 				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newSolution;
 		}
 
-		if (caseStudyObject?.workflow) {
+		if (caseStudyObject?.summary.workflow) {
 			await contentfulUtils.CreateAndPublishSummaryWorkflow();
 			summaryFields.fields['newWorkflow'] =
 				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newWorkflow;
 		}
 
-		if (caseStudyObject?.aboutTheTeam) {
+		if (caseStudyObject?.summary.aboutTheTeam) {
 			summaryFields.fields['newAboutTheTeam'] =
 				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newAboutTheTeam;
 		}

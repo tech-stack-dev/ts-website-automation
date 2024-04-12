@@ -135,7 +135,7 @@ export default class ContentfulCaseStudyData {
 					sys: {
 						type: 'Link',
 						linkType: 'Entry',
-						id: `technplogiesUsedId${sessionValue.stringValue.toLocaleUpperCase()}`,
+						id: `technologiesUsedId${sessionValue.stringValue.toLocaleUpperCase()}`,
 					},
 				},
 			},
