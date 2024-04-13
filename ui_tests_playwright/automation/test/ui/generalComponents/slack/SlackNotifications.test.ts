@@ -13,7 +13,8 @@ import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {careerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
+import {careerSteps, containerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -57,7 +58,10 @@ test(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		await driver.getByTestId(CareerButtons.ApplyNow).click();
+		(await containerSteps.getDynamicLocator({
+			desktopLocator: CareerButtons.ApplyNow,
+			mobileLocator: AboutUsCareer.ApplyNowButton
+		})).click();
 		await formSteps.sendApplyForAJob();
 		const message = await slackSteps.getMessageWithValueFromChat(
 			slackDtoVariable.value.stagingTechstackHrNotifyId,
