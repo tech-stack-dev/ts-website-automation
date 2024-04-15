@@ -181,7 +181,7 @@ test(
 );
 
 test(
-	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @Regression @HowWeWork'),
+	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'),
 	async () => {
 		const getInTouchContainer = driver.getByTestId(HowWeWork.GetInTouch);
 

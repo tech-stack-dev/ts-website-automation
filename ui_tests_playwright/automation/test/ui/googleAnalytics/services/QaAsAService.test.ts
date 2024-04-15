@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 
 // Need to check why checks related to case study failed
 test.skip(
-	qase(5331, 'Check google analytics for "QA as a Service" page @Regression @GoogleAnalytics @TSWEB-794'),
+	qase(5331, 'Check google analytics for "QA as a Service" page @desktop @Regression @GoogleAnalytics @TSWEB-794'),
 	async ({}, testInfo) => {
 		await driver.Page.waitForTimeout(10000);
 		await driver.Page.reload();
