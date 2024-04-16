@@ -20,32 +20,35 @@ test(
 	qase(1000, 'Create Case study using object'),
 	async () => {
 		// Full object
-		// caseStudyDtoVariable.value = {
-		// 	caseStudyImage: CaseStudyImagesPath.PreviewImageGray,
-		// 	summary: {
-		// 		review: {entity: CaseStudyEntityEnum.Review, link: ClutchReviewLinks.AnonymousMedicalDevice},
-		// 		technologiesUsed: {
-		// 			entity: CaseStudyEntityEnum.Technologies,
-		// 			image: CaseStudyImagesPath.TechnologiesUsedImage,
-		// 		},
-		// 		solution: {entity: CaseStudyEntityEnum.Solution, image: CaseStudyImagesPath.SolutionImage},
-		// 		workflow: CaseStudyEntityEnum.Workflow,
-		// 		aboutTheTeam: CaseStudyEntityEnum.AboutTheTeam,
-		// 	},
-		// };
 		caseStudyDtoVariable.value = {
+			caseStudyImage: CaseStudyImagesPath.PreviewImageGray,
 			summary: {
-				review: {entity: CaseStudyEntityEnum.Review},
+				review: {entity: CaseStudyEntityEnum.Review, link: ClutchReviewLinks.AnonymousMedicalDevice},
 				technologiesUsed: {
 					entity: CaseStudyEntityEnum.Technologies,
+					image: CaseStudyImagesPath.TechnologiesUsedImage,
 				},
-				solution: {entity: CaseStudyEntityEnum.Solution},
+				solution: {entity: CaseStudyEntityEnum.Solution, image: CaseStudyImagesPath.SolutionImage},
 				workflow: CaseStudyEntityEnum.Workflow,
+				aboutTheTeam: CaseStudyEntityEnum.AboutTheTeam,
 			},
 		};
+		// caseStudyDtoVariable.value = {
+		// 	summary: {
+		// 		review: {entity: CaseStudyEntityEnum.Review},
+		// 		technologiesUsed: {
+		// 			entity: CaseStudyEntityEnum.Technologies,
+		// 		},
+		// 		solution: {entity: CaseStudyEntityEnum.Solution},
+		// 		workflow: CaseStudyEntityEnum.Workflow,
+		// 	},
+		// };
 		const caseStudyDto = caseStudyDtoVariable.value;
+		const numberOfCaseStudies = 2;
 
-		await contentfulSteps.createCaseStudyEntity('2 Case Staaady', 2, caseStudyDto);
+		await contentfulSteps.createCaseStudy('Several Case Staaadies', numberOfCaseStudies, caseStudyDto);
+		await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies, caseStudyDto);
+
 		// await contentfulSteps.createCaseStudyEntity('Several Case Studies with DRT', 3, caseStudyDto);
 
 		// await contentfulUtils.UnpublishCaseStudySolution(1);
@@ -53,8 +56,10 @@ test(
 );
 
 test('Create Case study', async () => {
-	// await contentfulSteps.createCaseStudyEntity('One default Case Study');
-	await contentfulSteps.createCaseStudyEntity('Several default Case Studies', 2);
+	const numberOfCaseStudies = 2;
+	await contentfulSteps.createCaseStudy('One default Case Study', numberOfCaseStudies);
+	// await contentfulSteps.createCaseStudy('Several default Case Studies', 2);
+	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies);
 });
 
 test(

@@ -6,5 +6,5 @@ export enum CaseStudyEntityEnum { // For test - need remove values of entities!!
 	Solution = '308BIs2wTlYjETZqoHTRqu',
 	Workflow = '1bfDjrsU2pEGpwIYDAHBu1',
 	AboutTheTeam = 'placeholder', // incorrect data
-	ImagePreview = '197H0nFItTOUYU5jMROIcb',
-}
+	ImagePreview = '197H0nFItTOUYU5jMROIcb', // mb delete
+} // or even remove all Enum

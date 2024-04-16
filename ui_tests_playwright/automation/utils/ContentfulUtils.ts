@@ -107,46 +107,59 @@ class ContentfulUtils {
 	}
 
 	private async publishEntryWithRetry(environment: any, entryId: string, attempts: number): Promise<void> {
-		await this.performEntryActionWithRetry(environment, entryId, 'publish', attempts);
+		await this.performEntityActionWithRetry(environment, entryId, 'Entry', 'publish', attempts);
 	}
 
 	private async unpublishEntryWithRetry(environment: any, entryId: string, attempts: number): Promise<void> {
-		await this.performEntryActionWithRetry(environment, entryId, 'unpublish', attempts);
+		await this.performEntityActionWithRetry(environment, entryId, 'Entry', 'unpublish', attempts);
 	}
 
-	// check for adding/improving method for performAssetActionWithRetry()
-	private async performEntryActionWithRetry(
+	private async publishAssetWithRetry(environment: any, assetId: string, attempts: number): Promise<void> {
+		await this.performEntityActionWithRetry(environment, assetId, 'Asset', 'publish', attempts);
+	}
+
+	private async unpublishAssetWithRetry(environment: any, assetId: string, attempts: number): Promise<void> {
+		await this.performEntityActionWithRetry(environment, assetId, 'Asset', 'unpublish', attempts);
+	}
+
+	private async performEntityActionWithRetry(
 		environment: any,
-		entryId: string,
+		entityId: string,
+		entityType: 'Entry' | 'Asset',
 		action: 'publish' | 'unpublish',
 		attempts: number
 	): Promise<void> {
 		let retryCount = 0;
 		let isActionSuccessful = false;
 		while (!isActionSuccessful && retryCount < attempts) {
-			const entry = await environment.getEntry(entryId);
+			let entity;
+			if (entityType === 'Entry') {
+				entity = await environment.getEntry(entityId);
+			} else if (entityType === 'Asset') {
+				entity = await environment.getAsset(entityId);
+			}
 			try {
 				if (action === 'publish') {
-					if (!entry.isPublished()) {
-						await entry.publish();
+					if (!entity.isPublished()) {
+						await entity.publish();
 					}
-					isActionSuccessful = entry.isPublished();
+					isActionSuccessful = entity.isPublished();
 				} else if (action === 'unpublish') {
-					if (entry.isPublished()) {
-						await entry.unpublish();
+					if (entity.isPublished()) {
+						await entity.unpublish();
 					}
-					isActionSuccessful = !entry.isPublished();
+					isActionSuccessful = !entity.isPublished();
 				}
 			} catch (error) {
-				console.error(`Error ${action}ing entry:`, error);
+				console.error(`Error ${action}ing ${entityType.toLowerCase()}:`, error);
 				retryCount++;
 				console.log(`Retrying ${action} (${retryCount})...`);
 			}
 		}
 
 		if (!isActionSuccessful) {
-			console.log(`Entry could not be ${action}ed after multiple retries.`);
-			throw new Error(`Entry could not be ${action}ed.`); // Throw an error to fail the test run and stop execution
+			console.log(`${entityType} could not be ${action}ed after multiple retries.`);
+			throw new Error(`${entityType} could not be ${action}ed.`); // Throw an error to fail the test run and stop execution
 		}
 	}
 	//#endregion
@@ -162,7 +175,6 @@ class ContentfulUtils {
 		await this.publishEntryWithRetry(environment, caseStudyId, attempts);
 	}
 
-	// !!!! maybe better to assign index upper ??
 	async CreateAndPublishCaseStudySummary(
 		summaryFields: {fields: {[key: string]: any}}, // Pay attention to thi type and mandatory setting props!!!
 		attempts = 3
@@ -235,13 +247,6 @@ class ContentfulUtils {
 		await this.publishEntryWithRetry(environment, solutionId, attempts);
 	}
 
-	// !!!!
-	async UnpublishCaseStudySolution(index: number, attempts = 3): Promise<void> {
-		const environment = await this.GetEnvironment();
-		const solutionId = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newSolution['en-US'].sys.id;
-		await this.unpublishEntryWithRetry(environment, solutionId, attempts);
-	}
-
 	async CreateAndPublishSummaryWorkflow(attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
 		const workflowId = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newWorkflow['en-US'].sys.id;
@@ -254,6 +259,27 @@ class ContentfulUtils {
 		await this.publishEntryWithRetry(environment, workflowId, attempts);
 	}
 
+	async UnpublishEntry(entryId: string, attempts = 3): Promise<void> {
+		const environment = await this.GetEnvironment();
+		await this.unpublishEntryWithRetry(environment, entryId, attempts);
+	}
+
+	async UnpublishAsset(assetId: string, attempts = 3): Promise<void> {
+		const environment = await this.GetEnvironment();
+		await this.unpublishAssetWithRetry(environment, assetId, attempts);
+	}
+
+	async DeleteEntry(entryId: string): Promise<void> {
+		const environment = await this.GetEnvironment();
+		const createdEntity = await environment.getEntry(entryId);
+		await createdEntity.delete();
+	}
+
+	async DeleteAsset(assetId: string): Promise<void> {
+		const environment = await this.GetEnvironment();
+		const createdEntity = await environment.getAsset(assetId);
+		await createdEntity.delete();
+	}
 	//Remove after
 	async getCaseStudyEntity(id: string) {
 		const environment = await this.GetEnvironment();
