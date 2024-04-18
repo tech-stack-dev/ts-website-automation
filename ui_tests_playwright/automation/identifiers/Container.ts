@@ -3,6 +3,7 @@ export default class Container {
 	static BreadcrumbsPrev = 'BreadcrumbsPrev';
 	static Title = 'Title';
 	static ContainerTitle = 'ContainerTitle';
+	static ContainerSubTitle = 'ContainerSubTitle';
 	static ContainerNumber = 'ContainerNumber';
 	static ContainerContent = 'ContainerContent';
 	static Arrow = 'Arrow';

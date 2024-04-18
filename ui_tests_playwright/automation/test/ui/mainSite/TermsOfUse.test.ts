@@ -38,12 +38,15 @@ test(
 			['1. Terms of use\n of the website', '02'],
 			['2. The use of \nthe Site', '03'],
 			['3. Personal information \nof the User', '04'],
-			['4. Limitation\nof liability(of the Site Administration)', '05'],
+			['4. Limitation\nof liability', '05'],
 			['5. Procedure of the Agreement', '06'],
 			['6. Exclusive \nRights', '07'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+		await expect(
+			driver.getByTestId(TermsOfUse.LimitationOfLiability).getByTestId(Container.ContainerSubTitle)
+		).toHaveText('(of the Site Administration)');
 	}
 );
 
