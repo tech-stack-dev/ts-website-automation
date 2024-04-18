@@ -16,39 +16,50 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.HowWeWork));
 });
 
-test(qase(4919, 'Check the Info container from the "How we work" page @Regression @HowWeWork'), async () => {
-	const info = driver.getByTestId(HowWeWork.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
-	await expect(info.getByTestId(Container.Title)).toHaveText('The Way We Work: Our\nApproach to Delivering\nResults');
-	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
-});
+test(
+	qase(4919, 'Check the Info container from the "How we work" page @desktop @mobile @Regression @HowWeWork'),
+	async () => {
+		const info = driver.getByTestId(HowWeWork.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
+		await expect(info.getByTestId(Container.Title)).toHaveText(
+			'The Way We Work: Our\nApproach to Delivering\nResults'
+		);
+		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+	}
+);
 
-test(qase(4933, 'Check container titles and numbers from the "How we work" page @Regression @HowWeWork'), async () => {
-	const containers = [
-		driver.getByTestId(HowWeWork.CooperationModels),
-		driver.getByTestId(HowWeWork.WorkProcess),
-		driver.getByTestId(HowWeWork.TechnologyStack),
-		driver.getByTestId(HowWeWork.TechstackStructure),
-		driver.getByTestId(HowWeWork.ToolsWeUseToOrganize),
-		driver.getByTestId(HowWeWork.GetInTouch),
-	];
+test(
+	qase(
+		4933,
+		'Check container titles and numbers from the "How we work" page @desktop @mobile @Regression @HowWeWork'
+	),
+	async () => {
+		const containers = [
+			driver.getByTestId(HowWeWork.CooperationModels),
+			driver.getByTestId(HowWeWork.WorkProcess),
+			driver.getByTestId(HowWeWork.TechnologyStack),
+			driver.getByTestId(HowWeWork.TechstackStructure),
+			driver.getByTestId(HowWeWork.ToolsWeUseToOrganize),
+			driver.getByTestId(HowWeWork.GetInTouch),
+		];
 
-	const expectedData = [
-		['Cooperation \nmodels', '01'],
-		['Work process', '02'],
-		['Technology stack', '03'],
-		['Techstack structure', '04'],
-		['Tools we use\nto organize\nthe workflow', '05'],
-		['Get in Touch', '06'],
-	];
+		const expectedData = [
+			['Cooperation \nmodels', '01'],
+			['Work process', '02'],
+			['Technology stack', '03'],
+			['Techstack structure', '04'],
+			['Tools we use\nto organize\nthe workflow', '05'],
+			['Get in Touch', '06'],
+		];
 
-	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
-});
+		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+	}
+);
 
 test(
 	qase(
 		4926,
-		'Check section titles and numbers in "Cooperation models" container from the "How we work" page @Regression @HowWeWork'
+		'Check section titles and numbers in "Cooperation models" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
 		const cooperationModelsContainer = driver.getByTestId(HowWeWork.CooperationModels);
@@ -70,7 +81,7 @@ test(
 test(
 	qase(
 		4996,
-		'Check section titles and numbers, and carousel in "Work process" container from the "How we work" page @Regression @HowWeWork'
+		'Check section titles and numbers, and carousel in "Work process" container from the "How we work" page @desktop @Regression @HowWeWork'
 	),
 	async () => {
 		const workProcessContainer = driver.getByTestId(HowWeWork.WorkProcess);
@@ -95,7 +106,7 @@ test(
 test(
 	qase(
 		4945,
-		'Check section titles and navigation bar in "Technology stack" container from the "How we work" page @Regression @HowWeWork'
+		'Check section titles and navigation bar in "Technology stack" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(HowWeWork.TechnologyStack);
@@ -111,7 +122,7 @@ test(
 test(
 	qase(
 		4937,
-		'Check section titles in "Techstack structure" container from the "How we work" page @Regression @HowWeWork'
+		'Check section titles in "Techstack structure" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
 		const techstackStructure = driver.getByTestId(HowWeWork.TechstackStructure);
@@ -134,7 +145,7 @@ test(
 test(
 	qase(
 		5512,
-		'Check images visibility in "Tools we use to organize the workflow" container from the "How we work" page @Regression @HowWeWork'
+		'Check images visibility in "Tools we use to organize the workflow" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
 		const toolsWeUseContainer = driver.getByTestId(HowWeWork.ToolsWeUseToOrganize);
@@ -170,7 +181,7 @@ test(
 );
 
 test(
-	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @Regression @HowWeWork'),
+	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'),
 	async () => {
 		const getInTouchContainer = driver.getByTestId(HowWeWork.GetInTouch);
 
@@ -186,7 +197,7 @@ test(
 test(
 	qase(
 		4960,
-		'Check navigation to "Get in Touch" container after clicking CTA button from the "How we work" page @Regression @HowWeWork'
+		'Check navigation to "Get in Touch" container after clicking CTA button from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
 		const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);

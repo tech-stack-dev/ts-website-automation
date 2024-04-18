@@ -16,7 +16,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5038, 'Check the Info container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'),
+	qase(
+		5038,
+		'Check the Info container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
+	),
 	async () => {
 		const info = driver.getByTestId(CloudDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
@@ -28,7 +31,7 @@ test(
 test(
 	qase(
 		5051,
-		'Check the container titles and numbers from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check the container titles and numbers from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const containers = [
@@ -65,7 +68,7 @@ test(
 test(
 	qase(
 		5056,
-		'Check section numbers and titles in "Leverage Cloud Native Development Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section numbers and titles in "Leverage Cloud Native Development Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const leverageCloudNativeDevServContainer = driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ);
@@ -93,7 +96,7 @@ test(
 test(
 	qase(
 		5065,
-		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
@@ -116,7 +119,7 @@ test(
 test(
 	qase(
 		5075,
-		'Check section titles in "Industries We Serve" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
@@ -135,7 +138,7 @@ test(
 test(
 	qase(
 		5071,
-		'Check section titles in "Technology stack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "Technology stack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(CloudDevelopment.TechnologyStack);
@@ -148,7 +151,7 @@ test(
 test(
 	qase(
 		5082,
-		'Check section numbers and titles, and CTA in "Cloud Computing Development Benefits" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section numbers and titles, and CTA in "Cloud Computing Development Benefits" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const cloudComputingDevBenefitsContainer = driver.getByTestId(
@@ -185,7 +188,7 @@ test(
 test(
 	qase(
 		5087,
-		'Check award cards in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check award cards in "Our Approach to Cloud App Development" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproach);
@@ -197,7 +200,7 @@ test(
 test(
 	qase(
 		5102,
-		'Check member names and roles, and CTA button in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check member names and roles, and CTA button in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
@@ -222,7 +225,7 @@ test(
 test(
 	qase(
 		5099,
-		'Check section titles in "Related Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "Related Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
@@ -244,7 +247,7 @@ test(
 test(
 	qase(
 		5109,
-		'Check section titles in "FAQ" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "FAQ" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CloudDevelopment.Faq);

@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 });
 
 test.skip(
-	qase(4814, 'Check google analytics for "Healthcare" page @Regression @GoogleAnalytics @TSWEB-1137'),
+	qase(4814, 'Check google analytics for "Healthcare" page @desktop @Regression @GoogleAnalytics @TSWEB-1137'),
 	async ({}, testInfo) => {
 		const info = driver.getByTestId(Healthcare.Info);
 		const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);

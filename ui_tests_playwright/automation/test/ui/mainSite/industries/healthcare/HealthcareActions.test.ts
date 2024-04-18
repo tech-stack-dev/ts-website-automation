@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5115,
-		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
@@ -34,7 +34,7 @@ test(
 test(
 	qase(
 		5110,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
@@ -52,7 +52,7 @@ test(
 test(
 	qase(
 		5104,
-		'Check redirect by links in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check redirect by links in "Most Recent Industry Facts" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
@@ -72,7 +72,7 @@ test(
 test(
 	qase(
 		5142,
-		'Check carousel arrows click in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check carousel arrows click in "How We Operate" container from the "Healthcare" page @desktop @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
@@ -84,7 +84,7 @@ test(
 test(
 	qase(
 		5208,
-		'Check redirects by arrows in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check redirects by arrows in "Core Practices" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
@@ -108,7 +108,7 @@ test(
 test(
 	qase(
 		5122,
-		'Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check sections expanding and collapsing in "FAQ" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(Healthcare.Faq);
@@ -121,7 +121,7 @@ test(
 test(
 	qase(
 		5136,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const ctaButtons = [

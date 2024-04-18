@@ -1,4 +1,4 @@
-import {PlaywrightTestConfig} from '@playwright/test';
+import {PlaywrightTestConfig, devices} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
@@ -22,8 +22,8 @@ const config: PlaywrightTestConfig = {
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-		actionTimeout: 5 * 1000,
-		navigationTimeout: 10 * 1000,
+		actionTimeout: 10 * 1000,
+		navigationTimeout: 15 * 1000,
 		/* Base URL to use in actions like `await page.goto('/')`. */
 		// baseURL: process.env.BASE_URL,
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -68,6 +68,20 @@ const config: PlaywrightTestConfig = {
 
 	/* Configure projects for major browsers */
 	projects: [
+		{
+			name: 'Mobile Safari',
+			use: {
+				...devices['iPhone 13'],
+			},
+			grep: [new RegExp('@mobile')],
+		},
+		{
+			name: 'Desktop_Chrome',
+			use: {
+				channel: 'chrome',
+			},
+			grep: [new RegExp('@desktop')],
+		},
 		// {
 		//   name: 'chromium',
 		//   use: {
@@ -96,12 +110,6 @@ const config: PlaywrightTestConfig = {
 		//     ...devices['Pixel 5'],
 		//   },
 		// },
-		// {
-		//   name: 'Mobile Safari',
-		//   use: {
-		//     ...devices['iPhone 12'],
-		//   },
-		// },
 
 		/* Test against branded browsers. */
 		// {
@@ -118,12 +126,12 @@ const config: PlaywrightTestConfig = {
 		//   },
 		//   grep: [new RegExp("@desktop")],
 		// },
-		{
-			name: 'Google Chrome',
-			use: {
-				channel: 'chrome',
-			},
-		},
+		// {
+		// 	name: 'Google Chrome',
+		// 	use: {
+		// 		channel: 'chrome',
+		// 	},
+		// },
 	],
 
 	/* Folder for test artifacts such as screenshots, videos, traces, etc. */

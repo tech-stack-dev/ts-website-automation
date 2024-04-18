@@ -17,7 +17,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5159, 'Check Info container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'),
+	qase(
+		5159,
+		'Check Info container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
+	),
 	async () => {
 		const info = driver.getByTestId(ConsultingService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
@@ -29,7 +32,7 @@ test(
 test(
 	qase(
 		5186,
-		'Check the container titles and numbers from the "Consulting service" page @Regression @ConsultingService @TSWEB-697'
+		'Check the container titles and numbers from the "Consulting service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const containers = [
@@ -80,7 +83,7 @@ test(
 test(
 	qase(
 		5191,
-		'Check section numbers and titles in "Information Technology Consulting Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section numbers and titles in "Information Technology Consulting Services" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const informationTechnologyConsultingServicesContainer = driver.getByTestId(
@@ -103,7 +106,7 @@ test(
 test(
 	qase(
 		5179,
-		'Check section titles in "Consulting Benefits" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Consulting Benefits" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingBenefitsContainer = driver.getByTestId(ConsultingService.ConsultingBenefits);
@@ -124,7 +127,7 @@ test(
 test(
 	qase(
 		5181,
-		'Check section titles in "Development Process Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Development Process Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
@@ -144,7 +147,7 @@ test(
 test(
 	qase(
 		5197,
-		'Check section titles in "Software Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
@@ -166,7 +169,7 @@ test(
 test(
 	qase(
 		5203,
-		'Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
@@ -184,7 +187,7 @@ test(
 test(
 	qase(
 		5209,
-		'Check section numbers and titles, and CTA in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section numbers and titles, and CTA in "Industries We Provide Consultancy To" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const industriesWeProvideContainer = driver.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo);
@@ -215,7 +218,7 @@ test(
 test(
 	qase(
 		5213,
-		'Check carousel section numbers and titles, and CTA in "Consulting Process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check carousel section numbers and titles, and CTA in "Consulting Process" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
@@ -244,7 +247,7 @@ test(
 test(
 	qase(
 		5218,
-		'Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
@@ -281,7 +284,7 @@ test(
 test(
 	qase(
 		5224,
-		'Check section titles and award cards in "Our Approach" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles and award cards in "Our Approach" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
@@ -298,7 +301,7 @@ test(
 test(
 	qase(
 		5228,
-		'Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
@@ -312,7 +315,7 @@ test(
 test(
 	qase(
 		5234,
-		'Check section titles in "Related Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Related Services" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(ConsultingService.RelatedServices);
@@ -335,7 +338,7 @@ test(
 test(
 	qase(
 		5239,
-		'Check section titles in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "FAQ" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(ConsultingService.Faq);

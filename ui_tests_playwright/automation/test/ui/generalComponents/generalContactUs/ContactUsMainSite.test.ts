@@ -1,4 +1,4 @@
-import {test, expect, Locator} from '@playwright/test';
+import {Locator} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../identifiers/Buttons';
@@ -10,14 +10,19 @@ import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import Header from '../../../../identifiers/mainSite/Header';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {careerSteps, containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
 
 let header: Locator;
 let contactUsButton: Locator;
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
-	header = driver.getByTestId(Header.Container_Header);
-	contactUsButton = header.getByTestId(Buttons.ContactUs);
+
+	header = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.Container_Header,
+		mobileLocator: Header.ContainerMenu
+	});
+	contactUsButton = header.getByTestId(Buttons.ContactUs).last();
 });
 
 const urlList: Array<string> = [
@@ -33,15 +38,21 @@ const urlList: Array<string> = [
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
-test(qase(5455, `Check "Contact Us" button color on all pages @Regression @ContactUs @TSWEB-532`), async () => {
-	for (const url of urlList) {
-		await baseDriverSteps.goToUrl(url);
-		expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+test(
+	qase(5455, `Check "Contact Us" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	async () => {
+		for (const url of urlList) {
+			await baseDriverSteps.goToUrl(url);
+			expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+		}
 	}
-});
+);
 
 test(
-	qase(5456, `Check "Contact Us" button color after hovering on it on all pages @Regression @ContactUs @TSWEB-532`),
+	qase(
+		5456,
+		`Check "Contact Us" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
+	),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
@@ -56,10 +67,14 @@ test(
 );
 
 test(
-	qase(5457, `Check redirection by "Contact Us" button on all pages @Regression @ContactUs @TSWEB-532`),
+	qase(
+		5457,
+		`Check redirection by "Contact Us" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
+	),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
+			await careerSteps.clickOnBurgerMenu();
 			await contactUsButton.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}

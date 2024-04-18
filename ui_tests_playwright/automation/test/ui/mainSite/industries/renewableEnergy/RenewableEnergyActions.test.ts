@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5247,
-		'Check redirect by source link in "Techstack in Numbers" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirect by source link in "Techstack in Numbers" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
@@ -44,7 +44,7 @@ test(
 test(
 	qase(
 		5242,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
@@ -62,7 +62,7 @@ test(
 test(
 	qase(
 		5322,
-		'Check redirects by arrows in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirects by arrows in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
@@ -86,7 +86,7 @@ test(
 test(
 	qase(
 		5253,
-		'Check redirect by "Clutch Review" button in "Why Choose Us?" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirect by "Clutch Review" button in "Why Choose Us?" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
@@ -100,7 +100,7 @@ test(
 test(
 	qase(
 		5295,
-		'Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @desktop @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
@@ -112,7 +112,7 @@ test(
 test(
 	qase(
 		5265,
-		'Check sections expanding and collapsing in "FAQ" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check sections expanding and collapsing in "FAQ" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
@@ -125,7 +125,7 @@ test(
 test(
 	qase(
 		5277,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ctaButtons = [

@@ -1,11 +1,7 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
-import ContainerByClass from '../../../../components/container/ContainerByClass';
-import ContainersCareer from '../../../../identifiers/career/ContainersCareer';
 import {driver} from '../../../../base/driver/Driver';
-import {containerSteps} from '../../../../steps/components/container/ContainerSteps';
-import CareerButtons from '../../../../identifiers/career/CareerButtons';
+import {careerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -13,15 +9,12 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4868, 'Check that user can switch language in navigation header @Regression @NavigationHeader @TSWEB-560'),
+	qase(
+		4868,
+		'Check that user can switch language in navigation header @desktop @mobile @Regression @NavigationHeader @TSWEB-560'
+	),
 	async () => {
-		const headerContainer = await containerSteps.getContainer(
-			ContainerByClass,
-			ContainersCareer.NavigationHeaderClass
-		);
-		const uaButtonSwitcher = headerContainer.Element.getByTestId(CareerButtons.UaLanguageSwitcher);
-		await uaButtonSwitcher.click();
-		await expect(uaButtonSwitcher).toHaveClass(/active-locale/);
+		await careerSteps.switchLanguage('ua');
 	}
 );
 

@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5516,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const ctaButtons = [
@@ -47,7 +47,7 @@ test(
 test(
 	qase(
 		5520,
-		'Check redirect by CTA button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by CTA button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
@@ -65,7 +65,7 @@ test(
 test(
 	qase(
 		5523,
-		'Check redirect by "Clutch Review" button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by "Clutch Review" button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
@@ -80,7 +80,7 @@ test(
 test(
 	qase(
 		5519,
-		'Check redirects by LinkedIn buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirects by LinkedIn buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
@@ -103,7 +103,7 @@ test(
 test(
 	qase(
 		5522,
-		'Check redirects by Blog buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Leading Back-End Engineers" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208 @TSWEB-1061'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BackEndServices.OurExperts);
@@ -124,7 +124,7 @@ test(
 test(
 	qase(
 		5518,
-		'Check redirect by "Clutch Review" button in "Why Techstack Stands Out" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by "Clutch Review" button in "Why Techstack Stands Out" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
@@ -139,7 +139,7 @@ test(
 test(
 	qase(
 		5524,
-		'Check carousel arrows clicks in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check carousel arrows clicks in "A Peek Into Our Back-End Development Process" container from the "Back-End Development" page @desktop @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const peekIntoBackendContainer = driver.getByTestId(BackEndServices.PeekIntoBackend);
@@ -151,7 +151,7 @@ test(
 test(
 	qase(
 		5521,
-		'Check redirect by links in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by links in "Back-End Development Services for Any Industry" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const BackendDevelopmentServicesContainer = driver.getByTestId(BackEndServices.BackendDevelopmentServices);
@@ -183,7 +183,7 @@ test(
 test(
 	qase(
 		5525,
-		'Check redirect by arrows in "Related Services" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by arrows in "Related Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(BackEndServices.RelatedServices);
@@ -209,7 +209,7 @@ test(
 test(
 	qase(
 		5517,
-		'Check sections expanding and collapsing in "FAQ" container from the "Back-End Development" page @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check sections expanding and collapsing in "FAQ" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(BackEndServices.Faq);

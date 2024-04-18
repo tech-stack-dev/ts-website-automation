@@ -1,4 +1,3 @@
-import {test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -14,7 +13,8 @@ import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {careerSteps} from '../../../../steps/careerPageSteps/CareerSteps';
+import {careerSteps, containerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
+import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5461,
-		'Check Slack notification from "staging_techstack_hr_notify" channel from Contact Us page @Regression @ContactUs @TSWEB-606'
+		'Check Slack notification from "staging_techstack_hr_notify" channel from Contact Us page @desktop @mobile @Regression @ContactUs @TSWEB-606'
 	),
 	async () => {
 		await driver.getByTestId(Navigation.NavigationTab_ContactUs).click();
@@ -47,7 +47,7 @@ test(
 test(
 	qase(
 		5460,
-		'Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @Regression @ApplyForAJob @TSWEB-606'
+		'Check Slack notification from "staging_techstack_hr_notify" channel from Apply for a Job page @desktop @mobile @Regression @ApplyForAJob @TSWEB-606'
 	),
 	async () => {
 		await contentfulSteps.createCareerWithDefaultValue(
@@ -58,7 +58,10 @@ test(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		await driver.getByTestId(CareerButtons.ApplyNow).click();
+		(await containerSteps.getDynamicLocator({
+			desktopLocator: CareerButtons.ApplyNow,
+			mobileLocator: AboutUsCareer.ApplyNowButton
+		})).click();
 		await formSteps.sendApplyForAJob();
 		const message = await slackSteps.getMessageWithValueFromChat(
 			slackDtoVariable.value.stagingTechstackHrNotifyId,
@@ -83,7 +86,7 @@ test(
 test(
 	qase(
 		5462,
-		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @Regression @GetInTouchExtended @TSWEB-606'
+		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @desktop @mobile @Regression @GetInTouchExtended @TSWEB-606'
 	),
 	async () => {
 		const urlList: string[] = [
@@ -114,7 +117,7 @@ test(
 test(
 	qase(
 		5464,
-		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @Regression @GetInTouchShort @TSWEB-606'
+		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
 	),
 	async () => {
 		for (const url of Object.values(serviceUrl)) {
@@ -137,7 +140,7 @@ test(
 test(
 	qase(
 		5463,
-		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @Regression @GetInTouchShort @TSWEB-606'
+		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
 	),
 	async () => {
 		const testDataProvider: string[] = Object.values(industryUrl).concat(companyUrl[CompanyEnum.Pricing]);
