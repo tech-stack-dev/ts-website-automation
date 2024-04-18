@@ -45,7 +45,7 @@ test(
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 		await expect(
-			driver.getByTestId(TermsOfUse.LimitationOfLiability).locator('//div[@class="title-small"]')
+			driver.getByTestId(TermsOfUse.LimitationOfLiability).getByTestId(Container.ContainerSubTitle)
 		).toHaveText('(of the Site Administration)');
 	}
 );
