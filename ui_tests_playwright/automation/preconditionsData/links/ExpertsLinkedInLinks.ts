@@ -12,7 +12,7 @@ export enum ExpertsLinkedInLinks {
 	VladyslavUshakov = 'https://www.linkedin.com/in/vladyslav-ushakov-086924124/',
 	HannaZhyhan = 'https://www.linkedin.com/in/hanna-zhygan-8a2158234/',
 	YelyzavetaLvova = 'https://www.linkedin.com/in/yelyzaveta-lvova-b6b6b5199/',
-	MaxLevytskyi = 'https://www.linkedin.com/in/maxim-levitskiy/',
+	MaxLevytskyi = 'https://www.linkedin.com/in/maxlevitskiy/',
 	ArtemDolotov = 'https://www.linkedin.com/in/artemdolotov/',
 	NastasiiaDudnik = 'https://www.linkedin.com/in/nastasia-dudnik/',
 	KyryloMasiuk = 'https://www.linkedin.com/in/kyrylo-masiuk-9b424a93/',
