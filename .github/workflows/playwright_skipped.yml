@@ -1,11 +1,12 @@
 name: Playwright UI E2E
             
 on:
-  pull_request:
-    paths:
-      - 'performance_tests/**'
-      - 'ui_tests/**'
-      - '.github/**'
+  workflow_dispatch:
+  # pull_request:
+  #   paths:
+  #     - 'performance_tests/**'
+  #     - 'ui_tests/**'
+  #     - '.github/**'
     # Use paths-ignore instead of path after fix of https://github.com/actions/runner/issues/2324
     # paths-ignore:
     #   - "ui_tests_playwright/**"
