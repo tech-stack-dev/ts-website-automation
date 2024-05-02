@@ -51,13 +51,13 @@ test(
 			['Techstack in Numbers', '01'],
 			['Who We Serve', '02'],
 			['Renewable Energy Software Development Services', '03'],
-			['Case Study by Techstack', '04'],
-			['Our Key Areas of Expertise in Renewable Energy', '05'],
-			['Why Choose Us?', '06'],
-			['How We Operate at Techstack', '07'],
-			['Our Workflow', '08'],
-			['Get in Touch', '09'],
-			['FAQ', '10'],
+			['Case Study by Techstack', '05'],
+			['Our Key Areas of Expertise in Renewable Energy', '06'],
+			['Why Choose Us?', '07'],
+			['How We Operate at Techstack', '08'],
+			['Our Workflow', '09'],
+			['Get in Touch', '10'],
+			['FAQ', '11'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
