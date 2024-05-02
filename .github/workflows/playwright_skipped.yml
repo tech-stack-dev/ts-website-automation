@@ -13,7 +13,9 @@ on:
 
 jobs:
   tests_e2e:
-    name: Playwright end-to-end tests
+    name: test
     runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No tests execution required"'
+    # name: Playwright end-to-end tests
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - run: 'echo "No tests execution required"'
