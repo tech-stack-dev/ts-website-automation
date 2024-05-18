@@ -2,8 +2,8 @@ import {driver} from '../../base/driver/Driver';
 import Career from '../../identifiers/career/pages/Career';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import JobsPage from '../../pages/careerSite/JobsPage';
-import {SocialMediaLinksEnum} from '../../enum/SocialMediaLinksEnum';
 import Buttons from '../../identifiers/Buttons';
+import Links from '../../preconditionsData/links/Links';
 
 export abstract class CareerSteps {
 	abstract clickOnFilter(): Promise<void>;
@@ -70,7 +70,7 @@ export abstract class CareerSteps {
 
 	public async checkSocialMediaButtonRedirect(
 		socialMediaShareIdentifier: string,
-		socialMedia: SocialMediaLinksEnum
+		socialMedia: Links
 	): Promise<boolean> {
 		const [newPage] = await Promise.all([
 			driver.DriverContext.waitForEvent('page'),
@@ -79,7 +79,7 @@ export abstract class CareerSteps {
 		await newPage.waitForLoadState('domcontentloaded');
 		const openedUrl = newPage.url();
 		await newPage.close();
-		return openedUrl.includes(socialMedia);
+		return openedUrl.includes(socialMedia.toString());
 	}
 
 	public async getApplyJobContent() {

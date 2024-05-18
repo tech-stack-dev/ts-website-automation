@@ -4,11 +4,11 @@ import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import {sessionValue} from '../../../../runtimeVariables/SessionValue';
 import {careerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
 import Job from '../../../../identifiers/Job';
-import {SocialMediaLinksEnum} from '../../../../enum/SocialMediaLinksEnum';
 import {driver} from '../../../../base/driver/Driver';
 import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import Links from '../../../../preconditionsData/links/Links';
 
 test.describe('With one precondition vacancy', () => {
 	test.beforeEach(async () => {
@@ -23,18 +23,9 @@ test.describe('With one precondition vacancy', () => {
 	test(qase(5480, 'Check job description fields @desktop @mobile @Regression @JobsBlock @TSWEB-146'), async () => {
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
-		const twitter = await careerSteps.checkSocialMediaButtonRedirect(
-			Job.TwitterShare,
-			SocialMediaLinksEnum.Twitter
-		);
-		const facebook = await careerSteps.checkSocialMediaButtonRedirect(
-			Job.FacebookShare,
-			SocialMediaLinksEnum.Facebook
-		);
-		const linked = await careerSteps.checkSocialMediaButtonRedirect(
-			Job.LinkedInShare,
-			SocialMediaLinksEnum.LinkedId
-		);
+		const twitter = await careerSteps.checkSocialMediaButtonRedirect(Job.TwitterShare, Links.Twitter);
+		const facebook = await careerSteps.checkSocialMediaButtonRedirect(Job.FacebookShare, Links.Facebook);
+		const linked = await careerSteps.checkSocialMediaButtonRedirect(Job.LinkedInShare, Links.LinkedIn);
 		expect(twitter).toBeTruthy();
 		expect(facebook).toBeTruthy();
 		expect(linked).toBeTruthy();

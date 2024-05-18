@@ -4,7 +4,7 @@ export default class Links {
 	static Instagram = 'https://www.instagram.com';
 	static Behance = 'https://www.behance.net/Techstack_Ltd';
 	static Dribbble = 'https://dribbble.com/techstackdesign';
-	static Twitter = 'https://twitter.com';
+	static Twitter = 'https://x.com';
 	static GoodFirms = 'https://www.goodfirms.co/company/techstack-ltd';
 	static Clutch = 'https://clutch.co/profile/techstack';
 	static DesignRush = 'https://www.designrush.com/agency/profile/techstack-ltd';
