@@ -4,19 +4,23 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {buttonSteps, careerSteps, containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
+import UrlUtils from '../../../../../utils/UrlUtils';
+import Buttons from '../../../../../identifiers/Buttons';
 
 let header: Locator;
 let buttonHeaderslist: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
-// let iotForEnergyButton: Locator; // Uncomment after this button will be in header again
 let pricingButton: Locator;
+
+let industriesButtons: object;
+let servicesButtons: object;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -27,13 +31,13 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.Healthcare),
-	UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+	UrlUtils.getRandomUrlFromRecord(industryUrl),
+	UrlUtils.getRandomUrlFromRecord(serviceUrl),
+	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
+	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ];
 
 test.beforeEach(async () => {
@@ -41,20 +45,16 @@ test.beforeEach(async () => {
 
 	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu
+		mobileLocator: Header.ContainerMenu,
 	});
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
-	// iotForEnergyButton = header.getByTestId(Header.IotForEnergy); // Uncomment after this button will be in header again
 	pricingButton = header.getByTestId(Header.Pricing);
-	buttonHeaderslist = [
-		industriesDropdownButton,
-		servicesDropdownButton,
-		companyDropdownButton,
-		// iotForEnergyButton, // Uncomment after this button will be in header again
-		pricingButton,
-	];
+	buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
+
+	industriesButtons = Buttons.Industries;
+	servicesButtons = Buttons.Services;
 });
 
 test(
@@ -150,6 +150,62 @@ test(
 		}
 	}
 );
+// !!!!!!! for mobile
+test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
+
+		await careerSteps.clickOnBurgerMenu(); // !!!!
+		await industriesDropdownButton.click(); // !!!
+		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
+
+		for (let index = 0; index < Object.values(industriesButtons).length; index++) {
+			const button = header.getByTestId(Object.values(industriesButtons)[index]);
+			await expect(button).toHaveText(industriesText[index]);
+		}
+
+		await expect(servicesDropdownButton).toHaveText('Services');
+		const servicesText = [
+			'Our Services',
+			'Custom Software Development',
+			'Digital Transformation',
+			'Cloud Development',
+			'Mobile Development',
+			'Front-End Development',
+			'Back-End Development',
+			'Big Data & Analytics',
+			'Internet of Things',
+			'DevOps as a Service',
+			'AI Development',
+			'UX / UI Design',
+			'QA as a Service',
+			'Consulting Services',
+		];
+
+		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
+			const button = header.getByTestId(Object.values(servicesButtons)[index]);
+			await expect(button).toHaveText(servicesText[index]);
+		}
+
+		await expect(companyDropdownButton).toHaveText('Company');
+		const companyText = ['About Us', 'How we work', 'Career', 'Case Studies', 'Blog'];
+
+		const companyButtons = [
+			Buttons.Company.AboutUs,
+			Buttons.Company.HowWeWork,
+			Buttons.Company.Career,
+			Buttons.Company.CaseStudies,
+			Buttons.Company.Blog,
+		];
+
+		for (let index = 0; index < companyButtons.length; index++) {
+			const button = header.getByTestId(Object.values(companyButtons)[index]);
+			await expect(button).toHaveText(companyText[index]);
+		}
+
+		await expect(pricingButton).toHaveText('Pricing');
+	}
+});
 
 test.afterEach(async () => {
 	await driver.closeDrivers();

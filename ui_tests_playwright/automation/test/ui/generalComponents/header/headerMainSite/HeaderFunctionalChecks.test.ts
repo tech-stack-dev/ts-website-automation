@@ -2,28 +2,30 @@ import {Locator} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
 import {industryUrl, serviceUrl, companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import Links from '../../../../../preconditionsData/links/Links';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {careerSteps, containerSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
+import UrlUtils from '../../../../../utils/UrlUtils';
+import UrlPath from '../../../../../providers/UrlPath';
 
 let header: Locator;
+let industriesButtons: object;
+let servicesButtons: object;
+let industriesUrls: string[];
+let servicesUrls: string[];
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
+	UrlUtils.getRandomUrlFromRecord(industryUrl),
+	UrlUtils.getRandomUrlFromRecord(serviceUrl),
+	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
 	UrlProvider.urlBuilder(UrlPath.Terms),
 ];
 
@@ -31,8 +33,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu
+		mobileLocator: Header.ContainerMenu,
 	});
+
+	industriesButtons = Buttons.Industries;
+	servicesButtons = Buttons.Services;
+
+	industriesUrls = Object.values(industryUrl);
+	servicesUrls = Object.values(serviceUrl);
 });
 
 test(
@@ -55,21 +63,15 @@ test(
 		`Check the redirection for the Industries block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		const industriesList = new Map([
-			[Buttons.Industries_Healthcare, industryUrl[IndustriesEnum.Healthcare]],
-			[Buttons.Industries_TransportationAndLogistics, industryUrl[IndustriesEnum.TransportAndLogist]],
-			[Buttons.Industries_RenewableEnergy, industryUrl[IndustriesEnum.RenewableEnergy]],
-		]);
-
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const [element, industryUrl] of industriesList) {
+			for (let index = 0; index < industriesUrls.length; index++) {
 				await careerSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Industries).click();
-				await header.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(industryUrl);
+				await header.getByTestId(Object.values(industriesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(industriesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
@@ -82,30 +84,15 @@ test(
 		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		const servicesList = new Map([
-			[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
-			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
-			[Buttons.Services_DigitalTransform, serviceUrl[ServicesEnum.DigitalTransform]],
-			[Buttons.Services_CloudDev, serviceUrl[ServicesEnum.CloudDev]],
-			[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
-			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
-			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
-			[Buttons.Services_DevOps, serviceUrl[ServicesEnum.DevOpsAsAServ]],
-			[Buttons.Services_AiDevelopment, serviceUrl[ServicesEnum.AiDevelopment]],
-			[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
-			[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
-			[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
-		]);
-
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const [element, serviceUrl] of servicesList) {
+			for (let index = 0; index < servicesUrls.length; index++) {
 				await careerSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Services).click();
-				await header.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(serviceUrl);
+				await header.getByTestId(Object.values(servicesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(servicesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
@@ -119,11 +106,11 @@ test(
 	),
 	async () => {
 		const companyList = new Map([
-			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
-			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Buttons.Company_Career, UrlProvider.careerUrl(Environment.Production)],
-			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
+			[Buttons.Company.AboutUs, companyUrl[CompanyEnum.AboutUs]],
+			[Buttons.Company.HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
+			[Buttons.Company.Career, UrlProvider.careerUrl(Environment.Production)],
+			[Buttons.Company.CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
+			[Buttons.Company.Blog, companyUrl[CompanyEnum.Blog]],
 		]);
 
 		for (const url of testDataProvider) {
@@ -152,24 +139,6 @@ test(
 			await careerSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
-		}
-	}
-);
-
-// Unskip after this button will be in header again
-test.skip(
-	qase(
-		5555,
-		`Check the redirection to the "IoT for Energy" page by clicking on the "IoT for Energy" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1267`
-	),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-
-			await careerSteps.clickOnBurgerMenu();
-
-			await header.getByTestId(Header.IotForEnergy).click();
-			await baseDriverSteps.checkUrl(Links.IotForEnergy);
 		}
 	}
 );
