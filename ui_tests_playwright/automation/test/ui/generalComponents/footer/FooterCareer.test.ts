@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 	footer = driver.getByTestId(Footer.Container_Footer);
 	socialBlock = await containerSteps.getDynamicLocator({
 		desktopLocator: Footer.FooterLinkDesktop,
-		mobileLocator: Footer.FooterLinkMobile
+		mobileLocator: Footer.FooterLinkMobile,
 	});
 });
 
@@ -44,8 +44,8 @@ test(
 			const companyList = new Map([
 				[Buttons.Company_TechstackWorldwide, 'Techstack Worldwide'],
 				[Buttons.Company_Services, 'Services'],
-				[Buttons.Company_CaseStudies, 'Case Studies'],
-				[Buttons.Company_Blog, 'Blog'],
+				[Buttons.Company.CaseStudies, 'Case Studies'],
+				[Buttons.Company.Blog, 'Blog'],
 			]);
 
 			for (const [element, title] of companyList) {
@@ -97,8 +97,8 @@ test(
 		const companyUrlList = new Map([
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
 			[Buttons.Company_Services, UrlProvider.urlBuilder(UrlPath.OurServices)],
-			[Buttons.Company_CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
-			// [Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)], // Uncomment after Blog will be stable
+			[Buttons.Company.CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
+			[Buttons.Company.Blog, UrlProvider.urlBuilder(UrlPath.Blog)],
 		]);
 
 		for (const url of testDataProvider) {

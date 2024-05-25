@@ -29,6 +29,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.Terms),
 ];
 
+// ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 	header = await containerSteps.getDynamicLocator({
