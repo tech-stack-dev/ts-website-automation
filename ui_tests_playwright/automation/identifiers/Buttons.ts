@@ -3,6 +3,7 @@ export default class Buttons {
 	static ContactUs = 'Button-ContactUs';
 	static Blog = 'Button-Blog';
 	static Close = 'Button-Close';
+	static BurgerMenuButton = 'Button-BurgerMenu';
 
 	// Pages list
 	static Industries = {

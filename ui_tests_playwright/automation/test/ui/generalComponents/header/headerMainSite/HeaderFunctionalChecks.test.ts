@@ -8,7 +8,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {Environment} from '../../../../../providers/EnvProvider';
-import {careerSteps, containerSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
+import {containerSteps, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import UrlPath from '../../../../../providers/UrlPath';
 
@@ -67,7 +67,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (let index = 0; index < industriesUrls.length; index++) {
-				await careerSteps.clickOnBurgerMenu();
+				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Industries).click();
 				await header.getByTestId(Object.values(industriesButtons)[index]).click();
@@ -88,7 +88,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (let index = 0; index < servicesUrls.length; index++) {
-				await careerSteps.clickOnBurgerMenu();
+				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Services).click();
 				await header.getByTestId(Object.values(servicesButtons)[index]).click();
@@ -117,7 +117,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const [element, companyUrl] of companyList) {
-				await careerSteps.clickOnBurgerMenu();
+				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Company).click();
 				await header.getByTestId(element).click();
@@ -136,7 +136,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await careerSteps.clickOnBurgerMenu();
+			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
 		}

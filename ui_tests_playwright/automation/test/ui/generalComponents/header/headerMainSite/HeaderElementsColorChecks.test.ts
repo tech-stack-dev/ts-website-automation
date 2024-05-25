@@ -8,19 +8,16 @@ import {companyUrl, industryUrl, serviceUrl} from '../../../../../preconditionsD
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {buttonSteps, careerSteps, containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
+import {buttonSteps, containerSteps, expect, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import Buttons from '../../../../../identifiers/Buttons';
 
 let header: Locator;
-let buttonHeaderslist: Locator[];
+let headerButtonsList: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
-
-let industriesButtons: object;
-let servicesButtons: object;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -40,6 +37,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.Sitemap),
 ];
 
+// ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
 
@@ -51,10 +49,7 @@ test.beforeEach(async () => {
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
 	pricingButton = header.getByTestId(Header.Pricing);
-	buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
-
-	industriesButtons = Buttons.Industries;
-	servicesButtons = Buttons.Services;
+	headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
 });
 
 test(
@@ -66,7 +61,7 @@ test(
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const button of buttonHeaderslist) {
+			for (const button of headerButtonsList) {
 				const actualColor = await button.evaluate(async (el) => {
 					return getComputedStyle(el).backgroundColor;
 				});
@@ -90,7 +85,7 @@ test(
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const button of buttonHeaderslist) {
+			for (const button of headerButtonsList) {
 				await button.hover();
 				await driver.Page.waitForTimeout(1000); // Waiting for changing the color
 				const actualColor = await button.evaluate(async (el) => {
@@ -115,11 +110,11 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
+			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
-			await careerSteps.clickOnBurgerMenu();
+			await headerMenuSteps.clickOnBurgerMenu();
 
-			for (const button of buttonHeaderslist) {
+			for (const button of headerButtonsList) {
 				await buttonSteps.buttonColorCheck(button, ColorsEnum.Yellow_FFC600);
 			}
 		}
@@ -134,9 +129,9 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			const buttonHeaderslist = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
+			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
-			for (const button of buttonHeaderslist) {
+			for (const button of headerButtonsList) {
 				await button.click();
 				await button.hover();
 				await driver.Page.waitForTimeout(1000); // Wait for changing color
@@ -150,13 +145,23 @@ test(
 		}
 	}
 );
-// !!!!!!! for mobile
+
 test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
-		await baseDriverSteps.goToUrl(url);
+		headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
-		await careerSteps.clickOnBurgerMenu(); // !!!!
-		await industriesDropdownButton.click(); // !!!
+		await baseDriverSteps.goToUrl(url);
+		await headerMenuSteps.clickOnBurgerMenu();
+		const headerButtonsText = ['Industries', 'Services', 'Company'];
+
+		for (let index = 0; index < headerButtonsList.length; index++) {
+			await headerButtonsList[index].click();
+			await headerMenuSteps.checkDropdownButtonText(headerButtonsList[index], headerButtonsText[index]);
+		}
+
+		await expect(pricingButton).toHaveText('Pricing');
+
+		const industriesButtons = Buttons.Industries;
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
 		for (let index = 0; index < Object.values(industriesButtons).length; index++) {
@@ -164,7 +169,7 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(industriesText[index]);
 		}
 
-		await expect(servicesDropdownButton).toHaveText('Services');
+		const servicesButtons = Buttons.Services;
 		const servicesText = [
 			'Our Services',
 			'Custom Software Development',
@@ -187,9 +192,7 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(servicesText[index]);
 		}
 
-		await expect(companyDropdownButton).toHaveText('Company');
 		const companyText = ['About Us', 'How we work', 'Career', 'Case Studies', 'Blog'];
-
 		const companyButtons = [
 			Buttons.Company.AboutUs,
 			Buttons.Company.HowWeWork,
