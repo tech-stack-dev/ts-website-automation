@@ -75,7 +75,7 @@ jobs:
         run: npm run unit-tests
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep ${{ inputs.grep }} --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --test="Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep="@qa" | tee test-output.txt
 
       - uses: actions/upload-artifact@v4
         name: Upload Playwright report
