@@ -20,10 +20,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4787, 'Check the Info container from the "About Us" page @mobile @qaaa @Regression @AboutUs @TSWEB-1022'),
+	qase(4787, 'Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'),
 	async () => {
 		const info = driver.getByTestId(AboutUs.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Usssss');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'We Make an Impact on\nthe Product, People, and\nWorld'
 		);
@@ -34,7 +34,7 @@ test(
 test(
 	qase(
 		4792,
-		'Check the container title and number from the "About Us" page @desktop @mobile @qaaa @Regression @AboutUs @TSWEB-1022'
+		'Check the container title and number from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const containers = [
