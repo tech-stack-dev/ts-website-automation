@@ -15,9 +15,10 @@ on:
         eventName:
           required: false
           type: string
-        slackEmoji:
+        isMobile:
           required: false
-          type: string
+          type: boolean
+          default: false
     secrets:
         awsKey:
           required: true
@@ -140,7 +141,7 @@ jobs:
         id: slack_icon_emoji
         with:
           cond: ${{ job.status == 'failure' }}
-          if_true: ${{ env.SLACK_EMOJI }}
+          if_true: ${{ inputs.isMobile && ':fire:' || ':finnadie:' }}
           if_false: ":aw_yeah:"
   
       - name: Set Slack Channel production
@@ -174,7 +175,6 @@ jobs:
           SLACK_TITLE: ${{ inputs.slackTitle }}
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-          SLACK_EMOJI: ${{ env.SLACK_EMOJI }}
 
       - name: Slack Notification for UI tests automation
         if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
