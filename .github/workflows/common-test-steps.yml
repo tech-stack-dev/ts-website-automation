@@ -15,6 +15,9 @@ on:
         eventName:
           required: false
           type: string
+        slackEmoji:
+          required: false
+          type: string
     secrets:
         awsKey:
           required: true
@@ -72,7 +75,7 @@ jobs:
         run: npm run unit-tests
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep ${{ inputs.grep }} --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep ${{ inputs.grep }} --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" --test="Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022" | tee test-output.txt
 
       - uses: actions/upload-artifact@v4
         name: Upload Playwright report
@@ -123,13 +126,21 @@ jobs:
           git commit -m "update main report file"
           git push origin reports-history
 
+      - name: Set Slack Emoji
+        run: |
+          if [ -z "${{ inputs.slackEmoji }}" ]; then
+            echo "SLACK_EMOJI=:finnadie:" >> $GITHUB_ENV
+          else
+            echo "SLACK_EMOJI=${{ inputs.slackEmoji }}" >> $GITHUB_ENV
+          fi
+
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
         if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_icon_emoji
         with:
           cond: ${{ job.status == 'failure' }}
-          if_true: ":finnadie:"
+          if_true: ${{ env.SLACK_EMOJI }}
           if_false: ":aw_yeah:"
   
       - name: Set Slack Channel production
@@ -177,4 +188,3 @@ jobs:
           SLACK_TITLE: ${{ inputs.slackTitle }}
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-  
