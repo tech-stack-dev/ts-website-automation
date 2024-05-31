@@ -137,6 +137,7 @@ jobs:
 
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
+        if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_icon_emoji
         with:
           cond: ${{ job.status == 'failure' }}
