@@ -26,6 +26,14 @@ test(
 );
 
 test(
+	qase(6666, 'Failed mobile only from the "Healthcare" page @mobile @qaaa @Regression @Healthcare @TSWEB-955'),
+	async () => {
+		const info = driver.getByTestId(Healthcare.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHeahcare');
+	}
+);
+
+test(
 	qase(
 		5156,
 		'Check the container title and number from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
