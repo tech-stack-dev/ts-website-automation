@@ -152,7 +152,7 @@ jobs:
         run: echo "SLACK_CHANNEL_AUTOMATION=ts_website_automation" >> $GITHUB_ENV
 
       - name: Slack Notification for UI tests production
-        if: ${{ (github.event_name == 'schedule') || (inputs.eventName == 'schedule') || (github.event_name == 'workflow_dispatch' && github.event.action == 'schedule') || (inputs.event_name == 'workflow_dispatch' && inputs.event.action == 'schedule') }}
+        if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
@@ -166,7 +166,7 @@ jobs:
           SLACK_FOOTER: TS website
 
       - name: Slack Notification for UI tests automation
-        if: ${{ github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && (github.event.action == 'schedule' || failure())) || (inputs.event_name == 'workflow_dispatch' && (inputs.event.action == 'schedule' || failure())) || (github.event_name == 'pull_request' && !github.event.pull_request.draft && failure()) }}
+        if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
           SLACK_USERNAME: Tests execution report
