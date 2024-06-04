@@ -35,7 +35,7 @@ test(
 			['Company pages', '01'],
 			['Services pages', '02'],
 			['Industry pages', '03'],
-			['Case Studies\npages', '04'],
+			['Case Studies pages', '04'],
 			['Articles pages', '05'],
 			['Blog pages', '06'],
 		];

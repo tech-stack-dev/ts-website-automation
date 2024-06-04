@@ -23,7 +23,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(DevOpsAsAService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDevOps');
-		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services\n& Solutions');
+		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services & Solutions');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 	}
 );
@@ -50,15 +50,15 @@ test(
 			driver.getByTestId(DevOpsAsAService.Faq),
 		];
 		const expectedData = [
-			['DevOps Solution\nBenefits', '01'],
-			['Leverage DevOps\nServices', '02'],
+			['DevOps Solution Benefits', '01'],
+			['Leverage DevOps Services', '02'],
 			['Technology stack', '03'],
 			['Success Stories', '04'],
-			['Industries\nWe Serve', '05'],
-			['Our Approach\nto DevOps', '06'],
-			['The Value Techstack\nAdds to Products', '07'],
+			['Industries We Serve', '05'],
+			['Our Approach to DevOps', '06'],
+			['The Value Techstack Adds to Products', '07'],
 			['Our DevOps experts', '08'],
-			['DevOps as a Service:\nPipeline', '09'],
+			['DevOps as a Service: Pipeline', '09'],
 			['Related Services', '10'],
 			['Get in Touch', '11'],
 			['Related Articles', '12'],

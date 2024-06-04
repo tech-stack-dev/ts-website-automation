@@ -22,7 +22,7 @@ test(
 		const info = driver.getByTestId(RenewableEnergy.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nRenewable Energy');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Software Development\nfor the Renewable\nEnergy Industry'
+			'Software Development for the Renewable Energy Industry'
 		);
 		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 	}
