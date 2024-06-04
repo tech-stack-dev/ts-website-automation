@@ -23,7 +23,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(BigDataAndAnalytics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application\nDevelopment Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application Development Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
@@ -49,9 +49,9 @@ test(
 		];
 
 		const expectedData = [
-			['How Big Data\nWill Help You', '01'],
+			['How Big Data Will Help You', '01'],
 			['Big Data Software Development With Techstack', '02'],
-			['Big Data Solutions\nTechnology Stack', '03'],
+			['Big Data Solutions Technology Stack', '03'],
 			['Big Data Case Studies', '04'],
 			['Industry-specific Big Data Solutions', '05'],
 			['Why Choose Techstack’s Big Data Software Development Services?', '06'],

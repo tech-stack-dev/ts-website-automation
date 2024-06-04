@@ -20,7 +20,7 @@ test(
 	),
 	async () => {
 		const info = driver.getByTestId(QaAsAService.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nQA as a Service');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services QA as a Service');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'QA as a Service — Vetted Experts Available on Demand'
 		);
@@ -47,12 +47,12 @@ test(
 		];
 
 		const expectedData = [
-			['What is QA \nas a Service?', '01'],
-			['Who is this \nservice for', '02'],
+			['What is QA as a Service?', '01'],
+			['Who is this service for', '02'],
 			['Services', '03'],
-			['Case studies: \nQA as a Service', '04'],
-			['Services that \nmeet you where \nyou are', '05'],
-			['Our Approach \nand Achievements', '06'],
+			['Case studies: QA as a Service', '04'],
+			['Services that meet you where you are', '05'],
+			['Our Approach and Achievements', '06'],
 			['Get in Touch', '07'],
 			['Related Articles', '08'],
 			['FAQ', '09'],

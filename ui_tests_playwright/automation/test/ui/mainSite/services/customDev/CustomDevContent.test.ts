@@ -23,7 +23,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(CustomDev.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software\nDevelopment Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software Development Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 	}
 );
@@ -51,14 +51,14 @@ test(
 		];
 
 		const expectedText: [string, string][] = [
-			['Techstack’s Strengths\nin Custom Software\nDevelopment', '01'],
-			['Custom Software Development for\nYour Product', '02'],
-			['Custom Development\nServices We Provide', '03'],
+			['Techstack’s Strengths in Custom Software Development', '01'],
+			['Custom Software Development for Your Product', '02'],
+			['Custom Development Services We Provide', '03'],
 			['Technology Stack', '04'],
-			['Our Featured\nCase Study', '05'],
-			['Industries We Develop\nSoftware For', '06'],
-			['Why Choose\nTechstack', '07'],
-			['Custom Software\nDevelopment Experts', '08'],
+			['Our Featured Case Study', '05'],
+			['Industries We Develop Software For', '06'],
+			['Why Choose Techstack', '07'],
+			['Custom Software Development Experts', '08'],
 			['Our Tailored Collaboration and Pricing Models', '09'],
 			['Custom Software Development Process', '10'],
 			['Get in Touch', '11'],

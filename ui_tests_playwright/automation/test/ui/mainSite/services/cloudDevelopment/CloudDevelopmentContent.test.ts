@@ -23,7 +23,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(CloudDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application\nDevelopment Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application Development Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
 	}
 );
@@ -48,12 +48,12 @@ test(
 			driver.getByTestId(CloudDevelopment.Faq),
 		];
 		const expectedData = [
-			['Leverage Cloud Native\nDevelopment Services', '01'],
+			['Leverage Cloud Native Development Services', '01'],
 			['Case Study by Techstack', '02'],
 			['Industries We Serve', '03'],
 			['Technology Stack', '04'],
 			['Cloud Computing Development Benefits', '05'],
-			['Our Approach\nto Cloud App Development', '06'],
+			['Our Approach to Cloud App Development', '06'],
 			['Our Leading Cloud Experts', '07'],
 			['Related Services', '08'],
 			['Get in Touch', '09'],

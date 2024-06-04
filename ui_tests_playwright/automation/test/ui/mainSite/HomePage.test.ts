@@ -64,7 +64,7 @@ test.skip(
 			['What we do', '02'],
 			['Partner testimonials', '03'],
 			['Case studies', '04'],
-			['Working with\nBusinesses Worldwide', '05'],
+			['Working with Businesses Worldwide', '05'],
 			['Our partners', '06'],
 			['Company insights', '07'],
 			['Get in Touch', '08'],

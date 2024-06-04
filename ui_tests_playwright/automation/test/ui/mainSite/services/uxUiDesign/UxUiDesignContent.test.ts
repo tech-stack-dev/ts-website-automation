@@ -24,7 +24,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
-		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design\nServices');
+		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 	}
 );
@@ -51,14 +51,14 @@ test(
 		];
 
 		const expectedData = [
-			['Get Custom UX and UI\nDesign Services', '01'],
-			['We Build UX/UI\nfor Mobile & Web', '02'],
+			['Get Custom UX and UI Design Services', '01'],
+			['We Build UX/UI for Mobile & Web', '02'],
 			['Our UI/UX Services', '03'],
 			['Success Stories', '04'],
 			['Typical UX/UI Design Workflow', '05'],
-			['We Never Stop\nImproving Your Product', '06'],
+			['We Never Stop Improving Your Product', '06'],
 			['Our Approach', '07'],
-			['Design Thinking\nProcess', '08'],
+			['Design Thinking Process', '08'],
 			['Related Services', '09'],
 			['Get in Touch', '10'],
 			['Related Articles', '11'],

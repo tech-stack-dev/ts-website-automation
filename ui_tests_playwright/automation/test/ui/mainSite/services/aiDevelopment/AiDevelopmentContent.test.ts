@@ -48,8 +48,8 @@ test(
 		];
 
 		const expectedData = [
-			['AI’s Beneficial \nImpact on \nIndustries', '01'],
-			['Our AI Development\nServices', '02'],
+			['AI’s Beneficial Impact on Industries', '01'],
+			['Our AI Development Services', '02'],
 			['Technology Stack', '03'],
 			['Case Study by Techstack', '04'],
 			['Industries We Serve', '05'],

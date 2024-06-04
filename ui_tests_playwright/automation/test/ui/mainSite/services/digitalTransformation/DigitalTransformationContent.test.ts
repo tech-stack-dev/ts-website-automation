@@ -21,7 +21,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(DigitalTransformation.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDigital Transformation');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Digital Transformation\nServices');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Digital Transformation Services');
 		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 	}
 );
@@ -48,15 +48,15 @@ test(
 		];
 
 		const expectedData = [
-			['Our Achievements\nin IT Transformation\nServices', '01'],
-			['Digital Business\nTransformation\nServices', '02'],
+			['Our Achievements in IT Transformation Services', '01'],
+			['Digital Business Transformation Services', '02'],
 			['Industries We Serve', '03'],
-			['Success Stories as a\nDigital Transformation\nService Provider', '04'],
-			['Technologies\nWe Use for Digital\nTransformation', '05'],
-			['Digital Transformation\nStrategy', '06'],
-			['How Techstack Can\nInfluence Your Digital\nTransformation', '07'],
-			['Digital Transformation\nProduct Map', '08'],
-			['Technology\nTransformation\nWorkflow', '09'],
+			['Success Stories as a Digital Transformation Service Provider', '04'],
+			['Technologies We Use for Digital Transformation', '05'],
+			['Digital Transformation Strategy', '06'],
+			['How Techstack Can Influence Your Digital Transformation', '07'],
+			['Digital Transformation Product Map', '08'],
+			['Technology Transformation Workflow', '09'],
 			['Get in Touch', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],

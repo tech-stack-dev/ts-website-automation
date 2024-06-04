@@ -23,7 +23,7 @@ test(
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Transportation and\nLogistics Software\nDevelopment'
+			'Transportation and Logistics Software Development'
 		);
 		await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toHaveText(`Let's discuss`);
 	}
@@ -51,12 +51,12 @@ test(
 		const expectedData = [
 			['Techstack in Numbers', '01'],
 			['Who We Serve', '02'],
-			['Transportation and Logistics\nSoftware Development\nServices at Techstack', '03'],
+			['Transportation and Logistics Software Development Services at Techstack', '03'],
 			['Case Study by Techstack', '04'],
-			['Our Expertise in Logistics\nSoftware Development\nSolutions', '05'],
-			['What Makes Us\nDifferent', '06'],
-			['Transportation and Logistics\nSoftware Development at\nTechstack', '07'],
-			['Development\nWorkflow That We\nFollow', '08'],
+			['Our Expertise in Logistics Software Development Solutions', '05'],
+			['What Makes Us Different', '06'],
+			['Transportation and Logistics Software Development at Techstack', '07'],
+			['Development Workflow That We Follow', '08'],
 			['Get in Touch', '09'],
 			['FAQ', '10'],
 		];

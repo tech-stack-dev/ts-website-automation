@@ -24,7 +24,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
-		await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering\nServices');
+		await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
 	}
 );
@@ -51,14 +51,14 @@ test(
 		];
 
 		const expectedText: [string, string][] = [
-			['IoT Engineering\nSolutions', '01'],
-			['Our IoT Engineering\nServices', '02'],
-			['IoT Technology Stack\nby Layers', '03'],
-			['IoT Engineering\nCase Studies', '04'],
-			['Industry-specific\nIoT Solutions', '05'],
-			['IoT Engineering\nProcess', '06'],
-			['Our Approach to\nIoT Engineering', '07'],
-			['Our Internet of Things\nEngineering Experts', '08'],
+			['IoT Engineering Solutions', '01'],
+			['Our IoT Engineering Services', '02'],
+			['IoT Technology Stack by Layers', '03'],
+			['IoT Engineering Case Studies', '04'],
+			['Industry-specific IoT Solutions', '05'],
+			['IoT Engineering Process', '06'],
+			['Our Approach to IoT Engineering', '07'],
+			['Our Internet of Things Engineering Experts', '08'],
 			['Related Services', '09'],
 			['Get in Touch', '10'],
 			['Related Articles', '11'],
@@ -250,7 +250,7 @@ test(
 
 		expect(actualCarouselIndexesAndTitles).toEqual(expectedCarouselIndexesAndTitles);
 		expect(await ioTEngineeringProcessContainer.getByTestId(Container.BlockTitle).textContent()).toEqual(
-			'New IoT Device\nEngineering'
+			'New IoT Device Engineering'
 		);
 
 		const containerBlock = ioTEngineeringProcessContainer.getByTestId(Container.ContainerBlock);
