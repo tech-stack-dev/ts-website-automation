@@ -2,7 +2,7 @@ import {expect} from '@playwright/test';
 import CareerButtons from '../../identifiers/career/CareerButtons';
 import {CareerSteps} from './CareerSteps';
 import {driver} from '../../base/driver/Driver';
-import {containerSteps} from '../../fixtures/DesktopMobileSetup';
+import {containerSteps, headerMenuSteps} from '../../fixtures/DesktopMobileSetup';
 import ContainerByClass from '../../components/container/ContainerByClass';
 import ContainersCareer from '../../identifiers/career/ContainersCareer';
 import Buttons from '../../identifiers/Buttons';
@@ -10,10 +10,6 @@ import Buttons from '../../identifiers/Buttons';
 class MobileCareerSteps extends CareerSteps {
 	async clickOnFilter(): Promise<void> {
 		await driver.getByTestId(CareerButtons.FilterButton).click();
-	}
-
-	async clickOnBurgerMenu(): Promise<void> {
-		await driver.getByTestId(CareerButtons.BurgerMenuButton).click();
 	}
 
 	async switchLanguage(language: string): Promise<void> {
@@ -36,7 +32,7 @@ class MobileCareerSteps extends CareerSteps {
 			}
 		}
 
-		await this.clickOnBurgerMenu();
+		await headerMenuSteps.clickOnBurgerMenu();
 		await switcher.click();
 		await driver.Page.waitForLoadState('networkidle');
 		await expect(switcher).toHaveClass(/active-locale/);

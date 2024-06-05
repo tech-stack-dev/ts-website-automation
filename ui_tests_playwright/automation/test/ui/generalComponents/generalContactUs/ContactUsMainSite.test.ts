@@ -10,7 +10,7 @@ import {ColorsEnum} from '../../../../enum/ColorsEnum';
 import Header from '../../../../identifiers/mainSite/Header';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {careerSteps, containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
+import {containerSteps, test, expect, headerMenuSteps} from '../../../../fixtures/DesktopMobileSetup';
 
 let header: Locator;
 let contactUsButton: Locator;
@@ -20,7 +20,7 @@ test.beforeEach(async () => {
 
 	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
-		mobileLocator: Header.ContainerMenu
+		mobileLocator: Header.ContainerMenu,
 	});
 	contactUsButton = header.getByTestId(Buttons.ContactUs).last();
 });
@@ -74,7 +74,7 @@ test(
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
-			await careerSteps.clickOnBurgerMenu();
+			await headerMenuSteps.clickOnBurgerMenu();
 			await contactUsButton.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}
