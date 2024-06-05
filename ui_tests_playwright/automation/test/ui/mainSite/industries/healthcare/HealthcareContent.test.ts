@@ -19,7 +19,7 @@ test(
 		const info = driver.getByTestId(Healthcare.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Software Development\nSolutions For\nthe Healthcare Industry'
+			'Software Development Solutions for the Healthcare Industry'
 		);
 		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
 	}
@@ -50,8 +50,8 @@ test(
 			['What Makes Our Team Different', '01'],
 			['Our Expertise', '02'],
 			['Case Study by Techstack', '03'],
-			['Patient-Centered\nStrategy', '04'],
-			['Most Recent\nIndustry Facts', '05'],
+			['Patient-Centered Strategy', '04'],
+			['Most Recent Industry Facts', '05'],
 			['How We Operate', '06'],
 			['Our Workflow', '07'],
 			['Core Practices', '08'],

@@ -23,7 +23,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(MobileDevService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nMobile App Development');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Mobile App\nDevelopment Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Mobile App Development Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
@@ -53,13 +53,13 @@ test(
 		const expectedData = [
 			['What You Get', '01'],
 			['What We Do', '02'],
-			['Mobile Application\nDevelopment\nTechnology Stack', '03'],
+			['Mobile Application Development Technology Stack', '03'],
 			['Case Study by Techstack', '04'],
-			['What Industries\nWe Serve', '05'],
-			['Our Approach\nto Mobile App\nDevelopment\nServices', '06'],
+			['What Industries We Serve', '05'],
+			['Our Approach to Mobile App Development Services', '06'],
 			['Mobile App Development Process', '07'],
 			['We Never Stop Improving Your Product', '08'],
-			['The Cost of Mobile\nApp Development', '09'],
+			['The Cost of Mobile App Development', '09'],
 			['Related Services', '10'],
 			['Get in Touch', '11'],
 			['Related Articles', '12'],

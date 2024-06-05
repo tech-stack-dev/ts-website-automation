@@ -35,12 +35,12 @@ test(
 		];
 
 		const expectedData = [
-			['1. Terms of use\n of the website', '02'],
-			['2. The use of \nthe Site', '03'],
-			['3. Personal information \nof the User', '04'],
-			['4. Limitation\nof liability', '05'],
+			['1. Terms of use of the website', '02'],
+			['2. The use of the Site', '03'],
+			['3. Personal information of the User', '04'],
+			['4. Limitation of liability', '05'],
 			['5. Procedure of the Agreement', '06'],
-			['6. Exclusive \nRights', '07'],
+			['6. Exclusive Rights', '07'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

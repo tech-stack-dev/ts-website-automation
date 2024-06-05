@@ -41,12 +41,12 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 	];
 
 	const expectedData = [
-		['What Is Your\nCooperation Type?', '01'],
+		['What Is Your Cooperation Type?', '01'],
 		['From Consultation To Custom Offer', '02'],
 		['What Influences The Cost of Software Development', '03'],
 		['Simplified Payment Process for Your Software Development Needs', '04'],
 		['Why Partner with Us', '05'],
-		['What Our Clients\nSay About Us', '06'],
+		['What Our Clients Say About Us', '06'],
 		['Get in Touch', '07'],
 		['FAQ', '08'],
 	];

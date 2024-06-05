@@ -22,7 +22,7 @@ test(
 		const info = driver.getByTestId(HowWeWork.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'The Way We Work: Our\nApproach to Delivering\nResults'
+			'The Way We Work: Our Approach to Delivering Results'
 		);
 		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
 	}
@@ -44,11 +44,11 @@ test(
 		];
 
 		const expectedData = [
-			['Cooperation \nmodels', '01'],
+			['Cooperation models', '01'],
 			['Work process', '02'],
 			['Technology stack', '03'],
 			['Techstack structure', '04'],
-			['Tools we use\nto organize\nthe workflow', '05'],
+			['Tools we use to organize the workflow', '05'],
 			['Get in Touch', '06'],
 		];
 

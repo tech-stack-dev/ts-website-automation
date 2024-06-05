@@ -24,7 +24,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(ConsultingService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting Services');
 		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuotebuttonText);
 	}
 );
@@ -52,16 +52,16 @@ test(
 		];
 
 		const expectedData = [
-			['Information Technology\nConsulting Services', '01'],
+			['Information Technology Consulting Services', '01'],
 			['Consulting Benefits', '02'],
-			['Our IT Consulting\nServices', '03'],
+			['Our IT Consulting Services', '03'],
 			['Featured Case Study', '04'],
-			['Industries We Provide\nConsultancy To', '05'],
+			['Industries We Provide Consultancy To', '05'],
 			['Consulting Process', '06'],
 			['Consulting Experts', '07'],
 			['Our Approach', '08'],
-			['Make an Impact\nWith Us', '09'],
-			['Related \nServices', '10'],
+			['Make an Impact With Us', '09'],
+			['Related Services', '10'],
 			['Get in Touch', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],

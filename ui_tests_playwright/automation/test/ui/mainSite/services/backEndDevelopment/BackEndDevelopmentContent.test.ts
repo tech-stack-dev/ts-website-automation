@@ -23,7 +23,7 @@ test(
 		const info = driver.getByTestId(BackEndServices.Info);
 
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development\nServices');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development Services');
 		await expect(info.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a Quote');
 	}
 );
@@ -53,16 +53,16 @@ test(
 		];
 
 		const expectedData = [
-			["Techstack's Powers\nin Back-End\nDevelopment", '01'],
-			['Expert Back-End\nDevelopment\nServices', '02'],
-			['Back-End Development\nServices for Any\nSoftware Product', '03'],
-			['Our Tech Arsenal\nfor Back-End\nDevelopment', '04'],
-			['Our Featured\nBack-End Case Study', '05'],
-			['Our Leading Back-End\nEngineers', '06'],
-			['Why Techstack\nStands Out', '07'],
-			['Partnering for\nEffective Back-End\nDevelopment', '08'],
-			['A Peek Into\nOur Back-End\nDevelopment Process', '09'],
-			['Back-End Development\nServices for Any Industry', '10'],
+			["Techstack's Powers in Back-End Development", '01'],
+			['Expert Back-End Development Services', '02'],
+			['Back-End Development Services for Any Software Product', '03'],
+			['Our Tech Arsenal for Back-End Development', '04'],
+			['Our Featured Back-End Case Study', '05'],
+			['Our Leading Back-End Engineers', '06'],
+			['Why Techstack Stands Out', '07'],
+			['Partnering for Effective Back-End Development', '08'],
+			['A Peek Into Our Back-End Development Process', '09'],
+			['Back-End Development Services for Any Industry', '10'],
 			['How We Can Work Together', '11'],
 			['Related Services', '12'],
 			['Get in Touch', '13'],
