@@ -93,7 +93,7 @@ for (const testData of testDataProvider) {
 				playwrightUtils.expectWithRetries(async () => {
 					const filterTag = filterGroupContainer.getByTestId(tag);
 					await expect(filterTag).not.toHaveClass(/active-tag/);
-				});
+				}, 3, 5000);
 			});
 		}
 	);
