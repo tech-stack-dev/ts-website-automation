@@ -8,6 +8,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
+import { playwrightUtils } from '../../../../utils/PlaywrightUtils';
 
 let footer: Locator;
 let socialBlock: Locator;
@@ -151,7 +152,7 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
-		await driver.executeFunc(async () => {
+		await playwrightUtils.expectWithRetries(async () => {
 			for (const url of testDataProvider) {
 				await baseDriverSteps.goToUrl(url);
 
@@ -160,7 +161,7 @@ test(
 
 					const [newPage] = await Promise.all([
 						driver.DriverContext.waitForEvent('page'),
-						await socialLinkButton.click(),
+						socialLinkButton.click(),
 					]);
 					expect(newPage.url().includes(entries[1])).toBeTruthy();
 					await newPage.close();
@@ -170,15 +171,14 @@ test(
 
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
-					await clutchButton.click({button: 'middle'}),
+					clutchButton.click(),
 				]);
-				await newPage.waitForLoadState('networkidle');
+				await newPage.waitForLoadState();
 				expect(newPage.url()).toContain(Links.Clutch);
 				await newPage.close();
 			}
-		}, 3);
-	}
-);
+		}, 3, 5000);
+});
 
 test(
 	qase(
