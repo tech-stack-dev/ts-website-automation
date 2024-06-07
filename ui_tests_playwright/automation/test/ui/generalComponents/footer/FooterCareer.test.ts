@@ -166,9 +166,14 @@ test(
 					expect(newPage.url().includes(entries[1])).toBeTruthy();
 					await newPage.close();
 				}
+			}
+		}, 5, 5000);
+
+		await playwrightUtils.expectWithRetries(async () => {
+			for (const url of testDataProvider) {
+				await baseDriverSteps.goToUrl(url);
 
 				const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
-
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
 					clutchButton.click(),
@@ -177,7 +182,7 @@ test(
 				expect(newPage.url()).toContain(Links.Clutch);
 				await newPage.close();
 			}
-		}, 3, 5000);
+		}, 5, 5000);
 });
 
 test(
