@@ -92,7 +92,7 @@ test(
 test(
 	qase(
 		5282,
-		'Check block and section titles in "What We Do" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
+		'Check block and section titles, and CTA in "What We Do" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(MobileDevService.WhatWeDo);
@@ -121,6 +121,8 @@ test(
 			'Native mobile app development'
 		);
 		await expect(allSectionTitlesThirdBlock).toHaveText(testDataThirdBlock);
+
+		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now')
 	}
 );
 

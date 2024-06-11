@@ -123,6 +123,8 @@ test(
 
 		await expect(containerBlocks.nth(5).getByTestId(Container.BlockTitle)).toHaveText('Predictive analytics');
 		await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
+
+		await expect(ourAiMlDevelopmentServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now')
 	}
 );
 
