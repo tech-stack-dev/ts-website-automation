@@ -84,7 +84,7 @@ test(
 test(
 	qase(
 		4852,
-		'Check block and section titles in "Our AI Development Services" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+		'Check block and section titles, and CTA in "Our AI Development Services" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const ourAiMlDevelopmentServicesContainer = driver.getByTestId(AiDevelopment.OurAiDevelopmentServices);
@@ -123,6 +123,8 @@ test(
 
 		await expect(containerBlocks.nth(5).getByTestId(Container.BlockTitle)).toHaveText('Predictive analytics');
 		await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
+
+		await expect(ourAiMlDevelopmentServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now')
 	}
 );
 

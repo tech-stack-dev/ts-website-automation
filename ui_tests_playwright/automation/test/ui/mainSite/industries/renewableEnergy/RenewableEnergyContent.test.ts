@@ -123,8 +123,8 @@ test(
 			await expect(sectionTitles).toHaveText(testDataSectionTitles);
 		}
 
-		await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toHaveText(
-			'Book a Meeting'
+		await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
