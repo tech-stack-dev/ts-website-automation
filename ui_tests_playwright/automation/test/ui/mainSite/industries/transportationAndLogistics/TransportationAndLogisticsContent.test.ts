@@ -22,9 +22,7 @@ test(
 	async () => {
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
-		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Transportation and Logistics Software Development'
-		);
+		await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and Logistics Software Development');
 		await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toHaveText(`Let's discuss`);
 	}
 );
@@ -152,8 +150,8 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
-		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

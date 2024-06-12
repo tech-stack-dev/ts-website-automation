@@ -198,7 +198,7 @@ test(
 
 		await expect(driver.getByTestId(MainSiteImages.SensorsScheme)).toBeVisible();
 
-		await expect(driver.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText('Read the Full Case Study');
+		await expect(driver.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText('Check out how we build it');
 	}
 );
 

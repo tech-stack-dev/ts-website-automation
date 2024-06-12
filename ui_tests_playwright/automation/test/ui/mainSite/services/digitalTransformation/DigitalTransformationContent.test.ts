@@ -156,7 +156,7 @@ test(
 test(
 	qase(
 		5033,
-		'Check section titles, image and CTA button`s title in "Success Stories" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check section titles, image and CTA button`s title in "Success Stories as a Digital Transformation Service Provider" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
@@ -174,8 +174,8 @@ test(
 
 		await expect(successStoriesContainer.getByTestId(MainSiteImages.SuccessStories)).toBeVisible();
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

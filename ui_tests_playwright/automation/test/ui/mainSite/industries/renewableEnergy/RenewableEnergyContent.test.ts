@@ -144,8 +144,8 @@ test(
 		await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
-			'Check out how\nwe built it'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

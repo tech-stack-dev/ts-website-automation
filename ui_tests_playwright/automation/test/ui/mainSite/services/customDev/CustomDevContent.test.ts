@@ -191,7 +191,9 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteImages.OurFeaturedCaseStudy)).toBeVisible();
-		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore)).toHaveText('Read More');
+		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 

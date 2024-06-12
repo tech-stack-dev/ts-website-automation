@@ -26,10 +26,12 @@ test.skip(
 	async () => {
 		await driver.getByTestId(/CardWrapper/).click();
 
-		(await containerSteps.getDynamicLocator({
-			desktopLocator: CareerButtons.ApplyNow,
-			mobileLocator: AboutUsCareer.ApplyNowButton
-		})).click();
+		(
+			await containerSteps.getDynamicLocator({
+				desktopLocator: CareerButtons.ApplyNow,
+				mobileLocator: AboutUsCareer.ApplyNowButton,
+			})
+		).click();
 
 		await driver.getByTestId(Input.FirstName).fill(' ');
 		await driver.getByTestId(Input.LastName).fill(' '.repeat(99)); // Field accepts up to 100 characters

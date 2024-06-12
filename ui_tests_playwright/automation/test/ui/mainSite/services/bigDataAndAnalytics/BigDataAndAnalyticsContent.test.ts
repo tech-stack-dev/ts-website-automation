@@ -149,8 +149,8 @@ test(
 			'Video-based quality control scheme'
 		);
 		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution)).toHaveText(
-			'Read more about Solution'
+		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

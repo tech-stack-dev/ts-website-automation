@@ -127,8 +127,8 @@ test(
 			await expect(leverageDevOpsServicesrContainer.getByTestId(image)).toBeVisible();
 		}
 
-		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -162,8 +162,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

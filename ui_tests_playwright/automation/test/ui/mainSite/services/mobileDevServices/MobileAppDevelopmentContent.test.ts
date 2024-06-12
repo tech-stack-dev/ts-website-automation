@@ -122,7 +122,7 @@ test(
 		);
 		await expect(allSectionTitlesThirdBlock).toHaveText(testDataThirdBlock);
 
-		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now')
+		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
@@ -154,8 +154,8 @@ test(
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.MobileCaseStudy)).toBeVisible();
 
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.MoreProductDetails)).toHaveText(
-			'More product details'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

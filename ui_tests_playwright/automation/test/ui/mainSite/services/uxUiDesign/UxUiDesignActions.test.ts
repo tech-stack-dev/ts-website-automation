@@ -44,7 +44,8 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies).click();
+		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.RedesignPatientDataSystem}`,
