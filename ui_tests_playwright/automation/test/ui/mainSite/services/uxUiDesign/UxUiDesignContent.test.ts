@@ -154,8 +154,8 @@ test(
 
 		await expect(successStoriesContainer.getByTestId(MainSiteImages.MedicalDashboard)).toBeVisible();
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies)).toHaveText(
-			'Read Full Case Studies'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

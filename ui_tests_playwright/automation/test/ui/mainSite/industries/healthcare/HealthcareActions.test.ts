@@ -39,7 +39,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`,

@@ -180,7 +180,9 @@ test(
 
 		await expect(featuredCaseStudyContainer.getByTestId(MainSiteImages.FeaturedCaseStudy)).toBeVisible();
 
-		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore)).toHaveText('Learn more');
+		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 

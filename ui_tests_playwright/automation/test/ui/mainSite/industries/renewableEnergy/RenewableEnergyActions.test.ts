@@ -39,7 +39,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`,

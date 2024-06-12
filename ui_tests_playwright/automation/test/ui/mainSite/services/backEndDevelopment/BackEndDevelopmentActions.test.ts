@@ -52,7 +52,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.MoreDetails).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.AnalyticsSubsystemEngagementPlatform}`,

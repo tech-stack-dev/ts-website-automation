@@ -27,7 +27,8 @@ test(
 	async () => {
 		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 
-		await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution).click();
+		await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.VideoBasedQualityControl}`,

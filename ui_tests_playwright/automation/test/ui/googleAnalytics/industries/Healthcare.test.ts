@@ -50,7 +50,7 @@ test.skip(
 
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
 		const clutchButton: Locator = caseStudyContainer.getByTestId(Buttons.Clutch);
-		const readTheFullCaseStudyutton: Locator = caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy);
+		const readTheFullCaseStudyutton: Locator = caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(clutchButton, 'HealthIndReviewClutch', testInfo.title);
 		await googleAnalyticsSteps.checkGoogleAnalytics(

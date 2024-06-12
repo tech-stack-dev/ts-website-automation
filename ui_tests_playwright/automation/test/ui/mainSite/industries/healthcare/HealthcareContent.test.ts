@@ -116,8 +116,8 @@ test(
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
 
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read the full Case Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );

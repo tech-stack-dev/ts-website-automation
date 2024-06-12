@@ -45,7 +45,8 @@ test(
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 
-		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore).click();
+		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SoftDevTransformExistingSystem}`,
