@@ -90,10 +90,14 @@ for (const testData of testDataProvider) {
 
 			await activeTagsGroupContainer.Element.getByTestId(CareerButtons.ResetButton).click({timeout: 5000});
 			testData.tagList.forEach(async (tag) => {
-				playwrightUtils.expectWithRetries(async () => {
-					const filterTag = filterGroupContainer.getByTestId(tag);
-					await expect(filterTag).not.toHaveClass(/active-tag/);
-				}, 3, 5000);
+				playwrightUtils.expectWithRetries(
+					async () => {
+						const filterTag = filterGroupContainer.getByTestId(tag);
+						await expect(filterTag).not.toHaveClass(/active-tag/);
+					},
+					3,
+					5000
+				);
 			});
 		}
 	);

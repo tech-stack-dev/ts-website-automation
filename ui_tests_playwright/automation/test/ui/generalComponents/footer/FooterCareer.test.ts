@@ -8,7 +8,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
-import { playwrightUtils } from '../../../../utils/PlaywrightUtils';
+import {playwrightUtils} from '../../../../utils/PlaywrightUtils';
 
 let footer: Locator;
 let socialBlock: Locator;
@@ -152,38 +152,47 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
-		await playwrightUtils.expectWithRetries(async () => {
-			for (const url of testDataProvider) {
-				await baseDriverSteps.goToUrl(url);
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
 
-				for (const entries of linkMap.entries()) {
-					const socialLinkButton = socialBlock.getByTestId(entries[0]);
+					for (const entries of linkMap.entries()) {
+						const socialLinkButton = socialBlock.getByTestId(entries[0]);
 
+						const [newPage] = await Promise.all([
+							driver.DriverContext.waitForEvent('page'),
+							socialLinkButton.click(),
+						]);
+						expect(newPage.url().includes(entries[1])).toBeTruthy();
+						await newPage.close();
+					}
+				}
+			},
+			5,
+			5000
+		);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
+
+					const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
 					const [newPage] = await Promise.all([
 						driver.DriverContext.waitForEvent('page'),
-						socialLinkButton.click(),
+						clutchButton.click(),
 					]);
-					expect(newPage.url().includes(entries[1])).toBeTruthy();
+					await newPage.waitForLoadState();
+					expect(newPage.url()).toContain(Links.Clutch);
 					await newPage.close();
 				}
-			}
-		}, 5, 5000);
-
-		await playwrightUtils.expectWithRetries(async () => {
-			for (const url of testDataProvider) {
-				await baseDriverSteps.goToUrl(url);
-
-				const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
-				const [newPage] = await Promise.all([
-					driver.DriverContext.waitForEvent('page'),
-					clutchButton.click(),
-				]);
-				await newPage.waitForLoadState();
-				expect(newPage.url()).toContain(Links.Clutch);
-				await newPage.close();
-			}
-		}, 5, 5000);
-});
+			},
+			5,
+			5000
+		);
+	}
+);
 
 test(
 	qase(

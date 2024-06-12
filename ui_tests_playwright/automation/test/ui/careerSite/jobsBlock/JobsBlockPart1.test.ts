@@ -115,10 +115,12 @@ test.skip(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		(await containerSteps.getDynamicLocator({
-			desktopLocator: CareerButtons.ApplyNow,
-			mobileLocator: AboutUsCareer.ApplyNowButton
-		})).click();
+		(
+			await containerSteps.getDynamicLocator({
+				desktopLocator: CareerButtons.ApplyNow,
+				mobileLocator: AboutUsCareer.ApplyNowButton,
+			})
+		).click();
 
 		await driver.getByTestId(Buttons.Send).click();
 		const listOfMessages = await formSteps.getErrorMessagesFromFields([
