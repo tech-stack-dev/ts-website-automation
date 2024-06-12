@@ -1,8 +1,11 @@
 {
   "devDependencies": {
-    "husky": "^8.0.0"
+    "husky": "^8.0.3"
   },
   "scripts": {
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.44.1"
   }
 }
