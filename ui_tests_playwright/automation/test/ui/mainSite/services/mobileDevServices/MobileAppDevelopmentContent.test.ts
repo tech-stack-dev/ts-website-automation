@@ -122,7 +122,7 @@ test(
 		);
 		await expect(allSectionTitlesThirdBlock).toHaveText(testDataThirdBlock);
 
-		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now')
+		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
