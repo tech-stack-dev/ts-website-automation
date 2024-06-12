@@ -127,8 +127,8 @@ test(
 			await expect(leverageDevOpsServicesrContainer.getByTestId(image)).toBeVisible();
 		}
 
-		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
