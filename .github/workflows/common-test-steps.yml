@@ -64,7 +64,6 @@ jobs:
             ticketStatuses=""
           fi
           echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
-
               
       - name: Install playwright browsers
         run: npx playwright install --with-deps
@@ -177,4 +176,3 @@ jobs:
           SLACK_TITLE: ${{ inputs.slackTitle }}
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-  
