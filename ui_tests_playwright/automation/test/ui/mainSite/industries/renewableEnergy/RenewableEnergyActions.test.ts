@@ -108,7 +108,7 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
 			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.GetYourQuoteNow),
-			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.TalkToAnExpert),
+			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

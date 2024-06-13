@@ -270,7 +270,7 @@ test(
 
 		expect(actualNewIoTEngineeringDeviceTitles).toEqual(expectedNewIoTEngineeringDeviceTitles);
 
-		await expect(driver.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(driver.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 

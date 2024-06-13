@@ -116,7 +116,7 @@ test(
 			driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
-				.getByTestId(Buttons.ContactUs),
+				.getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

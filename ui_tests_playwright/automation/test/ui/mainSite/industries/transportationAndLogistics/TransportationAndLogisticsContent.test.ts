@@ -7,7 +7,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import TransportationAndLogistics from '../../../../../identifiers/mainSite/pages/industries/TransportationAndLogistics';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -221,7 +220,9 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(transportationAndLogisticsContainer.getByTestId(Buttons.ContactUs)).toHaveText('Contact Us');
+		await expect(transportationAndLogisticsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
