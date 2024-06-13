@@ -12,6 +12,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import {Environment} from '../../../../../providers/EnvProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
+// ToDo: add test for checking 04 block
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
 });

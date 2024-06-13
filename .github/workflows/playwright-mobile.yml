@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       eventName:
-        description: 'Send report if event was started by schhedule'
+        description: 'Send report if event was started by schedule'
         required: false
         type: string
   
@@ -21,6 +21,7 @@ jobs:
       grep: "@mobile"
       slackTitle: "TypeScript UI mobile tests :iphone:"
       eventName: ${{ inputs.eventName == 'schedule' && 'schedule' || '' }}
+      isMobile: true
     secrets:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}

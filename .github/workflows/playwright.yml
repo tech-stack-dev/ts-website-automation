@@ -26,6 +26,7 @@ jobs:
       project: Desktop_Chrome
       grep: "@desktop"
       slackTitle: TypeScript UI tests
+      isMobile: false
     secrets:
       awsKey: ${{ secrets.AWS_KEY }}
       awsPassword: ${{ secrets.AWS_PASSWORD }}

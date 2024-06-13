@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5149, 'Check Info container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'),
+	qase(5149, 'Check Info container from the "Healthcare" page @desktop @mobile @qaaa @Regression @Healthcare @TSWEB-955'),
 	async () => {
 		const info = driver.getByTestId(Healthcare.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
@@ -22,6 +22,14 @@ test(
 			'Software Development Solutions for the Healthcare Industry'
 		);
 		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+	}
+);
+
+test(
+	qase(6666, 'Failed mobile only from the "Healthcare" page @mobile @qaaa @Regression @Healthcare @TSWEB-955'),
+	async () => {
+		const info = driver.getByTestId(Healthcare.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHeahcare');
 	}
 );
 
