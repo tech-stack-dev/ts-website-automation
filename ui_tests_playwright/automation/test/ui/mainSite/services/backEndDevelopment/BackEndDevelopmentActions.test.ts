@@ -27,12 +27,13 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetAQuote),
+			driver.getByTestId(BackEndServices.ExpertServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(BackEndServices.BackendForAnySoftwareProduct)
 				.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation),
 			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
 
-			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.BoostYourBackend),
+			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(BackEndServices.HowWeCanWorkTogether)
 				.getByTestId(MainSiteButtons.LetsDiscussOurPartnership),
@@ -71,7 +72,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -130,7 +131,7 @@ test(
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

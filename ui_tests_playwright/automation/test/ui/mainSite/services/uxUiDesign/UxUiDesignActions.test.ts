@@ -29,7 +29,7 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			successStoriesContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);

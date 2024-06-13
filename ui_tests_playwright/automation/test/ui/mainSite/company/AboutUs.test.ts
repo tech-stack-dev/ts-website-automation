@@ -282,7 +282,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );

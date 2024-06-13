@@ -27,7 +27,7 @@ test(
 
 		const clutchReviewButton = caseStudyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 	}
 );
 
@@ -128,7 +128,7 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
 			driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
-			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
+			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

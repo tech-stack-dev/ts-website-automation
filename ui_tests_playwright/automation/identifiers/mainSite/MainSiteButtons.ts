@@ -5,12 +5,12 @@ export default class MainSiteButtons extends Buttons {
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
 	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
-	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static LetsDiscuss = 'Button-LetsDiscuss';
 	static AboutUs = 'Button-AboutUs';
 	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
+	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
+	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
-	static TalkToAnExpert = 'Button-TalkToAnExpert';
 	static SeeAllNews = 'Button-SeeAllNews';
 	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
@@ -22,7 +22,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetAConsultation = 'Button-GetAConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ScheduleACall = 'Button-ScheduleACall';
-	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
 	static GetAQuote = 'Button-GetAQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
 	static BookYourTime = 'Button-BookYourTime';
@@ -30,7 +29,6 @@ export default class MainSiteButtons extends Buttons {
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
 	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
-	static BoostYourBackend = 'Button-BoostYourBackend';
 	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';

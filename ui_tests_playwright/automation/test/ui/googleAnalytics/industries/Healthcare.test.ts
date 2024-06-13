@@ -72,7 +72,7 @@ test.skip(
 		const carousel: Locator = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 		const carouselButtonNext: Locator = carousel.getByTestId(Container.CarouselButtonNext);
 		const carouselButtonPrev: Locator = carousel.getByTestId(Container.CarouselButtonPrev);
-		const scheduleAMeetingButton: Locator = howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting);
+		const scheduleAMeetingButton: Locator = howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(carouselButtonNext, 'HealthIndOperateNext', testInfo.title);
 		await googleAnalyticsSteps.checkGoogleAnalytics(carouselButtonPrev, 'HealthIndOperatePrev', testInfo.title);

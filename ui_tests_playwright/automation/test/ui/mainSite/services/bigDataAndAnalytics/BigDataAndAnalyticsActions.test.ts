@@ -77,7 +77,7 @@ test(
 			BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 		);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			whyChooseTechstackBigDataContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

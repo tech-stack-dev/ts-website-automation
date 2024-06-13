@@ -166,7 +166,7 @@ test(
 test(
 	qase(
 		4877,
-		'Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+		'Check section numbers and titles, and CTA button in "Industries We Serve" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
@@ -189,8 +189,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds)).toHaveText(
-			'Let’s Discuss\nYour Tech Needs'
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
 		);
 	}
 );

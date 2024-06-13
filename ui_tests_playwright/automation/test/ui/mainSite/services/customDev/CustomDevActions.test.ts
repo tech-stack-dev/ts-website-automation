@@ -217,6 +217,7 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(CustomDev.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide)
 				.getByTestId(MainSiteButtons.SendUsYourQueries),

@@ -209,7 +209,7 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toHaveText('Talk to an Expert');
+		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 

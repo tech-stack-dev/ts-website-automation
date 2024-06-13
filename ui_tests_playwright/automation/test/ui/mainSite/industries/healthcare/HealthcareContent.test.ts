@@ -187,9 +187,7 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toHaveText(
-			'Schedule a meeting'
-		);
+		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
