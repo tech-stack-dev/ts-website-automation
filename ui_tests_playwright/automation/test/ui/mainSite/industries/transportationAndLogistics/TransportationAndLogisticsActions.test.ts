@@ -23,7 +23,7 @@ test(
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);

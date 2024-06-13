@@ -27,7 +27,7 @@ test(
 
 		const clutchReviewButton = caseStudyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 	}
 );
 

@@ -45,7 +45,7 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			successStoriesContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -107,7 +107,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(DevOpsAsAService.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

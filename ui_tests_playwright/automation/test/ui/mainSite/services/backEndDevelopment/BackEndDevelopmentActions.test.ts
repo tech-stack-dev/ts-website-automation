@@ -72,7 +72,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -131,7 +131,7 @@ test(
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

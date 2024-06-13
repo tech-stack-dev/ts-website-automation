@@ -70,7 +70,7 @@ test(
 	async () => {
 		const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

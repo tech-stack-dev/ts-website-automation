@@ -30,7 +30,7 @@ test(
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			featuredCaseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -176,7 +176,7 @@ test(
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);
