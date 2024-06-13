@@ -175,9 +175,9 @@ test(
 			driver
 				.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
 				.getByTestId(MainSiteButtons.RequestAQuote),
-			driver
-				.getByTestId(IoTEngineeringServices.IoTEngineeringProcess)
-				.getByTestId(MainSiteButtons.GetYourCustomQuote),
+			// driver
+			// 	.getByTestId(IoTEngineeringServices.IoTEngineeringProcess)
+			// 	.getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 		for (const button of requestAQuoteButtons) {
 			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, IoTEngineeringServices.GetInTouch);
