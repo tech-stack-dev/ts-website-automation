@@ -113,6 +113,7 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(TransportationAndLogistics.Info).getByTestId(MainSiteButtons.LetsDiscuss),
+			driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
 				.getByTestId(Buttons.ContactUs),

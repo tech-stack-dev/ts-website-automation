@@ -110,8 +110,8 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(digitalBusinessTransformationContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(digitalBusinessTransformationContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );

@@ -27,7 +27,7 @@ test(
 			driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetInTouch),
 			driver
 				.getByTestId(DigitalTransformation.DigitalBusinessTransformation)
-				.getByTestId(MainSiteButtons.GetAConsultation),
+				.getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(DigitalTransformation.HowTechstackInfluence)
 				.getByTestId(MainSiteButtons.ScheduleAConsultation),

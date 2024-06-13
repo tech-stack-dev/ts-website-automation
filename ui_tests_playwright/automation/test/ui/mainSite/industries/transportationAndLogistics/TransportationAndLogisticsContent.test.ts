@@ -80,7 +80,7 @@ test(
 test(
 	qase(
 		5344,
-		'Check section titles and numbers in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers, and CTA button in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whoWeServeContainer = driver.getByTestId(TransportationAndLogistics.WhoWeServe);
@@ -104,6 +104,8 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(whoWeServeContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 

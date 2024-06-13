@@ -91,7 +91,7 @@ test(
 test(
 	qase(
 		5526,
-		'Check section titles and numbers in "Expert Back-End Development Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers, and CTA button in "Expert Back-End Development Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.ExpertServices);
@@ -118,6 +118,10 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(expertServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
@@ -318,9 +322,7 @@ test(
 
 		expect(actualCarouselIndexesAndTitles).toEqual(expectedCarouselIndexesAndTitles);
 
-		await expect(peekIntoBackendContainer.getByTestId(MainSiteButtons.BoostYourBackend)).toHaveText(
-			'Boost your Back-End'
-		);
+		await expect(peekIntoBackendContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
