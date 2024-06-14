@@ -229,10 +229,12 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			// driver
+			// 	.getByTestId(ConsultingService.OurITConsultingServices)
+			// 	.getByTestId(MainSiteButtons.GetAFreeQquoteToday), // Uncomment after fix
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)
 				.getByTestId(MainSiteButtons.GetAQuote),
-			// driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote), // Uncomment after fix
 			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.ScheduleACall),
 		];
 

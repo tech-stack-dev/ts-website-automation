@@ -201,7 +201,7 @@ test(
 test(
 	qase(
 		5310,
-		'Check carousel section numbers and titles in "Mobile App Development Process" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
+		'Check carousel section numbers and titles, and CTA button in "Mobile App Development Process" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const mobileAppDevProcessContainer = driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess);
@@ -212,6 +212,10 @@ test(
 		const testData = ['Investigation', 'New products', 'Existing products', 'Execution', 'Performance', 'Analysis'];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(mobileAppDevProcessContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
