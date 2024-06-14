@@ -147,7 +147,7 @@ test(
 test(
 	qase(
 		5197,
-		'Check section titles in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
+		'Check section titles and CTA button in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
@@ -163,6 +163,10 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		// await expect(softwareAuditContainer.getByTestId(MainSiteButtons.GetAFreeQquoteToday)).toHaveText(
+		// 	'Get a free quote today'
+		// ); // Uncomment after fix
 	}
 );
 
@@ -239,10 +243,6 @@ test(
 		const testData = ['Discovery', 'Analysis', 'Brainstorming', 'Presentation', 'Implementation', 'Touch base'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		// Uncomment after fix
-		// await expect(consultingProcessContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-		// 	requestAQuotebuttonText
-		// );
 	}
 );
 

@@ -269,8 +269,8 @@ test(
 		];
 
 		expect(actualNewIoTEngineeringDeviceTitles).toEqual(expectedNewIoTEngineeringDeviceTitles);
-		// Uncomment after fix
-		// await expect(driver.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
+
+		await expect(driver.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
