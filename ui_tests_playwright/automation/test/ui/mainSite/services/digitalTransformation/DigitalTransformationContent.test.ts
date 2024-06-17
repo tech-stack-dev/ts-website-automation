@@ -207,7 +207,7 @@ test(
 test(
 	qase(
 		5039,
-		'Check section titles and award cards in "Digital Transformation Strategy" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check section titles, award cards and CTA button in "Digital Transformation Strategy" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const digitalTransformationContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
@@ -224,6 +224,10 @@ test(
 
 		const awardCards = digitalTransformationContainer.getByTestId(Container.AwardCard);
 		await baseDriverSteps.checkImagesVisibility(awardCards, 8);
+
+		await expect(digitalTransformationContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
