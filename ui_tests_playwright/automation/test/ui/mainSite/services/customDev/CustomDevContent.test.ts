@@ -335,8 +335,8 @@ test(
 		const expectedText = ['Full-cycle software development', 'Dedicated team', 'R&D partnership'];
 
 		await expect(sectionTitles).toHaveText(expectedText);
-		await expect(ourTailoredCollaborationContainer.getByTestId(MainSiteButtons.ClaimYourCustomQuote)).toHaveText(
-			'Claim Your Custom Quote'
+		await expect(ourTailoredCollaborationContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );

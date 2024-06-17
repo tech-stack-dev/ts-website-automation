@@ -108,7 +108,7 @@ test(
 test(
 	qase(
 		4897,
-		'Check section titles and CTA button in "Our UI/UX Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "Our UI/UX Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const ourUiUxServicesContainer = driver.getByTestId(UxUiDesign.OurUiUxServices);
@@ -127,10 +127,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
-
-		await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuoteButtonText
-		);
 	}
 );
 

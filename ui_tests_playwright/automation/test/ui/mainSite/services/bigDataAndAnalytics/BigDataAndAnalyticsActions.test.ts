@@ -177,7 +177,7 @@ test(
 			driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
-				.getByTestId(MainSiteButtons.GetAConsultation),
+				.getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 
 		for (const button of ctaButtons) {
