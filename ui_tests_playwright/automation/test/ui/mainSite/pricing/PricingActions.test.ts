@@ -22,9 +22,14 @@ test('Check navigation to "What Is Your Cooperation Type?" container after click
 });
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
-	const ctaButton = driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime);
+	const ctaButtons = [
+		driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime),
+		driver.getByTestId(Pricing.SimplifiedPaymentProcess).getByTestId(MainSiteButtons.GetYourFreeQuote),
+	];
 
-	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.GetInTouch);
+	for (const button of ctaButtons) {
+		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, Pricing.GetInTouch);
+	}
 });
 
 test('Check redirect by LinkedIn button in the Quote container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {

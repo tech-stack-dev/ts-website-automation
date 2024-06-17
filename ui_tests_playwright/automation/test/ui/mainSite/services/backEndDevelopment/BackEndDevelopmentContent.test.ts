@@ -363,8 +363,8 @@ test(
 		const testData = ['Full-Cycle Back-End\nDevelopment', 'Back-End Audit', 'Back-End Engineers\nfor Your Product'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(howWeCanWorkTogetherContainer.getByTestId(MainSiteButtons.LetsDiscussOurPartnership)).toHaveText(
-			'Let’s Discuss Our Partnership'
+		await expect(howWeCanWorkTogetherContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
