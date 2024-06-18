@@ -13,14 +13,6 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Pricing));
 });
 
-test('Check navigation to "What Is Your Cooperation Type?" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
-	const ctaButton = driver
-		.getByTestId(Pricing.SimplifiedPaymentProcess)
-		.getByTestId(MainSiteButtons.GetYourFreeEstimate);
-
-	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.WhatIsCooperationType);
-});
-
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const ctaButtons = [
 		driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime),

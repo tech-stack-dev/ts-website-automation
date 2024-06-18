@@ -5,7 +5,6 @@ export default class MainSiteButtons extends Buttons {
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-	static AboutUs = 'Button-AboutUs';
 	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
@@ -15,7 +14,6 @@ export default class MainSiteButtons extends Buttons {
 	static SeeAllNews = 'Button-SeeAllNews';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
-	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ScheduleACall = 'Button-ScheduleACall';
