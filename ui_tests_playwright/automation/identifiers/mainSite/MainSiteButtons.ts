@@ -4,7 +4,6 @@ export default class MainSiteButtons extends Buttons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
-	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static LetsDiscuss = 'Button-LetsDiscuss';
 	static AboutUs = 'Button-AboutUs';
 	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
@@ -16,11 +15,9 @@ export default class MainSiteButtons extends Buttons {
 	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
-	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
 	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
 	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
-	static GetAConsultation = 'Button-GetAConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ScheduleACall = 'Button-ScheduleACall';
 	static GetAQuote = 'Button-GetAQuote';
