@@ -29,8 +29,8 @@ test(
 				.getByTestId(DigitalTransformation.DigitalBusinessTransformation)
 				.getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
-				.getByTestId(DigitalTransformation.HowTechstackInfluence)
-				.getByTestId(MainSiteButtons.ScheduleAConsultation),
+				.getByTestId(DigitalTransformation.DigitalTransformationStrategy)
+				.getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {
