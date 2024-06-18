@@ -10,6 +10,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static GetAFreeQquoteToday = 'Button-GetAFreeQquoteToday';
+	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
 	static SendUsYourQueries = 'Button-SendUsYourQueries';
@@ -27,7 +28,6 @@ export default class MainSiteButtons extends Buttons {
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
 	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
-	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
