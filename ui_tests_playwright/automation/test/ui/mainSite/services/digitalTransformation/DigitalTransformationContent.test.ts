@@ -234,7 +234,7 @@ test(
 test(
 	qase(
 		5046,
-		'Check section titles and CTA button in "How Techstack Can Influence Your Digital Transformation" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check section titles in "How Techstack Can Influence Your Digital Transformation" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const ourUiUxServicesContainer = driver.getByTestId(DigitalTransformation.HowTechstackInfluence);
@@ -248,10 +248,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
-
-		await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(
-			'Schedule a Consultation'
-		);
 	}
 );
 

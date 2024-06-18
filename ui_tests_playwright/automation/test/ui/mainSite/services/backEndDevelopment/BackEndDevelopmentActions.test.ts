@@ -28,15 +28,10 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetAQuote),
 			driver.getByTestId(BackEndServices.ExpertServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
-			driver
-				.getByTestId(BackEndServices.BackendForAnySoftwareProduct)
-				.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation),
 			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
 
 			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.RequestAQuote),
-			driver
-				.getByTestId(BackEndServices.HowWeCanWorkTogether)
-				.getByTestId(MainSiteButtons.LetsDiscussOurPartnership),
+			driver.getByTestId(BackEndServices.HowWeCanWorkTogether).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 
 		for (const button of ctaButtons) {

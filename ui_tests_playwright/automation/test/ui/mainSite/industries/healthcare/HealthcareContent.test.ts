@@ -96,8 +96,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toHaveText(
-			'Schedule a meeting now!'
+		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );

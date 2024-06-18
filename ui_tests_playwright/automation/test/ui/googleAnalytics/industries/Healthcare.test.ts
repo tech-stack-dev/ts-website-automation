@@ -38,9 +38,7 @@ test.skip(
 		);
 
 		const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
-		const scheduleAMeetingNowButton: Locator = ourExpertiseContainer.getByTestId(
-			MainSiteButtons.ScheduleAMeetingNow
-		);
+		const scheduleAMeetingNowButton: Locator = ourExpertiseContainer.getByTestId(MainSiteButtons.GetYourQuoteNow);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			scheduleAMeetingNowButton,

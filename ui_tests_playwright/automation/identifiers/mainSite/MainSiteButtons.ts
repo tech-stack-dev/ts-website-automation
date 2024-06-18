@@ -4,23 +4,17 @@ export default class MainSiteButtons extends Buttons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
-	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-	static AboutUs = 'Button-AboutUs';
 	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static GetAFreeQquoteToday = 'Button-GetAFreeQquoteToday';
+	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
-	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
-	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
-	static RequestMoreInformation = 'Button-RequestMoreInformation';
 	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
-	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
-	static GetAConsultation = 'Button-GetAConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static ScheduleACall = 'Button-ScheduleACall';
 	static GetAQuote = 'Button-GetAQuote';
@@ -29,8 +23,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
-	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
-	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

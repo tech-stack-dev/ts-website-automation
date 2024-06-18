@@ -179,8 +179,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestMoreInformation)).toHaveText(
-			'Request More Information'
+		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );
