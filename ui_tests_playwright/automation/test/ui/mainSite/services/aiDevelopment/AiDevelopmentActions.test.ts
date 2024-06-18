@@ -185,7 +185,7 @@ test(
 			driver
 				.getByTestId(AiDevelopment.IndustriesWeServe)
 				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
-			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAFreeConsultation),
+			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.GetAQuote),
 		];
 
 		for (const button of ctaButtons) {

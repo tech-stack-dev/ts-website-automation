@@ -236,9 +236,7 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(ourApproachContainer.getByTestId(MainSiteButtons.ScheduleAFreeConsultation)).toHaveText(
-			'Schedule\na Free Consultation'
-		);
+		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
 	}
 );
 
