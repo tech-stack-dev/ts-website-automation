@@ -13,7 +13,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
-	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
 	static RequestMoreInformation = 'Button-RequestMoreInformation';
@@ -26,7 +25,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
-	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';

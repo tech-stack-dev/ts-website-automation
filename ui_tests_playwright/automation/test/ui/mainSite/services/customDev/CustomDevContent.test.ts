@@ -122,7 +122,7 @@ test(
 test(
 	qase(
 		5298,
-		'Check section titles and numbers, and CTA button in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles and numbers in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
@@ -152,10 +152,6 @@ test(
 			await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 			await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
 		}
-
-		await expect(servicesWeProvide.getByTestId(MainSiteButtons.SendUsYourQueries)).toHaveText(
-			'Send Us Your Queries'
-		);
 	}
 );
 
