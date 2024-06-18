@@ -36,7 +36,7 @@ test(
 			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(BackEndServices.HowWeCanWorkTogether)
-				.getByTestId(MainSiteButtons.LetsDiscussOurPartnership),
+				.getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 
 		for (const button of ctaButtons) {

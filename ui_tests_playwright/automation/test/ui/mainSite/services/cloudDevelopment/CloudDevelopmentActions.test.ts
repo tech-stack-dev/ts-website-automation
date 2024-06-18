@@ -168,7 +168,7 @@ test(
 			driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
-				.getByTestId(MainSiteButtons.RequestMoreInformation),
+				.getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(CloudDevelopment.OurLeadingCloudExperts)
 				.getByTestId(MainSiteButtons.ScheduleAConsultation),

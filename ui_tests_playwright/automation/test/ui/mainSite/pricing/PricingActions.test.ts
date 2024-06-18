@@ -22,7 +22,7 @@ test('Check navigation to "What Is Your Cooperation Type?" container after click
 });
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
-	const ctaButton = driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime);
+	const ctaButton = driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.GetYourCustomQuote);
 
 	await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, Pricing.GetInTouch);
 });

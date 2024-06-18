@@ -68,10 +68,10 @@ test('Check section titles, navigation bar and CTA button text in "From Consulta
 	const containerBlocks = customOfferContainer.getByTestId(Container.ContainerBlock);
 	const testDataSectionTitles = await PricingData.getAllCustomOfferTabsData();
 
-	const ctaButton = customOfferContainer.getByTestId(MainSiteButtons.BookYourTime);
+	const ctaButton = customOfferContainer.getByTestId(MainSiteButtons.GetYourCustomQuote);
 
 	await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
-	await expect(ctaButton).toHaveText('Book your time');
+	await expect(ctaButton).toHaveText('Get your custom quote');
 });
 
 test('Check section quote on the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {

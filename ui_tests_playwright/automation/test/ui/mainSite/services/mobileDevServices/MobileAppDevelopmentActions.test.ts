@@ -176,7 +176,7 @@ test(
 				.getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment)
-				.getByTestId(MainSiteButtons.ScheduleACall),
+				.getByTestId(MainSiteButtons.GetAFreeQquote),
 		];
 
 		for (const button of ctaButtons) {

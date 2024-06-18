@@ -227,6 +227,9 @@ test(
 			driver
 				.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels)
 				.getByTestId(MainSiteButtons.ClaimYourCustomQuote),
+			driver
+				.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 		];
 
 		for (const button of ctaButtons) {
