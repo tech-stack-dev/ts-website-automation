@@ -279,7 +279,7 @@ test(
 			'Get a free estimate for your mobile\napp development'
 		);
 
-		await expect(theCostOfMobAppDevContainer.getByTestId(MainSiteButtons.GetAFreeQquote)).toHaveText(
+		await expect(theCostOfMobAppDevContainer.getByTestId(MainSiteButtons.GetAFreeQuote)).toHaveText(
 			'Get a free quote'
 		);
 	}

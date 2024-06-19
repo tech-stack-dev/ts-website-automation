@@ -11,7 +11,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static GetAFreeQquoteToday = 'Button-GetAFreeQquoteToday';
-	static GetAFreeQquote = 'Button-GetAFreeQquote';
+	static GetAFreeQuote = 'Button-GetAFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
 	static SendUsYourQueries = 'Button-SendUsYourQueries';
