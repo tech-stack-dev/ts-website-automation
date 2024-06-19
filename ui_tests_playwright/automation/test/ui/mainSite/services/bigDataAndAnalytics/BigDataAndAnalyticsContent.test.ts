@@ -196,7 +196,7 @@ test(
 test(
 	qase(
 		4994,
-		'Check member names and roles in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check member names, roles and CTA button in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
@@ -219,6 +219,8 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
+
+		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 

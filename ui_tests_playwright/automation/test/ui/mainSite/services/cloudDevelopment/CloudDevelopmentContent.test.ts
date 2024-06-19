@@ -216,8 +216,8 @@ test(
 		const testDataNames = [ExpertNames.OleksiiSvystun, ExpertNames.IvanYeremenko, ExpertNames.VladyslavUshakov];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(
-			'Schedule a Consultation'
+		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
