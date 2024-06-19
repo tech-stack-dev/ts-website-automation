@@ -142,7 +142,13 @@ class BaseDriverSteps {
 	public async checkRedirectToClutch(locator: Locator, expectedUrl: string) {
 		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 
+		await playwrightUtils.expectWithRetries(
+			async () => {
 		expect(newPage.url()).toContain(expectedUrl);
+			},
+			3,
+			5000
+		);
 		await newPage.close();
 	}
 
