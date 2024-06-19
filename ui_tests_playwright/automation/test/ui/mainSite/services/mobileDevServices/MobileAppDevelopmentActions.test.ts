@@ -83,7 +83,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -176,7 +176,7 @@ test(
 				.getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment)
-				.getByTestId(MainSiteButtons.ScheduleACall),
+				.getByTestId(MainSiteButtons.GetAFreeQuote),
 		];
 
 		for (const button of ctaButtons) {

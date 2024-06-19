@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 
 test('Check navigation to "Get in Touch" container after clicking CTA button from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const ctaButtons = [
-		driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.BookYourTime),
+		driver.getByTestId(Pricing.CustomOffer).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		driver.getByTestId(Pricing.SimplifiedPaymentProcess).getByTestId(MainSiteButtons.GetYourFreeQuote),
 	];
 
@@ -40,7 +40,7 @@ test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About 
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToClutch(button, url);
 	}
 });
 

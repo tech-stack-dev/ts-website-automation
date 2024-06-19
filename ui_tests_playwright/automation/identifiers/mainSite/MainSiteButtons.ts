@@ -10,6 +10,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static GetAFreeQquoteToday = 'Button-GetAFreeQquoteToday';
 	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
+	static GetAFreeQuote = 'Button-GetAFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
 	static ReadMore = 'Button-ReadMore';
