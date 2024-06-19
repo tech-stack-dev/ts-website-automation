@@ -31,9 +31,7 @@ test(
 			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
 
 			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.RequestAQuote),
-			driver
-				.getByTestId(BackEndServices.HowWeCanWorkTogether)
-				.getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver.getByTestId(BackEndServices.HowWeCanWorkTogether).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 
 		for (const button of ctaButtons) {
