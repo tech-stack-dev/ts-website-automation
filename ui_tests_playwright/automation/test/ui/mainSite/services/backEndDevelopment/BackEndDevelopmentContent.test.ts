@@ -128,7 +128,7 @@ test(
 test(
 	qase(
 		5534,
-		'Check section titles, numbers and CTA in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.BackendForAnySoftwareProduct);
@@ -144,9 +144,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(expertServicesContainer.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation)).toHaveText(
-			'Schedule a Free Back-End Consultation'
-		);
 	}
 );
 

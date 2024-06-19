@@ -28,6 +28,9 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(DevOpsAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(DevOpsAsAService.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver.getByTestId(DevOpsAsAService.OurExperts).getByTestId(MainSiteButtons.RequestAConsultation),
 		];
 

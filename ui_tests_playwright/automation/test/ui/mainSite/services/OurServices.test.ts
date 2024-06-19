@@ -149,12 +149,9 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		const aboutUsButton = ourApproachContainer.getByTestId(MainSiteButtons.AboutUs);
-
-		await expect(aboutUsButton).toHaveText('About us');
-
-		await aboutUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
+		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
@@ -223,9 +220,14 @@ test(
 		'Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
-		const requestAQuoteButton = driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote);
+		const ctaButtons = [
+			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(OurServices.OurApproach).getByTestId(MainSiteButtons.GetYourQuoteNow),
+		];
 
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(requestAQuoteButton, OurServices.GetInTouch);
+		for (const button of ctaButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, OurServices.GetInTouch);
+		}
 	}
 );
 

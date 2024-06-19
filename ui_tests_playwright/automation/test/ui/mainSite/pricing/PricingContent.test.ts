@@ -97,10 +97,10 @@ test('Check section titles and CTA button text in "Simplified Payment Process fo
 	const simplifiedPaymentContainer = driver.getByTestId(Pricing.SimplifiedPaymentProcess);
 	const simplifiedSectionTitles = simplifiedPaymentContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = ['Time & Material', 'Monthly Invoices', 'Multi-Currency Payments', 'Payment Flexibility'];
-	const ctaButton = simplifiedPaymentContainer.getByTestId(MainSiteButtons.GetYourFreeEstimate);
+	const ctaButton = simplifiedPaymentContainer.getByTestId(MainSiteButtons.GetYourFreeQuote);
 
 	await expect(simplifiedSectionTitles).toHaveText(expectedTitles);
-	await expect(ctaButton).toHaveText('Get your free \nestimate');
+	await expect(ctaButton).toHaveText('Get your free quote');
 });
 
 test('Check section titles and numbers in "Why Partner with Us" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {

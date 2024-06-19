@@ -108,8 +108,8 @@ test(
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(bigDataWithTechstackContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(bigDataWithTechstackContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
