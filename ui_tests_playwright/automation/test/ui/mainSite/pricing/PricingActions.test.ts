@@ -40,7 +40,7 @@ test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About 
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {
-		await baseDriverSteps.checkRedirectToPage(button, url);
+		await baseDriverSteps.checkRedirectToClutch(button, url);
 	}
 });
 

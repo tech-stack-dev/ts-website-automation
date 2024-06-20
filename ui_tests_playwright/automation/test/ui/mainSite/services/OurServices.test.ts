@@ -171,7 +171,7 @@ test(
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );

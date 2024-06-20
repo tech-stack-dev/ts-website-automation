@@ -144,7 +144,7 @@ class BaseDriverSteps {
 
 		await playwrightUtils.expectWithRetries(
 			async () => {
-		expect(newPage.url()).toContain(expectedUrl);
+				expect(newPage.url()).toContain(expectedUrl);
 			},
 			3,
 			5000
