@@ -108,9 +108,8 @@ test(
 		const linkedInButtons = ourIoTExpertsContainer.getByTestId(Buttons.LinkedIn);
 
 		const buttonUrlMap = new Map([
-			[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-			[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-			[linkedInButtons.nth(2), ExpertsLinkedInLinks.YevheniiKarachevtsev],
+			[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+			[linkedInButtons.nth(1), ExpertsLinkedInLinks.YevheniiKarachevtsev],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
@@ -130,9 +129,11 @@ test(
 		const blogUri = UrlProvider.urlBuilder(UrlPath.AuthorPage);
 
 		const buttonUrlMap = new Map([
-			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
-			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
-			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.YevheniiKarachevtsev}`],
+			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.IvanKononenko}`],
+			[blogButtons.nth(3), `${blogUri}${AuthorsEnum.EugeneLypskyi}`],
+			[blogButtons.nth(4), `${blogUri}${AuthorsEnum.AndrewKurilenko}`],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
