@@ -8,7 +8,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
-	static GetAFreeQquoteToday = 'Button-GetAFreeQquoteToday';
+	static GetAFreeQquoteToday = 'Button-GetAFreeQuoteToday';
 	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
 	static GetAFreeQuote = 'Button-GetAFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
@@ -16,7 +16,6 @@ export default class MainSiteButtons extends Buttons {
 	static ReadMore = 'Button-ReadMore';
 	static RequestAConsultation = 'Button-RequestAConsultation';
 	static GetAQuote = 'Button-GetAQuote';
-	static GetAFreeQuote = 'Button-GetAFreeQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
 	static BookYourTime = 'Button-BookYourTime';
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
