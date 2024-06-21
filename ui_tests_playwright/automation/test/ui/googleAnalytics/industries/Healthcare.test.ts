@@ -23,7 +23,7 @@ test.beforeEach(async () => {
 });
 
 test.skip(
-	qase(4814, 'Check google analytics for "Healthcare" page @Regression @GoogleAnalytics @TSWEB-1137'),
+	qase(4814, 'Check google analytics for "Healthcare" page @desktop @Regression @GoogleAnalytics @TSWEB-1137'),
 	async ({}, testInfo) => {
 		const info = driver.getByTestId(Healthcare.Info);
 		const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
@@ -38,9 +38,7 @@ test.skip(
 		);
 
 		const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
-		const scheduleAMeetingNowButton: Locator = ourExpertiseContainer.getByTestId(
-			MainSiteButtons.ScheduleAMeetingNow
-		);
+		const scheduleAMeetingNowButton: Locator = ourExpertiseContainer.getByTestId(MainSiteButtons.GetYourQuoteNow);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(
 			scheduleAMeetingNowButton,
@@ -50,7 +48,7 @@ test.skip(
 
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
 		const clutchButton: Locator = caseStudyContainer.getByTestId(Buttons.Clutch);
-		const readTheFullCaseStudyutton: Locator = caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy);
+		const readTheFullCaseStudyutton: Locator = caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(clutchButton, 'HealthIndReviewClutch', testInfo.title);
 		await googleAnalyticsSteps.checkGoogleAnalytics(
@@ -72,7 +70,7 @@ test.skip(
 		const carousel: Locator = howWeOperateContainer.getByTestId(Container.ContainerCarousel);
 		const carouselButtonNext: Locator = carousel.getByTestId(Container.CarouselButtonNext);
 		const carouselButtonPrev: Locator = carousel.getByTestId(Container.CarouselButtonPrev);
-		const scheduleAMeetingButton: Locator = howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting);
+		const scheduleAMeetingButton: Locator = howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(carouselButtonNext, 'HealthIndOperateNext', testInfo.title);
 		await googleAnalyticsSteps.checkGoogleAnalytics(carouselButtonPrev, 'HealthIndOperatePrev', testInfo.title);

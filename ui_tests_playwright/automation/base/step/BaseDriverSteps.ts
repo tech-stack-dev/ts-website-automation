@@ -99,7 +99,7 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkTechnologyStackTabsAndSectionTitles(
+	public async checkTabsAndSectionTitles(
 		navigationTabs: Locator[],
 		containerBlocks: Locator,
 		testDataSectionTitles: string[][]
@@ -109,9 +109,9 @@ class BaseDriverSteps {
 			const currentBlock = containerBlocks.nth(tab);
 			const tabSectionTitles = testDataSectionTitles[tab];
 
-			await expect(currentBlock).toHaveClass(/--active/);
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
+			await expect(currentBlock).toHaveClass(/--active/);
 			await expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 		}
 	}
@@ -119,7 +119,9 @@ class BaseDriverSteps {
 	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
 		if (initialPageUrl) {
 			await locator.click();
-			await driver.Page.waitForLoadState();
+			await playwrightUtils.expectWithRetries(async () => {
+				await driver.Page.waitForLoadState('load', {timeout: 15000});
+			});
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
@@ -135,6 +137,19 @@ class BaseDriverSteps {
 			);
 			await newPage.close();
 		}
+	}
+
+	public async checkRedirectToClutch(locator: Locator, expectedUrl: string) {
+		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				expect(newPage.url()).toContain(expectedUrl);
+			},
+			3,
+			5000
+		);
+		await newPage.close();
 	}
 
 	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
@@ -173,7 +188,7 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.7
+		viewportPart = 0.5
 	) {
 		await ctaButton.click();
 		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});

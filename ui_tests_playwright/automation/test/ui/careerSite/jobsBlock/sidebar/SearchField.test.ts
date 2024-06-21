@@ -1,12 +1,10 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {sessionValue} from '../../../../../runtimeVariables/SessionValue';
-import {careerSteps} from '../../../../../steps/careerPageSteps/CareerSteps';
+import {careerSteps, containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
 import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Career from '../../../../../identifiers/career/pages/Career';
-import {containerSteps} from '../../../../../steps/components/container/ContainerSteps';
 import ContainerByClass from '../../../../../components/container/ContainerByClass';
 import ContainersCareer from '../../../../../identifiers/career/ContainersCareer';
 import randomstring from 'randomstring';
@@ -24,7 +22,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4879,
-		`Check that user sees correct results when entering vacancy in 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees correct results when entering vacancy in 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const careerName = `JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`;
@@ -37,7 +35,7 @@ test(
 test(
 	qase(
 		4850,
-		`Check that user sees correct results when entering part of name vacancy in 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees correct results when entering part of name vacancy in 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const careerSessionName = sessionValue.stringValue.toLocaleUpperCase();
@@ -50,7 +48,7 @@ test(
 test(
 	qase(
 		4898,
-		`Check that user sees failed search result message after clearing 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees failed search result message after clearing 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
 		const textData = randomstring.generate(50);
@@ -58,7 +56,8 @@ test(
 		await driver.getByTestId(Career.SarchCareerField).clear();
 		await driver.getByTestId(Career.SarchCareerField).fill(textData);
 		await driver.getByTestId(Career.SearchButton).click();
-		const careerList = (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).Element;
+		const careerList = (await containerSteps.getContainer(ContainerByClass, {desktopLocator: Career.CareerList}))
+			.Element;
 
 		await expect(
 			(
@@ -74,18 +73,22 @@ test(
 test(
 	qase(
 		5315,
-		`Check that user sees the same careers as on start page after inputting and clearing 'Search' input in 'Career' block @Regression @FilterBlock @TSWEB-145`
+		`Check that user sees the same careers as on start page after inputting and clearing 'Search' input in 'Career' block @desktop @mobile @Regression @FilterBlock @TSWEB-145`
 	),
 	async () => {
-		const careerListBefore = await (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).all();
+		const careerListBefore = await (
+			await containerSteps.getContainer(ContainerByClass, {desktopLocator: Career.CareerList})
+		).all();
 		const textData = randomstring.generate(50);
 		await driver.Page.reload();
 		await driver.getByTestId(Career.SarchCareerField).clear();
 		await driver.getByTestId(Career.SarchCareerField).fill(textData);
 		await driver.getByTestId(Career.SearchButton).click();
 		await driver.getByTestId(Career.SarchCareerField).clear();
-		const careerListAfter = await (await containerSteps.getContainer(ContainerByClass, Career.CareerList)).all();
-		expect(careerListBefore).toMatchObject(careerListAfter);
+		const careerListAfter = await (
+			await containerSteps.getContainer(ContainerByClass, {desktopLocator: Career.CareerList})
+		).all();
+		expect(careerListBefore).toEqual(careerListAfter);
 	}
 );
 

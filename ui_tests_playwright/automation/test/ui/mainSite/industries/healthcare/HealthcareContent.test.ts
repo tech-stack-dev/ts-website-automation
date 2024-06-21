@@ -1,4 +1,3 @@
-import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import UrlPath from '../../../../../providers/UrlPath';
@@ -8,22 +7,29 @@ import Healthcare from '../../../../../identifiers/mainSite/pages/industries/Hea
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {containerSteps, test, expect} from '../../../../../fixtures/DesktopMobileSetup';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
 });
 
-test(qase(5149, 'Check Info container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'), async () => {
-	const info = driver.getByTestId(Healthcare.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
-	await expect(info.getByTestId(Container.Title)).toHaveText(
-		'Software Development\nSolutions For\nthe Healthcare Industry'
-	);
-	await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
-});
+test(
+	qase(5149, 'Check Info container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'),
+	async () => {
+		const info = driver.getByTestId(Healthcare.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nHealthcare');
+		await expect(info.getByTestId(Container.Title)).toHaveText(
+			'Software Development Solutions for the Healthcare Industry'
+		);
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+	}
+);
 
 test(
-	qase(5156, 'Check the container title and number from the "Healthcare" page @Regression @Healthcare @TSWEB-955'),
+	qase(
+		5156,
+		'Check the container title and number from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent),
@@ -44,8 +50,8 @@ test(
 			['What Makes Our Team Different', '01'],
 			['Our Expertise', '02'],
 			['Case Study by Techstack', '03'],
-			['Patient-Centered\nStrategy', '04'],
-			['Most Recent\nIndustry Facts', '05'],
+			['Patient-Centered Strategy', '04'],
+			['Most Recent Industry Facts', '05'],
 			['How We Operate', '06'],
 			['Our Workflow', '07'],
 			['Core Practices', '08'],
@@ -62,7 +68,7 @@ test(
 test(
 	qase(
 		5164,
-		'Check block titles in "What Makes Our Team Different" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check block titles in "What Makes Our Team Different" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const whatMakesOurTeamDifferentContainer = driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent);
@@ -76,7 +82,7 @@ test(
 test(
 	qase(
 		5172,
-		'Check section titles and CTA button in "Our Expertise" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check section titles and CTA button in "Our Expertise" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
@@ -90,8 +96,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toHaveText(
-			'Schedule a meeting now!'
+		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -99,7 +105,7 @@ test(
 test(
 	qase(
 		5177,
-		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
@@ -110,8 +116,8 @@ test(
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
 
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read the full Case Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -119,7 +125,7 @@ test(
 test(
 	qase(
 		5187,
-		'Check section numbers and titles in "Patient-Centered Strategy" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check section numbers and titles in "Patient-Centered Strategy" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const patientCenteredStrategyContainer = driver.getByTestId(Healthcare.PatientCenteredStrategy);
@@ -144,7 +150,7 @@ test(
 test(
 	qase(
 		5193,
-		'Check block titles in "Most Recent Industry Facts" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check block titles in "Most Recent Industry Facts" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const mostRecentIndustryFactsContainer = driver.getByTestId(Healthcare.MostRecentIndustryFacts);
@@ -158,7 +164,7 @@ test(
 test(
 	qase(
 		5201,
-		'Check carousel sections and CTA button in "How We Operate" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check carousel sections and CTA button in "How We Operate" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const howWeOperateContainer = driver.getByTestId(Healthcare.HowWeOperate);
@@ -181,16 +187,14 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toHaveText(
-			'Schedule a meeting'
-		);
+		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
 test(
 	qase(
 		5215,
-		'Check section numbers and section titles in "Our Workflow" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check section numbers and section titles in "Our Workflow" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const ourWorkflowContainer = driver.getByTestId(Healthcare.OurWorkflow);
@@ -217,7 +221,7 @@ test(
 test(
 	qase(
 		5221,
-		'Check section titles in "Core Practices" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check section titles in "Core Practices" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
 		const corePracticesContainer = driver.getByTestId(Healthcare.CorePractices);
@@ -239,19 +243,26 @@ test(
 test(
 	qase(
 		5229,
-		'Check image in "Serving Partners Worldwide" container from the "Healthcare" page @Regression @Healthcare @TSWEB-955'
+		'Check image in "Serving Partners Worldwide" container from the "Healthcare" page @desktop @mobile @Regression @Healthcare @TSWEB-955'
 	),
 	async () => {
-		const servingPartnersWorldwideContainer = driver.getByTestId(Healthcare.ServingPartnersWorldwide);
+		const mobileMaps = [MainSiteImages.NorthAmericaMap, MainSiteImages.EuropeMap];
 
-		await expect(servingPartnersWorldwideContainer.getByTestId(MainSiteImages.CompleteMap)).toBeVisible();
+		mobileMaps.forEach(async (mobileMap) => {
+			const mapIdentifiers = await containerSteps.getDynamicLocator({
+				desktopLocator: MainSiteImages.CompleteMap,
+				mobileLocator: mobileMap,
+			});
+
+			await expect(mapIdentifiers).toBeVisible();
+		});
 	}
 );
 
 test(
 	qase(
 		5236,
-		'Check section titles in "FAQ" container from the "Healthcare" page @Regression @AiMlService @TSWEB-694'
+		'Check section titles in "FAQ" container from the "Healthcare" page @desktop @mobile @Regression @AiMlService @TSWEB-694'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(Healthcare.Faq);

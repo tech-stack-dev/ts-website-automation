@@ -24,12 +24,12 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5358,
-		'Check redirect by "Clutch Review" button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by "Clutch Review" button in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			successStoriesContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -39,12 +39,13 @@ test(
 test(
 	qase(
 		4794,
-		'Check redirect by CTA button in "Success Stories" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by CTA button in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies).click();
+		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.RedesignPatientDataSystem}`,
@@ -57,7 +58,7 @@ test(
 test(
 	qase(
 		4890,
-		'Check carousel arrows clicks in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check carousel arrows clicks in "Typical UX/UI Design Workflow" container from the "UX/UI Design" page @desktop @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const typicalUxUiDesignWorkflowContainer = driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow);
@@ -69,7 +70,7 @@ test(
 test(
 	qase(
 		4816,
-		'Check redirects by links in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirects by links in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
@@ -87,7 +88,7 @@ test(
 test(
 	qase(
 		4800,
-		'Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirects by LinkedIn buttons in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
@@ -109,7 +110,7 @@ test(
 test(
 	qase(
 		4808,
-		'Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061'
+		'Check redirect by Blog button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670 @TSWEB-1061'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
@@ -123,7 +124,7 @@ test(
 test(
 	qase(
 		4838,
-		'Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by Behance button in "We Never Stop Improving Your Product" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
@@ -138,7 +139,7 @@ test(
 test(
 	qase(
 		4822,
-		'Check redirect by link in "Related Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by link in "Related Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
@@ -156,7 +157,7 @@ test(
 test(
 	qase(
 		4917,
-		'Check redirects by arrows in "Related Services" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check redirects by arrows in "Related Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(UxUiDesign.RelatedServices);
@@ -181,7 +182,7 @@ test(
 test(
 	qase(
 		4862,
-		'Check sections expanding and collapsing in "FAQ" container from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check sections expanding and collapsing in "FAQ" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(UxUiDesign.Faq);
@@ -194,12 +195,11 @@ test(
 test(
 	qase(
 		4847,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "UX/UI Design" page @Regression @UxUiDesign @TSWEB-670'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(UxUiDesign.OurUiUxServices).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 

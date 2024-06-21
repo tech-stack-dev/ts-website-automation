@@ -1,4 +1,4 @@
-import {expect, test} from '@playwright/test';
+import {test} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
@@ -10,7 +10,6 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
-import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -20,36 +19,28 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5247,
-		'Check redirect by source link in "Techstack in Numbers" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirect by "Clutch Review" button in "Techstack in Numbers" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
-		const buttonDeloitte = techstackInNumbersContainer.getByTestId(MainSiteButtons.DeloitteSurvey);
-		const testData = ExternalSourceLinks.Deloitte100PercentRenewablesPdf;
 
-		const actualLink = await buttonDeloitte.getAttribute('href');
-		expect(actualLink).toBe(testData);
-
-		const [download] = await Promise.all([
-			driver.Page.waitForEvent('download'), // remotely opens pdf viewer, not page
-			buttonDeloitte.click(),
-		]);
-		expect(download.url()).toBe(testData);
-
-		const checkPdfName = download.suggestedFilename().endsWith('DI_100-Percent-Renewables.pdf');
-		expect(checkPdfName).toBe(true);
+		await baseDriverSteps.checkRedirectToPage(
+			techstackInNumbersContainer.getByTestId(Buttons.Clutch),
+			ClutchReviewLinks.HenriYoki
+		);
 	}
 );
 
 test(
 	qase(
 		5242,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`,
@@ -62,7 +53,7 @@ test(
 test(
 	qase(
 		5322,
-		'Check redirects by arrows in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check redirects by arrows in "Our Key Areas of Expertise in Renewable Energy" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ourKeyAreasOfExpertiseContainer = driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise);
@@ -85,22 +76,8 @@ test(
 
 test(
 	qase(
-		5253,
-		'Check redirect by "Clutch Review" button in "Why Choose Us?" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
-	),
-	async () => {
-		const whyChooseUsContainer = driver.getByTestId(RenewableEnergy.WhyChooseUs);
-
-		const clutchReviewButton = whyChooseUsContainer.getByTestId(Buttons.Clutch);
-
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.HenriYoki);
-	}
-);
-
-test(
-	qase(
 		5295,
-		'Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check carousel arrows click in "How We Operate at Techstack" container from the "Renewable Energy" page @desktop @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const howWeOperateContainer = driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack);
@@ -112,7 +89,7 @@ test(
 test(
 	qase(
 		5265,
-		'Check sections expanding and collapsing in "FAQ" container from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check sections expanding and collapsing in "FAQ" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(RenewableEnergy.Faq);
@@ -125,13 +102,13 @@ test(
 test(
 	qase(
 		5277,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @Regression @RenewableEnergy @TSWEB-957'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
 	),
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
-			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.BookAMeeting),
-			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.TalkToAnExpert),
+			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

@@ -11,4 +11,7 @@ export enum AuthorsEnum {
 	DmytroGamanenko = 'dmytro-gamanenko/',
 	AndriiDumych = 'andrii-dumych/',
 	DmytroBohdanov = 'dmytro/',
+	IvanKononenko = 'ivan-kononenko/',
+	EugeneLypskyi = 'yevhenii-lypskyi/',
+	AndrewKurilenko = 'andrew-kurilenko/'
 }

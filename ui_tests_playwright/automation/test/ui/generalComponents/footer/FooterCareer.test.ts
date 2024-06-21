@@ -1,4 +1,4 @@
-import {expect, Locator, test} from '@playwright/test';
+import {Locator} from '@playwright/test';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
@@ -7,8 +7,11 @@ import Footer from '../../../../identifiers/Footer';
 import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
+import {playwrightUtils} from '../../../../utils/PlaywrightUtils';
 
 let footer: Locator;
+let socialBlock: Locator;
 const testDataProvider = [
 	UrlProvider.careerUrl(),
 	UrlProvider.careerUrlBuilder(UrlPath.AboutUs),
@@ -19,12 +22,16 @@ const testDataProvider = [
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
+	socialBlock = await containerSteps.getDynamicLocator({
+		desktopLocator: Footer.FooterLinkDesktop,
+		mobileLocator: Footer.FooterLinkMobile,
+	});
 });
 
 test(
 	qase(
 		5493,
-		`Check the footer information from the 'Footer' container on all pages @Regression @FooterCareer @TSWEB-655`
+		`Check the footer information from the 'Footer' container on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -38,8 +45,8 @@ test(
 			const companyList = new Map([
 				[Buttons.Company_TechstackWorldwide, 'Techstack Worldwide'],
 				[Buttons.Company_Services, 'Services'],
-				[Buttons.Company_CaseStudies, 'Case Studies'],
-				[Buttons.Company_Blog, 'Blog'],
+				[Buttons.Company.CaseStudies, 'Case Studies'],
+				[Buttons.Company.Blog, 'Blog'],
 			]);
 
 			for (const [element, title] of companyList) {
@@ -69,7 +76,10 @@ test(
 );
 
 test(
-	qase(5494, `Check the redirection by the "Techstack" logo on all pages @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5494,
+		`Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -80,13 +90,16 @@ test(
 );
 
 test(
-	qase(5497, `Check the redirection for the Company block on all pages @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5497,
+		`Check the redirection for the Company block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const companyUrlList = new Map([
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
 			[Buttons.Company_Services, UrlProvider.urlBuilder(UrlPath.OurServices)],
-			[Buttons.Company_CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
-			// [Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)], // Uncomment after Blog will be stable
+			[Buttons.Company.CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
+			[Buttons.Company.Blog, UrlProvider.urlBuilder(UrlPath.Blog)],
 		]);
 
 		for (const url of testDataProvider) {
@@ -102,7 +115,10 @@ test(
 );
 
 test(
-	qase(5496, `Check the redirection for the Career block on all pages @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5496,
+		`Check the redirection for the Career block on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const careerUrlList = new Map([
 			[Buttons.Career_Jobs, UrlProvider.careerUrl()],
@@ -124,7 +140,10 @@ test(
 );
 
 test(
-	qase(5498, `Check the redirection for the social links on all pages @Regression @FooterCareer @TSWEB-655`),
+	qase(
+		5498,
+		`Check the redirection for the social links on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
+	),
 	async () => {
 		const linkMap = new Map([
 			[Buttons.Behance, Links.Behance],
@@ -133,32 +152,52 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
 
-			for (const entries of linkMap.entries()) {
-				const [newPage] = await Promise.all([
-					driver.DriverContext.waitForEvent('page'),
-					await footer.getByTestId(entries[0]).nth(0).click(),
-				]);
-				expect(newPage.url().includes(entries[1])).toBeTruthy();
-				await newPage.close();
-			}
+					for (const entries of linkMap.entries()) {
+						const socialLinkButton = socialBlock.getByTestId(entries[0]);
 
-			const [newPage] = await Promise.all([
-				driver.DriverContext.waitForEvent('page'),
-				await footer.getByTestId(Buttons.Clutch).nth(1).click(),
-			]);
-			expect(newPage.url()).toContain(Links.Clutch);
-			await newPage.close();
-		}
+						const [newPage] = await Promise.all([
+							driver.DriverContext.waitForEvent('page'),
+							socialLinkButton.click(),
+						]);
+						expect(newPage.url().includes(entries[1])).toBeTruthy();
+						await newPage.close();
+					}
+				}
+			},
+			5,
+			5000
+		);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
+
+					const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
+					const [newPage] = await Promise.all([
+						driver.DriverContext.waitForEvent('page'),
+						clutchButton.click(),
+					]);
+					await newPage.waitForLoadState();
+					expect(newPage.url()).toContain(Links.Clutch);
+					await newPage.close();
+				}
+			},
+			5,
+			5000
+		);
 	}
 );
 
 test(
 	qase(
 		5495,
-		`Check redirection to the Terms and Cookies Policy pages on all pages @Regression @FooterCareer @TSWEB-655`
+		`Check redirection to the Terms and Cookies Policy pages on all pages @desktop @mobile @Regression @FooterCareer @TSWEB-655`
 	),
 	async () => {
 		const linkMap = new Map([
@@ -170,7 +209,7 @@ test(
 			await baseDriverSteps.goToUrl(url);
 
 			for (const entries of linkMap.entries()) {
-				await driver.getByTestId(entries[0]).click();
+				await socialBlock.getByTestId(entries[0]).click();
 				await baseDriverSteps.checkUrl(entries[1]);
 				await baseDriverSteps.goToUrl(url);
 			}

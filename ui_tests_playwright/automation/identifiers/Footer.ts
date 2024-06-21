@@ -1,5 +1,7 @@
 export default class Footer {
 	static Container_Footer = 'Container-Footer';
+	static FooterLinkDesktop = 'Container-FooterLinkDesktop';
+	static FooterLinkMobile = 'Container-FooterLinkMobile';
 
 	static ContactsBlock = 'ContactsBlock';
 	static IndustriesBlock = 'IndustriesBlock';

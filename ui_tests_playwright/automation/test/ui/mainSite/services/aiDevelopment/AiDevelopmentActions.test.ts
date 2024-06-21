@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5361,
-		'Check redirect by links in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by links in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
@@ -47,12 +47,12 @@ test(
 test(
 	qase(
 		4795,
-		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -62,12 +62,13 @@ test(
 test(
 	qase(
 		4785,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.IncorporatingAimlIntoFlow}`,
@@ -80,7 +81,7 @@ test(
 test(
 	qase(
 		4809,
-		'Check redirect by links in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by links in "Industries We Serve" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
@@ -113,7 +114,7 @@ test(
 test(
 	qase(
 		4820,
-		'Check carousel arrows click in "The Way We work" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check carousel arrows click in "The Way We work" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const theWayWeWorkContainer = driver.getByTestId(AiDevelopment.TheWayWeWork);
@@ -125,12 +126,12 @@ test(
 test(
 	qase(
 		4857,
-		'Check redirect by "Clutch Review" button in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by "Clutch Review" button in "Our Approach" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.DarrenCody
 		);
@@ -140,7 +141,7 @@ test(
 test(
 	qase(
 		4839,
-		'Check redirect by arrows in "Related Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by arrows in "Related Services" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(AiDevelopment.RelatedServices);
@@ -162,7 +163,7 @@ test(
 test(
 	qase(
 		4803,
-		'Check sections expanding and collapsing in "FAQ" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check sections expanding and collapsing in "FAQ" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(AiDevelopment.Faq);
@@ -175,13 +176,16 @@ test(
 test(
 	qase(
 		4815,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds),
-			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAFreeConsultation),
+			driver.getByTestId(AiDevelopment.OurAiDevelopmentServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(AiDevelopment.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.GetAQuote),
 		];
 
 		for (const button of ctaButtons) {

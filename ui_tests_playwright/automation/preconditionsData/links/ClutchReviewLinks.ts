@@ -5,6 +5,6 @@ export enum ClutchReviewLinks {
 	MarkBeare = 'https://clutch.co/profile/techstack#review-1765062',
 	DerickDaily = 'https://clutch.co/profile/techstack#review-1634090',
 	AnonymousMedicalDevice = 'https://clutch.co/profile/techstack#review-1939515',
-	HenriYoki = 'https://clutch.co/profile/techstack#review-2196311',
+	HenriYoki = 'https://clutch.co/profile/techstack#review-218147',
 	AnonymousNjorda = 'https://clutch.co/profile/techstack#review-2232982',
 }

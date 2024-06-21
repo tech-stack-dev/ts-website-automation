@@ -15,7 +15,10 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4826, 'Check the Info container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'),
+	qase(
+		4826,
+		'Check the Info container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
 	async () => {
 		const info = driver.getByTestId(AiDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');
@@ -27,7 +30,7 @@ test(
 test(
 	qase(
 		4845,
-		'Check the container titles and numbers from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check the container titles and numbers from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const containers = [
@@ -45,8 +48,8 @@ test(
 		];
 
 		const expectedData = [
-			['AI’s Beneficial \nImpact on \nIndustries', '01'],
-			['Our AI Development\nServices', '02'],
+			['AI’s Beneficial Impact on Industries', '01'],
+			['Our AI Development Services', '02'],
 			['Technology Stack', '03'],
 			['Case Study by Techstack', '04'],
 			['Industries We Serve', '05'],
@@ -65,7 +68,7 @@ test(
 test(
 	qase(
 		4831,
-		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
@@ -81,7 +84,7 @@ test(
 test(
 	qase(
 		4852,
-		'Check block and section titles in "Our AI Development Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check block and section titles, and CTA in "Our AI Development Services" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const ourAiMlDevelopmentServicesContainer = driver.getByTestId(AiDevelopment.OurAiDevelopmentServices);
@@ -120,13 +123,17 @@ test(
 
 		await expect(containerBlocks.nth(5).getByTestId(Container.BlockTitle)).toHaveText('Predictive analytics');
 		await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
+
+		await expect(ourAiMlDevelopmentServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
 test(
 	qase(
 		4865,
-		'Check section titles in "Technology stack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles in "Technology stack" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(AiDevelopment.TechnologyStack);
@@ -140,7 +147,7 @@ test(
 test(
 	qase(
 		4870,
-		'Check section titles, image and CTA in "Case Study by Techstack" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles, image and CTA in "Case Study by Techstack" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
@@ -150,8 +157,8 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.IncorporatingAiMl)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read the full\nCase Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -159,7 +166,7 @@ test(
 test(
 	qase(
 		4877,
-		'Check section numbers and titles, and CTA in "Industries We Serve" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section numbers and titles, and CTA button in "Industries We Serve" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
@@ -182,8 +189,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds)).toHaveText(
-			'Let’s Discuss\nYour Tech Needs'
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
 		);
 	}
 );
@@ -191,7 +198,7 @@ test(
 test(
 	qase(
 		4881,
-		'Check carousel section numbers and titles in "The Way We work" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check carousel section numbers and titles in "The Way We work" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const theWayWeWorkContainer = driver.getByTestId(AiDevelopment.TheWayWeWork);
@@ -215,7 +222,7 @@ test(
 test(
 	qase(
 		4888,
-		'Check section titles and CTA in "Our Approach" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles and CTA in "Our Approach" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
@@ -229,16 +236,14 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(ourApproachContainer.getByTestId(MainSiteButtons.ScheduleAFreeConsultation)).toHaveText(
-			'Schedule\na Free Consultation'
-		);
+		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
 	}
 );
 
 test(
 	qase(
 		4901,
-		'Check section titles in "Related Services" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles in "Related Services" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(AiDevelopment.RelatedServices);
@@ -258,7 +263,7 @@ test(
 test(
 	qase(
 		4895,
-		'Check section titles in "FAQ" container from the "AI Development" page @Regression @AiDevelopment @TSWEB-694'
+		'Check section titles in "FAQ" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(AiDevelopment.Faq);

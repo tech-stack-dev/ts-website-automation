@@ -2,6 +2,11 @@ name: Playwright UI E2E
 
 on:
   workflow_dispatch:
+    inputs:
+      runMobile:
+        description: 'Run mobile tests after desktop tests? (true or false)'
+        required: true
+        default: 'true' # If you don't want to run mobile tests after desktop, set the value to false
   schedule:
     # Run each day at 21:10
     - cron: "10 21 * * *"
@@ -16,161 +21,33 @@ concurrency:
 
 jobs:
   tests_e2e:
-    name: Playwright end-to-end tests
+    uses: ./.github/workflows/common-test-steps.yml
+    with:
+      project: Desktop_Chrome
+      grep: "@desktop"
+      slackTitle: TypeScript UI tests
+    secrets:
+      awsKey: ${{ secrets.AWS_KEY }}
+      awsPassword: ${{ secrets.AWS_PASSWORD }}
+      jiraAuthToken: ${{ secrets.JIRA_AUTH_TOKEN }}
+      slackWebHook: ${{ secrets.SLACK_WEBHOOK }}
+  
+  # Logic in inputs was created for send mobile report of scheduled runs to Slack chanels
+  run_mobile_tests:
+    needs: tests_e2e
     runs-on: ubuntu-latest
-    # Set up queue for parallel actions
-    concurrency:
-      group: ${{ github.event_name }}
-
-    env:
-      AWS_KEY: ${{ secrets.AWS_KEY }}
-      AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
-      JIRA_AUTH_TOKEN: ${{ secrets.JIRA_AUTH_TOKEN }}
-      CI: true
-    defaults:
-      run:
-        working-directory: ./ui_tests_playwright
+    if: ${{ github.event.inputs.runMobile == 'true' || github.event_name == 'schedule' || github.event_name == 'pull_request' }} 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/github-script@v7
         with:
-          node-version: "18"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install TypeScript and ts-node
-        run: npm install -g typescript ts-node
-
-      - name: Set current time as an environment variable
-        run: |
-          echo "CURRENT_DAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-          echo "CURRENT_TIME=$(date '+%H-%M-%S')" >> $GITHUB_ENV
-
-      - name: Run Search and Collect Ticket Statuses
-        id: ticket-statuses
-        run: |
-          npx ts-node automation/scripts/GetListOfJirasToSkip.ts
-          ticketStatusesFile="ticketStatuses.json"
-          if [[ -f "$ticketStatusesFile" ]]; then
-            ticketStatuses=$(cat "$ticketStatusesFile" | jq -r 'join("|")')
-          else
-            ticketStatuses=""
-          fi
-          echo "ticketStatuses=$ticketStatuses" >> $GITHUB_OUTPUT
-
-      - name: Install playwright browsers
-        run: npx playwright install --with-deps
-
-      - name: Run Unit Tests
-        run: npm run unit-tests
-
-      - name: Run UI tests
-        shell: bash
-        run: QASE_REPORT="1" npx playwright test --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
-
-      - uses: actions/upload-artifact@v3
-        name: Upload Playwright report
-        if: always()
-        with:
-          name: playwright-report
-          path: ui_tests_playwright/playwright-report/
-          retention-days: 30
-
-      - name: Parse Test Results Data
-        if: always()
-        run: npx ts-node automation/scripts/GetAutotestsCount.ts
-
-      - name: Switch to reports-history Branch
-        if: always()
-        run: |
-          git config --global user.email "daniil.vostrikov@tech-stack.com"
-          git config --global user.name "DaniilVostrikov"
-          git remote update
-          git fetch 
-          git add .
-          git checkout -f --track origin/reports-history
-
-      - name: Update reports
-        if: always()
-        run: |
-          report_folder="automation/reports/"
-          if [ "${{ github.event_name }}" == "schedule" ]; then
-            report_folder="${report_folder}regression"
-          elif [ "${{ github.event_name }}" == "pull_request" ]; then
-            report_folder="${report_folder}pull-requests"
-          fi
-          new_report_folder="$report_folder/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}"
-          mkdir -p $new_report_folder
-          cp ${{ github.workspace }}/ui_tests_playwright/playwright-report/index.html $new_report_folder
-          git add $new_report_folder
-          git commit -m "Update test report"
-          git push origin reports-history
-
-      - name: Run script to create report
-        if: always()
-        run: |
-          echo "here's a branch"
-          git branch
-          echo "here's a Script"
-          npx ts-node ./automation/scripts/GetReportsContent.ts
-          git add ../index.html
-          git commit -m "update main report file"
-          git push origin reports-history
-
-      - name: Preparing Slack emoji
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_icon_emoji
-        with:
-          cond: ${{ job.status == 'failure' }}
-          if_true: ":finnadie:"
-          if_false: ":aw_yeah:"
-
-      - name: Set Slack Channel production
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_channel_production
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: ts_website_automation
-          if_false: ts_website
-
-      - name: Set Slack Channel automation
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        id: slack_channel_automation
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: test_slack_notifications
-          if_false: ts_website_automation
-
-      - name: Slack Notification for UI tests production
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
-
-      - name: Slack Notification for UI tests automation
-        if: ${{ (!github.event.pull_request.draft && ((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') || (github.event_name == 'pull_request' && failure()))) }}
-        uses: rtCamp/action-slack-notify@v2.2.0
-        env:
-          SLACK_USERNAME: Tests execution report
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
-          SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/regression/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
-          SLACK_TITLE: TypeScript UI tests
-          MSG_MINIMAL: true
-          SLACK_FOOTER: TS website
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'playwright-mobile.yml',
+              ref: '${{ github.event_name == 'schedule' && 'main' || github.event.pull_request.head.ref }}',
+              inputs: {
+                eventName: '${{ github.event_name == 'schedule' && 'schedule' || '' }}'
+              }
+            });
