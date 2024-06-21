@@ -14,7 +14,6 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import BackEndServices from '../../../../../identifiers/mainSite/pages/services/BackEndServices';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import GeneralContainersMainSite from '../../../../../identifiers/mainSite/GeneralContainersMainSite';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BackEndDevelopment));
@@ -125,7 +124,7 @@ test(
 		'Check redirect by "Clutch Review" button in "Why Techstack Stands Out" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
-		const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
+		const whyTechstackContainer = driver.getByTestId(BackEndServices.WhyTechstack);
 
 		await baseDriverSteps.checkRedirectToClutch(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),

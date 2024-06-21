@@ -12,12 +12,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
 	static GetAFreeQuote = 'Button-GetAFreeQuote';
 	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
-	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
-	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
-	static ReadFullCaseStudies = 'Button-ReadFullCaseStudies';
-	static AboutUs = 'Button-AboutUs';
-	static BookAMeeting = 'Button-BookAMeeting';
-	static TalkToAnExpert = 'Button-TalkToAnExpert';
 	static SeeAllNews = 'Button-SeeAllNews';
 	static ReadMore = 'Button-ReadMore';
 	static ContactOurExperts = 'Button-ContactOurExperts';
@@ -30,10 +24,6 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static BookYourExpertConsultation = 'Button-BookYourExpertConsultation';
-	static ScheduleAFreeBackendConsultation = 'Button-ScheduleAFreeBackendConsultation';
-	static MoreDetails = 'Button-MoreDetails';
-	static BoostYourBackend = 'Button-BoostYourBackend';
-	static LetsDiscussOurPartnership = 'Button-LetsDiscussOurPartnership';
 	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';

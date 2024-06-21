@@ -8,7 +8,6 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import FrontEndDevelopment from '../../../../../identifiers/mainSite/pages/services/FrontEndDevelopment';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
-import GeneralContainersMainSite from '../../../../../identifiers/mainSite/GeneralContainersMainSite';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
@@ -27,7 +26,7 @@ test('Check the container titles and numbers from the "Front End Development" pa
 		driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment),
 		driver.getByTestId(FrontEndDevelopment.TechnologyStack),
 		driver.getByTestId(FrontEndDevelopment.CaseStudy),
-		driver.getByTestId(GeneralContainersMainSite.WhyTechstack),
+		driver.getByTestId(FrontEndDevelopment.WhyTechstack),
 		driver.getByTestId(FrontEndDevelopment.OurExperts),
 		driver.getByTestId(FrontEndDevelopment.CooperationModels),
 		driver.getByTestId(FrontEndDevelopment.HowWeCanHelp),
@@ -89,9 +88,7 @@ test('Check section numbers, titles and CTA button text in "Frontend Web Develop
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
-	await expect(frontedWebDevelopment.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
-		'Get your quote now'
-	);
+	await expect(frontedWebDevelopment.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 });
 
 test('Check section titles in "Technology stack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
@@ -133,7 +130,7 @@ test('Check section titles, image and CTA in "Front-End Development Services Cas
 });
 
 test('Check section titles in "Why Techstack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
+	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
 	const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
 		'Our approach\nto front-end\ndevelopment\nservices',
@@ -173,9 +170,7 @@ test('Check section numbers and titles, and CTA in "Cooperation Models" containe
 
 	await expect(actualSectionTitles).toHaveText(expectedData);
 
-	await expect(cooperationModelsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-		'Request a quote'
-	);
+	await expect(cooperationModelsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
 test('Check section numbers and titles in "How We Can Help" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
@@ -210,7 +205,7 @@ test('Check section numbers and titles in "How We Can Help" container from the "
 	await expect(actualSectionTitles).toHaveText(expectedData);
 });
 
-test('Check carousel section numbers and titles in "Front-End Development Process" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check carousel section numbers, titles and CTA in "Front-End Development Process" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontEndDevelopmentProcessContainer = driver.getByTestId(FrontEndDevelopment.FrontEndDevelopmentProcess);
 	const carousel = frontEndDevelopmentProcessContainer.getByTestId(Container.ContainerCarousel);
 	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
