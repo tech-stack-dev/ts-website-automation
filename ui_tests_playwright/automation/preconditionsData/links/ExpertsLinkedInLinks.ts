@@ -23,4 +23,5 @@ export enum ExpertsLinkedInLinks {
 	OleksandrMakarov = 'https://www.linkedin.com/in/oleksamakarov/',
 	DmitryValko = 'https://www.linkedin.com/in/dima-valko/',
 	MariiaPetrovych = 'https://www.linkedin.com/in/mpetrovych/',
+	DmytroBohdanov = 'https://www.linkedin.com/in/po4erk/',
 }

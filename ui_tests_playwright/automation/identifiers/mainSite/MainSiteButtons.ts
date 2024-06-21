@@ -21,6 +21,8 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
 
+	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
+
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
 
