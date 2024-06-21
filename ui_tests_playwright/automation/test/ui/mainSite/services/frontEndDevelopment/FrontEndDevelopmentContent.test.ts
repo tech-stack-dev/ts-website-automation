@@ -14,14 +14,14 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
 });
 
-test('Check the Info container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check the Info container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const info = driver.getByTestId(FrontEndDevelopment.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nFront-End Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Front-End Development\nServices');
 	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 });
 
-test('Check the container titles and numbers from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check the container titles and numbers from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const containers = [
 		driver.getByTestId(FrontEndDevelopment.TeamExpertise),
 		driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment),
@@ -56,7 +56,7 @@ test('Check the container titles and numbers from the "Front End Development" pa
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check block titles in "Team Expertise" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check block titles in "Team Expertise" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const teamExpertise = driver.getByTestId(FrontEndDevelopment.TeamExpertise);
 	const allBlockTitles = teamExpertise.getByTestId(Container.BlockTitle);
 	const testData = ['45\nReactJS pioneers', '40\nFull-Stack JS experts', '7\n+ years in leading\nframeworks'];
@@ -64,7 +64,7 @@ test('Check block titles in "Team Expertise" container from the "Front End Devel
 	await expect(allBlockTitles).toHaveText(testData);
 });
 
-test('Check section numbers, titles and CTA button text in "Frontend Web Development Services" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section numbers, titles and CTA button text in "Frontend Web Development Services" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontedWebDevelopment = driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment);
 
 	await expect(frontedWebDevelopment.getByTestId(Container.SectionNumber)).toHaveText([
@@ -89,12 +89,12 @@ test('Check section numbers, titles and CTA button text in "Frontend Web Develop
 	];
 
 	await expect(allSectionTitles).toHaveText(testData);
-	await expect(frontedWebDevelopment.getByTestId(MainSiteButtons.SubmitYourServiceRequestNow)).toHaveText(
-		'Submit your service request now'
+	await expect(frontedWebDevelopment.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+		'Get your quote now'
 	);
 });
 
-test('Check section titles in "Technology stack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section titles in "Technology stack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const technologyStackContainer = driver.getByTestId(FrontEndDevelopment.TechnologyStack);
 	const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 	const testData = [
@@ -111,7 +111,7 @@ test('Check section titles in "Technology stack" container from the "Front End D
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles, image and CTA in "Front-End Development Services Case Studies" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section titles, image and CTA in "Front-End Development Services Case Studies" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontEndCaseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
 	const actualSectionTitles = frontEndCaseStudiesContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
@@ -127,12 +127,12 @@ test('Check section titles, image and CTA in "Front-End Development Services Cas
 	await expect(actualSectionTitles).toHaveText(expectSectionTitles);
 
 	await expect(frontEndCaseStudiesContainer.getByTestId(MainSiteImages.FrontendCaseStudy)).toBeVisible();
-	await expect(frontEndCaseStudiesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-		'Read full\ncase studies'
+	await expect(frontEndCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		'Check out how we build it'
 	);
 });
 
-test('Check section titles in "Why Techstack" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section titles in "Why Techstack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const whyTechstackContainer = driver.getByTestId(GeneralContainersMainSite.WhyTechstack);
 	const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
@@ -148,7 +148,7 @@ test('Check section titles in "Why Techstack" container from the "Front End Deve
 	await expect(actualSectionTitles).toHaveText(expectSectionTitles);
 });
 
-test('Check member names and roles in "Our Front End Development Experts" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check member names and roles in "Our Front End Development Experts" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const ourFrontEndExpertsContainer = driver.getByTestId(FrontEndDevelopment.OurExperts);
 	const actualMemberRoles = ourFrontEndExpertsContainer.getByTestId(Container.MemberRole);
 	const expectedDataRoles = [
@@ -163,7 +163,7 @@ test('Check member names and roles in "Our Front End Development Experts" contai
 	await expect(actualMemberNames).toHaveText(expectedDataNames);
 });
 
-test('Check section numbers and titles, and CTA in "Cooperation Models" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section numbers and titles, and CTA in "Cooperation Models" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const cooperationModelsContainer = driver.getByTestId(FrontEndDevelopment.CooperationModels);
 
 	await expect(cooperationModelsContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03']);
@@ -173,12 +173,12 @@ test('Check section numbers and titles, and CTA in "Cooperation Models" containe
 
 	await expect(actualSectionTitles).toHaveText(expectedData);
 
-	await expect(cooperationModelsContainer.getByTestId(MainSiteButtons.ContactUsToDiscuss)).toHaveText(
-		'Contact us to discuss'
+	await expect(cooperationModelsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+		'Request a quote'
 	);
 });
 
-test('Check section numbers and titles in "How We Can Help" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section numbers and titles in "How We Can Help" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const howWeCanHelpContainer = driver.getByTestId(FrontEndDevelopment.HowWeCanHelp);
 	await expect(howWeCanHelpContainer.getByTestId(Container.SectionNumber)).toHaveText([
 		'01',
@@ -210,7 +210,7 @@ test('Check section numbers and titles in "How We Can Help" container from the "
 	await expect(actualSectionTitles).toHaveText(expectedData);
 });
 
-test('Check carousel section numbers and titles in "Front-End Development Process" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check carousel section numbers and titles in "Front-End Development Process" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const frontEndDevelopmentProcessContainer = driver.getByTestId(FrontEndDevelopment.FrontEndDevelopmentProcess);
 	const carousel = frontEndDevelopmentProcessContainer.getByTestId(Container.ContainerCarousel);
 	const carouselSections = await carousel.getByTestId(Container.CarouselSection).all();
@@ -227,9 +227,13 @@ test('Check carousel section numbers and titles in "Front-End Development Proces
 		'Delivery\nPhase',
 		'Release, maintenance\n& support',
 	]);
+
+	await expect(frontEndDevelopmentProcessContainer.getByTestId(MainSiteButtons.ReceiveAFreeQuote)).toHaveText(
+		'Receive a free quote'
+	);
 });
 
-test('Check section titles in "Related Services" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section titles in "Related Services" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const relatedServicesContainer = driver.getByTestId(FrontEndDevelopment.RelatedServices);
 
 	const actualSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
@@ -246,7 +250,7 @@ test('Check section titles in "Related Services" container from the "Front End D
 	await expect(actualSectionTitles).toHaveText(expectedData);
 });
 
-test('Check section titles in "FAQ" container from the "Front End Development" page @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+test('Check section titles in "FAQ" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const faqContainer = driver.getByTestId(FrontEndDevelopment.Faq);
 
 	const actualSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
