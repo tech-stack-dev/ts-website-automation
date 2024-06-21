@@ -307,13 +307,19 @@ test(
 			'R&D Engineer, Software Engineering Lead,\nPossesses deep expertise in the development of \nenvironmental monitoring devices.',
 			'Back-End Developer,\nCreates hardware-based software solutions\nfor environmental monitoring devices.',
 			'Software Engineer,\nSpecializes in IoT & Cloud solutions, integrating AI/ML\nsolutions across various domains.',
-			'Full-Stack Engineer,\nFocuses on IoT software products, environmental\nmonitoring devices, 3D printing & industrial solutions.'
+			'Full-Stack Engineer,\nFocuses on IoT software products, environmental\nmonitoring devices, 3D printing & industrial solutions.',
 		];
 
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
 		const allMemberNames = ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberName);
-		const testDataNames = [ExpertNames.OleksiiSvystun, ExpertNames.YevheniiKarachevtsev, ExpertNames.IvanKononenko, ExpertNames.EugeneLypskyi, ExpertNames.AndrewKurilenko];
+		const testDataNames = [
+			ExpertNames.OleksiiSvystun,
+			ExpertNames.YevheniiKarachevtsev,
+			ExpertNames.IvanKononenko,
+			ExpertNames.EugeneLypskyi,
+			ExpertNames.AndrewKurilenko,
+		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
 	}

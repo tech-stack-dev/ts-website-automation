@@ -164,9 +164,9 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		// await expect(softwareAuditContainer.getByTestId(MainSiteButtons.GetAFreeQquoteToday)).toHaveText(
-		// 	'Get a free quote today'
-		// ); // Uncomment after fix
+		await expect(softwareAuditContainer.getByTestId(MainSiteButtons.GetAFreeQquoteToday)).toHaveText(
+			'Get a free quote today'
+		);
 	}
 );
 
@@ -277,8 +277,8 @@ test(
 
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.ScheduleACall)).toHaveText(
-			'Schedule a call'
+		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );

@@ -222,7 +222,7 @@ test(
 test(
 	qase(
 		5314,
-		'Check section titles, member names and roles, and CTA button in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles, member names and roles in "We Never Stop Improving Your Product" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct);
@@ -252,10 +252,6 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
-
-		await expect(weNeverStopImprovingContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			'Request a quote'
-		);
 	}
 );
 
