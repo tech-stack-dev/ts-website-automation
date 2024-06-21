@@ -170,6 +170,9 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(MobileDevService.WhatWeDo).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(MobileDevService.WhatIndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment)

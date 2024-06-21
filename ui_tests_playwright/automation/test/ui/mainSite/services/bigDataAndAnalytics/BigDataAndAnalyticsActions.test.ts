@@ -178,6 +178,9 @@ test(
 			driver
 				.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
 				.getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver.getByTestId(BigDataAndAnalytics.OurExperts).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 

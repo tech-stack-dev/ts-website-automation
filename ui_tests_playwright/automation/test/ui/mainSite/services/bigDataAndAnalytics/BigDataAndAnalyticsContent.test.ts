@@ -158,7 +158,7 @@ test(
 test(
 	qase(
 		4984,
-		'Check section titles in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check section titles and CTA button in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const industrySpecificContainer = driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions);
@@ -172,6 +172,10 @@ test(
 			'E-Commerce',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industrySpecificContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 

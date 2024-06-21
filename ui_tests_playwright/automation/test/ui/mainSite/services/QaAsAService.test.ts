@@ -186,12 +186,10 @@ test(
 test(
 	qase(
 		5362,
-		'Check CTA button and redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
+		'Check redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
-
-		await expect(ourApproachContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 
 		await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
 	}
@@ -218,7 +216,8 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote),
+			driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {
