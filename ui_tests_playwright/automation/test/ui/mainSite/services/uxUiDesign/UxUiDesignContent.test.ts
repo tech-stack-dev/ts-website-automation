@@ -214,8 +214,8 @@ test(
 
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
-		await expect(weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuoteButtonText
+		await expect(weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );

@@ -266,7 +266,7 @@ test(
 test(
 	qase(
 		4789,
-		'Check section titles, member names and roles, and CTA button in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles, member names and roles in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
@@ -313,10 +313,6 @@ test(
 			await expect(memberCard.getByTestId(Container.MemberRole)).toHaveText(expectedMemberCardsText[i].role);
 			await expect(memberCard.getByTestId(Container.MemberName)).toHaveText(expectedMemberCardsText[i].name);
 		}
-
-		await expect(devExpertsContainer.getByTestId(MainSiteButtons.ContactOurExperts)).toHaveText(
-			'Contact Our Experts'
-		);
 	}
 );
 

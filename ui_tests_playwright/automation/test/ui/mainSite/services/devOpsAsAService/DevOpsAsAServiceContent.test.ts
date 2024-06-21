@@ -271,8 +271,8 @@ test(
 		];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAConsultation)).toHaveText(
-			'Request\na Consultation'
+		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );

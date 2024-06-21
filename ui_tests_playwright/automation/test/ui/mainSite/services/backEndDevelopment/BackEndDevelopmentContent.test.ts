@@ -220,8 +220,8 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
-		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.BookYourExpertConsultation)).toHaveText(
-			'Book Your Expert Consultation'
+		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );

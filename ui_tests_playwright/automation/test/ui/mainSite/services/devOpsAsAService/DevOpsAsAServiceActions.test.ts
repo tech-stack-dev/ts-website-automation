@@ -31,7 +31,7 @@ test(
 			driver
 				.getByTestId(DevOpsAsAService.IndustriesWeServe)
 				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
-			driver.getByTestId(DevOpsAsAService.OurExperts).getByTestId(MainSiteButtons.RequestAConsultation),
+			driver.getByTestId(DevOpsAsAService.OurExperts).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {
