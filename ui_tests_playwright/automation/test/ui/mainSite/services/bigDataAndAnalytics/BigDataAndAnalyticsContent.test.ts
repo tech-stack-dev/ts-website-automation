@@ -196,14 +196,14 @@ test(
 test(
 	qase(
 		4994,
-		'Check member names and roles in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check member names, roles and CTA button in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 		const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
 			'CTO, Software Architect,\nElaborates on the technology strategy',
-			'R&D Engineer, Software Engineering Lead,Yevhenii will advise the best custom solution',
+			'R&D Engineer, Software Engineering Lead,Will advise the best custom solution',
 			'Data Scientist,Analyzes data for actionable insights',
 			'VP of Engineering,\nLeads the Tech Experts program and team',
 		];
@@ -219,6 +219,8 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
+
+		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 

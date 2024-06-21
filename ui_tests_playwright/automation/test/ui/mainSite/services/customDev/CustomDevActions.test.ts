@@ -219,8 +219,8 @@ test(
 			driver.getByTestId(CustomDev.Info).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
-				.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts)
-				.getByTestId(MainSiteButtons.ContactOurExperts),
+				.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver
 				.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels)
 				.getByTestId(MainSiteButtons.GetYourCustomQuote),

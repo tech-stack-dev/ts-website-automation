@@ -28,7 +28,7 @@ test(
 		const ctaButtons = [
 			driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetAQuote),
 			driver.getByTestId(BackEndServices.ExpertServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
-			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.BookYourExpertConsultation),
+			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 
 			driver.getByTestId(BackEndServices.PeekIntoBackend).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(BackEndServices.HowWeCanWorkTogether).getByTestId(MainSiteButtons.GetYourQuoteNow),

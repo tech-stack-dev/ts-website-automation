@@ -229,13 +229,11 @@ test(
 	async () => {
 		const ctaButtons = [
 			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			// driver
-			// 	.getByTestId(ConsultingService.OurITConsultingServices)
-			// 	.getByTestId(MainSiteButtons.GetAFreeQquoteToday), // Uncomment after fix
+			driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(MainSiteButtons.GetAFreeQquoteToday),
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)
 				.getByTestId(MainSiteButtons.GetAQuote),
-			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.ScheduleACall),
+			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {

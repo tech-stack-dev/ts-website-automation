@@ -169,9 +169,7 @@ test(
 			driver
 				.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
 				.getByTestId(MainSiteButtons.RequestAQuote),
-			driver
-				.getByTestId(CloudDevelopment.OurLeadingCloudExperts)
-				.getByTestId(MainSiteButtons.ScheduleAConsultation),
+			driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {
