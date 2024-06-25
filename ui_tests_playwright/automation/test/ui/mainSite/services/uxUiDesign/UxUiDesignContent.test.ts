@@ -10,8 +10,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
-const requestAQuoteButtonText = 'Request a Quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
@@ -25,7 +23,7 @@ test(
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomDesignQuote)).toHaveText('Get your custom design quote');
 	}
 );
 

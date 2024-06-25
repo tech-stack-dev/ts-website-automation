@@ -126,7 +126,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
 			driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.RequestAQuote),
 		];

@@ -228,7 +228,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.GetYourCustomAuditQuote),
 			driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(MainSiteButtons.GetAFreeQquoteToday),
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)

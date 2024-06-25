@@ -174,7 +174,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.GetYourCustomBigDataQuote),
 			driver
 				.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
 				.getByTestId(MainSiteButtons.GetYourQuoteNow),

@@ -26,7 +26,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetAQuote),
+			driver.getByTestId(BackEndServices.Info).getByTestId(MainSiteButtons.GetYourCustomBEDevelopmentQuote),
 			driver.getByTestId(BackEndServices.ExpertServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver.getByTestId(BackEndServices.OurExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 

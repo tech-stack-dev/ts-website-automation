@@ -21,7 +21,7 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'Software Development Solutions for the Healthcare Industry'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(' Get your custom project quote');
 	}
 );
 
