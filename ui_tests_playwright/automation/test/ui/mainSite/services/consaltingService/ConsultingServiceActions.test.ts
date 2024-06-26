@@ -232,7 +232,7 @@ test(
 			driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(MainSiteButtons.GetAFreeQquoteToday),
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)
-				.getByTestId(MainSiteButtons.GetAQuote),
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 

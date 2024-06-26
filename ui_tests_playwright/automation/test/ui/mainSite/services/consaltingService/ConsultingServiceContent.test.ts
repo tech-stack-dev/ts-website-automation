@@ -217,7 +217,7 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
+		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText('Get your industry-specific quote');
 	}
 );
 
