@@ -309,10 +309,10 @@ test(
 			['04', 'Development'],
 			['05', 'API Development'],
 			['06', 'Security Implementation'],
-			['07', 'Testing and Quality\nAssurance'],
-			['08', 'Optimization and\nPerformance Tuning'],
+			['07', 'Testing and Quality Assurance'],
+			['08', 'Optimization and Performance Tuning'],
 			['09', 'Deployment'],
-			['10', 'Monitoring and\nMaintenance'],
+			['10', 'Monitoring and Maintenance'],
 			['11', 'Documentation'],
 			['12', 'Support and Scalability'],
 		]);

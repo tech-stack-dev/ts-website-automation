@@ -208,11 +208,11 @@ test(
 
 		const carouselSectionTitles = carouselSections.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Discovery\nand Research',
-			'Build\nPOC',
-			'Tuning and\nadjustments',
-			'Build\nProduct',
-			'Release\nand Maintanence',
+			'Discovery and Research',
+			'Build POC',
+			'Tuning and adjustments',
+			'Build Product',
+			'Release and Maintanence',
 		];
 
 		await expect(carouselSectionTitles).toHaveText(testData);

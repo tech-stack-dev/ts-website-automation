@@ -291,12 +291,12 @@ test(
 		const faqContainer = driver.getByTestId(UxUiDesign.Faq);
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'What is the first step when\nwe start working with a\nproduct?',
+			'What is the first step when we start working with a product?',
 			'Why do we need to research the market, users, and competitors?',
-			'Why are UX services\nimportant?',
+			'Why are UX services important?',
 			'How can UI services help your product?',
 			'How can a UI/UX design services company help with UX/UI development services?',
-			'What does your design-\ndevelopment collaboration\nlook like?',
+			'What does your design-development collaboration look like?',
 			'How quickly can you make UX/UI design for a product and/or onboard a design team?',
 			'What approach does the design team utilize?',
 		];
