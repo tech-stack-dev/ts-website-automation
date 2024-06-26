@@ -193,7 +193,7 @@ test(
 
 		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 		await expect(ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'IoT humidity\nsensors scheme'
+			'IoT humidity sensors scheme'
 		);
 
 		await expect(driver.getByTestId(MainSiteImages.SensorsScheme)).toBeVisible();
@@ -215,7 +215,7 @@ test(
 		const expectedSectionTitles = [
 			'AgriTech',
 			'Digital Transformation',
-			'Transportation\nand Logistics',
+			'Transportation and Logistics',
 			'Manufacturing',
 			'Energy',
 			'Healthcare',
@@ -284,7 +284,7 @@ test(
 			IoTEngineeringServices.OurApproachToIoTEngineering
 		);
 		const actualSectionTitles = ourApproachToIoTEngineeringContainer.getByTestId(Container.SectionTitle);
-		const expectedSectionTitles = ['Tech community', 'Ownership drives\nexcellence'];
+		const expectedSectionTitles = ['Tech community', 'Ownership drives excellence'];
 
 		await expect(actualSectionTitles).toHaveText(expectedSectionTitles);
 
@@ -334,10 +334,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'UX/UI Design',
 			'AI & ML',
-			'Development\nconsulting',
+			'Development consulting',
 			'QA as a Service',
 			'Big Data & Analytics',
 		];

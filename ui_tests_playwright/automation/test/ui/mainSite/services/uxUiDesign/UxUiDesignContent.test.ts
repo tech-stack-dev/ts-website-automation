@@ -121,7 +121,7 @@ test(
 			'UX audit',
 			'Competitor analysis',
 			'User research',
-			'Product structure\nand strategy',
+			'Product structure and strategy',
 			'Wireframing',
 			'Prototyping',
 			'Usability testing',
@@ -272,7 +272,7 @@ test(
 		const testData = [
 			'Mobile Development',
 			'Consulting',
-			'Custom Software \nDevelopment',
+			'Custom Software Development',
 			'AI & ML',
 			'Big Data & Analytics',
 			'Internet of Things',

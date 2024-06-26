@@ -79,7 +79,7 @@ test(
 			'Internet of Things',
 			'Back-End Development Services',
 			'Front-End Development Services',
-			'DevOps Services\n& Solutions',
+			'DevOps Services & Solutions',
 			'Artificial Intelligence & Machine Learning',
 			'Mobile Development',
 			'UI/UX Design',
@@ -145,7 +145,7 @@ test(
 		const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Domain\nproficiency', 'We are the team', 'Data-driven\ndecisions'];
+		const testData = ['Domain proficiency', 'We are the team', 'Data-driven decisions'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 

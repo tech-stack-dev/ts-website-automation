@@ -133,11 +133,11 @@ test(
 		const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
 		const allSectionTitles = developmentProcessAuditContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Project management\nprocess',
-			'Development\nprocess',
-			'Release process /\nIntegration layer',
-			'QA\nprocess',
-			'Business analytics\nprocess',
+			'Project management process',
+			'Development process',
+			'Release process / Integration layer',
+			'QA process',
+			'Business analytics process',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -178,7 +178,7 @@ test(
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 		const allSectionTitles = featuredCaseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Outdated Tech\nStack', 'Black Boxes in\nSystem Code'];
+		const testData = ['Outdated Tech Stack', 'Black Boxes in System Code'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -217,7 +217,9 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText('Get your industry-specific quote');
+		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -291,7 +293,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Open Source\nContributions', 'Global\nCertifications', 'Profound\nExperience'];
+		const testData = ['Open Source Contributions', 'Global Certifications', 'Profound Experience'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -308,7 +310,7 @@ test(
 	async () => {
 		const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
 		const allSectionTitles = makeAnImpactContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
+		const testData = ['Retain clients', 'Improve performance', 'Aim for quality'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -325,8 +327,8 @@ test(
 		const testData = [
 			'UX/UI Design',
 			'AI',
-			'Custom software \ndevelopment',
-			'Mobile \ndevelopment',
+			'Custom software development',
+			'Mobile development',
 			'QA as a Service',
 			'Big Data & Analytics',
 			'Internet of Things',

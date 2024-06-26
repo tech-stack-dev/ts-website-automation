@@ -95,7 +95,7 @@ test(
 		const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Carriers and shippers',
-			'Delivery and courier\nservice companies',
+			'Delivery and courier service companies',
 			'Digital logistics providers',
 			'Retailers and eCommerce',
 			'Car rental companies',
@@ -216,7 +216,7 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
+		const testData = ['Make contact', 'Meet a tech specialist', 'Discuss the terms', 'Sign the contract'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -238,9 +238,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

@@ -258,11 +258,11 @@ test(
 
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'How do I develop a cloud\nstrategy?',
+			'How do I develop a cloud strategy?',
 			'How can I get started with cloud application development services?',
 			'Can you migrate our existing on-premises applications to the cloud?',
 			'Can you integrate cloud applications with other systems or third-party services?',
-			'What do I need to do to\nprepare for the cloud?',
+			'What do I need to do to prepare for the cloud?',
 			'How can I ensure the cloud is secure?',
 			'What are the advantages of cloud-native application development?',
 		];

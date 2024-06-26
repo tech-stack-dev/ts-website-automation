@@ -237,10 +237,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'UX/UI Design',
 			'AI & ML',
-			'Development\nconsulting',
+			'Development consulting',
 			'QA as a Service',
 			'Cloud & DevOps',
 			'Internet of Things',

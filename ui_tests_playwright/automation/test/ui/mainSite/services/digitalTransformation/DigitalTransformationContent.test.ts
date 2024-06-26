@@ -162,12 +162,12 @@ test(
 		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
 		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
 		const testDataSectionTitles = [
-			'First-mile\ntraceability',
-			'Quality control\nand tracking',
-			'Business\ntransparency',
-			'Tracking and\naggregation\nsystem',
-			'Aggregation of\ndata sources',
-			'Automated data\nmanagement',
+			'First-mile traceability',
+			'Quality control and tracking',
+			'Business transparency',
+			'Tracking and aggregation system',
+			'Aggregation of data sources',
+			'Automated data management',
 		];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
@@ -189,8 +189,8 @@ test(
 		const technologiesContainer = driver.getByTestId(DigitalTransformation.TechnologiesWeUse);
 		const allSectionTitles = technologiesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Front-End\nand Back-End\nDevelopment',
-			'Mobile App\nDevelopment',
+			'Front-End and Back-End Development',
+			'Mobile App Development',
 			'Cloud Solutions',
 			'DevOps',
 			'Big Data & Analytics',
@@ -213,11 +213,11 @@ test(
 		const digitalTransformationContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
 		const allSectionTitles = digitalTransformationContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'High standards\nand tech culture',
-			'Customer-centric\napproach',
-			"Access our entire\ncompany's\nexpertise",
-			'Continuous\nevaluation and\nimprovement',
-			'Expertise you\ncan trust',
+			'High standards and tech culture',
+			'Customer-centric approach',
+			"Access our entire company's expertise",
+			'Continuous evaluation and improvement',
+			'Expertise you can trust',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -318,9 +318,9 @@ test(
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Why is digital transformation important for businesses?',
-			'How can digital transformation services\nand solutions benefit my company?',
+			'How can digital transformation services and solutions benefit my company?',
 			'What are some common challenges faced during digital transformation?',
-			'What steps should I take\nto implement digital transformation in my organization?',
+			'What steps should I take to implement digital transformation in my organization?',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

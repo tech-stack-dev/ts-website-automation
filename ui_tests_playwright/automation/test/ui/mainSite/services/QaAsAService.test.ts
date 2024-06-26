@@ -105,19 +105,19 @@ test(
 
 		const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 		await expect(ourApproachAndAchievements.getByTestId(Container.SectionTitle)).toHaveText([
-			'Open Source \nContributions',
-			'Global \nCertifications',
-			'Profound \nExperience',
+			'Open Source Contributions',
+			'Global Certifications',
+			'Profound Experience',
 		]);
 
 		const faq = driver.getByTestId(QaAsAService.Faq);
 		await expect(faq.getByTestId(Container.SectionTitle)).toHaveText([
-			'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
-			'Is QA as a service better\nthan a QA service?',
-			'We have an in-house QA\nteam. Why do we need your\nregression testing services?',
-			'Should we hire a\ntesting team or set up\nQA processes first?',
-			'What is crowdtesting?\nHow is it different from\nQA as a service?',
-			'Why is integrating QA\nprocesses into the CI/CD\nprocess important?',
+			'What is the difference between a traditional QA service and QA as a service?',
+			'Is QA as a service better than a QA service?',
+			'We have an in-house QA team. Why do we need your regression testing services?',
+			'Should we hire a testing team or set up QA processes first?',
+			'What is crowdtesting? How is it different from QA as a service?',
+			'Why is integrating QA processes into the CI/CD process important?',
 		]);
 	}
 );
