@@ -163,7 +163,7 @@ test(
 test(
 	qase(
 		5294,
-		'Check section titles in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles and CTA button in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const WhatIndustriesWeServeContainer = driver.getByTestId(MobileDevService.WhatIndustriesWeServe);
@@ -177,6 +177,10 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(
+			WhatIndustriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)
+		).toHaveText('Get your industry-specific quote');
 	}
 );
 

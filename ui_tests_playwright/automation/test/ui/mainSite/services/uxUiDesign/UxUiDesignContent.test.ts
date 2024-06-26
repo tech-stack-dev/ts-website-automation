@@ -94,7 +94,7 @@ test(
 test(
 	qase(
 		4885,
-		'Check section titles in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles and CTA button in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weBuildUxUiForMobileWebContainer = driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb);
@@ -102,6 +102,10 @@ test(
 		const testDataSectionTitles = ['UX design', 'UI design', 'Web design', 'Mobile app design'];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
+
+		await expect(weBuildUxUiForMobileWebContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
