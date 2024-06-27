@@ -134,18 +134,6 @@ test('Check CTA button text from the "QA as a Service" page @desktop @mobile @Re
 	).toHaveText('Request a quote');
 });
 
-test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603', async () => {
-	const ctaButtons = [
-		driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote),
-		driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote),
-		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote),
-	];
-
-	for (const button of ctaButtons) {
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, QaAsAService.GetInTouch);
-	}
-});
-
 test(
 	qase(
 		5356,
@@ -217,7 +205,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote),
 			driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote),
 			driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote),
 		];
