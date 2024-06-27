@@ -180,7 +180,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.GetYourCustomAIQuote),
 			driver.getByTestId(AiDevelopment.OurAiDevelopmentServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(AiDevelopment.IndustriesWeServe)

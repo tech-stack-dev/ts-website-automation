@@ -24,7 +24,7 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'Software Development for the Renewable Energy Industry'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText('Get your custom project quote');
 	}
 );
 

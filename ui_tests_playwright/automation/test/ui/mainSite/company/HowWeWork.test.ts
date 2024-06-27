@@ -24,7 +24,7 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'The Way We Work: Our Approach to Delivering Results'
 		);
-		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in touch');
 	}
 );
 
@@ -203,7 +203,7 @@ test(
 		'Check navigation to "Get in Touch" container after clicking CTA button from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
-		const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+		const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.GetInTouch);
 
 		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, HowWeWork.GetInTouch);
 	}

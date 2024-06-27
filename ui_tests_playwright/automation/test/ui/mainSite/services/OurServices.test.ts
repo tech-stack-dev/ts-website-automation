@@ -24,7 +24,7 @@ test(
 		const info = driver.getByTestId(OurServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software Engineering Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText('Get your custom project quote');
 	}
 );
 
@@ -221,7 +221,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
 			driver.getByTestId(OurServices.OurApproach).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 

@@ -24,7 +24,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetYourPersonalizedDXQuote),
 			driver
 				.getByTestId(DigitalTransformation.DigitalBusinessTransformation)
 				.getByTestId(MainSiteButtons.GetYourQuoteNow),

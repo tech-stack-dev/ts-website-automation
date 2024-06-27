@@ -24,7 +24,7 @@ test(
 		const info = driver.getByTestId(MobileDevService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nMobile App Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Mobile App Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomMobileDevQuote)).toHaveText('Get your custom mobile dev quote');
 	}
 );
 

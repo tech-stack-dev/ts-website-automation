@@ -21,7 +21,7 @@ test.beforeEach(async () => {
 
 test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const ctaButtons = [
-		driver.getByTestId(FrontEndDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+		driver.getByTestId(FrontEndDevelopment.Info).getByTestId(MainSiteButtons.GetYourCustomFEDevelopmentQuote),
 		driver.getByTestId(FrontEndDevelopment.FrontedWebDevelopment).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		driver.getByTestId(FrontEndDevelopment.CooperationModels).getByTestId(MainSiteButtons.RequestAQuote),
 		driver
