@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(DevOpsAsAService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDevOps');
 		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services & Solutions');
-		await expect(info.getByTestId(MainSiteButtons.GetYouCustomDevOpsQuote)).toHaveText('Get you custom DevOps quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYouCustomDevOpsQuote)).toHaveText(
+			'Get you custom DevOps quote'
+		);
 	}
 );
 

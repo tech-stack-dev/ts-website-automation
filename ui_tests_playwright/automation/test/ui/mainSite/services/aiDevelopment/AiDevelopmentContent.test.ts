@@ -23,7 +23,7 @@ test(
 		const info = driver.getByTestId(AiDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');
 		await expect(info.getByTestId(Container.Title)).toHaveText('AI Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAIQuote)).toHaveText('Get your custom AI quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAiQuote)).toHaveText('Get your custom AI quote');
 	}
 );
 

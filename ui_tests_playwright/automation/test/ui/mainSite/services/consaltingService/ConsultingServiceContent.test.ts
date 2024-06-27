@@ -23,7 +23,9 @@ test(
 		const info = driver.getByTestId(ConsultingService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAuditQuote)).toHaveText('Get your custom audit quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAuditQuote)).toHaveText(
+			'Get your custom audit quote'
+		);
 	}
 );
 

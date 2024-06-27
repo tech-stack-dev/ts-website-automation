@@ -17,7 +17,9 @@ test('Check the Info container from the "Front End Development" page @desktop @m
 	const info = driver.getByTestId(FrontEndDevelopment.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nFront-End Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Front-End Development\nServices');
-	await expect(info.getByTestId(MainSiteButtons.GetYourCustomFEDevelopmentQuote)).toHaveText('Get your custom FE development quote');
+	await expect(info.getByTestId(MainSiteButtons.GetYourCustomFeDevelopmentQuote)).toHaveText(
+		'Get your custom FE development quote'
+	);
 });
 
 test('Check the container titles and numbers from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {

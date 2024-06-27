@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(OurServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software Engineering Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText('Get your custom project quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 

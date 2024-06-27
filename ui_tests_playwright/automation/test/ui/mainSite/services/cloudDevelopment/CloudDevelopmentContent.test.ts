@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(CloudDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomCloudQuote)).toHaveText('Get your custom cloud quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomCloudQuote)).toHaveText(
+			'Get your custom cloud quote'
+		);
 	}
 );
 

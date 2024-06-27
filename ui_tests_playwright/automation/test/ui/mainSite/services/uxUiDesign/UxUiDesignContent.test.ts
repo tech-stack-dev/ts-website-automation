@@ -23,7 +23,9 @@ test(
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomDesignQuote)).toHaveText('Get your custom design quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomDesignQuote)).toHaveText(
+			'Get your custom design quote'
+		);
 	}
 );
 

@@ -24,7 +24,9 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'QA as a Service — Vetted Experts Available on Demand'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetYourPersonalizedQAQuote)).toHaveText('Get your personalized QA quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote)).toHaveText(
+			'Get your personalized QA quote'
+		);
 	}
 );
 
@@ -134,7 +136,7 @@ test('Check CTA button text from the "QA as a Service" page @desktop @mobile @Re
 
 test('Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603', async () => {
 	const ctaButtons = [
-		driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.GetYourPersonalizedQAQuote),
+		driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote),
 		driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote),
 	];

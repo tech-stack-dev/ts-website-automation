@@ -24,7 +24,9 @@ test(
 
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBEDevelopmentQuote)).toHaveText('Get your custom BE development quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBeDevelopmentQuote)).toHaveText(
+			'Get your custom BE development quote'
+		);
 	}
 );
 
