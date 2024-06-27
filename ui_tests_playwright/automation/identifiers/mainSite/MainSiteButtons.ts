@@ -9,7 +9,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
 	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
 	static GetYourCustomProjectQuote = 'Button-GetYourCustomProjectQuote';
-	static GetYourPersonalizedDXQuote = 'Button-GetYourPersonalizedDXQuote';
+	static GetYourPersonalizedDxQuote = 'Button-GetYourPersonalizedDxQuote';
 	static GetYourCustomCloudQuote = 'Button-GetYourCustomCloudQuote';
 	static GetYourCustomMobileDevQuote = 'Button-GetYourCustomMobileDevQuote';
 	static GetYourCustomFeDevelopmentQuote = 'Button-GetYourCustomFeDevelopmentQuote';

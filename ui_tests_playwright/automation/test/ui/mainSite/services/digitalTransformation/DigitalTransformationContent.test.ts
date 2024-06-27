@@ -22,7 +22,7 @@ test(
 		const info = driver.getByTestId(DigitalTransformation.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDigital Transformation');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Digital Transformation Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourPersonalizedDXQuote)).toHaveText(
+		await expect(info.getByTestId(MainSiteButtons.GetYourPersonalizedDxQuote)).toHaveText(
 			'Get your personalized DX quote'
 		);
 	}
