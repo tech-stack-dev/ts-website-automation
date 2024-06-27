@@ -24,7 +24,9 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'Software Development for the Renewable Energy Industry'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -92,8 +94,8 @@ test(
 		const testData = [
 			'Industry service companies',
 			'Renewable energy producers and distributors',
-			'EV charging\nproviders',
-			'Industrial\nmanufacturers',
+			'EV charging providers',
+			'Industrial manufacturers',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -111,12 +113,12 @@ test(
 		const testDataBlockTitles = [
 			'Domain-Specific Software for the Renewable Energy Industry',
 			'Energy Management Systems',
-			'Energy Infrastructure\nand Analysis',
+			'Energy Infrastructure and Analysis',
 		];
 		await expect(allBlockTitles).toHaveText(testDataBlockTitles);
 
 		const containerBlocks = await renewableEnergySoftDevServContainer.getByTestId(Container.ContainerBlock).all();
-		const testDataSectionTitles = ['Overview', 'Implementation\nin the real world'];
+		const testDataSectionTitles = ['Overview', 'Implementation in the real world'];
 
 		for (const block of containerBlocks) {
 			const sectionTitles = block.getByTestId(Container.SectionTitle);
@@ -161,8 +163,8 @@ test(
 
 		const testData = [
 			'Predictive analytics and big data',
-			'Artificial\nIntelligence',
-			'Cloud-based\nsolutions',
+			'Artificial Intelligence',
+			'Cloud-based solutions',
 			'Internet of Things',
 			'Digital Twins',
 			'Mobile Apps',
@@ -205,7 +207,7 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
+		const testData = ['Make contact', 'Speak with a tech expert', 'Making a proposal', 'Contract signing'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -233,9 +235,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

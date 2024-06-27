@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(BigDataAndAnalytics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBigDataQuote)).toHaveText(
+			'Get your custom Big Data quote'
+		);
 	}
 );
 
@@ -237,10 +239,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'UX/UI Design',
 			'AI & ML',
-			'Development\nconsulting',
+			'Development consulting',
 			'QA as a Service',
 			'Cloud & DevOps',
 			'Internet of Things',

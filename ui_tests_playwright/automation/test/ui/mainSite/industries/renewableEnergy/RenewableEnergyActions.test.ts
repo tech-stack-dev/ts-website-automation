@@ -106,7 +106,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
 			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.RequestAQuote),
 		];

@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(CustomDev.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -132,18 +134,18 @@ test(
 		await expect(sections).toHaveCount(numOfSections);
 
 		const expectedText: [string, string][] = [
-			['Mobile\nDevelopment', '01'],
-			['Back-End Development\nServices', '02'],
-			['Front-End Development\nServices', '03'],
-			['Cloud App\nDevelopment', '04'],
+			['Mobile Development', '01'],
+			['Back-End Development Services', '02'],
+			['Front-End Development Services', '03'],
+			['Cloud App Development', '04'],
 			['Big Data & Analytics', '05'],
 			['UX/UI Design', '06'],
 			['AI & ML', '07'],
-			['Internet\nof Things', '08'],
-			['Building Software Products\nfrom Scratch', '09'],
+			['Internet of Things', '08'],
+			['Building Software Products from Scratch', '09'],
 			['QA as a Service', '10'],
-			['Custom Software\nDevelopment Consulting', '11'],
-			['Digital\nTransformation', '12'],
+			['Custom Software Development Consulting', '11'],
+			['Digital Transformation', '12'],
 		];
 
 		for (let i = 0; i < numOfSections; i++) {
@@ -245,7 +247,7 @@ test(
 		await expect(sections).toHaveCount(numOfSections);
 
 		const sectionTitles = whyChooseTechstackContainer.getByTestId(Container.SectionTitle);
-		const expectedText = ['Tech community', 'Ownership over\nproducts', 'Proven expertise'];
+		const expectedText = ['Tech community', 'Ownership over products', 'Proven expertise'];
 
 		await expect(sectionTitles).toHaveText(expectedText);
 	}

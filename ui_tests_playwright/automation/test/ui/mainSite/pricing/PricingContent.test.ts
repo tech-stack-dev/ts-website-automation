@@ -111,7 +111,7 @@ test('Check section titles and numbers in "Why Partner with Us" container from t
 	await expect(sections).toHaveCount(numOfSections);
 
 	const expectedText: [string, string][] = [
-		['Experienced project\nmanagers', '01'],
+		['Experienced project managers', '01'],
 		['Middle and senior experts', '02'],
 		['Product-first approach', '03'],
 		['Expert technical support', '04'],

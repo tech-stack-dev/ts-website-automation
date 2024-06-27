@@ -168,7 +168,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.GetYourCustomMobileDevQuote),
 			driver.getByTestId(MobileDevService.WhatWeDo).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(MobileDevService.WhatIndustriesWeServe)

@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(OurServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software Engineering Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -79,7 +81,7 @@ test(
 			'Internet of Things',
 			'Back-End Development Services',
 			'Front-End Development Services',
-			'DevOps Services\n& Solutions',
+			'DevOps Services & Solutions',
 			'Artificial Intelligence & Machine Learning',
 			'Mobile Development',
 			'UI/UX Design',
@@ -145,7 +147,7 @@ test(
 		const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Domain\nproficiency', 'We are the team', 'Data-driven\ndecisions'];
+		const testData = ['Domain proficiency', 'We are the team', 'Data-driven decisions'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -221,7 +223,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
 			driver.getByTestId(OurServices.OurApproach).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 

@@ -199,7 +199,7 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.GetYourCustomDesignQuote),
 			driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];

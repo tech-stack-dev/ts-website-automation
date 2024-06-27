@@ -10,8 +10,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
-const requestAQuoteButtonText = 'Request a Quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
@@ -25,7 +23,9 @@ test(
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomDesignQuote)).toHaveText(
+			'Get your custom design quote'
+		);
 	}
 );
 
@@ -121,7 +121,7 @@ test(
 			'UX audit',
 			'Competitor analysis',
 			'User research',
-			'Product structure\nand strategy',
+			'Product structure and strategy',
 			'Wireframing',
 			'Prototyping',
 			'Usability testing',
@@ -272,7 +272,7 @@ test(
 		const testData = [
 			'Mobile Development',
 			'Consulting',
-			'Custom Software \nDevelopment',
+			'Custom Software Development',
 			'AI & ML',
 			'Big Data & Analytics',
 			'Internet of Things',
@@ -291,12 +291,12 @@ test(
 		const faqContainer = driver.getByTestId(UxUiDesign.Faq);
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'What is the first step when\nwe start working with a\nproduct?',
+			'What is the first step when we start working with a product?',
 			'Why do we need to research the market, users, and competitors?',
-			'Why are UX services\nimportant?',
+			'Why are UX services important?',
 			'How can UI services help your product?',
 			'How can a UI/UX design services company help with UX/UI development services?',
-			'What does your design-\ndevelopment collaboration\nlook like?',
+			'What does your design-development collaboration look like?',
 			'How quickly can you make UX/UI design for a product and/or onboard a design team?',
 			'What approach does the design team utilize?',
 		];
