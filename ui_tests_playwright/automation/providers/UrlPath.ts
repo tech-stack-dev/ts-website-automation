@@ -24,11 +24,13 @@ export default class UrlPath {
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
 	static Pricing = 'software-development-costs';
+	static Contacts = 'contacts';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
 	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
 
 	static ContactUs = 'contact-us';
+	static GetAQuote = 'free-proposal';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';

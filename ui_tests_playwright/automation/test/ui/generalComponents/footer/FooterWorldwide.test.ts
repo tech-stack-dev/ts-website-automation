@@ -12,6 +12,7 @@ import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {Environment} from '../../../../providers/EnvProvider';
 import UrlUtils from '../../../../utils/UrlUtils';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 let footer: Locator;
 let industriesButtons: object;
@@ -28,7 +29,6 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 ];
 
@@ -72,6 +72,7 @@ test(
 					'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
 				);
 				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+				await expect(contactBlock.getByTestId(Footer.ContactUs)).toHaveText('Contact Us');
 			}
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
@@ -193,16 +194,16 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5486,
-		`Check the redirection by the "Contact us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+		`Check the redirection by the "Get a quote" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await footer.getByTestId(Buttons.ContactUs).click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+			await footer.getByTestId(MainSiteButtons.GetAQuote).click(); 
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
 );

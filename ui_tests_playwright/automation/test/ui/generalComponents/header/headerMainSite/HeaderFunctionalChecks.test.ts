@@ -25,7 +25,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
+	UrlProvider.urlBuilder(UrlPath.Contacts),
 	UrlProvider.urlBuilder(UrlPath.Terms),
 ];
 
@@ -140,6 +140,21 @@ test(
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
+		}
+	}
+);
+
+test(
+	qase(
+		5583,
+		`Check the redirection to the "Get in Touch" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
+			await header.getByTestId(Header.Contacts).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}
 	}
 );
