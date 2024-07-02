@@ -147,7 +147,7 @@ test(
 test(
 	qase(
 		5583,
-		`Check the redirection to the "Get a quote" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
+		`Check the redirection to the "Сontact us" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
 	),
 	async () => {
 		for (const url of testDataProvider) {
