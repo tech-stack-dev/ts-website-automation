@@ -12,6 +12,7 @@ import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {Environment} from '../../../../providers/EnvProvider';
 import UrlUtils from '../../../../utils/UrlUtils';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 let footer: Locator;
 let industriesButtons: object;
@@ -201,7 +202,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await footer.getByTestId(Buttons.GetAQuote).click();
+			await footer.getByTestId(MainSiteButtons.GetAQuote).click(); 
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}

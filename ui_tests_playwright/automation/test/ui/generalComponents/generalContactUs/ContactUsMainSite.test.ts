@@ -1,7 +1,6 @@
 import {Locator} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Buttons from '../../../../identifiers/Buttons';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {serviceUrl, companyUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
@@ -11,6 +10,7 @@ import Header from '../../../../identifiers/mainSite/Header';
 import {locatorUtils} from '../../../../utils/LocatorUtils';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect, headerMenuSteps} from '../../../../fixtures/DesktopMobileSetup';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
 let getAQuoteButton: Locator;
@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 		desktopLocator: Header.Container_Header,
 		mobileLocator: Header.ContainerMenu,
 	});
-	getAQuoteButton = header.getByTestId(Buttons.GetAQuote).last();
+	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote).last(); 
 });
 
 const urlList: Array<string> = [
