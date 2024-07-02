@@ -147,14 +147,14 @@ test(
 test(
 	qase(
 		5583,
-		`Check the redirection to the "Сontact us" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
+		`Check the redirection to the "Get in Touch" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Contacts).click();
-			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Contacts]);
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 		}
 	}
 );
