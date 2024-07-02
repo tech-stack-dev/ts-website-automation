@@ -28,7 +28,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
+	UrlProvider.urlBuilder(UrlPath.Contacts),
 	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 ];
 
@@ -108,7 +108,7 @@ test(
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyText = ['About Us', 'How we work', 'Pricing', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
+			const companyText = ['About Us', 'How we work', 'Pricing', 'Contacts', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
 
 			for (let index = 0; index < companyUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(companyButtons)[index]);
@@ -196,13 +196,13 @@ test(
 test(
 	qase(
 		5486,
-		`Check the redirection by the "Contact us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+		`Check the redirection by the "Get a quote" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await footer.getByTestId(Buttons.ContactUs).click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+			await footer.getByTestId(Buttons.GetAQuote).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
 );

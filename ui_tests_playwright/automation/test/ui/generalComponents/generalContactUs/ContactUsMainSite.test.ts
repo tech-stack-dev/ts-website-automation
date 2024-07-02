@@ -13,7 +13,7 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect, headerMenuSteps} from '../../../../fixtures/DesktopMobileSetup';
 
 let header: Locator;
-let contactUsButton: Locator;
+let getAQuoteButton: Locator;
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 		desktopLocator: Header.Container_Header,
 		mobileLocator: Header.ContainerMenu,
 	});
-	contactUsButton = header.getByTestId(Buttons.ContactUs).last();
+	getAQuoteButton = header.getByTestId(Buttons.GetAQuote).last();
 });
 
 const urlList: Array<string> = [
@@ -39,11 +39,11 @@ const urlList: Array<string> = [
 ].concat(Object.values(industryUrl).concat(Object.values(serviceUrl)));
 
 test(
-	qase(5455, `Check "Contact Us" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	qase(5455, `Check "Get a quote" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
-			expect(await locatorUtils.checkBackgroundColor(contactUsButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+			expect(await locatorUtils.checkBackgroundColor(getAQuoteButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		}
 	}
 );
@@ -51,14 +51,14 @@ test(
 test(
 	qase(
 		5456,
-		`Check "Contact Us" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
+		`Check "Get a quote" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
 	),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
-			await contactUsButton.hover();
+			await getAQuoteButton.hover();
 			await driver.Page.waitForTimeout(1000); // Wait for changing the color
-			const actualColor = await contactUsButton.evaluate(async (el) => {
+			const actualColor = await getAQuoteButton.evaluate(async (el) => {
 				return getComputedStyle(el).backgroundColor;
 			});
 			expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
@@ -69,14 +69,14 @@ test(
 test(
 	qase(
 		5457,
-		`Check redirection by "Contact Us" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
+		`Check redirection by "Get a quote" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
 	),
 	async () => {
 		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
-			await contactUsButton.click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+			await getAQuoteButton.click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
 );

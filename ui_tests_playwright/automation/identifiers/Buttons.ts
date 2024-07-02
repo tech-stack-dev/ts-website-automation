@@ -1,6 +1,6 @@
 export default class Buttons {
 	static Logo = 'Logo-Techstack';
-	static ContactUs = 'Button-ContactUs';
+	static GetAQuote = 'Button-GetAQuote';
 	static Blog = 'Button-Blog';
 	static Close = 'Button-Close';
 	static BurgerMenuButton = 'Button-BurgerMenu';
@@ -31,6 +31,7 @@ export default class Buttons {
 		AboutUs: 'Company-AboutUs',
 		HowWeWork: 'Company-HowWeWork',
 		Pricing: 'Company-Pricing',
+		Contacts: 'Company-Contacts',
 		Career: 'Company-Career',
 		CaseStudies: 'Company-CaseStudies',
 		Blog: 'Company-Blog',

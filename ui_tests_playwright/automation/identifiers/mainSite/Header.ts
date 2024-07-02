@@ -7,6 +7,7 @@ export default class Header {
 	static Services = 'Header-Services';
 	static Company = 'Header-Company';
 	static Pricing = 'Header-Pricing';
+	static Contacts = 'Header-Contacts';
 
 	// Mobile
 	static ContainerMenu = 'Container-Menu';

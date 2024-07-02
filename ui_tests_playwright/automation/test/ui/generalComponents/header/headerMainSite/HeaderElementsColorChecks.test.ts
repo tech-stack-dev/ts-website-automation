@@ -18,6 +18,7 @@ let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
+let contactsButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -49,7 +50,8 @@ test.beforeEach(async () => {
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	companyDropdownButton = header.getByTestId(Header.Company);
 	pricingButton = header.getByTestId(Header.Pricing);
-	headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton];
+	contactsButton = header.getByTestId(Header.Contacts);
+	headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton, contactsButton];
 });
 
 test(
@@ -160,6 +162,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		}
 
 		await expect(pricingButton).toHaveText('Pricing');
+		await expect(contactsButton).toHaveText('Contacts');
 
 		const industriesButtons = Buttons.Industries;
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
@@ -207,6 +210,8 @@ test(`Check the header information from the "Header" container on all pages @des
 		}
 
 		await expect(pricingButton).toHaveText('Pricing');
+		await expect(contactsButton).toHaveText('Contacts');
+
 	}
 });
 
