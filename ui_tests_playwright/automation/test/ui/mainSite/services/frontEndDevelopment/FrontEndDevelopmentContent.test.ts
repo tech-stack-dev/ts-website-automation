@@ -17,7 +17,9 @@ test('Check the Info container from the "Front End Development" page @desktop @m
 	const info = driver.getByTestId(FrontEndDevelopment.Info);
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nFront-End Development');
 	await expect(info.getByTestId(Container.Title)).toHaveText('Front-End Development\nServices');
-	await expect(info.getByTestId(MainSiteButtons.GetYourCustomFEDevelopmentQuote)).toHaveText('Get your custom FE development quote');
+	await expect(info.getByTestId(MainSiteButtons.GetYourCustomFeDevelopmentQuote)).toHaveText(
+		'Get your custom FE development quote'
+	);
 });
 
 test('Check the container titles and numbers from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
@@ -39,17 +41,17 @@ test('Check the container titles and numbers from the "Front End Development" pa
 
 	const expectedData = [
 		['Team Expertise', '01'],
-		['Frontend Web\nDevelopment\nServices', '02'],
+		['Frontend Web Development Services', '02'],
 		['Technology stack', '03'],
-		['Front-End\nDevelopment\nServices Case Studies', '04'],
+		['Front-End Development Services Case Studies', '04'],
 		['Why Techstack', '05'],
-		['Our Front End\nDevelopment Experts', '06'],
+		['Our Front End Development Experts', '06'],
 		['Cooperation Models', '07'],
 		['How We Can Help', '08'],
-		['Front-End\nDevelopment Process', '09'],
+		['Front-End Development Process', '09'],
 		['Related Services', '10'],
 		['Get in Touch', '11'],
-		['Front-End\nDevelopment Articles', '12'],
+		['Front-End Development Articles', '12'],
 		['FAQ', '13'],
 	];
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -78,11 +80,11 @@ test('Check section numbers, titles and CTA button text in "Frontend Web Develop
 
 	const allSectionTitles = frontedWebDevelopment.getByTestId(Container.SectionTitle);
 	const testData = [
-		'Custom Web App\nDevelopment',
-		'Progressive Web App\nDevelopment',
-		'Single Page App\nDevelopment',
+		'Custom Web App Development',
+		'Progressive Web App Development',
+		'Single Page App Development',
 		'Mobile App Development',
-		'Design System Development\nand Implementation',
+		'Design System Development and Implementation',
 		'Performance Optimization',
 		'CMS Integration',
 	];
@@ -101,7 +103,7 @@ test('Check section titles in "Technology stack" container from the "Front End D
 		'Build Tools',
 		'Design',
 		'Rich Content',
-		'Web Optimization\n& Analytics',
+		'Web Optimization & Analytics',
 		'Content Management',
 	];
 
@@ -112,12 +114,12 @@ test('Check section titles, image and CTA in "Front-End Development Services Cas
 	const frontEndCaseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
 	const actualSectionTitles = frontEndCaseStudiesContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
-		'Comprehensive\nDesign System',
-		'Transition to\nStorybook',
-		'Automated\nUI Testing',
-		"Creation of the\n'QA Automation\nMiddleware' library",
-		'Seamless\nInternationalization',
-		'Reusable\nElements and\nPatterns',
+		'Comprehensive Design System',
+		'Transition to Storybook',
+		'Automated UI Testing',
+		"Creation of the 'QA Automation Middleware' library",
+		'Seamless Internationalization',
+		'Reusable Elements and Patterns',
 		'FE-BE Boilerplate',
 	];
 
@@ -133,14 +135,14 @@ test('Check section titles in "Why Techstack" container from the "Front End Deve
 	const whyTechstackContainer = driver.getByTestId(FrontEndDevelopment.WhyTechstack);
 	const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 	const expectSectionTitles = [
-		'Our approach\nto front-end\ndevelopment\nservices',
-		"Access our entire\ncompany's\nexpertise",
+		'Our approach to front-end development services',
+		"Access our entire company's expertise",
 		"Techstack's Guilds",
-		'Trainee Programs\n& Mentorship',
-		'Data-driven\ninnovation',
-		'9 years of\nexperience',
-		'5.0-Star Clutch\nRating',
-		'Handling up\nto 100 k elements',
+		'Trainee Programs & Mentorship',
+		'Data-driven innovation',
+		'9 years of experience',
+		'5.0-Star Clutch Rating',
+		'Handling up to 100 k elements',
 	];
 	await expect(actualSectionTitles).toHaveText(expectSectionTitles);
 });
@@ -195,11 +197,11 @@ test('Check section numbers and titles in "How We Can Help" container from the "
 		'CMS Integration',
 		'Performance',
 		'A/B testing',
-		'Creating standards in\nteam',
+		'Creating standards in team',
 		'Granular reload',
 		'Extensive analytics',
-		'Integration for verification\nof customers',
-		'Improvements for\ncustomer engagement',
+		'Integration for verification of customers',
+		'Improvements for customer engagement',
 	];
 
 	await expect(actualSectionTitles).toHaveText(expectedData);
@@ -218,9 +220,9 @@ test('Check carousel section numbers, titles and CTA in "Front-End Development P
 	await expect(carousel.getByTestId(Container.SectionTitle)).toHaveText([
 		'Discovery Phase',
 		'Pre-Engagement Phase',
-		'Engagement\nPhase',
-		'Delivery\nPhase',
-		'Release, maintenance\n& support',
+		'Engagement Phase',
+		'Delivery Phase',
+		'Release, maintenance & support',
 	]);
 
 	await expect(frontEndDevelopmentProcessContainer.getByTestId(MainSiteButtons.ReceiveAFreeQuote)).toHaveText(
@@ -237,7 +239,7 @@ test('Check section titles in "Related Services" container from the "Front End D
 		'Back-End Development',
 		'QA as a Service',
 		'Consulting Services',
-		'Custom Software\nDevelopment',
+		'Custom Software Development',
 		'Big Data & Analytics',
 		'Internet of Things',
 	];
@@ -250,14 +252,14 @@ test('Check section titles in "FAQ" container from the "Front End Development" p
 
 	const actualSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 	const expectData = [
-		'What is the advantage of\nProgressive Web App\nDevelopment?',
-		'How can Single Page App\nDevelopment enhance user\nexperience?',
-		'Do you offer Mobile App\nDevelopment for different\nplatforms?',
-		'How does Design System\nDevelopment and\nImplementation benefit my\ndigital assets?',
-		'What Sets Your Front End\nDevelopment Services\nApart?',
-		'How Do You Optimize\nWebsite Performance?',
-		'What are the main\ntechnologies used for Front\nEnd Development at\nTechstack?',
-		'What sets Techstack apart\nfrom other frontend\ndevelopment service\nproviders?',
+		'What is the advantage of Progressive Web App Development?',
+		'How can Single Page App Development enhance user experience?',
+		'Do you offer Mobile App Development for different platforms?',
+		'How does Design System Development and Implementation benefit my digital assets?',
+		'What Sets Your Front End Development Services Apart?',
+		'How Do You Optimize Website Performance?',
+		'What are the main technologies used for Front End Development at Techstack?',
+		'What sets Techstack apart from other frontend development service providers?',
 	];
 
 	await expect(actualSectionTitles).toHaveText(expectData);

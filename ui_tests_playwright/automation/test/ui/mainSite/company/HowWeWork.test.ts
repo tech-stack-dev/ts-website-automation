@@ -129,13 +129,13 @@ test(
 		const allSectionTitles = techstackStructure.getByTestId(Container.SectionTitle);
 
 		const testData = [
-			'Engineering \nfunction',
-			'Product \nfunction',
-			'Design \nfunction',
-			'HR \nfunction',
-			'AM \nfunction',
-			'Business \ndevelopment \nfunction',
-			'Legal \nfunction',
+			'Engineering function',
+			'Product function',
+			'Design function',
+			'HR function',
+			'AM function',
+			'Business development function',
+			'Legal function',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

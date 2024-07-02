@@ -27,12 +27,14 @@ test.skip(
 	async ({}, testInfo) => {
 		const info = driver.getByTestId(Healthcare.Info);
 		const breadcrumbsButton: Locator = info.getByTestId(Container.BreadcrumbsPrev);
-		const infoGetInTouchButton: Locator = info.getByTestId(MainSiteButtons.GetInTouch);
+		const infoGetYourCustomProjectQuoteButton: Locator = info.getByTestId(
+			MainSiteButtons.GetYourCustomProjectQuote
+		);
 
 		await googleAnalyticsSteps.checkGoogleAnalytics(breadcrumbsButton, 'HeatlhIndBreadHome', testInfo.title);
 		await baseDriverSteps.goToUrl(pageUrl);
 		await googleAnalyticsSteps.checkGoogleAnalytics(
-			infoGetInTouchButton,
+			infoGetYourCustomProjectQuoteButton,
 			'HealthIndMainRequestQuote',
 			testInfo.title
 		);

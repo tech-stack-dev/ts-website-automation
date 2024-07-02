@@ -23,7 +23,7 @@ test(
 		const info = driver.getByTestId(AiDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nAI');
 		await expect(info.getByTestId(Container.Title)).toHaveText('AI Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAIQuote)).toHaveText('Get your custom AI quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAiQuote)).toHaveText('Get your custom AI quote');
 	}
 );
 
@@ -90,7 +90,7 @@ test(
 		const ourAiMlDevelopmentServicesContainer = driver.getByTestId(AiDevelopment.OurAiDevelopmentServices);
 		const containerBlocks = ourAiMlDevelopmentServicesContainer.getByTestId(Container.ContainerBlock);
 		const allSectionTitlesFirstBlock = containerBlocks.nth(0).getByTestId(Container.SectionTitle);
-		const testData = ['Overview', 'Implementation\nin the real world'];
+		const testData = ['Overview', 'Implementation in the real world'];
 
 		await expect(containerBlocks.nth(0).getByTestId(Container.BlockTitle)).toHaveText('ML models');
 		await expect(allSectionTitlesFirstBlock).toHaveText(testData);
@@ -106,10 +106,10 @@ test(
 		await expect(allSectionTitlesThirdBlock).toHaveText(testData);
 
 		const allSectionTitlesFourthBlock = containerBlocks.nth(3).getByTestId(Container.SectionTitle);
-		const testDataFourthBlock = ['Overview', 'Directions', 'Implementation\nin the real world'];
+		const testDataFourthBlock = ['Overview', 'Directions', 'Implementation in the real world'];
 
 		await expect(containerBlocks.nth(3).getByTestId(Container.BlockTitle)).toHaveText(
-			'Natural language\nprocessing (NLP)'
+			'Natural language processing (NLP)'
 		);
 		await expect(allSectionTitlesFourthBlock).toHaveText(testDataFourthBlock);
 
@@ -119,7 +119,7 @@ test(
 		await expect(allSectionTitlesFifthBlock).toHaveText(testData);
 
 		const allSectionTitlesSixthBlock = containerBlocks.nth(5).getByTestId(Container.SectionTitle);
-		const testDataSixthBlock = ['Overview', 'Domains\nof application'];
+		const testDataSixthBlock = ['Overview', 'Domains of application'];
 
 		await expect(containerBlocks.nth(5).getByTestId(Container.BlockTitle)).toHaveText('Predictive analytics');
 		await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
@@ -152,7 +152,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Seamless integration into\nexisting software system', 'Security and data integrity'];
+		const testData = ['Seamless integration into existing software system', 'Security and data integrity'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -183,7 +183,7 @@ test(
 			'Manufacturing',
 			'Healthcare',
 			'Renewable energy',
-			'Transportation\nand logistics',
+			'Transportation and logistics',
 			'Digital transformation',
 		];
 
@@ -208,11 +208,11 @@ test(
 
 		const carouselSectionTitles = carouselSections.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Discovery\nand Research',
-			'Build\nPOC',
-			'Tuning and\nadjustments',
-			'Build\nProduct',
-			'Release\nand Maintanence',
+			'Discovery and Research',
+			'Build POC',
+			'Tuning and adjustments',
+			'Build Product',
+			'Release and Maintanence',
 		];
 
 		await expect(carouselSectionTitles).toHaveText(testData);
@@ -228,9 +228,9 @@ test(
 		const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Flexible AI\ndevelopment',
-			'Solutions for\nany environment',
-			'Balancing\ninnovation\nand practicality',
+			'Flexible AI development',
+			'Solutions for any environment',
+			'Balancing innovation and practicality',
 			'Tech community',
 		];
 
@@ -249,10 +249,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(AiDevelopment.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Big Data\n& Analytics',
-			'Custom software\ndevelopment',
+			'Big Data & Analytics',
+			'Custom software development',
 			'UX/UI Design',
-			'Development\nconsulting',
+			'Development consulting',
 			'Internet of Things',
 		];
 
@@ -269,8 +269,8 @@ test(
 		const faqContainer = driver.getByTestId(AiDevelopment.Faq);
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'What are the benefits of\nimplementing AI in my\nbusiness?',
-			'How long does it take to\ndevelop an AI solution?',
+			'What are the benefits of implementing AI in my business?',
+			'How long does it take to develop an AI solution?',
 			'How to choose an AI software development company?',
 			'What kind of data do I need to provide to get started with artificial intelligence app development services?',
 		];

@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(MobileDevService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nMobile App Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Mobile App Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomMobileDevQuote)).toHaveText('Get your custom mobile dev quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomMobileDevQuote)).toHaveText(
+			'Get your custom mobile dev quote'
+		);
 	}
 );
 
@@ -100,7 +102,7 @@ test(
 		const allSectionTitlesFirstBlock = containerBlocks.nth(0).getByTestId(Container.SectionTitle);
 		const testDataFirstBlock = [
 			'Custom business apps',
-			'Mobile platform with\npre-made modules',
+			'Mobile platform with pre-made modules',
 			'Industry-specific mobile apps',
 		];
 
@@ -148,7 +150,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['User experience', 'Moving to IaaS', 'Third-party\nservices'];
+		const testData = ['User experience', 'Moving to IaaS', 'Third-party services'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -163,20 +165,24 @@ test(
 test(
 	qase(
 		5294,
-		'Check section titles in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
+		'Check section titles and CTA button in "What Industries We Serve" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696'
 	),
 	async () => {
 		const WhatIndustriesWeServeContainer = driver.getByTestId(MobileDevService.WhatIndustriesWeServe);
 		const allSectionTitles = WhatIndustriesWeServeContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Healthcare',
-			'Transportation\nand logistics',
+			'Transportation and logistics',
 			'Energy',
-			'Leisure and\nentertainment',
+			'Leisure and entertainment',
 			'Agriculture',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(
+			WhatIndustriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)
+		).toHaveText('Get your industry-specific quote');
 	}
 );
 
@@ -188,7 +194,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(MobileDevService.OurApproach);
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Domain\nproficiency', 'Be a part\nof the team', 'Data-driven\ndecisions'];
+		const testData = ['Domain proficiency', 'Be a part of the team', 'Data-driven decisions'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -233,11 +239,11 @@ test(
 
 		const allMemberRoles = weNeverStopImprovingContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
-			'R&D Engineer, Software Engineering Lead,\nComes up with solutions for business tasks.',
-			'VP of Engineering,\nLeads the Tech Experts Program and team.',
-			'Head of Human Resources,\nFinds the best talent to fit the product’s culture.',
-			'Head of Account Management,\nEnsures smooth communication and results.',
-			'Sr. Director of Quality Engineering,\nLeads QA and implements a data-driven culture.',
+			'R&D Engineer, Software Engineering Lead, Comes up with solutions for business tasks.',
+			'VP of Engineering, Leads the Tech Experts Program and team.',
+			'Head of Human Resources, Finds the best talent to fit the product’s culture.',
+			'Head of Account Management, Ensures smooth communication and results.',
+			'Sr. Director of Quality Engineering, Leads QA and implements a data-driven culture.',
 		];
 
 		await expect(allMemberRoles).toHaveText(testDataRoles);
@@ -264,15 +270,15 @@ test(
 		const theCostOfMobAppDevContainer = driver.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment);
 		const allSectionTitles = theCostOfMobAppDevContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Mobile app development with\npre-made design concepts',
-			'Mobile app as a part\nof a complex software solution',
-			'Full-cycle mobile app\ndevelopment',
+			'Mobile app development with pre-made design concepts',
+			'Mobile app as a part of a complex software solution',
+			'Full-cycle mobile app development',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(theCostOfMobAppDevContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'Get a free estimate for your mobile\napp development'
+			'Get a free estimate for your mobile app development'
 		);
 
 		await expect(theCostOfMobAppDevContainer.getByTestId(MainSiteButtons.GetAFreeQuote)).toHaveText(
@@ -293,7 +299,7 @@ test(
 			'Design',
 			'QA as a Service',
 			'Consulting',
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'AI & ML',
 			'Big Data & Analytics',
 			'Internet of Things',
@@ -312,8 +318,8 @@ test(
 		const faqContainer = driver.getByTestId(MobileDevService.Faq);
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'What technology stack\nworks best for a mobile\napplication?',
-			'What does the UX building\nprocess look like?',
+			'What technology stack works best for a mobile application?',
+			'What does the UX building process look like?',
 			'Can you build or integrate AR/VR solutions?',
 			'Do your mobile app services include app maintenance and support after development?',
 		];

@@ -22,7 +22,9 @@ test(
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and Logistics Software Development');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(`Get your custom project quote`);
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			`Get your custom project quote`
+		);
 	}
 );
 
@@ -95,7 +97,7 @@ test(
 		const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Carriers and shippers',
-			'Delivery and courier\nservice companies',
+			'Delivery and courier service companies',
 			'Digital logistics providers',
 			'Retailers and eCommerce',
 			'Car rental companies',
@@ -216,7 +218,7 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
+		const testData = ['Make contact', 'Meet a tech specialist', 'Discuss the terms', 'Sign the contract'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -238,9 +240,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

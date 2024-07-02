@@ -172,7 +172,7 @@ test(
 	),
 	async () => {
 		const requestAQuoteButtons = [
-			driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.GetYourCustomIoTQuote),
+			driver.getByTestId(IoTEngineeringServices.Info).getByTestId(MainSiteButtons.GetYourCustomIotQuote),
 			driver
 				.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers)
 				.getByTestId(MainSiteButtons.RequestAQuote),

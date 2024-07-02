@@ -24,7 +24,9 @@ test(
 
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBEDevelopmentQuote)).toHaveText('Get your custom BE development quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBeDevelopmentQuote)).toHaveText(
+			'Get your custom BE development quote'
+		);
 	}
 );
 
@@ -82,7 +84,7 @@ test(
 	async () => {
 		const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
 		const allSectionTitles = techstackPowersContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Architect Tech Guild', 'Back-End Development as\nOur Core Expertise', 'Rising Tech Talent'];
+		const testData = ['Architect Tech Guild', 'Back-End Development as Our Core Expertise', 'Rising Tech Talent'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -108,13 +110,13 @@ test(
 
 		const allSectionTitles = expertServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Back-End\nDevelopment',
-			'Database Design\nand Optimization',
-			'Server Management\nand Deployment',
-			'Microservices\nArchitecture',
+			'Back-End Development',
+			'Database Design and Optimization',
+			'Server Management and Deployment',
+			'Microservices Architecture',
 			'Back-End Refactoring',
-			'Technical\nBack-End Audit',
-			'API Development\nand Integration',
+			'Technical Back-End Audit',
+			'API Development and Integration',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -137,10 +139,10 @@ test(
 
 		const allSectionTitles = expertServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Back-End Development\nfor Mobile Apps',
-			'Back-End Development\nfor Web Apps',
-			'Back-End Development\nfor IoT',
-			'Back-End Development\nfor AI/ ML',
+			'Back-End Development for Mobile Apps',
+			'Back-End Development for Web Apps',
+			'Back-End Development for IoT',
+			'Back-End Development for AI/ ML',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -156,17 +158,17 @@ test(
 		const techArsenalContainer = driver.getByTestId(BackEndServices.TechArsenal);
 		const allSectionTitles = techArsenalContainer.getByTestId(Container.SectionTitle);
 		const BackEndTabData = [
-			'Programming\nLanguages',
-			'Server-Side\nTechnologies',
-			'Database\nTechnologies',
+			'Programming Languages',
+			'Server-Side Technologies',
+			'Database Technologies',
 			'Messaging',
 			'API',
 			'Caching',
 			'Unit testing',
-			'Cloud Services\nand Deployment\nPlatforms',
-			'SDLC enabling\ntechnologies',
+			'Cloud Services and Deployment Platforms',
+			'SDLC enabling technologies',
 			'Servers',
-			'Scripting\nand Miscellaneous',
+			'Scripting and Miscellaneous',
 		];
 		await expect(allSectionTitles).toHaveText(BackEndTabData);
 	}
@@ -180,7 +182,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Complexity of\nData Management', 'Integration with\nExisting Systems'];
+		const testData = ['Complexity of Data Management', 'Integration with Existing Systems'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BackendCaseStudy)).toBeVisible();
@@ -309,10 +311,10 @@ test(
 			['04', 'Development'],
 			['05', 'API Development'],
 			['06', 'Security Implementation'],
-			['07', 'Testing and Quality\nAssurance'],
-			['08', 'Optimization and\nPerformance Tuning'],
+			['07', 'Testing and Quality Assurance'],
+			['08', 'Optimization and Performance Tuning'],
 			['09', 'Deployment'],
-			['10', 'Monitoring and\nMaintenance'],
+			['10', 'Monitoring and Maintenance'],
 			['11', 'Documentation'],
 			['12', 'Support and Scalability'],
 		]);
