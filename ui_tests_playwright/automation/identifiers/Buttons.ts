@@ -30,7 +30,6 @@ export default class Buttons {
 		AboutUs: 'Company-AboutUs',
 		HowWeWork: 'Company-HowWeWork',
 		Pricing: 'Company-Pricing',
-		Contacts: 'Company-Contacts',
 		Career: 'Company-Career',
 		CaseStudies: 'Company-CaseStudies',
 		Blog: 'Company-Blog',

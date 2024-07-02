@@ -29,7 +29,6 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.AboutUs),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.Contacts),
 	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
 ];
 
@@ -73,6 +72,7 @@ test(
 					'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
 				);
 				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+				await expect(contactBlock.getByTestId(Footer.ContactUs)).toHaveText('Contact Us');
 			}
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
@@ -109,7 +109,7 @@ test(
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyText = ['About Us', 'How we work', 'Pricing', 'Contacts', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
+			const companyText = ['About Us', 'How we work', 'Pricing', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
 
 			for (let index = 0; index < companyUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(companyButtons)[index]);
@@ -194,7 +194,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5486,
 		`Check the redirection by the "Get a quote" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`

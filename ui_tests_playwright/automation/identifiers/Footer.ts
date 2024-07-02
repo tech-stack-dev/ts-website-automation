@@ -17,4 +17,5 @@ export default class Footer {
 	static TermsOfUse = 'Button-TermsOfUses';
 	static CookiesPolicy = 'Button-CookiesPolicy';
 	static Sitemap = 'Button-Sitemap';
+	static ContactUs = 'Button-ContactUs';
 }
