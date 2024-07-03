@@ -202,7 +202,7 @@ test.skip(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await footer.getByTestId(MainSiteButtons.GetAQuote).click(); 
+			await footer.getByTestId(MainSiteButtons.GetAQuote).click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
