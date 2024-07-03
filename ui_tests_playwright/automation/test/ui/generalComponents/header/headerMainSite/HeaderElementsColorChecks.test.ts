@@ -51,7 +51,13 @@ test.beforeEach(async () => {
 	companyDropdownButton = header.getByTestId(Header.Company);
 	pricingButton = header.getByTestId(Header.Pricing);
 	contactsButton = header.getByTestId(Header.Contacts);
-	headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton, pricingButton, contactsButton];
+	headerButtonsList = [
+		industriesDropdownButton,
+		servicesDropdownButton,
+		companyDropdownButton,
+		pricingButton,
+		contactsButton,
+	];
 });
 
 test(
@@ -211,7 +217,6 @@ test(`Check the header information from the "Header" container on all pages @des
 
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
-
 	}
 });
 

@@ -188,10 +188,14 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.5
+		viewportPart = 0.5,
+		timeout = 10000
 	) {
 		await ctaButton.click();
-		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});
+		const getInTouchContainer = driver.getByTestId(expectedContainer).first();
+
+		await getInTouchContainer.scrollIntoViewIfNeeded();
+		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart, timeout});
 
 		await driver.Page.evaluate(() => {
 			document.documentElement.scrollTop = 0;

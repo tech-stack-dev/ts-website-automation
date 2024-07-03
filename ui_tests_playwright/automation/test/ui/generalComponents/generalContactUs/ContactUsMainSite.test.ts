@@ -22,7 +22,7 @@ test.beforeEach(async () => {
 		desktopLocator: Header.Container_Header,
 		mobileLocator: Header.ContainerMenu,
 	});
-	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote).last(); 
+	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote).last();
 });
 
 const urlList: Array<string> = [

@@ -62,7 +62,7 @@ test(
 			['Our DevOps experts', '08'],
 			['DevOps as a Service: Pipeline', '09'],
 			['Related Services', '10'],
-			['Get in Touch', '11'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];

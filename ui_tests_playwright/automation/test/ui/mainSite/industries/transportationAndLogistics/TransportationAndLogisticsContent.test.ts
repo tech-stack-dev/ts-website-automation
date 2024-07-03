@@ -44,6 +44,7 @@ test(
 			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
 			driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 			driver.getByTestId(TransportationAndLogistics.GetInTouch),
+			driver.getByTestId(TransportationAndLogistics.RelatedArticles),
 			driver.getByTestId(TransportationAndLogistics.Faq),
 		];
 
@@ -56,8 +57,9 @@ test(
 			['What Makes Us Different', '06'],
 			['Transportation and Logistics Software Development at Techstack', '07'],
 			['Development Workflow That We Follow', '08'],
-			['Get in Touch', '09'],
-			['FAQ', '10'],
+			['Request a Free No-obligation Quote', '09'],
+			['Related Articles', '10'],
+			['FAQ', '11'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
