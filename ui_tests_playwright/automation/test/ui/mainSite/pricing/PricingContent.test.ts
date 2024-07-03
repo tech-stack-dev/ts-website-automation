@@ -47,7 +47,7 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 		['Simplified Payment Process for Your Software Development Needs', '04'],
 		['Why Partner with Us', '05'],
 		['What Our Clients Say About Us', '06'],
-		['Get in Touch', '07'],
+		['Request a Free No-obligation Quote', '07'],
 		['FAQ', '08'],
 	];
 

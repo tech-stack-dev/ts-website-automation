@@ -56,7 +56,7 @@ test(
 			['The Way We work', '06'],
 			['Our Approach', '07'],
 			['Related Services', '08'],
-			['Get in Touch', '09'],
+			['Request a Free No-obligation Quote', '09'],
 			['Related Articles', '10'],
 			['FAQ', '11'],
 		];

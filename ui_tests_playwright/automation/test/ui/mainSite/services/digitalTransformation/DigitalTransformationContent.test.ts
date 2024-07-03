@@ -59,7 +59,7 @@ test(
 			['How Techstack Can Influence Your Digital Transformation', '07'],
 			['Digital Transformation Product Map', '08'],
 			['Technology Transformation Workflow', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];

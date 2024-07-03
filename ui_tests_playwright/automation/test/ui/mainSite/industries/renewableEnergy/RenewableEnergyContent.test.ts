@@ -59,7 +59,7 @@ test(
 			['Why Choose Us?', '07'],
 			['How We Operate at Techstack', '08'],
 			['Our Workflow', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];

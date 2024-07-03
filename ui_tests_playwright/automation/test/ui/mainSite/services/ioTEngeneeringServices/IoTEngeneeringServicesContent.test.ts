@@ -60,7 +60,7 @@ test(
 			['Our Approach to IoT Engineering', '07'],
 			['Our Internet of Things Engineering Experts', '08'],
 			['Related Services', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];

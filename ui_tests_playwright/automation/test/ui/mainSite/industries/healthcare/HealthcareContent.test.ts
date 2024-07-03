@@ -58,7 +58,7 @@ test(
 			['Our Workflow', '07'],
 			['Core Practices', '08'],
 			['Serving Partners Worldwide', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];

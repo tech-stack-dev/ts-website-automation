@@ -50,7 +50,7 @@ test('Check the container titles and numbers from the "Front End Development" pa
 		['How We Can Help', '08'],
 		['Front-End Development Process', '09'],
 		['Related Services', '10'],
-		['Get in Touch', '11'],
+		['Request a Free No-obligation Quote', '11'],
 		['Front-End Development Articles', '12'],
 		['FAQ', '13'],
 	];

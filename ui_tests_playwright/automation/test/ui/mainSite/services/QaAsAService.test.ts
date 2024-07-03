@@ -55,7 +55,7 @@ test(
 			['Case studies: QA as a Service', '04'],
 			['Services that meet you where you are', '05'],
 			['Our Approach and Achievements', '06'],
-			['Get in Touch', '07'],
+			['Request a Free No-obligation Quote', '07'],
 			['Related Articles', '08'],
 			['FAQ', '09'],
 		];
