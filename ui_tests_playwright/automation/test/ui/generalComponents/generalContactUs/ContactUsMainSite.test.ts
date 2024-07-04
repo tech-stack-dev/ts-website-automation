@@ -66,7 +66,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5457,
 		`Check redirection by "Get a quote" button on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
