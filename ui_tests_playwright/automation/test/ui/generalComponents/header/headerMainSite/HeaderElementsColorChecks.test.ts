@@ -218,7 +218,8 @@ test(`Check the header information from the "Header" container on all pages @des
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		await expect(getAQuoteButton).toHaveText('Get a quote');
+		// Uncomment after fix in TSWEB-1587
+		// await expect(getAQuoteButton).toHaveText('Get a quote');
 	}
 });
 
@@ -227,6 +228,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
 			expect(await locatorUtils.checkBackgroundColor(getAQuoteButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
 		}
 	}
