@@ -1,34 +1,40 @@
 export default class Buttons {
 	static Logo = 'Logo-Techstack';
-	static ContactUs = 'Button-ContactUs';
 	static Blog = 'Button-Blog';
 	static Close = 'Button-Close';
+	static BurgerMenuButton = 'Button-BurgerMenu';
 
 	// Pages list
-	static Industries_Healthcare = 'Industries-Healthcare';
-	static Industries_TransportationAndLogistics = 'Industries-TransportationAndLogistics';
-	static Industries_RenewableEnergy = 'Industries-RenewableEnergy';
-
-	static Services_OurServices = 'Services-OurServices';
-	static Services_CustomDev = 'Services-CustomDev';
-	static Services_DigitalTransform = 'Services-DigitalTransformation';
-	static Services_CloudDev = 'Services-CloudDev';
-	static Services_MobileDev = 'Services-MobileDev';
-	static Services_BigData = 'Services-BigData';
-	static Services_InternetOfThings = 'Services-InternetOfThings';
-	static Services_DevOps = 'Services-DevOps';
-	static Services_AiDevelopment = 'Services-AIML';
-	static Services_UiUxDesign = 'Services-UiUxDesign';
-	static Services_QaAsAServ = 'Services-QaAsAServ';
-	static Services_ConsultingServ = 'Services-ConsultingServ';
-
-	static Company_AboutUs = 'Company-AboutUs';
-	static Company_HowWeWork = 'Company-HowWeWork';
-	static Company_Pricing = 'Company-Pricing';
-	static Company_Career = 'Company-Career';
-	static Company_CaseStudies = 'Company-CaseStudies';
-	static Company_Blog = 'Company-Blog';
-	static Company_Whitepapers = 'Company-Whitepapers';
+	static Industries = {
+		Healthcare: 'Industries-Healthcare',
+		TransportationAndLogistics: 'Industries-TransportationAndLogistics',
+		RenewableEnergy: 'Industries-RenewableEnergy',
+	};
+	static Services = {
+		OurServices: 'Services-OurServices',
+		CustomDev: 'Services-CustomDev',
+		DigitalTransform: 'Services-DigitalTransformation',
+		CloudDev: 'Services-CloudDev',
+		MobileDev: 'Services-MobileDev',
+		FrontEnd: 'Services-FrontEnd',
+		BackEnd: 'Services-BackEnd',
+		BigData: 'Services-BigData',
+		InternetOfThings: 'Services-InternetOfThings',
+		DevOps: 'Services-DevOps',
+		AiDevelopment: 'Services-AIML',
+		UiUxDesign: 'Services-UiUxDesign',
+		QaAsAServ: 'Services-QaAsAServ',
+		ConsultingServ: 'Services-ConsultingServ',
+	};
+	static Company = {
+		AboutUs: 'Company-AboutUs',
+		HowWeWork: 'Company-HowWeWork',
+		Pricing: 'Company-Pricing',
+		Career: 'Company-Career',
+		CaseStudies: 'Company-CaseStudies',
+		Blog: 'Company-Blog',
+		Whitepapers: 'Company-Whitepapers',
+	};
 
 	// Career pages list
 	static Company_TechstackWorldwide = 'Company-TechstackWorldwide';

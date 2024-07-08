@@ -23,9 +23,11 @@ test(
 		const info = driver.getByTestId(RenewableEnergy.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nRenewable Energy');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Software Development\nfor the Renewable\nEnergy Industry'
+			'Software Development for the Renewable Energy Industry'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -45,6 +47,7 @@ test(
 			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack),
 			driver.getByTestId(RenewableEnergy.OurWorkflow),
 			driver.getByTestId(RenewableEnergy.GetInTouch),
+			driver.getByTestId(RenewableEnergy.RelatedArticles),
 			driver.getByTestId(RenewableEnergy.Faq),
 		];
 
@@ -57,8 +60,9 @@ test(
 			['Why Choose Us?', '07'],
 			['How We Operate at Techstack', '08'],
 			['Our Workflow', '09'],
-			['Get in Touch', '10'],
-			['FAQ', '11'],
+			['Request a Free No-obligation Quote', '10'],
+			['Related Articles', '11'],
+			['FAQ', '12'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -93,8 +97,8 @@ test(
 		const testData = [
 			'Industry service companies',
 			'Renewable energy producers and distributors',
-			'EV charging\nproviders',
-			'Industrial\nmanufacturers',
+			'EV charging providers',
+			'Industrial manufacturers',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -112,20 +116,20 @@ test(
 		const testDataBlockTitles = [
 			'Domain-Specific Software for the Renewable Energy Industry',
 			'Energy Management Systems',
-			'Energy Infrastructure\nand Analysis',
+			'Energy Infrastructure and Analysis',
 		];
 		await expect(allBlockTitles).toHaveText(testDataBlockTitles);
 
 		const containerBlocks = await renewableEnergySoftDevServContainer.getByTestId(Container.ContainerBlock).all();
-		const testDataSectionTitles = ['Overview', 'Implementation\nin the real world'];
+		const testDataSectionTitles = ['Overview', 'Implementation in the real world'];
 
 		for (const block of containerBlocks) {
 			const sectionTitles = block.getByTestId(Container.SectionTitle);
 			await expect(sectionTitles).toHaveText(testDataSectionTitles);
 		}
 
-		await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.BookAMeeting)).toHaveText(
-			'Book a Meeting'
+		await expect(renewableEnergySoftDevServContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -145,8 +149,8 @@ test(
 		await expect(blockTitle).toHaveText('Solar energy data portal scheme');
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt)).toHaveText(
-			'Check out how\nwe built it'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -162,8 +166,8 @@ test(
 
 		const testData = [
 			'Predictive analytics and big data',
-			'Artificial\nIntelligence',
-			'Cloud-based\nsolutions',
+			'Artificial Intelligence',
+			'Cloud-based solutions',
 			'Internet of Things',
 			'Digital Twins',
 			'Mobile Apps',
@@ -206,11 +210,11 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Speak with\na tech expert', 'Making\na proposal', 'Contract\nsigning'];
+		const testData = ['Make contact', 'Speak with a tech expert', 'Making a proposal', 'Contract signing'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.TalkToAnExpert)).toHaveText('Talk to an Expert');
+		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
@@ -234,9 +238,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

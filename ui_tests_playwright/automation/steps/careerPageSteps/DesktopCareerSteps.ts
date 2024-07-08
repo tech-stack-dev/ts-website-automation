@@ -12,11 +12,6 @@ class DesktopCareerSteps extends CareerSteps {
 		return Promise.resolve();
 	}
 
-	async clickOnBurgerMenu(): Promise<void> {
-		console.log('This step is skipped for desktop');
-		return Promise.resolve();
-	}
-
 	async switchLanguage(language: string): Promise<void> {
 		let switcher;
 		const parentIdentifier = (await driver.getByTestId(ContainersCareer.NavigationHeaderClass).isVisible())

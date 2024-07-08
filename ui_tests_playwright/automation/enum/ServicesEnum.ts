@@ -4,6 +4,8 @@ export enum ServicesEnum {
 	DigitalTransform,
 	CloudDev,
 	MobileDev,
+	FrontEndDevelopment,
+	BackEndDevelopment,
 	BigData,
 	InternetOfThings,
 	DevOpsAsAServ,
@@ -11,6 +13,4 @@ export enum ServicesEnum {
 	UiUxDesign,
 	QaAsAServ,
 	ConsultingServ,
-	BackEndDevelopment,
-	FrontEndDevelopment,
 }

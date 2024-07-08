@@ -10,8 +10,6 @@ import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
-const requestAQuotebuttonText = 'Request a quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
 });
@@ -24,8 +22,10 @@ test(
 	async () => {
 		const info = driver.getByTestId(ConsultingService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuotebuttonText);
+		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAuditQuote)).toHaveText(
+			'Get your custom audit quote'
+		);
 	}
 );
 
@@ -52,17 +52,17 @@ test(
 		];
 
 		const expectedData = [
-			['Information Technology\nConsulting Services', '01'],
+			['Information Technology Consulting Services', '01'],
 			['Consulting Benefits', '02'],
-			['Our IT Consulting\nServices', '03'],
+			['Our IT Consulting Services', '03'],
 			['Featured Case Study', '04'],
-			['Industries We Provide\nConsultancy To', '05'],
+			['Industries We Provide Consultancy To', '05'],
 			['Consulting Process', '06'],
 			['Consulting Experts', '07'],
 			['Our Approach', '08'],
-			['Make an Impact\nWith Us', '09'],
-			['Related \nServices', '10'],
-			['Get in Touch', '11'],
+			['Make an Impact With Us', '09'],
+			['Related Services', '10'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];
@@ -133,11 +133,11 @@ test(
 		const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
 		const allSectionTitles = developmentProcessAuditContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Project management\nprocess',
-			'Development\nprocess',
-			'Release process /\nIntegration layer',
-			'QA\nprocess',
-			'Business analytics\nprocess',
+			'Project management process',
+			'Development process',
+			'Release process / Integration layer',
+			'QA process',
+			'Business analytics process',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -147,7 +147,7 @@ test(
 test(
 	qase(
 		5197,
-		'Check section titles in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
+		'Check section titles and CTA button in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
@@ -163,6 +163,10 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(softwareAuditContainer.getByTestId(MainSiteButtons.GetAFreeQquoteToday)).toHaveText(
+			'Get a free quote today'
+		);
 	}
 );
 
@@ -174,13 +178,15 @@ test(
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 		const allSectionTitles = featuredCaseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Outdated Tech\nStack', 'Black Boxes in\nSystem Code'];
+		const testData = ['Outdated Tech Stack', 'Black Boxes in System Code'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(featuredCaseStudyContainer.getByTestId(MainSiteImages.FeaturedCaseStudy)).toBeVisible();
 
-		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore)).toHaveText('Learn more');
+		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 
@@ -211,7 +217,9 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
+		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -237,10 +245,6 @@ test(
 		const testData = ['Discovery', 'Analysis', 'Brainstorming', 'Presentation', 'Implementation', 'Touch base'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-
-		await expect(consultingProcessContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuotebuttonText
-		);
 	}
 );
 
@@ -275,8 +279,8 @@ test(
 
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.ScheduleACall)).toHaveText(
-			'Schedule a call'
+		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
@@ -289,7 +293,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Open Source\nContributions', 'Global\nCertifications', 'Profound\nExperience'];
+		const testData = ['Open Source Contributions', 'Global Certifications', 'Profound Experience'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -306,7 +310,7 @@ test(
 	async () => {
 		const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
 		const allSectionTitles = makeAnImpactContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
+		const testData = ['Retain clients', 'Improve performance', 'Aim for quality'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -323,8 +327,8 @@ test(
 		const testData = [
 			'UX/UI Design',
 			'AI',
-			'Custom software \ndevelopment',
-			'Mobile \ndevelopment',
+			'Custom software development',
+			'Mobile development',
 			'QA as a Service',
 			'Big Data & Analytics',
 			'Internet of Things',

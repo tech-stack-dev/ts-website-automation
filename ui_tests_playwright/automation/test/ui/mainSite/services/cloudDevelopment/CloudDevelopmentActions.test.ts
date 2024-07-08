@@ -27,7 +27,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.CloudPlatformForEvCharging}`,
@@ -69,7 +70,7 @@ test(
 	async () => {
 		const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -164,13 +165,14 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.GetYourCustomCloudQuote),
+			driver
+				.getByTestId(CloudDevelopment.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver
 				.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
-				.getByTestId(MainSiteButtons.RequestMoreInformation),
-			driver
-				.getByTestId(CloudDevelopment.OurLeadingCloudExperts)
-				.getByTestId(MainSiteButtons.ScheduleAConsultation),
+				.getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {

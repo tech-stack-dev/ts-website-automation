@@ -8,8 +8,6 @@ import Links from '../../preconditionsData/links/Links';
 export abstract class CareerSteps {
 	abstract clickOnFilter(): Promise<void>;
 
-	abstract clickOnBurgerMenu(): Promise<void>;
-
 	abstract switchLanguage(language: string): Promise<void>;
 
 	public async verifyThatCareerWasCreated(careerName: string, searchString: string = careerName) {

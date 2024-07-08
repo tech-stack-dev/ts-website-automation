@@ -28,7 +28,7 @@ test(
 	async () => {
 		const techstackStrengthContainer = driver.getByTestId(CustomDev.TechstacksStrengthsInCustomSoftDev);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			techstackStrengthContainer.getByTestId(MainSiteLinks.Clutch),
 			Links.ClutchReviews
 		);
@@ -75,7 +75,8 @@ test(
 	async () => {
 		const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
 
-		await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore).click();
+		await ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.OneStopCrossPlatform}`,
@@ -124,7 +125,7 @@ test(
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -215,16 +216,17 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(CustomDev.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CustomDev.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
-				.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide)
-				.getByTestId(MainSiteButtons.SendUsYourQueries),
-			driver
-				.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts)
-				.getByTestId(MainSiteButtons.ContactOurExperts),
+				.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver
 				.getByTestId(CustomDev.OurTailoredCollaborationAndPricingModels)
-				.getByTestId(MainSiteButtons.ClaimYourCustomQuote),
+				.getByTestId(MainSiteButtons.GetYourCustomQuote),
+			driver
+				.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 		];
 
 		for (const button of ctaButtons) {

@@ -7,7 +7,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import TransportationAndLogistics from '../../../../../identifiers/mainSite/pages/industries/TransportationAndLogistics';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -22,10 +21,10 @@ test(
 	async () => {
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
-		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Transportation and\nLogistics Software\nDevelopment'
+		await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and Logistics Software Development');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			`Get your custom project quote`
 		);
-		await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toHaveText(`Let's discuss`);
 	}
 );
 
@@ -45,20 +44,22 @@ test(
 			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
 			driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 			driver.getByTestId(TransportationAndLogistics.GetInTouch),
+			driver.getByTestId(TransportationAndLogistics.RelatedArticles),
 			driver.getByTestId(TransportationAndLogistics.Faq),
 		];
 
 		const expectedData = [
 			['Techstack in Numbers', '01'],
 			['Who We Serve', '02'],
-			['Transportation and Logistics\nSoftware Development\nServices at Techstack', '03'],
+			['Transportation and Logistics Software Development Services at Techstack', '03'],
 			['Case Study by Techstack', '04'],
-			['Our Expertise in Logistics\nSoftware Development\nSolutions', '05'],
-			['What Makes Us\nDifferent', '06'],
-			['Transportation and Logistics\nSoftware Development at\nTechstack', '07'],
-			['Development\nWorkflow That We\nFollow', '08'],
-			['Get in Touch', '09'],
-			['FAQ', '10'],
+			['Our Expertise in Logistics Software Development Solutions', '05'],
+			['What Makes Us Different', '06'],
+			['Transportation and Logistics Software Development at Techstack', '07'],
+			['Development Workflow That We Follow', '08'],
+			['Request a Free No-obligation Quote', '09'],
+			['Related Articles', '10'],
+			['FAQ', '11'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -82,7 +83,7 @@ test(
 test(
 	qase(
 		5344,
-		'Check section titles and numbers in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers, and CTA button in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whoWeServeContainer = driver.getByTestId(TransportationAndLogistics.WhoWeServe);
@@ -98,7 +99,7 @@ test(
 		const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Carriers and shippers',
-			'Delivery and courier\nservice companies',
+			'Delivery and courier service companies',
 			'Digital logistics providers',
 			'Retailers and eCommerce',
 			'Car rental companies',
@@ -106,6 +107,8 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(whoWeServeContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
@@ -152,8 +155,8 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
-		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -217,11 +220,13 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
+		const testData = ['Make contact', 'Meet a tech specialist', 'Discuss the terms', 'Sign the contract'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(transportationAndLogisticsContainer.getByTestId(Buttons.ContactUs)).toHaveText('Contact Us');
+		await expect(transportationAndLogisticsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
@@ -237,9 +242,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);

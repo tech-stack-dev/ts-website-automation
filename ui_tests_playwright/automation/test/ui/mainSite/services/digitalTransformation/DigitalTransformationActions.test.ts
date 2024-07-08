@@ -24,13 +24,13 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(DigitalTransformation.Info).getByTestId(MainSiteButtons.GetYourPersonalizedDxQuote),
 			driver
 				.getByTestId(DigitalTransformation.DigitalBusinessTransformation)
-				.getByTestId(MainSiteButtons.GetAConsultation),
+				.getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
-				.getByTestId(DigitalTransformation.HowTechstackInfluence)
-				.getByTestId(MainSiteButtons.ScheduleAConsultation),
+				.getByTestId(DigitalTransformation.DigitalTransformationStrategy)
+				.getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {
@@ -66,12 +66,13 @@ test(
 test(
 	qase(
 		5368,
-		'Check redirect by CTA button in "Success Stories" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirect by CTA button in "Success Stories as a Digital Transformation Service Provider" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
+		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.TrackingAndAggregation}`,
@@ -117,7 +118,7 @@ test(
 		const digitalStrategyContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
 		const clutchReviewButton = digitalStrategyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.MarkBeare);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.MarkBeare);
 	}
 );
 

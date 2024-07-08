@@ -29,7 +29,7 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			successStoriesContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -44,7 +44,8 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies).click();
+		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.RedesignPatientDataSystem}`,
@@ -198,9 +199,9 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(UxUiDesign.OurUiUxServices).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(UxUiDesign.Info).getByTestId(MainSiteButtons.GetYourCustomDesignQuote),
+			driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct).getByTestId(MainSiteButtons.GetYourQuoteNow),
 		];
 
 		for (const button of ctaButtons) {

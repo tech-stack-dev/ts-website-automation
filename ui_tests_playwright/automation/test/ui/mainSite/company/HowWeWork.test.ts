@@ -22,9 +22,9 @@ test(
 		const info = driver.getByTestId(HowWeWork.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home \nHow we work');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'The Way We Work: Our\nApproach to Delivering\nResults'
+			'The Way We Work: Our Approach to Delivering Results'
 		);
-		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in touch');
 	}
 );
 
@@ -44,11 +44,11 @@ test(
 		];
 
 		const expectedData = [
-			['Cooperation \nmodels', '01'],
+			['Cooperation models', '01'],
 			['Work process', '02'],
 			['Technology stack', '03'],
 			['Techstack structure', '04'],
-			['Tools we use\nto organize\nthe workflow', '05'],
+			['Tools we use to organize the workflow', '05'],
 			['Get in Touch', '06'],
 		];
 
@@ -129,13 +129,13 @@ test(
 		const allSectionTitles = techstackStructure.getByTestId(Container.SectionTitle);
 
 		const testData = [
-			'Engineering \nfunction',
-			'Product \nfunction',
-			'Design \nfunction',
-			'HR \nfunction',
-			'AM \nfunction',
-			'Business \ndevelopment \nfunction',
-			'Legal \nfunction',
+			'Engineering function',
+			'Product function',
+			'Design function',
+			'HR function',
+			'AM function',
+			'Business development function',
+			'Legal function',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -181,7 +181,10 @@ test(
 );
 
 test(
-	qase(4952, 'Check the elements in "Get in Touch" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'),
+	qase(
+		4952,
+		'Check the elements in "Get in Touch" container from the "How we work" page @desktop @mobile @Regression @HowWeWork'
+	),
 	async () => {
 		const getInTouchContainer = driver.getByTestId(HowWeWork.GetInTouch);
 
@@ -200,7 +203,7 @@ test(
 		'Check navigation to "Get in Touch" container after clicking CTA button from the "How we work" page @desktop @mobile @Regression @HowWeWork'
 	),
 	async () => {
-		const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+		const ctaButton = driver.getByTestId(HowWeWork.Info).getByTestId(MainSiteButtons.GetInTouch);
 
 		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, HowWeWork.GetInTouch);
 	}

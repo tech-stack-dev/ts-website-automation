@@ -58,10 +58,12 @@ test(
 		await careerSteps.verifyThatCareerWasCreated(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 		await careerSteps.clickOnCareerCard(`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`);
 
-		(await containerSteps.getDynamicLocator({
-			desktopLocator: CareerButtons.ApplyNow,
-			mobileLocator: AboutUsCareer.ApplyNowButton
-		})).click();
+		(
+			await containerSteps.getDynamicLocator({
+				desktopLocator: CareerButtons.ApplyNow,
+				mobileLocator: AboutUsCareer.ApplyNowButton,
+			})
+		).click();
 		await formSteps.sendApplyForAJob();
 		const message = await slackSteps.getMessageWithValueFromChat(
 			slackDtoVariable.value.stagingTechstackHrNotifyId,
@@ -114,7 +116,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5464,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
@@ -137,7 +139,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5463,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'

@@ -23,8 +23,10 @@ test(
 	async () => {
 		const info = driver.getByTestId(OurServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software Engineering Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -49,7 +51,7 @@ test(
 			['Our approach', '03'],
 			['Reviews', '04'],
 			['FAQ', '05'],
-			['Get in Touch', '06'],
+			['Request a Free No-obligation Quote', '06'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -79,7 +81,7 @@ test(
 			'Internet of Things',
 			'Back-End Development Services',
 			'Front-End Development Services',
-			'DevOps Services\n& Solutions',
+			'DevOps Services & Solutions',
 			'Artificial Intelligence & Machine Learning',
 			'Mobile Development',
 			'UI/UX Design',
@@ -145,16 +147,13 @@ test(
 		const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Domain\nproficiency', 'We are the team', 'Data-driven\ndecisions'];
+		const testData = ['Domain proficiency', 'We are the team', 'Data-driven decisions'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		const aboutUsButton = ourApproachContainer.getByTestId(MainSiteButtons.AboutUs);
-
-		await expect(aboutUsButton).toHaveText('About us');
-
-		await aboutUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
+		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
@@ -174,7 +173,7 @@ test(
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -223,9 +222,14 @@ test(
 		'Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
-		const requestAQuoteButton = driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote);
+		const ctaButtons = [
+			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(OurServices.OurApproach).getByTestId(MainSiteButtons.GetYourQuoteNow),
+		];
 
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(requestAQuoteButton, OurServices.GetInTouch);
+		for (const button of ctaButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, OurServices.GetInTouch);
+		}
 	}
 );
 

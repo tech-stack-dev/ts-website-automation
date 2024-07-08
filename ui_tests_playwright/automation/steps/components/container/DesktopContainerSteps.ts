@@ -11,7 +11,7 @@ class DesktopContainerSteps extends ContainerSteps {
 
 	async getDynamicLocator(identifier: IContainerOptions): Promise<Locator> {
 		return driver.getByTestId(identifier.desktopLocator);
-	};
+	}
 }
 const desktopContainerSteps = new DesktopContainerSteps();
 

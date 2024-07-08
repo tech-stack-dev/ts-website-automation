@@ -41,7 +41,7 @@ test(
 		];
 
 		const expectedData = [
-			['Glossary - Basic\nconcepts', '01'],
+			['Glossary - Basic concepts', '01'],
 			['Whose personal data do we collect?', '02'],
 			['When may we process your personal data?', '03'],
 			['What personal data do we collect and what is the purpose and legal basis of such activities?', '04'],

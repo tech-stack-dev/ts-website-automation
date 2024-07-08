@@ -26,9 +26,12 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(DevOpsAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices).getByTestId(MainSiteButtons.GetAConsultation),
-			driver.getByTestId(DevOpsAsAService.OurExperts).getByTestId(MainSiteButtons.RequestAConsultation),
+			driver.getByTestId(DevOpsAsAService.Info).getByTestId(MainSiteButtons.GetYouCustomDevOpsQuote),
+			driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(DevOpsAsAService.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(DevOpsAsAService.OurExperts).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {
@@ -45,7 +48,7 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			successStoriesContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -60,7 +63,8 @@ test(
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.IntegrationManyMonolithSystems}`,
@@ -106,7 +110,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(DevOpsAsAService.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);

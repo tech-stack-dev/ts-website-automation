@@ -10,6 +10,8 @@ export default class UrlPath {
 	static DigitalTransform = 'services/digital-transformation-services';
 	static CloudDevelopment = 'services/cloud-application-development';
 	static MobileDev = 'services/mobile-app-development';
+	static FrontEndDevelopment = 'services/front-end-development-services';
+	static BackEndDevelopment = 'services/backend-development-services';
 	static BigData = 'services/big-data-and-analytics';
 	static InternetOfThings = 'services/internet-of-things';
 	static DevOpsServ = 'services/devops';
@@ -18,19 +20,17 @@ export default class UrlPath {
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';
 
-	// Services pages that not present in menu and footer lists
-	static BackEndDevelopment = 'services/backend-development-services';
-	static FrontEndDevelopment = 'services/front-end-development-services';
-
 	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
 	static Pricing = 'software-development-costs';
+	static Contacts = 'contacts';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
 	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
 
 	static ContactUs = 'contact-us';
+	static GetAQuote = 'free-proposal';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';

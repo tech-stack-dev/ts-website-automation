@@ -27,7 +27,8 @@ test(
 	async () => {
 		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
 
-		await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution).click();
+		await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.VideoBasedQualityControl}`,
@@ -76,7 +77,7 @@ test(
 			BigDataAndAnalytics.WhyChooseTechstackBigDataServices
 		);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			whyChooseTechstackBigDataContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -173,10 +174,14 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(BigDataAndAnalytics.Info).getByTestId(MainSiteButtons.GetYourCustomBigDataQuote),
 			driver
 				.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack)
-				.getByTestId(MainSiteButtons.GetAConsultation),
+				.getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(BigDataAndAnalytics.OurExperts).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

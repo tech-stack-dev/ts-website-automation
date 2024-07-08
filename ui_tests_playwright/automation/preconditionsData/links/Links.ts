@@ -15,7 +15,4 @@ export default class Links {
 	static TikTokDesign = 'https://www.tiktok.com/@techstack.design';
 
 	static Nuget = 'https://www.nuget.org/profiles/VitaliiDolotov';
-
-	// Webflow landing links
-	static IotForEnergy = 'https://iot-for-energy.tech-stack.com/';
 }

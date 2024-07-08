@@ -52,7 +52,7 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -67,7 +67,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.IncorporatingAimlIntoFlow}`,
@@ -130,7 +131,7 @@ test(
 	async () => {
 		const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.DarrenCody
 		);
@@ -179,9 +180,12 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(AiDevelopment.IndustriesWeServe).getByTestId(MainSiteButtons.LetsDiscussYourTechNeeds),
-			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.ScheduleAFreeConsultation),
+			driver.getByTestId(AiDevelopment.Info).getByTestId(MainSiteButtons.GetYourCustomAiQuote),
+			driver.getByTestId(AiDevelopment.OurAiDevelopmentServices).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver
+				.getByTestId(AiDevelopment.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(AiDevelopment.OurApproach).getByTestId(MainSiteButtons.GetAQuote),
 		];
 
 		for (const button of ctaButtons) {

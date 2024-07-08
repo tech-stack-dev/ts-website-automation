@@ -41,13 +41,13 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 	];
 
 	const expectedData = [
-		['What Is Your\nCooperation Type?', '01'],
+		['What Is Your Cooperation Type?', '01'],
 		['From Consultation To Custom Offer', '02'],
 		['What Influences The Cost of Software Development', '03'],
 		['Simplified Payment Process for Your Software Development Needs', '04'],
 		['Why Partner with Us', '05'],
-		['What Our Clients\nSay About Us', '06'],
-		['Get in Touch', '07'],
+		['What Our Clients Say About Us', '06'],
+		['Request a Free No-obligation Quote', '07'],
 		['FAQ', '08'],
 	];
 
@@ -68,10 +68,10 @@ test('Check section titles, navigation bar and CTA button text in "From Consulta
 	const containerBlocks = customOfferContainer.getByTestId(Container.ContainerBlock);
 	const testDataSectionTitles = await PricingData.getAllCustomOfferTabsData();
 
-	const ctaButton = customOfferContainer.getByTestId(MainSiteButtons.BookYourTime);
+	const ctaButton = customOfferContainer.getByTestId(MainSiteButtons.GetYourCustomQuote);
 
 	await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
-	await expect(ctaButton).toHaveText('Book your time');
+	await expect(ctaButton).toHaveText('Get your custom quote');
 });
 
 test('Check section quote on the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
@@ -97,10 +97,10 @@ test('Check section titles and CTA button text in "Simplified Payment Process fo
 	const simplifiedPaymentContainer = driver.getByTestId(Pricing.SimplifiedPaymentProcess);
 	const simplifiedSectionTitles = simplifiedPaymentContainer.getByTestId(Container.SectionTitle);
 	const expectedTitles = ['Time & Material', 'Monthly Invoices', 'Multi-Currency Payments', 'Payment Flexibility'];
-	const ctaButton = simplifiedPaymentContainer.getByTestId(MainSiteButtons.GetYourFreeEstimate);
+	const ctaButton = simplifiedPaymentContainer.getByTestId(MainSiteButtons.GetYourFreeQuote);
 
 	await expect(simplifiedSectionTitles).toHaveText(expectedTitles);
-	await expect(ctaButton).toHaveText('Get your free \nestimate');
+	await expect(ctaButton).toHaveText('Get your free quote');
 });
 
 test('Check section titles and numbers in "Why Partner with Us" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
@@ -111,7 +111,7 @@ test('Check section titles and numbers in "Why Partner with Us" container from t
 	await expect(sections).toHaveCount(numOfSections);
 
 	const expectedText: [string, string][] = [
-		['Experienced project\nmanagers', '01'],
+		['Experienced project managers', '01'],
 		['Middle and senior experts', '02'],
 		['Product-first approach', '03'],
 		['Expert technical support', '04'],

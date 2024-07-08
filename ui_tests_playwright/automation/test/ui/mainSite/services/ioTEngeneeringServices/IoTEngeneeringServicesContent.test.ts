@@ -24,8 +24,8 @@ test(
 	async () => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
-		await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering\nServices');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomIotQuote)).toHaveText('Get your custom IoT quote');
 	}
 );
 
@@ -51,16 +51,16 @@ test(
 		];
 
 		const expectedText: [string, string][] = [
-			['IoT Engineering\nSolutions', '01'],
-			['Our IoT Engineering\nServices', '02'],
-			['IoT Technology Stack\nby Layers', '03'],
-			['IoT Engineering\nCase Studies', '04'],
-			['Industry-specific\nIoT Solutions', '05'],
-			['IoT Engineering\nProcess', '06'],
-			['Our Approach to\nIoT Engineering', '07'],
-			['Our Internet of Things\nEngineering Experts', '08'],
+			['IoT Engineering Solutions', '01'],
+			['Our IoT Engineering Services', '02'],
+			['IoT Technology Stack by Layers', '03'],
+			['IoT Engineering Case Studies', '04'],
+			['Industry-specific IoT Solutions', '05'],
+			['IoT Engineering Process', '06'],
+			['Our Approach to IoT Engineering', '07'],
+			['Our Internet of Things Engineering Experts', '08'],
 			['Related Services', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];
@@ -193,12 +193,12 @@ test(
 
 		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 		await expect(ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'IoT humidity\nsensors scheme'
+			'IoT humidity sensors scheme'
 		);
 
 		await expect(driver.getByTestId(MainSiteImages.SensorsScheme)).toBeVisible();
 
-		await expect(driver.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText('Read the Full Case Study');
+		await expect(driver.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText('Check out how we build it');
 	}
 );
 
@@ -215,7 +215,7 @@ test(
 		const expectedSectionTitles = [
 			'AgriTech',
 			'Digital Transformation',
-			'Transportation\nand Logistics',
+			'Transportation and Logistics',
 			'Manufacturing',
 			'Energy',
 			'Healthcare',
@@ -250,7 +250,7 @@ test(
 
 		expect(actualCarouselIndexesAndTitles).toEqual(expectedCarouselIndexesAndTitles);
 		expect(await ioTEngineeringProcessContainer.getByTestId(Container.BlockTitle).textContent()).toEqual(
-			'New IoT Device\nEngineering'
+			'New IoT Device Engineering'
 		);
 
 		const containerBlock = ioTEngineeringProcessContainer.getByTestId(Container.ContainerBlock);
@@ -270,7 +270,7 @@ test(
 
 		expect(actualNewIoTEngineeringDeviceTitles).toEqual(expectedNewIoTEngineeringDeviceTitles);
 
-		await expect(driver.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(driver.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
@@ -284,7 +284,7 @@ test(
 			IoTEngineeringServices.OurApproachToIoTEngineering
 		);
 		const actualSectionTitles = ourApproachToIoTEngineeringContainer.getByTestId(Container.SectionTitle);
-		const expectedSectionTitles = ['Tech community', 'Ownership drives\nexcellence'];
+		const expectedSectionTitles = ['Tech community', 'Ownership drives excellence'];
 
 		await expect(actualSectionTitles).toHaveText(expectedSectionTitles);
 
@@ -303,15 +303,23 @@ test(
 		const ourIoTEngineeringExpertsContainer = driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringExperts);
 		const allMemberRoles = ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
-			'CEO, Software Architect,\nRuns critical initiatives that make products grow',
 			'CTO, Software Architect,\nElaborates on the technology strategy',
-			'R&D Engineer, Software Engineering Lead,\nComes up with solutions for business tasks',
+			'R&D Engineer, Software Engineering Lead,\nPossesses deep expertise in the development of \nenvironmental monitoring devices.',
+			'Back-End Developer,\nCreates hardware-based software solutions\nfor environmental monitoring devices.',
+			'Software Engineer,\nSpecializes in IoT & Cloud solutions, integrating AI/ML\nsolutions across various domains.',
+			'Full-Stack Engineer,\nFocuses on IoT software products, environmental\nmonitoring devices, 3D printing & industrial solutions.',
 		];
 
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
 		const allMemberNames = ourIoTEngineeringExpertsContainer.getByTestId(Container.MemberName);
-		const testDataNames = [ExpertNames.IvanIeremenko, ExpertNames.OleksiiSvystun, ExpertNames.YevheniiKarachevtsev];
+		const testDataNames = [
+			ExpertNames.OleksiiSvystun,
+			ExpertNames.YevheniiKarachevtsev,
+			ExpertNames.IvanKononenko,
+			ExpertNames.EugeneLypskyi,
+			ExpertNames.AndrewKurilenko,
+		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
 	}
@@ -326,10 +334,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(IoTEngineeringServices.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'UX/UI Design',
 			'AI & ML',
-			'Development\nconsulting',
+			'Development consulting',
 			'QA as a Service',
 			'Big Data & Analytics',
 		];

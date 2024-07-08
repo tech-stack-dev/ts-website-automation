@@ -8,6 +8,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import Links from '../../../../preconditionsData/links/Links';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../fixtures/DesktopMobileSetup';
+import {playwrightUtils} from '../../../../utils/PlaywrightUtils';
 
 let footer: Locator;
 let socialBlock: Locator;
@@ -23,7 +24,7 @@ test.beforeEach(async () => {
 	footer = driver.getByTestId(Footer.Container_Footer);
 	socialBlock = await containerSteps.getDynamicLocator({
 		desktopLocator: Footer.FooterLinkDesktop,
-		mobileLocator: Footer.FooterLinkMobile
+		mobileLocator: Footer.FooterLinkMobile,
 	});
 });
 
@@ -44,8 +45,8 @@ test(
 			const companyList = new Map([
 				[Buttons.Company_TechstackWorldwide, 'Techstack Worldwide'],
 				[Buttons.Company_Services, 'Services'],
-				[Buttons.Company_CaseStudies, 'Case Studies'],
-				[Buttons.Company_Blog, 'Blog'],
+				[Buttons.Company.CaseStudies, 'Case Studies'],
+				[Buttons.Company.Blog, 'Blog'],
 			]);
 
 			for (const [element, title] of companyList) {
@@ -97,8 +98,8 @@ test(
 		const companyUrlList = new Map([
 			[Buttons.Company_TechstackWorldwide, UrlProvider.webSiteUrl()],
 			[Buttons.Company_Services, UrlProvider.urlBuilder(UrlPath.OurServices)],
-			[Buttons.Company_CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
-			// [Buttons.Company_Blog, UrlProvider.urlBuilder(UrlPath.Blog)], // Uncomment after Blog will be stable
+			[Buttons.Company.CaseStudies, UrlProvider.urlBuilder(UrlPath.CaseStudies)],
+			[Buttons.Company.Blog, UrlProvider.urlBuilder(UrlPath.Blog)],
 		]);
 
 		for (const url of testDataProvider) {
@@ -151,32 +152,45 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
-		await driver.executeFunc(async () => {
-			for (const url of testDataProvider) {
-				await baseDriverSteps.goToUrl(url);
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
 
-				for (const entries of linkMap.entries()) {
-					const socialLinkButton = socialBlock.getByTestId(entries[0]);
+					for (const entries of linkMap.entries()) {
+						const socialLinkButton = socialBlock.getByTestId(entries[0]);
 
+						const [newPage] = await Promise.all([
+							driver.DriverContext.waitForEvent('page'),
+							socialLinkButton.click(),
+						]);
+						expect(newPage.url().includes(entries[1])).toBeTruthy();
+						await newPage.close();
+					}
+				}
+			},
+			5,
+			5000
+		);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				for (const url of testDataProvider) {
+					await baseDriverSteps.goToUrl(url);
+
+					const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
 					const [newPage] = await Promise.all([
 						driver.DriverContext.waitForEvent('page'),
-						await socialLinkButton.click(),
+						clutchButton.click(),
 					]);
-					expect(newPage.url().includes(entries[1])).toBeTruthy();
+					await newPage.waitForLoadState();
+					expect(newPage.url()).toContain(Links.Clutch);
 					await newPage.close();
 				}
-
-				const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
-
-				const [newPage] = await Promise.all([
-					driver.DriverContext.waitForEvent('page'),
-					await clutchButton.click({button: 'middle'}),
-				]);
-				await newPage.waitForLoadState('networkidle');
-				expect(newPage.url()).toContain(Links.Clutch);
-				await newPage.close();
-			}
-		}, 3);
+			},
+			5,
+			5000
+		);
 	}
 );
 
