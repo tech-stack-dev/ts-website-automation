@@ -24,12 +24,16 @@ let companyUrls: string[];
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
+	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlUtils.getRandomUrlFromRecord(industryUrl),
 	UrlUtils.getRandomUrlFromRecord(serviceUrl),
-	UrlProvider.urlBuilder(UrlPath.AboutUs),
-	UrlProvider.urlBuilder(UrlPath.CaseStudies),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.CookiesPolicy),
+	UrlProvider.urlBuilder(UrlPath.CaseStudies),
+	UrlProvider.urlBuilder(
+		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
+	),
+	UrlProvider.urlBuilder(UrlPath.GetAQuote),
 ];
 
 test.beforeEach(async () => {
@@ -136,6 +140,14 @@ test(
 		}
 	}
 );
+
+test(`Check the redirection by the "Contact Us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
+		await footer.getByTestId(Footer.ContactUs).click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+	}
+});
 
 test(
 	qase(

@@ -11,6 +11,8 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {buttonSteps, containerSteps, expect, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import Buttons from '../../../../../identifiers/Buttons';
+import {locatorUtils} from '../../../../../utils/LocatorUtils';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
 let headerButtonsList: Locator[];
@@ -19,6 +21,7 @@ let servicesDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
 let contactsButton: Locator;
+let getAQuoteButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -31,11 +34,13 @@ const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromRecord(industryUrl),
 	UrlUtils.getRandomUrlFromRecord(serviceUrl),
-	UrlProvider.urlBuilder(UrlPath.AboutUs),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.Sitemap),
+	UrlProvider.urlBuilder(
+		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
+	),
 ];
 
 // ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
@@ -58,13 +63,11 @@ test.beforeEach(async () => {
 		pricingButton,
 		contactsButton,
 	];
+	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote);
 });
 
 test(
-	qase(
-		5504,
-		`Check buttons background color in the "Header" on the all pages @desktop @Regression @Header @TSWEB-656`
-	),
+	qase(5504, `Check buttons background color in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -167,9 +170,6 @@ test(`Check the header information from the "Header" container on all pages @des
 			await headerMenuSteps.checkDropdownButtonText(headerButtonsList[index], headerButtonsText[index]);
 		}
 
-		await expect(pricingButton).toHaveText('Pricing');
-		await expect(contactsButton).toHaveText('Contacts');
-
 		const industriesButtons = Buttons.Industries;
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
@@ -217,8 +217,38 @@ test(`Check the header information from the "Header" container on all pages @des
 
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
+
+		await expect(getAQuoteButton).toHaveText('Get a quote');
 	}
 });
+
+test(
+	qase(5455, `Check "Get a quote" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			expect(await locatorUtils.checkBackgroundColor(getAQuoteButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+		}
+	}
+);
+
+test(
+	qase(
+		5456,
+		`Check "Get a quote" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await getAQuoteButton.hover();
+			await driver.Page.waitForTimeout(1000); // Wait for changing the color
+			const actualColor = await getAQuoteButton.evaluate(async (el) => {
+				return getComputedStyle(el).backgroundColor;
+			});
+			expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+		}
+	}
+);
 
 test.afterEach(async () => {
 	await driver.closeDrivers();

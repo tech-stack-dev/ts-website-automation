@@ -15,6 +15,10 @@ on:
         eventName:
           required: false
           type: string
+        isMobile:
+          required: false
+          type: boolean
+          default: false
     secrets:
         awsKey:
           required: true
@@ -72,7 +76,7 @@ jobs:
         run: npm run unit-tests
       - name: Run UI tests
         shell: bash
-        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep ${{ inputs.grep }} --grep-invert "${{ steps.ticket-statuses.outputs.ticketStatuses }}" | tee test-output.txt
+        run: QASE_REPORT="1" npx playwright test --project=${{ inputs.project }} --grep="@qaaa" | tee test-output.txt
 
       - uses: actions/upload-artifact@v4
         name: Upload Playwright report
@@ -123,32 +127,30 @@ jobs:
           git commit -m "update main report file"
           git push origin reports-history
 
+      - name: Set Slack Emoji
+        run: |
+          if [ -z "${{ inputs.slackEmoji }}" ]; then
+            echo "SLACK_EMOJI=:finnadie:" >> $GITHUB_ENV
+          else
+            echo "SLACK_EMOJI=${{ inputs.slackEmoji }}" >> $GITHUB_ENV
+          fi
+
       - name: Preparing Slack emoji
         uses: haya14busa/action-cond@v1
         if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_icon_emoji
         with:
           cond: ${{ job.status == 'failure' }}
-          if_true: ":finnadie:"
+          if_true: ${{ inputs.isMobile && ':no_mobile_phones:' || ':finnadie:' }}
           if_false: ":aw_yeah:"
   
       - name: Set Slack Channel production
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_channel_production
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: ts_website_automation
-          if_false: ts_website
+        run: echo "SLACK_CHANNEL_PRODUCTION=ts_website" >> $GITHUB_ENV
 
       - name: Set Slack Channel automation
-        uses: haya14busa/action-cond@v1
-        if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
         id: slack_channel_automation
-        with:
-          cond: ${{ github.event_name == 'pull_request' && job.status == 'failure' }}
-          if_true: test_slack_notifications
-          if_false: ts_website_automation
+        run: echo "SLACK_CHANNEL_AUTOMATION=ts_website_automation" >> $GITHUB_ENV
 
       - name: Slack Notification for UI tests production
         if: ${{ (!github.event.pull_request.draft && (github.event_name == 'schedule' || inputs.eventName == 'schedule' || (github.event_name == 'workflow_dispatch' && failure()) || (github.event_name == 'pull_request' && failure()))) }}
@@ -156,7 +158,7 @@ jobs:
         env:
           SLACK_USERNAME: Tests execution report
           SLACK_WEBHOOK: ${{ secrets.slackWebHook }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_production.outputs.value }}
+          SLACK_CHANNEL: ${{ env.SLACK_CHANNEL_PRODUCTION }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/${{ github.event_name == 'schedule' && 'regression' || 'pull-requests' }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
@@ -170,11 +172,10 @@ jobs:
         env:
           SLACK_USERNAME: Tests execution report
           SLACK_WEBHOOK: ${{ secrets.slackWebHook }}
-          SLACK_CHANNEL: ${{ steps.slack_channel_automation.outputs.value }}
+          SLACK_CHANNEL: ${{ env.SLACK_CHANNEL_AUTOMATION }}
           SLACK_ICON_EMOJI: ${{ steps.slack_icon_emoji.outputs.value }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: "Total: ${{ env.TOTAL }} | ✅Passed: ${{ env.PASSED }} | ❌Failed: ${{ env.FAILED }} | ⏭️Skipped: ${{ env.SKIPPED }} | 🔁Flaky: ${{ env.FLAKY }} \n:eyes: link for report: https://tech-stack-dev.github.io/ts-website-automation/ui_tests_playwright/automation/reports/${{ github.event_name == 'schedule' && 'regression' || 'pull-requests' }}/${{ env.CURRENT_DAY }}/${{ env.CURRENT_TIME }}/index.html"
           SLACK_TITLE: ${{ inputs.slackTitle }}
           MSG_MINIMAL: true
           SLACK_FOOTER: TS website
-  
