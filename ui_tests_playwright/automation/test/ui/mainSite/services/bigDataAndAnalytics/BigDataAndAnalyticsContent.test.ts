@@ -37,6 +37,7 @@ test(
 	),
 	async () => {
 		const containers = [
+			driver.getByTestId(BigDataAndAnalytics.WhatResultsCanYouExpect),
 			driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack),
@@ -51,20 +52,35 @@ test(
 		];
 
 		const expectedData = [
-			['How Big Data Will Help You', '01'],
-			['Big Data Software Development With Techstack', '02'],
-			['Big Data Solutions Technology Stack', '03'],
-			['Big Data Case Studies', '04'],
-			['Industry-specific Big Data Solutions', '05'],
-			['Why Choose Techstack’s Big Data Software Development Services?', '06'],
-			['Our Experts', '07'],
-			['Related Services', '08'],
-			['Request a Free No-obligation Quote', '09'],
-			['Related Articles', '10'],
-			['FAQ', '11'],
+			['What Results Can You Expect with Our Big Data Expertise?', '01'],
+			['How Big Data Will Help You', '02'],
+			['Big Data Software Development With Techstack', '03'],
+			['Big Data Solutions Technology Stack', '04'],
+			['Big Data Case Studies', '05'],
+			['Industry-specific Big Data Solutions', '06'],
+			['Why Choose Techstack’s Big Data Software Development Services?', '07'],
+			['Our Experts', '08'],
+			['Related Services', '09'],
+			['Request a Free No-obligation Quote', '10'],
+			['Related Articles', '11'],
+			['FAQ', '12'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+	}
+);
+
+test(
+	qase(
+		5595,
+		'Check block titles in "What Results Can You Expect with Our Big Data Expertise?" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(BigDataAndAnalytics.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.SectionNumber);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
 	}
 );
 

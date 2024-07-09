@@ -23,4 +23,5 @@ export default class GeneralContainersMainSite {
 	static Services = 'Container-Services';
 	static CooperationModels = 'Container-CooperationModels';
 	static WhyTechstack = 'Container-WhyTechstack';
+	static WhatResultsCanYouExpect = 'Container-WhatResultsCanYouExpect';
 }
