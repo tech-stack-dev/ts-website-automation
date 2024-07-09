@@ -78,7 +78,7 @@ test(
 	),
 	async () => {
 		const WhatResultsCanYouExpectContainer = driver.getByTestId(IoTEngineeringServices.WhatResultsCanYouExpect);
-		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.BlockTitle);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.SectionNumber);
 		const testData = ['01', '02', '03', '04'];
 
 		await expect(allBlockTitles).toHaveText(testData);

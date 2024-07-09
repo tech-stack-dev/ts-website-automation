@@ -42,7 +42,7 @@ test(
 			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
 			driver.getByTestId(TransportationAndLogistics.OurExpertise),
 			driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent),
-			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),			
+			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
 			driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 			driver.getByTestId(TransportationAndLogistics.GetInTouch),
 			driver.getByTestId(TransportationAndLogistics.RelatedArticles),
@@ -75,7 +75,7 @@ test(
 	),
 	async () => {
 		const WhatResultsCanYouExpectContainer = driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect);
-		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.BlockTitle);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.SectionNumber);
 		const testData = ['01', '02', '03', '04'];
 
 		await expect(allBlockTitles).toHaveText(testData);
