@@ -54,6 +54,7 @@ test(
 	),
 	async () => {
 		testDataProvider = testDataProvider.concat(UrlProvider.urlBuilder(UrlPath.GetAQuote));
+
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Buttons.Logo).click();
