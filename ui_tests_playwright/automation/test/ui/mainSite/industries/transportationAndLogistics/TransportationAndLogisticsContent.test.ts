@@ -35,13 +35,14 @@ test(
 	),
 	async () => {
 		const containers = [
-			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
+			driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect),
 			driver.getByTestId(TransportationAndLogistics.WhoWeServe),
 			driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
 			driver.getByTestId(TransportationAndLogistics.CaseStudy),
+			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
 			driver.getByTestId(TransportationAndLogistics.OurExpertise),
 			driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent),
-			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
+			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),			
 			driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 			driver.getByTestId(TransportationAndLogistics.GetInTouch),
 			driver.getByTestId(TransportationAndLogistics.RelatedArticles),
@@ -49,20 +50,35 @@ test(
 		];
 
 		const expectedData = [
-			['Techstack in Numbers', '01'],
+			['What Results Can You Expect with Our Expertise in Industry?', '01'],
 			['Who We Serve', '02'],
 			['Transportation and Logistics Software Development Services at Techstack', '03'],
 			['Case Study by Techstack', '04'],
-			['Our Expertise in Logistics Software Development Solutions', '05'],
-			['What Makes Us Different', '06'],
-			['Transportation and Logistics Software Development at Techstack', '07'],
-			['Development Workflow That We Follow', '08'],
-			['Request a Free No-obligation Quote', '09'],
-			['Related Articles', '10'],
-			['FAQ', '11'],
+			['Techstack in Numbers', '05'],
+			['Our Expertise in Logistics Software Development Solutions', '06'],
+			['What Makes Us Different', '07'],
+			['Transportation and Logistics Software Development at Techstack', '08'],
+			['Development Workflow That We Follow', '09'],
+			['Request a Free No-obligation Quote', '10'],
+			['Related Articles', '11'],
+			['FAQ', '12'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+	}
+);
+
+test(
+	qase(
+		5593,
+		'Check block titles in "What Results Can You Expect with Our Expertise in Industry?" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.BlockTitle);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
 	}
 );
 

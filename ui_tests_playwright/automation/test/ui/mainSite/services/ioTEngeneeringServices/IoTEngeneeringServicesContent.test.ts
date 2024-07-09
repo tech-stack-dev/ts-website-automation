@@ -36,6 +36,7 @@ test(
 	),
 	async () => {
 		const containers = [
+			driver.getByTestId(IoTEngineeringServices.WhatResultsCanYouExpect),
 			driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions),
 			driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices),
 			driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers),
@@ -51,21 +52,36 @@ test(
 		];
 
 		const expectedText: [string, string][] = [
-			['IoT Engineering Solutions', '01'],
-			['Our IoT Engineering Services', '02'],
-			['IoT Technology Stack by Layers', '03'],
-			['IoT Engineering Case Studies', '04'],
-			['Industry-specific IoT Solutions', '05'],
-			['IoT Engineering Process', '06'],
-			['Our Approach to IoT Engineering', '07'],
-			['Our Internet of Things Engineering Experts', '08'],
-			['Related Services', '09'],
-			['Request a Free No-obligation Quote', '10'],
-			['Related Articles', '11'],
-			['FAQ', '12'],
+			['What Results Can You Expect with Our IoT Expertise?', '01'],
+			['IoT Engineering Solutions', '02'],
+			['Our IoT Engineering Services', '03'],
+			['IoT Technology Stack by Layers', '04'],
+			['IoT Engineering Case Studies', '05'],
+			['Industry-specific IoT Solutions', '06'],
+			['IoT Engineering Process', '07'],
+			['Our Approach to IoT Engineering', '08'],
+			['Our Internet of Things Engineering Experts', '09'],
+			['Related Services', '10'],
+			['Request a Free No-obligation Quote', '11'],
+			['Related Articles', '12'],
+			['FAQ', '13'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedText);
+	}
+);
+
+test(
+	qase(
+		5594,
+		'Check block titles in "What Results Can You Expect with Our IoT Expertise?" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(IoTEngineeringServices.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.BlockTitle);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
 	}
 );
 

@@ -37,8 +37,9 @@ test(
 	),
 	async () => {
 		const containers = [
-			driver.getByTestId(RenewableEnergy.TechstackInNumbers),
+			driver.getByTestId(RenewableEnergy.WhatResultsCanYouExpect),
 			driver.getByTestId(RenewableEnergy.WhoWeServe),
+			driver.getByTestId(RenewableEnergy.TechstackInNumbers),
 			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ),
 			driver.getByTestId(RenewableEnergy.CaseStudy),
 			driver.getByTestId(RenewableEnergy.OurKeyAreasOfExpertise),
@@ -51,22 +52,38 @@ test(
 		];
 
 		const expectedData = [
-			['Techstack in Numbers', '01'],
+			['What Results Can You Expect with Our Expertise in Industry?', '01'],
 			['Who We Serve', '02'],
-			['Renewable Energy Software Development Services', '03'],
-			['Case Study by Techstack', '05'],
-			['Our Key Areas of Expertise in Renewable Energy', '06'],
-			['Why Choose Us?', '07'],
-			['How We Operate at Techstack', '08'],
-			['Our Workflow', '09'],
-			['Request a Free No-obligation Quote', '10'],
-			['Related Articles', '11'],
-			['FAQ', '12'],
+			['Techstack in Numbers', '03'],
+			['Renewable Energy Software Development Services', '04'],
+			['Case Study by Techstack', '06'],
+			['Our Key Areas of Expertise in Renewable Energy', '07'],
+			['Why Choose Us?', '08'],
+			['How We Operate at Techstack', '09'],
+			['Our Workflow', '10'],
+			['Request a Free No-obligation Quote', '11'],
+			['Related Articles', '12'],
+			['FAQ', '13'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
 );
+
+test(
+	qase(
+		5592,
+		'Check block titles in "What Results Can You Expect with Our Expertise in Industry?" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy @TSWEB-957'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(RenewableEnergy.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.BlockTitle);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
+	}
+);
+
 
 test(
 	qase(
