@@ -218,7 +218,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		// Uncomment after fix in TSWEB-1587
+		// Uncomment after fix in TSWEB-1603
 		// await expect(getAQuoteButton).toHaveText('Get a quote');
 	}
 });
