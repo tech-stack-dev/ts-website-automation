@@ -4,8 +4,7 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
-import UrlPath from '../../providers/UrlPath';
-
+import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -16,10 +15,11 @@ class BaseDriverSteps {
 		acceptCookies = true,
 		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
 	) {
+		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
 
-		if (acceptCookies || url === UrlPath.GetAQuote) {
+		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
 		}
 	}
