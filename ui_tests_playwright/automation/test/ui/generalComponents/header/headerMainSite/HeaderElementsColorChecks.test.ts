@@ -13,6 +13,7 @@ import UrlUtils from '../../../../../utils/UrlUtils';
 import Buttons from '../../../../../identifiers/Buttons';
 import {locatorUtils} from '../../../../../utils/LocatorUtils';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
+import {playwrightUtils} from '../../../../../utils/PlaywrightUtils';
 
 let header: Locator;
 let headerButtonsList: Locator[];
@@ -98,16 +99,22 @@ test(
 
 			for (const button of headerButtonsList) {
 				await button.hover();
-				await driver.Page.waitForTimeout(1000); // Waiting for changing the color
-				const actualColor = await button.evaluate(async (el) => {
-					return getComputedStyle(el).backgroundColor;
-				});
 
-				if (pagesWithWhiteHeader.includes(url)) {
-					expect(actualColor).toBe(ColorsEnum.Grey_Hover_D3D4D4);
-				} else {
-					expect(actualColor).toBe(ColorsEnum.Grey_Hover_2E3032);
-				}
+				await playwrightUtils.expectWithRetries(
+					async () => {
+						const actualColor = await button.evaluate(async (el) => {
+							return getComputedStyle(el).backgroundColor;
+						});
+
+						if (pagesWithWhiteHeader.includes(url)) {
+							expect(actualColor).toBe(ColorsEnum.Grey_Hover_D3D4D4);
+						} else {
+							expect(actualColor).toBe(ColorsEnum.Grey_Hover_2E3032);
+						}
+					},
+					5,
+					2000
+				);
 			}
 		}
 	}
@@ -145,13 +152,17 @@ test(
 			for (const button of headerButtonsList) {
 				await button.click();
 				await button.hover();
-				await driver.Page.waitForTimeout(1000); // Wait for changing color
 
-				const actualColor = await button.evaluate(async (el) => {
-					return getComputedStyle(el).backgroundColor;
-				});
-
-				expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+				await playwrightUtils.expectWithRetries(
+					async () => {
+						const actualColor = await button.evaluate(async (el) => {
+							return getComputedStyle(el).backgroundColor;
+						});
+						expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+					},
+					5,
+					2000
+				);
 			}
 		}
 	}
@@ -243,11 +254,17 @@ test(
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await getAQuoteButton.hover();
-			await driver.Page.waitForTimeout(1000); // Wait for changing the color
-			const actualColor = await getAQuoteButton.evaluate(async (el) => {
-				return getComputedStyle(el).backgroundColor;
-			});
-			expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+
+			await playwrightUtils.expectWithRetries(
+				async () => {
+					const actualColor = await getAQuoteButton.evaluate(async (el) => {
+						return getComputedStyle(el).backgroundColor;
+					});
+					expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
+				},
+				3,
+				2000
+			);
 		}
 	}
 );
