@@ -33,8 +33,8 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromRecord(industryUrl),
-	UrlUtils.getRandomUrlFromRecord(serviceUrl),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),

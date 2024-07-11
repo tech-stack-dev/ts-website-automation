@@ -25,8 +25,8 @@ let companyUrls: string[];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlUtils.getRandomUrlFromRecord(industryUrl),
-	UrlUtils.getRandomUrlFromRecord(serviceUrl),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
