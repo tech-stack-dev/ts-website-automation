@@ -114,12 +114,24 @@ test(
 test(
 	qase(
 		4820,
-		'Check carousel arrows click in "The Way We work" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
+		'Check carousel arrows click in "The Way We Work" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const theWayWeWorkContainer = driver.getByTestId(AiDevelopment.TheWayWeWork);
 
 		await baseDriverSteps.checkCarouselArrowsClick(theWayWeWorkContainer);
+	}
+);
+
+test(
+	qase(
+		5608,
+		'Check carousel arrows click in "Custom AI Solutions We Can Build" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const customAiSolutionsContainer = driver.getByTestId(AiDevelopment.CustomAiSolutions);
+
+		await baseDriverSteps.checkCarouselArrowsClick(customAiSolutionsContainer);
 	}
 );
 
