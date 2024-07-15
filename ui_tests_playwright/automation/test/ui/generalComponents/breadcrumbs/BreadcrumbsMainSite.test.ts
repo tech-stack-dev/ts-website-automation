@@ -3,7 +3,7 @@ import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {industryUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import Container from '../../../../identifiers/Container';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
@@ -43,23 +43,9 @@ test(
 		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		const servicesUrlList = [
-			UrlProvider.urlBuilder(UrlPath.CustomDev),
-			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
-			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-			UrlProvider.urlBuilder(UrlPath.MobileDev),
-			UrlProvider.urlBuilder(UrlPath.BigData),
-			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-			UrlProvider.urlBuilder(UrlPath.DevOpsServ),
-			UrlProvider.urlBuilder(UrlPath.AiDevelopment),
-			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-			UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-			UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-			UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
-		];
+		const servicesUrlListWithoutOurServicesPage = Object.values(serviceUrl).slice(1); // Because on "Our Services" page breadcrumbs to Home page
 
-		for (const url of servicesUrlList) {
+		for (const url of servicesUrlListWithoutOurServicesPage) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Container.BreadcrumbsPrev).click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
