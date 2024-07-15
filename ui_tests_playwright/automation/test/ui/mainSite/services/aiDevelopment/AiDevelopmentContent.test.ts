@@ -296,7 +296,16 @@ test(
 		const customAiSolutionsContainer = driver.getByTestId(AiDevelopment.CustomAiSolutions);
 		const carouselSections = customAiSolutionsContainer.getByTestId(Container.CarouselSection);
 
-		await expect(carouselSections.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04', '05', '06']);
+		await expect(carouselSections.getByTestId(Container.SectionNumber)).toHaveText([
+			'01',
+			'02',
+			'03',
+			'04',
+			'05',
+			'06',
+			'07',
+			'08',
+		]);
 
 		const carouselSectionTitles = carouselSections.getByTestId(Container.SectionTitle);
 		const testData = [
@@ -306,6 +315,8 @@ test(
 			'Computer vision solutions',
 			'Intelligent automation solutions',
 			'Fraud detection and risk assessment systems',
+			'AI-driven business intelligence solutions',
+			'Custom AI products with OpenAI',
 		];
 
 		await expect(carouselSectionTitles).toHaveText(testData);
@@ -318,7 +329,9 @@ test(
 		'Check section titles in "AI Development Services to Deliver Real Business Value" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
-		const aiDevServToDeliverBusinessValueContainer = driver.getByTestId(AiDevelopment.AiDevServToDeliverBusinessValue);
+		const aiDevServToDeliverBusinessValueContainer = driver.getByTestId(
+			AiDevelopment.AiDevServToDeliverBusinessValue
+		);
 		const allSectionTitles = aiDevServToDeliverBusinessValueContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Team augmentation',
