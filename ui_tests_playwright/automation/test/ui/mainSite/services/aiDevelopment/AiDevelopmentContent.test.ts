@@ -130,10 +130,9 @@ test(
 		await expect(allSectionTitlesSixthBlock).toHaveText(testDataSixthBlock);
 
 		const allSectionTitlesSeventhBlock = containerBlocks.nth(6).getByTestId(Container.SectionTitle);
-		const testDataSeventhBlock = ['Overview', 'Implementation in the real world'];
 
 		await expect(containerBlocks.nth(6).getByTestId(Container.BlockTitle)).toHaveText('OpenAI API integration');
-		await expect(allSectionTitlesSeventhBlock).toHaveText(testDataSeventhBlock);
+		await expect(allSectionTitlesSeventhBlock).toHaveText(testData);
 
 		await expect(ourAiMlDevelopmentServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
 			'Get your quote now'
@@ -187,22 +186,6 @@ test(
 
 test(
 	qase(
-		4831,
-		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
-	),
-	async () => {
-		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
-			AiDevelopment.AiBeneficialImpactOnIndustries
-		);
-		const allSectionTitles = aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle);
-
-		const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
-		await expect(allSectionTitles).toHaveText(testData);
-	}
-);
-
-test(
-	qase(
 		4877,
 		'Check section numbers and titles, and CTA button in "Industries We Deliver AI Development Services To" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
@@ -230,6 +213,22 @@ test(
 		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
 			'Get your industry-specific quote'
 		);
+	}
+);
+
+test(
+	qase(
+		4831,
+		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
+			AiDevelopment.AiBeneficialImpactOnIndustries
+		);
+		const allSectionTitles = aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle);
+
+		const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
+		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
 
@@ -294,6 +293,18 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
+	}
+);
+
+test(
+	qase(
+		5609,
+		'Check award cards in "Our Approach to Cloud App Development" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const ourApproachContainer = driver.getByTestId(AiDevelopment.OurApproach);
+		const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
+		await baseDriverSteps.checkImagesVisibility(awardCards, 2);
 	}
 );
 
