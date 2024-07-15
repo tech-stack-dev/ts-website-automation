@@ -8,7 +8,6 @@ import AiDevelopment from '../../../../../identifiers/mainSite/pages/services/Ai
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AiDevelopment));
@@ -76,7 +75,7 @@ test(
 test(
 	qase(
 		5604,
-		'Check block titles in "What Results Can You Expect with Our AI Expertise?" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+		'Check section numbers in "What Results Can You Expect with Our AI Expertise?" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const WhatResultsCanYouExpectContainer = driver.getByTestId(AiDevelopment.WhatResultsCanYouExpect);
@@ -84,22 +83,6 @@ test(
 		const testData = ['01', '02', '03', '04'];
 
 		await expect(allBlockTitles).toHaveText(testData);
-	}
-);
-
-test(
-	qase(
-		4831,
-		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
-	),
-	async () => {
-		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
-			AiDevelopment.AiBeneficialImpactOnIndustries
-		);
-		const allSectionTitles = aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle);
-
-		const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
-		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
 
@@ -166,7 +149,18 @@ test(
 	async () => {
 		const technologyStackContainer = driver.getByTestId(AiDevelopment.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
-		const testData = TechnologyStackData.AiMLDataScieceTab;
+		const testData = [
+			'Computer vision',
+			'Deep Learning\nand Machine\nLearning',
+			'Data Ingestion\nand Manipulation',
+			'Application',
+			'Data storage and\nmanipulation',
+			'DevOps',
+			'QA',
+			'Data Visualization',
+			'CI/CD and MLOps',
+			'Cloud',
+		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -188,6 +182,22 @@ test(
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
+	}
+);
+
+test(
+	qase(
+		4831,
+		'Check section titles in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
+			AiDevelopment.AiBeneficialImpactOnIndustries
+		);
+		const allSectionTitles = aiBeneficialImpactOnIndustriesContainer.getByTestId(Container.SectionTitle);
+
+		const testData = ['69\n%', '73\n%', '82\n%', '$\n13\ntrillion'];
+		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
 
@@ -337,7 +347,6 @@ test(
 			'Team augmentation',
 			'End-to-end product development',
 			'Tech advisory and consulting services',
-			'Scalability and flexibility',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
