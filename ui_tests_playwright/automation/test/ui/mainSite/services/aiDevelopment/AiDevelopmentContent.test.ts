@@ -26,10 +26,10 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		4845,
-		'Check the container titles and numbers from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-1587'
+		'Check the container titles and numbers from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-1587 @TSWEB-694'
 	),
 	async () => {
 		const containers = [
