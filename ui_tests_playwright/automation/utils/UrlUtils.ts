@@ -1,6 +1,8 @@
 export default class UrlUtils {
-	public static getRandomUrlFromRecord<K extends keyof any, T>(record: Record<K, T>): T {
-		const urls = Object.values(record) as T[];
+	public static getRandomUrlFromArray(urls: string[]): string {
+		if (urls.length === 0) {
+			throw new Error('The array of URLs is empty.');
+		}
 		const randomIndex = Math.floor(Math.random() * urls.length);
 		return urls[randomIndex];
 	}

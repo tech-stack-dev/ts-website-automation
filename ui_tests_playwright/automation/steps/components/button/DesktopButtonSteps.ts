@@ -4,6 +4,7 @@ import {driver} from '../../../base/driver/Driver';
 import Header from '../../../identifiers/mainSite/Header';
 import Buttons from '../../../identifiers/Buttons';
 import {Locator, expect} from '@playwright/test';
+import {playwrightUtils} from '../../../utils/PlaywrightUtils';
 
 class DesktopButtonSteps extends ButtonSteps {
 	async buttonColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
@@ -12,13 +13,18 @@ class DesktopButtonSteps extends ButtonSteps {
 
 		await button.click();
 		await logo.hover(); // To remove hover from button
-		await driver.Page.waitForTimeout(1000); // Wait for changing color
 
-		const actualColor = await button.evaluate(async (el) => {
-			return getComputedStyle(el).backgroundColor;
-		});
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				const actualColor = await button.evaluate(async (el) => {
+					return getComputedStyle(el).backgroundColor;
+				});
 
-		expect(actualColor).toBe(color);
+				expect(actualColor).toBe(color);
+			},
+			5,
+			2000
+		);
 	}
 }
 

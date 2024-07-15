@@ -3,6 +3,7 @@ import {driver} from '../../../base/driver/Driver';
 import {ColorsEnum} from '../../../enum/ColorsEnum';
 import Buttons from '../../../identifiers/Buttons';
 import {ButtonSteps} from './ButtonSteps';
+import {playwrightUtils} from '../../../utils/PlaywrightUtils';
 
 class MobileButtonSteps extends ButtonSteps {
 	async buttonColorCheck(button: Locator, color: ColorsEnum): Promise<void> {
@@ -10,13 +11,18 @@ class MobileButtonSteps extends ButtonSteps {
 
 		await button.click();
 		await driver.getByTestId(Buttons.Close).hover();
-		await driver.Page.waitForTimeout(1000); // Wait for changing color
 
-		const actualColor = await button.locator(elemetColor).evaluate(async (el) => {
-			return getComputedStyle(el).color;
-		});
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				const actualColor = await button.locator(elemetColor).evaluate(async (el) => {
+					return getComputedStyle(el).color;
+				});
 
-		expect(actualColor).toBe(color);
+				expect(actualColor).toBe(color);
+			},
+			5,
+			2000
+		);
 	}
 }
 
