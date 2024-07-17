@@ -27,7 +27,7 @@ test(
 
 		const clutchReviewButton = caseStudyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToPage(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
 	}
 );
 
@@ -39,7 +39,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`,
@@ -125,9 +126,9 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetInTouch),
-			driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.ScheduleAMeetingNow),
-			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.ScheduleAMeeting),
+			driver.getByTestId(Healthcare.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(Healthcare.OurExpertise).getByTestId(MainSiteButtons.GetYourQuoteNow),
+			driver.getByTestId(Healthcare.HowWeOperate).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

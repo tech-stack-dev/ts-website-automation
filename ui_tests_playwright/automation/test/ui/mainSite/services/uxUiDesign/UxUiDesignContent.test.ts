@@ -10,8 +10,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
-const requestAQuoteButtonText = 'Request a Quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
 });
@@ -25,7 +23,9 @@ test(
 		const info = driver.getByTestId(UxUiDesign.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nUX/UI Design');
 		await expect(info.getByTestId(Container.Title)).toHaveText('UX/UI Design Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuoteButtonText);
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomDesignQuote)).toHaveText(
+			'Get your custom design quote'
+		);
 	}
 );
 
@@ -60,7 +60,7 @@ test(
 			['Our Approach', '07'],
 			['Design Thinking Process', '08'],
 			['Related Services', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];
@@ -94,7 +94,7 @@ test(
 test(
 	qase(
 		4885,
-		'Check section titles in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles and CTA button in "We Build UX/UI for Mobile & Web" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const weBuildUxUiForMobileWebContainer = driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb);
@@ -102,13 +102,17 @@ test(
 		const testDataSectionTitles = ['UX design', 'UI design', 'Web design', 'Mobile app design'];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
+
+		await expect(weBuildUxUiForMobileWebContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
 test(
 	qase(
 		4897,
-		'Check section titles and CTA button in "Our UI/UX Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles in "Our UI/UX Services" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
 		const ourUiUxServicesContainer = driver.getByTestId(UxUiDesign.OurUiUxServices);
@@ -117,7 +121,7 @@ test(
 			'UX audit',
 			'Competitor analysis',
 			'User research',
-			'Product structure\nand strategy',
+			'Product structure and strategy',
 			'Wireframing',
 			'Prototyping',
 			'Usability testing',
@@ -127,10 +131,6 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
-
-		await expect(ourUiUxServicesContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuoteButtonText
-		);
 	}
 );
 
@@ -154,8 +154,8 @@ test(
 
 		await expect(successStoriesContainer.getByTestId(MainSiteImages.MedicalDashboard)).toBeVisible();
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadFullCaseStudies)).toHaveText(
-			'Read Full Case Studies'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -218,8 +218,8 @@ test(
 
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
-		await expect(weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuoteButtonText
+		await expect(weNeverStopImprovingYourProductContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -272,7 +272,7 @@ test(
 		const testData = [
 			'Mobile Development',
 			'Consulting',
-			'Custom Software \nDevelopment',
+			'Custom Software Development',
 			'AI & ML',
 			'Big Data & Analytics',
 			'Internet of Things',
@@ -291,12 +291,12 @@ test(
 		const faqContainer = driver.getByTestId(UxUiDesign.Faq);
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'What is the first step when\nwe start working with a\nproduct?',
+			'What is the first step when we start working with a product?',
 			'Why do we need to research the market, users, and competitors?',
-			'Why are UX services\nimportant?',
+			'Why are UX services important?',
 			'How can UI services help your product?',
 			'How can a UI/UX design services company help with UX/UI development services?',
-			'What does your design-\ndevelopment collaboration\nlook like?',
+			'What does your design-development collaboration look like?',
 			'How quickly can you make UX/UI design for a product and/or onboard a design team?',
 			'What approach does the design team utilize?',
 		];

@@ -11,6 +11,7 @@ import {Environment} from '../../../../../providers/EnvProvider';
 import {containerSteps, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import UrlPath from '../../../../../providers/UrlPath';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
 let industriesButtons: object;
@@ -18,15 +19,17 @@ let servicesButtons: object;
 let industriesUrls: string[];
 let servicesUrls: string[];
 
-const testDataProvider: string[] = [
+let testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromRecord(industryUrl),
-	UrlUtils.getRandomUrlFromRecord(serviceUrl),
-	UrlProvider.urlBuilder(UrlPath.AboutUs),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.Terms),
+	UrlProvider.urlBuilder(
+		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
+	),
 ];
 
 // ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
@@ -50,6 +53,8 @@ test(
 		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
+		testDataProvider = testDataProvider.concat(UrlProvider.urlBuilder(UrlPath.GetAQuote));
+
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Buttons.Logo).click();
@@ -140,6 +145,36 @@ test(
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
+		}
+	}
+);
+
+test(
+	qase(
+		5583,
+		`Check the redirection to the "Contact us" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
+			await header.getByTestId(Header.Contacts).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+		}
+	}
+);
+
+test(
+	qase(
+		5457,
+		`Check the redirection to the "Get a quote" page by clicking on the "Get a quote" button on all pages @desktop @mobile @Regression @GetAQuote @TSWEB-532`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
+			await header.getByTestId(MainSiteButtons.GetAQuote).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
 );

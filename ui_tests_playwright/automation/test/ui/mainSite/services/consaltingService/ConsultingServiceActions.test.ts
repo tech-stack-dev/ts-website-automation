@@ -30,7 +30,7 @@ test(
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			featuredCaseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -45,7 +45,8 @@ test(
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 
-		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore).click();
+		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SoftDevTransformExistingSystem}`,
@@ -175,7 +176,7 @@ test(
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);
@@ -227,12 +228,12 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.GetYourCustomAuditQuote),
+			driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(MainSiteButtons.GetAFreeQquoteToday),
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)
-				.getByTestId(MainSiteButtons.GetAQuote),
-			driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.ScheduleACall),
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {

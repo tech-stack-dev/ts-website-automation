@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(CloudDevelopment.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomCloudQuote)).toHaveText(
+			'Get your custom cloud quote'
+		);
 	}
 );
 
@@ -56,7 +58,7 @@ test(
 			['Our Approach to Cloud App Development', '06'],
 			['Our Leading Cloud Experts', '07'],
 			['Related Services', '08'],
-			['Get in Touch', '09'],
+			['Request a Free No-obligation Quote', '09'],
 			['Related Articles', '10'],
 			['FAQ', '11'],
 		];
@@ -110,8 +112,8 @@ test(
 		);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -119,7 +121,7 @@ test(
 test(
 	qase(
 		5075,
-		'Check section titles in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles and CTA button in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
@@ -132,6 +134,10 @@ test(
 			'Digital transformation',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -179,8 +185,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestMoreInformation)).toHaveText(
-			'Request More Information'
+		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );
@@ -216,8 +222,8 @@ test(
 		const testDataNames = [ExpertNames.OleksiiSvystun, ExpertNames.IvanYeremenko, ExpertNames.VladyslavUshakov];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(
-			'Schedule a Consultation'
+		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
@@ -254,11 +260,11 @@ test(
 
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'How do I develop a cloud\nstrategy?',
+			'How do I develop a cloud strategy?',
 			'How can I get started with cloud application development services?',
 			'Can you migrate our existing on-premises applications to the cloud?',
 			'Can you integrate cloud applications with other systems or third-party services?',
-			'What do I need to do to\nprepare for the cloud?',
+			'What do I need to do to prepare for the cloud?',
 			'How can I ensure the cloud is secure?',
 			'What are the advantages of cloud-native application development?',
 		];

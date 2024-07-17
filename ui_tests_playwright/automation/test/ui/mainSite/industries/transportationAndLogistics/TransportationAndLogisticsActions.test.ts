@@ -23,7 +23,7 @@ test(
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);
@@ -38,7 +38,8 @@ test(
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 
-		await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
+		await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.CargoAuctionSolution}`,
@@ -111,10 +112,11 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(TransportationAndLogistics.Info).getByTestId(MainSiteButtons.LetsDiscuss),
+			driver.getByTestId(TransportationAndLogistics.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
-				.getByTestId(Buttons.ContactUs),
+				.getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

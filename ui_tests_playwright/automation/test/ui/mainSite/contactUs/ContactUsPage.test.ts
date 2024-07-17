@@ -81,12 +81,12 @@ test(
 
 		const allSectionTitles = cooperationContainer.getByTestId(Container.SectionTitle);
 		const testDataTitles = [
-			'Poland,\nWroclaw',
-			'Ukraine,\nKyiv',
-			'Ukraine,\nLviv',
-			'Estonia,\nTallinn',
-			'Ukraine,\nKharkiv',
-			'Hong\nKong',
+			'Poland, Wroclaw',
+			'Ukraine, Kyiv',
+			'Ukraine, Lviv',
+			'Estonia, Tallinn',
+			'Ukraine, Kharkiv',
+			'Hong Kong',
 		];
 		await expect(allSectionTitles).toHaveText(testDataTitles);
 

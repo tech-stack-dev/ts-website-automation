@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(CustomDev.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
 	}
 );
 
@@ -61,7 +63,7 @@ test(
 			['Custom Software Development Experts', '08'],
 			['Our Tailored Collaboration and Pricing Models', '09'],
 			['Custom Software Development Process', '10'],
-			['Get in Touch', '11'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];
@@ -91,7 +93,7 @@ test(
 test(
 	qase(
 		5296,
-		'Check section titles and numbers in "Custom Software Development for Your Product" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles and numbers, and CTA button in "Custom Software Development for Your Product" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devForYourProduct = driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct);
@@ -114,13 +116,15 @@ test(
 			await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 			await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
 		}
+
+		await expect(devForYourProduct.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
 test(
 	qase(
 		5298,
-		'Check section titles and numbers, and CTA button in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles and numbers in "Custom Development Services We Provide" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const servicesWeProvide = driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide);
@@ -130,18 +134,18 @@ test(
 		await expect(sections).toHaveCount(numOfSections);
 
 		const expectedText: [string, string][] = [
-			['Mobile\nDevelopment', '01'],
-			['Back-End Development\nServices', '02'],
-			['Front-End Development\nServices', '03'],
-			['Cloud App\nDevelopment', '04'],
+			['Mobile Development', '01'],
+			['Back-End Development Services', '02'],
+			['Front-End Development Services', '03'],
+			['Cloud App Development', '04'],
 			['Big Data & Analytics', '05'],
 			['UX/UI Design', '06'],
 			['AI & ML', '07'],
-			['Internet\nof Things', '08'],
-			['Building Software Products\nfrom Scratch', '09'],
+			['Internet of Things', '08'],
+			['Building Software Products from Scratch', '09'],
 			['QA as a Service', '10'],
-			['Custom Software\nDevelopment Consulting', '11'],
-			['Digital\nTransformation', '12'],
+			['Custom Software Development Consulting', '11'],
+			['Digital Transformation', '12'],
 		];
 
 		for (let i = 0; i < numOfSections; i++) {
@@ -150,10 +154,6 @@ test(
 			await expect(section.getByTestId(Container.SectionTitle)).toHaveText(expectedText[i][0]);
 			await expect(section.getByTestId(Container.SectionNumber)).toHaveText(expectedText[i][1]);
 		}
-
-		await expect(servicesWeProvide.getByTestId(MainSiteButtons.SendUsYourQueries)).toHaveText(
-			'Send Us Your Queries'
-		);
 	}
 );
 
@@ -191,14 +191,16 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteImages.OurFeaturedCaseStudy)).toBeVisible();
-		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.ReadMore)).toHaveText('Read More');
+		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 
 test(
 	qase(
 		5312,
-		'Check section numbers and titles in "Industries We Develop Software For" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section numbers, titles and CTA button in "Industries We Develop Software For" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const industriesWeDevelopContainer = driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor);
@@ -226,6 +228,9 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+		await expect(industriesWeDevelopContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -242,7 +247,7 @@ test(
 		await expect(sections).toHaveCount(numOfSections);
 
 		const sectionTitles = whyChooseTechstackContainer.getByTestId(Container.SectionTitle);
-		const expectedText = ['Tech community', 'Ownership over\nproducts', 'Proven expertise'];
+		const expectedText = ['Tech community', 'Ownership over products', 'Proven expertise'];
 
 		await expect(sectionTitles).toHaveText(expectedText);
 	}
@@ -263,7 +268,7 @@ test(
 test(
 	qase(
 		4789,
-		'Check section titles, member names and roles, and CTA button in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles, member names and roles in "Custom Software Development Experts" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
 		const devExpertsContainer = driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts);
@@ -310,10 +315,6 @@ test(
 			await expect(memberCard.getByTestId(Container.MemberRole)).toHaveText(expectedMemberCardsText[i].role);
 			await expect(memberCard.getByTestId(Container.MemberName)).toHaveText(expectedMemberCardsText[i].name);
 		}
-
-		await expect(devExpertsContainer.getByTestId(MainSiteButtons.ContactOurExperts)).toHaveText(
-			'Contact Our Experts'
-		);
 	}
 );
 
@@ -331,8 +332,8 @@ test(
 		const expectedText = ['Full-cycle software development', 'Dedicated team', 'R&D partnership'];
 
 		await expect(sectionTitles).toHaveText(expectedText);
-		await expect(ourTailoredCollaborationContainer.getByTestId(MainSiteButtons.ClaimYourCustomQuote)).toHaveText(
-			'Claim Your Custom Quote'
+		await expect(ourTailoredCollaborationContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );

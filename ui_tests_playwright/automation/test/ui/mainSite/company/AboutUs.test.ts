@@ -27,7 +27,7 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'We Make an Impact on the Product, People, and World'
 		);
-		await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in touch');
 	}
 );
 
@@ -282,7 +282,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -325,7 +325,7 @@ test(
 		'Check navigation to "Get in Touch" container after clicking CTA button from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
-		const ctaButton = driver.getByTestId(AboutUs.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+		const ctaButton = driver.getByTestId(AboutUs.Info).getByTestId(MainSiteButtons.GetInTouch);
 
 		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, AboutUs.GetInTouch);
 	}

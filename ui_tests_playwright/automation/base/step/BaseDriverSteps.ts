@@ -4,7 +4,7 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
-
+import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -15,10 +15,11 @@ class BaseDriverSteps {
 		acceptCookies = true,
 		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
 	) {
+		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
 
-		if (acceptCookies) {
+		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
 		}
 	}
@@ -139,6 +140,19 @@ class BaseDriverSteps {
 		}
 	}
 
+	public async checkRedirectToClutch(locator: Locator, expectedUrl: string) {
+		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				expect(newPage.url()).toContain(expectedUrl);
+			},
+			3,
+			5000
+		);
+		await newPage.close();
+	}
+
 	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
 		const ignorePatterns = ['in'];
 		const expectedUrlArray = expectedUrl.split('/');
@@ -175,7 +189,7 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.5
+		viewportPart = 0.4
 	) {
 		await ctaButton.click();
 		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});

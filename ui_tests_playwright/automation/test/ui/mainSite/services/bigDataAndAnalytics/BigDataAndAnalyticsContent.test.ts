@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(BigDataAndAnalytics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBig Data & Analytics');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Big Data Application Development Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBigDataQuote)).toHaveText(
+			'Get your custom Big Data quote'
+		);
 	}
 );
 
@@ -35,6 +37,7 @@ test(
 	),
 	async () => {
 		const containers = [
+			driver.getByTestId(BigDataAndAnalytics.WhatResultsCanYouExpect),
 			driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack),
@@ -49,20 +52,35 @@ test(
 		];
 
 		const expectedData = [
-			['How Big Data Will Help You', '01'],
-			['Big Data Software Development With Techstack', '02'],
-			['Big Data Solutions Technology Stack', '03'],
-			['Big Data Case Studies', '04'],
-			['Industry-specific Big Data Solutions', '05'],
-			['Why Choose Techstack’s Big Data Software Development Services?', '06'],
-			['Our Experts', '07'],
-			['Related Services', '08'],
-			['Get in Touch', '09'],
-			['Related Articles', '10'],
-			['FAQ', '11'],
+			['What Results Can You Expect with Our Big Data Expertise?', '01'],
+			['How Big Data Will Help You', '02'],
+			['Big Data Software Development With Techstack', '03'],
+			['Big Data Solutions Technology Stack', '04'],
+			['Big Data Case Studies', '05'],
+			['Industry-specific Big Data Solutions', '06'],
+			['Why Choose Techstack’s Big Data Software Development Services?', '07'],
+			['Our Experts', '08'],
+			['Related Services', '09'],
+			['Request a Free No-obligation Quote', '10'],
+			['Related Articles', '11'],
+			['FAQ', '12'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
+	}
+);
+
+test(
+	qase(
+		5595,
+		'Check block titles in "What Results Can You Expect with Our Big Data Expertise?" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(BigDataAndAnalytics.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.SectionNumber);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
 	}
 );
 
@@ -108,8 +126,8 @@ test(
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(bigDataWithTechstackContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(bigDataWithTechstackContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -149,8 +167,8 @@ test(
 			'Video-based quality control scheme'
 		);
 		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.ReadMoreAboutSolution)).toHaveText(
-			'Read more about Solution'
+		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -158,7 +176,7 @@ test(
 test(
 	qase(
 		4984,
-		'Check section titles in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check section titles and CTA button in "Industry-specific Big Data Solutions" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const industrySpecificContainer = driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions);
@@ -172,6 +190,10 @@ test(
 			'E-Commerce',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industrySpecificContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -196,14 +218,14 @@ test(
 test(
 	qase(
 		4994,
-		'Check member names and roles in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check member names, roles and CTA button in "Our Experts" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(BigDataAndAnalytics.OurExperts);
 		const allMemberRoles = ourExpertsContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
 			'CTO, Software Architect,\nElaborates on the technology strategy',
-			'R&D Engineer, Software Engineering Lead,Yevhenii will advise the best custom solution',
+			'R&D Engineer, Software Engineering Lead,Will advise the best custom solution',
 			'Data Scientist,Analyzes data for actionable insights',
 			'VP of Engineering,\nLeads the Tech Experts program and team',
 		];
@@ -219,6 +241,8 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
+
+		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
@@ -231,10 +255,10 @@ test(
 		const relatedServicesContainer = driver.getByTestId(BigDataAndAnalytics.RelatedServices);
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom software\ndevelopment',
+			'Custom software development',
 			'UX/UI Design',
 			'AI & ML',
-			'Development\nconsulting',
+			'Development consulting',
 			'QA as a Service',
 			'Cloud & DevOps',
 			'Internet of Things',

@@ -21,7 +21,9 @@ test(
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'Software Development Solutions for the Healthcare Industry'
 		);
-		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in Touch');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			' Get your custom project quote'
+		);
 	}
 );
 
@@ -56,7 +58,7 @@ test(
 			['Our Workflow', '07'],
 			['Core Practices', '08'],
 			['Serving Partners Worldwide', '09'],
-			['Get in Touch', '10'],
+			['Request a Free No-obligation Quote', '10'],
 			['Related Articles', '11'],
 			['FAQ', '12'],
 		];
@@ -88,16 +90,16 @@ test(
 		const ourExpertiseContainer = driver.getByTestId(Healthcare.OurExpertise);
 		const allSectionTitles = ourExpertiseContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Hospital Management\nSystem',
-			'Health Monitoring\nDevices And Wearables',
-			'Health\nMonitoring Software',
+			'Hospital Management System',
+			'Health Monitoring Devices And Wearables',
+			'Health Monitoring Software',
 			'UI Kit',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.ScheduleAMeetingNow)).toHaveText(
-			'Schedule a meeting now!'
+		await expect(ourExpertiseContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -110,14 +112,14 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Improved\nefficiency', 'Enhanced data\nanalysis', 'Scalability'];
+		const testData = ['Improved efficiency', 'Enhanced data analysis', 'Scalability'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
 
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read the full Case Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -138,10 +140,10 @@ test(
 
 		const allSectionTitles = patientCenteredStrategyContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Conducting user\nresearch',
+			'Conducting user research',
 			'Design with empathy',
-			'Involving patients\nin the development\nprocess',
-			'Responsible use\nof patient data',
+			'Involving patients in the development process',
+			'Responsible use of patient data',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -179,17 +181,15 @@ test(
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Make\ncontact',
-			'Speak with\na tech expert',
+			'Make contact',
+			'Speak with a tech expert',
 			'Offering a service solution proposal',
-			'Contract\nsigning',
+			'Contract signing',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.ScheduleAMeeting)).toHaveText(
-			'Schedule a meeting'
-		);
+		await expect(howWeOperateContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
@@ -212,9 +212,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -230,12 +230,12 @@ test(
 
 		const allSectionTitles = corePracticesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom Software\nDevelopment',
+			'Custom Software Development',
 			'Cloud & DevOps',
-			'Big Data\n& Analytics',
+			'Big Data & Analytics',
 			'Internet of Things',
 			'AI & ML',
-			'Mobile App\nDevelopment',
+			'Mobile App Development',
 			'UI/UX Design',
 		];
 		await expect(allSectionTitles).toHaveText(testData);

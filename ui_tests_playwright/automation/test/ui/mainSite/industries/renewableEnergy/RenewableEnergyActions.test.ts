@@ -39,7 +39,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuiltIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`,
@@ -105,9 +106,9 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetInTouch),
+			driver.getByTestId(RenewableEnergy.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
 			driver.getByTestId(RenewableEnergy.RenewableEnergySoftDevServ).getByTestId(MainSiteButtons.GetYourQuoteNow),
-			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.TalkToAnExpert),
+			driver.getByTestId(RenewableEnergy.HowWeOperateAtTechstack).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

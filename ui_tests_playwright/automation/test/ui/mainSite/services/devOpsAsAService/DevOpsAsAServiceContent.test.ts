@@ -24,7 +24,9 @@ test(
 		const info = driver.getByTestId(DevOpsAsAService.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDevOps');
 		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services & Solutions');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYouCustomDevOpsQuote)).toHaveText(
+			'Get your custom DevOps quote'
+		);
 	}
 );
 
@@ -60,7 +62,7 @@ test(
 			['Our DevOps experts', '08'],
 			['DevOps as a Service: Pipeline', '09'],
 			['Related Services', '10'],
-			['Get in Touch', '11'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];
@@ -87,11 +89,11 @@ test(
 
 		const allSectionTitles = devOpsSolutionBenefitsContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Enhanced efficiency\nand streamlined delivery',
-			'Confidence in secure,\nstreamlined development',
-			'Comprehensive insights\nfor enhanced performance',
-			'Reliable networks\nwith secure access',
-			'Streamlined productivity\nwith automated infrastructure',
+			'Enhanced efficiency and streamlined delivery',
+			'Confidence in secure, streamlined development',
+			'Comprehensive insights for enhanced performance',
+			'Reliable networks with secure access',
+			'Streamlined productivity with automated infrastructure',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -107,15 +109,15 @@ test(
 		const leverageDevOpsServicesrContainer = driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices);
 		const allSectionTitles = leverageDevOpsServicesrContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'AWS, Google Cloud,\nand Azure',
+			'AWS, Google Cloud, and Azure',
 			'Terraform',
 			'Kubernetes',
 			'CI/CD pipeline',
 			'Git flow',
 			'Quality gates',
-			'Disaster recovery\nplan',
+			'Disaster recovery plan',
 			'SRE services',
-			'Logging and\nmonitoring',
+			'Logging and monitoring',
 			'DevSecOps',
 		];
 
@@ -127,8 +129,8 @@ test(
 			await expect(leverageDevOpsServicesrContainer.getByTestId(image)).toBeVisible();
 		}
 
-		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -155,15 +157,15 @@ test(
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
 		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Seamless Integration\nof Multiple Monolithic\nSystems',
-			'Implementation\nof the 9 Dots Menu\nPattern',
-			'Overcoming\nTechnical\nChallenges',
+			'Seamless Integration of Multiple Monolithic Systems',
+			'Implementation of the 9 Dots Menu\nPattern',
+			'Overcoming Technical Challenges',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -171,7 +173,7 @@ test(
 test(
 	qase(
 		4939,
-		'Check section numbers and titles in "Industries We Serve" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles, and CTA button in "Industries We Serve" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(DevOpsAsAService.IndustriesWeServe);
@@ -194,6 +196,10 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
@@ -207,11 +213,11 @@ test(
 		const awardCards = ourApproachToDevOpsContainer.getByTestId(Container.AwardCard);
 		const allSectionTitles = ourApproachToDevOpsContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Collaboration\nand communication',
-			'Continuous integration\nand continuous delivery',
-			'Reliability\nand stability',
-			'Security is\na top priority',
-			'Scalability\nand flexibility',
+			'Collaboration and communication',
+			'Continuous integration and continuous delivery',
+			'Reliability and stability',
+			'Security is a top priority',
+			'Scalability and flexibility',
 			'Certification',
 		];
 
@@ -267,8 +273,8 @@ test(
 		];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAConsultation)).toHaveText(
-			'Request\na Consultation'
+		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );
@@ -292,8 +298,8 @@ test(
 		const testData = [
 			'Introduction',
 			'Discover & Consult',
-			'Creating short, mid, long\nterm roadmaps',
-			' Implementation\n& monitoring',
+			'Creating short, mid, long term roadmaps',
+			' Implementation & monitoring',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -310,7 +316,7 @@ test(
 
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom Software\nDevelopment',
+			'Custom Software Development',
 			'Cloud Services',
 			'Big Data & Analytics',
 			'Internet of Things',

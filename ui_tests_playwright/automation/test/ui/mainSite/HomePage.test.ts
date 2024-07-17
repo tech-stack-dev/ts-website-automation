@@ -67,7 +67,7 @@ test.skip(
 			['Working with Businesses Worldwide', '05'],
 			['Our partners', '06'],
 			['Company insights', '07'],
-			['Get in Touch', '08'],
+			['Request a Free No-obligation Quote', '08'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -117,7 +117,7 @@ test.skip(
 test.skip(
 	qase(
 		5049,
-		'Check section titles in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check section titles and CTA button in "What we do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const whatWeDo = driver.getByTestId(HomePage.WhatWeDo);
@@ -137,6 +137,8 @@ test.skip(
 		];
 
 		await expect(allBlockTitles).toHaveText(testData);
+
+		await expect(whatWeDo.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 

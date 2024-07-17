@@ -29,6 +29,7 @@ export default class UrlPath {
 	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
 
 	static ContactUs = 'contact-us';
+	static GetAQuote = 'free-proposal';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';

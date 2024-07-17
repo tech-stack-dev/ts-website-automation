@@ -40,13 +40,13 @@ export default class TechnologyStackData {
 	];
 	static AiMLDataScieceTab = [
 		'Computer vision',
-		'Artificial Intelligence,\nDeep Learning,\nand Machine Learning',
-		'Data Ingestion\nand Manipulation',
-		'Data Visualization',
-		'Data Storage',
-		'Development Environment',
-		'Cloud',
-		'MLOps',
+		'Deep Learning\nand Machine\nLearning',
+		'Data Ingestion\nand\nManipulation',
+		'Application',
+		'Data storage\nand\nmanipulation',
+		'DevOps',
+		'QA',
+		'Data\nVisualization',
 	];
 	static EmbededDevelopmentTab = [
 		'Gateway',

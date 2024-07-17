@@ -28,7 +28,8 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.MoreProductDetails).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.MobileSocialNetworkForSportsFans}`,
@@ -82,7 +83,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -167,14 +168,15 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(MobileDevService.Info).getByTestId(MainSiteButtons.GetYourCustomMobileDevQuote),
 			driver.getByTestId(MobileDevService.WhatWeDo).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
-				.getByTestId(MobileDevService.WeNeverStopImprovingYourProduct)
-				.getByTestId(MainSiteButtons.RequestAQuote),
+				.getByTestId(MobileDevService.WhatIndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(MobileDevService.MobileAppDevelopmentProcess).getByTestId(MainSiteButtons.RequestAQuote),
 			driver
 				.getByTestId(MobileDevService.TheCostOfMobileAppDevelopment)
-				.getByTestId(MainSiteButtons.ScheduleACall),
+				.getByTestId(MainSiteButtons.GetAFreeQuote),
 		];
 
 		for (const button of ctaButtons) {

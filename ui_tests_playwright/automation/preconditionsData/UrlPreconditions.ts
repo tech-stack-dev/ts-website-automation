@@ -36,3 +36,5 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
 	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
 };
+
+export const urlsWithoutCookiesMessage: string[] = [UrlPath.GetAQuote];

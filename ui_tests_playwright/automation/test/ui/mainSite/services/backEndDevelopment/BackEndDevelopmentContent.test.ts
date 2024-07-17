@@ -24,7 +24,9 @@ test(
 
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nBack-End Development');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Back-End Development Services');
-		await expect(info.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a Quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomBeDevelopmentQuote)).toHaveText(
+			'Get your custom BE development quote'
+		);
 	}
 );
 
@@ -65,7 +67,7 @@ test(
 			['Back-End Development Services for Any Industry', '10'],
 			['How We Can Work Together', '11'],
 			['Related Services', '12'],
-			['Get in Touch', '13'],
+			['Request a Free No-obligation Quote', '13'],
 			['Related Articles', '14'],
 			['FAQ', '15'],
 		];
@@ -82,7 +84,7 @@ test(
 	async () => {
 		const techstackPowersContainer = driver.getByTestId(BackEndServices.TechstackPowers);
 		const allSectionTitles = techstackPowersContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Architect Tech Guild', 'Back-End Development as\nOur Core Expertise', 'Rising Tech Talent'];
+		const testData = ['Architect Tech Guild', 'Back-End Development as Our Core Expertise', 'Rising Tech Talent'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -91,7 +93,7 @@ test(
 test(
 	qase(
 		5526,
-		'Check section titles and numbers in "Expert Back-End Development Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers, and CTA button in "Expert Back-End Development Services" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.ExpertServices);
@@ -108,23 +110,27 @@ test(
 
 		const allSectionTitles = expertServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Back-End\nDevelopment',
-			'Database Design\nand Optimization',
-			'Server Management\nand Deployment',
-			'Microservices\nArchitecture',
+			'Back-End Development',
+			'Database Design and Optimization',
+			'Server Management and Deployment',
+			'Microservices Architecture',
 			'Back-End Refactoring',
-			'Technical\nBack-End Audit',
-			'API Development\nand Integration',
+			'Technical Back-End Audit',
+			'API Development and Integration',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(expertServicesContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
 test(
 	qase(
 		5534,
-		'Check section titles, numbers and CTA in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles and numbers in "Back-End Development Services for Any Software Product" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const expertServicesContainer = driver.getByTestId(BackEndServices.BackendForAnySoftwareProduct);
@@ -133,16 +139,13 @@ test(
 
 		const allSectionTitles = expertServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Back-End Development\nfor Mobile Apps',
-			'Back-End Development\nfor Web Apps',
-			'Back-End Development\nfor IoT',
-			'Back-End Development\nfor AI/ ML',
+			'Back-End Development for Mobile Apps',
+			'Back-End Development for Web Apps',
+			'Back-End Development for IoT',
+			'Back-End Development for AI/ ML',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(expertServicesContainer.getByTestId(MainSiteButtons.ScheduleAFreeBackendConsultation)).toHaveText(
-			'Schedule a Free Back-End Consultation'
-		);
 	}
 );
 
@@ -155,17 +158,17 @@ test(
 		const techArsenalContainer = driver.getByTestId(BackEndServices.TechArsenal);
 		const allSectionTitles = techArsenalContainer.getByTestId(Container.SectionTitle);
 		const BackEndTabData = [
-			'Programming\nLanguages',
-			'Server-Side\nTechnologies',
-			'Database\nTechnologies',
+			'Programming Languages',
+			'Server-Side Technologies',
+			'Database Technologies',
 			'Messaging',
 			'API',
 			'Caching',
 			'Unit testing',
-			'Cloud Services\nand Deployment\nPlatforms',
-			'SDLC enabling\ntechnologies',
+			'Cloud Services and Deployment Platforms',
+			'SDLC enabling technologies',
 			'Servers',
-			'Scripting\nand Miscellaneous',
+			'Scripting and Miscellaneous',
 		];
 		await expect(allSectionTitles).toHaveText(BackEndTabData);
 	}
@@ -179,11 +182,13 @@ test(
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
 		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Complexity of\nData Management', 'Integration with\nExisting Systems'];
+		const testData = ['Complexity of Data Management', 'Integration with Existing Systems'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BackendCaseStudy)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.MoreDetails)).toHaveText('More Details');
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 
@@ -217,8 +222,8 @@ test(
 		];
 
 		await expect(allMemberNames).toHaveText(testDataNames);
-		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.BookYourExpertConsultation)).toHaveText(
-			'Book Your Expert Consultation'
+		await expect(ourExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
@@ -306,19 +311,17 @@ test(
 			['04', 'Development'],
 			['05', 'API Development'],
 			['06', 'Security Implementation'],
-			['07', 'Testing and Quality\nAssurance'],
-			['08', 'Optimization and\nPerformance Tuning'],
+			['07', 'Testing and Quality Assurance'],
+			['08', 'Optimization and Performance Tuning'],
 			['09', 'Deployment'],
-			['10', 'Monitoring and\nMaintenance'],
+			['10', 'Monitoring and Maintenance'],
 			['11', 'Documentation'],
 			['12', 'Support and Scalability'],
 		]);
 
 		expect(actualCarouselIndexesAndTitles).toEqual(expectedCarouselIndexesAndTitles);
 
-		await expect(peekIntoBackendContainer.getByTestId(MainSiteButtons.BoostYourBackend)).toHaveText(
-			'Boost your Back-End'
-		);
+		await expect(peekIntoBackendContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 	}
 );
 
@@ -359,8 +362,8 @@ test(
 		const testData = ['Full-Cycle Back-End\nDevelopment', 'Back-End Audit', 'Back-End Engineers\nfor Your Product'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(howWeCanWorkTogetherContainer.getByTestId(MainSiteButtons.LetsDiscussOurPartnership)).toHaveText(
-			'Let’s Discuss Our Partnership'
+		await expect(howWeCanWorkTogetherContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
