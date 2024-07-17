@@ -4,7 +4,7 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
-
+import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -15,10 +15,11 @@ class BaseDriverSteps {
 		acceptCookies = true,
 		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
 	) {
+		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
 
-		if (acceptCookies) {
+		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
 		}
 	}
@@ -188,14 +189,10 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.5,
-		timeout = 10000
+		viewportPart = 0.4
 	) {
 		await ctaButton.click();
-		const getInTouchContainer = driver.getByTestId(expectedContainer).first();
-
-		await getInTouchContainer.scrollIntoViewIfNeeded();
-		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart, timeout});
+		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});
 
 		await driver.Page.evaluate(() => {
 			document.documentElement.scrollTop = 0;
