@@ -42,6 +42,16 @@ export default class MainSiteImages {
 	static TableauLogo = 'Img-TableauLogo';
 	static FullStoryLogo = 'Img-FullStoryLogo';
 
+	// Partner logos
+	static Corel = 'Img-Corel';
+	static VivaQuantLogo = 'Img-VivaQuantLogo';
+	static SkillLabLogo = 'Img-SkillLabLogo';
+	static ExaumLogo = 'Img-ExaumLogo';
+	static RuckifyLogo = 'Img-RuckifyLogo';
+	static CorelLogo = 'Img-CorelLogo';
+	static SavageLogo = 'Img-SavageLogo';
+	static SidepostLogo = 'Img-SidepostLogo';
+
 	// Big numbers on site, presented as images
 	static BigNumber = 'Img-BigNumbers';
 }

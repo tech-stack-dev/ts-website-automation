@@ -38,7 +38,6 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
@@ -229,8 +228,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		// Uncomment after fix in TSWEB-1603
-		// await expect(getAQuoteButton).toHaveText('Get a quote');
+		await expect(getAQuoteButton).toHaveText('Get a quote');
 	}
 });
 

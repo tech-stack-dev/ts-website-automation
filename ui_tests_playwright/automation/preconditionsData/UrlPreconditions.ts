@@ -37,4 +37,12 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
 };
 
-export const urlsWithoutCookiesMessage: string[] = [UrlPath.GetAQuote];
+export const urlsWithoutCookiesMessage: string[] = [
+	UrlProvider.urlBuilder(UrlPath.GetAQuote),
+	UrlProvider.urlBuilder(UrlPath.ContactUs),
+];
+
+export const urlsWithOnlyLogoInHeader: string[] = [
+	UrlProvider.urlBuilder(UrlPath.GetAQuote),
+	UrlProvider.urlBuilder(UrlPath.ContactUs),
+];
