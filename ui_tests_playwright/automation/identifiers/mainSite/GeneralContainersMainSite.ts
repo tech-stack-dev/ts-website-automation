@@ -26,5 +26,4 @@ export default class GeneralContainersMainSite {
 	static WhatResultsCanYouExpect = 'Container-WhatResultsCanYouExpect';
 	static WhyPartnerWithUs = 'Container-WhyPartnerWithUs';
 	static TrustedBy = 'Container-TrustedBy';
-	static Cooperation = 'Container-Cooperation';
 }

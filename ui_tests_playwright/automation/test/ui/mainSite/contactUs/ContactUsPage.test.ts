@@ -13,9 +13,11 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(4968, 'Check the Title from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1082'),
+	qase(
+		4968, 
+		'Check the Title from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1082'),
 	async () => {
-		const infoContainer = driver.getByTestId(ContactUs.GetInTouch);
+		const infoContainer = driver.getByTestId(ContactUs.ContactUs);
 		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Connect with Techstack');
 	}
 );
@@ -53,10 +55,10 @@ test(
 		const whatHappensNextContainer = driver.getByTestId(ContactUs.WhatHappensNext);
 
 		await expect(whatHappensNextContainer.getByTestId(Container.SectionTitle)).toHaveText([
-			'Review',
-			'Response',
-			'Meeting',
-		]);
+			'Review:',
+			'Response:',
+			'Meeting:',
+		])
 	}
 );
 
