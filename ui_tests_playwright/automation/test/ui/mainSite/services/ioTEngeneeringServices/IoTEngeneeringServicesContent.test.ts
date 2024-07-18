@@ -306,7 +306,7 @@ test(
 
 		const awardCards = ourApproachToIoTEngineeringContainer.getByTestId(Container.AwardCard);
 
-		await baseDriverSteps.checkImagesVisibility(awardCards, 2);
+		await baseDriverSteps.checkImagesVisibility(awardCards, 3);
 	}
 );
 

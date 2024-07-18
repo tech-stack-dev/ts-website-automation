@@ -3,7 +3,12 @@ import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {industryUrl, serviceUrl, companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {
+	industryUrl,
+	serviceUrl,
+	companyUrl,
+	urlsWithOnlyLogoInHeader,
+} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -26,7 +31,6 @@ let testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlProvider.urlBuilder(
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
@@ -53,7 +57,7 @@ test(
 		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		testDataProvider = testDataProvider.concat(UrlProvider.urlBuilder(UrlPath.GetAQuote));
+		testDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
 
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);

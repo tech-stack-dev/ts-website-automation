@@ -25,4 +25,5 @@ export default class GeneralContainersMainSite {
 	static WhyTechstack = 'Container-WhyTechstack';
 	static WhatResultsCanYouExpect = 'Container-WhatResultsCanYouExpect';
 	static WhyPartnerWithUs = 'Container-WhyPartnerWithUs';
+	static TrustedBy = 'Container-TrustedBy';
 }
