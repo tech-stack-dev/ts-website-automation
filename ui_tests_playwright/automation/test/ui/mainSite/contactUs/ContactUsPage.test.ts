@@ -26,7 +26,12 @@ test(
 		'Check the container title and number from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148 @TSWEB-1082'
 	),
 	async () => {
-		const containers = [driver.getByTestId(ContactUs.ContactUs), driver.getByTestId(ContactUs.WhatHappensNext), driver.getByTestId(ContactUs.TrustedBy), driver.getByTestId(ContactUs.Cooperation)];
+		const containers = [
+			driver.getByTestId(ContactUs.ContactUs),
+			driver.getByTestId(ContactUs.WhatHappensNext),
+			driver.getByTestId(ContactUs.TrustedBy),
+			driver.getByTestId(ContactUs.Cooperation),
+		];
 
 		const expectedData = [
 			['Contact Us', '01'],
@@ -51,7 +56,7 @@ test(
 			'Review',
 			'Response',
 			'Meeting',
-		])
+		]);
 	}
 );
 
@@ -89,8 +94,12 @@ test(
 	async () => {
 		const cooperationContactsContainer = driver.getByTestId(ContactUs.Cooperation);
 
-		await expect(cooperationContactsContainer.getByTestId(Container.Email)).toHaveText('Email\nhello@tech-stack.io');
-		await expect(cooperationContactsContainer.getByTestId(Container.Phone)).toHaveText('Phone number\n+1-312-442-0823');
+		await expect(cooperationContactsContainer.getByTestId(Container.Email)).toHaveText(
+			'Email\nhello@tech-stack.io'
+		);
+		await expect(cooperationContactsContainer.getByTestId(Container.Phone)).toHaveText(
+			'Phone number\n+1-312-442-0823'
+		);
 	}
 );
 
