@@ -11,7 +11,7 @@ export default class UrlUtils {
 		return urls[randomIndex];
 	}
 
-	public static async isTechstackWebsiteUrl(url: string): Promise<void> {
+	public static async isValidTechstackPageUrl(url: string): Promise<void> {
 		const isWebsitePage = url.includes(UrlProvider.webSiteUrl());
 
 		if (isWebsitePage) {
