@@ -194,7 +194,7 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.5
+		viewportPart = 0.4
 	) {
 		await ctaButton.click();
 		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});

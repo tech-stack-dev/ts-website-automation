@@ -20,32 +20,6 @@ test.beforeEach(async () => {
 
 test(
 	qase(
-		5361,
-		'Check redirect by links in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
-	),
-	async () => {
-		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
-			AiDevelopment.AiBeneficialImpactOnIndustries
-		);
-		// Replace with checks for redirect to pages and check url after investigate the 'chrome-error://chromewebdata/' error
-		const buttonLinkMap = new Map([
-			[MainSiteButtons.Forbes, ExternalSourceLinks.ForbesAiStartups],
-			[MainSiteButtons.Salesforce, ExternalSourceLinks.SalesforceCustomerEngagement],
-			[MainSiteButtons.Deloitte, ExternalSourceLinks.DeloitteAiManufacturing],
-			[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyImpactOfAi],
-		]);
-
-		for (const entries of buttonLinkMap.entries()) {
-			const actualLink = await aiBeneficialImpactOnIndustriesContainer
-				.getByTestId(entries[0])
-				.getAttribute('href');
-			expect(actualLink).toEqual(entries[1]);
-		}
-	}
-);
-
-test(
-	qase(
 		4795,
 		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
@@ -81,7 +55,7 @@ test(
 test(
 	qase(
 		4809,
-		'Check redirect by links in "Industries We Serve" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+		'Check redirect by links in "Industries We Deliver AI Development Services To" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(AiDevelopment.IndustriesWeServe);
@@ -113,8 +87,34 @@ test(
 
 test(
 	qase(
+		5361,
+		'Check redirect by links in "AI’s Beneficial Impact on Industries" container from the "AI Development" page @desktop @mobile @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const aiBeneficialImpactOnIndustriesContainer = driver.getByTestId(
+			AiDevelopment.AiBeneficialImpactOnIndustries
+		);
+		// Replace with checks for redirect to pages and check url after investigate the 'chrome-error://chromewebdata/' error
+		const buttonLinkMap = new Map([
+			[MainSiteButtons.Forbes, ExternalSourceLinks.ForbesAiStartups],
+			[MainSiteButtons.Salesforce, ExternalSourceLinks.SalesforceCustomerEngagement],
+			[MainSiteButtons.Deloitte, ExternalSourceLinks.DeloitteAiManufacturing],
+			[MainSiteButtons.McKinsey, ExternalSourceLinks.McKinseyImpactOfAi],
+		]);
+
+		for (const entries of buttonLinkMap.entries()) {
+			const actualLink = await aiBeneficialImpactOnIndustriesContainer
+				.getByTestId(entries[0])
+				.getAttribute('href');
+			expect(actualLink).toEqual(entries[1]);
+		}
+	}
+);
+
+test(
+	qase(
 		4820,
-		'Check carousel arrows click in "The Way We work" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
+		'Check carousel arrows click in "The Way We Work" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
 	),
 	async () => {
 		const theWayWeWorkContainer = driver.getByTestId(AiDevelopment.TheWayWeWork);
@@ -135,6 +135,18 @@ test(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.DarrenCody
 		);
+	}
+);
+
+test(
+	qase(
+		5608,
+		'Check carousel arrows click in "Custom AI Solutions We Can Build" container from the "AI Development" page @desktop @Regression @AiDevelopment @TSWEB-694'
+	),
+	async () => {
+		const customAiSolutionsContainer = driver.getByTestId(AiDevelopment.CustomAiSolutions);
+
+		await baseDriverSteps.checkCarouselArrowsClick(customAiSolutionsContainer);
 	}
 );
 

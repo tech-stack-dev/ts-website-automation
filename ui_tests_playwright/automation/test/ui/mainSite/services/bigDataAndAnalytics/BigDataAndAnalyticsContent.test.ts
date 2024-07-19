@@ -210,7 +210,7 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		const awardCards = whyChooseTechstackContainer.getByTestId(Container.AwardCard);
-		const numberOfCards = 2;
+		const numberOfCards = 3;
 		await baseDriverSteps.checkImagesVisibility(awardCards, numberOfCards);
 	}
 );

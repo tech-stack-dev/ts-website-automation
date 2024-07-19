@@ -23,7 +23,7 @@ test(
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
 		await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and Logistics Software Development');
 		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
-			`Get your custom project quote`
+			'Get your custom project quote'
 		);
 	}
 );
