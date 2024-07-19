@@ -5,6 +5,7 @@ import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
+import UrlUtils from '../../utils/UrlUtils';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -18,6 +19,7 @@ class BaseDriverSteps {
 		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
+		await UrlUtils.isTechstackWebsiteUrl(url);
 
 		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
@@ -48,6 +50,7 @@ class BaseDriverSteps {
 
 	public async goToUrl(url: string) {
 		await driver.Page.goto(url, {timeout: 30000});
+		await UrlUtils.isTechstackWebsiteUrl(url);
 	}
 
 	public async checkUrl(expectedUrl: string) {
@@ -123,12 +126,14 @@ class BaseDriverSteps {
 			await playwrightUtils.expectWithRetries(async () => {
 				await driver.Page.waitForLoadState('load', {timeout: 15000});
 			});
+			await UrlUtils.isTechstackWebsiteUrl(expectedUrl);
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
+			await UrlUtils.isTechstackWebsiteUrl(expectedUrl);
 			await playwrightUtils.expectWithRetries(
 				async () => {
 					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();

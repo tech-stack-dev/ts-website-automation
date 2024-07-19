@@ -46,4 +46,7 @@ export default class UrlPath {
 	static Blog_StandWithUkraine = 'blog/techstack-stands-with-ukraine/';
 	static ArticlePageDescription = 'blog/icebreakers-for-remote-teams/';
 	static AuthorPage = 'blog/author/';
+
+	// Error pages
+	static PageNotFound = '404';
 }
