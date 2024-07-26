@@ -19,6 +19,7 @@ export default class UrlPath {
 	static UiUxDesign = 'services/ui-ux-design';
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';
+	static OurServicesTechnologyStackBlock = 'services#services-main-technology-stack';
 
 	// Company pages
 	static AboutUs = 'about-us';
