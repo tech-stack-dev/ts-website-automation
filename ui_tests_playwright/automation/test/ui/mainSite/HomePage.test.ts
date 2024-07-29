@@ -55,7 +55,9 @@ test(
 	qase(5018, 'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const infoContainer = driver.getByTestId(HomePage.Info);
-		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Product Engineering & Custom Software Development Company');
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText(
+			'Product Engineering & Custom Software Development Company'
+		);
 	}
 );
 
@@ -112,12 +114,7 @@ test(
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
-		await expect(whatWeDoContainer.getByTestId(Container.SectionNumber)).toHaveText([
-			'01',
-			'02',
-			'03',
-			'04',
-		]);
+		await expect(whatWeDoContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
 
 		const allSectionTitles = whatWeDoContainer.getByTestId(Container.SectionTitle);
 		const testData = [
@@ -130,7 +127,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5076,
 		'Check redirect by "Clutch Review" buttons in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
@@ -145,11 +142,10 @@ test.skip(
 		const clutchButtons = await partnerTestimonialsContainer.getByTestId(MainSiteButtons.ClutchReviewArrow).all();
 
 		const buttonMap = new Map([
-			[clutchButtons[0], ClutchReviewLinks.MarkBeare],
-			[clutchButtons[1], ClutchReviewLinks.DerickDaily],
-			[clutchButtons[2], ClutchReviewLinks.DarrenCody],
-			[clutchButtons[3], ClutchReviewLinks.AnonymousMedicalDevice],
-			[clutchButtons[4], ClutchReviewLinks.AnonymousPeerToPeer],
+			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
+			[clutchButtons[1], ClutchReviewLinks.SherzodGafar],
+			[clutchButtons[2], ClutchReviewLinks.MarkBeare],
+			[clutchButtons[3], ClutchReviewLinks.NDA],
 		]);
 
 		for (const [button, url] of buttonMap) {
@@ -166,7 +162,7 @@ test(
 	async () => {
 		const industriesWeServe = driver.getByTestId(HomePage.IndustriesWeServe);
 		const allBlockTitles = industriesWeServe.getByTestId(Container.BlockTitle);
-		const testData = ['Renewable energy','Transportation and logistics', 'Healthcare'];
+		const testData = ['Renewable energy', 'Transportation and logistics', 'Healthcare'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}
@@ -181,15 +177,15 @@ test(
 		const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
 		const containerSection = industriesServicesContainer.getByTestId(Container.ContainerBlock);
 		const blockUrlMap = new Map([
-			[containerSection.nth(0).getByTestId(Container.BlockTitle), UrlProvider.urlBuilder(UrlPath.RenewableEnergy)],
+			[
+				containerSection.nth(0).getByTestId(Container.BlockTitle),
+				UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
+			],
 			[
 				containerSection.nth(1).getByTestId(Container.BlockTitle),
 				UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 			],
-			[
-				containerSection.nth(2).getByTestId(Container.BlockTitle),
-				UrlProvider.urlBuilder(UrlPath.Healthcare),
-			],
+			[containerSection.nth(2).getByTestId(Container.BlockTitle), UrlProvider.urlBuilder(UrlPath.Healthcare)],
 		]);
 
 		for (const [block, url] of blockUrlMap) {
@@ -231,7 +227,9 @@ test(
 	),
 	async () => {
 		const softwareDevelopmentServicesContainer = driver.getByTestId(HomePage.SoftwareDevelopmentServices);
-		const arrows = softwareDevelopmentServicesContainer.getByTestId(Container.ContainerBlock).getByTestId(Container.Arrow);
+		const arrows = softwareDevelopmentServicesContainer
+			.getByTestId(Container.ContainerBlock)
+			.getByTestId(Container.Arrow);
 		const arrowUrlMap = new Map([
 			[arrows.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
 			[arrows.nth(1), UrlProvider.urlBuilder(UrlPath.DigitalTransform)],
@@ -259,19 +257,23 @@ test(
 	),
 	async () => {
 		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(briefOverviewOfTechnologiesContainer);
-		const awardCardCountList = [8,6,6,4,8,6]
-		
+		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(
+			briefOverviewOfTechnologiesContainer
+		);
+		const awardCardCountList = [8, 6, 6, 4, 8, 6];
+
 		for (let index = 0; index < navigationTabs.length; index++) {
 			navigationTabs[index].click();
-			const awardCards = briefOverviewOfTechnologiesContainer.getByTestId(Container.AwardCard).locator('visible=true');
-		
-		await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
+			const awardCards = briefOverviewOfTechnologiesContainer
+				.getByTestId(Container.AwardCard)
+				.locator('visible=true');
+
+			await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
 		}
 
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)).toHaveText(
-			'View full technology stack'
-		)
+		await expect(
+			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)
+		).toHaveText('View full technology stack');
 	}
 );
 
@@ -282,19 +284,23 @@ test(
 	),
 	async () => {
 		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(briefOverviewOfTechnologiesContainer);
-		const awardCardCountList = [8,5,5,4,8,5]
-		
+		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(
+			briefOverviewOfTechnologiesContainer
+		);
+		const awardCardCountList = [8, 5, 5, 4, 8, 5];
+
 		for (let index = 0; index < navigationTabs.length; index++) {
 			navigationTabs[index].click();
-			const awardCards = briefOverviewOfTechnologiesContainer.getByTestId(Container.AwardCard).locator('visible=true');
-		
-		await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
+			const awardCards = briefOverviewOfTechnologiesContainer
+				.getByTestId(Container.AwardCard)
+				.locator('visible=true');
+
+			await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
 		}
 
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)).toHaveText(
-			'View full technology stack'
-		)
+		await expect(
+			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)
+		).toHaveText('View full technology stack');
 	}
 );
 
@@ -304,9 +310,14 @@ test(
 		'Check redirect by CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies)
-		.getByTestId(MainSiteButtons.ViewFullTechnologyStack);
-		await baseDriverSteps.checkRedirectToPage(briefOverviewOfTechnologiesContainer, UrlProvider.urlBuilder(UrlPath.OurServicesTechnologyStackBlock), UrlProvider.webSiteUrl());
+		const briefOverviewOfTechnologiesContainer = driver
+			.getByTestId(HomePage.BriefOverviewOfTechnologies)
+			.getByTestId(MainSiteButtons.ViewFullTechnologyStack);
+		await baseDriverSteps.checkRedirectToPage(
+			briefOverviewOfTechnologiesContainer,
+			UrlProvider.urlBuilder(UrlPath.OurServicesTechnologyStackBlock),
+			UrlProvider.webSiteUrl()
+		);
 	}
 );
 
@@ -319,16 +330,17 @@ test(
 		const whyTechstackContainer = driver.getByTestId(HomePage.WhyTechstack);
 		const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
 		const expectSectionTitles = [
-		'Strategic solution development',
-		'Flexible scale-up & seamless support',
-		'All-in-one tech solution',
-		'Product-centric engineering',
-		'Solution-driven collaboration',
-		'Risk mitigation',
-	];
+			'Strategic solution development',
+			'Flexible scale-up & seamless support',
+			'All-in-one tech solution',
+			'Product-centric engineering',
+			'Solution-driven collaboration',
+			'Risk mitigation',
+		];
 
-	await expect(actualSectionTitles).toHaveText(expectSectionTitles);
-});
+		await expect(actualSectionTitles).toHaveText(expectSectionTitles);
+	}
+);
 
 test(
 	qase(
@@ -337,7 +349,9 @@ test(
 	),
 	async () => {
 		const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
-		const bigNumberImages = workingWithBusinessesContainer.getByTestId(MainSiteImages.BigNumber).locator('visible=true');
+		const bigNumberImages = workingWithBusinessesContainer
+			.getByTestId(MainSiteImages.BigNumber)
+			.locator('visible=true');
 
 		await baseDriverSteps.checkImagesVisibility(bigNumberImages, 3);
 
@@ -360,9 +374,9 @@ test(
 	),
 	async () => {
 		const workingWithBusinessesContainer = driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide);
-		const clutchLink = workingWithBusinessesContainer.getByTestId(MainSiteLinks.Clutch).nth(0);
-	
-		await baseDriverSteps.checkRedirectToPage(clutchLink, Links.ClutchHighlights);
+		const clutchLink = workingWithBusinessesContainer.getByTestId(MainSiteLinks.Clutch).locator('visible=true');
+
+		await baseDriverSteps.checkRedirectToClutch(clutchLink, Links.ClutchHighlights);
 	}
 );
 
