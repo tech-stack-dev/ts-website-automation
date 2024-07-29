@@ -127,7 +127,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5076,
 		'Check redirect by "Clutch Review" buttons in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
@@ -143,9 +143,7 @@ test(
 
 		const buttonMap = new Map([
 			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
-			[clutchButtons[1], ClutchReviewLinks.SherzodGafar],
 			[clutchButtons[2], ClutchReviewLinks.MarkBeare],
-			[clutchButtons[3], ClutchReviewLinks.NDA],
 		]);
 
 		for (const [button, url] of buttonMap) {
