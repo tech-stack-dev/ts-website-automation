@@ -57,6 +57,7 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_BackEnd = 'Button-BackEnd';
 	static Technology_FrontEnd = 'Button-FrontEnd';
 	static Technology_Mobile = 'Button-Mobile';
+	static Technology_DevopsCloud = 'Button-DevopsCloud';
 	static Technology_DevOpsCloud = 'Button-DevOpsCloud';
 	static Technology_CICDAndAutomation = 'Button-CICDAndAutomation';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
