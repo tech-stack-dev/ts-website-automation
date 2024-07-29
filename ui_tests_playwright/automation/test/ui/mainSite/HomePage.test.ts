@@ -255,7 +255,7 @@ test(
 test(
 	qase(
 		5615,
-		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
@@ -277,14 +277,36 @@ test(
 
 test(
 	qase(
+		5615,
+		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
+		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(briefOverviewOfTechnologiesContainer);
+		const awardCardCountList = [8,5,5,4,8,5]
+		
+		for (let index = 0; index < navigationTabs.length; index++) {
+			navigationTabs[index].click();
+			const awardCards = briefOverviewOfTechnologiesContainer.getByTestId(Container.AwardCard).locator('visible=true');
+		
+		await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
+		}
+
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)).toHaveText(
+			'View full technology stack'
+		)
+	}
+);
+
+test(
+	qase(
 		5616,
 		'Check redirect by CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		await briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack).click();
-		await driver.Page.waitForLoadState();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServicesTechnologyStackBlock));
+		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies)
+		.getByTestId(MainSiteButtons.ViewFullTechnologyStack);
+		await baseDriverSteps.checkRedirectToPage(briefOverviewOfTechnologiesContainer, UrlProvider.urlBuilder(UrlPath.OurServicesTechnologyStackBlock), UrlProvider.webSiteUrl());
 	}
 );
 
