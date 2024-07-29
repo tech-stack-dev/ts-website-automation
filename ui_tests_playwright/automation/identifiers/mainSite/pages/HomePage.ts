@@ -8,6 +8,5 @@ export default class HomePage extends GeneralContainersMainSite {
 	static HowWeBuildCommunicationProcesses = 'Container-HowWeBuildCommunicationProcesses';
 	static TechstackAchievements = 'Container-TechstackAchievements';
 	static RecognitionAndMediaPresence = 'Container-RecognitionAndMediaPresence';
-	static SoftwareDevelopmentServices = 'Container-SoftwareDevelopmentServices';
 	static BriefOverviewOfTechnologies = 'Container-BriefOverviewOfTechnologies';
 }
