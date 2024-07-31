@@ -13,6 +13,9 @@ import BlogTagPath from '../../../providers/BlogTagPath';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect} from '../../../fixtures/DesktopMobileSetup';
 import TechnologyStackData from '../../../preconditionsData/technologyStack/TechnologyStackData';
+import CaseStudyPath from '../../../providers/CaseStudyPath';
+import { Environment } from '../../../providers/EnvProvider';
+import CaseStudies from '../../../identifiers/mainSite/CaseStudies';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -110,7 +113,7 @@ test(
 test(
 	qase(
 		5614,
-		'Check section numbers and titles in "What We Do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check section numbers, titles and CTA button in "What We Do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
@@ -124,6 +127,9 @@ test(
 			'Tech audit service',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+		await expect(
+			whatWeDoContainer.getByTestId(MainSiteButtons.RequestAQuote)
+		).toHaveText('Request a quote');
 	}
 );
 
@@ -248,37 +254,86 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
-		5615,
-		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @mobile @Regression @HomePage @TSWEB-1006'
+		4909,
+		'Check redirect by CTA button in "Case Studies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(
-			briefOverviewOfTechnologiesContainer
+		const caseStudiesContainer = driver.getByTestId(HomePage.CaseStudies);
+		await caseStudiesContainer.getByTestId(MainSiteButtons.ReadAllCases).click();
+
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.CaseStudies));
+
+
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.CargoAuctionSolution}`,
+				Environment.Production
+			)
 		);
-		const awardCardCountList = [8, 6, 6, 4, 8, 6];
-
-		for (let index = 0; index < navigationTabs.length; index++) {
-			navigationTabs[index].click();
-			const awardCards = briefOverviewOfTechnologiesContainer
-				.getByTestId(Container.AwardCard)
-				.locator('visible=true');
-
-			await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
-		}
-
-		await expect(
-			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)
-		).toHaveText('View full technology stack');
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.SolarEnergyDataPortal}`,
+				Environment.Production
+			)
+		);
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`,
+				Environment.Production
+			)
+		);
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`,
+				Environment.Production
+			)
+		);
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.FaceMatchingWebAppBackedByDeepNeuralNetwork}`,
+				Environment.Production
+			)
+		);
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.CloudPlatformForEvCharging}`,
+				Environment.Production
+			)
+		);
+		await driver.Page.waitForLoadState();
+		await baseDriverSteps.checkUrl(
+			UrlProvider.urlBuilder(
+				`${UrlPath.CaseStudies}${CaseStudyPath.OneStopCrossPlatform}`,
+				Environment.Production
+			)
+		);
 	}
 );
 
 test(
 	qase(
+		5622,
+		'Check CTA button in "Case Studies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const caseStudiesContainer = driver.getByTestId(HomePage.CaseStudies);
+		await expect(caseStudiesContainer.getByTestId(MainSiteButtons.ReadAllCases)
+		).toHaveText('Read all cases');
+	});
+
+test(
+	qase(
 		5615,
-		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @Regression @HomePage @TSWEB-1006'
+		'Check navigation bar, award cards and CTA button in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
@@ -394,7 +449,7 @@ test(
 test(
 	qase(
 		5618,
-		'Check section numbers and titles in "How We Build Communication Processes" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check section numbers, titles and CTA button in "How We Build Communication Processes" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const howWeBuildCommunicationProcessesContainer = driver.getByTestId(HomePage.HowWeBuildCommunicationProcesses);
@@ -411,6 +466,9 @@ test(
 			'B2-C1 English proficiency is held by 60% of engineers',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+		await expect(
+			howWeBuildCommunicationProcessesContainer.getByTestId(MainSiteButtons.GetAQuote)
+		).toHaveText('Get a quote');
 	}
 );
 
@@ -423,6 +481,27 @@ test(
 		const ourApproachContainer = driver.getByTestId(HomePage.TechstackAchievements);
 		const awardCards = ourApproachContainer.getByTestId(Container.AwardCard);
 		await baseDriverSteps.checkImagesVisibility(awardCards, 10);
+	}
+);
+
+test(
+	qase(
+		5623,
+		'Check titles, case cards in "Recognition and Media Presence" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const recognitionAndMediaPresenceContainer = driver.getByTestId(HomePage.RecognitionAndMediaPresence);
+		const caseCards = recognitionAndMediaPresenceContainer.getByTestId(CaseStudies.CaseCard);
+		await baseDriverSteps.checkImagesVisibility(caseCards, 3);
+
+		const caseNameOfCards = recognitionAndMediaPresenceContainer.getByTestId(CaseStudies.CaseName);
+		const expectCaseNameOfCards = [
+			'Major Data Breaches, Ransomware Attacks and Cybersecurity Trends',
+			'Detailed PMO Time Management Guide',
+			'The Work You Defer Only Accumulates Tech Debt',
+		];
+
+		await expect(caseNameOfCards).toHaveText(expectCaseNameOfCards);
 	}
 );
 

@@ -109,7 +109,7 @@ export default class TechnologyStackData {
 			container.getByTestId(MainSiteButtons.Technology_BackEnd),
 			container.getByTestId(MainSiteButtons.Technology_FrontEnd),
 			container.getByTestId(MainSiteButtons.Technology_Mobile),
-			container.getByTestId(MainSiteButtons.Technology_DevOpsCloud),
+			container.getByTestId(MainSiteButtons.Technology_DevopsCloud),
 			container.getByTestId(MainSiteButtons.Technology_CICDAndAutomation),
 			container.getByTestId(MainSiteButtons.Technology_QualityAssurance),
 		];

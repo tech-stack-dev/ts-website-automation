@@ -34,6 +34,7 @@ export default class MainSiteButtons extends Buttons {
 	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static ViewFullTechnologyStack = 'Button-ViewFullTechnologyStack';
+	static ReadAllCases = 'Button-ReadAllCases';
 
 	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 
@@ -58,7 +59,6 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_FrontEnd = 'Button-FrontEnd';
 	static Technology_Mobile = 'Button-Mobile';
 	static Technology_DevopsCloud = 'Button-DevopsCloud';
-	static Technology_DevOpsCloud = 'Button-DevOpsCloud';
 	static Technology_CICDAndAutomation = 'Button-CICDAndAutomation';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
 	static Technology_EmbededDevelopment = 'Button-IoT';
