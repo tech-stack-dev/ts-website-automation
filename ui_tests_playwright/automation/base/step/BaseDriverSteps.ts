@@ -5,7 +5,7 @@ import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
-// import UrlUtils from '../../utils/UrlUtils';
+import UrlUtils from '../../utils/UrlUtils';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -19,7 +19,7 @@ class BaseDriverSteps {
 		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
 		await driver.Page.goto(url, {timeout: 30000});
-		// await UrlUtils.isValidTechstackPageUrl(url);
+		await UrlUtils.isValidTechstackPageUrl(url);
 
 		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
