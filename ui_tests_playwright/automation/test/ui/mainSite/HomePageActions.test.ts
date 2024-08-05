@@ -12,7 +12,6 @@ import BlogTagPath from '../../../providers/BlogTagPath';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {test, expect} from '../../../fixtures/DesktopMobileSetup';
 import TechnologyStackData from '../../../preconditionsData/technologyStack/TechnologyStackData';
-import BaseDriver from '../../../base/driver/BaseDriver';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -43,11 +42,11 @@ test(
 	async () => {
 		const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
 		enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
-        await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToPage(
 			enhanceHealthcareContainer,
 			UrlProvider.urlBuilder(UrlPath.Whitepapers),
 			UrlProvider.webSiteUrl()
-        )
+		);
 	}
 );
 
