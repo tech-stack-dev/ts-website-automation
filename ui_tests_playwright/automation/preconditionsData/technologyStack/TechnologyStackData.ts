@@ -100,7 +100,7 @@ export default class TechnologyStackData {
 			container.getByTestId(MainSiteButtons.Technology_EmbededDevelopment),
 			container.getByTestId(MainSiteButtons.Technology_QualityAssurance),
 		];
-		
+
 		return navigationTabs;
 	}
 
@@ -113,7 +113,7 @@ export default class TechnologyStackData {
 			container.getByTestId(MainSiteButtons.Technology_CICDAndAutomation),
 			container.getByTestId(MainSiteButtons.Technology_QualityAssurance),
 		];
-		
+
 		return navigationTabs;
 	}
 }
