@@ -18,8 +18,7 @@ class BaseDriverSteps {
 	) {
 		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
-		await driver.Page.goto(url, {timeout: 30000});
-		await UrlUtils.isValidTechstackPageUrl(url);
+		await this.goToUrl(url);
 
 		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
