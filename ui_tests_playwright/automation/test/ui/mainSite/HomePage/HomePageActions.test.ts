@@ -1,17 +1,18 @@
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import Container from '../../../identifiers/Container';
-import HomePage from '../../../identifiers/mainSite/pages/HomePage';
-import {ClutchReviewLinks} from '../../../preconditionsData/links/ClutchReviewLinks';
-import UrlProvider from '../../../providers/UrlProvider';
-import {driver} from '../../../base/driver/Driver';
-import UrlPath from '../../../providers/UrlPath';
-import MainSiteButtons from '../../../identifiers/mainSite/MainSiteButtons';
-import MainSiteLinks from '../../../identifiers/mainSite/MainSiteLinks';
-import Links from '../../../preconditionsData/links/Links';
-import BlogTagPath from '../../../providers/BlogTagPath';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import Container from '../../../../identifiers/Container';
+import HomePage from '../../../../identifiers/mainSite/pages/HomePage';
+import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import UrlProvider from '../../../../providers/UrlProvider';
+import {driver} from '../../../../base/driver/Driver';
+import UrlPath from '../../../../providers/UrlPath';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteLinks from '../../../../identifiers/mainSite/MainSiteLinks';
+import Links from '../../../../preconditionsData/links/Links';
+import BlogTagPath from '../../../../providers/BlogTagPath';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {test, expect} from '../../../fixtures/DesktopMobileSetup';
-import TechnologyStackData from '../../../preconditionsData/technologyStack/TechnologyStackData';
+import {test, expect} from '../../../../fixtures/DesktopMobileSetup';
+import ExternalSourceLinks from '../../../../preconditionsData/links/ExternalSourceLinks';
+import CaseStudies from '../../../../identifiers/mainSite/CaseStudies';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -37,13 +38,13 @@ test(
 test(
 	qase(
 		5011,
-		'Check the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check redirect by the "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
-		enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
+		const ctaButton = enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
 		await baseDriverSteps.checkRedirectToPage(
-			enhanceHealthcareContainer,
+			ctaButton,
 			UrlProvider.urlBuilder(UrlPath.Whitepapers),
 			UrlProvider.webSiteUrl()
 		);
@@ -66,7 +67,9 @@ test.skip(
 
 		const buttonMap = new Map([
 			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
+			[clutchButtons[1], ClutchReviewLinks.SherzodGafar],
 			[clutchButtons[2], ClutchReviewLinks.MarkBeare],
+			[clutchButtons[3], ClutchReviewLinks.NDA],
 		]);
 
 		for (const [button, url] of buttonMap) {
@@ -133,25 +136,17 @@ test(
 
 test(
 	qase(
-		5615,
-		'Check navigation bar and award cards in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		5624,
+		'Check redirect by CTA button in "Case Studies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(
-			briefOverviewOfTechnologiesContainer
-		);
-		const awardCardCountList = [8, 5, 5, 4, 8, 5];
-
-		for (let index = 0; index < navigationTabs.length; index++) {
-			navigationTabs[index].click();
-			const awardCards = briefOverviewOfTechnologiesContainer
-				.getByTestId(Container.AwardCard)
-				.locator('visible=true');
-
-			await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
-		}
-	}
+		const caseStudiesContainer = driver.getByTestId(HomePage.CaseStudies);
+		const ctaButton = caseStudiesContainer.getByTestId(MainSiteButtons.ReadAllCases);
+		await baseDriverSteps.checkRedirectToPage(
+			ctaButton,
+			UrlProvider.urlBuilder(UrlPath.CaseStudies),
+			UrlProvider.webSiteUrl()
+)}
 );
 
 test(
@@ -186,14 +181,58 @@ test(
 
 test(
 	qase(
+		5625,
+		'Check redirect by card in "Recognition and Media Presence" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const recognitionAndMediaPresenceContainer = driver.getByTestId(HomePage.RecognitionAndMediaPresence);
+		const caseCards = recognitionAndMediaPresenceContainer.getByTestId(CaseStudies.CaseList).getByTestId(CaseStudies.CaseCard);
+		
+		const urlCardMap = new Map([
+			[
+				caseCards.nth(0).getByTestId(CaseStudies.CaseName),
+				ExternalSourceLinks.GeekwireMajorDataBreaches,
+			],
+			[
+				caseCards.nth(1).getByTestId(CaseStudies.CaseName),
+				ExternalSourceLinks.HackernoonDetailedPMOTimeManagementGuide,
+			],
+			[
+				caseCards.nth(2).getByTestId(CaseStudies.CaseName), 
+				ExternalSourceLinks.HackernoonTheWorkYouDefer,
+			],
+		]);
+
+		for (const [card, url] of urlCardMap) {
+			await baseDriverSteps.checkRedirectToPage(card, url);
+		}
+	}
+);
+
+test(
+	qase(
 		5095,
 		'Check url CTA button from the "Company insights" container on the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
 	),
 	async () => {
 		const companyInsightsContainer = driver.getByTestId(HomePage.CompanyInsights);
-		companyInsightsContainer.getByTestId(MainSiteButtons.SeeAllNews).click();
+		await companyInsightsContainer.getByTestId(MainSiteButtons.SeeAllNews).click();
 
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(BlogTagPath.TechstackNews));
+	}
+);
+
+test(
+	qase(
+		5626,
+		'Check sections expanding and collapsing in "FAQ" container on the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006 @TSWEB-1061'
+	),
+	async () => {
+		const faqContainer = driver.getByTestId(HomePage.Faq);
+		const expectedNumberOfSections = 3;
+
+		await baseDriverSteps.checkFaqSectionsExpandingAndCollapsing(faqContainer, expectedNumberOfSections);
 	}
 );
 

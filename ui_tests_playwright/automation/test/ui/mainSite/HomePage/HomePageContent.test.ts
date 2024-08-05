@@ -1,13 +1,14 @@
-import {baseDriverSteps} from '../../../base/step/BaseDriverSteps';
-import Container from '../../../identifiers/Container';
-import HomePage from '../../../identifiers/mainSite/pages/HomePage';
-import UrlProvider from '../../../providers/UrlProvider';
-import {driver} from '../../../base/driver/Driver';
-import MainSiteButtons from '../../../identifiers/mainSite/MainSiteButtons';
-import MainSiteImages from '../../../identifiers/mainSite/MainSiteImages';
+import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import Container from '../../../../identifiers/Container';
+import HomePage from '../../../../identifiers/mainSite/pages/HomePage';
+import UrlProvider from '../../../../providers/UrlProvider';
+import {driver} from '../../../../base/driver/Driver';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
+import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {containerSteps, test, expect} from '../../../fixtures/DesktopMobileSetup';
-import CaseStudies from '../../../identifiers/mainSite/CaseStudies';
+import {containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
+import CaseStudies from '../../../../identifiers/mainSite/CaseStudies';
+import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -151,6 +152,45 @@ test(
 	async () => {
 		const caseStudiesContainer = driver.getByTestId(HomePage.CaseStudies);
 		await expect(caseStudiesContainer.getByTestId(MainSiteButtons.ReadAllCases)).toHaveText('Read all cases');
+	}
+);
+
+test(
+	qase(
+		5627,
+		'Check the text of Technology Stack tabs in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_BackEnd)).toHaveText('Back-End');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toHaveText('Front-End');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toHaveText('Mobile Development');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_DevopsCloud)).toHaveText('Cloud');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_CICDAndAutomation)).toHaveText('CI/CD and Automation');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_QualityAssurance)).toHaveText('Quality Assurance');
+	}
+);
+
+test(
+	qase(
+		5615,
+		'Check navigation bar and award cards in "Brief Overview of Technologies" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
+		const navigationTabs = await TechnologyStackData.getTechnologyStackTabsForHomePage(
+			briefOverviewOfTechnologiesContainer
+		);
+		const awardCardCountList = [8, 5, 5, 4, 8, 5];
+
+		for (let index = 0; index < navigationTabs.length; index++) {
+			navigationTabs[index].click();
+			const awardCards = briefOverviewOfTechnologiesContainer
+				.getByTestId(Container.AwardCard)
+				.locator('visible=true');
+
+			await baseDriverSteps.checkImagesVisibility(awardCards, awardCardCountList[index]);
+		}
 	}
 );
 

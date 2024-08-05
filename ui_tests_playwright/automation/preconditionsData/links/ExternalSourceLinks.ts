@@ -15,4 +15,7 @@ export default class ExternalSourceLinks {
 		'https://www.mckinsey.com/featured-insights/artificial-intelligence/notes-from-the-ai-frontier-modeling-the-impact-of-ai-on-the-world-economy';
 	static GoogleAnalytics = 'https://www.google-analytics.com';
 	static ScrumOrg = 'https://www.scrum.org/';
+	static GeekwireMajorDataBreaches = 'https://www.geekwire.com/sponsor-post/major-data-breaches-ransomware-attacks-and-cybersecurity-trends-why-does-your-business-need-a-disaster-recovery-plan/';
+	static HackernoonDetailedPMOTimeManagementGuide = 'https://hackernoon.com/detailed-pmo-time-management-guide-practical-productivity-hacks';
+	static HackernoonTheWorkYouDefer = 'https://hackernoon.com/the-work-you-defer-only-accumulates-tech-debt';
 }
