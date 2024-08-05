@@ -15,13 +15,10 @@ export default class UrlUtils {
 		const isWebsitePage = url.includes(UrlProvider.webSiteUrl());
 
 		if (isWebsitePage) {
-			await driver.Page.waitForLoadState();
-			await driver.Page.reload();
-
 			const isPage404 = driver.Page.url().includes(UrlPath.PageNotFound);
 
 			if (isPage404) {
-				throw new Error(`The "${url}" page not found. 404`);
+				throw new Error(`The "${url}" page not found. The 404 techstack page is shown`);
 			}
 		} else {
 			console.log(`The "${url}" is not TS website page`);
