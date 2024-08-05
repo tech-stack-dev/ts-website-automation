@@ -162,12 +162,24 @@ test(
 	),
 	async () => {
 		const briefOverviewOfTechnologiesContainer = driver.getByTestId(HomePage.BriefOverviewOfTechnologies);
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_BackEnd)).toHaveText('Back-End');
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toHaveText('Front-End');
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toHaveText('Mobile Development');
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_DevopsCloud)).toHaveText('Cloud');
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_CICDAndAutomation)).toHaveText('CI/CD and Automation');
-		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_QualityAssurance)).toHaveText('Quality Assurance');
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_BackEnd)).toHaveText(
+			'Back-End'
+		);
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_FrontEnd)).toHaveText(
+			'Front-End'
+		);
+		await expect(briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_Mobile)).toHaveText(
+			'Mobile Development'
+		);
+		await expect(
+			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_DevopsCloud)
+		).toHaveText('Cloud');
+		await expect(
+			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_CICDAndAutomation)
+		).toHaveText('CI/CD and Automation');
+		await expect(
+			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.Technology_QualityAssurance)
+		).toHaveText('Quality Assurance');
 	}
 );
 

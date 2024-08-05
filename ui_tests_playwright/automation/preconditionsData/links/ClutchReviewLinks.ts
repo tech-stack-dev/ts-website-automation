@@ -9,5 +9,4 @@ export enum ClutchReviewLinks {
 	AnonymousNjorda = 'https://clutch.co/profile/techstack#review-2232982',
 	SherzodGafar = 'https://clutch.co/profile/techstack#review-264096',
 	NDA = 'https://clutch.co/profile/techstack#review-15115',
-
- }
+}
