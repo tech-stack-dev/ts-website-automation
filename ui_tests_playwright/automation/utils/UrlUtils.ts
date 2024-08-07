@@ -12,7 +12,7 @@ export default class UrlUtils {
 	}
 
 	public static async isValidTechstackPageUrl(url: string): Promise<void> {
-		const isWebsitePage = url.includes(UrlProvider.webSiteUrl());
+		const isWebsitePage = url.includes(UrlProvider.webSiteUrl()) || url.includes(UrlProvider.careerUrl());
 
 		if (isWebsitePage) {
 			const isPage404 = driver.Page.url().includes(UrlPath.PageNotFound);

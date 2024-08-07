@@ -37,7 +37,7 @@ test(
 		const containers = [
 			driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect),
 			driver.getByTestId(TransportationAndLogistics.WhoWeServe),
-			driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
+			driver.getByTestId(TransportationAndLogistics.SoftwareDevelopmentServices),
 			driver.getByTestId(TransportationAndLogistics.CaseStudy),
 			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
 			driver.getByTestId(TransportationAndLogistics.OurExpertise),
@@ -135,7 +135,7 @@ test(
 	),
 	async () => {
 		const transportAndLogisticsSoftDevServContainer = driver.getByTestId(
-			TransportationAndLogistics.TransportAndLogisticsSoftDevServ
+			TransportationAndLogistics.SoftwareDevelopmentServices
 		);
 
 		const allSectionTitles = transportAndLogisticsSoftDevServContainer.getByTestId(Container.SectionTitle);
