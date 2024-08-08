@@ -19,7 +19,7 @@ test(
 	async () => {
 		for (const url of Object.values(industryUrl)) {
 			await baseDriverSteps.goToUrl(url);
-			await driver.getByTestId(Container.BreadcrumbsPrev).click();
+			await driver.getByTestId(Container.BreadcrumbsHome).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
@@ -32,7 +32,7 @@ test(
 	),
 	async () => {
 		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
-		await driver.getByTestId(Container.BreadcrumbsPrev).click();
+		await driver.getByTestId(Container.BreadcrumbsHome).click();
 		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 	}
 );
@@ -63,7 +63,7 @@ test(
 
 		for (const url of companyUrlList) {
 			await baseDriverSteps.goToUrl(url);
-			await driver.getByTestId(Container.BreadcrumbsPrev).click();
+			await driver.getByTestId(Container.BreadcrumbsHome).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
