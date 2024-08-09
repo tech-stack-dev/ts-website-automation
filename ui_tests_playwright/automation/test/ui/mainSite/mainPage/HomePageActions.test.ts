@@ -146,7 +146,8 @@ test(
 			ctaButton,
 			UrlProvider.urlBuilder(UrlPath.CaseStudies),
 			UrlProvider.webSiteUrl()
-)}
+		);
+	}
 );
 
 test(
@@ -186,21 +187,17 @@ test(
 	),
 	async () => {
 		const recognitionAndMediaPresenceContainer = driver.getByTestId(HomePage.RecognitionAndMediaPresence);
-		const caseCards = recognitionAndMediaPresenceContainer.getByTestId(CaseStudies.CaseList).getByTestId(CaseStudies.CaseCard);
-		
+		const caseCards = recognitionAndMediaPresenceContainer
+			.getByTestId(CaseStudies.CaseList)
+			.getByTestId(CaseStudies.CaseCard);
+
 		const urlCardMap = new Map([
-			[
-				caseCards.nth(0).getByTestId(CaseStudies.CaseName),
-				ExternalSourceLinks.GeekwireMajorDataBreaches,
-			],
+			[caseCards.nth(0).getByTestId(CaseStudies.CaseName), ExternalSourceLinks.GeekwireMajorDataBreaches],
 			[
 				caseCards.nth(1).getByTestId(CaseStudies.CaseName),
 				ExternalSourceLinks.HackernoonDetailedPMOTimeManagementGuide,
 			],
-			[
-				caseCards.nth(2).getByTestId(CaseStudies.CaseName), 
-				ExternalSourceLinks.HackernoonTheWorkYouDefer,
-			],
+			[caseCards.nth(2).getByTestId(CaseStudies.CaseName), ExternalSourceLinks.HackernoonTheWorkYouDefer],
 		]);
 
 		for (const [card, url] of urlCardMap) {
