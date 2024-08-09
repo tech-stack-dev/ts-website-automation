@@ -1,14 +1,20 @@
-import {test} from '@playwright/test';
+import {Locator, test} from '@playwright/test';
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
 import Container from '../../../../identifiers/Container';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {CompanyEnum} from '../../../../enum/CompanyEnum';
+
+let breadcrumbsHome: Locator;
+let breadcrumbsPrev: Locator;
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
+	breadcrumbsHome = driver.getByTestId(Container.BreadcrumbsHome);
+	breadcrumbsPrev = driver.getByTestId(Container.BreadcrumbsPrev);
 });
 
 test(
@@ -19,7 +25,7 @@ test(
 	async () => {
 		for (const url of Object.values(industryUrl)) {
 			await baseDriverSteps.goToUrl(url);
-			await driver.getByTestId(Container.BreadcrumbsHome).click();
+			await breadcrumbsHome.click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
@@ -28,12 +34,14 @@ test(
 test(
 	qase(
 		5481,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Our Services" page @desktop @mobile @Regression @Breadcrumbs'
+		'Check redirect to main page by clicking "Home" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
-		await driver.getByTestId(Container.BreadcrumbsHome).click();
-		await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
+		for (const url of Object.values(serviceUrl).slice(2)) {
+			await baseDriverSteps.goToUrl(url);
+			await breadcrumbsHome.click();
+			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
+		}
 	}
 );
 
@@ -47,7 +55,7 @@ test(
 
 		for (const url of servicesUrlListWithoutOurServicesPage) {
 			await baseDriverSteps.goToUrl(url);
-			await driver.getByTestId(Container.BreadcrumbsPrev).click();
+			await breadcrumbsPrev.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 		}
 	}
@@ -59,11 +67,15 @@ test(
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		const companyUrlList = [UrlProvider.urlBuilder(UrlPath.AboutUs), UrlProvider.urlBuilder(UrlPath.HowWeWork)];
+		const companyUrlList = [
+			companyUrl[CompanyEnum.AboutUs],
+			companyUrl[CompanyEnum.HowWeWork],
+			companyUrl[CompanyEnum.Pricing],
+		];
 
 		for (const url of companyUrlList) {
 			await baseDriverSteps.goToUrl(url);
-			await driver.getByTestId(Container.BreadcrumbsHome).click();
+			await breadcrumbsHome.click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
