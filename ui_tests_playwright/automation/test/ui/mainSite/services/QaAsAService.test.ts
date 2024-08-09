@@ -20,7 +20,7 @@ test(
 	),
 	async () => {
 		const info = driver.getByTestId(QaAsAService.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services QA as a Service');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nQA as a Service');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'QA as a Service — Vetted Experts Available on Demand'
 		);

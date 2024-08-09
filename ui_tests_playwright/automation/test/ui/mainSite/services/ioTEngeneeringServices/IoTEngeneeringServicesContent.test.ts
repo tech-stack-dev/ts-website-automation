@@ -23,7 +23,7 @@ test(
 	),
 	async () => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nIoT');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nIoT');
 		await expect(info.getByTestId(Container.Title)).toHaveText('IoT Engineering Services');
 		await expect(info.getByTestId(MainSiteButtons.GetYourCustomIotQuote)).toHaveText('Get your custom IoT quote');
 	}
