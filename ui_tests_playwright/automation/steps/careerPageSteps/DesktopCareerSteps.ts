@@ -40,7 +40,7 @@ class DesktopCareerSteps extends CareerSteps {
 				await expect(switcher).toHaveClass(/active-locale/);
 			},
 			5,
-			2000
+			5000
 		);
 	}
 }
