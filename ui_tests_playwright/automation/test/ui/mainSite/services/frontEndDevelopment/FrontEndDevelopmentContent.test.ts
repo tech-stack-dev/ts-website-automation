@@ -15,8 +15,8 @@ test.beforeEach(async () => {
 
 test('Check the Info container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
 	const info = driver.getByTestId(FrontEndDevelopment.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nFront-End Development');
-	await expect(info.getByTestId(Container.Title)).toHaveText('Front-End Development\nServices');
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nFront-End Development');
+	await expect(info.getByTestId(Container.Title)).toHaveText('Front-End Development Services');
 	await expect(info.getByTestId(MainSiteButtons.GetYourCustomFeDevelopmentQuote)).toHaveText(
 		'Get your custom FE development quote'
 	);

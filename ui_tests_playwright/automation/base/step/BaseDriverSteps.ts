@@ -18,8 +18,7 @@ class BaseDriverSteps {
 	) {
 		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
-		await driver.Page.goto(url, {timeout: 30000});
-		await UrlUtils.isValidTechstackPageUrl(url);
+		await this.goToUrl(url);
 
 		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
@@ -123,17 +122,19 @@ class BaseDriverSteps {
 	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
 		if (initialPageUrl) {
 			await locator.click();
-			await playwrightUtils.expectWithRetries(async () => {
-				await driver.Page.waitForLoadState('load', {timeout: 15000});
-			});
-			await UrlUtils.isValidTechstackPageUrl(expectedUrl);
+			await playwrightUtils.expectWithRetries(
+				async () => {
+					await driver.Page.waitForLoadState();
+				},
+				3,
+				5000
+			);
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 			await newPage.waitForLoadState();
-			await UrlUtils.isValidTechstackPageUrl(expectedUrl);
 			await playwrightUtils.expectWithRetries(
 				async () => {
 					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();

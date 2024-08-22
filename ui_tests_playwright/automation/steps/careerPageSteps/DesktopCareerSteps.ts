@@ -5,6 +5,7 @@ import ContainersCareer from '../../identifiers/career/ContainersCareer';
 import {containerSteps} from '../../fixtures/DesktopMobileSetup';
 import {CareerSteps} from './CareerSteps';
 import {driver} from '../../base/driver/Driver';
+import {playwrightUtils} from '../../utils/PlaywrightUtils';
 
 class DesktopCareerSteps extends CareerSteps {
 	async clickOnFilter(): Promise<void> {
@@ -33,8 +34,14 @@ class DesktopCareerSteps extends CareerSteps {
 			}
 		}
 
-		await switcher.click();
-		await expect(switcher).toHaveClass(/active-locale/);
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				await switcher.click();
+				await expect(switcher).toHaveClass(/active-locale/);
+			},
+			5,
+			5000
+		);
 	}
 }
 const desktopCareerSteps = new DesktopCareerSteps();

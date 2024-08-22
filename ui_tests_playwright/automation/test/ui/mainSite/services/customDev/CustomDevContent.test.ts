@@ -22,7 +22,9 @@ test(
 	),
 	async () => {
 		const info = driver.getByTestId(CustomDev.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCustom Software Development');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText(
+			'Home\nOur Services\nCustom Software Development'
+		);
 		await expect(info.getByTestId(Container.Title)).toHaveText('Custom Software Development Services');
 		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
 			'Get your custom project quote'

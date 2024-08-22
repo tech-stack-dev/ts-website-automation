@@ -24,7 +24,8 @@ test('Check the Info container from the "Pricing" page @desktop @mobile @Regress
 		'\n                  91\n                  %\n                ',
 	];
 
-	await expect(infoTitle).toHaveText('Our Software\nDevelopment Cost');
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
+	await expect(infoTitle).toHaveText('Our Software Development Cost');
 	await expect(infoBlockTitles).toHaveText(expectedBlockTitles);
 });
 
