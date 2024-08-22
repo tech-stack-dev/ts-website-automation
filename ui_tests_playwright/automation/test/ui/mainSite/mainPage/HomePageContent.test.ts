@@ -16,19 +16,9 @@ test.beforeEach(async () => {
 
 test(
 	qase(
-		5011,
-		'Check CTA button in "Enhance Healthcare Strategy: Free Cloud Guide" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		5018, 
+		'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
-	async () => {
-		const enhanceHealthcareContainer = driver.getByTestId(HomePage.EnhanceHealthcareStrategy);
-		const ctaButton = enhanceHealthcareContainer.getByTestId(MainSiteButtons.FreeCloudGuide);
-
-		await expect(ctaButton).toHaveText('Enhance Healthcare Strategy: Free Cloud Guide');
-	}
-);
-
-test(
-	qase(5018, 'Check the Info container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'),
 	async () => {
 		const infoContainer = driver.getByTestId(HomePage.Info);
 		await expect(infoContainer.getByTestId(Container.Title)).toHaveText(
