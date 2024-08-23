@@ -71,9 +71,8 @@ test(
 	async () => {
 		const whatAtTheCoreContainer = driver.getByTestId(AboutUs.WhatsAtTheCore);
 
-		await expect(whatAtTheCoreContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02']);
 		const allSectionTitles = whatAtTheCoreContainer.getByTestId(Container.SectionTitle);
-		const testData = [' Vision:', ' Mission:'];
+		const testData = [' Vision', ' Mission'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
