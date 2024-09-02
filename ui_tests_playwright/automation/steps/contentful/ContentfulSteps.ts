@@ -2,7 +2,7 @@ import {CaseStudyDto} from '../../dto/CaseStudyDto';
 import {IndustryTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
 import {ServiceTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
 import ContentfulCaseStudyData from '../../preconditionsData/contentfulData/ContentfulCaseStudyData';
-import CaseStudyImagesPath from '../../preconditionsData/contentfulData/ContentfulCaseStudyImages/CaseStudyImages';
+import CaseStudyImagesPath from '../../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
 import {contentfulUtils} from '../../utils/ContentfulUtils';
 
 class ContentfulSteps {
@@ -51,7 +51,6 @@ class ContentfulSteps {
 
 		summaryFields.fields['location'] = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().location;
 
-		// Here is the problem of dynamically adding optional fields and updating object representation of this entity. That`s why here summaryFields also in props
 		await contentfulUtils.CreateAndPublishCaseStudySummary(summaryFields);
 		const caseStudyImage = caseStudyObject?.caseStudyImage
 			? caseStudyObject.caseStudyImage.toString()

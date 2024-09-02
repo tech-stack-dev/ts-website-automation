@@ -1,4 +1,4 @@
 export enum ContentfulSecretEnum {
-	CareerSecret = 'ContentfulSecret', // Need to rename in Contentful to ContentfulCareerSecret
+	CareerSecret = 'ContentfulSecret',
 	CaseStudySecret = 'ContentfulCaseStudySecret',
 }

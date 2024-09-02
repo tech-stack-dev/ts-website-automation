@@ -1,17 +1,18 @@
 import ContentfulProvider from '../providers/ContentfulProvider';
 import * as contentful from 'contentful-management';
-import {sessionValue} from '../runtimeVariables/SessionValue';
 import {SeniorityLevelsEnum} from '../enum/tag/SeniorityLevelsEnum';
 import {DirectionsEnum} from '../enum/tag/DirectionsEnum';
 import {TagsEnum} from '../enum/tag/TagsEnum';
 import {CaseStudyContentTypeEnum} from '../enum/caseStudyEnums/CaseStudyContentTypeEnum';
 import ContentfulCaseStudyData from '../preconditionsData/contentfulData/ContentfulCaseStudyData';
 import * as fs from 'fs';
-import CaseStudyImagesPath from '../preconditionsData/contentfulData/ContentfulCaseStudyImages/CaseStudyImages';
 import {ClutchReviewLinks} from '../preconditionsData/links/ClutchReviewLinks';
 import DateTimeUtils from './DateTimeUtils';
 import {IndustryTagEnum} from '../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
 import {ServiceTagEnum} from '../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
+import {CareerContentTypeEnum} from '../enum/careerEnums/CareerContentTypeEnum';
+import CaseStudyImagesPath from '../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
+import ContentfulCareerData from '../preconditionsData/contentfulData/ContentfulCareerData ';
 
 class ContentfulUtils {
 	public tagJson: contentful.Link<'Tag'>[] = [];
@@ -69,19 +70,16 @@ class ContentfulUtils {
 		const tag = await environment.getTag(tagId);
 		tag.delete();
 	}
-
-	// remove after
-	async GetTag(tagId: string) {
-		const environment = await this.GetEnvironment();
-		const tag = await environment.getTag(tagId);
-		return tag;
-	}
 	//#endregion
 
 	//#region CareerEntriesInteractions
 	async CreateAndPublishCareerDescription(descriptionId: string, index = 1, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
-		await environment.createEntryWithId('careerDescription', descriptionId, this.getDescriptionBody(index));
+		await environment.createEntryWithId(
+			CareerContentTypeEnum.Description,
+			descriptionId,
+			ContentfulCareerData.getDescriptionBody(index)
+		);
 		await this.publishEntryWithRetry(environment, descriptionId, attempts);
 	}
 
@@ -96,20 +94,18 @@ class ContentfulUtils {
 	): Promise<void> {
 		const environment = await this.GetEnvironment();
 		this.AddDefaultTags(directionsTag, seniorityLevelsTag);
-		const careerFieldsWithDescriptionAndTag = this.careerFields;
+		const careerFieldsWithDescriptionAndTag = ContentfulCareerData.getCareerMainFields();
 		careerFieldsWithDescriptionAndTag.fields.careerDescription['en-US'].sys.id = descriptionId;
 		careerFieldsWithDescriptionAndTag.fields.name['en-US'] = careerNameEn;
 		careerFieldsWithDescriptionAndTag.fields.name['uk-UA'] = careerNameUa;
-		await environment.createEntryWithId('career', careerId, this.careerFields);
+		await environment.createEntryWithId(CareerContentTypeEnum.Career, careerId, careerFieldsWithDescriptionAndTag);
 		await this.publishEntryWithRetry(environment, careerId, attempts);
 	}
 
 	async UnpublishCareerWithDescription(careerId: string, descriptionId: string, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
-		await environment.getEntry(careerId); // Not needed
 		await this.unpublishEntryWithRetry(environment, careerId, attempts);
-		await environment.getEntry(descriptionId); // Not needed
-		await this.unpublishEntryWithRetry(environment, descriptionId, attempts); // Check additionally for retries
+		await this.unpublishEntryWithRetry(environment, descriptionId, attempts);
 	}
 
 	async DeleteCareerWithDescription(careerId: string, descriptionId: string): Promise<void> {
@@ -191,22 +187,18 @@ class ContentfulUtils {
 		await this.publishEntryWithRetry(environment, caseStudyId, attempts);
 	}
 
-	async CreateAndPublishCaseStudySummary(
-		summaryFields: {fields: {[key: string]: any}}, // Pay attention to thi type and mandatory setting props!!!
-		attempts = 3
-	): Promise<void> {
+	async CreateAndPublishCaseStudySummary(summaryFields: {fields: {[key: string]: any}}, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
 		const summaryId = ContentfulCaseStudyData.getCaseStudyMainFields().fields.summary['en-US'].sys.id;
 
 		await environment.createEntryWithId(
 			CaseStudyContentTypeEnum.Summary,
 			summaryId,
-			summaryFields // Here should be actual obj representation of summary!!
+			summaryFields // Note: Here should be actual object representation of summary
 		);
 		await this.publishEntryWithRetry(environment, summaryId, attempts);
 	}
 
-	// mb compose these similar methods to one?? But FIRSTLY need to fully add all images etc!!!
 	async CreateAndPublishSummaryReview(
 		reviewLink = ClutchReviewLinks.AnonymousMedicalDevice,
 		attempts = 3
@@ -296,24 +288,9 @@ class ContentfulUtils {
 		const createdEntity = await environment.getAsset(assetId);
 		await createdEntity.delete();
 	}
-	//Remove after
-	async getCaseStudyEntity(id: string) {
-		const environment = await this.GetEnvironment();
-		const entityData = await environment.getEntry(id);
-		console.log(entityData);
-	}
-	//Remove after
-	async getCaseStudyAsset(id: string) {
-		const environment = await this.GetEnvironment();
-		const entityData = await environment.getAsset(id);
-		console.log(entityData);
-	}
 	//#endregion
 
 	//#region CaseStudiesAssetsInteractions
-
-	// !!!
-	// Better to create Enum or object for images, not string
 	async UploadAssetToContentful(imagePath: string) {
 		const environment = await this.GetEnvironment();
 		const uploadedAsset = (await environment.createUpload({file: fs.createReadStream(imagePath)})).sys.id;
@@ -336,323 +313,6 @@ class ContentfulUtils {
 		await processedAsset.publish();
 	}
 	//#endregion
-
-	// move to separate class?
-	careerFields: contentful.CreateEntryProps<contentful.KeyValueMap> = {
-		fields: {
-			name: {
-				'en-US': 'TypeScript test career',
-				'uk-UA': 'Тайпскріпт тест',
-			},
-			careerDescription: {
-				'en-US': {
-					sys: {
-						type: 'Link',
-						linkType: 'Entry',
-						id: 'typeScriptTestDescriptionId',
-					},
-				},
-			},
-			description: {
-				'en-US': 'TypeScript test career',
-				'uk-UA': 'Тайпскріпт тест',
-			},
-		},
-		metadata: {
-			tags: this.tagJson,
-		},
-	};
-
-	private getDescriptionBody(index: number) {
-		return {
-			fields: {
-				aboutTheProduct: {
-					'en-US': `TypeScript test_${index}`,
-					'uk-UA': 'Тайпскріпт тест',
-				},
-				title: {
-					'en-US': `TypeScript test_${index}`,
-					'uk-UA': 'Тайпскріпт тест',
-				},
-				ifYouThinkItsNotForYou: {
-					'en-US': `TypeScript test_${index}`,
-					'uk-UA': 'Тайпскріпт тест',
-				},
-				yourTeam: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				culture: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `Тайпскріпт тест_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				yourResponsibilities: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				itsAboutYou: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				whatWeHaveForYou: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				howToJoin: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				aboutUs: {
-					'en-US': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: `TypeScript test_${index}`,
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-					'uk-UA': {
-						data: {},
-						content: [
-							{
-								data: {},
-								content: [
-									{
-										data: {},
-										marks: [],
-										value: 'Тайпскріпт тест',
-										nodeType: 'text',
-									},
-								],
-								nodeType: 'paragraph',
-							},
-						],
-						nodeType: 'document',
-					},
-				},
-				technologyStack: {
-					'en-US': [`TypeScript test_${index}`, 'TS'],
-				},
-				slug: {
-					'en-US': `TypeScript_test_${index}_${sessionValue.stringValue}-v1`,
-				},
-			},
-		};
-	}
 }
 
 const contentfulUtils = new ContentfulUtils();

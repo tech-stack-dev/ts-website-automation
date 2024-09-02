@@ -5,7 +5,6 @@ import {contentfulSteps} from '../../../../../steps/contentful/ContentfulSteps';
 import {CaseStudyEntityEnum} from '../../../../../enum/caseStudyEnums/CaseStudyEntityEnum';
 import {caseStudyDtoVariable} from '../../../../../runtimeVariables/dto/CaseStudyDtoVariable';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
-import CaseStudyImagesPath from '../../../../../preconditionsData/contentfulData/ContentfulCaseStudyImages/CaseStudyImages';
 import {IndustryTagEnum} from '../../../../../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
 import {ServiceTagEnum} from '../../../../../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
 import {driver} from '../../../../../base/driver/Driver';
@@ -13,6 +12,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {CaseStudyDto} from '../../../../../dto/CaseStudyDto';
+import CaseStudyImagesPath from '../../../../../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
 
 let numberOfCaseStudies: number;
 let caseStudyDto: CaseStudyDto;
@@ -25,7 +25,7 @@ test.beforeEach(async () => {
 	ContentfulProvider.contentfulData = ContentfulProvider.getContentfulSecret(ContentfulSecretEnum.CaseStudySecret);
 });
 
-test('Create one default Case study entity', async () => {
+test('Create one default Case study entity @desktop @mobile @CaseStudy', async () => {
 	await contentfulSteps.createCaseStudy('One default Case Study');
 
 	// TBD: Need to add checking of case Study creation
@@ -34,7 +34,7 @@ test('Create one default Case study entity', async () => {
 	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies);
 });
 
-test('Create several default Case study entitities', async () => {
+test('Create several default Case study entitities @desktop @mobile @CaseStudy', async () => {
 	numberOfCaseStudies = 3;
 
 	await contentfulSteps.createCaseStudy('Several default Case Studies', numberOfCaseStudies);
@@ -45,7 +45,7 @@ test('Create several default Case study entitities', async () => {
 	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies);
 });
 
-test('Create one Case study entity using object', async () => {
+test('Create one Case study entity using object @desktop @mobile @CaseStudy', async () => {
 	caseStudyDtoVariable.value = {
 		summary: {
 			review: {entity: CaseStudyEntityEnum.Review, link: ClutchReviewLinks.HenriYoki},
@@ -73,7 +73,7 @@ test('Create one Case study entity using object', async () => {
 	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies, caseStudyDto);
 });
 
-test('Create several Case study entities using object', async () => {
+test('Create several Case study entities using object @desktop @mobile @CaseStudy', async () => {
 	caseStudyDtoVariable.value = {
 		caseStudyImage: CaseStudyImagesPath.PreviewImageGray,
 		summary: {

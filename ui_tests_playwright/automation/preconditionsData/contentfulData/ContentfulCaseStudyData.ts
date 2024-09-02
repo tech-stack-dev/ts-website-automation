@@ -3,12 +3,11 @@ import {contentfulUtils} from '../../utils/ContentfulUtils';
 import {ClutchReviewLinks} from '../links/ClutchReviewLinks';
 
 export default class ContentfulCaseStudyData {
-	// If you want to use one attached fields, but uniq CaseStudy entity better to assign index = 1 here, and where needed overload it
 	static getCaseStudyMainFields(index = 1) {
 		return {
 			fields: {
 				name: {
-					'en-US': `TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`, // Will be extended by string provided in CreateAndPublishCaseStudy()
+					'en-US': `TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`, // Note: Will be extended by string provided in CreateAndPublishCaseStudy()
 				},
 				description: {
 					'en-US': `Description text that require add minimun 91 characters Automation test TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`,
@@ -26,7 +25,7 @@ export default class ContentfulCaseStudyData {
 				slug: {
 					'en-US': `automation-test-typescript-${sessionValue.stringValue}-${index}`,
 				},
-				metadata: {}, // ??
+				metadata: {},
 				summary: {
 					'en-US': {
 						sys: {
@@ -51,7 +50,7 @@ export default class ContentfulCaseStudyData {
 		return {
 			fields: {
 				name: {
-					'en-US': `Summary title TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}`, // need to think
+					'en-US': `Summary title TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}`,
 				},
 				aboutTheProduct: {
 					'en-US': {
@@ -76,12 +75,12 @@ export default class ContentfulCaseStudyData {
 				challenge: {
 					'en-US': {
 						content: [
-							// Need to try to add paragraphts as another content object
+							// Note: Here also possible to to add several paragraphts as other content objects
 							{
 								content: [
 									{
 										data: {},
-										marks: [], // Need to try to add bold text
+										marks: [], // Note: possible to edit text (eg add bold, italic etc)
 										nodeType: 'text',
 										value: `Challange text Automation test TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}`,
 									},
@@ -247,7 +246,7 @@ export default class ContentfulCaseStudyData {
 					'en-US': `Company-${sessionValue.stringValue.toLocaleUpperCase()}`,
 				},
 				link: {
-					'en-US': `${ClutchReviewLinks.DarrenCody}`, // Need to think how to set dynamically
+					'en-US': `${ClutchReviewLinks.DarrenCody}`,
 				},
 			},
 		};
