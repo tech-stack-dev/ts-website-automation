@@ -1,5 +1,7 @@
 export default class Footer {
 	static Container_Footer = 'Container-Footer';
+	static FooterLinkDesktop = 'Container-FooterLinkDesktop';
+	static FooterLinkMobile = 'Container-FooterLinkMobile';
 
 	static ContactsBlock = 'ContactsBlock';
 	static IndustriesBlock = 'IndustriesBlock';
@@ -15,4 +17,5 @@ export default class Footer {
 	static TermsOfUse = 'Button-TermsOfUses';
 	static CookiesPolicy = 'Button-CookiesPolicy';
 	static Sitemap = 'Button-Sitemap';
+	static ContactUs = 'Button-ContactUs';
 }

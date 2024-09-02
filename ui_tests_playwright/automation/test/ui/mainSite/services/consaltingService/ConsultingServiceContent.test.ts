@@ -10,26 +10,29 @@ import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
-const requestAQuotebuttonText = 'Request a quote';
-
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.ConsultingServ]);
 });
 
 test(
-	qase(5159, 'Check Info container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'),
+	qase(
+		5159,
+		'Check Info container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
+	),
 	async () => {
 		const info = driver.getByTestId(ConsultingService.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nConsulting Service');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting\nServices');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(requestAQuotebuttonText);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nConsulting Service');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Software Consulting Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomAuditQuote)).toHaveText(
+			'Get your custom audit quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5186,
-		'Check the container titles and numbers from the "Consulting service" page @Regression @ConsultingService @TSWEB-697'
+		'Check the container titles and numbers from the "Consulting service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const containers = [
@@ -49,17 +52,17 @@ test(
 		];
 
 		const expectedData = [
-			['Information Technology\nConsulting Services', '01'],
+			['Information Technology Consulting Services', '01'],
 			['Consulting Benefits', '02'],
-			['Our IT Consulting\nServices', '03'],
+			['Our IT Consulting Services', '03'],
 			['Featured Case Study', '04'],
-			['Industries We Provide\nConsultancy To', '05'],
+			['Industries We Provide Consultancy To', '05'],
 			['Consulting Process', '06'],
 			['Consulting Experts', '07'],
 			['Our Approach', '08'],
-			['Make an Impact\nWith Us', '09'],
-			['Related \nServices', '10'],
-			['Get in Touch', '11'],
+			['Make an Impact With Us', '09'],
+			['Related Services', '10'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];
@@ -80,7 +83,7 @@ test(
 test(
 	qase(
 		5191,
-		'Check section numbers and titles in "Information Technology Consulting Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section numbers and titles in "Information Technology Consulting Services" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const informationTechnologyConsultingServicesContainer = driver.getByTestId(
@@ -103,7 +106,7 @@ test(
 test(
 	qase(
 		5179,
-		'Check section titles in "Consulting Benefits" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Consulting Benefits" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingBenefitsContainer = driver.getByTestId(ConsultingService.ConsultingBenefits);
@@ -124,17 +127,17 @@ test(
 test(
 	qase(
 		5181,
-		'Check section titles in "Development Process Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Development Process Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const developmentProcessAuditContainer = driver.getByTestId(ConsultingService.DevelopmentProcessAudit);
 		const allSectionTitles = developmentProcessAuditContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Project management\nprocess',
-			'Development\nprocess',
-			'Release process /\nIntegration layer',
-			'QA\nprocess',
-			'Business analytics\nprocess',
+			'Project management process',
+			'Development process',
+			'Release process / Integration layer',
+			'QA process',
+			'Business analytics process',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -144,7 +147,7 @@ test(
 test(
 	qase(
 		5197,
-		'Check section titles in "Software Audit" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles and CTA button in "Software Audit" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const softwareAuditContainer = driver.getByTestId(ConsultingService.SoftwareAudit);
@@ -160,31 +163,37 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(softwareAuditContainer.getByTestId(MainSiteButtons.GetAFreeQquoteToday)).toHaveText(
+			'Get a free quote today'
+		);
 	}
 );
 
 test(
 	qase(
 		5203,
-		'Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles, image and CTA in "Featured Case Study" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 		const allSectionTitles = featuredCaseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Outdated Tech\nStack', 'Black Boxes in\nSystem Code'];
+		const testData = ['Outdated Tech Stack', 'Black Boxes in System Code'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(featuredCaseStudyContainer.getByTestId(MainSiteImages.FeaturedCaseStudy)).toBeVisible();
 
-		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore)).toHaveText('Learn more');
+		await expect(featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
+		);
 	}
 );
 
 test(
 	qase(
 		5209,
-		'Check section numbers and titles, and CTA in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section numbers and titles, and CTA in "Industries We Provide Consultancy To" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const industriesWeProvideContainer = driver.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo);
@@ -208,14 +217,16 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetAQuote)).toHaveText('Get a quote');
+		await expect(industriesWeProvideContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5213,
-		'Check carousel section numbers and titles, and CTA in "Consulting Process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check carousel section numbers and titles, and CTA in "Consulting Process" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
@@ -234,17 +245,13 @@ test(
 		const testData = ['Discovery', 'Analysis', 'Brainstorming', 'Presentation', 'Implementation', 'Touch base'];
 
 		await expect(allSectionTitles).toHaveText(testData);
-
-		await expect(consultingProcessContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
-			requestAQuotebuttonText
-		);
 	}
 );
 
 test(
 	qase(
 		5218,
-		'Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check member names and roles, and CTA in "Consulting Experts" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
@@ -272,8 +279,8 @@ test(
 
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.ScheduleACall)).toHaveText(
-			'Schedule a call'
+		await expect(consultingExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
@@ -281,12 +288,12 @@ test(
 test(
 	qase(
 		5224,
-		'Check section titles and award cards in "Our Approach" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles and award cards in "Our Approach" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Open Source\nContributions', 'Global\nCertifications', 'Profound\nExperience'];
+		const testData = ['Open Source Contributions', 'Global Certifications', 'Profound Experience'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -298,12 +305,12 @@ test(
 test(
 	qase(
 		5228,
-		'Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Make an Impact With Us" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const makeAnImpactContainer = driver.getByTestId(ConsultingService.MakeAnImpactWithUs);
 		const allSectionTitles = makeAnImpactContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Retain clients', 'Improve\nperformance', 'Aim for quality'];
+		const testData = ['Retain clients', 'Improve performance', 'Aim for quality'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 	}
@@ -312,7 +319,7 @@ test(
 test(
 	qase(
 		5234,
-		'Check section titles in "Related Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "Related Services" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(ConsultingService.RelatedServices);
@@ -320,8 +327,8 @@ test(
 		const testData = [
 			'UX/UI Design',
 			'AI',
-			'Custom software \ndevelopment',
-			'Mobile \ndevelopment',
+			'Custom software development',
+			'Mobile development',
 			'QA as a Service',
 			'Big Data & Analytics',
 			'Internet of Things',
@@ -335,7 +342,7 @@ test(
 test(
 	qase(
 		5239,
-		'Check section titles in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check section titles in "FAQ" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(ConsultingService.Faq);

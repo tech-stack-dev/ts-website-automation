@@ -13,20 +13,29 @@ import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchRevie
 import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {Environment} from '../../../../providers/EnvProvider';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
 });
 
-test(qase(4787, 'Check the Info container from the "About Us" page @Regression @AboutUs @TSWEB-1022'), async () => {
-	const info = driver.getByTestId(AboutUs.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
-	await expect(info.getByTestId(Container.Title)).toHaveText('We Make an Impact on\nthe Product, People, and\nWorld');
-	await expect(info.getByTestId(MainSiteButtons.LetsMakeItTogether)).toHaveText('Let’s make it together');
-});
+test(
+	qase(4787, 'Check the Info container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'),
+	async () => {
+		const info = driver.getByTestId(AboutUs.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nAbout Us');
+		await expect(info.getByTestId(Container.Title)).toHaveText(
+			'We Make an Impact on the Product, People, and World'
+		);
+		await expect(info.getByTestId(MainSiteButtons.GetInTouch)).toHaveText('Get in touch');
+	}
+);
 
 test(
-	qase(4792, 'Check the container title and number from the "About Us" page @Regression @AboutUs @TSWEB-1022'),
+	qase(
+		4792,
+		'Check the container title and number from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
+	),
 	async () => {
 		const containers = [
 			driver.getByTestId(AboutUs.OurStory),
@@ -43,9 +52,9 @@ test(
 			['Our story', '01'],
 			['What’s at the Core', '02'],
 			['Our team', '03'],
-			['What makes\nus special', '04'],
+			['What makes us special', '04'],
 			['Our partners', '05'],
-			['Shoutout from\nour partners', '06'],
+			['Shoutout from our partners', '06'],
 			['Our people', '07'],
 			['Get in Touch', '08'],
 		];
@@ -57,14 +66,13 @@ test(
 test(
 	qase(
 		4798,
-		'Check section numbers and titles, and subtitle in "What’s at the Core" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check section numbers and titles, and subtitle in "What’s at the Core" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const whatAtTheCoreContainer = driver.getByTestId(AboutUs.WhatsAtTheCore);
 
-		await expect(whatAtTheCoreContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02']);
 		const allSectionTitles = whatAtTheCoreContainer.getByTestId(Container.SectionTitle);
-		const testData = [' Vision:', ' Mission:'];
+		const testData = [' Vision', ' Mission'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
@@ -90,7 +98,7 @@ test(
 test(
 	qase(
 		4805,
-		'Check member names and roles in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check member names and roles in "Our team" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const ourExpertsContainer = driver.getByTestId(AboutUs.OurTeam);
@@ -131,7 +139,7 @@ test(
 test(
 	qase(
 		4835,
-		'Check redirects by LinkedIn buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check redirects by LinkedIn buttons in "Our team" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const ourTeamExperts = driver.getByTestId(AboutUs.OurTeam);
@@ -163,7 +171,7 @@ test(
 test(
 	qase(
 		4828,
-		'Check redirects by Blog buttons in "Our team" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our team" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022 @TSWEB-1061'
 	),
 	async () => {
 		const ourTeamContainer = driver.getByTestId(AboutUs.OurTeam);
@@ -189,7 +197,7 @@ test(
 test(
 	qase(
 		4843,
-		'Check section titles in "What makes us special" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check section titles in "What makes us special" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const whatMakesUsSpecialContainer = driver.getByTestId(AboutUs.WhatMakesUsSpecial);
@@ -202,7 +210,7 @@ test(
 test(
 	qase(
 		4851,
-		'Check "Learn more about how we work" button in the "Our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check "Learn more about how we work" button in the "Our partners" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const ourPartnersBlock = driver.getByTestId(AboutUs.OurPartners);
@@ -215,7 +223,7 @@ test(
 test(
 	qase(
 		4860,
-		'Check partner logos in "Our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check partner logos in "Our partners" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const ourPartnersContainer = driver.getByTestId(AboutUs.OurPartners);
@@ -228,7 +236,7 @@ test(
 test(
 	qase(
 		4887,
-		'Check redirect by "LinkedIn Review" button in "Shoutout from our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check redirect by "LinkedIn Review" button in "Shoutout from our partners" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const shoutoutFromOurPartnersContainer = driver.getByTestId(AboutUs.ShoutoutFromOurPartners);
@@ -254,7 +262,7 @@ test(
 test(
 	qase(
 		4875,
-		'Check redirect by "Clutch Review" button in "Shoutout from our partners" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check redirect by "Clutch Review" button in "Shoutout from our partners" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const shoutoutFromOurPartnersContainer = driver.getByTestId(AboutUs.ShoutoutFromOurPartners);
@@ -273,7 +281,7 @@ test(
 		]);
 
 		for (const [button, url] of buttonMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -281,7 +289,7 @@ test(
 test(
 	qase(
 		4903,
-		'Check photo carousel in the "Our people" container from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check photo carousel in the "Our people" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
 		const ourPeopleContainer = driver.getByTestId(AboutUs.OurPeople);
@@ -300,23 +308,23 @@ test(
 test(
 	qase(
 		4894,
-		'Check CTA button from the "Our people" container from the "About Us" page @Regression @AboutUs @TSWEB-1022 @TSWEB-836'
+		'Check CTA button from the "Our people" container from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022 @TSWEB-836'
 	),
 	async () => {
 		const ourPeopleBlock = driver.getByTestId(AboutUs.OurPeople);
 
 		await ourPeopleBlock.getByTestId(MainSiteButtons.JoinUs).click();
-		await baseDriverSteps.checkUrl(UrlProvider.careerUrl());
+		await baseDriverSteps.checkUrl(UrlProvider.careerUrl(Environment.Production));
 	}
 );
 
 test(
 	qase(
 		4911,
-		'Check navigation to "Get in Touch" container after clicking CTA button from the "About Us" page @Regression @AboutUs @TSWEB-1022'
+		'Check navigation to "Get in Touch" container after clicking CTA button from the "About Us" page @desktop @mobile @Regression @AboutUs @TSWEB-1022'
 	),
 	async () => {
-		const ctaButton = driver.getByTestId(AboutUs.Info).getByTestId(MainSiteButtons.LetsMakeItTogether);
+		const ctaButton = driver.getByTestId(AboutUs.Info).getByTestId(MainSiteButtons.GetInTouch);
 
 		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(ctaButton, AboutUs.GetInTouch);
 	}

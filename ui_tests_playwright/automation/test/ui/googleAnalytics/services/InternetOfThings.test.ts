@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 });
 
 test.skip(
-	qase(5329, 'Check google analytics for "InternetOfThings" page @Regression @GoogleAnalytics'),
+	qase(5329, 'Check google analytics for "InternetOfThings" page @desktop @Regression @GoogleAnalytics'),
 	async ({}, testInfo) => {
 		const info = driver.getByTestId(IoTEngineeringServices.Info);
 		const breadcrumbsButton = info.getByTestId(Container.BreadcrumbsPrev);

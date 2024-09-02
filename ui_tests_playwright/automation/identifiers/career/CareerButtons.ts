@@ -12,4 +12,7 @@ export default class CareerButtons {
 
 	// Side bar
 	static ResetButton = 'ResetButton-Reset';
+
+	// Mobile
+	static FilterButton = 'FileButton-Filter';
 }

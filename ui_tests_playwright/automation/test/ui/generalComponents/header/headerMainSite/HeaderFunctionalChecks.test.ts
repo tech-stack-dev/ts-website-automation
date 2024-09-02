@@ -1,43 +1,67 @@
-import {Locator, test} from '@playwright/test';
+import {Locator} from '@playwright/test';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {industryUrl, serviceUrl, companyUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import UrlPath from '../../../../../providers/UrlPath';
+import {
+	industryUrl,
+	serviceUrl,
+	companyUrl,
+	urlsWithOnlyLogoInHeader,
+} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import {IndustriesEnum} from '../../../../../enum/IndustriesEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {Environment} from '../../../../../providers/EnvProvider';
+import {containerSteps, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
+import UrlUtils from '../../../../../utils/UrlUtils';
+import UrlPath from '../../../../../providers/UrlPath';
+import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
+let industriesButtons: object;
+let servicesButtons: object;
+let industriesUrls: string[];
+let servicesUrls: string[];
 
-const testDataProvider: string[] = [
+let testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
-	UrlProvider.urlBuilder(UrlPath.Terms),
+	UrlProvider.urlBuilder(
+		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
+	),
 ];
 
+// ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowser();
-	header = driver.getByTestId(Header.Container_Header);
+	header = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.Container_Header,
+		mobileLocator: Header.ContainerMenu,
+	});
+
+	industriesButtons = Buttons.Industries;
+	servicesButtons = Buttons.Services;
+
+	industriesUrls = Object.values(industryUrl);
+	servicesUrls = Object.values(serviceUrl);
 });
 
 test(
 	qase(
 		5500,
-		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
+		testDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
+
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await header.getByTestId(Buttons.Logo).click();
+			await driver.getByTestId(Buttons.Logo).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 		}
 	}
@@ -46,22 +70,18 @@ test(
 test(
 	qase(
 		5501,
-		`Check the redirection for the Industries block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Industries block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		const industriesList = new Map([
-			[Buttons.Industries_Healthcare, industryUrl[IndustriesEnum.Healthcare]],
-			[Buttons.Industries_TransportationAndLogistics, industryUrl[IndustriesEnum.TransportAndLogist]],
-			[Buttons.Industries_RenewableEnergy, industryUrl[IndustriesEnum.RenewableEnergy]],
-		]);
-
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const [element, industryUrl] of industriesList) {
-				await driver.getByTestId(Header.Industries).click();
-				await driver.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(industryUrl);
+			for (let index = 0; index < industriesUrls.length; index++) {
+				await headerMenuSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Industries).click();
+				await header.getByTestId(Object.values(industriesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(industriesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
@@ -71,31 +91,18 @@ test(
 test(
 	qase(
 		5503,
-		`Check the redirection for the Services block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		const servicesList = new Map([
-			[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
-			[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
-			[Buttons.Services_DigitalTransform, serviceUrl[ServicesEnum.DigitalTransform]],
-			[Buttons.Services_CloudDev, serviceUrl[ServicesEnum.CloudDev]],
-			[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
-			[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
-			[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
-			[Buttons.Services_DevOps, serviceUrl[ServicesEnum.DevOpsAsAServ]],
-			[Buttons.Services_AiDevelopment, serviceUrl[ServicesEnum.AiDevelopment]],
-			[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
-			[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
-			[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
-		]);
-
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (const [element, serviceUrl] of servicesList) {
-				await driver.getByTestId(Header.Services).click();
-				await driver.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(serviceUrl);
+			for (let index = 0; index < servicesUrls.length; index++) {
+				await headerMenuSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Services).click();
+				await header.getByTestId(Object.values(servicesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(servicesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
@@ -105,23 +112,25 @@ test(
 test(
 	qase(
 		5502,
-		`Check the redirection for the Company block in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection for the Company block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		const companyList = new Map([
-			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
-			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
-			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
+			[Buttons.Company.AboutUs, companyUrl[CompanyEnum.AboutUs]],
+			[Buttons.Company.HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
+			[Buttons.Company.Career, UrlProvider.careerUrl(Environment.Production)],
+			[Buttons.Company.CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
+			[Buttons.Company.Blog, companyUrl[CompanyEnum.Blog]],
 		]);
 
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
 			for (const [element, companyUrl] of companyList) {
-				await driver.getByTestId(Header.Company).click();
-				await driver.getByTestId(element).click();
+				await headerMenuSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Company).click();
+				await header.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(companyUrl);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -132,13 +141,44 @@ test(
 test(
 	qase(
 		5499,
-		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @Regression @Header @TSWEB-656`
+		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(Header.Pricing).click();
 			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
+		}
+	}
+);
+
+test(
+	qase(
+		5583,
+		`Check the redirection to the "Contact us" page by clicking on the "Contacts" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-1578`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
+			await header.getByTestId(Header.Contacts).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
+		}
+	}
+);
+
+test(
+	qase(
+		5457,
+		`Check the redirection to the "Get a quote" page by clicking on the "Get a quote" button on all pages @desktop @mobile @Regression @GetAQuote @TSWEB-532`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await headerMenuSteps.clickOnBurgerMenu();
+			await header.getByTestId(MainSiteButtons.GetAQuote).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 		}
 	}
 );

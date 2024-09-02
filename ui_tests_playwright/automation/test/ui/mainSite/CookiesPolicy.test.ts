@@ -12,15 +12,18 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CookiesPolicy));
 });
 
-test(qase(5473, 'Check title from the "Cookie policy" page @Regression @CookiePolicy @TSWEB-1186'), async () => {
-	const infoContainer = driver.getByTestId(CookiePolicy.Info);
-	await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Cookie policy');
-});
+test(
+	qase(5473, 'Check title from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'),
+	async () => {
+		const infoContainer = driver.getByTestId(CookiePolicy.Info);
+		await expect(infoContainer.getByTestId(Container.Title)).toHaveText('Cookie policy');
+	}
+);
 
 test(
 	qase(
 		5475,
-		'Check the container title and number from the "Cookie policy" page @Regression @CookiePolicy @TSWEB-1186'
+		'Check the container title and number from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'
 	),
 	async () => {
 		const containers = [
@@ -38,7 +41,7 @@ test(
 		];
 
 		const expectedData = [
-			['Glossary - Basic\nconcepts', '01'],
+			['Glossary - Basic concepts', '01'],
 			['Whose personal data do we collect?', '02'],
 			['When may we process your personal data?', '03'],
 			['What personal data do we collect and what is the purpose and legal basis of such activities?', '04'],
@@ -56,7 +59,10 @@ test(
 );
 
 test(
-	qase(5474, 'Check "Change consent" button from the "Cookie policy" page @Regression @CookiePolicy @TSWEB-1186'),
+	qase(
+		5474,
+		'Check "Change consent" button from the "Cookie policy" page @desktop @mobile @Regression @CookiePolicy @TSWEB-1186'
+	),
 	async () => {
 		const container = driver.getByTestId(CookiePolicy.HowToManageCookies);
 		await container.getByTestId(Buttons.ChangeConsent).click({timeout: 5000});

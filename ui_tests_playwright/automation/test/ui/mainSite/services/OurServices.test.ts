@@ -15,17 +15,25 @@ test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 });
 
-test(qase(5330, 'Check Info container from the "Our Services" page @Regression @OurServices @TSWEB-681'), async () => {
-	const info = driver.getByTestId(OurServices.Info);
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
-	await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software\nEngineering Services');
-	await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
-});
+test(
+	qase(
+		5330,
+		'Check Info container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const info = driver.getByTestId(OurServices.Info);
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Full-Cycle Software Engineering Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
+		);
+	}
+);
 
 test(
 	qase(
 		5333,
-		'Check the container titles and numbers from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check the container titles and numbers from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const containers = [
@@ -43,7 +51,7 @@ test(
 			['Our approach', '03'],
 			['Reviews', '04'],
 			['FAQ', '05'],
-			['Get in Touch', '06'],
+			['Request a Free No-obligation Quote', '06'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -53,7 +61,7 @@ test(
 test(
 	qase(
 		5335,
-		'Check section titles and numbers in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check section titles and numbers in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const servicesContainer = driver.getByTestId(OurServices.Services);
@@ -73,7 +81,7 @@ test(
 			'Internet of Things',
 			'Back-End Development Services',
 			'Front-End Development Services',
-			'DevOps Services\n& Solutions',
+			'DevOps Services & Solutions',
 			'Artificial Intelligence & Machine Learning',
 			'Mobile Development',
 			'UI/UX Design',
@@ -88,7 +96,7 @@ test(
 test(
 	qase(
 		4830,
-		'Check redirects by sections in "Services" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check redirects by sections in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const servicesContainer = driver.getByTestId(OurServices.Services);
@@ -117,7 +125,7 @@ test(
 test(
 	qase(
 		5337,
-		'Check section titles and navigation bar in "Technology stack" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check section titles and navigation bar in "Technology stack" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(OurServices.TechnologyStack);
@@ -126,40 +134,33 @@ test(
 		const containerBlocks = technologyStackContainer.getByTestId(Container.ContainerBlock);
 		const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
-		await baseDriverSteps.checkTechnologyStackTabsAndSectionTitles(
-			navigationTabs,
-			containerBlocks,
-			testDataSectionTitles
-		);
+		await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
 	}
 );
 
 test(
 	qase(
 		5340,
-		'Check section titles and CTA button in "Our approach" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check section titles and CTA button in "Our approach" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(OurServices.OurApproach);
 
 		const allSectionTitles = ourApproachContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Domain\nproficiency', 'We are the team', 'Data-driven\ndecisions'];
+		const testData = ['Domain proficiency', 'We are the team', 'Data-driven decisions'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		const aboutUsButton = ourApproachContainer.getByTestId(MainSiteButtons.AboutUs);
-
-		await expect(aboutUsButton).toHaveText('About us');
-
-		await aboutUsButton.click();
-		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
+		await expect(ourApproachContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
+		);
 	}
 );
 
 test(
 	qase(
 		5343,
-		'Check redirects by "Clutch Review" buttons in "Reviews" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check redirects by "Clutch Review" buttons in "Reviews" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const reviewsContainer = driver.getByTestId(OurServices.Reviews);
@@ -172,7 +173,7 @@ test(
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
@@ -180,7 +181,7 @@ test(
 test(
 	qase(
 		5339,
-		'Check section titles in "FAQ" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check section titles in "FAQ" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(OurServices.Faq);
@@ -205,7 +206,7 @@ test(
 test(
 	qase(
 		5354,
-		'Check sections expanding and collapsing in "FAQ" container from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check sections expanding and collapsing in "FAQ" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(OurServices.Faq);
@@ -218,12 +219,17 @@ test(
 test(
 	qase(
 		5347,
-		'Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @Regression @OurServices @TSWEB-681'
+		'Check navigation to "Get in Touch" container after clicking CTA button from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
-		const requestAQuoteButton = driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.RequestAQuote);
+		const ctaButtons = [
+			driver.getByTestId(OurServices.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(OurServices.OurApproach).getByTestId(MainSiteButtons.GetYourQuoteNow),
+		];
 
-		await baseDriverSteps.checkScrollToContainerByCtaButtonClick(requestAQuoteButton, OurServices.GetInTouch);
+		for (const button of ctaButtons) {
+			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, OurServices.GetInTouch);
+		}
 	}
 );
 

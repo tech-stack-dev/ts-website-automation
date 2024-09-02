@@ -19,11 +19,11 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5332,
-		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);
@@ -33,12 +33,13 @@ test(
 test(
 	qase(
 		5328,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 
-		await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
+		await caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.CargoAuctionSolution}`,
@@ -51,7 +52,7 @@ test(
 test(
 	qase(
 		4779,
-		'Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check redirects by arrows in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
@@ -80,7 +81,7 @@ test(
 test(
 	qase(
 		5348,
-		'Check carousel arrows click in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check carousel arrows click in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @desktop @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportationAndLogisticsContainer = driver.getByTestId(
@@ -94,7 +95,7 @@ test(
 test(
 	qase(
 		5336,
-		'Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check sections expanding and collapsing in "FAQ" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);
@@ -107,14 +108,15 @@ test(
 test(
 	qase(
 		5338,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(TransportationAndLogistics.Info).getByTestId(MainSiteButtons.LetsDiscuss),
+			driver.getByTestId(TransportationAndLogistics.Info).getByTestId(MainSiteButtons.GetYourCustomProjectQuote),
+			driver.getByTestId(TransportationAndLogistics.WhoWeServe).getByTestId(MainSiteButtons.GetYourQuoteNow),
 			driver
 				.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack)
-				.getByTestId(Buttons.ContactUs),
+				.getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

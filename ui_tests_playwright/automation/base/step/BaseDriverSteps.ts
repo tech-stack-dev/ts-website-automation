@@ -4,7 +4,8 @@ import {Locator, expect} from '@playwright/test';
 import Container from '../../identifiers/Container';
 import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
-
+import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
+import UrlUtils from '../../utils/UrlUtils';
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -15,10 +16,11 @@ class BaseDriverSteps {
 		acceptCookies = true,
 		browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER
 	) {
+		const excludedUrls = urlsWithoutCookiesMessage;
 		await driver.createBrowser(browserName);
-		await driver.Page.goto(url, {timeout: 30000});
+		await this.goToUrl(url);
 
-		if (acceptCookies) {
+		if (acceptCookies && !excludedUrls.some((excludedUrls) => url.includes(excludedUrls))) {
 			await driver.Page.getByTestId(Buttons.AcceptCookies).click();
 		}
 	}
@@ -47,6 +49,7 @@ class BaseDriverSteps {
 
 	public async goToUrl(url: string) {
 		await driver.Page.goto(url, {timeout: 30000});
+		await UrlUtils.isValidTechstackPageUrl(url);
 	}
 
 	public async checkUrl(expectedUrl: string) {
@@ -99,7 +102,7 @@ class BaseDriverSteps {
 		}
 	}
 
-	public async checkTechnologyStackTabsAndSectionTitles(
+	public async checkTabsAndSectionTitles(
 		navigationTabs: Locator[],
 		containerBlocks: Locator,
 		testDataSectionTitles: string[][]
@@ -109,9 +112,9 @@ class BaseDriverSteps {
 			const currentBlock = containerBlocks.nth(tab);
 			const tabSectionTitles = testDataSectionTitles[tab];
 
-			await expect(currentBlock).toHaveClass(/--active/);
 			await currentTab.click();
 			await expect(currentTab).toHaveClass(/--active/);
+			await expect(currentBlock).toHaveClass(/--active/);
 			await expect(currentBlock.getByTestId(Container.SectionTitle)).toHaveText(tabSectionTitles);
 		}
 	}
@@ -119,7 +122,13 @@ class BaseDriverSteps {
 	public async checkRedirectToPage(locator: Locator, expectedUrl: string, initialPageUrl?: string) {
 		if (initialPageUrl) {
 			await locator.click();
-			await driver.Page.waitForLoadState();
+			await playwrightUtils.expectWithRetries(
+				async () => {
+					await driver.Page.waitForLoadState();
+				},
+				3,
+				5000
+			);
 			await baseDriverSteps.checkUrl(expectedUrl);
 			await baseDriverSteps.goToUrl(initialPageUrl);
 			await driver.Page.waitForLoadState();
@@ -135,6 +144,19 @@ class BaseDriverSteps {
 			);
 			await newPage.close();
 		}
+	}
+
+	public async checkRedirectToClutch(locator: Locator, expectedUrl: string) {
+		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
+
+		await playwrightUtils.expectWithRetries(
+			async () => {
+				expect(newPage.url()).toContain(expectedUrl);
+			},
+			3,
+			5000
+		);
+		await newPage.close();
 	}
 
 	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
@@ -173,7 +195,7 @@ class BaseDriverSteps {
 	public async checkScrollToContainerByCtaButtonClick(
 		ctaButton: Locator,
 		expectedContainer: string,
-		viewportPart = 0.7
+		viewportPart = 0.4
 	) {
 		await ctaButton.click();
 		await expect(driver.getByTestId(expectedContainer)).toBeInViewport({ratio: viewportPart});

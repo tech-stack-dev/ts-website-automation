@@ -22,12 +22,13 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5017,
-		'Check redirect by CTA button in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
 
-		await caseStudyContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.CloudPlatformForEvCharging}`,
@@ -40,7 +41,7 @@ test(
 test(
 	qase(
 		5032,
-		'Check redirect by links in "Industries We Serve" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by links in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
@@ -64,12 +65,12 @@ test(
 test(
 	qase(
 		5022,
-		'Check redirect by "Clutch Review" button in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirect by "Clutch Review" button in "Our Approach to Cloud App Development" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourApproachToCloudAppDevelopmentContainer = driver.getByTestId(CloudDevelopment.OurApproach);
 
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
@@ -79,17 +80,16 @@ test(
 test(
 	qase(
 		5028,
-		'Check redirects by LinkedIn buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirects by LinkedIn buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 		const linkedInButtons = ourLeadingCloudExperts.getByTestId(Buttons.LinkedIn);
 
 		const buttonUrlMap = new Map([
-			[linkedInButtons.nth(0), ExpertsLinkedInLinks.IvanIeremenko],
-			[linkedInButtons.nth(1), ExpertsLinkedInLinks.OleksiiSvystun],
-			[linkedInButtons.nth(2), ExpertsLinkedInLinks.IvanYeremenko],
-			[linkedInButtons.nth(3), ExpertsLinkedInLinks.VladyslavUshakov],
+			[linkedInButtons.nth(0), ExpertsLinkedInLinks.OleksiiSvystun],
+			[linkedInButtons.nth(1), ExpertsLinkedInLinks.IvanYeremenko],
+			[linkedInButtons.nth(2), ExpertsLinkedInLinks.VladyslavUshakov],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
@@ -101,7 +101,7 @@ test(
 test(
 	qase(
 		5061,
-		'Check redirects by Blog buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692 @TSWEB-1061'
+		'Check redirects by Blog buttons in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692 @TSWEB-1061'
 	),
 	async () => {
 		const ourLeadingCloudExperts = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
@@ -109,10 +109,9 @@ test(
 		const blogButtons = ourLeadingCloudExperts.getByTestId(Buttons.Blog);
 
 		const buttonUrlMap = new Map([
-			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.IvanIeremenko}`],
-			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
-			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
-			[blogButtons.nth(3), `${blogUri}${AuthorsEnum.VladyslavUshakov}`],
+			[blogButtons.nth(0), `${blogUri}${AuthorsEnum.OleksiiSvystun}`],
+			[blogButtons.nth(1), `${blogUri}${AuthorsEnum.IvanYeremenko}`],
+			[blogButtons.nth(2), `${blogUri}${AuthorsEnum.VladyslavUshakov}`],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {
@@ -124,7 +123,7 @@ test(
 test(
 	qase(
 		5092,
-		'Check redirects by arrows in "Related Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check redirects by arrows in "Related Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
@@ -149,7 +148,7 @@ test(
 test(
 	qase(
 		5042,
-		'Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check sections expanding and collapsing in "FAQ" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
@@ -162,17 +161,18 @@ test(
 test(
 	qase(
 		5047,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CloudDevelopment.Info).getByTestId(MainSiteButtons.GetYourCustomCloudQuote),
+			driver
+				.getByTestId(CloudDevelopment.IndustriesWeServe)
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
 			driver
 				.getByTestId(CloudDevelopment.CloudComputingDevelopmentBenefits)
-				.getByTestId(MainSiteButtons.RequestMoreInformation),
-			driver
-				.getByTestId(CloudDevelopment.OurLeadingCloudExperts)
-				.getByTestId(MainSiteButtons.ScheduleAConsultation),
+				.getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {

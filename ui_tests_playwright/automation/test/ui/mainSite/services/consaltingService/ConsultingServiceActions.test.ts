@@ -26,11 +26,11 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5116,
-		'Check redirect by "Clutch Review" button in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirect by "Clutch Review" button in "Featured Case Study" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			featuredCaseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
@@ -40,12 +40,13 @@ test(
 test(
 	qase(
 		5121,
-		'Check redirect by CTA button in "Featured Case Study" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirect by CTA button in "Featured Case Study" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 
-		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.LearnMore).click();
+		await featuredCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
 				`${UrlPath.CaseStudies}${CaseStudyPath.SoftDevTransformExistingSystem}`,
@@ -58,7 +59,7 @@ test(
 test(
 	qase(
 		5133,
-		'Check redirect by links in "Industries We Provide Consultancy To" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirect by links in "Industries We Provide Consultancy To" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const industriesWeProvideContainer = driver.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo);
@@ -91,7 +92,7 @@ test(
 test(
 	qase(
 		5147,
-		'Check carousel arrow clicks in "Consulting Process" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check carousel arrow clicks in "Consulting Process" container from the "Consulting Service" page @desktop @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingProcessContainer = driver.getByTestId(ConsultingService.ConsultingProcess);
@@ -103,7 +104,7 @@ test(
 test(
 	qase(
 		5127,
-		'Check redirects by LinkedIn buttons in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirects by LinkedIn buttons in "Consulting Experts" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
@@ -127,7 +128,7 @@ test(
 test(
 	qase(
 		5173,
-		'Check redirects by Blog buttons in "Consulting Experts" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 TSWEB-1061'
+		'Check redirects by Blog buttons in "Consulting Experts" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697 TSWEB-1061'
 	),
 	async () => {
 		const consultingExpertsContainer = driver.getByTestId(ConsultingService.ConsultingExperts);
@@ -152,7 +153,7 @@ test(
 test(
 	qase(
 		5140,
-		'Check redirects by links in "Our Approach" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirects by links in "Our Approach" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
@@ -171,11 +172,11 @@ test(
 test(
 	qase(
 		5153,
-		'Check redirect by "Clutch Review" button in "Our Approach" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirect by "Clutch Review" button in "Our Approach" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
-		await baseDriverSteps.checkRedirectToPage(
+		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousVehicle
 		);
@@ -185,7 +186,7 @@ test(
 test(
 	qase(
 		5254,
-		'Check redirects by arrows in "Related Services" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check redirects by arrows in "Related Services" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(ConsultingService.RelatedServices);
@@ -210,7 +211,7 @@ test(
 test(
 	qase(
 		5162,
-		'Check sections expanding and collapsing in "FAQ" container from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697'
+		'Check sections expanding and collapsing in "FAQ" container from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(ConsultingService.Faq);
@@ -223,16 +224,16 @@ test(
 test(
 	qase(
 		5168,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting Service" page @Regression @ConsultingService @TSWEB-697 @TSWEB-1181'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "Consulting Service" page @desktop @mobile @Regression @ConsultingService @TSWEB-697 @TSWEB-1181'
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(ConsultingService.Info).getByTestId(MainSiteButtons.GetYourCustomAuditQuote),
+			driver.getByTestId(ConsultingService.SoftwareAudit).getByTestId(MainSiteButtons.GetAFreeQquoteToday),
 			driver
 				.getByTestId(ConsultingService.IndustriesWeProvideConsultancyTo)
-				.getByTestId(MainSiteButtons.GetAQuote),
-			driver.getByTestId(ConsultingService.ConsultingProcess).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.ScheduleACall),
+				.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote),
+			driver.getByTestId(ConsultingService.ConsultingExperts).getByTestId(MainSiteButtons.GetYourCustomQuote),
 		];
 
 		for (const button of ctaButtons) {

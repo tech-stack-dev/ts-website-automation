@@ -14,21 +14,26 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5345, 'Check the Info container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'),
+	qase(
+		5345,
+		'Check the Info container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
+	),
 	async () => {
 		const info = driver.getByTestId(QaAsAService.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nQA as a Service');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nQA as a Service');
 		await expect(info.getByTestId(Container.Title)).toHaveText(
 			'QA as a Service — Vetted Experts Available on Demand'
 		);
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(info.getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote)).toHaveText(
+			'Get your personalized QA quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5352,
-		'Check the container titles and numbers from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check the container titles and numbers from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const containers = [
@@ -44,13 +49,13 @@ test(
 		];
 
 		const expectedData = [
-			['What is QA \nas a Service?', '01'],
-			['Who is this \nservice for', '02'],
+			['What is QA as a Service?', '01'],
+			['Who is this service for', '02'],
 			['Services', '03'],
-			['Case studies: \nQA as a Service', '04'],
-			['Services that \nmeet you where \nyou are', '05'],
-			['Our Approach \nand Achievements', '06'],
-			['Get in Touch', '07'],
+			['Case studies: QA as a Service', '04'],
+			['Services that meet you where you are', '05'],
+			['Our Approach and Achievements', '06'],
+			['Request a Free No-obligation Quote', '07'],
 			['Related Articles', '08'],
 			['FAQ', '09'],
 		];
@@ -62,7 +67,7 @@ test(
 test(
 	qase(
 		5350,
-		'Check section numbers and titles in containers from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check section numbers and titles in containers from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const whoIsThisServiceFor = driver.getByTestId(QaAsAService.WhoIsThisServiceFor);
@@ -102,27 +107,37 @@ test(
 
 		const ourApproachAndAchievements = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
 		await expect(ourApproachAndAchievements.getByTestId(Container.SectionTitle)).toHaveText([
-			'Open Source \nContributions',
-			'Global \nCertifications',
-			'Profound \nExperience',
+			'Open Source Contributions',
+			'Global Certifications',
+			'Profound Experience',
 		]);
 
 		const faq = driver.getByTestId(QaAsAService.Faq);
 		await expect(faq.getByTestId(Container.SectionTitle)).toHaveText([
-			'What is the difference\nbetween a traditional QA\nservice and QA as a service?',
-			'Is QA as a service better\nthan a QA service?',
-			'We have an in-house QA\nteam. Why do we need your\nregression testing services?',
-			'Should we hire a\ntesting team or set up\nQA processes first?',
-			'What is crowdtesting?\nHow is it different from\nQA as a service?',
-			'Why is integrating QA\nprocesses into the CI/CD\nprocess important?',
+			'What is the difference between a traditional QA service and QA as a service?',
+			'Is QA as a service better than a QA service?',
+			'We have an in-house QA team. Why do we need your regression testing services?',
+			'Should we hire a testing team or set up QA processes first?',
+			'What is crowdtesting? How is it different from QA as a service?',
+			'Why is integrating QA processes into the CI/CD process important?',
 		]);
 	}
 );
 
+test('Check CTA button text from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603', async () => {
+	await expect(
+		driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote)
+	).toHaveText('Get your custom quote');
+
+	await expect(
+		driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote)
+	).toHaveText('Request a quote');
+});
+
 test(
 	qase(
 		5356,
-		'Check block and section titles in "Services" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check block and section titles in "Services" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const services = driver.getByTestId(QaAsAService.Services);
@@ -161,12 +176,10 @@ test(
 test(
 	qase(
 		5362,
-		'Check CTA button and redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check redirect by arrow in "Our Approach and Achievements" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(QaAsAService.OurApproachAndAchievements);
-
-		await expect(ourApproachContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
 
 		await baseDriverSteps.checkRedirectToPage(ourApproachContainer.getByTestId(Container.Arrow), Links.Nuget);
 	}
@@ -175,7 +188,7 @@ test(
 test(
 	qase(
 		4783,
-		'Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check sections expanding and collapsing in "FAQ" container from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(QaAsAService.Faq);
@@ -188,12 +201,13 @@ test(
 test(
 	qase(
 		5360,
-		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @Regression @QaAsAService @TSWEB-603'
+		'Check navigation to "Get in Touch" container after clicking CTA buttons from the "QA as a Service" page @desktop @mobile @Regression @QaAsAService @TSWEB-603'
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.RequestAQuote),
-			driver.getByTestId(QaAsAService.OurApproachAndAchievements).getByTestId(MainSiteButtons.RequestAQuote),
+			driver.getByTestId(QaAsAService.Info).getByTestId(MainSiteButtons.GetYourPersonalizedQaQuote),
+			driver.getByTestId(QaAsAService.WhoIsThisServiceFor).getByTestId(MainSiteButtons.GetYourCustomQuote),
+			driver.getByTestId(QaAsAService.ServicesThatMeetYouWhereYouAre).getByTestId(MainSiteButtons.RequestAQuote),
 		];
 
 		for (const button of ctaButtons) {

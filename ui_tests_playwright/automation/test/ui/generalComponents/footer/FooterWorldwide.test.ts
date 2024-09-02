@@ -8,32 +8,51 @@ import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
 import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
-import {IndustriesEnum} from '../../../../enum/IndustriesEnum';
-import {ServicesEnum} from '../../../../enum/ServicesEnum';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {Environment} from '../../../../providers/EnvProvider';
+import UrlUtils from '../../../../utils/UrlUtils';
+import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 let footer: Locator;
+let industriesButtons: object;
+let servicesButtons: object;
+let companyButtons: object;
+let industriesUrls: string[];
+let servicesUrls: string[];
+let companyUrls: string[];
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.Healthcare),
-	UrlProvider.urlBuilder(UrlPath.OurServices),
-	UrlProvider.urlBuilder(UrlPath.CaseStudies),
-	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
+	UrlProvider.urlBuilder(UrlPath.Pricing),
+	UrlProvider.urlBuilder(UrlPath.CaseStudies),
+	UrlProvider.urlBuilder(
+		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
+	),
+	UrlProvider.urlBuilder(UrlPath.GetAQuote),
 ];
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
+
+	industriesButtons = Buttons.Industries;
+	servicesButtons = Buttons.Services;
+	companyButtons = Buttons.Company;
+
+	industriesUrls = Object.values(industryUrl);
+	servicesUrls = Object.values(serviceUrl);
+	companyUrls = Object.values(companyUrl);
 });
 
 test(
 	qase(
 		5485,
-		`Check the footer information from the 'Footer' container on all pages @Regression @Footer @TSWEB-655 @TSWEB-674`
+		`Check the footer information from the "Footer" container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
 	),
 	async () => {
 		for (const url of testDataProvider) {
@@ -57,54 +76,48 @@ test(
 					'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
 				);
 				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+				await expect(contactBlock.getByTestId(Footer.ContactUs)).toHaveText('Contact Us');
 			}
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
 			await expect(industriesBlock.getByTestId(Container.BlockTitle)).toHaveText('Industries');
-			const industriesList = new Map([
-				[Buttons.Industries_Healthcare, 'Healthcare'],
-				[Buttons.Industries_TransportationAndLogistics, 'Transportation and Logistics'],
-				[Buttons.Industries_RenewableEnergy, 'Renewable Energy'],
-			]);
+			const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
-			for (const [element, title] of industriesList) {
-				await expect(footer.getByTestId(element)).toHaveText(title);
+			for (let index = 0; index < industriesUrls.length; index++) {
+				const button = footer.getByTestId(Object.values(industriesButtons)[index]);
+				await expect(button).toHaveText(industriesText[index]);
 			}
 
 			await expect(servicesBlock.getByTestId(Container.BlockTitle)).toHaveText('Services');
-			const servicesList = new Map([
-				[Buttons.Services_OurServices, 'Our Services'],
-				[Buttons.Services_CustomDev, 'Custom Software Development'],
-				[Buttons.Services_DigitalTransform, 'Digital Transformation'],
-				[Buttons.Services_CloudDev, 'Cloud Development'],
-				[Buttons.Services_MobileDev, 'Mobile Development'],
-				[Buttons.Services_BigData, 'Big Data & Analytics'],
-				[Buttons.Services_InternetOfThings, 'Internet of Things'],
-				[Buttons.Services_DevOps, 'DevOps as a Service'],
-				[Buttons.Services_AiDevelopment, 'AI Development'],
-				[Buttons.Services_UiUxDesign, 'UX / UI Design'],
-				[Buttons.Services_QaAsAServ, 'QA as a Service'],
-				[Buttons.Services_ConsultingServ, 'Consulting Services'],
-			]);
+			const servicesText = [
+				'Our Services',
+				'Custom Software Development',
+				'Digital Transformation',
+				'Cloud Development',
+				'Mobile Development',
+				'Front-End Development',
+				'Back-End Development',
+				'Big Data & Analytics',
+				'Internet of Things',
+				'DevOps as a Service',
+				'AI Development',
+				'UX / UI Design',
+				'QA as a Service',
+				'Consulting Services',
+			];
 
-			for (const [element, title] of servicesList) {
-				await expect(footer.getByTestId(element)).toHaveText(title);
+			for (let index = 0; index < servicesUrls.length; index++) {
+				const button = footer.getByTestId(Object.values(servicesButtons)[index]);
+				await expect(button).toHaveText(servicesText[index]);
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyList = new Map([
-				[Buttons.Company_AboutUs, 'About Us'],
-				[Buttons.Company_HowWeWork, 'How we work'],
-				[Buttons.Company_Pricing, 'Pricing'],
-				[Buttons.Company_Career, 'Career'],
-				[Buttons.Company_CaseStudies, 'Case Studies'],
-				[Buttons.Company_Blog, 'Blog'],
-				[Buttons.Company_Whitepapers, 'Whitepapers'],
-			]);
+			const companyText = ['About Us', 'How we work', 'Pricing', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
 
-			for (const [element, title] of companyList) {
-				await expect(footer.getByTestId(element)).toHaveText(title);
+			for (let index = 0; index < companyUrls.length; index++) {
+				const button = footer.getByTestId(Object.values(companyButtons)[index]);
+				await expect(button).toHaveText(companyText[index]);
 			}
 
 			await expect(footer.getByTestId(Footer.TermsOfUse)).toHaveText('Terms of use');
@@ -115,7 +128,10 @@ test(
 );
 
 test(
-	qase(5487, `Check the redirection by the "Techstack" logo on all pages @Regression @Footer @TSWEB-655`),
+	qase(
+		5487,
+		`Check the redirection by the "Techstack" logo on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
@@ -125,123 +141,122 @@ test(
 	}
 );
 
-test(
-	qase(5488, `Check the redirection for the Industries block on all pages @Regression @Footer @TSWEB-833`),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-
-			const industriesList = new Map([
-				[Buttons.Industries_Healthcare, industryUrl[IndustriesEnum.Healthcare]],
-				[Buttons.Industries_TransportationAndLogistics, industryUrl[IndustriesEnum.TransportAndLogist]],
-				[Buttons.Industries_RenewableEnergy, industryUrl[IndustriesEnum.RenewableEnergy]],
-			]);
-
-			for (const [element, industryUrl] of industriesList) {
-				await footer.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(industryUrl);
-				await baseDriverSteps.goToUrl(url);
-			}
-		}
-	}
-);
-
-test(
-	qase(5492, `Check the redirection for the Services block on all pages @Regression @Footer @TSWEB-655`),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-
-			const servicesList = new Map([
-				[Buttons.Services_OurServices, serviceUrl[ServicesEnum.OurServices]],
-				[Buttons.Services_CustomDev, serviceUrl[ServicesEnum.CustomDev]],
-				[Buttons.Services_DigitalTransform, serviceUrl[ServicesEnum.DigitalTransform]],
-				[Buttons.Services_CloudDev, serviceUrl[ServicesEnum.CloudDev]],
-				[Buttons.Services_MobileDev, serviceUrl[ServicesEnum.MobileDev]],
-				[Buttons.Services_BigData, serviceUrl[ServicesEnum.BigData]],
-				[Buttons.Services_InternetOfThings, serviceUrl[ServicesEnum.InternetOfThings]],
-				[Buttons.Services_DevOps, serviceUrl[ServicesEnum.DevOpsAsAServ]],
-				[Buttons.Services_AiDevelopment, serviceUrl[ServicesEnum.AiDevelopment]],
-				[Buttons.Services_UiUxDesign, serviceUrl[ServicesEnum.UiUxDesign]],
-				[Buttons.Services_QaAsAServ, serviceUrl[ServicesEnum.QaAsAServ]],
-				[Buttons.Services_ConsultingServ, serviceUrl[ServicesEnum.ConsultingServ]],
-			]);
-
-			for (const [element, servicesUrl] of servicesList) {
-				await footer.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(servicesUrl);
-				await baseDriverSteps.goToUrl(url);
-			}
-		}
-	}
-);
-
-test(
-	qase(5491, `Check the redirection for the Company block on all pages @Regression @Footer @TSWEB-655 @TSWEB-674`),
-	async () => {
-		const companyList = new Map([
-			[Buttons.Company_AboutUs, companyUrl[CompanyEnum.AboutUs]],
-			[Buttons.Company_HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
-			[Buttons.Company_Pricing, companyUrl[CompanyEnum.Pricing]],
-			[Buttons.Company_Career, companyUrl[CompanyEnum.Career]],
-			[Buttons.Company_CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
-			// [Buttons.Company_Blog, companyUrl[CompanyEnum.Blog]], // Uncomment after Blog will be stable
-			[Buttons.Company_Whitepapers, companyUrl[CompanyEnum.Whitepapers]],
-		]);
-
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-
-			for (const [element, companyUrl] of companyList) {
-				await footer.getByTestId(element).click();
-				await baseDriverSteps.checkUrl(companyUrl);
-				await baseDriverSteps.goToUrl(url);
-			}
-		}
-	}
-);
-
-test(
-	qase(5486, `Check the redirection by the "Contact us" button on all pages @Regression @Footer @TSWEB-655`),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-			await footer.getByTestId(Buttons.ContactUs).click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
-		}
-	}
-);
-
-test(qase(5490, `Check the redirection for the social links on all pages @Regression @Footer @TSWEB-655`), async () => {
-	const linkMap = new Map([
-		[Buttons.LinkedIn, Links.LinkedIn],
-		[Buttons.Facebook, Links.Facebook],
-		[Buttons.Instagram, Links.Instagram],
-		[Buttons.Behance, Links.Behance],
-		[Buttons.Dribbble, Links.Dribbble],
-		[Buttons.Twitter, Links.Twitter],
-		[Buttons.GoodFirms, Links.GoodFirms],
-		[Buttons.Clutch, Links.Clutch],
-	]);
-
+test(`Check the redirection by the "Contact Us" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
 	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
-
-		for (const entries of linkMap.entries()) {
-			const [newPage] = await Promise.all([
-				driver.DriverContext.waitForEvent('page'),
-				await footer.getByTestId(entries[0]).click(),
-			]);
-			expect(newPage.url().includes(entries[1])).toBeTruthy();
-			await newPage.close();
-		}
+		await footer.getByTestId(Footer.ContactUs).click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 	}
 });
 
 test(
 	qase(
+		5488,
+		`Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (let index = 0; index < industriesUrls.length; index++) {
+				await footer.getByTestId(Object.values(industriesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(industriesUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
+		}
+	}
+);
+
+test(
+	qase(
+		5492,
+		`Check the redirection for the Services block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (let index = 0; index < servicesUrls.length; index++) {
+				await footer.getByTestId(Object.values(servicesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(servicesUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
+		}
+	}
+);
+
+test(
+	qase(
+		5491,
+		`Check the redirection for the Company block on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			companyUrl[CompanyEnum.Career] = UrlProvider.careerUrl(Environment.Production);
+			companyUrls = Object.values(companyUrl);
+
+			for (let index = 0; index < companyUrls.length; index++) {
+				await footer.getByTestId(Object.values(companyButtons)[index]).click();
+				await baseDriverSteps.checkUrl(companyUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
+		}
+	}
+);
+
+test(
+	qase(
+		5486,
+		`Check the redirection by the "Get a quote" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await footer.getByTestId(MainSiteButtons.GetAQuote).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
+		}
+	}
+);
+
+test(
+	qase(
+		5490,
+		`Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
+	async () => {
+		const linkMap = new Map([
+			[Buttons.LinkedIn, Links.LinkedIn],
+			[Buttons.Facebook, Links.Facebook],
+			[Buttons.Instagram, Links.Instagram],
+			[Buttons.Behance, Links.Behance],
+			[Buttons.Dribbble, Links.Dribbble],
+			[Buttons.Twitter, Links.Twitter],
+			[Buttons.GoodFirms, Links.GoodFirms],
+			[Buttons.Clutch, Links.Clutch],
+			[Buttons.DesignRush, Links.DesignRush],
+		]);
+
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (const entries of linkMap.entries()) {
+				const [newPage] = await Promise.all([
+					driver.DriverContext.waitForEvent('page'),
+					await footer.getByTestId(entries[0]).click(),
+				]);
+				expect(newPage.url().includes(entries[1])).toBeTruthy();
+				await newPage.close();
+			}
+		}
+	}
+);
+
+test(
+	qase(
 		5489,
-		`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on all pages @Regression @Footer @TSWEB-655`
+		`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
 	),
 	async () => {
 		const linkMap = new Map([

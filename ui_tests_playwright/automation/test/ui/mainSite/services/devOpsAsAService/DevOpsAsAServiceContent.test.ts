@@ -18,20 +18,22 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4883,
-		'Check the Info container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check the Info container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const info = driver.getByTestId(DevOpsAsAService.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nDevOps');
-		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services\n& Solutions');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nDevOps');
+		await expect(info.getByTestId(Container.Title)).toHaveText('DevOps Services & Solutions');
+		await expect(info.getByTestId(MainSiteButtons.GetYouCustomDevOpsQuote)).toHaveText(
+			'Get your custom DevOps quote'
+		);
 	}
 );
 
 test(
 	qase(
 		4904,
-		'Check the container titles and numbers from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check the container titles and numbers from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const containers = [
@@ -50,17 +52,17 @@ test(
 			driver.getByTestId(DevOpsAsAService.Faq),
 		];
 		const expectedData = [
-			['DevOps Solution\nBenefits', '01'],
-			['Leverage DevOps\nServices', '02'],
+			['DevOps Solution Benefits', '01'],
+			['Leverage DevOps Services', '02'],
 			['Technology stack', '03'],
 			['Success Stories', '04'],
-			['Industries\nWe Serve', '05'],
-			['Our Approach\nto DevOps', '06'],
-			['The Value Techstack\nAdds to Products', '07'],
+			['Industries We Serve', '05'],
+			['Our Approach to DevOps', '06'],
+			['The Value Techstack Adds to Products', '07'],
 			['Our DevOps experts', '08'],
-			['DevOps as a Service:\nPipeline', '09'],
+			['DevOps as a Service: Pipeline', '09'],
 			['Related Services', '10'],
-			['Get in Touch', '11'],
+			['Request a Free No-obligation Quote', '11'],
 			['Related Articles', '12'],
 			['FAQ', '13'],
 		];
@@ -72,7 +74,7 @@ test(
 test(
 	qase(
 		4899,
-		'Check section numbers and titles in "DevOps Solution Benefits" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "DevOps Solution Benefits" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const devOpsSolutionBenefitsContainer = driver.getByTestId(DevOpsAsAService.DevOpsSolutionBenefits);
@@ -87,11 +89,11 @@ test(
 
 		const allSectionTitles = devOpsSolutionBenefitsContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Enhanced efficiency\nand streamlined delivery',
-			'Confidence in secure,\nstreamlined development',
-			'Comprehensive insights\nfor enhanced performance',
-			'Reliable networks\nwith secure access',
-			'Streamlined productivity\nwith automated infrastructure',
+			'Enhanced efficiency and streamlined delivery',
+			'Confidence in secure, streamlined development',
+			'Comprehensive insights for enhanced performance',
+			'Reliable networks with secure access',
+			'Streamlined productivity with automated infrastructure',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -101,21 +103,21 @@ test(
 test(
 	qase(
 		4922,
-		'Check section titles, images and CTA button in "Leverage DevOps Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles, images and CTA button in "Leverage DevOps Services" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const leverageDevOpsServicesrContainer = driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices);
 		const allSectionTitles = leverageDevOpsServicesrContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'AWS, Google Cloud,\nand Azure',
+			'AWS, Google Cloud, and Azure',
 			'Terraform',
 			'Kubernetes',
 			'CI/CD pipeline',
 			'Git flow',
 			'Quality gates',
-			'Disaster recovery\nplan',
+			'Disaster recovery plan',
 			'SRE services',
-			'Logging and\nmonitoring',
+			'Logging and monitoring',
 			'DevSecOps',
 		];
 
@@ -127,8 +129,8 @@ test(
 			await expect(leverageDevOpsServicesrContainer.getByTestId(image)).toBeVisible();
 		}
 
-		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetAConsultation)).toHaveText(
-			'Get a Consultation'
+		await expect(leverageDevOpsServicesrContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText(
+			'Get your quote now'
 		);
 	}
 );
@@ -136,34 +138,34 @@ test(
 test(
 	qase(
 		4916,
-		'Check section titles in "Technology stack" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "Technology stack" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(DevOpsAsAService.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 
-		await expect(allSectionTitles).toHaveText(TechnologyStackData.DevOpsAndCloudTab);
+		await expect(allSectionTitles).toHaveText(TechnologyStackData.CloudAndDevOpsTab);
 	}
 );
 
 test(
 	qase(
 		4929,
-		'Check section titles and CTA in "Success Stories" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles and CTA in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
 		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Seamless Integration\nof Multiple Monolithic\nSystems',
-			'Implementation\nof the 9 Dots Menu\nPattern',
-			'Overcoming\nTechnical\nChallenges',
+			'Seamless Integration of Multiple Monolithic Systems',
+			'Implementation of the 9 Dots Menu\nPattern',
+			'Overcoming Technical Challenges',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.ReadTheFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -171,7 +173,7 @@ test(
 test(
 	qase(
 		4939,
-		'Check section numbers and titles in "Industries We Serve" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles, and CTA button in "Industries We Serve" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(DevOpsAsAService.IndustriesWeServe);
@@ -194,24 +196,28 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
 test(
 	qase(
 		4948,
-		'Check section titles and images in "Our Approach to DevOps" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles and images in "Our Approach to DevOps" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourApproachToDevOpsContainer = driver.getByTestId(DevOpsAsAService.OurApproach);
 		const awardCards = ourApproachToDevOpsContainer.getByTestId(Container.AwardCard);
 		const allSectionTitles = ourApproachToDevOpsContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Collaboration\nand communication',
-			'Continuous integration\nand continuous delivery',
-			'Reliability\nand stability',
-			'Security is\na top priority',
-			'Scalability\nand flexibility',
+			'Collaboration and communication',
+			'Continuous integration and continuous delivery',
+			'Reliability and stability',
+			'Security is a top priority',
+			'Scalability and flexibility',
 			'Certification',
 		];
 
@@ -224,7 +230,7 @@ test(
 test(
 	qase(
 		4957,
-		'Check section numbers and titles in "The Value Techstack Adds to Products" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "The Value Techstack Adds to Products" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const theValueToProductsContainer = driver.getByTestId(DevOpsAsAService.TheValueTechstackAddsToProducts);
@@ -241,7 +247,7 @@ test(
 test(
 	qase(
 		4973,
-		'Check member names and roles, and CTA button in "Our DevOps experts" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check member names and roles, and CTA button in "Our DevOps experts" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const ourDevOpsExpertsContainer = driver.getByTestId(DevOpsAsAService.OurExperts);
@@ -267,8 +273,8 @@ test(
 		];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAConsultation)).toHaveText(
-			'Request\na Consultation'
+		await expect(ourDevOpsExpertsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );
@@ -276,7 +282,7 @@ test(
 test(
 	qase(
 		4979,
-		'Check section numbers and titles in "DevOps as a Service: Pipeline" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section numbers and titles in "DevOps as a Service: Pipeline" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const devOpsAsAServiceContainer = driver.getByTestId(DevOpsAsAService.DevOpsAsAServicePipeline);
@@ -292,8 +298,8 @@ test(
 		const testData = [
 			'Introduction',
 			'Discover & Consult',
-			'Creating short, mid, long\nterm roadmaps',
-			' Implementation\n& monitoring',
+			'Creating short, mid, long term roadmaps',
+			' Implementation & monitoring',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -303,14 +309,14 @@ test(
 test(
 	qase(
 		4991,
-		'Check section titles in "Related Services" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "Related Services" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(DevOpsAsAService.RelatedServices);
 
 		const allSectionTitles = relatedServicesContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Custom Software\nDevelopment',
+			'Custom Software Development',
 			'Cloud Services',
 			'Big Data & Analytics',
 			'Internet of Things',
@@ -325,7 +331,7 @@ test(
 test(
 	qase(
 		4985,
-		'Check section titles in "FAQ" container from the "DevOps as a Service" page @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles in "FAQ" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(DevOpsAsAService.Faq);

@@ -1,32 +1,31 @@
 import {driver} from '../../base/driver/Driver';
 import Buttons from '../../identifiers/Buttons';
 import Input from '../../identifiers/Input';
-import ApplyForAJobForm from '../../identifiers/forms/ApplyForAJobForm';
-import ContactUsForm from '../../identifiers/forms/ContactUsForm';
-import GetInTouchForm from '../../identifiers/forms/GetInTouchForm';
+import Modal from '../../identifiers/Modal';
 import {sessionValue} from '../../runtimeVariables/SessionValue';
 
 class FormSteps {
 	public async sendContactUsMessage() {
 		await driver
-			.getByTestId(ContactUsForm.FullName)
+			.getByTestId(Input.FullName)
 			.fill(`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`);
-		await driver.getByTestId(ContactUsForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
-		await driver.getByTestId(ContactUsForm.Phone).fill(sessionValue.numberValue);
-		await driver.getByTestId(ContactUsForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+		await driver.getByTestId(Input.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+		await driver.getByTestId(Input.PhoneNumber).fill(sessionValue.numberValue);
+		await driver.getByTestId(Input.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
 			await driver.getByTestId(Buttons.Send).click();
-			await driver.getByTestId(Buttons.Close).waitFor({state: 'visible'});
+			const successModal = driver.getByTestId(Modal.ApplyForAJob);
+			await successModal.getByTestId(Buttons.Close).waitFor({state: 'visible'});
 		}, 5);
 	}
 
 	public async sendApplyForAJob() {
-		await driver.getByTestId(ApplyForAJobForm.FirstName).fill(`Test${sessionValue.stringValue}`);
-		await driver.getByTestId(ApplyForAJobForm.LastName).fill(`Automation${sessionValue.stringValue}`);
-		await driver.getByTestId(ApplyForAJobForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
-		await driver.getByTestId(ApplyForAJobForm.Phone).fill(sessionValue.numberValue);
-		await driver.getByTestId(ApplyForAJobForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+		await driver.getByTestId(Input.FirstName).fill(`Test${sessionValue.stringValue}`);
+		await driver.getByTestId(Input.LastName).fill(`Automation${sessionValue.stringValue}`);
+		await driver.getByTestId(Input.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+		await driver.getByTestId(Input.PhoneNumber).fill(sessionValue.numberValue);
+		await driver.getByTestId(Input.Message).fill(`TestMessage${sessionValue.stringValue}`);
 
 		await driver.executeFunc(async () => {
 			await driver.getByTestId(Buttons.Send).click();
@@ -42,17 +41,17 @@ class FormSteps {
 	}
 
 	public async fillGetInTouchForm() {
-		if (await driver.getByTestId(GetInTouchForm.FullName).isVisible()) {
+		if (await driver.getByTestId(Input.FullName).isVisible()) {
 			await driver
-				.getByTestId(GetInTouchForm.FullName)
+				.getByTestId(Input.FullName)
 				.fill(`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`);
 		} else {
-			await driver.getByTestId(GetInTouchForm.FirstName).fill(`Test${sessionValue.stringValue}`);
-			await driver.getByTestId(GetInTouchForm.LastName).fill(`Automation${sessionValue.stringValue}`);
+			await driver.getByTestId(Input.FirstName).fill(`Test${sessionValue.stringValue}`);
+			await driver.getByTestId(Input.LastName).fill(`Automation${sessionValue.stringValue}`);
 		}
 
-		await driver.getByTestId(GetInTouchForm.Email).fill(`Test${sessionValue.stringValue}@test.com`);
-		await driver.getByTestId(GetInTouchForm.Message).fill(`TestMessage${sessionValue.stringValue}`);
+		await driver.getByTestId(Input.Email).fill(`Test${sessionValue.stringValue}@test.com`);
+		await driver.getByTestId(Input.Message).fill(`TestMessage${sessionValue.stringValue}`);
 	}
 
 	public async getErrorMessagesFromFields(necessaryFields: string[]): Promise<string[]> {

@@ -7,7 +7,6 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import TransportationAndLogistics from '../../../../../identifiers/mainSite/pages/industries/TransportationAndLogistics';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import Buttons from '../../../../../identifiers/Buttons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -17,48 +16,52 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5334,
-		'Check Info container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check Info container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const info = driver.getByTestId(TransportationAndLogistics.Info);
 		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nTransportation and Logistics');
-		await expect(info.getByTestId(Container.Title)).toHaveText(
-			'Transportation and\nLogistics Software\nDevelopment'
+		await expect(info.getByTestId(Container.Title)).toHaveText('Transportation and Logistics Software Development');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomProjectQuote)).toHaveText(
+			'Get your custom project quote'
 		);
-		await expect(info.getByTestId(MainSiteButtons.LetsDiscuss)).toHaveText(`Let's discuss`);
 	}
 );
 
 test(
 	qase(
 		5341,
-		'Check the container title and number from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check the container title and number from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const containers = [
-			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
+			driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect),
 			driver.getByTestId(TransportationAndLogistics.WhoWeServe),
-			driver.getByTestId(TransportationAndLogistics.TransportAndLogisticsSoftDevServ),
+			driver.getByTestId(TransportationAndLogistics.SoftwareDevelopmentServices),
 			driver.getByTestId(TransportationAndLogistics.CaseStudy),
+			driver.getByTestId(TransportationAndLogistics.TechstackInNumbers),
 			driver.getByTestId(TransportationAndLogistics.OurExpertise),
 			driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent),
 			driver.getByTestId(TransportationAndLogistics.TransportationAndLogisticsSoftwareDevAtTechstack),
 			driver.getByTestId(TransportationAndLogistics.OurWorkflow),
 			driver.getByTestId(TransportationAndLogistics.GetInTouch),
+			driver.getByTestId(TransportationAndLogistics.RelatedArticles),
 			driver.getByTestId(TransportationAndLogistics.Faq),
 		];
 
 		const expectedData = [
-			['Techstack in Numbers', '01'],
+			['What Results Can You Expect with Our Expertise in Industry?', '01'],
 			['Who We Serve', '02'],
-			['Transportation and Logistics\nSoftware Development\nServices at Techstack', '03'],
+			['Transportation and Logistics Software Development Services at Techstack', '03'],
 			['Case Study by Techstack', '04'],
-			['Our Expertise in Logistics\nSoftware Development\nSolutions', '05'],
-			['What Makes Us\nDifferent', '06'],
-			['Transportation and Logistics\nSoftware Development at\nTechstack', '07'],
-			['Development\nWorkflow That We\nFollow', '08'],
-			['Get in Touch', '09'],
-			['FAQ', '10'],
+			['Techstack in Numbers', '05'],
+			['Our Expertise in Logistics Software Development Solutions', '06'],
+			['What Makes Us Different', '07'],
+			['Transportation and Logistics Software Development at Techstack', '08'],
+			['Development Workflow That We Follow', '09'],
+			['Request a Free No-obligation Quote', '10'],
+			['Related Articles', '11'],
+			['FAQ', '12'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -67,13 +70,27 @@ test(
 
 test(
 	qase(
+		5593,
+		'Check block titles in "What Results Can You Expect with Our Expertise in Industry?" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
+	),
+	async () => {
+		const WhatResultsCanYouExpectContainer = driver.getByTestId(TransportationAndLogistics.WhatResultsCanYouExpect);
+		const allBlockTitles = WhatResultsCanYouExpectContainer.getByTestId(Container.SectionNumber);
+		const testData = ['01', '02', '03', '04'];
+
+		await expect(allBlockTitles).toHaveText(testData);
+	}
+);
+
+test(
+	qase(
 		5342,
-		'Check block titles in "Techstack in Numbers" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check block titles in "Techstack in Numbers" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(TransportationAndLogistics.TechstackInNumbers);
 		const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
-		const testData = ['11\ntech specialists', '9\nyear-long', '91\n%', '67\n%'];
+		const testData = ['11\ntech specialists', '10\nyear-long', '91\n%', '67\n%'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}
@@ -82,7 +99,7 @@ test(
 test(
 	qase(
 		5344,
-		'Check section titles and numbers in "Who We Serve" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers, and CTA button in "Who We Serve" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whoWeServeContainer = driver.getByTestId(TransportationAndLogistics.WhoWeServe);
@@ -98,7 +115,7 @@ test(
 		const allSectionTitles = whoWeServeContainer.getByTestId(Container.SectionTitle);
 		const testData = [
 			'Carriers and shippers',
-			'Delivery and courier\nservice companies',
+			'Delivery and courier service companies',
 			'Digital logistics providers',
 			'Retailers and eCommerce',
 			'Car rental companies',
@@ -106,17 +123,19 @@ test(
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(whoWeServeContainer.getByTestId(MainSiteButtons.GetYourQuoteNow)).toHaveText('Get your quote now');
 	}
 );
 
 test(
 	qase(
 		5346,
-		'Check section titles in "Transportation and Logistics Software Development Services at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "Transportation and Logistics Software Development Services at Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportAndLogisticsSoftDevServContainer = driver.getByTestId(
-			TransportationAndLogistics.TransportAndLogisticsSoftDevServ
+			TransportationAndLogistics.SoftwareDevelopmentServices
 		);
 
 		const allSectionTitles = transportAndLogisticsSoftDevServContainer.getByTestId(Container.SectionTitle);
@@ -137,7 +156,7 @@ test(
 test(
 	qase(
 		5349,
-		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
@@ -152,8 +171,8 @@ test(
 		await expect(allSectionTitles).toHaveText(testData);
 
 		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
-		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -161,7 +180,7 @@ test(
 test(
 	qase(
 		5351,
-		'Check section titles in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "Our Expertise in Logistics Software Development Solutions" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const ourExpertiseInLogisticsSoftDevSolutionsContainer = driver.getByTestId(
@@ -186,7 +205,7 @@ test(
 test(
 	qase(
 		5353,
-		'Check section titles in "What Makes Us Different" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "What Makes Us Different" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const whatMakesUsDifferentContainer = driver.getByTestId(TransportationAndLogistics.WhatMakesOurTeamDifferent);
@@ -201,7 +220,7 @@ test(
 test(
 	qase(
 		5355,
-		'Check carousel sections and CTA button in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check carousel sections and CTA button in "Transportation and Logistics Software Development at Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const transportationAndLogisticsContainer = driver.getByTestId(
@@ -217,18 +236,20 @@ test(
 		]);
 
 		const allSectionTitles = carousel.getByTestId(Container.SectionTitle);
-		const testData = ['Make\ncontact', 'Meet a tech specialist', 'Discuss\nthe terms', 'Sign the\ncontract'];
+		const testData = ['Make contact', 'Meet a tech specialist', 'Discuss the terms', 'Sign the contract'];
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(transportationAndLogisticsContainer.getByTestId(Buttons.ContactUs)).toHaveText('Contact Us');
+		await expect(transportationAndLogisticsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5357,
-		'Check section titles and numbers in "Development Workflow That We Follow" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles and numbers in "Development Workflow That We Follow" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const developmentWorkflowThatWeFollowContainer = driver.getByTestId(TransportationAndLogistics.OurWorkflow);
@@ -237,9 +258,9 @@ test(
 		const testData = [
 			'Investigation',
 			'Execution',
-			'Performance\nand Testing',
+			'Performance and Testing',
 			'Analysis',
-			'Support and\nMaintenance',
+			'Support and Maintenance',
 		];
 
 		await expect(allSectionTitles).toHaveText(testData);
@@ -257,7 +278,7 @@ test(
 test(
 	qase(
 		5359,
-		'Check section titles in "FAQ" container from the "Transportation and Logistics" page @Regression @TransportationAndLogistics @TSWEB-956'
+		'Check section titles in "FAQ" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(TransportationAndLogistics.Faq);

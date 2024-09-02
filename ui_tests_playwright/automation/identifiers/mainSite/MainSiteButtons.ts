@@ -4,33 +4,39 @@ export default class MainSiteButtons extends Buttons {
 	// CTA buttons
 	static RequestAQuote = 'Button-RequestAQuote';
 	static GetInTouch = 'Button-GetInTouch';
-	static ScheduleAMeetingNow = 'Button-ScheduleAMeetingNow';
-	static ScheduleAMeeting = 'Button-ScheduleAMeeting';
 	static LetsDiscuss = 'Button-LetsDiscuss';
-	static ReadTheFullCaseStudy = 'Button-ReadTheFullCaseStudy';
-	static ReadFullCaseStudy = 'Button-ReadFullCaseStudy';
-	static ReadFullCaseStudies = 'Button-ReadFullCaseStudies';
-	static AboutUs = 'Button-AboutUs';
-	static BookAMeeting = 'Button-BookAMeeting';
-	static CheckOutHowWeBuiltIt = 'Button-CheckOutHowWeBuildIt';
-	static TalkToAnExpert = 'Button-TalkToAnExpert';
+	static GetYourQuoteNow = 'Button-GetYourQuoteNow';
+	static GetYourIndustrySpecificQuote = 'Button-GetYourIndustrySpecificQuote';
+	static GetYourCustomQuote = 'Button-GetYourCustomQuote';
+	static GetYourCustomProjectQuote = 'Button-GetYourCustomProjectQuote';
+	static GetYourPersonalizedDxQuote = 'Button-GetYourPersonalizedDxQuote';
+	static GetYourCustomCloudQuote = 'Button-GetYourCustomCloudQuote';
+	static GetYourCustomMobileDevQuote = 'Button-GetYourCustomMobileDevQuote';
+	static GetYourCustomFeDevelopmentQuote = 'Button-GetYourCustomFeDevelopmentQuote';
+	static GetYourCustomBeDevelopmentQuote = 'Button-GetYourCustomBeDevelopmentQuote';
+	static GetYourCustomBigDataQuote = 'Button-GetYourCustomBigDataQuote';
+	static GetYourCustomIotQuote = 'Button-GetYourCustomIotQuote';
+	static GetYouCustomDevOpsQuote = 'Button-GetYourCustomDevOpsQuote';
+	static GetYourCustomAiQuote = 'Button-GetYourCustomAiQuote';
+	static GetYourCustomDesignQuote = 'Button-GetYourCustomDesignQuote';
+	static GetYourPersonalizedQaQuote = 'Button-GetYourPersonalizedQaQuote';
+	static GetYourCustomAuditQuote = 'Button-GetYourCustomAuditQuote';
+	static GetAFreeQquoteToday = 'Button-GetAFreeQuoteToday';
+	static GetYourFreeQuote = 'Button-GetYourFreeQuote';
+	static GetAFreeQuote = 'Button-GetAFreeQuote';
+	static CheckOutHowWeBuildIt = 'Button-CheckOutHowWeBuildIt';
 	static SeeAllNews = 'Button-SeeAllNews';
-	static SendUsYourQueries = 'Button-SendUsYourQueries';
 	static ReadMore = 'Button-ReadMore';
-	static ContactOurExperts = 'Button-ContactOurExperts';
-	static ClaimYourCustomQuote = 'Button-ClaimYourCustomQuote';
-	static RequestMoreInformation = 'Button-RequestMoreInformation';
-	static ScheduleAConsultation = 'Button-ScheduleAConsultation';
-	static ScheduleAFreeConsultation = 'Button-SchedulAFreeConsultation';
-	static GetAConsultation = 'Button-GetAConsultation';
 	static RequestAConsultation = 'Button-RequestAConsultation';
-	static ReadMoreAboutSolution = 'Button-ReadMoreAboutSolution';
-	static MoreProductDetails = 'Button-MoreProductDetails';
-	static ScheduleACall = 'Button-ScheduleACall';
-	static LetsDiscussYourTechNeeds = 'Button-LetsDiscussYourTechNeeds';
-	static LearnMore = 'Button-LearnMore';
 	static GetAQuote = 'Button-GetAQuote';
 	static FreeCloudGuide = 'Button-FreeCloudGuide';
+	static BookYourTime = 'Button-BookYourTime';
+	static GetYourFreeEstimate = 'Button-GetYourFreeEstimate';
+	static ChooseThisModel = 'Button-ChooseThisModel';
+	static ViewFullTechnologyStack = 'Button-ViewFullTechnologyStack';
+	static ReadAllCases = 'Button-ReadAllCases';
+
+	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
@@ -52,7 +58,13 @@ export default class MainSiteButtons extends Buttons {
 	static Technology_BackEnd = 'Button-BackEnd';
 	static Technology_FrontEnd = 'Button-FrontEnd';
 	static Technology_Mobile = 'Button-Mobile';
-	static Technology_Iot = 'Button-IoT';
-	static Technology_DevOpsCloud = 'Button-DevopsCloud';
+	static Technology_DevopsCloud = 'Button-DevopsCloud';
+	static Technology_CICDAndAutomation = 'Button-CICDAndAutomation';
 	static Technology_AiMlDataScience = 'Button-AiMlDataScience';
+	static Technology_EmbededDevelopment = 'Button-IoT';
+	static Technology_QualityAssurance = 'Button-QA';
+
+	// Pricing Tabs
+	static Pricing_FullCycle = 'NavigationTab-FullCycle';
+	static Pricing_ExtendedTeam = 'NavigationTab-ExtendedTeam';
 }

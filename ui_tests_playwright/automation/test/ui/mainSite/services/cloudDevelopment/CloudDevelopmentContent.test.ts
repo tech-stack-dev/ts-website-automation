@@ -16,19 +16,24 @@ test.beforeEach(async () => {
 });
 
 test(
-	qase(5038, 'Check the Info container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'),
+	qase(
+		5038,
+		'Check the Info container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
+	),
 	async () => {
 		const info = driver.getByTestId(CloudDevelopment.Info);
-		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Our Services\nCloud Development');
-		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application\nDevelopment Services');
-		await expect(info.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a Quote');
+		await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nOur Services\nCloud Development');
+		await expect(info.getByTestId(Container.Title)).toHaveText('Cloud Application Development Services');
+		await expect(info.getByTestId(MainSiteButtons.GetYourCustomCloudQuote)).toHaveText(
+			'Get your custom cloud quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5051,
-		'Check the container titles and numbers from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check the container titles and numbers from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const containers = [
@@ -45,15 +50,15 @@ test(
 			driver.getByTestId(CloudDevelopment.Faq),
 		];
 		const expectedData = [
-			['Leverage Cloud Native\nDevelopment Services', '01'],
+			['Leverage Cloud Native Development Services', '01'],
 			['Case Study by Techstack', '02'],
 			['Industries We Serve', '03'],
 			['Technology Stack', '04'],
 			['Cloud Computing Development Benefits', '05'],
-			['Our Approach\nto Cloud App Development', '06'],
+			['Our Approach to Cloud App Development', '06'],
 			['Our Leading Cloud Experts', '07'],
 			['Related Services', '08'],
-			['Get in Touch', '09'],
+			['Request a Free No-obligation Quote', '09'],
 			['Related Articles', '10'],
 			['FAQ', '11'],
 		];
@@ -65,7 +70,7 @@ test(
 test(
 	qase(
 		5056,
-		'Check section numbers and titles in "Leverage Cloud Native Development Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section numbers and titles in "Leverage Cloud Native Development Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const leverageCloudNativeDevServContainer = driver.getByTestId(CloudDevelopment.LeverageCloudNativeDevServ);
@@ -93,7 +98,7 @@ test(
 test(
 	qase(
 		5065,
-		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles, block title, image and CTA in "Case Study by Techstack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
@@ -107,8 +112,8 @@ test(
 		);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(caseStudyContainer.getByTestId(MainSiteButtons.ReadFullCaseStudy)).toHaveText(
-			'Read Full Case Study'
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+			'Check out how we build it'
 		);
 	}
 );
@@ -116,7 +121,7 @@ test(
 test(
 	qase(
 		5075,
-		'Check section titles in "Industries We Serve" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles and CTA button in "Industries We Serve" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const industriesWeServeContainer = driver.getByTestId(CloudDevelopment.IndustriesWeServe);
@@ -129,26 +134,30 @@ test(
 			'Digital transformation',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
+
+		await expect(industriesWeServeContainer.getByTestId(MainSiteButtons.GetYourIndustrySpecificQuote)).toHaveText(
+			'Get your industry-specific quote'
+		);
 	}
 );
 
 test(
 	qase(
 		5071,
-		'Check section titles in "Technology stack" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "Technology stack" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const technologyStackContainer = driver.getByTestId(CloudDevelopment.TechnologyStack);
 		const allSectionTitles = technologyStackContainer.getByTestId(Container.SectionTitle);
 
-		await expect(allSectionTitles).toHaveText(TechnologyStackData.DevOpsAndCloudTab);
+		await expect(allSectionTitles).toHaveText(TechnologyStackData.CloudAndDevOpsTab);
 	}
 );
 
 test(
 	qase(
 		5082,
-		'Check section numbers and titles, and CTA in "Cloud Computing Development Benefits" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section numbers and titles, and CTA in "Cloud Computing Development Benefits" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const cloudComputingDevBenefitsContainer = driver.getByTestId(
@@ -176,8 +185,8 @@ test(
 
 		await expect(allSectionTitles).toHaveText(testData);
 
-		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestMoreInformation)).toHaveText(
-			'Request More Information'
+		await expect(cloudComputingDevBenefitsContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText(
+			'Request a quote'
 		);
 	}
 );
@@ -185,7 +194,7 @@ test(
 test(
 	qase(
 		5087,
-		'Check award cards in "Our Approach to Cloud App Development" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check award cards in "Our Approach to Cloud App Development" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourApproachContainer = driver.getByTestId(CloudDevelopment.OurApproach);
@@ -197,13 +206,12 @@ test(
 test(
 	qase(
 		5102,
-		'Check member names and roles, and CTA button in "Our Leading Cloud Experts" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check member names and roles, and CTA button in "Our Leading Cloud Experts" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const ourCloudDevOpsExpertsContainer = driver.getByTestId(CloudDevelopment.OurLeadingCloudExperts);
 		const allMemberRoles = ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberRole);
 		const testDataRoles = [
-			'CEO, Software Architect,\nRuns critical initiatives that make products grow',
 			'CTO, Software Architect,\nElaborates on the technology strategy',
 			'VP of Engineering,\nLeads the Tech Experts program and team',
 			'Senior Full Stack Software Engineer,\nLeads vital development initiatives',
@@ -211,16 +219,11 @@ test(
 		await expect(allMemberRoles).toHaveText(testDataRoles);
 
 		const allMemberNames = ourCloudDevOpsExpertsContainer.getByTestId(Container.MemberName);
-		const testDataNames = [
-			ExpertNames.IvanIeremenko,
-			ExpertNames.OleksiiSvystun,
-			ExpertNames.IvanYeremenko,
-			ExpertNames.VladyslavUshakov,
-		];
+		const testDataNames = [ExpertNames.OleksiiSvystun, ExpertNames.IvanYeremenko, ExpertNames.VladyslavUshakov];
 		await expect(allMemberNames).toHaveText(testDataNames);
 
-		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.ScheduleAConsultation)).toHaveText(
-			'Schedule a Consultation'
+		await expect(ourCloudDevOpsExpertsContainer.getByTestId(MainSiteButtons.GetYourCustomQuote)).toHaveText(
+			'Get your custom quote'
 		);
 	}
 );
@@ -228,7 +231,7 @@ test(
 test(
 	qase(
 		5099,
-		'Check section titles in "Related Services" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "Related Services" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const relatedServicesContainer = driver.getByTestId(CloudDevelopment.RelatedServices);
@@ -250,18 +253,18 @@ test(
 test(
 	qase(
 		5109,
-		'Check section titles in "FAQ" container from the "Cloud Development" page @Regression @CloudDevelopment @TSWEB-692'
+		'Check section titles in "FAQ" container from the "Cloud Development" page @desktop @mobile @Regression @CloudDevelopment @TSWEB-692'
 	),
 	async () => {
 		const faqContainer = driver.getByTestId(CloudDevelopment.Faq);
 
 		const allSectionTitles = faqContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'How do I develop a cloud\nstrategy?',
+			'How do I develop a cloud strategy?',
 			'How can I get started with cloud application development services?',
 			'Can you migrate our existing on-premises applications to the cloud?',
 			'Can you integrate cloud applications with other systems or third-party services?',
-			'What do I need to do to\nprepare for the cloud?',
+			'What do I need to do to prepare for the cloud?',
 			'How can I ensure the cloud is secure?',
 			'What are the advantages of cloud-native application development?',
 		];
