@@ -1,4 +1,6 @@
 import {CaseStudyDto} from '../../dto/CaseStudyDto';
+import {IndustryTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
+import {ServiceTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
 import ContentfulCaseStudyData from '../../preconditionsData/contentfulData/ContentfulCaseStudyData';
 import CaseStudyImagesPath from '../../preconditionsData/contentfulData/ContentfulCaseStudyImages/CaseStudyImages';
 import {contentfulUtils} from '../../utils/ContentfulUtils';
@@ -9,7 +11,6 @@ class ContentfulSteps {
 		await contentfulUtils.CreateAndPublishCareer(careerId, careerName, careerDescriptionId);
 	}
 
-	// use loop
 	public async createCaseStudy(caseStudyName: string, numberOfCaseStudies = 1, caseStudyObject?: CaseStudyDto) {
 		const summaryFields: {fields: {[key: string]: any}} = ContentfulCaseStudyData.getCaseStudySummaryFields();
 
@@ -52,13 +53,20 @@ class ContentfulSteps {
 
 		// Here is the problem of dynamically adding optional fields and updating object representation of this entity. That`s why here summaryFields also in props
 		await contentfulUtils.CreateAndPublishCaseStudySummary(summaryFields);
-		// Or maybe here re-asign the image path in ??? data object?
 		const caseStudyImage = caseStudyObject?.caseStudyImage
 			? caseStudyObject.caseStudyImage.toString()
 			: CaseStudyImagesPath.PreviewImage;
 
 		const assetPreviewImageId = ContentfulCaseStudyData.getCaseStudyMainFields().fields.image['en-US'].sys.id;
 		await contentfulUtils.CreateAndPublishCaseStudyImageAsset(caseStudyImage, assetPreviewImageId, 'Preview');
+
+		const caseStudyTags = caseStudyObject?.tags
+			? caseStudyObject.tags
+			: {industryTag: [IndustryTagEnum.Manufacturing], serviceTag: [ServiceTagEnum.SoftwareTesting]};
+
+		Object.values(caseStudyTags).forEach((tagArray) => {
+			contentfulUtils.AddTagsToBody(tagArray);
+		});
 
 		for (let index = 1; index <= numberOfCaseStudies; index++) {
 			await contentfulUtils.CreateAndPublishCaseStudy(caseStudyName, index);

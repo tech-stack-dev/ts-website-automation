@@ -9,9 +9,12 @@ import ContentfulCaseStudyData from '../preconditionsData/contentfulData/Content
 import * as fs from 'fs';
 import CaseStudyImagesPath from '../preconditionsData/contentfulData/ContentfulCaseStudyImages/CaseStudyImages';
 import {ClutchReviewLinks} from '../preconditionsData/links/ClutchReviewLinks';
+import DateTimeUtils from './DateTimeUtils';
+import {IndustryTagEnum} from '../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
+import {ServiceTagEnum} from '../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
 
 class ContentfulUtils {
-	private tagJson: contentful.Link<'Tag'>[] = [];
+	public tagJson: contentful.Link<'Tag'>[] = [];
 
 	async GetEnvironment(): Promise<contentful.Environment> {
 		const client = contentful.createClient({
@@ -37,7 +40,9 @@ class ContentfulUtils {
 		});
 	}
 
-	AddTagsToCareerBody(tagList: DirectionsEnum[] | SeniorityLevelsEnum[] | TagsEnum[]): void {
+	AddTagsToBody(
+		tagList: DirectionsEnum[] | SeniorityLevelsEnum[] | TagsEnum[] | IndustryTagEnum[] | ServiceTagEnum[]
+	): void {
 		tagList.forEach((tag) => {
 			const currentTag = this.tagJson.find((item) => item.sys.id === tag);
 			if (currentTag) return;
@@ -45,7 +50,9 @@ class ContentfulUtils {
 		});
 	}
 
-	private GetTagJsonBody(tag: DirectionsEnum | SeniorityLevelsEnum | TagsEnum): contentful.Link<'Tag'> {
+	private GetTagJsonBody(
+		tag: DirectionsEnum | SeniorityLevelsEnum | TagsEnum | IndustryTagEnum | ServiceTagEnum
+	): contentful.Link<'Tag'> {
 		const tagJsonBody = {
 			sys: {
 				type: 'Link',
@@ -61,6 +68,13 @@ class ContentfulUtils {
 		const environment = await this.GetEnvironment();
 		const tag = await environment.getTag(tagId);
 		tag.delete();
+	}
+
+	// remove after
+	async GetTag(tagId: string) {
+		const environment = await this.GetEnvironment();
+		const tag = await environment.getTag(tagId);
+		return tag;
 	}
 	//#endregion
 
@@ -168,7 +182,9 @@ class ContentfulUtils {
 	async CreateAndPublishCaseStudy(caseStudyName: string, index: number, attempts = 3): Promise<void> {
 		const environment = await this.GetEnvironment();
 		const caseStudyFields = ContentfulCaseStudyData.getCaseStudyMainFields(index);
-		caseStudyFields.fields.name['en-US'] = `${caseStudyName} ${caseStudyFields.fields.name['en-US']}`;
+		caseStudyFields.fields.name[
+			'en-US'
+		] = `${caseStudyName} ${DateTimeUtils.currentDateTime} ${caseStudyFields.fields.name['en-US']}`;
 		const caseStudyId = ContentfulCaseStudyData.getCaseStudyId(index);
 
 		await environment.createEntryWithId(CaseStudyContentTypeEnum.CaseStudy, caseStudyId, caseStudyFields);

@@ -41,7 +41,7 @@ for (const testData of testDataProvider) {
 			`Check that user sees vacancy by tags that were selected in ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
 		),
 		async () => {
-			contentfulUtils.AddTagsToCareerBody(testData.createTag);
+			contentfulUtils.AddTagsToBody(testData.createTag);
 			await contentfulSteps.createCareerWithDefaultValue(
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 				`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,

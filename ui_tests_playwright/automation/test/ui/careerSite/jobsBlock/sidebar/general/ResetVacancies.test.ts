@@ -52,7 +52,7 @@ for (const testData of testDataProvider) {
 			`Check that user can reset selected tags from ${testData.filterBlock} filter in side bar @Regression @FilterBlock @TSWEB-145`
 		),
 		async () => {
-			contentfulUtils.AddTagsToCareerBody(testData.createTags);
+			contentfulUtils.AddTagsToBody(testData.createTags);
 			await contentfulSteps.createCareerWithDefaultValue(
 				`JobsBlockTest${sessionValue.stringValue.toLocaleUpperCase()}`,
 				`defaultTestCareer${sessionValue.stringValue.toLocaleUpperCase()}`,

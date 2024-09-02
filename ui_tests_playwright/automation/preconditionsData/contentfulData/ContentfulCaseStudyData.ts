@@ -37,9 +37,9 @@ export default class ContentfulCaseStudyData {
 					},
 				},
 			},
-			// metadata: {
-			// 	tags: this.tagJson, // Tags are waiting for the best times
-			// },
+			metadata: {
+				tags: contentfulUtils.tagJson,
+			},
 		};
 	}
 
