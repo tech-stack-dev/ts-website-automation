@@ -13,6 +13,7 @@ import {ServiceTagEnum} from '../enum/caseStudyEnums/caseStudyTags/ServiceTagEnu
 import {CareerContentTypeEnum} from '../enum/careerEnums/CareerContentTypeEnum';
 import CaseStudyImagesPath from '../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
 import ContentfulCareerData from '../preconditionsData/contentfulData/ContentfulCareerData ';
+import {HomePageTagEnum} from '../enum/caseStudyEnums/caseStudyTags/HomePageTagEnum';
 
 class ContentfulUtils {
 	public tagJson: contentful.Link<'Tag'>[] = [];
@@ -51,8 +52,8 @@ class ContentfulUtils {
 		});
 	}
 
-	private GetTagJsonBody(
-		tag: DirectionsEnum | SeniorityLevelsEnum | TagsEnum | IndustryTagEnum | ServiceTagEnum
+	public GetTagJsonBody(
+		tag: DirectionsEnum | SeniorityLevelsEnum | TagsEnum | IndustryTagEnum | ServiceTagEnum | HomePageTagEnum
 	): contentful.Link<'Tag'> {
 		const tagJsonBody = {
 			sys: {
@@ -175,9 +176,14 @@ class ContentfulUtils {
 	//#endregion
 
 	//#region CaseStudiesEntriesInteractions
-	async CreateAndPublishCaseStudy(caseStudyName: string, index: number, attempts = 3): Promise<void> {
+	async CreateAndPublishCaseStudy(
+		caseStudyName: string,
+		index: number,
+		objectRepresentation: {fields: {[key: string]: any}} = ContentfulCaseStudyData.getCaseStudyMainFields(index),
+		attempts = 3
+	): Promise<void> {
 		const environment = await this.GetEnvironment();
-		const caseStudyFields = ContentfulCaseStudyData.getCaseStudyMainFields(index);
+		const caseStudyFields = objectRepresentation;
 		caseStudyFields.fields.name[
 			'en-US'
 		] = `${caseStudyName} ${DateTimeUtils.currentDateTime} ${caseStudyFields.fields.name['en-US']}`;

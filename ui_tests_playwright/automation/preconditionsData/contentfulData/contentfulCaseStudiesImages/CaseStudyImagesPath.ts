@@ -4,4 +4,5 @@ export default class CaseStudyImagesPath {
 	static PreviewImageGray = `${this.path}/caseStudyPreviewImageGray.jpg`;
 	static TechnologiesUsedImage = `${this.path}/caseStudyTechnologiesUsedImage.jpg`;
 	static SolutionImage = `${this.path}/caseStudySolutionImage.jpg`;
+	static HomeCasePreviewImage = `${this.path}/homePageCaseImage.jpg`;
 }

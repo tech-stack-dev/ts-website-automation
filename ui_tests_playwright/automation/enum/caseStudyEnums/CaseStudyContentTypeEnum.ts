@@ -5,5 +5,4 @@ export enum CaseStudyContentTypeEnum {
 	SummaryTechnologies = 'technologies',
 	SummarySolution = 'caseStudySummaryNewSolution',
 	SummaryWorkflow = 'caseStudySummaryWorkflow',
-	Metadata = 'caseStudyMetadata',
 }

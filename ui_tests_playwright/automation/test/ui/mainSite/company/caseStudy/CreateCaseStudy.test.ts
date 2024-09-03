@@ -13,6 +13,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {CaseStudyDto} from '../../../../../dto/CaseStudyDto';
 import CaseStudyImagesPath from '../../../../../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
+import {HomePageTagEnum} from '../../../../../enum/caseStudyEnums/caseStudyTags/HomePageTagEnum';
 
 let numberOfCaseStudies: number;
 let caseStudyDto: CaseStudyDto;
@@ -99,6 +100,34 @@ test('Create several Case study entities using object @desktop @mobile @CaseStud
 
 	// TBD: Need to add checking of case Study creation
 	// TBD: Need to create all necessary tests for case studies coverage in separate tasks
+
+	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies, caseStudyDto);
+});
+
+test('Create one Case study entity to display on home page @desktop @mobile @CaseStudy', async () => {
+	caseStudyDtoVariable.value = {
+		summary: {
+			solution: {entity: CaseStudyEntityEnum.Solution, image: CaseStudyImagesPath.SolutionImage},
+			aboutTheTeam: CaseStudyEntityEnum.AboutTheTeam,
+		},
+		tags: {
+			industryTag: [IndustryTagEnum.DesignSoftware],
+			serviceTag: [ServiceTagEnum.UiUxDesign],
+		},
+		showOnHomePage: {
+			image: CaseStudyImagesPath.HomeCasePreviewImage,
+			tag: HomePageTagEnum.Home,
+		},
+	};
+
+	caseStudyDto = caseStudyDtoVariable.value;
+	numberOfCaseStudies = 1;
+
+	await contentfulSteps.createCaseStudy('Case Study for home page', numberOfCaseStudies, caseStudyDto);
+
+	// TBD: Need to add checking of case Study creation
+	// TBD: Need to create all necessary tests for case studies coverage in separate tasks
+	// TBD: Need to add checking of case Study displaying on home page in appropriate carousel
 
 	await contentfulSteps.unpublishAndDeleteCaseStudy(numberOfCaseStudies, caseStudyDto);
 });

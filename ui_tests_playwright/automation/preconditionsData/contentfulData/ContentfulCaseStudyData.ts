@@ -42,6 +42,29 @@ export default class ContentfulCaseStudyData {
 		};
 	}
 
+	static getCaseStudyOptionalFields(index = 1) {
+		return {
+			homepageName: {
+				'en-US': `Home page case title TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`,
+			},
+			homepageDescription: {
+				'en-US': `Home page case Description text require min 91 characters Automation test TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`,
+			},
+			homepageImage: {
+				'en-US': {
+					sys: {
+						type: 'Link',
+						linkType: 'Asset',
+						id: `imageHomePagePreviewId${sessionValue.stringValue.toLocaleUpperCase()}-${index}`,
+					},
+				},
+			},
+			homepageLocation: {
+				'en-US': `Secret location TypeScript-${sessionValue.stringValue.toLocaleUpperCase()}-${index}`,
+			},
+		};
+	}
+
 	static getCaseStudyId(index: number) {
 		return `caseStudyId${sessionValue.stringValue.toLocaleUpperCase()}${index}`;
 	}

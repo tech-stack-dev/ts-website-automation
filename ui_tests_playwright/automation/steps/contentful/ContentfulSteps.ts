@@ -67,8 +67,35 @@ class ContentfulSteps {
 			contentfulUtils.AddTagsToBody(tagArray);
 		});
 
+		if (caseStudyObject?.showOnHomePage) {
+			const homePageCaseTag = caseStudyObject.showOnHomePage.tag;
+			contentfulUtils.tagJson.push(contentfulUtils.GetTagJsonBody(homePageCaseTag));
+		}
+
 		for (let index = 1; index <= numberOfCaseStudies; index++) {
-			await contentfulUtils.CreateAndPublishCaseStudy(caseStudyName, index);
+			const caseStudyMainFields: {fields: {[key: string]: any}} =
+				ContentfulCaseStudyData.getCaseStudyMainFields(index);
+			const caseStudyOptionalFields = ContentfulCaseStudyData.getCaseStudyOptionalFields(index);
+
+			if (caseStudyObject?.showOnHomePage) {
+				caseStudyMainFields.fields['homepageName'] = caseStudyOptionalFields.homepageName;
+				caseStudyMainFields.fields['homepageDescription'] = caseStudyOptionalFields.homepageDescription;
+				caseStudyMainFields.fields['homepageLocation'] = caseStudyOptionalFields.homepageLocation;
+
+				if (caseStudyObject?.showOnHomePage?.image) {
+					const homePageCaseStudyImagePath = caseStudyObject.showOnHomePage.image.toString();
+					caseStudyMainFields.fields['homepageImage'] = caseStudyOptionalFields.homepageImage;
+
+					const assetHomePageCaseImageId = caseStudyMainFields.fields.homepageImage['en-US'].sys.id;
+					await contentfulUtils.CreateAndPublishCaseStudyImageAsset(
+						homePageCaseStudyImagePath,
+						assetHomePageCaseImageId,
+						`HomePageCasePreview-${index}`
+					);
+				}
+			}
+
+			await contentfulUtils.CreateAndPublishCaseStudy(caseStudyName, index, caseStudyMainFields);
 		}
 	}
 
@@ -85,6 +112,12 @@ class ContentfulSteps {
 			const caseStudyId = ContentfulCaseStudyData.getCaseStudyId(index);
 			await contentfulUtils.UnpublishEntry(caseStudyId);
 			await contentfulUtils.DeleteEntry(caseStudyId);
+
+			if (caseStudyObject?.showOnHomePage?.image) {
+				const homePageCaseImageId =
+					ContentfulCaseStudyData.getCaseStudyOptionalFields(index).homepageImage['en-US'].sys.id;
+				publishedAssetIds.push(homePageCaseImageId);
+			}
 		}
 
 		if (caseStudyObject?.summary.review) {
