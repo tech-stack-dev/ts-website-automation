@@ -281,7 +281,7 @@ export default class ContentfulCareerData {
 									{
 										data: {},
 										marks: [],
-										value: `Тайпскріпт тест ${index}`,
+										value: `TypeScript test_${index}`,
 										nodeType: 'text',
 									},
 								],
