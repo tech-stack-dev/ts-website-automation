@@ -38,7 +38,6 @@ test(
 	async () => {
 		const containers = [
 			driver.getByTestId(OurServices.Services),
-			driver.getByTestId(OurServices.AllInOneTechPartner),
 			driver.getByTestId(OurServices.TechnologyStack),
 			driver.getByTestId(OurServices.OurApproach),
 			driver.getByTestId(OurServices.Reviews),
@@ -48,12 +47,11 @@ test(
 
 		const expectedData = [
 			['Services', '01'],
-			['All-in-One Tech Partner', '02'],
-			['Technology stack', '03'],
-			['Our approach', '04'],
-			['Reviews', '05'],
-			['FAQ', '06'],
-			['Request a Free No-obligation Quote', '07'],
+			['Technology stack', '02'],
+			['Our approach', '03'],
+			['Reviews', '04'],
+			['FAQ', '05'],
+			['Request a Free No-obligation Quote', '06'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -67,18 +65,31 @@ test(
 	),
 	async () => {
 		const servicesContainer = driver.getByTestId(OurServices.Services);
-		const blockTitle = driver.getByTestId(Container.BlockTitle);
-		await expect(blockTitle).toHaveText('Staffing');
 		const containerSection = servicesContainer.getByTestId(Container.ContainerSection);
-		const countOfSections = 2;
-		await expect(containerSection).toHaveCount(countOfSections);
+		const numOfSections = 12;
 
-		const sectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
-		const expectedText = ['Dedicated teams', 'Staff augmentation'];
+		for (let i = 1; i < numOfSections; i++) {
+			const sectionNumber = i.toString().padStart(2, '0');
+			await expect(containerSection.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
+		}
 
-		await expect(sectionTitles).toHaveText(expectedText);
+		const allSectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
+		const testData = [
+			'Custom Software Development',
+			'Cloud Development',
+			'Big Data & Analytics',
+			'Internet of Things',
+			'Back-End Development Services',
+			'Front-End Development Services',
+			'DevOps Services & Solutions',
+			'Artificial Intelligence & Machine Learning',
+			'Mobile Development',
+			'UI/UX Design',
+			'QA as a Service',
+			'Consulting Service',
+		];
 
-		
+		await expect(allSectionTitles).toHaveText(testData);
 	}
 );
 
