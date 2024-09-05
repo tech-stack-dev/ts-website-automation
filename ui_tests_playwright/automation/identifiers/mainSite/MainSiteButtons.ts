@@ -35,6 +35,7 @@ export default class MainSiteButtons extends Buttons {
 	static ChooseThisModel = 'Button-ChooseThisModel';
 	static ViewFullTechnologyStack = 'Button-ViewFullTechnologyStack';
 	static ReadAllCases = 'Button-ReadAllCases';
+	static ViewFullServiceList = 'Button-ViewFullServiceList';
 
 	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 
