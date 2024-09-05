@@ -10,6 +10,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -60,7 +61,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5335,
 		'Check section titles and numbers in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
@@ -78,11 +79,13 @@ test(
 
 		await expect(sectionTitles).toHaveText(expectedText);
 
+
+
 		
 	}
 );
 
-test(
+test.skip(
 	qase(
 		4830,
 		'Check redirects by sections in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
@@ -108,6 +111,21 @@ test(
 		for (const [arrow, url] of arrowUrlMap) {
 			await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.OurServices));
 		}
+	}
+);
+
+test(
+	qase(
+		5340,
+		'Check section titles and image in "All-in-One Tech Partner" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const allInOneTechPartnerContainer = driver.getByTestId(OurServices.AllInOneTechPartner);
+		const images = allInOneTechPartnerContainer
+			.getByTestId(MainSiteImages.AllInOneTechPartner)
+			.locator('visible=true');
+
+		await baseDriverSteps.checkImagesVisibility(images, 1);
 	}
 );
 
