@@ -20,6 +20,14 @@ export default class UrlPath {
 	static QaAsAServ = 'services/qa-as-a-service';
 	static ConsultingServ = 'services/consulting-service';
 	static OurServicesTechnologyStackBlock = 'services#services-main-technology-stack';
+	static DedicatedTeam = 'services/dedicated-development-team';
+	static StaffAugmentation = 'services/it-staff-augmentation';
+	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
+	static AIIntegrationServices = 'services/ai-integration';
+	static DataStrategyConsultingServices = 'services/data-strategy-consulting';
+	static CloudMigration = 'services/cloud-migration';
+	static ProductScaling = 'services/product-scaling';
+
 
 	// Company pages
 	static AboutUs = 'about-us';

@@ -25,13 +25,28 @@ test(
 	),
 	async () => {
 		const ctaButtons = [
-			driver.getByTestId(HomePage.WhatWeDo).getByTestId(MainSiteButtons.RequestAQuote),
 			driver.getByTestId(HomePage.HowWeBuildCommunicationProcesses).getByTestId(MainSiteButtons.GetAQuote),
 		];
 
 		for (const button of ctaButtons) {
 			await baseDriverSteps.checkScrollToContainerByCtaButtonClick(button, HomePage.GetInTouch);
 		}
+	}
+);
+
+test(
+	qase(
+		5624,
+		'Check redirect by CTA button in "What We Do" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+	),
+	async () => {
+		const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
+		const ctaButton = whatWeDoContainer.getByTestId(MainSiteButtons.ViewFullServiceList);
+		await baseDriverSteps.checkRedirectToPage(
+			ctaButton,
+			UrlProvider.urlBuilder(UrlPath.OurServices),
+			UrlProvider.webSiteUrl()
+		);
 	}
 );
 
@@ -58,32 +73,6 @@ test.skip(
 
 		for (const [button, url] of buttonMap) {
 			await baseDriverSteps.checkRedirectToPage(button, url);
-		}
-	}
-);
-
-test(
-	qase(
-		5062,
-		'Check redirects by blocks in "Industries We Serve" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
-	),
-	async () => {
-		const industriesServicesContainer = driver.getByTestId(HomePage.IndustriesWeServe);
-		const containerSection = industriesServicesContainer.getByTestId(Container.ContainerBlock);
-		const blockUrlMap = new Map([
-			[
-				containerSection.nth(0).getByTestId(Container.BlockTitle),
-				UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-			],
-			[
-				containerSection.nth(1).getByTestId(Container.BlockTitle),
-				UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
-			],
-			[containerSection.nth(2).getByTestId(Container.BlockTitle), UrlProvider.urlBuilder(UrlPath.Healthcare)],
-		]);
-
-		for (const [block, url] of blockUrlMap) {
-			await baseDriverSteps.checkRedirectToPage(block, url, UrlProvider.webSiteUrl());
 		}
 	}
 );
