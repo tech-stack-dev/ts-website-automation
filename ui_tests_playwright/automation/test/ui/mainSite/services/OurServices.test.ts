@@ -10,6 +10,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -38,6 +39,7 @@ test(
 	async () => {
 		const containers = [
 			driver.getByTestId(OurServices.Services),
+			driver.getByTestId(OurServices.AllInOneTechPartner),
 			driver.getByTestId(OurServices.TechnologyStack),
 			driver.getByTestId(OurServices.OurApproach),
 			driver.getByTestId(OurServices.Reviews),
@@ -47,12 +49,13 @@ test(
 
 		const expectedData = [
 			['Services', '01'],
-			['Technology stack', '02'],
-			['Our approach', '03'],
-			['Reviews', '04'],
-			['FAQ', '05'],
-			['Request a Free No-obligation Quote', '06'],
-		];
+			['All-in-One Tech Partner', '02'],
+ 			['Technology stack', '03'],
+ 			['Our approach', '04'],
+ 			['Reviews', '05'],
+ 			['FAQ', '06'],
+ 			['Request a Free No-obligation Quote', '07'],
+		]
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
@@ -128,6 +131,21 @@ test(
 		for (const [arrow, url] of arrowUrlMap) {
 			await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.OurServices));
 		}
+	}
+);
+
+test(
+	qase(
+		5340,
+		'Check section titles and image in "All-in-One Tech Partner" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const allInOneTechPartnerContainer = driver.getByTestId(OurServices.AllInOneTechPartner);
+		const images = allInOneTechPartnerContainer
+			.getByTestId(MainSiteImages.AllInOneTechPartner)
+			.locator('visible=true');
+
+		await baseDriverSteps.checkImagesVisibility(images, 1);
 	}
 );
 
