@@ -5,6 +5,7 @@ export default class Header {
 
 	static Industries = 'Header-Industries';
 	static Services = 'Header-Services';
+	static Expertise = 'Header-Expertise';
 	static Company = 'Header-Company';
 	static Pricing = 'Header-Pricing';
 	static Contacts = 'Header-Contacts';

@@ -10,25 +10,26 @@ export default class Buttons {
 		TransportationAndLogistics: 'Industries-TransportationAndLogistics',
 		RenewableEnergy: 'Industries-RenewableEnergy',
 	};
-	static Services = {
-		OurServices: 'Services-OurServices',
-		CustomDev: 'Services-CustomDev',
-		DigitalTransform: 'Services-DigitalTransformation',
+	static Expertise = {
 		CloudDev: 'Services-CloudDev',
+		DevOps: 'Services-DevOps',
+		InternetOfThings: 'Services-InternetOfThings',
+		DigitalTransform: 'Services-DigitalTransformation',
+		UiUxDesign: 'Services-UiUxDesign',
 		MobileDev: 'Services-MobileDev',
 		FrontEnd: 'Services-FrontEnd',
 		BackEnd: 'Services-BackEnd',
 		BigData: 'Services-BigData',
-		InternetOfThings: 'Services-InternetOfThings',
-		DevOps: 'Services-DevOps',
 		AiDevelopment: 'Services-AIML',
-		UiUxDesign: 'Services-UiUxDesign',
-		QaAsAServ: 'Services-QaAsAServ',
-		ConsultingServ: 'Services-ConsultingServ',
+		ComputerVision: 'Services-ComputerVision',
+		OpenApi: 'Services-OpenAPI',
+		DeepLearning: 'Services-DeepLearning',
+		
 	};
 	static Company = {
 		AboutUs: 'Company-AboutUs',
 		HowWeWork: 'Company-HowWeWork',
+		OurClients: 'Company-Clients',
 		Pricing: 'Company-Pricing',
 		Career: 'Company-Career',
 		CaseStudies: 'Company-CaseStudies',

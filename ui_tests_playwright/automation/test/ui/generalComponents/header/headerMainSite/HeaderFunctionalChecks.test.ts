@@ -5,7 +5,7 @@ import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
 import {
 	industryUrl,
-	serviceUrl,
+	expertiseUrl,
 	companyUrl,
 	urlsWithOnlyLogoInHeader,
 } from '../../../../../preconditionsData/UrlPreconditions';
@@ -20,14 +20,14 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 
 let header: Locator;
 let industriesButtons: object;
-let servicesButtons: object;
+let expertiseButtons: object;
 let industriesUrls: string[];
-let servicesUrls: string[];
+let expertiseUrls: string[];
 
 let testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
@@ -45,10 +45,10 @@ test.beforeEach(async () => {
 	});
 
 	industriesButtons = Buttons.Industries;
-	servicesButtons = Buttons.Services;
+	expertiseButtons = Buttons.Expertise;
 
 	industriesUrls = Object.values(industryUrl);
-	servicesUrls = Object.values(serviceUrl);
+	expertiseUrls = Object.values(expertiseUrl);
 });
 
 test(
@@ -91,18 +91,18 @@ test(
 test(
 	qase(
 		5503,
-		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
+		`Check the redirection for the Expertise block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 
-			for (let index = 0; index < servicesUrls.length; index++) {
+			for (let index = 0; index < expertiseUrls.length; index++) {
 				await headerMenuSteps.clickOnBurgerMenu();
 
-				await header.getByTestId(Header.Services).click();
-				await header.getByTestId(Object.values(servicesButtons)[index]).click();
-				await baseDriverSteps.checkUrl(servicesUrls[index]);
+				await header.getByTestId(Header.Expertise).click();
+				await header.getByTestId(Object.values(expertiseButtons)[index]).click();
+				await baseDriverSteps.checkUrl(expertiseUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}

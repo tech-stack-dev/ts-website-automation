@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {companyUrl, industryUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -19,6 +19,7 @@ let header: Locator;
 let headerButtonsList: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
+let expertiseDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
 let contactsButton: Locator;
@@ -34,7 +35,7 @@ const pagesWithWhiteHeader: string[] = [
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
@@ -53,12 +54,14 @@ test.beforeEach(async () => {
 	});
 	industriesDropdownButton = header.getByTestId(Header.Industries);
 	servicesDropdownButton = header.getByTestId(Header.Services);
+	expertiseDropdownButton = header.getByTestId(Header.Expertise);
 	companyDropdownButton = header.getByTestId(Header.Company);
 	pricingButton = header.getByTestId(Header.Pricing);
 	contactsButton = header.getByTestId(Header.Contacts);
 	headerButtonsList = [
 		industriesDropdownButton,
 		servicesDropdownButton,
+		expertiseDropdownButton,
 		companyDropdownButton,
 		pricingButton,
 		contactsButton,
@@ -146,7 +149,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
+			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, expertiseDropdownButton, companyDropdownButton];
 
 			for (const button of headerButtonsList) {
 				await button.click();
@@ -169,11 +172,11 @@ test(
 
 test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
-		headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
+		headerButtonsList = [servicesDropdownButton, industriesDropdownButton, expertiseDropdownButton, companyDropdownButton];
 
 		await baseDriverSteps.goToUrl(url);
 		await headerMenuSteps.clickOnBurgerMenu();
-		const headerButtonsText = ['Industries', 'Services', 'Company'];
+		const headerButtonsText = ['Services', 'Industries', 'Expertise', 'Company'];
 
 		for (let index = 0; index < headerButtonsList.length; index++) {
 			await headerButtonsList[index].click();
@@ -188,33 +191,34 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(industriesText[index]);
 		}
 
-		const servicesButtons = Buttons.Services;
-		const servicesText = [
-			'Our Services',
-			'Custom Software Development',
-			'Digital Transformation',
+		const expertiseButtons = Buttons.Expertise;
+		const expertiseText = [
 			'Cloud Development',
+			'DevOps as a Service',
+			'Internet of Things',
+			'Digital Transformation',
+			'UX / UI Design',
 			'Mobile Development',
 			'Front-End Development',
 			'Back-End Development',
 			'Big Data & Analytics',
-			'Internet of Things',
-			'DevOps as a Service',
 			'AI Development',
-			'UX / UI Design',
-			'QA as a Service',
-			'Consulting Services',
+			'Custom Software Development',
+			'Computer Vision',
+			'OpenAI API Integration',
+			'Deep Learning',
 		];
 
-		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
-			const button = header.getByTestId(Object.values(servicesButtons)[index]);
-			await expect(button).toHaveText(servicesText[index]);
+		for (let index = 0; index < Object.values(expertiseButtons).length; index++) {
+			const button = header.getByTestId(Object.values(expertiseButtons)[index]);
+			await expect(button).toHaveText(expertiseText[index]);
 		}
 
-		const companyText = ['About Us', 'How we work', 'Career', 'Case Studies', 'Blog'];
+		const companyText = ['About Us', 'How we work', 'Our Clients', 'Career', 'Case Studies', 'Blog'];
 		const companyButtons = [
 			Buttons.Company.AboutUs,
 			Buttons.Company.HowWeWork,
+			Buttons.Company.OurClients,
 			Buttons.Company.Career,
 			Buttons.Company.CaseStudies,
 			Buttons.Company.Blog,

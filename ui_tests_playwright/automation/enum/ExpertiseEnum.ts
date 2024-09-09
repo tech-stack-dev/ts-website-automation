@@ -1,0 +1,15 @@
+export enum ExpertiseEnum {
+	CloudDev,
+	DevOpsAsAServ,
+	InternetOfThings,
+	DigitalTransform,
+	UiUxDesign,
+	MobileDev,
+	FrontEndDevelopment,
+	BackEndDevelopment,
+	BigData,
+	AiDevelopment,
+	ComputerVision,
+	OpenAI,
+	DeepLearning,
+}

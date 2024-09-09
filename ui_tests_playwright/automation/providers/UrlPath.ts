@@ -5,25 +5,36 @@ export default class UrlPath {
 	static RenewableEnergy = 'industries/renewable-energy';
 
 	// Services pages
-	static OurServices = 'services';
+	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
 	static CustomDev = 'services/custom-software-development';
-	static DigitalTransform = 'services/digital-transformation-services';
+	static AiIntegrationServices = 'services/ai-integration';
+	static DataStrategy = 'services/data-strategy-consulting';
+	static ConsultingServ = 'services/consulting-service';
+	static QaAsAServ = 'services/qa-as-a-service';
+	static ProductScaling = 'services/product-scaling';
+	static CloudMigration = 'services/cloud-migration';
+	static DedicatedTeam = 'services/dedicated-development-team';
+	static StaffAugmentation = 'services/it-staff-augmentation';
+
+	// Expertise pages
 	static CloudDevelopment = 'services/cloud-application-development';
+	static DevOpsServ = 'services/devops';
+	static InternetOfThings = 'services/internet-of-things';
+	static DigitalTransform = 'services/digital-transformation-services';
+	static UiUxDesign = 'services/ui-ux-design';
 	static MobileDev = 'services/mobile-app-development';
 	static FrontEndDevelopment = 'services/front-end-development-services';
 	static BackEndDevelopment = 'services/backend-development-services';
 	static BigData = 'services/big-data-and-analytics';
-	static InternetOfThings = 'services/internet-of-things';
-	static DevOpsServ = 'services/devops';
 	static AiDevelopment = 'services/artificial-intelligence';
-	static UiUxDesign = 'services/ui-ux-design';
-	static QaAsAServ = 'services/qa-as-a-service';
-	static ConsultingServ = 'services/consulting-service';
-	static OurServicesTechnologyStackBlock = 'services#services-main-technology-stack';
+	static ComputerVision = 'services/computer-vision';
+	static OpenAI = 'services/openai-api-integration';
+	static DeepLearning = 'services/deep-learning-development';
 
 	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
+	static OurClients = 'clients';
 	static Pricing = 'software-development-costs';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
