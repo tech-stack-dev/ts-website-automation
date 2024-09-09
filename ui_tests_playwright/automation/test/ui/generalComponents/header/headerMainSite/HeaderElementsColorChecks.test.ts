@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {companyUrl, industryUrl, expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, expertiseUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -34,9 +34,10 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(
@@ -130,7 +131,7 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
+			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, expertiseDropdownButton, companyDropdownButton];
 
 			await headerMenuSteps.clickOnBurgerMenu();
 
@@ -182,6 +183,29 @@ test(`Check the header information from the "Header" container on all pages @des
 			await headerButtonsList[index].click();
 			await headerMenuSteps.checkDropdownButtonText(headerButtonsList[index], headerButtonsText[index]);
 		}
+
+		const servicesButtons = Buttons.Services;
+		const servicesText = [
+			'PoC / MVP Development', 
+			'Custom Software Development', 
+			'AI Integration Services', 
+			'Data Strategy',
+			'Software Audit',
+			'QA as a Service',
+			'Product Scaling',
+			'Cloud Migration',
+			'Dedicated Team',
+			'Staff Augmentation',
+		];
+
+		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
+			const button = header.getByTestId(Object.values(servicesButtons)[index]);
+			await expect(button).toHaveText(servicesText[index]);
+		}
+
+		await servicesDropdownButton.click();
+		const servicesDropdownTitles = ['Engineering', 'Optimisation', 'Staffing'];
+		expect(servicesDropdownTitles.length).toBe(3);
 
 		const industriesButtons = Buttons.Industries;
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];

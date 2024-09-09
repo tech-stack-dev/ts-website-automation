@@ -8,6 +8,7 @@ import {
 	expertiseUrl,
 	companyUrl,
 	urlsWithOnlyLogoInHeader,
+	serviceUrl,
 } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
@@ -19,16 +20,19 @@ import UrlPath from '../../../../../providers/UrlPath';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
+let servicesButtons: object;
 let industriesButtons: object;
 let expertiseButtons: object;
+let servicesUrls: string[];
 let industriesUrls: string[];
 let expertiseUrls: string[];
 
 let testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(
@@ -44,9 +48,11 @@ test.beforeEach(async () => {
 		mobileLocator: Header.ContainerMenu,
 	});
 
+	servicesButtons = Buttons.Services;
 	industriesButtons = Buttons.Industries;
 	expertiseButtons = Buttons.Expertise;
 
+	servicesUrls = Object.values(serviceUrl);
 	industriesUrls = Object.values(industryUrl);
 	expertiseUrls = Object.values(expertiseUrl);
 });
@@ -63,6 +69,27 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Buttons.Logo).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
+		}
+	}
+);
+
+test(
+	qase(
+		5501,
+		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (let index = 0; index < servicesUrls.length; index++) {
+				await headerMenuSteps.clickOnBurgerMenu();
+
+				await header.getByTestId(Header.Services).click();
+				await header.getByTestId(Object.values(servicesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(servicesUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
 		}
 	}
 );
@@ -118,6 +145,7 @@ test(
 		const companyList = new Map([
 			[Buttons.Company.AboutUs, companyUrl[CompanyEnum.AboutUs]],
 			[Buttons.Company.HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
+			[Buttons.Company.OurClients, companyUrl[CompanyEnum.OurClients]],
 			[Buttons.Company.Career, UrlProvider.careerUrl(Environment.Production)],
 			[Buttons.Company.CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
 			[Buttons.Company.Blog, companyUrl[CompanyEnum.Blog]],
