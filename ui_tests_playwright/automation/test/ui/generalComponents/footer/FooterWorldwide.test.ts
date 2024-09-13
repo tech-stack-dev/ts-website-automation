@@ -6,7 +6,7 @@ import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
-import {companyUrl, serviceUrl, industryUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, serviceUrl, industryUrl, expertiseUrl} from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -17,9 +17,11 @@ import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 let footer: Locator;
 let industriesButtons: object;
 let servicesButtons: object;
+let expertiseButtons: object;
 let companyButtons: object;
 let industriesUrls: string[];
 let servicesUrls: string[];
+let expertiseUrls: string[];
 let companyUrls: string[];
 
 const testDataProvider: string[] = [
@@ -27,7 +29,8 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(
@@ -42,10 +45,12 @@ test.beforeEach(async () => {
 
 	industriesButtons = Buttons.Industries;
 	servicesButtons = Buttons.Services;
+	expertiseButtons = Buttons.Expertise;
 	companyButtons = Buttons.Company;
 
 	industriesUrls = Object.values(industryUrl);
 	servicesUrls = Object.values(serviceUrl);
+	expertiseUrls = Object.values(expertiseUrl);
 	companyUrls = Object.values(companyUrl);
 });
 
@@ -60,6 +65,7 @@ test(
 			const contactBlock = footer.getByTestId(Footer.ContactsBlock);
 			const industriesBlock = footer.getByTestId(Footer.IndustriesBlock);
 			const servicesBlock = footer.getByTestId(Footer.ServicesBlock);
+			const expertiseBlock = footer.getByTestId(Footer.ExpertiseBlock);
 			const companyBlock = footer.getByTestId(Footer.CompanyBlock);
 			const year = new Date().getFullYear();
 
@@ -81,6 +87,25 @@ test(
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
+			await expect(servicesBlock.getByTestId(Container.BlockTitle)).toHaveText('Services');
+			const servicesText = [
+				'PoC / MVP Development',
+				'Custom Software Development',
+				'AI Integration Services',
+				'Data Strategy',
+				'Software Audit',
+				'QA as a Service',
+				'Product Scaling',
+				'Cloud Migration',
+				'Dedicated Team',
+				'Staff Augmentation',
+			];
+
+			for (let index = 0; index < servicesUrls.length; index++) {
+				const button = footer.getByTestId(Object.values(servicesButtons)[index]);
+				await expect(button).toHaveText(servicesText[index]);
+			}
+
 			await expect(industriesBlock.getByTestId(Container.BlockTitle)).toHaveText('Industries');
 			const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
@@ -89,31 +114,40 @@ test(
 				await expect(button).toHaveText(industriesText[index]);
 			}
 
-			await expect(servicesBlock.getByTestId(Container.BlockTitle)).toHaveText('Services');
-			const servicesText = [
-				'Our Services',
-				'Custom Software Development',
-				'Digital Transformation',
+			await expect(expertiseBlock.getByTestId(Container.BlockTitle)).toHaveText('Expertise');
+			const expertiseText = [
 				'Cloud Development',
+				'DevOps as a Service',
+				'Internet of Things',
+				'Digital Transformation',
+				'UX / UI Design',
 				'Mobile Development',
 				'Front-End Development',
 				'Back-End Development',
 				'Big Data & Analytics',
-				'Internet of Things',
-				'DevOps as a Service',
 				'AI Development',
-				'UX / UI Design',
-				'QA as a Service',
-				'Consulting Services',
+				'Custom Software Development',
+				'Computer Vision',
+				'OpenAI API Integration',
+				'Deep Learning',
 			];
 
-			for (let index = 0; index < servicesUrls.length; index++) {
-				const button = footer.getByTestId(Object.values(servicesButtons)[index]);
-				await expect(button).toHaveText(servicesText[index]);
+			for (let index = 0; index < expertiseUrls.length; index++) {
+				const button = footer.getByTestId(Object.values(expertiseButtons)[index]);
+				await expect(button).toHaveText(expertiseText[index]);
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyText = ['About Us', 'How we work', 'Pricing', 'Career', 'Case Studies', 'Blog', 'Whitepapers'];
+			const companyText = [
+				'About Us',
+				'How we work',
+				'Our Clients',
+				'Pricing',
+				'Career',
+				'Case Studies',
+				'Blog',
+				'Whitepapers',
+			];
 
 			for (let index = 0; index < companyUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(companyButtons)[index]);
@@ -179,6 +213,24 @@ test(
 			for (let index = 0; index < servicesUrls.length; index++) {
 				await footer.getByTestId(Object.values(servicesButtons)[index]).click();
 				await baseDriverSteps.checkUrl(servicesUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
+		}
+	}
+);
+
+test(
+	qase(
+		5492,
+		`Check the redirection for the Expertise block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (let index = 0; index < expertiseUrls.length; index++) {
+				await footer.getByTestId(Object.values(expertiseButtons)[index]).click();
+				await baseDriverSteps.checkUrl(expertiseUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
