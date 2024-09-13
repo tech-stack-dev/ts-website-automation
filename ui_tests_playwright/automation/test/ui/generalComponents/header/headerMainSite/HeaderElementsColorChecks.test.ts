@@ -34,10 +34,10 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)), 
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)), 
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])), 
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(
@@ -171,6 +171,28 @@ test(
 	}
 );
 
+
+test(`Check Services titles in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`,
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			await servicesDropdownButton.click()
+
+			const servicesTitles = [Header.Engineering, Header.Optimisation, Header.Staffing];
+			const servicesTitlesText = [
+				'Engineering', 
+				'Optimisation', 
+				'Staffing',
+			];
+
+			for (let index = 0; index < servicesTitles.length; index++) {
+				const button = header.getByTestId(servicesTitles[index]);
+				await expect(button).toHaveText(servicesTitlesText[index]);
+			}
+		}
+	}
+);
+
 test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
 		headerButtonsList = [servicesDropdownButton, industriesDropdownButton, expertiseDropdownButton, companyDropdownButton];
@@ -203,10 +225,6 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(servicesText[index]);
 		}
 
-		await servicesDropdownButton.click();
-		const servicesDropdownTitles = ['Engineering', 'Optimisation', 'Staffing'];
-		expect(servicesDropdownTitles.length).toBe(3);
-
 		const industriesButtons = Buttons.Industries;
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
@@ -227,7 +245,6 @@ test(`Check the header information from the "Header" container on all pages @des
 			'Back-End Development',
 			'Big Data & Analytics',
 			'AI Development',
-			'Custom Software Development',
 			'Computer Vision',
 			'OpenAI API Integration',
 			'Deep Learning',

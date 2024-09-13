@@ -16,7 +16,7 @@ export default class Buttons {
 		CloudMigration: 'Services-CloudMigration',
 		DedicatedTeam: 'Services-DedicatedTeam',
 		StaffAugmentation: 'Services-StaffAugmentation',
-	}
+	};
 
 	static Industries = {
 		Healthcare: 'Industries-Healthcare',

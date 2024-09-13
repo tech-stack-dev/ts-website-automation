@@ -9,6 +9,9 @@ export default class Header {
 	static Company = 'Header-Company';
 	static Pricing = 'Header-Pricing';
 	static Contacts = 'Header-Contacts';
+	static Engineering = 'Services-Engineering';
+	static Optimisation = 'Services-Optimisation';
+	static Staffing = 'Services-Staffing';
 
 	// Mobile
 	static ContainerMenu = 'Container-Menu';

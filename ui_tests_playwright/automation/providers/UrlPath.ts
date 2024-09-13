@@ -61,4 +61,7 @@ export default class UrlPath {
 
 	// Error pages
 	static PageNotFound = '404';
+
+	//Our Services Page 
+	static OurServices = 'services';
 }
