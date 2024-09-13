@@ -1,8 +1,9 @@
 import {CompanyEnum} from '../enum/CompanyEnum';
 import {IndustriesEnum} from '../enum/IndustriesEnum';
-import {ServicesEnum} from '../enum/ServicesEnum';
+import {ExpertiseEnum} from '../enum/ExpertiseEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
+import { ServicesEnum } from '../enum/ServicesEnum';
 
 export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
@@ -11,25 +12,38 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 };
 
 export const serviceUrl: Record<ServicesEnum, string> = {
-	[ServicesEnum.OurServices]: UrlProvider.urlBuilder(UrlPath.OurServices),
+	[ServicesEnum.PoCAndMVPDevelopment]: UrlProvider.urlBuilder(UrlPath.PoCAndMVPDevelopment),
 	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
-	[ServicesEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
-	[ServicesEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-	[ServicesEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
-	[ServicesEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
-	[ServicesEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-	[ServicesEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
-	[ServicesEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
-	[ServicesEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-	[ServicesEnum.QaAsAServ]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-	[ServicesEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-	[ServicesEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
+	[ServicesEnum.AiIntegrationServices]: UrlProvider.urlBuilder(UrlPath.AiIntegrationServices),
+	[ServicesEnum.DataStrategy]: UrlProvider.urlBuilder(UrlPath.DataStrategy),
+	[ServicesEnum.SoftwareAudit]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+	[ServicesEnum.QaAsAService]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+	[ServicesEnum.ProductScaling]: UrlProvider.urlBuilder(UrlPath.ProductScaling),
+	[ServicesEnum.CloudMigration]: UrlProvider.urlBuilder(UrlPath.CloudMigration),
+	[ServicesEnum.DedicatedTeam]: UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
+	[ServicesEnum.StaffAugmentation]: UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
+}
+
+export const expertiseUrl: Record<ExpertiseEnum, string> = {
+	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
+	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
+	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
+	[ExpertiseEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+	[ExpertiseEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
+	[ExpertiseEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
+	[ExpertiseEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	[ExpertiseEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
+	[ExpertiseEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
+	[ExpertiseEnum.ComputerVision]: UrlProvider.urlBuilder(UrlPath.ComputerVision),
+	[ExpertiseEnum.OpenAI]: UrlProvider.urlBuilder(UrlPath.OpenAI),
+	[ExpertiseEnum.DeepLearning]: UrlProvider.urlBuilder(UrlPath.DeepLearning),
 };
 
 export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.AboutUs]: UrlProvider.urlBuilder(UrlPath.AboutUs),
 	[CompanyEnum.HowWeWork]: UrlProvider.urlBuilder(UrlPath.HowWeWork),
+	[CompanyEnum.OurClients]: UrlProvider.urlBuilder(UrlPath.OurClients),
 	[CompanyEnum.Pricing]: UrlProvider.urlBuilder(UrlPath.Pricing),
 	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),

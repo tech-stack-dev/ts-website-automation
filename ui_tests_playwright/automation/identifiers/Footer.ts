@@ -6,6 +6,7 @@ export default class Footer {
 	static ContactsBlock = 'ContactsBlock';
 	static IndustriesBlock = 'IndustriesBlock';
 	static ServicesBlock = 'ServicesBlock';
+	static ExpertiseBlock = 'ExpertiseBlock';
 	static CompanyBlock = 'CompanyBlock';
 	static CareerBlock = 'CareerBlock';
 
