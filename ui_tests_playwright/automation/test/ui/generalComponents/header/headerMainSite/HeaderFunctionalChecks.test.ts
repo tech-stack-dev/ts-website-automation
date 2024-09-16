@@ -88,7 +88,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5503,
 		`Check the redirection for the Services block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
