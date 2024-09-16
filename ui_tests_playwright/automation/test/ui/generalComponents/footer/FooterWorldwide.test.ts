@@ -6,7 +6,13 @@ import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
 import Container from '../../../../identifiers/Container';
 import Buttons from '../../../../identifiers/Buttons';
-import {companyUrl, serviceUrl, industryUrl, expertiseUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {
+	companyUrl,
+	serviceUrl,
+	industryUrl,
+	expertiseUrl,
+	webflowPages,
+} from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -15,6 +21,7 @@ import UrlUtils from '../../../../utils/UrlUtils';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
 let footer: Locator;
+let footerBottom: Locator;
 let industriesButtons: object;
 let servicesButtons: object;
 let expertiseButtons: object;
@@ -23,10 +30,10 @@ let industriesUrls: string[];
 let servicesUrls: string[];
 let expertiseUrls: string[];
 let companyUrls: string[];
+let servicesBlock: Locator;
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlProvider.urlBuilder(UrlPath.ContactUs),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
@@ -36,12 +43,13 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
-	UrlProvider.urlBuilder(UrlPath.GetAQuote),
+	UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote]),
 ];
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 	footer = driver.getByTestId(Footer.Container_Footer);
+	footerBottom = driver.getByTestId(Footer.Container_FooterBottom);
 
 	industriesButtons = Buttons.Industries;
 	servicesButtons = Buttons.Services;
@@ -52,6 +60,8 @@ test.beforeEach(async () => {
 	servicesUrls = Object.values(serviceUrl);
 	expertiseUrls = Object.values(expertiseUrl);
 	companyUrls = Object.values(companyUrl);
+
+	servicesBlock = footer.getByTestId(Footer.ServicesBlock);
 });
 
 test(
@@ -64,30 +74,39 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			const contactBlock = footer.getByTestId(Footer.ContactsBlock);
 			const industriesBlock = footer.getByTestId(Footer.IndustriesBlock);
-			const servicesBlock = footer.getByTestId(Footer.ServicesBlock);
 			const expertiseBlock = footer.getByTestId(Footer.ExpertiseBlock);
 			const companyBlock = footer.getByTestId(Footer.CompanyBlock);
 			const year = new Date().getFullYear();
+			const headquoters = 'Headquarters:';
+			const countryData = 'Poland, Wroclaw,';
+			const streetData = '9 Rybacka street, 53-656';
+			const phoneNumber = 'Phone number:';
+			const phoneNumberData = '+1-312-442-0823';
 
 			await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 			await expect(contactBlock.getByTestId(Container.SectionTitle)).toHaveText('Contacts');
 
 			if (url === UrlProvider.urlBuilder(UrlPath.CaseStudies)) {
 				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
-					'Headquarters:Poland, Wroclaw,\n9 Rybacka street, 53-656'
+					`${headquoters}${countryData}\n${streetData}`
 				);
-				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:+1-312-442-0823');
+				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber}${phoneNumberData}`);
+			} else if (webflowPages.includes(url)) {
+				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
+					`${headquoters}${countryData} ${streetData}`
+				);
+				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber}${phoneNumberData}`);
 			} else {
 				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
-					'Headquarters:\nPoland, Wroclaw,\n9 Rybacka street, 53-656'
+					`${headquoters}\n${countryData}\n${streetData}`
 				);
-				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText('Phone number:\n+1-312-442-0823');
+				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber} ${phoneNumberData}`);
 				await expect(contactBlock.getByTestId(Footer.ContactUs)).toHaveText('Contact Us');
 			}
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
-			await expect(servicesBlock.getByTestId(Container.BlockTitle)).toHaveText('Services');
+			await expect(servicesBlock.getByTestId(Buttons.OurServices)).toHaveText('Services');
 			const servicesText = [
 				'PoC / MVP Development',
 				'Custom Software Development',
@@ -126,7 +145,6 @@ test(
 				'Back-End Development',
 				'Big Data & Analytics',
 				'AI Development',
-				'Custom Software Development',
 				'Computer Vision',
 				'OpenAI API Integration',
 				'Deep Learning',
@@ -183,23 +201,15 @@ test(`Check the redirection by the "Contact Us" button on all pages @desktop @mo
 	}
 });
 
-test(
-	qase(
-		5488,
-		`Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`
-	),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
+test(`Check the redirection by the "Services" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
 
-			for (let index = 0; index < industriesUrls.length; index++) {
-				await footer.getByTestId(Object.values(industriesButtons)[index]).click();
-				await baseDriverSteps.checkUrl(industriesUrls[index]);
-				await baseDriverSteps.goToUrl(url);
-			}
-		}
+		await servicesBlock.getByTestId(Buttons.OurServices).click();
+		await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
+		await baseDriverSteps.goToUrl(url);
 	}
-);
+});
 
 test(
 	qase(
@@ -213,6 +223,24 @@ test(
 			for (let index = 0; index < servicesUrls.length; index++) {
 				await footer.getByTestId(Object.values(servicesButtons)[index]).click();
 				await baseDriverSteps.checkUrl(servicesUrls[index]);
+				await baseDriverSteps.goToUrl(url);
+			}
+		}
+	}
+);
+
+test(
+	qase(
+		5488,
+		`Check the redirection for the Industries block on all pages @desktop @mobile @Regression @Footer @TSWEB-833`
+	),
+	async () => {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+
+			for (let index = 0; index < industriesUrls.length; index++) {
+				await footer.getByTestId(Object.values(industriesButtons)[index]).click();
+				await baseDriverSteps.checkUrl(industriesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
 		}
@@ -273,6 +301,7 @@ test(
 );
 
 test(
+	// Investigate why doesn't work ???
 	qase(
 		5490,
 		`Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
@@ -296,7 +325,7 @@ test(
 			for (const entries of linkMap.entries()) {
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
-					await footer.getByTestId(entries[0]).click(),
+					await footerBottom.getByTestId(entries[0]).click(),
 				]);
 				expect(newPage.url().includes(entries[1])).toBeTruthy();
 				await newPage.close();

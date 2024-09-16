@@ -20,6 +20,10 @@ import UrlPath from '../../../../../providers/UrlPath';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 
 let header: Locator;
+let servicesMenu: Locator;
+let industriesMenu: Locator;
+let expertiseMenu: Locator;
+let companyMenu: Locator;
 let servicesButtons: object;
 let industriesButtons: object;
 let expertiseButtons: object;
@@ -42,7 +46,7 @@ let testDataProvider: string[] = [
 
 // ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowser();
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
 	header = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.Container_Header,
 		mobileLocator: Header.ContainerMenu,
@@ -55,6 +59,23 @@ test.beforeEach(async () => {
 	servicesUrls = Object.values(serviceUrl);
 	industriesUrls = Object.values(industryUrl);
 	expertiseUrls = Object.values(expertiseUrl);
+
+	servicesMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.ServicesMenu,
+		mobileLocator: Header.ServicesDropdown,
+	});
+	industriesMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.IndustriesMenu,
+		mobileLocator: Header.IndustriesDropdown,
+	});
+	expertiseMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.ExpertiseMenu,
+		mobileLocator: Header.ExpertiseDropdown,
+	});
+	companyMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.CompanyMenu,
+		mobileLocator: Header.CompanyDropdown,
+	});
 });
 
 test(
@@ -86,7 +107,7 @@ test(
 				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Services).click();
-				await header.getByTestId(Object.values(servicesButtons)[index]).click();
+				await servicesMenu.getByTestId(Object.values(servicesButtons)[index]).click();
 				await baseDriverSteps.checkUrl(servicesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -107,7 +128,7 @@ test(
 				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Industries).click();
-				await header.getByTestId(Object.values(industriesButtons)[index]).click();
+				await industriesMenu.getByTestId(Object.values(industriesButtons)[index]).click();
 				await baseDriverSteps.checkUrl(industriesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -128,7 +149,7 @@ test(
 				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Expertise).click();
-				await header.getByTestId(Object.values(expertiseButtons)[index]).click();
+				await expertiseMenu.getByTestId(Object.values(expertiseButtons)[index]).click();
 				await baseDriverSteps.checkUrl(expertiseUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
@@ -158,7 +179,7 @@ test(
 				await headerMenuSteps.clickOnBurgerMenu();
 
 				await header.getByTestId(Header.Company).click();
-				await header.getByTestId(element).click();
+				await companyMenu.getByTestId(element).click();
 				await baseDriverSteps.checkUrl(companyUrl);
 				await baseDriverSteps.goToUrl(url);
 			}

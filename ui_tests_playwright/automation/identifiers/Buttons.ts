@@ -5,25 +5,24 @@ export default class Buttons {
 	static BurgerMenuButton = 'Button-BurgerMenu';
 
 	// Pages list
+	static OurServices = 'Services-OurServices';
 	static Services = {
 		PoCAndMVPDevelopment: 'Services-PoC-MVP',
 		CustomDev: 'Services-CustomDev',
-		AiIntegrationServices: 'Services-AIIntegration',
+		AiIntegrationServices: 'Services-AiIntegration',
 		DataStrategy: 'Services-DataStrategy',
-		SoftwareAudit:'Services-SoftwareAudit',
+		SoftwareAudit: 'Services-SoftwareAudit',
 		QaAsAService: 'Services-QaAsAServ',
 		ProductScaling: 'Services-ProductScaling',
 		CloudMigration: 'Services-CloudMigration',
 		DedicatedTeam: 'Services-DedicatedTeam',
 		StaffAugmentation: 'Services-StaffAugmentation',
 	};
-
 	static Industries = {
 		Healthcare: 'Industries-Healthcare',
 		TransportationAndLogistics: 'Industries-TransportationAndLogistics',
 		RenewableEnergy: 'Industries-RenewableEnergy',
 	};
-
 	static Expertise = {
 		CloudDev: 'Services-CloudDev',
 		DevOps: 'Services-DevOps',
@@ -38,7 +37,6 @@ export default class Buttons {
 		ComputerVision: 'Services-ComputerVision',
 		OpenApi: 'Services-OpenAPI',
 		DeepLearning: 'Services-DeepLearning',
-		
 	};
 	static Company = {
 		AboutUs: 'Company-AboutUs',

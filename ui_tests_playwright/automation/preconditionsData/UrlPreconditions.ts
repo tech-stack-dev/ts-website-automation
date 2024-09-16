@@ -3,7 +3,7 @@ import {IndustriesEnum} from '../enum/IndustriesEnum';
 import {ExpertiseEnum} from '../enum/ExpertiseEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
-import { ServicesEnum } from '../enum/ServicesEnum';
+import {ServicesEnum} from '../enum/ServicesEnum';
 
 export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
@@ -22,7 +22,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.CloudMigration]: UrlProvider.urlBuilder(UrlPath.CloudMigration),
 	[ServicesEnum.DedicatedTeam]: UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
 	[ServicesEnum.StaffAugmentation]: UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
-}
+};
 
 export const expertiseUrl: Record<ExpertiseEnum, string> = {
 	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
@@ -45,10 +45,10 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.HowWeWork]: UrlProvider.urlBuilder(UrlPath.HowWeWork),
 	[CompanyEnum.OurClients]: UrlProvider.urlBuilder(UrlPath.OurClients),
 	[CompanyEnum.Pricing]: UrlProvider.urlBuilder(UrlPath.Pricing),
-	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
 	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
+	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 };
 
 export const urlsWithoutCookiesMessage: string[] = [
@@ -59,4 +59,17 @@ export const urlsWithoutCookiesMessage: string[] = [
 export const urlsWithOnlyLogoInHeader: string[] = [
 	UrlProvider.urlBuilder(UrlPath.GetAQuote),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
+];
+
+export const webflowPages: string[] = [
+	UrlProvider.urlBuilder(UrlPath.PoCAndMVPDevelopment),
+	UrlProvider.urlBuilder(UrlPath.AiIntegrationServices),
+	UrlProvider.urlBuilder(UrlPath.DataStrategy),
+	UrlProvider.urlBuilder(UrlPath.ProductScaling),
+	UrlProvider.urlBuilder(UrlPath.CloudMigration),
+	UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
+	UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
+	UrlProvider.urlBuilder(UrlPath.ComputerVision),
+	UrlProvider.urlBuilder(UrlPath.OpenAI),
+	UrlProvider.urlBuilder(UrlPath.DeepLearning),
 ];

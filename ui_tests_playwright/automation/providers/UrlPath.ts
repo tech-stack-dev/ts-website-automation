@@ -27,7 +27,7 @@ export default class UrlPath {
 	static BackEndDevelopment = 'services/backend-development-services';
 	static BigData = 'services/big-data-and-analytics';
 	static AiDevelopment = 'services/artificial-intelligence';
-	static ComputerVision = 'services/computer-vision';
+	static ComputerVision = 'services/computer-vision-development';
 	static OpenAI = 'services/openai-api-integration';
 	static DeepLearning = 'services/deep-learning-development';
 
