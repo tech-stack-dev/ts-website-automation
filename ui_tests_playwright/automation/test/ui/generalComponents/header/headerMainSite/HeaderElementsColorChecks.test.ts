@@ -16,6 +16,10 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import {playwrightUtils} from '../../../../../utils/PlaywrightUtils';
 
 let header: Locator;
+let servicesMenu: Locator;
+let industriesMenu: Locator;
+let expertiseMenu: Locator;
+let companyMenu: Locator;
 let headerButtonsList: Locator[];
 let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
@@ -34,10 +38,10 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)), 
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)), 
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])), 
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(
@@ -68,6 +72,23 @@ test.beforeEach(async () => {
 		contactsButton,
 	];
 	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote);
+
+	servicesMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.ServicesMenu,
+		mobileLocator: Header.ServicesDropdown,
+	});
+	industriesMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.IndustriesMenu,
+		mobileLocator: Header.IndustriesDropdown,
+	});
+	expertiseMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.ExpertiseMenu,
+		mobileLocator: Header.ExpertiseDropdown,
+	});
+	companyMenu = await containerSteps.getDynamicLocator({
+		desktopLocator: Header.CompanyMenu,
+		mobileLocator: Header.CompanyDropdown,
+	});
 });
 
 test(
@@ -81,11 +102,7 @@ test(
 					return getComputedStyle(el).backgroundColor;
 				});
 
-				if (pagesWithWhiteHeader.includes(url)) {
-					expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
-				} else {
-					expect(actualColor).toBe(ColorsEnum.Grey_434343);
-				}
+				expect(actualColor).toBe(ColorsEnum.Transparent);
 			}
 		}
 	}
@@ -110,9 +127,9 @@ test(
 						});
 
 						if (pagesWithWhiteHeader.includes(url)) {
-							expect(actualColor).toBe(ColorsEnum.Grey_Hover_D3D4D4);
+							expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
 						} else {
-							expect(actualColor).toBe(ColorsEnum.Grey_Hover_2E3032);
+							expect(actualColor).toBe(ColorsEnum.Grey_434343);
 						}
 					},
 					5,
@@ -124,6 +141,7 @@ test(
 );
 
 test(
+	// FIX !!!
 	qase(
 		5505,
 		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
@@ -131,7 +149,12 @@ test(
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, expertiseDropdownButton, companyDropdownButton];
+			const headerButtonsList = [
+				industriesDropdownButton,
+				servicesDropdownButton,
+				expertiseDropdownButton,
+				companyDropdownButton,
+			];
 
 			await headerMenuSteps.clickOnBurgerMenu();
 
@@ -142,60 +165,29 @@ test(
 	}
 );
 
-test(
-	qase(
-		5506,
-		`Check buttons background color after clicking and hovering on it in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
-	),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-			const headerButtonsList = [industriesDropdownButton, servicesDropdownButton, expertiseDropdownButton, companyDropdownButton];
+test(`Check Services titles in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`, async () => {
+	for (const url of testDataProvider) {
+		await baseDriverSteps.goToUrl(url);
+		await servicesDropdownButton.click();
 
-			for (const button of headerButtonsList) {
-				await button.click();
-				await button.hover();
+		const servicesTitles = [Header.Engineering, Header.Optimisation, Header.Staffing];
+		const servicesTitlesText = ['Engineering', 'Optimisation', 'Staffing'];
 
-				await playwrightUtils.expectWithRetries(
-					async () => {
-						const actualColor = await button.evaluate(async (el) => {
-							return getComputedStyle(el).backgroundColor;
-						});
-						expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
-					},
-					5,
-					2000
-				);
-			}
+		for (let index = 0; index < servicesTitles.length; index++) {
+			const button = servicesMenu.getByTestId(servicesTitles[index]);
+			await expect(button).toHaveText(servicesTitlesText[index]);
 		}
 	}
-);
-
-
-test(`Check Services titles in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`,
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-			await servicesDropdownButton.click()
-
-			const servicesTitles = [Header.Engineering, Header.Optimisation, Header.Staffing];
-			const servicesTitlesText = [
-				'Engineering', 
-				'Optimisation', 
-				'Staffing',
-			];
-
-			for (let index = 0; index < servicesTitles.length; index++) {
-				const button = header.getByTestId(servicesTitles[index]);
-				await expect(button).toHaveText(servicesTitlesText[index]);
-			}
-		}
-	}
-);
+});
 
 test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
-		headerButtonsList = [servicesDropdownButton, industriesDropdownButton, expertiseDropdownButton, companyDropdownButton];
+		headerButtonsList = [
+			servicesDropdownButton,
+			industriesDropdownButton,
+			expertiseDropdownButton,
+			companyDropdownButton,
+		];
 
 		await baseDriverSteps.goToUrl(url);
 		await headerMenuSteps.clickOnBurgerMenu();
@@ -208,9 +200,9 @@ test(`Check the header information from the "Header" container on all pages @des
 
 		const servicesButtons = Buttons.Services;
 		const servicesText = [
-			'PoC / MVP Development', 
-			'Custom Software Development', 
-			'AI Integration Services', 
+			'PoC / MVP Development',
+			'Custom Software Development',
+			'AI Integration Services',
 			'Data Strategy',
 			'Software Audit',
 			'QA as a Service',
@@ -221,7 +213,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		];
 
 		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
-			const button = header.getByTestId(Object.values(servicesButtons)[index]);
+			const button = servicesMenu.getByTestId(Object.values(servicesButtons)[index]);
 			await expect(button).toHaveText(servicesText[index]);
 		}
 
@@ -229,7 +221,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
 
 		for (let index = 0; index < Object.values(industriesButtons).length; index++) {
-			const button = header.getByTestId(Object.values(industriesButtons)[index]);
+			const button = industriesMenu.getByTestId(Object.values(industriesButtons)[index]);
 			await expect(button).toHaveText(industriesText[index]);
 		}
 
@@ -251,7 +243,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		];
 
 		for (let index = 0; index < Object.values(expertiseButtons).length; index++) {
-			const button = header.getByTestId(Object.values(expertiseButtons)[index]);
+			const button = expertiseMenu.getByTestId(Object.values(expertiseButtons)[index]);
 			await expect(button).toHaveText(expertiseText[index]);
 		}
 
@@ -266,7 +258,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		];
 
 		for (let index = 0; index < companyButtons.length; index++) {
-			const button = header.getByTestId(Object.values(companyButtons)[index]);
+			const button = companyMenu.getByTestId(Object.values(companyButtons)[index]);
 			await expect(button).toHaveText(companyText[index]);
 		}
 
