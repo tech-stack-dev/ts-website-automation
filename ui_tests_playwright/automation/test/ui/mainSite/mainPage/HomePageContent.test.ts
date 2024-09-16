@@ -19,7 +19,7 @@ test(
 	async () => {
 		const infoContainer = driver.getByTestId(HomePage.Info);
 		await expect(infoContainer.getByTestId(Container.Title)).toHaveText(
-			'Product Engineering & Custom Software Development Company'
+			'Tech Solutions Partner: Staffing, Engineering & Optimization'
 		);
 	}
 );
@@ -33,11 +33,10 @@ test(
 		const containers = [
 			driver.getByTestId(HomePage.WhatWeDo),
 			driver.getByTestId(HomePage.PartnerTestimonials),
-			driver.getByTestId(HomePage.IndustriesWeServe),
+			driver.getByTestId(HomePage.WhyTechstack),
 			driver.getByTestId(HomePage.SoftwareDevelopmentServices),
 			driver.getByTestId(HomePage.CaseStudies),
 			driver.getByTestId(HomePage.BriefOverviewOfTechnologies),
-			driver.getByTestId(HomePage.WhyTechstack),
 			driver.getByTestId(HomePage.WorkingWithBusinessesWorldwide),
 			driver.getByTestId(HomePage.OurPartners),
 			driver.getByTestId(HomePage.HowWeBuildCommunicationProcesses),
@@ -51,19 +50,18 @@ test(
 		const expectedData = [
 			['What We Do', '01'],
 			['Partner Testimonials', '02'],
-			['Industries We Serve', '03'],
-			['Software Development Services', '04'],
+			['Why Techstack for Software Development?', '03'],
+			['Our Expertise in Development', '04'],
 			['Case Studies', '05'],
 			['Brief Overview of Technologies', '06'],
-			['Why Techstack for Software Development?', '07'],
-			['Working with Businesses Worldwide', '08'],
-			['Our partners', '09'],
-			['How We Build Communication Processes', '10'],
-			['Techstack Achievements', '11'],
-			['Recognition and Media Presence', '12'],
-			['Company insights', '13'],
-			['Request a Free No-obligation Quote', '14'],
-			['FAQ', '15'],
+			['Working with Businesses Worldwide', '07'],
+			['Our partners', '08'],
+			['How We Build Communication Processes', '09'],
+			['Techstack Achievements', '10'],
+			['Recognition and Media Presence', '11'],
+			['Company insights', '12'],
+			['Request a Free No-obligation Quote', '13'],
+			['FAQ', '14'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
@@ -77,38 +75,44 @@ test(
 	),
 	async () => {
 		const whatWeDoContainer = driver.getByTestId(HomePage.WhatWeDo);
-		await expect(whatWeDoContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03', '04']);
+		await expect(whatWeDoContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03']);
 
 		const allSectionTitles = whatWeDoContainer.getByTestId(Container.SectionTitle);
 		const testData = [
-			'Product or solution development',
-			'Dedicated team',
-			'Team augmentation',
-			'Tech audit service',
+			'Staffing services',
+			'Engineering services',
+			'Optimization services',
 		];
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.RequestAQuote)).toHaveText('Request a quote');
+		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.ViewFullServiceList)).toHaveText('View full service list');
 	}
 );
 
 test(
 	qase(
-		5043,
-		'Check section titles in "Industries We Serve" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		5617,
+		'Check section titles in "Why Techstack for Software Development?" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const industriesWeServe = driver.getByTestId(HomePage.IndustriesWeServe);
-		const allBlockTitles = industriesWeServe.getByTestId(Container.BlockTitle);
-		const testData = ['Renewable energy', 'Transportation and logistics', 'Healthcare'];
+		const whyTechstackContainer = driver.getByTestId(HomePage.WhyTechstack);
+		const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
+		const expectSectionTitles = [
+			'From one expert to teams integration',
+			'Full circle development',
+			'Not just code—engineer solutions',
+			'Proactive problem-solving',
+			'Ensure your project independence',
+			'Daily communication overlap',
+		];
 
-		await expect(allBlockTitles).toHaveText(testData);
+		await expect(actualSectionTitles).toHaveText(expectSectionTitles);
 	}
 );
 
 test(
 	qase(
 		5049,
-		'Check section titles in "Software Development Services" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check section titles in "Our Expertise in Development" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
 		const softwareDevelopmentServices = driver.getByTestId(HomePage.SoftwareDevelopmentServices);
@@ -203,27 +207,6 @@ test(
 		await expect(
 			briefOverviewOfTechnologiesContainer.getByTestId(MainSiteButtons.ViewFullTechnologyStack)
 		).toHaveText('View full technology stack');
-	}
-);
-
-test(
-	qase(
-		5617,
-		'Check section titles in "Why Techstack for Software Development?" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
-	),
-	async () => {
-		const whyTechstackContainer = driver.getByTestId(HomePage.WhyTechstack);
-		const actualSectionTitles = whyTechstackContainer.getByTestId(Container.SectionTitle);
-		const expectSectionTitles = [
-			'Strategic solution development',
-			'Flexible scale-up & seamless support',
-			'All-in-one tech solution',
-			'Product-centric engineering',
-			'Solution-driven collaboration',
-			'Risk mitigation',
-		];
-
-		await expect(actualSectionTitles).toHaveText(expectSectionTitles);
 	}
 );
 

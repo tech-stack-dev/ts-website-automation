@@ -10,6 +10,7 @@ import Buttons from '../../../../identifiers/Buttons';
 import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -38,6 +39,7 @@ test(
 	async () => {
 		const containers = [
 			driver.getByTestId(OurServices.Services),
+			driver.getByTestId(OurServices.AllInOneTechPartner),
 			driver.getByTestId(OurServices.TechnologyStack),
 			driver.getByTestId(OurServices.OurApproach),
 			driver.getByTestId(OurServices.Reviews),
@@ -47,12 +49,13 @@ test(
 
 		const expectedData = [
 			['Services', '01'],
-			['Technology stack', '02'],
-			['Our approach', '03'],
-			['Reviews', '04'],
-			['FAQ', '05'],
-			['Request a Free No-obligation Quote', '06'],
-		];
+			['All-in-One Tech Partner', '02'],
+ 			['Technology stack', '03'],
+ 			['Our approach', '04'],
+ 			['Reviews', '05'],
+ 			['FAQ', '06'],
+ 			['Request a Free No-obligation Quote', '07'],
+		]
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
@@ -61,35 +64,46 @@ test(
 test(
 	qase(
 		5335,
-		'Check section titles and numbers in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+		'Check block titles, section titles and numbers in "Services" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
 	),
 	async () => {
 		const servicesContainer = driver.getByTestId(OurServices.Services);
-		const containerSection = servicesContainer.getByTestId(Container.ContainerSection);
-		const numOfSections = 12;
+		const blockTitles = servicesContainer.getByTestId(Container.BlockTitle);
+		const testData = ['Staffing', 'Engineering', 'Optimization'];
 
-		for (let i = 1; i < numOfSections; i++) {
-			const sectionNumber = i.toString().padStart(2, '0');
-			await expect(containerSection.getByTestId(Container.SectionNumber).nth(i - 1)).toHaveText(sectionNumber);
-		}
+		await expect(blockTitles).toHaveText(testData);
 
-		const allSectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Custom Software Development',
-			'Cloud Development',
-			'Big Data & Analytics',
-			'Internet of Things',
-			'Back-End Development Services',
-			'Front-End Development Services',
-			'DevOps Services & Solutions',
-			'Artificial Intelligence & Machine Learning',
-			'Mobile Development',
-			'UI/UX Design',
-			'QA as a Service',
-			'Consulting Service',
+		const containerSection = servicesContainer.getByTestId(Container.ContainerSection);			
+		const countOfSections = 10
+		await expect(containerSection).toHaveCount(countOfSections);
+
+		await expect(servicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
+			'01',
+			'02',
+			'01',
+			'02',
+			'03',
+			'04',
+			'01',
+			'02',
+			'03',
+			'04',
+		]);
+
+		const sectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
+		const expectedSectionTitles = [
+			'Dedicated teams', 
+			'Staff augmentation', 
+			'PoC & MVP development', 
+			'Custom software development', 
+			'AI integration services', 
+			'Data strategy consulting', 
+			'Software audit', 
+			'QA as a service', 
+			'Cloud migration', 
+			'Product scaling'
 		];
-
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(sectionTitles).toHaveText(expectedSectionTitles);
 	}
 );
 
@@ -102,23 +116,36 @@ test(
 		const servicesContainer = driver.getByTestId(OurServices.Services);
 		const servicresSections = servicesContainer.getByTestId(Container.ContainerSection);
 		const arrowUrlMap = new Map([
-			[servicresSections.nth(0), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-			[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.CloudDevelopment)],
-			[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.BigData)],
-			[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.InternetOfThings)],
-			[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.BackEndDevelopment)],
-			[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment)],
-			[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.DevOpsServ)],
-			[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.AiDevelopment)],
-			[servicresSections.nth(8), UrlProvider.urlBuilder(UrlPath.MobileDev)],
-			[servicresSections.nth(9), UrlProvider.urlBuilder(UrlPath.UiUxDesign)],
-			[servicresSections.nth(10), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
-			[servicresSections.nth(11), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+			[servicresSections.nth(0), UrlProvider.urlBuilder(UrlPath.DedicatedTeam)],
+			[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.StaffAugmentation)],
+			[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.PoCAndMVPDevelopment)],
+			[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.CustomDev)],
+			[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AIIntegrationServices)],
+			[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.DataStrategyConsultingServices)],
+			[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
+			[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
+			[servicresSections.nth(8), UrlProvider.urlBuilder(UrlPath.CloudMigration)],
+			[servicresSections.nth(9), UrlProvider.urlBuilder(UrlPath.ProductScaling)],
 		]);
 
 		for (const [arrow, url] of arrowUrlMap) {
 			await baseDriverSteps.checkRedirectToPage(arrow, url, UrlProvider.urlBuilder(UrlPath.OurServices));
 		}
+	}
+);
+
+test(
+	qase(
+		5340,
+		'Check section titles and image in "All-in-One Tech Partner" container from the "Our Services" page @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const allInOneTechPartnerContainer = driver.getByTestId(OurServices.AllInOneTechPartner);
+		const images = allInOneTechPartnerContainer
+			.getByTestId(MainSiteImages.AllInOneTechPartner)
+			.locator('visible=true');
+
+		await baseDriverSteps.checkImagesVisibility(images, 1);
 	}
 );
 
