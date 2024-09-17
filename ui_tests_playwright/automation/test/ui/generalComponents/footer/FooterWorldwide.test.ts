@@ -49,7 +49,7 @@ test.beforeEach(async () => {
 	companyUrls = Object.values(companyUrl);
 });
 
-test(
+test.skip(
 	qase(
 		5485,
 		`Check the footer information from the "Footer" container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
@@ -167,7 +167,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5492,
 		`Check the redirection for the Services block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`

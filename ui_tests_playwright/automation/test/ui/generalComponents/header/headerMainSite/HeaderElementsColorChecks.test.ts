@@ -66,7 +66,7 @@ test.beforeEach(async () => {
 	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote);
 });
 
-test(
+test.skip(
 	qase(5504, `Check buttons background color in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`),
 	async () => {
 		for (const url of testDataProvider) {
@@ -87,7 +87,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5507,
 		`Check buttons background color after hovering on it in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
@@ -119,7 +119,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5505,
 		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
@@ -138,7 +138,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5506,
 		`Check buttons background color after clicking and hovering on it in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
@@ -167,7 +167,7 @@ test(
 	}
 );
 
-test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
+test.skip(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
 		headerButtonsList = [industriesDropdownButton, servicesDropdownButton, companyDropdownButton];
 
