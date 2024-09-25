@@ -28,7 +28,6 @@ export default class UrlPath {
 	static CloudMigration = 'services/cloud-migration';
 	static ProductScaling = 'services/product-scaling';
 
-
 	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
