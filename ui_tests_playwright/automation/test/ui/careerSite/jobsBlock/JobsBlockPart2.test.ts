@@ -35,7 +35,7 @@ test.describe('With one precondition vacancy', () => {
 		expect(await driver.getByTestId(Job.YourTeam).textContent()).toEqual('Your teamTypeScript test_1');
 		expect(await driver.getByTestId(Job.Culture).textContent()).toEqual('CultureTypeScript test_1');
 		expect(await driver.getByTestId(Job.YourResponsibilities).textContent()).toEqual(
-			'Your responsibilitiesTypeScript test'
+			'Your responsibilitiesTypeScript test_1'
 		);
 		expect(await driver.getByTestId(Job.ItsAboutYou).textContent()).toEqual("It's about youTypeScript test_1");
 		expect(await driver.getByTestId(Job.WhatWeHaveForYou).textContent()).toEqual(

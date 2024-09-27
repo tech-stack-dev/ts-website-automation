@@ -1,9 +1,164 @@
+import {CaseStudyDto} from '../../dto/CaseStudyDto';
+import {IndustryTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/IndustryTagEnum';
+import {ServiceTagEnum} from '../../enum/caseStudyEnums/caseStudyTags/ServiceTagEnum';
+import ContentfulCaseStudyData from '../../preconditionsData/contentfulData/ContentfulCaseStudyData';
+import CaseStudyImagesPath from '../../preconditionsData/contentfulData/contentfulCaseStudiesImages/CaseStudyImagesPath';
 import {contentfulUtils} from '../../utils/ContentfulUtils';
 
 class ContentfulSteps {
 	public async createCareerWithDefaultValue(careerName: string, careerId: string, careerDescriptionId: string) {
 		await contentfulUtils.CreateAndPublishCareerDescription(careerDescriptionId);
 		await contentfulUtils.CreateAndPublishCareer(careerId, careerName, careerDescriptionId);
+	}
+
+	public async createCaseStudy(caseStudyName: string, numberOfCaseStudies = 1, caseStudyObject?: CaseStudyDto) {
+		const summaryFields: {fields: {[key: string]: any}} = ContentfulCaseStudyData.getCaseStudySummaryFields();
+
+		if (caseStudyObject?.summary.review) {
+			const reviewLink = caseStudyObject.summary.review.link;
+			await contentfulUtils.CreateAndPublishSummaryReview(reviewLink);
+			summaryFields.fields['review'] = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().review;
+		}
+
+		if (caseStudyObject?.summary.technologiesUsed) {
+			const technologiesUsedImage = caseStudyObject.summary.technologiesUsed.image
+				? caseStudyObject.summary.technologiesUsed.image.toString()
+				: undefined;
+			await contentfulUtils.CreateAndPublishSummaryTechnologiesUsed(technologiesUsedImage);
+			summaryFields.fields['technologiesUsed'] =
+				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().technologiesUsed;
+		}
+
+		if (caseStudyObject?.summary.solution) {
+			const solutionImage = caseStudyObject.summary.solution.image
+				? caseStudyObject.summary.solution.image.toString()
+				: undefined;
+			await contentfulUtils.CreateAndPublishSummarySolution(solutionImage);
+			summaryFields.fields['newSolution'] =
+				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newSolution;
+		}
+
+		if (caseStudyObject?.summary.workflow) {
+			await contentfulUtils.CreateAndPublishSummaryWorkflow();
+			summaryFields.fields['newWorkflow'] =
+				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newWorkflow;
+		}
+
+		if (caseStudyObject?.summary.aboutTheTeam) {
+			summaryFields.fields['newAboutTheTeam'] =
+				ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().newAboutTheTeam;
+		}
+
+		summaryFields.fields['location'] = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields().location;
+
+		await contentfulUtils.CreateAndPublishCaseStudySummary(summaryFields);
+		const caseStudyImage = caseStudyObject?.caseStudyImage
+			? caseStudyObject.caseStudyImage.toString()
+			: CaseStudyImagesPath.PreviewImage;
+
+		const assetPreviewImageId = ContentfulCaseStudyData.getCaseStudyMainFields().fields.image['en-US'].sys.id;
+		await contentfulUtils.CreateAndPublishCaseStudyImageAsset(caseStudyImage, assetPreviewImageId, 'Preview');
+
+		const caseStudyTags = caseStudyObject?.tags
+			? caseStudyObject.tags
+			: {industryTag: [IndustryTagEnum.Manufacturing], serviceTag: [ServiceTagEnum.SoftwareTesting]};
+
+		Object.values(caseStudyTags).forEach((tagArray) => {
+			contentfulUtils.AddTagsToBody(tagArray);
+		});
+
+		if (caseStudyObject?.showOnHomePage) {
+			const homePageCaseTag = caseStudyObject.showOnHomePage.tag;
+			contentfulUtils.tagJson.push(contentfulUtils.GetTagJsonBody(homePageCaseTag));
+		}
+
+		for (let index = 1; index <= numberOfCaseStudies; index++) {
+			const caseStudyMainFields: {fields: {[key: string]: any}} =
+				ContentfulCaseStudyData.getCaseStudyMainFields(index);
+			const caseStudyOptionalFields = ContentfulCaseStudyData.getCaseStudyOptionalFields(index);
+
+			if (caseStudyObject?.showOnHomePage) {
+				caseStudyMainFields.fields['homepageName'] = caseStudyOptionalFields.homepageName;
+				caseStudyMainFields.fields['homepageDescription'] = caseStudyOptionalFields.homepageDescription;
+				caseStudyMainFields.fields['homepageLocation'] = caseStudyOptionalFields.homepageLocation;
+
+				if (caseStudyObject?.showOnHomePage?.image) {
+					const homePageCaseStudyImagePath = caseStudyObject.showOnHomePage.image.toString();
+					caseStudyMainFields.fields['homepageImage'] = caseStudyOptionalFields.homepageImage;
+
+					const assetHomePageCaseImageId = caseStudyMainFields.fields.homepageImage['en-US'].sys.id;
+					await contentfulUtils.CreateAndPublishCaseStudyImageAsset(
+						homePageCaseStudyImagePath,
+						assetHomePageCaseImageId,
+						`HomePageCasePreview-${index}`
+					);
+				}
+			}
+
+			await contentfulUtils.CreateAndPublishCaseStudy(caseStudyName, index, caseStudyMainFields);
+		}
+	}
+
+	public async unpublishAndDeleteCaseStudy(numberOfCaseStudies = 1, caseStudyObject?: CaseStudyDto) {
+		const caseStudyMainFields = ContentfulCaseStudyData.getCaseStudyMainFields();
+		const summaryOptionalFields = ContentfulCaseStudyData.getCaseStudySummaryOptionalFields();
+		const summaryId = caseStudyMainFields.fields.summary['en-US'].sys.id;
+		const publishedEntityIds = [summaryId];
+		const previewImageId = caseStudyMainFields.fields.image['en-US'].sys.id;
+		const solution = caseStudyObject?.summary.solution;
+		const publishedAssetIds = [previewImageId];
+
+		for (let index = 1; index <= numberOfCaseStudies; index++) {
+			const caseStudyId = ContentfulCaseStudyData.getCaseStudyId(index);
+			await contentfulUtils.UnpublishEntry(caseStudyId);
+			await contentfulUtils.DeleteEntry(caseStudyId);
+
+			if (caseStudyObject?.showOnHomePage?.image) {
+				const homePageCaseImageId =
+					ContentfulCaseStudyData.getCaseStudyOptionalFields(index).homepageImage['en-US'].sys.id;
+				publishedAssetIds.push(homePageCaseImageId);
+			}
+		}
+
+		if (caseStudyObject?.summary.review) {
+			const reviewId = summaryOptionalFields.review['en-US'].sys.id;
+			publishedEntityIds.push(reviewId);
+		}
+
+		if (caseStudyObject?.summary.technologiesUsed) {
+			const technologiesUsedId = summaryOptionalFields.technologiesUsed['en-US'].sys.id;
+			const technologiesUsedImageId =
+				ContentfulCaseStudyData.getSummaryTechnologiesUsedFields().fields.awardsImg['en-US'].sys.id;
+
+			publishedEntityIds.push(technologiesUsedId);
+			publishedAssetIds.push(technologiesUsedImageId);
+		}
+
+		if (solution) {
+			const solutionId = summaryOptionalFields.newSolution['en-US'].sys.id;
+			publishedEntityIds.push(solutionId);
+
+			if (solution.image) {
+				const solutionImageId =
+					ContentfulCaseStudyData.getSummarySolutionOptionalFields().imgAfterBlock['en-US'].sys.id;
+				publishedAssetIds.push(solutionImageId);
+			}
+		}
+
+		if (caseStudyObject?.summary.workflow) {
+			const workflowId = summaryOptionalFields.newWorkflow['en-US'].sys.id;
+			publishedEntityIds.push(workflowId);
+		}
+
+		for (const entityId of publishedEntityIds) {
+			await contentfulUtils.UnpublishEntry(entityId);
+			await contentfulUtils.DeleteEntry(entityId);
+		}
+
+		for (const assetId of publishedAssetIds) {
+			await contentfulUtils.UnpublishAsset(assetId);
+			await contentfulUtils.DeleteAsset(assetId);
+		}
 	}
 
 	public async createManyCareersWithDefaultValue(
