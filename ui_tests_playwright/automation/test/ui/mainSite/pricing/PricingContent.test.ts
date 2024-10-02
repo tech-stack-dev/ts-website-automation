@@ -17,11 +17,10 @@ test('Check the Info container from the "Pricing" page @desktop @mobile @Regress
 	const infoTitle = info.getByTestId(Container.Title);
 	const infoBlockTitles = info.getByTestId(Container.BlockTitle);
 	const expectedBlockTitles = [
-		'\n                5.0\n                rate\n              ',
 		'\n                10\n                +\n              ',
 		'\n                12\n                +\n              ',
-		'\n                67\n                %\n              ',
-		'\n                  91\n                  %\n                ',
+		'\n                5.0\n                           ',
+		'\n                91\n                %\n                ',
 	];
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
