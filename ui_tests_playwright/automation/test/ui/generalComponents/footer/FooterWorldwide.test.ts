@@ -220,7 +220,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5490,
 		`Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`

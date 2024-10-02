@@ -50,12 +50,12 @@ test(
 		const expectedData = [
 			['Services', '01'],
 			['All-in-One Tech Partner', '02'],
- 			['Technology stack', '03'],
- 			['Our approach', '04'],
- 			['Reviews', '05'],
- 			['FAQ', '06'],
- 			['Request a Free No-obligation Quote', '07'],
-		]
+			['Technology stack', '03'],
+			['Our approach', '04'],
+			['Reviews', '05'],
+			['FAQ', '06'],
+			['Request a Free No-obligation Quote', '07'],
+		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
@@ -73,8 +73,8 @@ test(
 
 		await expect(blockTitles).toHaveText(testData);
 
-		const containerSection = servicesContainer.getByTestId(Container.ContainerSection);			
-		const countOfSections = 10
+		const containerSection = servicesContainer.getByTestId(Container.ContainerSection);
+		const countOfSections = 10;
 		await expect(containerSection).toHaveCount(countOfSections);
 
 		await expect(servicesContainer.getByTestId(Container.SectionNumber)).toHaveText([
@@ -92,16 +92,16 @@ test(
 
 		const sectionTitles = servicesContainer.getByTestId(Container.SectionTitle);
 		const expectedSectionTitles = [
-			'Dedicated teams', 
-			'Staff augmentation', 
-			'PoC & MVP development', 
-			'Custom software development', 
-			'AI integration services', 
-			'Data strategy consulting', 
-			'Software audit', 
-			'QA as a service', 
-			'Cloud migration', 
-			'Product scaling'
+			'Dedicated teams',
+			'Staff augmentation',
+			'PoC & MVP development',
+			'Custom software development',
+			'AI integration services',
+			'Data strategy consulting',
+			'Software audit',
+			'QA as a service',
+			'Cloud migration',
+			'Product scaling',
 		];
 		await expect(sectionTitles).toHaveText(expectedSectionTitles);
 	}
