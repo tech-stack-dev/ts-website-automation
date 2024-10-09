@@ -146,7 +146,7 @@ test(
 		5505,
 		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
-	async () => {
+	async ({isMobile}) => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			const headerButtonsList = [
@@ -158,8 +158,11 @@ test(
 
 			await headerMenuSteps.clickOnBurgerMenu();
 
+			const desktopColor = pagesWithWhiteHeader.includes(url) ? ColorsEnum.Grey_EFEFEF : ColorsEnum.Grey_434343;
+			const expectedColor = isMobile ? ColorsEnum.Yellow_FFC600 : desktopColor;
+
 			for (const button of headerButtonsList) {
-				await buttonSteps.buttonColorCheck(button, ColorsEnum.Yellow_FFC600);
+				await buttonSteps.buttonColorCheck(button, expectedColor);
 			}
 		}
 	}
