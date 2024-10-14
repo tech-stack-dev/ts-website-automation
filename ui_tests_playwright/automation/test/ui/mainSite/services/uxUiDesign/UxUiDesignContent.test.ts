@@ -39,7 +39,7 @@ test(
 			driver.getByTestId(UxUiDesign.GetCustomUxAndUiDesignServices),
 			driver.getByTestId(UxUiDesign.WeBuildUxUiForMobileWeb),
 			driver.getByTestId(UxUiDesign.OurUiUxServices),
-			driver.getByTestId(UxUiDesign.SuccessStories),
+			driver.getByTestId(UxUiDesign.CaseStudy),
 			driver.getByTestId(UxUiDesign.TypicalUxUiDesignWorkflow),
 			driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct),
 			driver.getByTestId(UxUiDesign.OurApproach),
@@ -54,7 +54,7 @@ test(
 			['Get Custom UX and UI Design Services', '01'],
 			['We Build UX/UI for Mobile & Web', '02'],
 			['Our UI/UX Services', '03'],
-			['Success Stories', '04'],
+			['Case Study by Techstack', '04'],
 			['Typical UX/UI Design Workflow', '05'],
 			['We Never Stop Improving Your Product', '06'],
 			['Our Approach', '07'],
@@ -137,24 +137,34 @@ test(
 test(
 	qase(
 		4906,
-		'Check section titles, image and CTA button`s title in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check section titles, image and CTA button`s title in "Case Study by Techstack" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
-		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
-		const testDataSectionTitles = [
-			'Upgraded patient data management system',
-			'Designed intuitive web application',
-			'Increased efficiency and saved time',
-			'Provided critical information for research',
-			'Improved healthcare and patient care',
-		];
+		const caseStudyContainer = driver.getByTestId(UxUiDesign.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Patient Data Management System Redesign'
+		);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteImages.MedicalDashboard)).toBeVisible();
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		const actualIndexesAndTitles: Map<string, string> = new Map();
+		for (let i = 0; i < sectionTitles.length; i++) {
+			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+		}
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Comprehensive UX/UI overhaul for a US-based healthcare partner'],
+			['02', 'Transformation from outdated desktop application to intuitive web and mobile platform'],
+			['03', 'Significant improvements in user efficiency, data accessibility, and patient care'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.Dashboard)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}

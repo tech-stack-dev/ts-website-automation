@@ -40,7 +40,7 @@ test(
 			driver.getByTestId(IoTEngineeringServices.IoTEngineeringSolutions),
 			driver.getByTestId(IoTEngineeringServices.OurIoTEngineeringServices),
 			driver.getByTestId(IoTEngineeringServices.IoTTechnologyStackByLayers),
-			driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies),
+			driver.getByTestId(IoTEngineeringServices.CaseStudy),
 			driver.getByTestId(IoTEngineeringServices.IndustrySpecificIoTSolutions),
 			driver.getByTestId(IoTEngineeringServices.IoTEngineeringProcess),
 			driver.getByTestId(IoTEngineeringServices.OurApproachToIoTEngineering),
@@ -56,7 +56,7 @@ test(
 			['IoT Engineering Solutions', '02'],
 			['Our IoT Engineering Services', '03'],
 			['IoT Technology Stack by Layers', '04'],
-			['IoT Engineering Case Studies', '05'],
+			['Case Study by Techstack', '05'],
 			['Industry-specific IoT Solutions', '06'],
 			['IoT Engineering Process', '07'],
 			['Our Approach to IoT Engineering', '08'],
@@ -182,38 +182,33 @@ test(
 test(
 	qase(
 		5180,
-		'Check section numbers and titles, block title, image, and CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
+		'Check section numbers and titles, block title, image, and CTA button in "Case Study by Techstack" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
-		const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
-		const sectionIndexes = await ioTEngineeringCaseStudiesContainer
-			.getByTestId(Container.SectionNumber)
-			.allInnerTexts();
-		const sectionTitles = await ioTEngineeringCaseStudiesContainer
-			.getByTestId(Container.SectionTitle)
-			.allInnerTexts();
+		const caseStudyContainer = driver.getByTestId(IoTEngineeringServices.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
+
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'IoT Sensor Kit for Real-Time Environmental and Product Temperature Monitoring'
+		);
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
 
 		const actualIndexesAndTitles: Map<string, string> = new Map();
-
 		for (let i = 0; i < sectionTitles.length; i++) {
 			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
 		}
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
-			['01', 'Real-time monitoring of production processes'],
-			['02', 'Valuable insights on process adjustments'],
-			['03', 'Cost savings from addressing over/undercooling'],
-			['04', 'Forecasting capabilities'],
-			['05', 'Process improvements'],
+			['01', 'Deploys temperature and humidity sensors for comprehensive environmental tracking'],
+			['02', 'Incorporates an infrared camera for surface temperature heat mapping'],
+			['03', 'Enables real-time monitoring and historical data analysis'],
 		]);
 
 		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
-		await expect(ioTEngineeringCaseStudiesContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'IoT humidity sensors scheme'
-		);
 
 		await expect(driver.getByTestId(MainSiteImages.SensorsScheme)).toBeVisible();
-
 		await expect(driver.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText('Check out how we build it');
 	}
 );

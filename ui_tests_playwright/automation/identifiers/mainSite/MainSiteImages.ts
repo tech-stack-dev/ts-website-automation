@@ -1,24 +1,30 @@
 export default class MainSiteImages {
-	static BeatsScreening = 'Img-BeatsScreening';
 	static CompleteMap = 'Map-CompleteMap';
 	static UsaMap = 'Map-UsaMap';
 	static NorthAmericaMap = 'Map-NorthAmericaMap';
 	static EuropeMap = 'Map-EuropeMap';
 	static AustraliaMap = 'Map-AustraliaMap';
 	static CaseStudy = 'Img-CaseStudy';
-	static SolarEnergy = 'Img-SolarEnergy';
-	static SensorsScheme = 'Img-SensorsScheme';
-	static SuccessStories = 'Img-SuccessStories';
-	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
 	static BackendCaseStudy = 'Img-BackendCaseStudy';
-	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
+	static FrontendCaseStudy = 'Img-FrontendCaseStudy';
+	static OurFeaturedCaseStudy = 'Img-OurFeaturedCaseStudy';
 	static MobileCaseStudy = 'Img-MobileCaseStudy';
-	static MedicalDashboard = 'Img-Dashboard';
+	static Dashboard = 'Img-Dashboard';
+	static BeatsScreening = 'Img-BeatsScreening';
+	static SchemaCaseStudy = 'Img-SchemaCaseStudy';
+	static SuccessStories = 'Img-SuccessStories';
+	static SensorsScheme = 'Img-SensorsScheme';
 	static IncorporatingAiMl = 'Img-IncorporatingAiMl';
+	static SolarEnergy = 'Img-SolarEnergy';
+	static IoTSensorKit = 'Img-IoTSensorKit';
+	static CloudPlatform = 'Img-CloudPlatform';
+	static DecentralizedBlockchainNetwork = 'Img-DecentralizedBlockchainNetwork';
+	static PatientDataManagementSystem = 'Img-PatientDataManagementSystem';
+	static AiPoweredECG = 'Img-AiPoweredECG';
 	static FeaturedCaseStudy = 'Img-FeaturedCaseStudy';
 	static Terraform = 'Img-Terraform';
 	static Kubernetes = 'Img-Kubernetes';
-	static FrontendCaseStudy = 'Img-FrontendCaseStudy';
+	static SalesEngagementPlatform = 'Img-SalesEngagementPlatform';
 	static AllInOneTechPartner = 'Img-AllInOneTechPartner';
 
 	// Tool logos

@@ -43,7 +43,7 @@ test('Check the container titles and numbers from the "Front End Development" pa
 		['Team Expertise', '01'],
 		['Frontend Web Development Services', '02'],
 		['Technology stack', '03'],
-		['Front-End Development Services Case Studies', '04'],
+		['Case Study by Techstack', '04'],
 		['Why Techstack', '05'],
 		['Our Front End Development Experts', '06'],
 		['Cooperation Models', '07'],
@@ -110,23 +110,32 @@ test('Check section titles in "Technology stack" container from the "Front End D
 	await expect(allSectionTitles).toHaveText(testData);
 });
 
-test('Check section titles, image and CTA in "Front-End Development Services Case Studies" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
-	const frontEndCaseStudiesContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
-	const actualSectionTitles = frontEndCaseStudiesContainer.getByTestId(Container.SectionTitle);
-	const expectSectionTitles = [
-		'Comprehensive Design System',
-		'Transition to Storybook',
-		'Automated UI Testing',
-		"Creation of the 'QA Automation Middleware' library",
-		'Seamless Internationalization',
-		'Reusable Elements and Patterns',
-		'FE-BE Boilerplate',
-	];
+test('Check section titles, image and CTA in "Case Study by Techstack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
+	const caseStudyContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
+	const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-	await expect(actualSectionTitles).toHaveText(expectSectionTitles);
+	await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+		'Sales-Engagement Platform for Robust performance and Scalability'
+	);
 
-	await expect(frontEndCaseStudiesContainer.getByTestId(MainSiteImages.FrontendCaseStudy)).toBeVisible();
-	await expect(frontEndCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+	const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+	const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+
+	const actualIndexesAndTitles: Map<string, string> = new Map();
+	for (let i = 0; i < sectionTitles.length; i++) {
+		actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+	}
+
+	const expectedIndexesAndTitles: Map<string, string> = new Map([
+		['01', 'Enables high-quality audio and video streaming for sales professionals'],
+		['02', 'Integrates screen sharing functionality for effective presentations'],
+		['03', 'Seamlessly incorporates Amazon Chime services for comprehensive communication'],
+	]);
+
+	expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+	await expect(caseStudyContainer.getByTestId(MainSiteImages.FrontendCaseStudy)).toBeVisible();
+	await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 		'Check out how we build it'
 	);
 });

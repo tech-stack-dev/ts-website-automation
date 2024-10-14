@@ -162,10 +162,25 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(AiDevelopment.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Seamless integration into existing software system', 'Security and data integrity'];
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText('AI-Powered ECG Analysis Subsystem');
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+
+		const actualIndexesAndTitles: Map<string, string> = new Map();
+		for (let i = 0; i < sectionTitles.length; i++) {
+			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+		}
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Integrates state-of-the-art machine learning models into established ECG analysis workflows'],
+			['02', 'Dramatically improves diagnostic accuracy, reducing false positives by 40%'],
+			['03', 'Accelerates ECG interpretation time by 60%, enabling faster patient care'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.IncorporatingAiMl)).toBeVisible();
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(

@@ -41,7 +41,7 @@ test(
 			driver.getByTestId(BigDataAndAnalytics.HowBigDataWillHelpYou),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSoftwareDevelopmentWithTechstack),
 			driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack),
-			driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies),
+			driver.getByTestId(BigDataAndAnalytics.CaseStudy),
 			driver.getByTestId(BigDataAndAnalytics.IndustrySpecificBigDataSolutions),
 			driver.getByTestId(BigDataAndAnalytics.WhyChooseTechstackBigDataServices),
 			driver.getByTestId(BigDataAndAnalytics.OurExperts),
@@ -56,7 +56,7 @@ test(
 			['How Big Data Will Help You', '02'],
 			['Big Data Software Development With Techstack', '03'],
 			['Big Data Solutions Technology Stack', '04'],
-			['Big Data Case Studies', '05'],
+			['Case Study by Techstack', '05'],
 			['Industry-specific Big Data Solutions', '06'],
 			['Why Choose Techstack’s Big Data Software Development Services?', '07'],
 			['Our Experts', '08'],
@@ -149,25 +149,34 @@ test(
 test(
 	qase(
 		4978,
-		'Check section titles, block title, image and CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check section titles, block title, image and CTA button in "Case Study by Techstack" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
-		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
-		const allSectionTitles = bigDataCaseStudiesContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Early Anomaly Detection',
-			'Real-Time Monitoring',
-			'Cloud Storage and Analysis',
-			'Improved Efficiency',
-			'Cost Savings',
-		];
-		await expect(allSectionTitles).toHaveText(testData);
+		const caseStudyContainer = driver.getByTestId(BigDataAndAnalytics.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(bigDataCaseStudiesContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'Video-based quality control scheme'
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'AI-Powered Video Quality Control System for Shingle Manufacturing'
 		);
-		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
-		await expect(bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+
+		const actualIndexesAndTitles: Map<string, string> = new Map();
+		for (let i = 0; i < sectionTitles.length; i++) {
+			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+		}
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Utilizes AI and Machine Learning for real-time shingle defect detection'],
+			['02', 'Incorporates advanced Image Interpretation software for accurate analysis'],
+			['03', 'Deploys edge devices for on-site image capture and immediate processing'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}

@@ -59,7 +59,7 @@ test(
 			['Expert Back-End Development Services', '02'],
 			['Back-End Development Services for Any Software Product', '03'],
 			['Our Tech Arsenal for Back-End Development', '04'],
-			['Our Featured Back-End Case Study', '05'],
+			['Case Study by Techstack', '05'],
 			['Our Leading Back-End Engineers', '06'],
 			['Why Techstack Stands Out', '07'],
 			['Partnering for Effective Back-End Development', '08'],
@@ -177,14 +177,32 @@ test(
 test(
 	qase(
 		5530,
-		'Check section titles, image and CTA in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check section titles, image and CTA in "Case Study by Techstack" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Complexity of Data Management', 'Integration with Existing Systems'];
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Next-Gen Analytics System for a Sales Engagement Platform'
+		);
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+
+		const actualIndexesAndTitles: Map<string, string> = new Map();
+		for (let i = 0; i < sectionTitles.length; i++) {
+			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
+		}
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Cutting-edge big data solution for a market leader in sales engagement'],
+			['02', 'Revolutionized data processing capabilities, from collection to actionable insights'],
+			['03', 'Achieved 200% increase in data processing speed and 40% improvement in decision-making efficiency'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BackendCaseStudy)).toBeVisible();
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
