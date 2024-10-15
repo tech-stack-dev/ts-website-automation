@@ -9,6 +9,7 @@ import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/se
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 const requestAQuoteButtonText = 'Request a quote';
 
@@ -194,11 +195,7 @@ test(
 
 		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-		const actualIndexesAndTitles: Map<string, string> = new Map();
-		for (let i = 0; i < sectionTitles.length; i++) {
-			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-		}
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
 			['01', 'Deploys temperature and humidity sensors for comprehensive environmental tracking'],

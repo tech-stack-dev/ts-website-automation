@@ -10,6 +10,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.BigData));
@@ -161,11 +162,7 @@ test(
 
 		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-		const actualIndexesAndTitles: Map<string, string> = new Map();
-		for (let i = 0; i < sectionTitles.length; i++) {
-			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-		}
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
 			['01', 'Utilizes AI and Machine Learning for real-time shingle defect detection'],

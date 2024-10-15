@@ -9,6 +9,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.UiUxDesign));
@@ -149,11 +150,7 @@ test(
 
 		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-		const actualIndexesAndTitles: Map<string, string> = new Map();
-		for (let i = 0; i < sectionTitles.length; i++) {
-			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-		}
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
 			['01', 'Comprehensive UX/UI overhaul for a US-based healthcare partner'],

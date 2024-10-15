@@ -8,6 +8,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import FrontEndDevelopment from '../../../../../identifiers/mainSite/pages/services/FrontEndDevelopment';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment));
@@ -120,11 +121,7 @@ test('Check section titles, image and CTA in "Case Study by Techstack" container
 
 	const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 	const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-	const actualIndexesAndTitles: Map<string, string> = new Map();
-	for (let i = 0; i < sectionTitles.length; i++) {
-		actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-	}
+	const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 	const expectedIndexesAndTitles: Map<string, string> = new Map([
 		['01', 'Enables high-quality audio and video streaming for sales professionals'],

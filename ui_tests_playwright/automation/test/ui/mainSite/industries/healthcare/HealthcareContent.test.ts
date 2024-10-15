@@ -8,6 +8,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect} from '../../../../../fixtures/DesktopMobileSetup';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
@@ -119,11 +120,7 @@ test(
 
 		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-		const actualIndexesAndTitles: Map<string, string> = new Map();
-		for (let i = 0; i < sectionTitles.length; i++) {
-			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-		}
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
 			['01', 'Integrates state-of-the-art machine learning models into established ECG analysis workflows'],

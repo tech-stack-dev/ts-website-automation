@@ -8,6 +8,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -162,11 +163,7 @@ test(
 
 		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
 		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
-
-		const actualIndexesAndTitles: Map<string, string> = new Map();
-		for (let i = 0; i < sectionTitles.length; i++) {
-			actualIndexesAndTitles.set(sectionIndexes[i], sectionTitles[i]);
-		}
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
 		const expectedIndexesAndTitles: Map<string, string> = new Map([
 			['01', 'Enables real-time monitoring of solar energy production and consumption'],
