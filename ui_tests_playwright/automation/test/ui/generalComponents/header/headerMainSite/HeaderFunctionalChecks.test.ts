@@ -136,7 +136,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5503,
 		`Check the redirection for the Expertise block in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
