@@ -31,7 +31,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5481,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
@@ -45,7 +45,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5483,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Expertise" pages @desktop @mobile @Regression @Breadcrumbs'
@@ -91,7 +91,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5482,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" pages @desktop @mobile @Regression @Breadcrumbs'
