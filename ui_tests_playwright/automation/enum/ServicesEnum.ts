@@ -3,7 +3,7 @@ export enum ServicesEnum {
 	CustomDev,
 	AiIntegrationServices,
 	DataStrategy,
-	SoftwareAudit,
+	ConsultingServ,
 	QaAsAService,
 	ProductScaling,
 	CloudMigration,

@@ -16,7 +16,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
 	[ServicesEnum.AiIntegrationServices]: UrlProvider.urlBuilder(UrlPath.AiIntegrationServices),
 	[ServicesEnum.DataStrategy]: UrlProvider.urlBuilder(UrlPath.DataStrategy),
-	[ServicesEnum.SoftwareAudit]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
 	[ServicesEnum.QaAsAService]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 	[ServicesEnum.ProductScaling]: UrlProvider.urlBuilder(UrlPath.ProductScaling),
 	[ServicesEnum.CloudMigration]: UrlProvider.urlBuilder(UrlPath.CloudMigration),
