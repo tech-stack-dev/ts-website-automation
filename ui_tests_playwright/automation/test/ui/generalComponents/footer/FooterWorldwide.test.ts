@@ -43,7 +43,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
-	UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote]),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote])),
 ];
 
 test.beforeEach(async () => {
@@ -247,7 +247,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5492,
 		`Check the redirection for the Expertise block on all pages @desktop @mobile @Regression @Footer @TSWEB-655`

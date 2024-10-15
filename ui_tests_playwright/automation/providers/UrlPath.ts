@@ -5,27 +5,16 @@ export default class UrlPath {
 	static RenewableEnergy = 'industries/renewable-energy';
 
 	// Services pages
-	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
+	static OurServices = 'services';
 	static CustomDev = 'services/custom-software-development';
-	static AiIntegrationServices = 'services/ai-integration';
-	static DataStrategy = 'services/data-strategy-consulting';
-	static ConsultingServ = 'services/consulting-service';
-	static QaAsAServ = 'services/qa-as-a-service';
-	static ProductScaling = 'services/product-scaling';
-	static CloudMigration = 'services/cloud-migration';
-	static DedicatedTeam = 'services/dedicated-development-team';
-	static StaffAugmentation = 'services/it-staff-augmentation';
-
-	// Expertise pages
-	static CloudDevelopment = 'services/cloud-application-development';
-	static DevOpsServ = 'services/devops';
-	static InternetOfThings = 'services/internet-of-things';
 	static DigitalTransform = 'services/digital-transformation-services';
-	static UiUxDesign = 'services/ui-ux-design';
+	static CloudDevelopment = 'services/cloud-application-development';
 	static MobileDev = 'services/mobile-app-development';
 	static FrontEndDevelopment = 'services/front-end-development-services';
 	static BackEndDevelopment = 'services/backend-development-services';
 	static BigData = 'services/big-data-and-analytics';
+	static InternetOfThings = 'services/internet-of-things';
+	static DevOpsServ = 'services/devops';
 	static AiDevelopment = 'services/artificial-intelligence';
 	static UiUxDesign = 'services/ui-ux-design';
 	static QaAsAServ = 'services/qa-as-a-service';
@@ -34,10 +23,14 @@ export default class UrlPath {
 	static DedicatedTeam = 'services/dedicated-development-team';
 	static StaffAugmentation = 'services/it-staff-augmentation';
 	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
-	static AIIntegrationServices = 'services/ai-integration';
 	static DataStrategyConsultingServices = 'services/data-strategy-consulting';
 	static CloudMigration = 'services/cloud-migration';
 	static ProductScaling = 'services/product-scaling';
+	static AiIntegrationServices = 'services/ai-integration';
+	static DataStrategy = 'services/data-strategy-consulting';
+	static ComputerVision = 'services/computer-vision-development';
+ 	static OpenAI = 'services/openai-api-integration';
+ 	static DeepLearning = 'services/deep-learning-development';
 
 	// Company pages
 	static AboutUs = 'about-us';
@@ -69,7 +62,4 @@ export default class UrlPath {
 
 	// Error pages
 	static PageNotFound = '404';
-
-	//Our Services Page
-	static OurServices = 'services';
 }
