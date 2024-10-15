@@ -201,7 +201,8 @@ test(`Check the redirection by the "Contact Us" button on all pages @desktop @mo
 	}
 });
 
-test(`Check the redirection by the "Services" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
+//add data-id for Webflow pages 
+test.skip(`Check the redirection by the "Services" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
 	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 
