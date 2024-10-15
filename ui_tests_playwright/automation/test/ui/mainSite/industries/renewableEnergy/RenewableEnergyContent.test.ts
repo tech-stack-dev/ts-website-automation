@@ -8,6 +8,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -92,7 +93,7 @@ test(
 	async () => {
 		const techstackInNumbersContainer = driver.getByTestId(RenewableEnergy.TechstackInNumbers);
 		const allBlockTitles = techstackInNumbersContainer.getByTestId(Container.BlockTitle);
-		const testData = ['10\nyears', '20\nexperts', '91\n%', '2 of 3\nclients'];
+		const testData = ['10\nyears', '20\nexperts', '91\n%', '5.0'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}
@@ -156,12 +157,21 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(RenewableEnergy.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Improved efficiency', 'Energy-centric system for customers', 'Data normalization'];
-		await expect(allSectionTitles).toHaveText(testData);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		const blockTitle = caseStudyContainer.getByTestId(Container.BlockTitle);
-		await expect(blockTitle).toHaveText('Solar energy data portal scheme');
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText('Solar Energy Data Portal');
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Enables real-time monitoring of solar energy production and consumption'],
+			['02', 'Normalizes data from different sources for accurate analysis and forecasting'],
+			['03', 'Streamlines operations and enhances decision-making processes'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.SolarEnergy)).toBeVisible();
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(

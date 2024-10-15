@@ -66,12 +66,12 @@ test(
 test(
 	qase(
 		5368,
-		'Check redirect by CTA button in "Success Stories as a Digital Transformation Service Provider" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
+		const caseStudyContainer = driver.getByTestId(DigitalTransformation.CaseStudy);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(

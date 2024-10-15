@@ -15,23 +15,19 @@ test.beforeEach(async () => {
 test('Check the Info container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const info = driver.getByTestId(Pricing.Info);
 	const infoTitle = info.getByTestId(Container.Title);
-	const infoBlockTitles = info.getByTestId(Container.BlockTitle);
-	const expectedBlockTitles = [
-		'\n                5.0\n                rate\n              ',
-		'\n                10\n                +\n              ',
-		'\n                12\n                +\n              ',
-		'\n                67\n                %\n              ',
-		'\n                  91\n                  %\n                ',
-	];
+	const infoBlockTitles = await info.getByTestId(Container.BlockTitle).allInnerTexts();
+	const infoBlockTitlesTrimmed = infoBlockTitles.map((title) => title.trim());
+
+	const expectedBlockTitles = ['10\n+', '12\n+', '5.0', '91\n%'];
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
 	await expect(infoTitle).toHaveText('Our Software Development Cost');
-	await expect(infoBlockTitles).toHaveText(expectedBlockTitles);
+	expect(infoBlockTitlesTrimmed).toStrictEqual(expectedBlockTitles);
 });
 
 test('Check the container titles and numbers from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const containers = [
-		driver.getByTestId(Pricing.WhatIsCooperationType),
+		driver.getByTestId(Pricing.GetOurRateCard),
 		driver.getByTestId(Pricing.CustomOffer),
 		driver.getByTestId(Pricing.PricingInfluences),
 		driver.getByTestId(Pricing.SimplifiedPaymentProcess),
@@ -42,7 +38,7 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 	];
 
 	const expectedData = [
-		['What Is Your Cooperation Type?', '01'],
+		['Get Our Rate Card', '01'],
 		['From Consultation To Custom Offer', '02'],
 		['What Influences The Cost of Software Development', '03'],
 		['Simplified Payment Process for Your Software Development Needs', '04'],
@@ -55,11 +51,10 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 });
 
-test('Check section titles in "What Is Your Cooperation Type?" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
-	const coopTypeContainer = driver.getByTestId(Pricing.WhatIsCooperationType);
-	const coopTypeSectionTitles = coopTypeContainer.getByTestId(Container.SectionTitle);
-	const expectedTitles = ['Full-cycle software development', 'Team extension'];
-	await expect(coopTypeSectionTitles).toHaveText(expectedTitles);
+test('Check section title in "Get Our Rate Card" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
+	const getOurRateCardContainer = driver.getByTestId(Pricing.GetOurRateCard);
+
+	await expect(getOurRateCardContainer.getByTestId(Container.SectionTitle)).toHaveText('Curious about our pricing?');
 });
 
 test('Check section titles, navigation bar and CTA button text in "From Consultation To Custom Offer" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {

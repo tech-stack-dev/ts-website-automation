@@ -27,9 +27,17 @@ export default class UrlPath {
 	static BackEndDevelopment = 'services/backend-development-services';
 	static BigData = 'services/big-data-and-analytics';
 	static AiDevelopment = 'services/artificial-intelligence';
-	static ComputerVision = 'services/computer-vision-development';
-	static OpenAI = 'services/openai-api-integration';
-	static DeepLearning = 'services/deep-learning-development';
+	static UiUxDesign = 'services/ui-ux-design';
+	static QaAsAServ = 'services/qa-as-a-service';
+	static ConsultingServ = 'services/consulting-service';
+	static OurServicesTechnologyStackBlock = 'services#services-main-technology-stack';
+	static DedicatedTeam = 'services/dedicated-development-team';
+	static StaffAugmentation = 'services/it-staff-augmentation';
+	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
+	static AIIntegrationServices = 'services/ai-integration';
+	static DataStrategyConsultingServices = 'services/data-strategy-consulting';
+	static CloudMigration = 'services/cloud-migration';
+	static ProductScaling = 'services/product-scaling';
 
 	// Company pages
 	static AboutUs = 'about-us';

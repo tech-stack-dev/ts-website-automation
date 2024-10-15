@@ -78,13 +78,11 @@ test(
 		await expect(whatWeDoContainer.getByTestId(Container.SectionNumber)).toHaveText(['01', '02', '03']);
 
 		const allSectionTitles = whatWeDoContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Staffing services',
-			'Engineering services',
-			'Optimization services',
-		];
+		const testData = ['Staffing services', 'Engineering services', 'Optimization services'];
 		await expect(allSectionTitles).toHaveText(testData);
-		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.ViewFullServiceList)).toHaveText('View full service list');
+		await expect(whatWeDoContainer.getByTestId(MainSiteButtons.ViewFullServiceList)).toHaveText(
+			'View full service list'
+		);
 	}
 );
 

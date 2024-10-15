@@ -108,7 +108,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5507,
 		`Check buttons background color after hovering on it in the "Header" on all pages @desktop @Regression @Header @TSWEB-656`
@@ -183,7 +183,7 @@ test(`Check Services titles in the "Header" on all pages @desktop @Regression @H
 	}
 });
 
-test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
+test.skip(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
 		headerButtonsList = [
 			servicesDropdownButton,

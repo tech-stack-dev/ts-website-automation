@@ -43,7 +43,7 @@ test(
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
-				`${UrlPath.CaseStudies}${CaseStudyPath.BeatsScreeningModule}`,
+				`${UrlPath.CaseStudies}${CaseStudyPath.IncorporatingAimlIntoFlow}`,
 				Environment.Production
 			)
 		);

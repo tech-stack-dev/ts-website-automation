@@ -8,6 +8,7 @@ import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, test, expect} from '../../../../../fixtures/DesktopMobileSetup';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Healthcare));
@@ -75,7 +76,7 @@ test(
 	async () => {
 		const whatMakesOurTeamDifferentContainer = driver.getByTestId(Healthcare.WhatMakesOurTeamDifferent);
 		const allBlockTitles = whatMakesOurTeamDifferentContainer.getByTestId(Container.BlockTitle);
-		const testData = ['10\nyears', '16\ntech experts', '11\nprojects', '67\n%'];
+		const testData = ['10\nyears', '16\ntech experts', '11\nprojects', '5.0'];
 
 		await expect(allBlockTitles).toHaveText(testData);
 	}
@@ -111,13 +112,25 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(Healthcare.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['Improved efficiency', 'Enhanced data analysis', 'Scalability'];
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'AI-Powered Data Integration for Cardiac Screening'
+		);
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Integrates state-of-the-art machine learning models into established ECG analysis workflows'],
+			['02', 'Dramatically improves diagnostic accuracy, reducing false positives by 40%'],
+			['03', 'Accelerates ECG interpretation time by 60%, enabling faster patient care'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.BeatsScreening)).toBeVisible();
-
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);

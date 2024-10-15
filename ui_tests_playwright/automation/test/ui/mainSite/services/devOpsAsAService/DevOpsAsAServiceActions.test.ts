@@ -43,13 +43,13 @@ test(
 test(
 	qase(
 		4818,
-		'Check redirect by "Clutch Review" button in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
+		const caseStudyContainer = driver.getByTestId(DevOpsAsAService.CaseStudy);
 
 		await baseDriverSteps.checkRedirectToClutch(
-			successStoriesContainer.getByTestId(Buttons.Clutch),
+			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.MarkBeare
 		);
 	}
@@ -58,16 +58,16 @@ test(
 test(
 	qase(
 		4834,
-		'Check redirect by CTA button in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
+		const caseStudyContainer = driver.getByTestId(DevOpsAsAService.CaseStudy);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
-				`${UrlPath.CaseStudies}${CaseStudyPath.IntegrationManyMonolithSystems}`,
+				`${UrlPath.CaseStudies}${CaseStudyPath.IotSensorsAndImagers}`,
 				Environment.Production
 			)
 		);

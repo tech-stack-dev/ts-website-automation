@@ -10,6 +10,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));
@@ -102,16 +103,25 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(CloudDevelopment.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['High-load infrastructure', 'Data integrity', 'Scalability'];
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
-
-		await expect(caseStudyContainer.getByTestId(Container.BlockTitle)).toHaveText(
-			'Cloud platform for car charging stations'
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Cloud Platform For EV Charging Stations'
 		);
 
-		await expect(caseStudyContainer.getByTestId(MainSiteImages.SchemaCaseStudy)).toBeVisible();
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Cloud-based software integrated with comprehensive energy platform'],
+			['02', 'Simplified experience for tracking and managing EV charger data'],
+			['03', 'Automated data analysis improves operational efficiency'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.CloudPlatform)).toBeVisible();
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);

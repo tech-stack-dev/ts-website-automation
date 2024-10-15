@@ -22,12 +22,12 @@ test.beforeEach(async () => {
 test(
 	qase(
 		4909,
-		'Check redirect by CTA button in "Big Data Case Studies" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Big Data & Analytics" page @desktop @mobile @Regression @BigDataAndAnalytics @TSWEB-693'
 	),
 	async () => {
-		const bigDataCaseStudiesContainer = driver.getByTestId(BigDataAndAnalytics.BigDataCaseStudies);
+		const caseStudyContainer = driver.getByTestId(BigDataAndAnalytics.CaseStudy);
 
-		await bigDataCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(

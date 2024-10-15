@@ -10,6 +10,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.DevOpsServ));
@@ -40,7 +41,7 @@ test(
 			driver.getByTestId(DevOpsAsAService.DevOpsSolutionBenefits),
 			driver.getByTestId(DevOpsAsAService.LeverageDevOpsServices),
 			driver.getByTestId(DevOpsAsAService.TechnologyStack),
-			driver.getByTestId(DevOpsAsAService.SuccessStories),
+			driver.getByTestId(DevOpsAsAService.CaseStudy),
 			driver.getByTestId(DevOpsAsAService.IndustriesWeServe),
 			driver.getByTestId(DevOpsAsAService.OurApproach),
 			driver.getByTestId(DevOpsAsAService.TheValueTechstackAddsToProducts),
@@ -55,7 +56,7 @@ test(
 			['DevOps Solution Benefits', '01'],
 			['Leverage DevOps Services', '02'],
 			['Technology stack', '03'],
-			['Success Stories', '04'],
+			['Case Study by Techstack', '04'],
 			['Industries We Serve', '05'],
 			['Our Approach to DevOps', '06'],
 			['The Value Techstack Adds to Products', '07'],
@@ -151,20 +152,30 @@ test(
 test(
 	qase(
 		4929,
-		'Check section titles and CTA in "Success Stories" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
+		'Check section titles and CTA in "Case Study by Techstack" container from the "DevOps as a Service" page @desktop @mobile @Regression @DevOpsAsAService @TSWEB-1136'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(DevOpsAsAService.SuccessStories);
-		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Seamless Integration of Multiple Monolithic Systems',
-			'Implementation of the 9 Dots Menu\nPattern',
-			'Overcoming Technical Challenges',
-		];
+		const caseStudyContainer = driver.getByTestId(DevOpsAsAService.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Unifying Monolithic Systems for Seamless User Experience'
+		);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Integration of multiple monolithic systems for a US-based sales engagement platform'],
+			['02', 'Implementation of the 9 Dots Menu Pattern for unified user access'],
+			['03', 'Significant improvements in system interoperability, user experience, and operational efficiency'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		expect(caseStudyContainer.getByTestId(MainSiteImages.SensorsScheme).locator('visible=true')).toBeDefined();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}
