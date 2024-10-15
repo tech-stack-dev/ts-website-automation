@@ -2,8 +2,8 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import {expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertiseEnum} from '../../../../../enum/ExpertiseEnum';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MobileDevService from '../../../../../identifiers/mainSite/pages/services/MobileDevService';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
@@ -13,7 +13,7 @@ import TechnologyStackData from '../../../../../preconditionsData/technologyStac
 import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(expertiseUrl[ExpertiseEnum.MobileDev]);
 });
 
 test(

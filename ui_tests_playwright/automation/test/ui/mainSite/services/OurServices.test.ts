@@ -120,7 +120,7 @@ test(
 			[servicresSections.nth(1), UrlProvider.urlBuilder(UrlPath.StaffAugmentation)],
 			[servicresSections.nth(2), UrlProvider.urlBuilder(UrlPath.PoCAndMVPDevelopment)],
 			[servicresSections.nth(3), UrlProvider.urlBuilder(UrlPath.CustomDev)],
-			[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AIIntegrationServices)],
+			[servicresSections.nth(4), UrlProvider.urlBuilder(UrlPath.AiIntegrationServices)],
 			[servicresSections.nth(5), UrlProvider.urlBuilder(UrlPath.DataStrategyConsultingServices)],
 			[servicresSections.nth(6), UrlProvider.urlBuilder(UrlPath.ConsultingServ)],
 			[servicresSections.nth(7), UrlProvider.urlBuilder(UrlPath.QaAsAServ)],
