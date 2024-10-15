@@ -4,8 +4,8 @@ import {driver} from '../../../../../base/driver/Driver';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import Container from '../../../../../identifiers/Container';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import {expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertiseEnum} from '../../../../../enum/ExpertiseEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
@@ -18,7 +18,7 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {LinkedInReviewLinks} from '../../../../../preconditionsData/links/LinkedInReviewLinks';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(expertiseUrl[ExpertiseEnum.MobileDev]);
 });
 
 test('Check redirect by "LinkedIn Review" button in "Case Study by Techstack" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696', async () => {
