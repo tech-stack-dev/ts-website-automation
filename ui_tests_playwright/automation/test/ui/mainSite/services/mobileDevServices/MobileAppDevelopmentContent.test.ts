@@ -10,6 +10,7 @@ import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
@@ -149,13 +150,25 @@ test(
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
-		const allSectionTitles = caseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = ['User experience', 'Moving to IaaS', 'Third-party services'];
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Decentralized Blockchain Network for Sports Fans'
+		);
+
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
+
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'iOS app for connecting and sharing in the sports entertainment industry'],
+			['02', 'Streamlined video and fan card sharing experience'],
+			['03', 'Redefined architecture reduced infrastructure costs by 20-30%'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
 
 		await expect(caseStudyContainer.getByTestId(MainSiteImages.MobileCaseStudy)).toBeVisible();
-
 		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);

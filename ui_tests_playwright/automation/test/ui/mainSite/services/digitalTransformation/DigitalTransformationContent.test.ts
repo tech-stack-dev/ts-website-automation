@@ -8,6 +8,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import DigitalTransformation from '../../../../../identifiers/mainSite/pages/services/DigitalTransformation';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.DigitalTransform));
@@ -38,7 +39,7 @@ test(
 			driver.getByTestId(DigitalTransformation.OurAchievementsInITTransformation),
 			driver.getByTestId(DigitalTransformation.DigitalBusinessTransformation),
 			driver.getByTestId(DigitalTransformation.IndustriesWeServe),
-			driver.getByTestId(DigitalTransformation.SuccessStories),
+			driver.getByTestId(DigitalTransformation.CaseStudy),
 			driver.getByTestId(DigitalTransformation.TechnologiesWeUse),
 			driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy),
 			driver.getByTestId(DigitalTransformation.HowTechstackInfluence),
@@ -53,7 +54,7 @@ test(
 			['Our Achievements in IT Transformation Services', '01'],
 			['Digital Business Transformation Services', '02'],
 			['Industries We Serve', '03'],
-			['Success Stories as a Digital Transformation Service Provider', '04'],
+			['Case Study by Techstack', '04'],
 			['Technologies We Use for Digital Transformation', '05'],
 			['Digital Transformation Strategy', '06'],
 			['How Techstack Can Influence Your Digital Transformation', '07'],
@@ -158,25 +159,30 @@ test(
 test(
 	qase(
 		5033,
-		'Check section titles, image and CTA button`s title in "Success Stories as a Digital Transformation Service Provider" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
+		'Check section titles, image and CTA button`s title in "Case Study by Techstack" container from the "Digital Transformation" page @desktop @mobile @Regression @DigitalTransformation @TSWEB-1135'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(DigitalTransformation.SuccessStories);
-		const allSectionTitles = successStoriesContainer.getByTestId(Container.SectionTitle);
-		const testDataSectionTitles = [
-			'First-mile traceability',
-			'Quality control and tracking',
-			'Business transparency',
-			'Tracking and aggregation system',
-			'Aggregation of data sources',
-			'Automated data management',
-		];
+		const caseStudyContainer = driver.getByTestId(DigitalTransformation.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		await expect(allSectionTitles).toHaveText(testDataSectionTitles);
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'AgriTech Solution Improving Harvest Management'
+		);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteImages.SuccessStories)).toBeVisible();
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
-		await expect(successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Introduces a proof-of-concept (POC) IoT device for real-time farmer location tracking'],
+			['02', 'Synchronizes field data with a user-friendly mobile application'],
+			['03', 'Deploys a robust cloud platform for end-to-end harvest management'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.SuccessStories)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}

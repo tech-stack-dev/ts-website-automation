@@ -8,6 +8,7 @@ import TransportationAndLogistics from '../../../../../identifiers/mainSite/page
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.TransportAndLogist));
@@ -159,19 +160,25 @@ test(
 		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Transportation and Logistics" page @desktop @mobile @Regression @TransportationAndLogistics @TSWEB-956'
 	),
 	async () => {
-		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
+		const caseStudyContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		const allSectionTitles = caseStudyByTechstackContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Web-based bidding process',
-			'Bid processing and validation',
-			'Determination of winning bids',
-		];
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText('Real-Time Cargo Auction Platform');
 
-		await expect(allSectionTitles).toHaveText(testData);
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
-		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
-		await expect(caseStudyByTechstackContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'Innovative web-based bidding system for a US-based logistics company'],
+			['02', 'Automated cargo allocation with percentage-based bidding mechanism'],
+			['03', 'Significant cost savings and efficiency gains in shipment procurement'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.CaseStudy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}

@@ -15,9 +15,17 @@ import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {LinkedInReviewLinks} from '../../../../../preconditionsData/links/LinkedInReviewLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.MobileDev]);
+});
+
+test('Check redirect by "LinkedIn Review" button in "Case Study by Techstack" container from the "Mobile App Development" page @desktop @mobile @Regression @MobileAppDev @TSWEB-696', async () => {
+	const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
+	const linkedInReviewButton = caseStudyContainer.getByTestId(Buttons.LinkedIn);
+
+	await baseDriverSteps.checkRedirectToPage(linkedInReviewButton, LinkedInReviewLinks.GrahamBrown);
 });
 
 test(

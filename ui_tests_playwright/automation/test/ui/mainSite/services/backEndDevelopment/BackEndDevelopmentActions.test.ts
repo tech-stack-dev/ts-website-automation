@@ -42,7 +42,7 @@ test(
 test(
 	qase(
 		5520,
-		'Check redirect by CTA button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);
@@ -61,7 +61,7 @@ test(
 test(
 	qase(
 		5523,
-		'Check redirect by "Clutch Review" button in "Our Featured Back-End Case Study" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "Back-End Development" page @desktop @mobile @Regression @BackEndDevelopment @TSWEB-1208'
 	),
 	async () => {
 		const caseStudyContainer = driver.getByTestId(BackEndServices.CaseStudy);

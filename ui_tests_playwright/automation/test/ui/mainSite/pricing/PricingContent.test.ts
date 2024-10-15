@@ -15,15 +15,10 @@ test.beforeEach(async () => {
 test('Check the Info container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const info = driver.getByTestId(Pricing.Info);
 	const infoTitle = info.getByTestId(Container.Title);
-	const infoBlockTitles = await info.getByTestId(Container.BlockTitle).allInnerTexts();	
-	const infoBlockTitlesTrimmed = infoBlockTitles.map(title => title.trim())
+	const infoBlockTitles = await info.getByTestId(Container.BlockTitle).allInnerTexts();
+	const infoBlockTitlesTrimmed = infoBlockTitles.map((title) => title.trim());
 
-	const expectedBlockTitles = [
-		'10\n+',
-		'12\n+',
-		'5.0',
-		'91\n%',
-	];
+	const expectedBlockTitles = ['10\n+', '12\n+', '5.0', '91\n%'];
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
 	await expect(infoTitle).toHaveText('Our Software Development Cost');

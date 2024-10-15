@@ -10,6 +10,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { arrayUtils } from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CustomDev));
@@ -43,7 +44,7 @@ test(
 			driver.getByTestId(CustomDev.CustomDevelopmentForYourProduct),
 			driver.getByTestId(CustomDev.CustomDevelopmentServicesWeProvide),
 			driver.getByTestId(CustomDev.TechnologyStack),
-			driver.getByTestId(CustomDev.OurFeaturedCaseStudy),
+			driver.getByTestId(CustomDev.CaseStudy),
 			driver.getByTestId(CustomDev.IndustriesWeDevelopSoftwareFor),
 			driver.getByTestId(CustomDev.WhyChooseTechstack),
 			driver.getByTestId(CustomDev.CustomSoftwareDevelopmentExperts),
@@ -59,7 +60,7 @@ test(
 			['Custom Software Development for Your Product', '02'],
 			['Custom Development Services We Provide', '03'],
 			['Technology Stack', '04'],
-			['Our Featured Case Study', '05'],
+			['Case Study by Techstack', '05'],
 			['Industries We Develop Software For', '06'],
 			['Why Choose Techstack', '07'],
 			['Custom Software Development Experts', '08'],
@@ -178,22 +179,30 @@ test(
 test(
 	qase(
 		5302,
-		'Check section titles, image and CTA button in "Our Featured Case Study" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
+		'Check section titles, image and CTA button in "Case Study by Techstack" container from the "Custom Software Development" page @desktop @mobile @Regression @CustomDev @TSWEB-672'
 	),
 	async () => {
-		const ourFeaturedCaseStudyContainer = driver.getByTestId(CustomDev.OurFeaturedCaseStudy);
+		const caseStudyContainer = driver.getByTestId(CustomDev.CaseStudy);
+		const containerBlock = caseStudyContainer.getByTestId(Container.ContainerBlock);
 
-		const allSectionTitles = ourFeaturedCaseStudyContainer.getByTestId(Container.SectionTitle);
-		const testData = [
-			'Improve user location',
-			'Streamlining the user entry process',
-			'Delivering robust data security across all system components',
-		];
+		await expect(containerBlock.getByTestId(Container.BlockTitle)).toHaveText(
+			'Cross-platform mobile app for hotels and restaurants'
+		);
 
-		await expect(allSectionTitles).toHaveText(testData);
+		const sectionIndexes = await containerBlock.getByTestId(Container.SectionNumber).allInnerTexts();
+		const sectionTitles = await containerBlock.getByTestId(Container.SectionTitle).allInnerTexts();
+		const actualIndexesAndTitles = arrayUtils.mergeTwoArraysToMap(sectionIndexes, sectionTitles);
 
-		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteImages.OurFeaturedCaseStudy)).toBeVisible();
-		await expect(ourFeaturedCaseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
+		const expectedIndexesAndTitles: Map<string, string> = new Map([
+			['01', 'React-based web app with no downloads or registrations'],
+			['02', 'Simplified guest experience for ordering food'],
+			['03', 'Automated interactions with clients have improved customer service'],
+		]);
+
+		expect(actualIndexesAndTitles).toEqual(expectedIndexesAndTitles);
+
+		await expect(caseStudyContainer.getByTestId(MainSiteImages.OurFeaturedCaseStudy)).toBeVisible();
+		await expect(caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt)).toHaveText(
 			'Check out how we build it'
 		);
 	}

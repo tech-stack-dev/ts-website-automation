@@ -24,13 +24,13 @@ test.beforeEach(async () => {
 test(
 	qase(
 		5358,
-		'Check redirect by "Clutch Review" button in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by "Clutch Review" button in "Case Study by Techstack" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
+		const caseStudyContainer = driver.getByTestId(UxUiDesign.CaseStudy);
 
 		await baseDriverSteps.checkRedirectToClutch(
-			successStoriesContainer.getByTestId(Buttons.Clutch),
+			caseStudyContainer.getByTestId(Buttons.Clutch),
 			ClutchReviewLinks.AnonymousMedicalDevice
 		);
 	}
@@ -39,12 +39,12 @@ test(
 test(
 	qase(
 		4794,
-		'Check redirect by CTA button in "Success Stories" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "UX/UI Design" page @desktop @mobile @Regression @UxUiDesign @TSWEB-670'
 	),
 	async () => {
-		const successStoriesContainer = driver.getByTestId(UxUiDesign.SuccessStories);
+		const caseStudyContainer = driver.getByTestId(UxUiDesign.CaseStudy);
 
-		await successStoriesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(

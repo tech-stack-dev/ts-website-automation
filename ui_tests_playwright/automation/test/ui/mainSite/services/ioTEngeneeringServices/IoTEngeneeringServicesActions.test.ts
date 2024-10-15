@@ -48,11 +48,11 @@ test(
 test(
 	qase(
 		5079,
-		'Check redirect by CTA button in "IoT Engineering Case Studies" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
+		'Check redirect by CTA button in "Case Study by Techstack" container from the "Internet of Things" page @desktop @mobile @Regression @InternetOfThings @TSWEB-695'
 	),
 	async () => {
-		const ioTEngineeringCaseStudiesContainer = driver.getByTestId(IoTEngineeringServices.IoTEngineeringCaseStudies);
-		await ioTEngineeringCaseStudiesContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
+		const caseStudyContainer = driver.getByTestId(IoTEngineeringServices.CaseStudy);
+		await caseStudyContainer.getByTestId(MainSiteButtons.CheckOutHowWeBuildIt).click();
 		await driver.Page.waitForLoadState();
 		await baseDriverSteps.checkUrl(
 			UrlProvider.urlBuilder(
