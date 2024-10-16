@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {companyUrl, industryUrl, expertiseUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, expertiseUrl, serviceUrl, webflowPages} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -266,8 +266,13 @@ test(`Check the header information from the "Header" container on all pages @des
 
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
-
-		await expect(getAQuoteButton).toHaveText('Get a quote');
+        
+		if (webflowPages.includes(url)){
+			await expect(getAQuoteButton).toHaveText('Get a quote');
+			}else{
+				await expect(getAQuoteButton).toHaveText('Book a strategy call');
+			};
+		
 	}
 });
 

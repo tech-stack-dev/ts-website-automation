@@ -9,6 +9,7 @@ import {
 	companyUrl,
 	urlsWithOnlyLogoInHeader,
 	serviceUrl,
+	webflowPages,
 } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
@@ -227,7 +228,11 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(MainSiteButtons.GetAQuote).click();
+			if (webflowPages.includes(url)){
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
+			}else{
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookAStrategyCall));
+			};
 		}
 	}
 );

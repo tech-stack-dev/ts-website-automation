@@ -43,6 +43,7 @@ export default class UrlPath {
 
 	static ContactUs = 'contact-us';
 	static GetAQuote = 'free-proposal';
+	static BookAStrategyCall = 'book-a-strategy-call';
 
 	static testEnv = 'staging';
 	static client1Url = 'https://reqres.in';
