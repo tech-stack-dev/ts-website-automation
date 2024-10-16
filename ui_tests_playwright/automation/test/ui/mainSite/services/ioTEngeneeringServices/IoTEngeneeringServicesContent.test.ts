@@ -2,8 +2,8 @@ import {expect, test} from '@playwright/test';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {driver} from '../../../../../base/driver/Driver';
 import Container from '../../../../../identifiers/Container';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import {expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {ExpertiseEnum} from '../../../../../enum/ExpertiseEnum';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/services/IoTEngineeringServices';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
@@ -14,7 +14,7 @@ import { arrayUtils } from '../../../../../utils/ArrayUtils';
 const requestAQuoteButtonText = 'Request a quote';
 
 test.beforeAll(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(expertiseUrl[ExpertiseEnum.InternetOfThings]);
 });
 
 test(

@@ -4,13 +4,13 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {driver} from '../../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
-import {ServicesEnum} from '../../../../../enum/ServicesEnum';
+import {ExpertiseEnum} from '../../../../../enum/ExpertiseEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/services/IoTEngineeringServices';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
-import {serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
+import {expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
@@ -18,7 +18,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 
 test.beforeEach(async () => {
-	await baseDriverSteps.createsNewBrowserAndGoToUrl(serviceUrl[ServicesEnum.InternetOfThings]);
+	await baseDriverSteps.createsNewBrowserAndGoToUrl(expertiseUrl[ExpertiseEnum.InternetOfThings]);
 });
 
 test(

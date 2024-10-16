@@ -1,11 +1,13 @@
 export default class Footer {
 	static Container_Footer = 'Container-Footer';
+	static Container_FooterBottom = 'Container-FooterBottom';
 	static FooterLinkDesktop = 'Container-FooterLinkDesktop';
 	static FooterLinkMobile = 'Container-FooterLinkMobile';
 
 	static ContactsBlock = 'ContactsBlock';
 	static IndustriesBlock = 'IndustriesBlock';
 	static ServicesBlock = 'ServicesBlock';
+	static ExpertiseBlock = 'ExpertiseBlock';
 	static CompanyBlock = 'CompanyBlock';
 	static CareerBlock = 'CareerBlock';
 

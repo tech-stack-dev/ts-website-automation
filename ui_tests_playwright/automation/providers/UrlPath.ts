@@ -23,14 +23,19 @@ export default class UrlPath {
 	static DedicatedTeam = 'services/dedicated-development-team';
 	static StaffAugmentation = 'services/it-staff-augmentation';
 	static PoCAndMVPDevelopment = 'services/poc-mvp-development';
-	static AIIntegrationServices = 'services/ai-integration';
 	static DataStrategyConsultingServices = 'services/data-strategy-consulting';
 	static CloudMigration = 'services/cloud-migration';
 	static ProductScaling = 'services/product-scaling';
+	static AiIntegrationServices = 'services/ai-integration';
+	static DataStrategy = 'services/data-strategy-consulting';
+	static ComputerVision = 'services/computer-vision-development';
+ 	static OpenAI = 'services/openai-api-integration';
+ 	static DeepLearning = 'services/deep-learning-development';
 
 	// Company pages
 	static AboutUs = 'about-us';
 	static HowWeWork = 'how-we-work';
+	static OurClients = 'clients';
 	static Pricing = 'software-development-costs';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
