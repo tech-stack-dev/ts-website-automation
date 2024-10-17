@@ -273,11 +273,7 @@ test(`Check the header information from the "Header" container on all pages @des
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		if (webflowPages.includes(url)) {
-			await expect(getAQuoteButton).toHaveText('Get a quote');
-		} else {
-			await expect(getAQuoteButton).toHaveText('Book a strategy call');
-		}
+		await expect(getAQuoteButton).toHaveText(webflowPages.includes(url) ? 'Get a quote' : 'Book a strategy call');
 	}
 });
 
