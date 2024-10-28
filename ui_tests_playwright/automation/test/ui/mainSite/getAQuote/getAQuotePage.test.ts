@@ -1,10 +1,8 @@
 import {driver} from '../../../../base/driver/Driver';
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import Container from '../../../../identifiers/Container';
 import GetAQuote from '../../../../identifiers/mainSite/pages/getAQuote/GetAQuote';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 import {containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
 
