@@ -278,12 +278,17 @@ test(`Check the header information from the "Header" container on all pages @des
 });
 
 test(
-	qase(5455, `Check "Book a strategy call" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	qase(
+		5455,
+		`Check "Book a strategy call" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
-			expect(await locatorUtils.checkBackgroundColor(bookAStrategyCallButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+			expect(
+				await locatorUtils.checkBackgroundColor(bookAStrategyCallButton, ColorsEnum.Yellow_FFC600)
+			).toBeTruthy();
 		}
 	}
 );
