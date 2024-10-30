@@ -221,18 +221,14 @@ test(
 test(
 	qase(
 		5457,
-		`Check the redirection to the "Get a quote" page by clicking on the "Get a quote" button on all pages @desktop @mobile @Regression @GetAQuote @TSWEB-532`
+		`Check the redirection to the "Book a strategy call" page by clicking on the "Book a strategy call" button on all pages @desktop @mobile @Regression @BookAStrategyCall @TSWEB-532`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(MainSiteButtons.GetAQuote).click();
-			await baseDriverSteps.checkUrl(
-				webflowPages.includes(url)
-					? UrlProvider.urlBuilder(UrlPath.GetAQuote)
-					: UrlProvider.urlBuilder(UrlPath.BookAStrategyCall)
-			);
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookAStrategyCall));
 		}
 	}
 );

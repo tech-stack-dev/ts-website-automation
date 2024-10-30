@@ -33,7 +33,7 @@ let expertiseDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
 let contactsButton: Locator;
-let getAQuoteButton: Locator;
+let bookAStrategyCallButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -77,7 +77,7 @@ test.beforeEach(async () => {
 		pricingButton,
 		contactsButton,
 	];
-	getAQuoteButton = header.getByTestId(MainSiteButtons.GetAQuote);
+	bookAStrategyCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.ServicesMenu,
@@ -273,17 +273,22 @@ test(`Check the header information from the "Header" container on all pages @des
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		await expect(getAQuoteButton).toHaveText(webflowPages.includes(url) ? 'Get a quote' : 'Book a strategy call');
+		await expect(bookAStrategyCallButton).toHaveText('Book a strategy call');
 	}
 });
 
 test(
-	qase(5455, `Check "Get a quote" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`),
+	qase(
+		5455,
+		`Check "Book a strategy call" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
+	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
-			expect(await locatorUtils.checkBackgroundColor(getAQuoteButton, ColorsEnum.Yellow_FFC600)).toBeTruthy();
+			expect(
+				await locatorUtils.checkBackgroundColor(bookAStrategyCallButton, ColorsEnum.Yellow_FFC600)
+			).toBeTruthy();
 		}
 	}
 );
@@ -291,16 +296,16 @@ test(
 test(
 	qase(
 		5456,
-		`Check "Get a quote" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
+		`Check "Book a strategy call" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await getAQuoteButton.hover();
+			await bookAStrategyCallButton.hover();
 
 			await playwrightUtils.expectWithRetries(
 				async () => {
-					const actualColor = await getAQuoteButton.evaluate(async (el) => {
+					const actualColor = await bookAStrategyCallButton.evaluate(async (el) => {
 						return getComputedStyle(el).backgroundColor;
 					});
 					expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
