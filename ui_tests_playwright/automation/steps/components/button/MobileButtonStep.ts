@@ -17,7 +17,6 @@ class MobileButtonSteps extends ButtonSteps {
 
 		await playwrightUtils.expectWithRetries(
 			async () => {
-				console.log(elemetColor)
 				const actualColor = await button.locator(elemetColor).evaluate(async (el) => {
 					return getComputedStyle(el).color;
 				});
