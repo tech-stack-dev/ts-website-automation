@@ -44,6 +44,7 @@ const testDataProvider: string[] = [
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote])),
+	UrlProvider.urlBuilder(UrlPath.BookAStrategyCall),
 ];
 
 test.beforeEach(async () => {
@@ -64,7 +65,7 @@ test.beforeEach(async () => {
 	servicesBlock = footer.getByTestId(Footer.ServicesBlock);
 });
 
-test.skip(
+test(
 	qase(
 		5485,
 		`Check the footer information from the "Footer" container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
@@ -201,8 +202,7 @@ test(`Check the redirection by the "Contact Us" button on all pages @desktop @mo
 	}
 });
 
-//add data-id for Webflow pages 
-test.skip(`Check the redirection by the "Services" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
+test(`Check the redirection by the "Services" button on all pages @desktop @mobile @Regression @Footer @TSWEB-655`, async () => {
 	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 
@@ -301,7 +301,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5490,
 		`Check the redirection for the social links on all pages @desktop @mobile @Regression @Footer @TSWEB-655`
@@ -325,7 +325,9 @@ test.skip(
 			for (const entries of linkMap.entries()) {
 				const [newPage] = await Promise.all([
 					driver.DriverContext.waitForEvent('page'),
-					await footerBottom.getByTestId(entries[0]).click(),
+					(url === UrlProvider.urlBuilder(UrlPath.CaseStudies) ? footer : footerBottom)
+						.getByTestId(entries[0])
+						.click(),
 				]);
 				expect(newPage.url().includes(entries[1])).toBeTruthy();
 				await newPage.close();
