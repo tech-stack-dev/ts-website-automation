@@ -26,4 +26,5 @@ export default class GeneralContainersMainSite {
 	static WhyPartnerWithUs = 'Container-WhyPartnerWithUs';
 	static TrustedBy = 'Container-TrustedBy';
 	static SoftwareDevelopmentServices = 'Container-SoftwareDevelopmentServices';
+	static ConsultWithUs='Container-ConsultWithUs';
 }

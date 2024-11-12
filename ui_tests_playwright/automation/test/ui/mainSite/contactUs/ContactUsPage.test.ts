@@ -28,35 +28,19 @@ test(
 	async () => {
 		const containers = [
 			driver.getByTestId(ContactUs.ContactUs),
-			driver.getByTestId(ContactUs.WhatHappensNext),
+			driver.getByTestId(ContactUs.ConsultWithUs),
 			driver.getByTestId(ContactUs.TrustedBy),
 			driver.getByTestId(ContactUs.Cooperation),
 		];
 
 		const expectedData = [
 			['Contact Us', '01'],
-			['What Happens Next?', '02'],
+			['Consult with us', '02'],
 			['Trusted By', '03'],
 			['Cooperation Contacts', '04'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
-	}
-);
-
-test(
-	qase(
-		5610,
-		'Check sections titles in "What Happens Next?" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
-	),
-	async () => {
-		const whatHappensNextContainer = driver.getByTestId(ContactUs.WhatHappensNext);
-
-		await expect(whatHappensNextContainer.getByTestId(Container.SectionTitle)).toHaveText([
-			'Review:',
-			'Response:',
-			'Meeting:',
-		]);
 	}
 );
 
