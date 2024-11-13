@@ -11,11 +11,12 @@ test.beforeEach(async () => {
 });
 
 test('Check the container title and number from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
-	const containers = [driver.getByTestId(GetAQuote.OurProposal), driver.getByTestId(GetAQuote.TrustedBy)];
+	const containers = [driver.getByTestId(GetAQuote.ConsultWithUs), driver.getByTestId(GetAQuote.OurProposal), driver.getByTestId(GetAQuote.TrustedBy)];
 
 	const expectedData = [
-		["What You'll Get with Our Proposal:", '01'],
-		['Trusted By', '02'],
+		['Consult with us', '01'],
+		["What You'll Get with Our Proposal:", '02'],
+		['Trusted By', '03'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
