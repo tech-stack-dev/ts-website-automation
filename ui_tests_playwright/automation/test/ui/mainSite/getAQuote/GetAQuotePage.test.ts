@@ -4,6 +4,7 @@ import GetAQuote from '../../../../identifiers/mainSite/pages/getAQuote/GetAQuot
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
+import Container from '../../../../identifiers/Container';
 import {containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
 
 test.beforeEach(async () => {
@@ -11,7 +12,11 @@ test.beforeEach(async () => {
 });
 
 test('Check the container title and number from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
-	const containers = [driver.getByTestId(GetAQuote.ConsultWithUs), driver.getByTestId(GetAQuote.OurProposal), driver.getByTestId(GetAQuote.TrustedBy)];
+	const containers = [
+		driver.getByTestId(GetAQuote.ConsultWithUs),
+		driver.getByTestId(GetAQuote.OurProposal),
+		driver.getByTestId(GetAQuote.TrustedBy),
+	];
 
 	const expectedData = [
 		['Consult with us', '01'],
@@ -42,6 +47,45 @@ test('Check partner logos in "Trusted By" container from the "Get a Quote" page 
 	});
 
 	await expect(lastLogo).toBeVisible();
+});
+
+test('Check member names, roles and consultation buttons in member cards from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
+	const ConsultWithUsContainer = driver.getByTestId(GetAQuote.ConsultWithUs);
+	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+
+	await expect(memberCards).toHaveCount(3);
+
+	const allExperts = [
+		{
+			name: 'Max Levytskyi',
+			role: 'Managing Partner',
+		},
+		{
+			name: 'Anton Ivanchenko',
+			role: 'Business Development Manager',
+		},
+		{
+			name: 'Artem Marynych',
+			role: 'Chief Growth Officer',
+		},
+	];
+
+	for (let i = 0; i < allExperts.length; i++) {
+		const card = memberCards.nth(i);
+		await baseDriverSteps.checkMemberCardCalendly(card, allExperts[i]);
+	}
+});
+
+test('Check Calendly frame opened in member cards from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
+	const ConsultWithUsContainer = driver.getByTestId(GetAQuote.ConsultWithUs);
+	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+
+	const expertNames = ['Maxim Levitskiy', 'Anton Ivanchenko', 'Artem Marynych'];
+
+	for (let i = 0; i < expertNames.length; i++) {
+		const card = memberCards.nth(i);
+		await baseDriverSteps.checkAppropriateCalendlyModalOpensAndCloses(card, expertNames[i]);
+	}
 });
 
 test.afterEach(async () => {

@@ -128,6 +128,45 @@ test(
 	}
 );
 
+test('Check member names, roles and buttons in member cards from the "Contact us" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
+	const ConsultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
+	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+
+	await expect(memberCards).toHaveCount(3);
+
+	const allExperts = [
+		{
+			name: 'Max Levytskyi',
+			role: 'Managing Partner',
+		},
+		{
+			name: 'Anton Ivanchenko',
+			role: 'Business Development Manager',
+		},
+		{
+			name: 'Artem Marynych',
+			role: 'Chief Growth Officer',
+		},
+	];
+
+	for (let i = 0; i < allExperts.length; i++) {
+		const card = memberCards.nth(i);
+		await baseDriverSteps.checkMemberCardCalendly(card, allExperts[i]);
+	}
+});
+
+test('Check Calendly frame opening in member cards from the "Contact us" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
+	const ConsultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
+	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+
+	const expertNames = ['Maxim Levitskiy', 'Anton Ivanchenko', 'Artem Marynych'];
+
+	for (let i = 0; i < expertNames.length; i++) {
+		const card = memberCards.nth(i);
+		await baseDriverSteps.checkAppropriateCalendlyModalOpensAndCloses(card, expertNames[i]);
+	}
+});
+
 test.afterEach(async () => {
 	await driver.closeDrivers();
 });

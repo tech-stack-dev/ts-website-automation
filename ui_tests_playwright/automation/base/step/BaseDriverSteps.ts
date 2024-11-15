@@ -6,6 +6,9 @@ import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 import UrlUtils from '../../utils/UrlUtils';
+import MainSiteButtons from '../../identifiers/mainSite/MainSiteButtons';
+import Calendly from '../../identifiers/mainSite/Calendly';
+
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);
@@ -204,6 +207,35 @@ class BaseDriverSteps {
 			document.documentElement.scrollTop = 0;
 			document.body.scrollTop = 0;
 		});
+	}
+
+	public async checkMemberCardCalendly(memberCard: Locator, memberData: {name: string; role: string}) {
+		await expect(memberCard).toBeVisible();
+
+		const name = memberCard.getByTestId(Container.MemberName);
+		await expect(name).toHaveText(memberData.name);
+
+		const role = memberCard.getByTestId(Container.MemberRole);
+		await expect(role).toHaveText(memberData.role);
+
+		const consultButton = memberCard.getByTestId(MainSiteButtons.ScheduleAConsultationInCalendly);
+		await expect(consultButton).toBeVisible();
+		await expect(consultButton).toBeEnabled();
+	}
+
+	public async checkAppropriateCalendlyModalOpensAndCloses(memberCard: Locator, memberName: string) {
+		await memberCard.getByTestId(MainSiteButtons.ScheduleAConsultationInCalendly).click();
+
+		const calendlyFrame = driver.frameLocator(Calendly.frame);
+
+		await expect(calendlyFrame).toBeTruthy();
+
+		const calendlyNameLocator = await calendlyFrame.locator(Calendly.expertName);
+		const expertName = await calendlyNameLocator.textContent();
+
+		await expect(expertName).toBe(memberName);
+
+		await driver.locator(Calendly.close).click();
 	}
 }
 
