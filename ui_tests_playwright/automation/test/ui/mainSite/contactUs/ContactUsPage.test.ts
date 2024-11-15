@@ -128,9 +128,9 @@ test(
 	}
 );
 
-test('Check member names, roles and buttons in member cards from the "Contact us" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
-	const ConsultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
-	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+test('Check member names, roles, images and buttons in member cards from the "Contact us" page @desktop @mobile @Regression @ContactUs @TSWEB-1821', async () => {
+	const consultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
+	const memberCards = consultWithUsContainer.getByTestId(Container.MemberCard);
 
 	await expect(memberCards).toHaveCount(3);
 
@@ -152,12 +152,15 @@ test('Check member names, roles and buttons in member cards from the "Contact us
 	for (let i = 0; i < allExperts.length; i++) {
 		const card = memberCards.nth(i);
 		await baseDriverSteps.checkMemberCardCalendly(card, allExperts[i]);
+
+		const image = card.locator('.member-foto')
+		await baseDriverSteps.checkImagesVisibility(image, 1)
 	}
 });
 
-test('Check Calendly frame opening in member cards from the "Contact us" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
-	const ConsultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
-	const memberCards = ConsultWithUsContainer.getByTestId(Container.MemberCard);
+test('Check Calendly frame opening in member cards from the "Contact us" page @desktop @mobile @Regression @ContactUs @TSWEB-1821', async () => {
+	const consultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
+	const memberCards = consultWithUsContainer.getByTestId(Container.MemberCard);
 
 	const expertNames = ['Maxim Levitskiy', 'Anton Ivanchenko', 'Artem Marynych'];
 
