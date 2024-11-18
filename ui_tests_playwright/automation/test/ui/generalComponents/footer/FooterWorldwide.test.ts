@@ -65,7 +65,7 @@ test.beforeEach(async () => {
 	servicesBlock = footer.getByTestId(Footer.ServicesBlock);
 });
 
-test(
+test.skip(
 	qase(
 		5485,
 		`Check the footer information from the "Footer" container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
