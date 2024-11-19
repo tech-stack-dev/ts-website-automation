@@ -56,7 +56,7 @@ test(
 			['Our partners', '05'],
 			['Shoutout from our partners', '06'],
 			['Our people', '07'],
-			['Get in Touch', '08'],
+			['Request a Free No-obligation Quote', '08'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);

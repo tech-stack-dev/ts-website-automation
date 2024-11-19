@@ -49,7 +49,7 @@ test(
 			['Technology stack', '03'],
 			['Techstack structure', '04'],
 			['Tools we use to organize the workflow', '05'],
-			['Get in Touch', '06'],
+			['Request a Free No-obligation Quote', '06'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
