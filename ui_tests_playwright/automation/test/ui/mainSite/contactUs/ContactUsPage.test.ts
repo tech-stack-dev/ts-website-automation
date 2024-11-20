@@ -130,43 +130,31 @@ test(
 
 test('Check member names, roles, images and buttons in member cards from the "Contact us" page @desktop @mobile @Regression @ContactUs @TSWEB-1821', async () => {
 	const consultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
-	const memberCards = consultWithUsContainer.getByTestId(Container.MemberCard);
-
-	await expect(memberCards).toHaveCount(3);
+	const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
 
 	const allExperts = [
-		{
-			name: 'Max Levytskyi',
-			role: 'Managing Partner',
-		},
-		{
-			name: 'Anton Ivanchenko',
-			role: 'Business Development Manager',
-		},
-		{
-			name: 'Artem Marynych',
-			role: 'Chief Growth Officer',
-		},
+		{name: 'Max Levytskyi', role: 'Managing Partner'},
+		{name: 'Anton Ivanchenko', role: 'Business Development Manager'},
+		{name: 'Artem Marynych', role: 'Chief Growth Officer'},
 	];
 
-	for (let i = 0; i < allExperts.length; i++) {
-		const card = memberCards.nth(i);
-		await baseDriverSteps.checkMemberCardCalendly(card, allExperts[i]);
+	expect(cardElements.length).toBe(allExperts.length);
 
-		const image = card.locator('.member-foto')
-		await baseDriverSteps.checkImagesVisibility(image, 1)
+	for (const expertData of allExperts) {
+		const matchingCard = await baseDriverSteps.findMatchingMemberCardByName(cardElements, expertData.name);
+		await baseDriverSteps.checkMemberCardCalendly(matchingCard, expertData);
 	}
 });
 
-test('Check Calendly frame opening in member cards from the "Contact us" page @desktop @mobile @Regression @ContactUs @TSWEB-1821', async () => {
+test('Check Calendly frame opens in member cards from the "Contact us" page @desktop @mobile @Regression @ContactUs @TSWEB-1821', async () => {
 	const consultWithUsContainer = driver.getByTestId(ContactUs.ConsultWithUs);
-	const memberCards = consultWithUsContainer.getByTestId(Container.MemberCard);
+	const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
 
-	const expertNames = ['Maxim Levitskiy', 'Anton Ivanchenko', 'Artem Marynych'];
+	const expertNames = ['Max Levytskyi', 'Anton Ivanchenko', 'Artem Marynych'];
 
-	for (let i = 0; i < expertNames.length; i++) {
-		const card = memberCards.nth(i);
-		await baseDriverSteps.checkAppropriateCalendlyModalOpensAndCloses(card, expertNames[i]);
+	for (const expertName of expertNames) {
+		const matchingCard = await baseDriverSteps.findMatchingMemberCardByName(cardElements, expertName);
+		await baseDriverSteps.checkAppropriateCalendlyModalOpensAndCloses(matchingCard);
 	}
 });
 

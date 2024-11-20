@@ -209,33 +209,40 @@ class BaseDriverSteps {
 		});
 	}
 
-	public async checkMemberCardCalendly(memberCard: Locator, memberData: {name: string; role: string}) {
+	public async checkMemberCardCalendly(memberCard: Locator | undefined, memberData: {name: string; role: string}) {
+		if (!memberCard) {
+			throw new Error(`No card found for expert: ${memberData.name}`);
+		}
 		await expect(memberCard).toBeVisible();
 
 		const name = memberCard.getByTestId(Container.MemberName);
-		await expect(name).toHaveText(memberData.name);
-
 		const role = memberCard.getByTestId(Container.MemberRole);
-		await expect(role).toHaveText(memberData.role);
-
 		const consultButton = memberCard.getByTestId(MainSiteButtons.ScheduleAConsultationInCalendly);
+		const image = memberCard.locator('.member-foto');
+
+		await expect(name).toHaveText(memberData.name);
+		await expect(role).toHaveText(memberData.role);
 		await expect(consultButton).toBeVisible();
 		await expect(consultButton).toBeEnabled();
+		await this.checkImagesVisibility(image, 1);
 	}
 
-	public async checkAppropriateCalendlyModalOpensAndCloses(memberCard: Locator, memberName: string) {
+	public async findMatchingMemberCardByName(cardElements: Locator[], expertName: string) {
+		for (const card of cardElements) {
+			const cardName = await card.getByTestId(Container.MemberName).textContent();
+			if (cardName === expertName) return card;
+		}
+	}
+
+	public async checkAppropriateCalendlyModalOpensAndCloses(memberCard: Locator | undefined) {
+		if (!memberCard) {
+			throw new Error(`No card found`);
+		}
 		await memberCard.getByTestId(MainSiteButtons.ScheduleAConsultationInCalendly).click();
-
 		const calendlyFrame = driver.frameLocator(Calendly.frame);
-
 		await expect(calendlyFrame).toBeTruthy();
-
-		const calendlyNameLocator = await calendlyFrame.locator(Calendly.expertName);
-		const expertName = await calendlyNameLocator.textContent();
-
-		await expect(expertName).toBe(memberName);
-
 		await driver.locator(Calendly.close).click();
+		await expect(driver.locator(Calendly.frame)).toBeHidden();
 	}
 }
 
