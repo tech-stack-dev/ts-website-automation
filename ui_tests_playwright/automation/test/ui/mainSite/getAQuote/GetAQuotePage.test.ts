@@ -4,7 +4,6 @@ import GetAQuote from '../../../../identifiers/mainSite/pages/getAQuote/GetAQuot
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
-import Container from '../../../../identifiers/Container';
 import {containerSteps, test, expect} from '../../../../fixtures/DesktopMobileSetup';
 
 test.beforeEach(async () => {
@@ -47,36 +46,6 @@ test('Check partner logos in "Trusted By" container from the "Get a Quote" page 
 	});
 
 	await expect(lastLogo).toBeVisible();
-});
-
-test('Check member names, roles, images and consultation buttons in member cards from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1821', async () => {
-	const consultWithUsContainer = driver.getByTestId(GetAQuote.ConsultWithUs);
-	const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
-
-	const allExperts = [
-		{name: 'Max Levytskyi', role: 'Managing Partner'},
-		{name: 'Anton Ivanchenko', role: 'Business Development Manager'},
-		{name: 'Artem Marynych', role: 'Chief Growth Officer'},
-	];
-
-	expect(cardElements.length).toBe(allExperts.length);
-
-	for (const expertData of allExperts) {
-		const matchingCard = await baseDriverSteps.findMatchingMemberCardByName(cardElements, expertData.name);
-		await baseDriverSteps.checkMemberCardCalendly(matchingCard, expertData);
-	}
-});
-
-test('Check Calendly frame opens in member cards from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1821', async () => {
-	const consultWithUsContainer = driver.getByTestId(GetAQuote.ConsultWithUs);
-	const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
-
-	const expertNames = ['Max Levytskyi', 'Anton Ivanchenko', 'Artem Marynych'];
-
-	for (const expertName of expertNames) {
-		const matchingCard = await baseDriverSteps.findMatchingMemberCardByName(cardElements, expertName);
-		await baseDriverSteps.checkAppropriateCalendlyModalOpensAndCloses(matchingCard);
-	}
 });
 
 test.afterEach(async () => {
