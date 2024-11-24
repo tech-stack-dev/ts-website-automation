@@ -24,7 +24,7 @@ test.beforeEach(async () => {
 	consultWithUsContainerList = [getAQuoteConsultWithUsContainer, contactUsConsultWithUsContainer];
 });
 
-test('Check member names, roles, images and buttons in member cards from the "Contact us" and "Get a Quote" pages @desktop @mobile @Regression @Calendly @TSWEB-1852', async () => {
+test('Check member cards from from Calendly block on the "Contact us" and "Get a Quote" pages @desktop @mobile @Regression @Calendly @TSWEB-1852', async () => {
 	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 
@@ -42,22 +42,6 @@ test('Check member names, roles, images and buttons in member cards from the "Co
 			for (const expertData of allExperts) {
 				const matchingCard = await calendlySteps.findMatchingMemberCardByName(cardElements, expertData.name);
 				await calendlySteps.checkMemberCardCalendly(matchingCard, expertData);
-			}
-		}
-	}
-});
-
-test('Check Calendly frame opens in member cards from the "Contact us" and "Get a Quote" pages @desktop @mobile @Regression @Calendly @TSWEB-1852', async () => {
-	for (const url of testDataProvider) {
-		await baseDriverSteps.goToUrl(url);
-
-		for (const consultWithUsContainer of consultWithUsContainerList) {
-			const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
-
-			const expertNames = ['Max Levytskyi', 'Anton Ivanchenko', 'Artem Marynych'];
-
-			for (const expertName of expertNames) {
-				const matchingCard = await calendlySteps.findMatchingMemberCardByName(cardElements, expertName);
 				await calendlySteps.checkAppropriateCalendlyModalOpensAndCloses(matchingCard);
 			}
 		}
