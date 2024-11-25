@@ -4,12 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {
-	companyUrl,
-	industryUrl,
-	expertiseUrl,
-	serviceUrl,
-} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, expertiseUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -76,7 +71,7 @@ test.beforeEach(async () => {
 		pricingButton,
 		contactsButton,
 	];
-	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote); // bookAStrategyCallButton = header.getByTestId(MainSiteButtons.GetAQuote);  
+	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote); // bookAStrategyCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.ServicesMenu,
@@ -130,12 +125,9 @@ test(
 						const actualColor = await button.evaluate(async (el) => {
 							return getComputedStyle(el).backgroundColor;
 						});
-
-						if (pagesWithWhiteHeader.includes(url)) {
-							expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
-						} else {
-							expect(actualColor).toBe(ColorsEnum.Grey_434343);
-						}
+						pagesWithWhiteHeader.includes(url)
+							? expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF)
+							: expect(actualColor).toBe(ColorsEnum.Grey_434343);
 					},
 					5,
 					2000
@@ -213,11 +205,11 @@ test(`Check the header information from the "Header" container on all pages @des
 			'AI Integration Services',
 			'Data Strategy',
 			'Software Audit',
-			'Quality Assurance',//'QA as a Service',
+			'Quality Assurance', //'QA as a Service',
 			'Product Scaling',
 			'Cloud Migration',
 			'Dedicated Team',
-			'Expert Outstaffing',//'Staff Augmentation',
+			'Expert Outstaffing', //'Staff Augmentation',
 		];
 
 		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
