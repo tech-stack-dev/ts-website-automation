@@ -1,4 +1,4 @@
-import {BrowserContext, Locator, Page} from '@playwright/test';
+import {BrowserContext, FrameLocator, Locator, Page} from '@playwright/test';
 import BaseComponent from '../component/BaseComponent';
 import {driver} from './Driver';
 import {BrowsersEnum} from './BrowsersEnum';
@@ -88,6 +88,12 @@ export default class BaseDriver {
 		} else {
 			return driver.focusedDriver.Page.locator(selector);
 		}
+	}
+
+	public frameLocator(selector: string, baseElement?: Locator): FrameLocator {
+		return baseElement 
+			? baseElement.frameLocator(selector) 
+			: driver.focusedDriver.Page.frameLocator(selector);
 	}
 
 	public getByTestId(testId: string | RegExp, parent?: Locator, nth = 0): Locator {

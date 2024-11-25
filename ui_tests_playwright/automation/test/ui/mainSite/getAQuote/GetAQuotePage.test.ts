@@ -11,7 +11,11 @@ test.beforeEach(async () => {
 });
 
 test('Check the container title and number from the "Get a Quote" page @desktop @mobile @Regression @GetAQuote @TSWEB-1766', async () => {
-	const containers = [driver.getByTestId(GetAQuote.ConsultWithUs), driver.getByTestId(GetAQuote.OurProposal), driver.getByTestId(GetAQuote.TrustedBy)];
+	const containers = [
+		driver.getByTestId(GetAQuote.ConsultWithUs),
+		driver.getByTestId(GetAQuote.OurProposal),
+		driver.getByTestId(GetAQuote.TrustedBy),
+	];
 
 	const expectedData = [
 		['Consult with us', '01'],
