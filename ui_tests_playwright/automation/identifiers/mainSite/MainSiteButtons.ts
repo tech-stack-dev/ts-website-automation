@@ -42,6 +42,8 @@ export default class MainSiteButtons extends Buttons {
 	static LetsMakeItTogether = 'Button-LetsMakeItTogether';
 	static JoinUs = 'Button-JoinUs';
 
+	static ScheduleAConsultationInCalendly = 'Button-ScheduleAConsultationInCalendly';
+
 	// Services
 	static McKinsey = 'Button-Mckinsey';
 	static Pwc = 'Button-Pwc';

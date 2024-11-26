@@ -6,6 +6,7 @@ import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 import UrlUtils from '../../utils/UrlUtils';
+
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
 		await driver.createBrowser(browserName);

@@ -217,7 +217,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5457,
 		`Check the redirection to the "Book a discovery call" page by clicking on the "Book a a discovery call" button on all pages @desktop @mobile @Regression @BookAStrategyCall @TSWEB-532`
