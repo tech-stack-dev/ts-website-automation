@@ -217,7 +217,7 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5457,
 		`Check the redirection to the "Book a discovery call" page by clicking on the "Book a a discovery call" button on all pages @desktop @mobile @Regression @BookAStrategyCall @TSWEB-532`
@@ -227,7 +227,6 @@ test.skip(
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(MainSiteButtons.GetAQuote).click();
-			// await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookAStrategyCall));
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall));
 		}
 	}

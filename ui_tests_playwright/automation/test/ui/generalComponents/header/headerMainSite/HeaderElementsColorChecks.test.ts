@@ -27,7 +27,7 @@ let expertiseDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
 let contactsButton: Locator;
-let bookADiscoveryCallButton: Locator; //let bookAStrategyCallButton: Locator;
+let bookADiscoveryCallButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -71,7 +71,7 @@ test.beforeEach(async () => {
 		pricingButton,
 		contactsButton,
 	];
-	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote); // bookAStrategyCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
+	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.ServicesMenu,
@@ -179,7 +179,7 @@ test(`Check Services titles in the "Header" on all pages @desktop @Regression @H
 	}
 });
 
-test.skip(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
+test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
 		headerButtonsList = [
 			servicesDropdownButton,
@@ -204,11 +204,11 @@ test.skip(`Check the header information from the "Header" container on all pages
 			'AI Integration Services',
 			'Data Strategy',
 			'Software Audit',
-			'Quality Assurance', //'QA as a Service',
+			'Quality Assurance',
 			'Product Scaling',
 			'Cloud Migration',
 			'Dedicated Team',
-			'Expert Outstaffing', //'Staff Augmentation',
+			'Expert Outstaffing',
 		];
 
 		for (let index = 0; index < Object.values(servicesButtons).length; index++) {

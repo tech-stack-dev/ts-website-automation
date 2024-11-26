@@ -3,7 +3,7 @@ export default class UrlPath {
 	static Healthcare = 'industries/healthcare';
 	static TransportAndLogist = 'industries/transportation-and-logistics';
 	static RenewableEnergy = 'industries/renewable-energy';
-	static Startups = 'industries/startups';
+	static Startups = 'startups';
 
 	// Services pages
 	static OurServices = 'services';
