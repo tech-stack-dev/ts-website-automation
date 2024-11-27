@@ -6,6 +6,9 @@ import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 import UrlUtils from '../../utils/UrlUtils';
+import Footer from '../../identifiers/Footer';
+import UrlPath from '../../providers/UrlPath';
+import {stringUtils} from '../../utils/StringUtils';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -166,6 +169,27 @@ class BaseDriverSteps {
 		const expectedUrlClean = expectedUrlArray.filter((urlPart) => !ignorePatterns.includes(urlPart));
 		const isLinkPresent = expectedUrlClean.every((urlPart) => actualUrl.includes(urlPart));
 		return isLinkPresent;
+	}
+
+	public async checkContactsEmail(contactBlock: Locator, expectedText: string) {
+		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Email).innerText())).toEqual(
+			expectedText
+		);
+		expect(await contactBlock.getByTestId(Footer.EmailLink).getAttribute('href')).toBe(UrlPath.Email);
+	}
+
+	public async checkContactsPhone(contactBlock: Locator, expectedText: string) {
+		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Phone).innerText())).toEqual(
+			expectedText
+		);
+		expect(
+			stringUtils.removeHyphenCharachters(
+				await contactBlock.getByTestId(Footer.PhoneUSALink).getAttribute('href')
+			)
+		).toBe(UrlPath.PhoneUSA);
+		expect(
+			stringUtils.removeHyphenCharachters(await contactBlock.getByTestId(Footer.PhoneEULink).getAttribute('href'))
+		).toBe(UrlPath.PhoneEU);
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {

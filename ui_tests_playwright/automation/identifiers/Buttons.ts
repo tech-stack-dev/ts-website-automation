@@ -22,6 +22,7 @@ export default class Buttons {
 		Healthcare: 'Industries-Healthcare',
 		TransportationAndLogistics: 'Industries-TransportationAndLogistics',
 		RenewableEnergy: 'Industries-RenewableEnergy',
+		Startups: 'Industries-Startups',
 	};
 	static Expertise = {
 		CloudDev: 'Services-CloudDev',
