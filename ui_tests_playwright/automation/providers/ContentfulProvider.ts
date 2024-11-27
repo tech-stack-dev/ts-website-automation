@@ -1,12 +1,13 @@
 import {awsKms} from '../base/client/AWSkms';
+import {ContentfulSecretEnum} from '../enum/contentfulEnums/ContentfulSecretEnum';
 import {contentfulDtoVariable} from '../runtimeVariables/dto/ContentfulDtoVariable';
 
 export default class ContentfulProvider {
 	static contentfulData = this.getContentfulSecret();
 
-	private static async getContentfulSecret() {
+	static async getContentfulSecret(secrectName: ContentfulSecretEnum = ContentfulSecretEnum.CareerSecret) {
 		const contentfulDto = contentfulDtoVariable;
-		const secretString = await awsKms.getSecret('ContentfulSecret');
+		const secretString = await awsKms.getSecret(secrectName);
 		const jsonObj = JSON.parse(secretString!);
 		contentfulDto.value = {
 			contentfulAccessToken: jsonObj.contentfulAccessToken,
