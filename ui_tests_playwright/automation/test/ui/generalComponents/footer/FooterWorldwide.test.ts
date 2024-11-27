@@ -34,7 +34,9 @@ let servicesBlock: Locator;
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
+	UrlUtils.getRandomUrlFromArray(
+		Object.values(industryUrl).filter((value) => value !== UrlProvider.urlBuilder(UrlPath.Startups))
+	),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
@@ -65,7 +67,7 @@ test.beforeEach(async () => {
 	servicesBlock = footer.getByTestId(Footer.ServicesBlock);
 });
 
-test.skip(
+test(
 	qase(
 		5485,
 		`Check the footer information from the "Footer" container on all pages @desktop @mobile @Regression @Footer @TSWEB-655 @TSWEB-674`
@@ -81,8 +83,11 @@ test.skip(
 			const headquoters = 'Headquarters:';
 			const countryData = 'Poland, Wroclaw,';
 			const streetData = '9 Rybacka street, 53-656';
-			const phoneNumber = 'Phone number:';
-			const phoneNumberData = '+1-312-442-0823';
+			const callUs = 'Call us:';
+			const phoneNumberDataUSA = '+1-312-442-0823 (USA)';
+			const phoneNumberDataEU = '+4-871-735-3668 (EU)';
+			const sayHi = 'Say hi:';
+			const email = 'hello@tech-stack.com';
 
 			await expect(footer.getByTestId(Buttons.Logo)).toBeVisible();
 			await expect(contactBlock.getByTestId(Container.SectionTitle)).toHaveText('Contacts');
@@ -91,19 +96,18 @@ test.skip(
 				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
 					`${headquoters}${countryData}\n${streetData}`
 				);
-				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber}${phoneNumberData}`);
 			} else if (webflowPages.includes(url)) {
 				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
 					`${headquoters}${countryData} ${streetData}`
 				);
-				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber}${phoneNumberData}`);
 			} else {
 				await expect(contactBlock.getByTestId(Footer.Headquarters)).toHaveText(
 					`${headquoters}\n${countryData}\n${streetData}`
 				);
-				await expect(contactBlock.getByTestId(Footer.Phone)).toHaveText(`${phoneNumber} ${phoneNumberData}`);
-				await expect(contactBlock.getByTestId(Footer.ContactUs)).toHaveText('Contact Us');
 			}
+
+			baseDriverSteps.checkContactsPhone(contactBlock, `${callUs}${phoneNumberDataUSA}${phoneNumberDataEU}`);
+			baseDriverSteps.checkContactsEmail(contactBlock, `${sayHi}${email}`);
 
 			await expect(footer.getByTestId(Footer.Info)).toHaveText(`© ${year} Techstack. All rights reserved.`);
 
@@ -114,11 +118,11 @@ test.skip(
 				'AI Integration Services',
 				'Data Strategy',
 				'Software Audit',
-				'QA as a Service',
+				'Quality Assurance',
 				'Product Scaling',
 				'Cloud Migration',
 				'Dedicated Team',
-				'Staff Augmentation',
+				'Expert Outstaffing',
 			];
 
 			for (let index = 0; index < servicesUrls.length; index++) {
@@ -127,7 +131,7 @@ test.skip(
 			}
 
 			await expect(industriesBlock.getByTestId(Container.BlockTitle)).toHaveText('Industries');
-			const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
+			const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy', 'Startups'];
 
 			for (let index = 0; index < industriesUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(industriesButtons)[index]);
