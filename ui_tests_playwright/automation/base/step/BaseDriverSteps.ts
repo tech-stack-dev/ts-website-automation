@@ -8,6 +8,7 @@ import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPrecondition
 import UrlUtils from '../../utils/UrlUtils';
 import Footer from '../../identifiers/Footer';
 import UrlPath from '../../providers/UrlPath';
+import {stringUtils} from '../../utils/StringUtils';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -171,18 +172,24 @@ class BaseDriverSteps {
 	}
 
 	public async checkContactsEmail(contactBlock: Locator, expectedText: string) {
-		expect((await contactBlock.getByTestId(Footer.Email).innerText())!.replace(/\n/g, '')).toEqual(expectedText);
+		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Email).innerText())).toEqual(
+			expectedText
+		);
 		expect(await contactBlock.getByTestId(Footer.EmailLink).getAttribute('href')).toBe(UrlPath.Email);
 	}
 
 	public async checkContactsPhone(contactBlock: Locator, expectedText: string) {
-		expect((await contactBlock.getByTestId(Footer.Phone).innerText())!.replace(/\n/g, '')).toEqual(expectedText);
-		expect((await contactBlock.getByTestId(Footer.PhoneUSALink).getAttribute('href'))!.replace(/-/g, '')).toBe(
-			UrlPath.PhoneUSA
+		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Phone).innerText())).toEqual(
+			expectedText
 		);
-		expect((await contactBlock.getByTestId(Footer.PhoneEULink).getAttribute('href'))!.replace(/-/g, '')).toBe(
-			UrlPath.PhoneEU
-		);
+		expect(
+			stringUtils.removeHyphenCharachters(
+				await contactBlock.getByTestId(Footer.PhoneUSALink).getAttribute('href')
+			)
+		).toBe(UrlPath.PhoneUSA);
+		expect(
+			stringUtils.removeHyphenCharachters(await contactBlock.getByTestId(Footer.PhoneEULink).getAttribute('href'))
+		).toBe(UrlPath.PhoneEU);
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
