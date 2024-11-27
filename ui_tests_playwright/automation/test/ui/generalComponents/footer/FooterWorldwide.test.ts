@@ -34,9 +34,7 @@ let servicesBlock: Locator;
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(
-		Object.values(industryUrl).filter((value) => value !== UrlProvider.urlBuilder(UrlPath.Startups))
-	),
+	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
@@ -248,6 +246,9 @@ test(
 				await baseDriverSteps.checkUrl(industriesUrls[index]);
 				await baseDriverSteps.goToUrl(url);
 			}
+			await footer.getByTestId(Object.values(industriesButtons).slice(-1)[0]).click();
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.Startups));
+			await baseDriverSteps.goToUrl(url);
 		}
 	}
 );

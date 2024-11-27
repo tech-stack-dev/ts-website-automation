@@ -9,7 +9,6 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
 	[IndustriesEnum.TransportAndLogist]: UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 	[IndustriesEnum.RenewableEnergy]: UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-	[IndustriesEnum.Startups]: UrlProvider.urlBuilder(UrlPath.Startups),
 };
 
 export const serviceUrl: Record<ServicesEnum, string> = {
