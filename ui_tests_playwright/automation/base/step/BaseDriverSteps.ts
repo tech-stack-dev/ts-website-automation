@@ -138,7 +138,6 @@ class BaseDriverSteps {
 			await driver.Page.waitForLoadState();
 		} else {
 			const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
-			await newPage.waitForLoadState();
 			await playwrightUtils.expectWithRetries(
 				async () => {
 					expect(this.checkLinksEquality(expectedUrl, newPage.url())).toBeTruthy();
