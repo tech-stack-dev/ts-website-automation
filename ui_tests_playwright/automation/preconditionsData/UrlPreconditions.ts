@@ -70,6 +70,7 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.CloudMigration),
 	UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
 	UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
+	UrlProvider.urlBuilder(UrlPath.Startups),
 	UrlProvider.urlBuilder(UrlPath.ComputerVision),
 	UrlProvider.urlBuilder(UrlPath.OpenAI),
 	UrlProvider.urlBuilder(UrlPath.DeepLearning),

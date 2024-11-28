@@ -30,8 +30,8 @@ export default class UrlPath {
 	static AiIntegrationServices = 'services/ai-integration';
 	static DataStrategy = 'services/data-strategy-consulting';
 	static ComputerVision = 'services/computer-vision-development';
- 	static OpenAI = 'services/openai-api-integration';
- 	static DeepLearning = 'services/deep-learning-development';
+	static OpenAI = 'services/openai-api-integration';
+	static DeepLearning = 'services/deep-learning-development';
 
 	// Company pages
 	static AboutUs = 'about-us';
@@ -65,4 +65,9 @@ export default class UrlPath {
 
 	// Error pages
 	static PageNotFound = '404';
+
+	//Contacs
+	static PhoneUSA = 'tel:+13124420823';
+	static PhoneEU = 'tel:+48717353668';
+	static Email = 'mailto:hello@tech-stack.com';
 }
