@@ -20,4 +20,10 @@ export default class Footer {
 	static CookiesPolicy = 'Button-CookiesPolicy';
 	static Sitemap = 'Button-Sitemap';
 	static ContactUs = 'Button-ContactUs';
+
+	//Contacs
+	static PhoneUSALink = 'Contacts-Phone-USA-Link';
+	static PhoneEULink = 'Contacts-Phone-EU-Link';
+	static Email = 'Contacts-Email';
+	static EmailLink = 'Contacts-Email-Link';
 }
