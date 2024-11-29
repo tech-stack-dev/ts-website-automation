@@ -7,12 +7,7 @@ import Container from '../../../../identifiers/Container';
 import {calendlySteps} from '../../../../steps/ui/CalendlySteps';
 import GeneralContainersMainSite from '../../../../identifiers/mainSite/GeneralContainersMainSite';
 import UrlUtils from '../../../../utils/UrlUtils';
-
-interface ExpertData {
-	name: string;
-	role: string;
-	pages: string[];
-}
+import {allExpertsList} from '../../../../dto/ExpertDto';
 
 let consultWithUsContainer: Locator;
 let getInTouchContainer: Locator;
@@ -20,53 +15,6 @@ let getInTouchContainer: Locator;
 const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlPath.GetAQuote),
 	UrlProvider.urlBuilder(UrlPath.ContactUs),
-];
-
-const allExperts: ExpertData[] = [
-	{
-		name: 'Max Levytsky',
-		role: 'Managing Partner',
-		pages: [
-			UrlProvider.webSiteUrl(),
-			UrlProvider.urlBuilder(UrlPath.DevOpsServ),
-			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-			UrlProvider.urlBuilder(UrlPath.AiDevelopment),
-			UrlProvider.urlBuilder(UrlPath.AboutUs),
-		],
-	},
-	{
-		name: 'Anzhelika Grebennikova',
-		role: 'Global Partnership Manager',
-		pages: [
-			UrlProvider.urlBuilder(UrlPath.Healthcare),
-			UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-			UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
-		],
-	},
-	{
-		name: 'Anton Ivanchenko',
-		role: 'Business Development Manager',
-		pages: [
-			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-			UrlProvider.urlBuilder(UrlPath.MobileDev),
-			UrlProvider.urlBuilder(UrlPath.BigData),
-			UrlProvider.urlBuilder(UrlPath.HowWeWork),
-			UrlProvider.urlBuilder(UrlPath.Pricing),
-			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-		],
-	},
-	{
-		name: 'Artem Marynych',
-		role: 'Chief Growth Officer',
-		pages: [
-			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
-			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
-			UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
-			UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-			UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-			UrlProvider.urlBuilder(UrlPath.CustomDev),
-		],
-	},
 ];
 
 test.beforeEach(async () => {
@@ -79,15 +27,10 @@ test('Check expert cards from Calendly block on the "Contact us" and "Get a Quot
 	for (const url of testDataProvider) {
 		await baseDriverSteps.goToUrl(url);
 		const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
-
-		const experts = [
-			{name: 'Max Levytskyi', role: 'Managing Partner'},
-			{name: 'Anton Ivanchenko', role: 'Business Development Manager'},
-			{name: 'Artem Marynych', role: 'Chief Growth Officer'},
-		];
-
 		expect(cardElements.length).toBe(3);
-		for (const expertData of experts) {
+
+		for (const expertData of allExpertsList) {
+			expertData.name = expertData.name === 'Max Levytsky' ? 'Max Levytskyi' : expertData.name;
 			const matchingCard = await calendlySteps.findMatchingMemberCardByName(cardElements, expertData.name);
 			if (matchingCard) {
 				await calendlySteps.checkMemberCardCalendly(matchingCard, expertData);
@@ -100,7 +43,7 @@ test('Check expert cards from Calendly block on the "Contact us" and "Get a Quot
 test('Check expert cards from Calendly section in forms on business website pages @desktop @mobile @Regression @TSWEB-1852', async () => {
 	getInTouchContainer = driver.getByTestId(GeneralContainersMainSite.GetInTouch);
 
-	for (const expert of allExperts) {
+	for (const expert of allExpertsList) {
 		const url = UrlUtils.getRandomUrlFromArray(expert.pages);
 		await baseDriverSteps.goToUrl(url);
 		const memberCard = getInTouchContainer.getByTestId(Container.MemberCard);
