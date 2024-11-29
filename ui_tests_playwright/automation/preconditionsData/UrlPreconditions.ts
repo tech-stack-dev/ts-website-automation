@@ -9,7 +9,6 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
 	[IndustriesEnum.TransportAndLogist]: UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 	[IndustriesEnum.RenewableEnergy]: UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-	[IndustriesEnum.Startups]: UrlProvider.urlBuilder(UrlPath.Startups),
 };
 
 export const serviceUrl: Record<ServicesEnum, string> = {
@@ -75,6 +74,5 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.OpenAI),
 	UrlProvider.urlBuilder(UrlPath.DeepLearning),
 	UrlProvider.urlBuilder(UrlPath.OurClients),
-	// UrlProvider.urlBuilder(UrlPath.BookAStrategyCall),
 	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 ];

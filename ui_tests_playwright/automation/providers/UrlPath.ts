@@ -44,7 +44,6 @@ export default class UrlPath {
 
 	static ContactUs = 'contact-us';
 	static GetAQuote = 'free-proposal';
-	// static BookAStrategyCall = 'book-a-strategy-call';
 	static BookADiscoveryCall = 'book-a-discovery-call'
 
 	static testEnv = 'staging';

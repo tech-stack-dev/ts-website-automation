@@ -57,7 +57,7 @@ test.beforeEach(async () => {
 	expertiseButtons = Buttons.Expertise;
 
 	servicesUrls = Object.values(serviceUrl);
-	industriesUrls = Object.values(industryUrl);
+	industriesUrls = [...Object.values(industryUrl), UrlProvider.urlBuilder(UrlPath.Startups)];
 	expertiseUrls = Object.values(expertiseUrl);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
