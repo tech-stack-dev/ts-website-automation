@@ -31,7 +31,7 @@ let servicesUrls: string[];
 let industriesUrls: string[];
 let expertiseUrls: string[];
 
-let testDataProvider: string[] = [
+const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
@@ -84,9 +84,8 @@ test(
 		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		testDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
-
-		for (const url of testDataProvider) {
+		const extendedTestDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
+		for (const url of extendedTestDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Buttons.Logo).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
