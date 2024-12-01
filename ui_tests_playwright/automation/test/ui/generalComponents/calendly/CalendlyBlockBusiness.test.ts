@@ -29,7 +29,9 @@ test('Check expert cards from Calendly block on the "Contact us" and "Get a Quot
 		const cardElements = await consultWithUsContainer.getByTestId(Container.MemberCard).all();
 		expect(cardElements.length).toBe(3);
 
-		for (const expertData of allExpertsList) {
+		// for (const expertData of allExpertsList) {
+		for (const originalExpertData of allExpertsList) {
+			const expertData = {...originalExpertData};
 			expertData.name = expertData.name === 'Max Levytsky' ? 'Max Levytskyi' : expertData.name;
 			const matchingCard = await calendlySteps.findMatchingMemberCardByName(cardElements, expertData.name);
 			if (matchingCard) {
