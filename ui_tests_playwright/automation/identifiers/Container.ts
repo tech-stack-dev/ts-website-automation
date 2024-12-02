@@ -25,6 +25,7 @@ export default class Container {
 	static MemberCard = 'MemberCard';
 	static MemberRole = 'MemberRole';
 	static MemberName = 'MemberName';
+	static MemberImage = 'MemberImage';
 
 	static AuthorName = 'AuthorName';
 	static AuthorPosition = 'AuthorPosition';

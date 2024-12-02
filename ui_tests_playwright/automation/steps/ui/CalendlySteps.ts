@@ -6,7 +6,7 @@ import {baseDriverSteps} from '../../base/step/BaseDriverSteps';
 import Calendly from '../../identifiers/mainSite/Calendly';
 
 class CalendlySteps {
-	public async checkMemberCardCalendly(memberCard: Locator | undefined, memberData: {name: string; role: string}) {
+	public async checkMemberCardCalendly(memberCard: Locator | null, memberData: {name: string; role: string}) {
 		if (!memberCard) {
 			throw new Error(`No card found for expert: ${memberData.name}`);
 		}
@@ -15,7 +15,7 @@ class CalendlySteps {
 		const name = memberCard.getByTestId(Container.MemberName);
 		const role = memberCard.getByTestId(Container.MemberRole);
 		const consultButton = memberCard.getByTestId(MainSiteButtons.ScheduleAConsultationInCalendly);
-		const image = memberCard.locator('.member-foto');
+		const image = memberCard.getByTestId(Container.MemberImage);
 
 		await expect(name).toHaveText(memberData.name);
 		await expect(role).toHaveText(memberData.role);
@@ -27,11 +27,12 @@ class CalendlySteps {
 	public async findMatchingMemberCardByName(cardElements: Locator[], expertName: string) {
 		for (const card of cardElements) {
 			const cardName = await card.getByTestId(Container.MemberName).textContent();
-			if (cardName === expertName) return card;
+
+			return cardName === expertName ? card : null;
 		}
 	}
 
-	public async checkAppropriateCalendlyModalOpensAndCloses(memberCard: Locator | undefined) {
+	public async checkAppropriateCalendlyModalOpensAndCloses(memberCard: Locator | null) {
 		if (!memberCard) {
 			throw new Error(`No card found`);
 		}
