@@ -44,7 +44,7 @@ const testDataProvider: string[] = [
 		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
 	),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote])),
-	UrlProvider.urlBuilder(UrlPath.BookAStrategyCall),
+	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 ];
 
 test.beforeEach(async () => {

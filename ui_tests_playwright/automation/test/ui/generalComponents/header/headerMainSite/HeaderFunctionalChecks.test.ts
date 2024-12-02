@@ -31,7 +31,7 @@ let servicesUrls: string[];
 let industriesUrls: string[];
 let expertiseUrls: string[];
 
-let testDataProvider: string[] = [
+const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
@@ -57,7 +57,7 @@ test.beforeEach(async () => {
 	expertiseButtons = Buttons.Expertise;
 
 	servicesUrls = Object.values(serviceUrl);
-	industriesUrls = Object.values(industryUrl);
+	industriesUrls = [...Object.values(industryUrl), UrlProvider.urlBuilder(UrlPath.Startups)];
 	expertiseUrls = Object.values(expertiseUrl);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
@@ -84,9 +84,8 @@ test(
 		`Check the redirection to the main page by clicking on the "Techstack" logo in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
 	async () => {
-		testDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
-
-		for (const url of testDataProvider) {
+		const extendedTestDataProvider = testDataProvider.concat(urlsWithOnlyLogoInHeader);
+		for (const url of extendedTestDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await driver.getByTestId(Buttons.Logo).click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
@@ -217,17 +216,17 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5457,
-		`Check the redirection to the "Book a strategy call" page by clicking on the "Book a strategy call" button on all pages @desktop @mobile @Regression @BookAStrategyCall @TSWEB-532`
+		`Check the redirection to the "Book a discovery call" page by clicking on the "Book a a discovery call" button on all pages @desktop @mobile @Regression @BookAStrategyCall @TSWEB-532`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			await header.getByTestId(MainSiteButtons.GetAQuote).click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookAStrategyCall));
+			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall));
 		}
 	}
 );

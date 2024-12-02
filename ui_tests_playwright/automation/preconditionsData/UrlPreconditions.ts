@@ -74,5 +74,5 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.OpenAI),
 	UrlProvider.urlBuilder(UrlPath.DeepLearning),
 	UrlProvider.urlBuilder(UrlPath.OurClients),
-	UrlProvider.urlBuilder(UrlPath.BookAStrategyCall),
+	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 ];

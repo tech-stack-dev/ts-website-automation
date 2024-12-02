@@ -4,12 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import {ColorsEnum} from '../../../../../enum/ColorsEnum';
 import {CompanyEnum} from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
-import {
-	companyUrl,
-	industryUrl,
-	expertiseUrl,
-	serviceUrl,
-} from '../../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, expertiseUrl, serviceUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -32,7 +27,7 @@ let expertiseDropdownButton: Locator;
 let companyDropdownButton: Locator;
 let pricingButton: Locator;
 let contactsButton: Locator;
-let bookAStrategyCallButton: Locator;
+let bookADiscoveryCallButton: Locator;
 
 const pagesWithWhiteHeader: string[] = [
 	UrlProvider.webSiteUrl(),
@@ -76,7 +71,7 @@ test.beforeEach(async () => {
 		pricingButton,
 		contactsButton,
 	];
-	bookAStrategyCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
+	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
 
 	servicesMenu = await containerSteps.getDynamicLocator({
 		desktopLocator: Header.ServicesMenu,
@@ -130,12 +125,9 @@ test(
 						const actualColor = await button.evaluate(async (el) => {
 							return getComputedStyle(el).backgroundColor;
 						});
-
-						if (pagesWithWhiteHeader.includes(url)) {
-							expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF);
-						} else {
-							expect(actualColor).toBe(ColorsEnum.Grey_434343);
-						}
+						pagesWithWhiteHeader.includes(url)
+							? expect(actualColor).toBe(ColorsEnum.Grey_EFEFEF)
+							: expect(actualColor).toBe(ColorsEnum.Grey_434343);
 					},
 					5,
 					2000
@@ -187,7 +179,7 @@ test(`Check Services titles in the "Header" on all pages @desktop @Regression @H
 	}
 });
 
-test.skip(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
+test(`Check the header information from the "Header" container on all pages @desktop @mobile @Regression @Header @TSWEB-656`, async () => {
 	for (const url of testDataProvider) {
 		headerButtonsList = [
 			servicesDropdownButton,
@@ -212,11 +204,11 @@ test.skip(`Check the header information from the "Header" container on all pages
 			'AI Integration Services',
 			'Data Strategy',
 			'Software Audit',
-			'QA as a Service',
+			'Quality Assurance',
 			'Product Scaling',
 			'Cloud Migration',
 			'Dedicated Team',
-			'Staff Augmentation',
+			'Expert Outstaffing',
 		];
 
 		for (let index = 0; index < Object.values(servicesButtons).length; index++) {
@@ -225,7 +217,7 @@ test.skip(`Check the header information from the "Header" container on all pages
 		}
 
 		const industriesButtons = Buttons.Industries;
-		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy'];
+		const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy', 'Startups'];
 
 		for (let index = 0; index < Object.values(industriesButtons).length; index++) {
 			const button = industriesMenu.getByTestId(Object.values(industriesButtons)[index]);
@@ -272,21 +264,21 @@ test.skip(`Check the header information from the "Header" container on all pages
 		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
-		await expect(bookAStrategyCallButton).toHaveText('Book a strategy call');
+		await expect(bookADiscoveryCallButton).toHaveText('Book a discovery call');
 	}
 });
 
 test(
 	qase(
 		5455,
-		`Check "Book a strategy call" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
+		`Check "Book a discovery call" button color on all pages @desktop @mobile @Regression @ContactUs @TSWEB-532`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			await headerMenuSteps.clickOnBurgerMenu();
 			expect(
-				await locatorUtils.checkBackgroundColor(bookAStrategyCallButton, ColorsEnum.Yellow_FFC600)
+				await locatorUtils.checkBackgroundColor(bookADiscoveryCallButton, ColorsEnum.Yellow_FFC600)
 			).toBeTruthy();
 		}
 	}
@@ -295,16 +287,16 @@ test(
 test(
 	qase(
 		5456,
-		`Check "Book a strategy call" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
+		`Check "Book a discovery call" button color after hovering on it on all pages @desktop @Regression @ContactUs @TSWEB-532`
 	),
 	async () => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
-			await bookAStrategyCallButton.hover();
+			await bookADiscoveryCallButton.hover();
 
 			await playwrightUtils.expectWithRetries(
 				async () => {
-					const actualColor = await bookAStrategyCallButton.evaluate(async (el) => {
+					const actualColor = await bookADiscoveryCallButton.evaluate(async (el) => {
 						return getComputedStyle(el).backgroundColor;
 					});
 					expect(actualColor).toBe(ColorsEnum.Yellow_Hover_EDAB00);
