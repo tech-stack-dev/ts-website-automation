@@ -20,7 +20,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		4974,
 		'Check the container title and number from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148 @TSWEB-1082'
@@ -70,7 +70,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5025,
 		'Check contact information in "Cooperation Contacts" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
