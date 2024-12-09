@@ -9,6 +9,7 @@ import UrlUtils from '../../utils/UrlUtils';
 import Footer from '../../identifiers/Footer';
 import UrlPath from '../../providers/UrlPath';
 import {stringUtils} from '../../utils/StringUtils';
+import ContactsBlock from '../../identifiers/mainSite/ContactsBlock';
 
 class BaseDriverSteps {
 	public async createsNewBrowser(browserName: BrowsersEnum = BrowsersEnum.DEFAULT_BROWSER) {
@@ -171,10 +172,10 @@ class BaseDriverSteps {
 	}
 
 	public async checkContactsEmail(contactBlock: Locator, expectedText: string) {
-		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Email).innerText())).toEqual(
-			expectedText
-		);
-		expect(await contactBlock.getByTestId(Footer.EmailLink).getAttribute('href')).toBe(UrlPath.Email);
+		expect(
+			stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(ContactsBlock.Email).innerText())
+		).toEqual(expectedText);
+		expect(await contactBlock.getByTestId(ContactsBlock.EmailLink).getAttribute('href')).toBe(UrlPath.Email);
 	}
 
 	public async checkContactsPhone(contactBlock: Locator, expectedText: string) {
@@ -183,12 +184,19 @@ class BaseDriverSteps {
 		);
 		expect(
 			stringUtils.removeHyphenCharachters(
-				await contactBlock.getByTestId(Footer.PhoneUSALink).getAttribute('href')
+				await contactBlock.getByTestId(ContactsBlock.PhoneUSALink).getAttribute('href')
 			)
 		).toBe(UrlPath.PhoneUSA);
 		expect(
-			stringUtils.removeHyphenCharachters(await contactBlock.getByTestId(Footer.PhoneEULink).getAttribute('href'))
+			stringUtils.removeHyphenCharachters(
+				await contactBlock.getByTestId(ContactsBlock.PhoneEULink).getAttribute('href')
+			)
 		).toBe(UrlPath.PhoneEU);
+	}
+
+	public async checkClipBoardContect(expectedText: string) {
+		const clipboardContent = await driver.Page.evaluate('navigator.clipboard.readText()');
+		expect(clipboardContent).toBe(expectedText);
 	}
 
 	public async checkFaqSectionsExpandingAndCollapsing(container: Locator, numberOfSections: number) {
