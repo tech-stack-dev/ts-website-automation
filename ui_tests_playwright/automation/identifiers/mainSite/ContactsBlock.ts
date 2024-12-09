@@ -1,4 +1,5 @@
 export default class ContactsBlock {
+	static Phone = 'Contacts-Phone';
 	static PhoneUSALink = 'Contacts-Phone-USA-Link';
 	static PhoneEULink = 'Contacts-Phone-EU-Link';
 	static Email = 'Contacts-Email';

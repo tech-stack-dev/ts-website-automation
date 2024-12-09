@@ -12,7 +12,6 @@ export default class Footer {
 	static CareerBlock = 'CareerBlock';
 
 	static Headquarters = 'Contacts-Headquarters';
-	static Phone = 'Contacts-Phone';
 	static Info = 'Info';
 
 	// Button

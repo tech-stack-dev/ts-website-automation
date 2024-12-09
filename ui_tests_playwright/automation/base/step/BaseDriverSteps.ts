@@ -179,7 +179,7 @@ class BaseDriverSteps {
 	}
 
 	public async checkContactsPhone(contactBlock: Locator, expectedText: string) {
-		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(Footer.Phone).innerText())).toEqual(
+		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(ContactsBlock.Phone).innerText())).toEqual(
 			expectedText
 		);
 		expect(
