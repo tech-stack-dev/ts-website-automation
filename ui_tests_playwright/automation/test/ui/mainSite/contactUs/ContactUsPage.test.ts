@@ -7,6 +7,7 @@ import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
+import ContactsBlock from '../../../../identifiers/mainSite/ContactsBlock';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
@@ -20,29 +21,48 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		4974,
 		'Check the container title and number from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148 @TSWEB-1082'
 	),
 	async () => {
 		const containers = [
-			driver.getByTestId(ContactUs.ContactUs),
+			driver.getByTestId(ContactUs.ContactUsForm),
 			driver.getByTestId(ContactUs.ConsultWithUs),
 			driver.getByTestId(ContactUs.TrustedBy),
 			driver.getByTestId(ContactUs.Cooperation),
 		];
 
 		const expectedData = [
-			['Contact Us', '01'],
+			['Get in Touch', '01'],
 			['Consult with us', '02'],
 			['Trusted By', '03'],
-			['Cooperation Contacts', '04'],
+			['Cooperation', '04'],
 		];
 
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
 );
+
+test('Check contact information in "Get in Touch" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1833', async () => {
+	let contactUsForm = driver.getByTestId(ContactUs.ContactUsForm);
+	let copyIcon = driver.getByTestId(ContactsBlock.CopyEmail);
+	let notification = driver.getByTestId(ContactsBlock.CopyEmailNotification);
+	const callUs = 'Call us';
+	const phoneNumberDataUSA = '+1-312-442-0823 (USA)';
+	const phoneNumberDataEU = '+4-871-735-3668 (EU)';
+	const sayHi = 'Say hi';
+	const email = 'hello@tech-stack.com';
+
+	baseDriverSteps.checkContactsPhone(contactUsForm, `${callUs}${phoneNumberDataUSA}${phoneNumberDataEU}`);
+	baseDriverSteps.checkContactsEmail(contactUsForm, `${sayHi}${email}`);
+
+	await copyIcon.click();
+	expect(await notification.getAttribute('style')).toBe('display: block;');
+	await expect(notification).toHaveText('Copied');
+	await baseDriverSteps.checkClipBoardContect(email);
+});
 
 test(
 	qase(
@@ -70,27 +90,10 @@ test(
 	}
 );
 
-test.skip(
-	qase(
-		5025,
-		'Check contact information in "Cooperation Contacts" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
-	),
-	async () => {
-		const cooperationContactsContainer = driver.getByTestId(ContactUs.Cooperation);
-
-		await expect(cooperationContactsContainer.getByTestId(Container.Email)).toHaveText(
-			'Email\nhello@tech-stack.io'
-		);
-		await expect(cooperationContactsContainer.getByTestId(Container.Phone)).toHaveText(
-			'Phone number\n+1-312-442-0823'
-		);
-	}
-);
-
 test(
 	qase(
 		5003,
-		'Check section number, title and description in "Cooperation Contacts" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
+		'Check section number, title and description in "Cooperation" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-148'
 	),
 	async () => {
 		const cooperationContactsContainer = driver.getByTestId(ContactUs.Cooperation);
