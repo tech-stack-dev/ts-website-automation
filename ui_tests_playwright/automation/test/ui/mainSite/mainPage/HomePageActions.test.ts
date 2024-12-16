@@ -15,6 +15,7 @@ import ExternalSourceLinks from '../../../../preconditionsData/links/ExternalSou
 import CaseStudies from '../../../../identifiers/mainSite/CaseStudies';
 import {VideoLinks} from '../../../../preconditionsData/links/VideoLinks';
 import MainSiteVideos from '../../../../identifiers/mainSite/MainSiteVideos';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -60,7 +61,7 @@ test(
 	async () => {
 		const whyTechstackContainer = driver.getByTestId(HomePage.WhyTechstack);
 
-		const clutchButtons = await whyTechstackContainer.getByTestId(MainSiteVideos.VideoReview).all();
+		const clutchButtons = await whyTechstackContainer.getByTestId(Buttons.Clutch).all();
 
 		const buttonMap = new Map([
 			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
