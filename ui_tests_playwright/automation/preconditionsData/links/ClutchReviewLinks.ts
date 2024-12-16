@@ -3,7 +3,6 @@ export enum ClutchReviewLinks {
 	DarrenCody = 'https://clutch.co/profile/techstack#review-1961618',
 	AnonymousPeerToPeer = 'https://clutch.co/profile/techstack#review-1820220',
 	MarkBeare = 'https://clutch.co/profile/techstack#review-1765062',
-	MarkBeareHomePage = 'https://clutch.co/go-to-review/3cebe227-e706-4f69-9c77-417b307eb419/134617?cgl=no',
 	DerickDaily = 'https://clutch.co/profile/techstack#review-26948',
 	AnonymousMedicalDevice = 'https://clutch.co/profile/techstack#review-1939515',
 	HenriYoki = 'https://clutch.co/profile/techstack#review-218147',

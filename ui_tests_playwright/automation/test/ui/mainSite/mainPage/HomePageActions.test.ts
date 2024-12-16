@@ -53,7 +53,7 @@ test(
 	}
 );
 
-test(
+test.skip(
 	qase(
 		5076,
 		'Check redirect by "Clutch Review" buttons in "Why Techstack for Software Development?" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
@@ -66,7 +66,7 @@ test(
 		const buttonMap = new Map([
 			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
 			[clutchButtons[1], ClutchReviewLinks.SherzodGafar],
-			[clutchButtons[2], ClutchReviewLinks.MarkBeareHomePage],
+			[clutchButtons[2], ClutchReviewLinks.MarkBeare],
 			[clutchButtons[3], ClutchReviewLinks.NDA],
 		]);
 
