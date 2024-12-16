@@ -33,12 +33,12 @@ test(
 	}
 );
 
-test('Check redirect by "Video Review" card in "Partner Testimonials" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy', async () => {
+test('Check redirect by "Video Review" card in "Partner Testimonials" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy  @TSWEB-1766', async () => {
 	const clientSuccessStoryContainer = driver.getByTestId(RenewableEnergy.OurExpertise);
 	const videoCard = clientSuccessStoryContainer.getByTestId(MainSiteVideos.VideoReview);
 
 	await videoCard.click();
-	await baseDriverSteps.checkYoutubeUrl(VideoLinks.ArilaBarnes);
+	await baseDriverSteps.checkYoutubeIframe(VideoLinks.ArilaBarnes);
 });
 
 test(

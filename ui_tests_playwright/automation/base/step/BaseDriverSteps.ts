@@ -162,7 +162,7 @@ class BaseDriverSteps {
 		await newPage.close();
 	}
 
-	public async checkYoutubeUrl(expectedUrl: string) {
+	public async checkYoutubeIframe(expectedUrl: string) {
 		const videoIframe = driver.Page.locator('iframe[src*="www.youtube.com"]');
 		await expect(videoIframe).toBeVisible();
 		expect(await videoIframe.getAttribute('src')).toBe(expectedUrl);

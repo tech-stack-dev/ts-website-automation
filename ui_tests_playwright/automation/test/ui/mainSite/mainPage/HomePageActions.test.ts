@@ -75,7 +75,7 @@ test(
 	}
 );
 
-test('Check redirect by "Video Review" cards in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006', async () => {
+test('Check redirect by "Video Review" cards in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1766', async () => {
 	const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
 
 	const videoCards = await partnerTestimonialsContainer.getByTestId(MainSiteVideos.VideoReview).all();
@@ -86,7 +86,7 @@ test('Check redirect by "Video Review" cards in "Partner Testimonials" container
 
 	for (const [videoCard, url] of videoMap) {
 		await videoCard.click();
-		await baseDriverSteps.checkYoutubeUrl(url);
+		await baseDriverSteps.checkYoutubeIframe(url);
 	}
 });
 
