@@ -56,7 +56,6 @@ export default class MainSiteButtons extends Buttons {
 	// Switch tab
 	static LinkedInReviews = 'Button-LinkedInReviews';
 	static ClutchReviews = 'Button-ClutchReviews';
-	static ClutchButton = 'Button-Clutch';
 
 	// Technology Stack
 	static Technology_BackEnd = 'Button-BackEnd';
