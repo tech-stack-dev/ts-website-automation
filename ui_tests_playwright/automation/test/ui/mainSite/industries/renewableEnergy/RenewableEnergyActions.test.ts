@@ -11,6 +11,8 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import {VideoLinks} from '../../../../../preconditionsData/links/VideoLinks';
+import MainSiteVideos from '../../../../../identifiers/mainSite/MainSiteVideos';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));
@@ -30,6 +32,14 @@ test(
 		);
 	}
 );
+
+test('Check redirect by "Video Review" card in "Partner Testimonials" container from the "Renewable Energy" page @desktop @mobile @Regression @RenewableEnergy', async () => {
+	const clientSuccessStoryContainer = driver.getByTestId(RenewableEnergy.OurExpertise);
+	const videoCard = clientSuccessStoryContainer.getByTestId(MainSiteVideos.VideoReview);
+
+	await videoCard.click();
+	await baseDriverSteps.checkYoutubeUrl(VideoLinks.ArilaBarnes);
+});
 
 test(
 	qase(
