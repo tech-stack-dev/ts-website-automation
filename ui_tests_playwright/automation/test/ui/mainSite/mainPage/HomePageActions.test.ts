@@ -13,6 +13,9 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {test, expect} from '../../../../fixtures/DesktopMobileSetup';
 import ExternalSourceLinks from '../../../../preconditionsData/links/ExternalSourceLinks';
 import CaseStudies from '../../../../identifiers/mainSite/CaseStudies';
+import {VideoLinks} from '../../../../preconditionsData/links/VideoLinks';
+import MainSiteVideos from '../../../../identifiers/mainSite/MainSiteVideos';
+import Buttons from '../../../../identifiers/Buttons';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.webSiteUrl());
@@ -53,16 +56,12 @@ test(
 test.skip(
 	qase(
 		5076,
-		'Check redirect by "Clutch Review" buttons in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
+		'Check redirect by "Clutch Review" buttons in "Why Techstack for Software Development?" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1006'
 	),
 	async () => {
-		const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
+		const whyTechstackContainer = driver.getByTestId(HomePage.WhyTechstack);
 
-		const clutchReviewButton = partnerTestimonialsContainer.getByTestId(MainSiteButtons.ClutchReviews);
-		await clutchReviewButton.click();
-		expect(await clutchReviewButton.getAttribute('class')).toContain('active');
-
-		const clutchButtons = await partnerTestimonialsContainer.getByTestId(MainSiteButtons.ClutchReviewArrow).all();
+		const clutchButtons = await whyTechstackContainer.getByTestId(Buttons.Clutch).all();
 
 		const buttonMap = new Map([
 			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
@@ -72,10 +71,25 @@ test.skip(
 		]);
 
 		for (const [button, url] of buttonMap) {
-			await baseDriverSteps.checkRedirectToPage(button, url);
+			await baseDriverSteps.checkRedirectToClutch(button, url);
 		}
 	}
 );
+
+test('Check redirect by "Video Review" cards in "Partner Testimonials" container from the "Home" page @desktop @mobile @Regression @HomePage @TSWEB-1766', async () => {
+	const partnerTestimonialsContainer = driver.getByTestId(HomePage.PartnerTestimonials);
+
+	const videoCards = await partnerTestimonialsContainer.getByTestId(MainSiteVideos.VideoReview).all();
+	const videoMap = new Map([
+		[videoCards[0], VideoLinks.ArilaBarnes],
+		[videoCards[1], VideoLinks.RagnarMartens],
+	]);
+
+	for (const [videoCard, url] of videoMap) {
+		await videoCard.click();
+		await baseDriverSteps.checkYoutubeIframe(url);
+	}
+});
 
 test(
 	qase(

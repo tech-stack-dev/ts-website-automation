@@ -163,6 +163,13 @@ class BaseDriverSteps {
 		await newPage.close();
 	}
 
+	public async checkYoutubeIframe(expectedUrl: string) {
+		const videoIframe = driver.Page.locator('iframe[src*="www.youtube.com"]');
+		await expect(videoIframe).toBeVisible();
+		expect(await videoIframe.getAttribute('src')).toBe(expectedUrl);
+		await driver.Page.reload();
+	}
+
 	public checkLinksEquality(expectedUrl: string, actualUrl: string) {
 		const ignorePatterns = ['in'];
 		const expectedUrlArray = expectedUrl.split('/');

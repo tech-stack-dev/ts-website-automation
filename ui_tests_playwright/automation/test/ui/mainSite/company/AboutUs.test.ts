@@ -14,6 +14,8 @@ import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInR
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {Environment} from '../../../../providers/EnvProvider';
+import MainSiteVideos from '../../../../identifiers/mainSite/MainSiteVideos';
+import {VideoLinks} from '../../../../preconditionsData/links/VideoLinks';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.AboutUs));
@@ -62,6 +64,13 @@ test(
 		await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
 	}
 );
+//need to add data-id "Video-Button" for "Meet Techstack" button
+test.skip('Check redirect by "Meet Techstack" button in "Our story" container from the "About Us" page @desktop @mobile @Regression @AboutUs  @TSWEB-1766', async () => {
+	const ourStoryContainer = driver.getByTestId(AboutUs.OurStory);
+	const videoButton = ourStoryContainer.getByTestId(MainSiteVideos.VideoButton);
+	await videoButton.click();
+	await baseDriverSteps.checkYoutubeIframe(VideoLinks.MeetTechstack);
+});
 
 test(
 	qase(
