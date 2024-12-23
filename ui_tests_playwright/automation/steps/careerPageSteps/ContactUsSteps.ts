@@ -15,7 +15,7 @@ class ContactUsSteps {
 		await driver.getByTestId(Input.PhoneNumber).fill(phone);
 		await driver.getByTestId(Buttons.Send).click();
 
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([Input.Email, Input.PhoneNumber]);
+		const listOfMessages = await formSteps.getErrorMessagesFromFieldsCareer([Input.Email, Input.PhoneNumber]);
 
 		return Object.values(testData).every((message) => listOfMessages.includes(message));
 	}

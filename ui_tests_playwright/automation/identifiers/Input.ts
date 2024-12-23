@@ -9,5 +9,6 @@ export default class Input {
 	static JobTitle = 'Input-JobTitle';
 	static AttachFile = 'Input-AttachFile';
 
-	static FieldErrorSelector = "xpath=/following-sibling::div[@id='error']";
+	static FieldErrorSelector = 'span[style="display: block;"]';
+	static FieldErrorSelectorCareer = "xpath=/following-sibling::div[@id='error']";
 }

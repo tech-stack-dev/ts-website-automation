@@ -31,7 +31,7 @@ test(
 		await driver.getByTestId(Input.Email).fill(lineWithSpaces, {timeout: 10000});
 		await driver.getByTestId(Input.PhoneNumber).fill(lineWithSpaces, {timeout: 10000});
 		await driver.getByTestId(Buttons.Send).click({timeout: 10000});
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([
+		const listOfMessages = await formSteps.getErrorMessagesFromFieldsCareer([
 			Input.FullName,
 			Input.Email,
 			Input.PhoneNumber,
@@ -96,7 +96,7 @@ test(
 			PleaseEntryPhone: 'Please enter your phone number',
 		};
 		await driver.getByTestId(Buttons.Send).click();
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([
+		const listOfMessages = await formSteps.getErrorMessagesFromFieldsCareer([
 			Input.FullName,
 			Input.Email,
 			Input.PhoneNumber,

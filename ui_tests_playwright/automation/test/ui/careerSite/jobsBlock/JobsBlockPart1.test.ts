@@ -123,7 +123,7 @@ test.skip(
 		).click();
 
 		await driver.getByTestId(Buttons.Send).click();
-		const listOfMessages = await formSteps.getErrorMessagesFromFields([
+		const listOfMessages = await formSteps.getErrorMessagesFromFieldsCareer([
 			Input.FirstName,
 			Input.LastName,
 			Input.Email,
