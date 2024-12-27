@@ -18,6 +18,18 @@ export default class Buttons {
 		DedicatedTeam: 'Services-DedicatedTeam',
 		StaffAugmentation: 'Services-StaffAugmentation',
 	};
+	static ServicesBlog = {
+		PoCAndMVPDevelopment: 'Services-PocMvpDevelopment',
+		CustomDev: 'Services-CustomDev',
+		AiIntegrationServices: 'Services-AiIntegrationServices',
+		DataStrategy: 'Services-DataStrategy',
+		SoftwareAudit: 'Services-SoftwareAudit',
+		QaAsAService: 'Services-QaAsAServ',
+		ProductScaling: 'Services-ProductScaling',
+		CloudMigration: 'Services-CloudMigration',
+		DedicatedTeam: 'Services-DedicatedDevelopmentTeam',
+		StaffAugmentation: 'Services-ItStaffAugmentation',
+	};
 	static Industries = {
 		Healthcare: 'Industries-Healthcare',
 		TransportationAndLogistics: 'Industries-TransportationAndLogistics',
@@ -38,6 +50,21 @@ export default class Buttons {
 		ComputerVision: 'Services-ComputerVision',
 		OpenApi: 'Services-OpenAPI',
 		DeepLearning: 'Services-DeepLearning',
+	};
+	static ExpertiseBlog = {
+		CloudDev: 'Expertise-CloudDev',
+		DevOps: 'Expertise-DevOps',
+		InternetOfThings: 'Expertise-InternetOfThings',
+		DigitalTransform: 'Expertise-DigitalTransformation',
+		UiUxDesign: 'Expertise-UiUxDesign',
+		MobileDev: 'Expertise-MobileDev',
+		FrontEnd: 'Expertise-FrontEnd',
+		BackEnd: 'Expertise-BackEnd',
+		BigData: 'Expertise-BigData',
+		AiDevelopment: 'Expertise-AIML',
+		ComputerVision: 'Expertise-ComputerVisionDevelopment',
+		OpenApi: 'Expertise-OpenaiApiIntegration',
+		DeepLearning: 'Expertise-DeepLearning',
 	};
 	static Company = {
 		AboutUs: 'Company-AboutUs',
