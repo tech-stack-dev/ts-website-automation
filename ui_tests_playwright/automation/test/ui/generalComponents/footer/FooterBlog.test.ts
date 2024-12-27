@@ -53,7 +53,7 @@ test.beforeEach(async () => {
 	companyBlock = containerBlock[4];
 });
 
-test(`Check the footer information from the "Footer" container on Blog page @desktop @mobile @Regression @Footer @TSWEB-818 @TSWEB-674`, async () => {
+test(`Check the footer information from the "Footer" container on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const year = new Date().getFullYear();
 	const headquoters = 'Headquarters:';
 	const countryData = 'Poland, Wroclaw,';
@@ -151,23 +151,23 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 	await expect(footer.getByTestId(Footer.Sitemap)).toHaveText('Sitemap');
 });
 
-test(`Check the redirection by the "Techstack" logo on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection by the "Techstack" logo on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	await footer.getByTestId(Buttons.Logo).click();
 	await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
 });
 
-test(`Check the redirection by the "Contact Us" button on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection by the "Contact Us" button on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	await footer.getByTestId(Footer.ContactUs).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.ContactUs));
 });
 
-test(`Check the redirection by the "Services" button on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection by the "Services" button on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	await footer.getByTestId(Buttons.OurServices).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 	await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
 });
 
-test(`Check the redirection for the Services block on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection for the Services block on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const servicesMap = arrayUtils.mergeTwoArraysToMap(Object.values(servicesButtons), servicesUrls);
 	for (const [buttonText, url] of servicesMap) {
 		if (buttonText === Buttons.ServicesBlog.DataStrategy) {
@@ -186,7 +186,7 @@ test(`Check the redirection for the Services block on Blog page @desktop @mobile
 	}
 });
 
-test(`Check the redirection for the Industries block on Blog page @desktop @mobile @Regression @Footer @TSWEB-833`, async () => {
+test(`Check the redirection for the Industries block on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const buttons = await industriesBlock.getByTestId(industriesButtons).all();
 
 	const industriesMap = arrayUtils.mergeTwoArraysToMap(industriesUrls, buttons);
@@ -202,7 +202,7 @@ test(`Check the redirection for the Industries block on Blog page @desktop @mobi
 	await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
 });
 
-test(`Check the redirection for the Expertise block on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection for the Expertise block on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const expertiseMap = arrayUtils.mergeTwoArraysToMap(expertiseUrls, Object.values(expertiseButtons));
 
 	for (const [url, button] of expertiseMap) {
@@ -212,7 +212,7 @@ test(`Check the redirection for the Expertise block on Blog page @desktop @mobil
 	}
 });
 
-test(`Check the redirection for the Company block on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection for the Company block on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const companyList = [
 		companyUrl[CompanyEnum.AboutUs],
 		companyUrl[CompanyEnum.HowWeWork],
@@ -233,12 +233,12 @@ test(`Check the redirection for the Company block on Blog page @desktop @mobile 
 	}
 });
 
-test(`Check the redirection by the "Get a quote" button on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection by the "Get a quote" button on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	await footer.getByTestId(MainSiteButtons.GetAQuote).click();
 	await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.GetAQuote));
 });
 
-test(`Check the redirection for the social links on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection for the social links on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const linkMap = new Map([
 		[Buttons.LinkedIn, Links.LinkedIn],
 		[Buttons.Facebook, Links.Facebook],
@@ -261,7 +261,7 @@ test(`Check the redirection for the social links on Blog page @desktop @mobile @
 	}
 });
 
-test(`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on Blog page @desktop @mobile @Regression @Footer @TSWEB-818`, async () => {
+test(`Check the redirection to the Terms, Cookies Policy, and Sitemap pages on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const linkMap = new Map([
 		[Footer.TermsOfUse, UrlProvider.urlBuilder(UrlPath.Terms)],
 		[Footer.CookiesPolicy, UrlProvider.urlBuilder(UrlPath.CookiesPolicy)],
