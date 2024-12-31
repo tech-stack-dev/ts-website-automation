@@ -7,6 +7,7 @@ import {companyUrl, expertiseUrl, industryUrl, serviceUrl} from '../../../../pre
 import Container from '../../../../identifiers/Container';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import {ServicesEnum} from '../../../../enum/ServicesEnum';
 
 let breadcrumbsHome: Locator;
 let breadcrumbsPrev: Locator;
@@ -31,13 +32,13 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5481,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		for (const url of Object.values(serviceUrl).slice(2)) {
+		for (const url of Object.values(serviceUrl)) {
 			await baseDriverSteps.goToUrl(url);
 			await breadcrumbsHome.click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
@@ -45,7 +46,7 @@ test.skip(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5483,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Expertise" pages @desktop @mobile @Regression @Breadcrumbs'
@@ -65,9 +66,7 @@ test(
 		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		const servicesUrlListWithoutOurServicesPage = Object.values(serviceUrl).slice(1); // Because on "Our Services" page breadcrumbs to Home page
-
-		for (const url of servicesUrlListWithoutOurServicesPage) {
+		for (const url of Object.values(serviceUrl)) {
 			await baseDriverSteps.goToUrl(url);
 			await breadcrumbsPrev.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -81,9 +80,7 @@ test(
 		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Expertise" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
-		const expertiseUrlListWithoutOurServicesPage = Object.values(expertiseUrl).slice(1); // Because on "Our Services" page breadcrumbs to Home page
-
-		for (const url of expertiseUrlListWithoutOurServicesPage) {
+		for (const url of Object.values(expertiseUrl)) {
 			await baseDriverSteps.goToUrl(url);
 			await breadcrumbsPrev.click();
 			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -91,10 +88,10 @@ test(
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5482,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" pages @desktop @mobile @Regression @Breadcrumbs'
+		'Check redirect to main page by clicking "Home" breadcrumbs button from "Company" and "Our Services" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
 	async () => {
 		const companyUrlList = [
@@ -102,6 +99,7 @@ test.skip(
 			companyUrl[CompanyEnum.HowWeWork],
 			companyUrl[CompanyEnum.OurClients],
 			companyUrl[CompanyEnum.Pricing],
+			UrlProvider.urlBuilder(UrlPath.OurServices),
 		];
 
 		for (const url of companyUrlList) {
