@@ -14,7 +14,6 @@ import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import {arrayUtils} from '../../../../utils/ArrayUtils';
 
 let footer: Locator;
-let footerBottom: Locator;
 let industriesButtons: string;
 let servicesButtons: object;
 let expertiseButtons: object;
@@ -23,7 +22,6 @@ let industriesUrls: string[];
 let servicesUrls: string[];
 let expertiseUrls: string[];
 let companyUrls: string[];
-let servicesBlock: Locator;
 let containerBlock: Locator[];
 let contactBlock: Locator;
 let industriesBlock: Locator;
@@ -33,7 +31,6 @@ let companyBlock: Locator;
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.Blog));
 	footer = driver.getByTestId(Footer.Container_Footer);
-	footerBottom = driver.getByTestId(Footer.Container_FooterBottom);
 
 	industriesButtons = Container.SectionTitle;
 	servicesButtons = Buttons.ServicesBlog;
@@ -47,7 +44,6 @@ test.beforeEach(async () => {
 
 	containerBlock = await footer.getByTestId(Container.ContainerBlock).all();
 	contactBlock = containerBlock[0];
-	servicesBlock = containerBlock[1];
 	industriesBlock = containerBlock[2];
 	expertiseBlock = containerBlock[3];
 	companyBlock = containerBlock[4];

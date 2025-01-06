@@ -7,7 +7,6 @@ import {companyUrl, expertiseUrl, industryUrl, serviceUrl} from '../../../../pre
 import Container from '../../../../identifiers/Container';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {ServicesEnum} from '../../../../enum/ServicesEnum';
 
 let breadcrumbsHome: Locator;
 let breadcrumbsPrev: Locator;

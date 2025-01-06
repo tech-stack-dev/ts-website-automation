@@ -46,9 +46,9 @@ test(
 );
 
 test('Check contact information in "Get in Touch" container from the "Contact Us" page @desktop @mobile @Regression @ContactUs @TSWEB-1833', async () => {
-	let contactUsForm = driver.getByTestId(ContactUs.ContactUsForm);
-	let copyIcon = driver.getByTestId(ContactsBlock.CopyEmail);
-	let notification = driver.getByTestId(ContactsBlock.CopyEmailNotification);
+	const contactUsForm = driver.getByTestId(ContactUs.ContactUsForm);
+	const copyIcon = driver.getByTestId(ContactsBlock.CopyEmail);
+	const notification = driver.getByTestId(ContactsBlock.CopyEmailNotification);
 	const callUs = 'Call us';
 	const phoneNumberDataUSA = '+1-312-442-0823 (USA)';
 	const phoneNumberDataEU = '+4-871-735-3668 (EU)';

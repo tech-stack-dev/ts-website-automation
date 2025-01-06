@@ -6,7 +6,6 @@ import Buttons from '../../identifiers/Buttons';
 import {playwrightUtils} from '../../utils/PlaywrightUtils';
 import {urlsWithoutCookiesMessage} from '../../preconditionsData/UrlPreconditions';
 import UrlUtils from '../../utils/UrlUtils';
-import Footer from '../../identifiers/Footer';
 import UrlPath from '../../providers/UrlPath';
 import {stringUtils} from '../../utils/StringUtils';
 import ContactsBlock from '../../identifiers/mainSite/ContactsBlock';
@@ -186,9 +185,9 @@ class BaseDriverSteps {
 	}
 
 	public async checkContactsPhone(contactBlock: Locator, expectedText: string) {
-		expect(stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(ContactsBlock.Phone).innerText())).toEqual(
-			expectedText
-		);
+		expect(
+			stringUtils.removeNewLineCharachters(await contactBlock.getByTestId(ContactsBlock.Phone).innerText())
+		).toEqual(expectedText);
 		expect(
 			stringUtils.removeHyphenCharachters(
 				await contactBlock.getByTestId(ContactsBlock.PhoneUSALink).getAttribute('href')
