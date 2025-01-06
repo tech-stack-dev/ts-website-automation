@@ -1,5 +1,5 @@
-import UrlPath from "../providers/UrlPath";
-import UrlProvider from "../providers/UrlProvider";
+import UrlPath from '../providers/UrlPath';
+import UrlProvider from '../providers/UrlProvider';
 
 export interface ExpertDto {
 	name: string;

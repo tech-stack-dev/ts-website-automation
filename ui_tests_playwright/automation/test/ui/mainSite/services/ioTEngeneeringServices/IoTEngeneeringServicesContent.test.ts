@@ -9,7 +9,7 @@ import IoTEngineeringServices from '../../../../../identifiers/mainSite/pages/se
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { arrayUtils } from '../../../../../utils/ArrayUtils';
+import {arrayUtils} from '../../../../../utils/ArrayUtils';
 
 const requestAQuoteButtonText = 'Request a quote';
 
