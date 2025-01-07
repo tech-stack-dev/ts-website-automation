@@ -91,9 +91,7 @@ export default class BaseDriver {
 	}
 
 	public frameLocator(selector: string, baseElement?: Locator): FrameLocator {
-		return baseElement 
-			? baseElement.frameLocator(selector) 
-			: driver.focusedDriver.Page.frameLocator(selector);
+		return baseElement ? baseElement.frameLocator(selector) : driver.focusedDriver.Page.frameLocator(selector);
 	}
 
 	public getByTestId(testId: string | RegExp, parent?: Locator, nth = 0): Locator {

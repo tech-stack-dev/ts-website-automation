@@ -69,7 +69,9 @@ test(
 		const expectedInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();
 		await driver.getByTestId(Career.SarchCareerField).fill(textData);
 		await expect(
-			(await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)).Element
+			(
+				await driver.component(ContainerByClass, ContainersCareer.SearchResultsTextContainer)
+			).Element
 		).toHaveText(`${textData},0 Jobs`);
 		const actualInputBoxProps = await driver.getByTestId(Career.SarchCareerField).boundingBox();
 		expect(actualInputBoxProps?.width).toEqual(expectedInputBoxProps?.width);
