@@ -2,6 +2,7 @@ export default class Buttons {
 	static Logo = 'Logo-Techstack';
 	static Blog = 'Button-Blog';
 	static Close = 'Button-Close';
+	static Download = 'Button-Download';
 	static BurgerMenuButton = 'Button-BurgerMenu';
 
 	// Pages list

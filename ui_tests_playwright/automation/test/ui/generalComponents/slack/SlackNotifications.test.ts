@@ -9,12 +9,13 @@ import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../../identifiers/career/Navigation';
-import {companyUrl, industryUrl, serviceUrl} from '../../../../preconditionsData/UrlPreconditions';
+import {companyUrl, industryUrl, serviceUrl, webflowPages} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
 import {careerSteps, containerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
 import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
+import {validGetInTouchData} from '../../../../dto/FormDto';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -85,10 +86,21 @@ test(
 	}
 );
 
+test('Check Slack notification from "staging_techstack_notify" channel from "Pricing" page @desktop @mobile @Regression @GetOurRateCard @TSWEB-1768', async () => {
+	await baseDriverSteps.goToUrl(companyUrl[CompanyEnum.Pricing]);
+	await formSteps.sendGetOurRateCardMessage();
+	const message = await slackSteps.getMessageWithValueFromChat(
+		slackDtoVariable.value.stagingTechstackNotifyId,
+		`<mailto:${validGetInTouchData.email}|${validGetInTouchData.email}>`
+	);
+
+	slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
+});
+
 test(
 	qase(
 		5462,
-		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work" and "Contact Us" pages @desktop @mobile @Regression @GetInTouchExtended @TSWEB-606'
+		'Check Slack notification from "staging_techstack_notify" channel from "Home", "About Us", "How We Work", "Contact Us" and "Pricing" pages @desktop @mobile @Regression @GetInTouchExtended @TSWEB-606'
 	),
 	async () => {
 		const urlList: string[] = [
@@ -96,6 +108,7 @@ test(
 			companyUrl[CompanyEnum.AboutUs],
 			companyUrl[CompanyEnum.HowWeWork],
 			UrlProvider.urlBuilder(UrlPath.ContactUs),
+			companyUrl[CompanyEnum.Pricing],
 		];
 
 		for (const url of urlList) {
@@ -103,63 +116,52 @@ test(
 			await formSteps.sendGetInTouchMessage();
 			const message = await slackSteps.getMessageWithValueFromChat(
 				slackDtoVariable.value.stagingTechstackNotifyId,
-				`Test${sessionValue.stringValue}`
+				validGetInTouchData.firstName
 			);
 
-			slackSteps.checkMessageFromNotifyChannel(message, {
-				firstName: `Test${sessionValue.stringValue}`,
-				lastName: `Automation${sessionValue.stringValue}`,
-				email: `test${sessionValue.stringValue}@test.com`,
-				message: `TestMessage${sessionValue.stringValue}`,
-			});
+			slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
 		}
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5464,
 		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
 	),
 	async () => {
 		for (const url of Object.values(serviceUrl)) {
-			await baseDriverSteps.goToUrl(url);
-			await formSteps.sendGetInTouchMessage();
-			const message = await slackSteps.getMessageWithValueFromChat(
-				slackDtoVariable.value.stagingTechstackNotifyId,
-				`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`
-			);
+			if (!webflowPages.includes(url)) {
+				await baseDriverSteps.goToUrl(url);
+				await formSteps.sendGetInTouchMessage();
+				const message = await slackSteps.getMessageWithValueFromChat(
+					slackDtoVariable.value.stagingTechstackNotifyId,
+					validGetInTouchData.firstName
+				);
 
-			slackSteps.checkMessageFromNotifyChannel(message, {
-				fullName: `Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`,
-				email: `test${sessionValue.stringValue}@test.com`,
-				message: `TestMessage${sessionValue.stringValue}`,
-			});
+				slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
+			}
 		}
 	}
 );
 
-test.skip(
+test(
 	qase(
 		5463,
-		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" and "Pricing" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
+		'Check Slack notification from "staging_techstack_notify" channel from all "Industries" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
 	),
 	async () => {
-		const testDataProvider: string[] = Object.values(industryUrl).concat(companyUrl[CompanyEnum.Pricing]);
+		const urlList: string[] = Object.values(industryUrl);
 
-		for (const url of testDataProvider) {
+		for (const url of urlList) {
 			await baseDriverSteps.goToUrl(url);
 			await formSteps.sendGetInTouchMessage();
 			const message = await slackSteps.getMessageWithValueFromChat(
 				slackDtoVariable.value.stagingTechstackNotifyId,
-				`Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`
+				validGetInTouchData.firstName
 			);
 
-			slackSteps.checkMessageFromNotifyChannel(message, {
-				fullName: `Test${sessionValue.stringValue} Automation${sessionValue.stringValue}`,
-				email: `test${sessionValue.stringValue}@test.com`,
-				message: `TestMessage${sessionValue.stringValue}`,
-			});
+			slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
 		}
 	}
 );
