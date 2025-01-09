@@ -10,7 +10,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import {ExpertNames} from '../../../../../preconditionsData/ExpertNames';
 import TechnologyStackData from '../../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { arrayUtils } from '../../../../../utils/ArrayUtils';
+import {arrayUtils} from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.CloudDevelopment));

@@ -1,5 +1,5 @@
-import UrlPath from "../providers/UrlPath";
-import UrlProvider from "../providers/UrlProvider";
+import UrlPath from '../providers/UrlPath';
+import UrlProvider from '../providers/UrlProvider';
 
 export interface ExpertDto {
 	name: string;
@@ -42,7 +42,7 @@ export const allExpertsList: ExpertDto[] = [
 	},
 	{
 		name: 'Artem Marynych',
-		role: 'Chief Growth Officer',
+		role: 'Growth & Business Development Manager',
 		pages: [
 			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 			UrlProvider.urlBuilder(UrlPath.DigitalTransform),

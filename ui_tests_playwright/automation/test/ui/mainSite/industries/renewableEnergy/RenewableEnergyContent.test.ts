@@ -8,7 +8,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import { arrayUtils } from '../../../../../utils/ArrayUtils';
+import {arrayUtils} from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.RenewableEnergy));

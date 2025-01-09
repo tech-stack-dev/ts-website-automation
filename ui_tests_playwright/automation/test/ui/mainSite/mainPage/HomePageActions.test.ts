@@ -10,7 +10,7 @@ import MainSiteLinks from '../../../../identifiers/mainSite/MainSiteLinks';
 import Links from '../../../../preconditionsData/links/Links';
 import BlogTagPath from '../../../../providers/BlogTagPath';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {test, expect} from '../../../../fixtures/DesktopMobileSetup';
+import {test} from '../../../../fixtures/DesktopMobileSetup';
 import ExternalSourceLinks from '../../../../preconditionsData/links/ExternalSourceLinks';
 import CaseStudies from '../../../../identifiers/mainSite/CaseStudies';
 import {VideoLinks} from '../../../../preconditionsData/links/VideoLinks';

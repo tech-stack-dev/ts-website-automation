@@ -8,7 +8,7 @@ import MainSiteImages from '../../../../../identifiers/mainSite/MainSiteImages';
 import DigitalTransformation from '../../../../../identifiers/mainSite/pages/services/DigitalTransformation';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {containerSteps, expect, test} from '../../../../../fixtures/DesktopMobileSetup';
-import { arrayUtils } from '../../../../../utils/ArrayUtils';
+import {arrayUtils} from '../../../../../utils/ArrayUtils';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.DigitalTransform));
