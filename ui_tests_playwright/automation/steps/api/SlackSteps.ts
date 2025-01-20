@@ -13,7 +13,7 @@ class SlackSteps {
 			const webClient = new WebClient(slackDtoVariable.value.token);
 			const messages: Message[] = (await webClient.conversations.history({channel: chatId})).messages!;
 			message = messages.find((x) =>
-				x.attachments!.find((x) => x.fields!.find((x) => x.value.toLowerCase() === value.toLowerCase()))
+				x.attachments!.find((x) => x.fields!.find((x) => x.value?.toLowerCase() === value.toLowerCase()))
 			);
 			expect(message).not.toBe(undefined);
 		}, 5);
@@ -50,7 +50,7 @@ class SlackSteps {
 			expect(lastNameField.value).toBe(expectedMessage.lastName);
 		}
 
-		expect(fields?.find((x) => x.title === 'Email')?.value.toLowerCase()).toContain(expectedMessage.email);
+		expect(fields?.find((x) => x.title === 'Email')?.value?.toLowerCase()).toContain(expectedMessage.email);
 		const messageField = fields?.find((x) => x.title === 'Message');
 		if (messageField) {
 			expect(messageField.value).toBe(expectedMessage.request);
