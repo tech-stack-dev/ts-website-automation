@@ -25,7 +25,7 @@ test('Check redirect by "LinkedIn Review" button in "Case Study by Techstack" co
 	const caseStudyContainer = driver.getByTestId(MobileDevService.CaseStudy);
 	const linkedInReviewButton = caseStudyContainer.getByTestId(Buttons.LinkedIn);
 
-	await baseDriverSteps.checkRedirectToPage(linkedInReviewButton, LinkedInReviewLinks.GrahamBrown);
+	await baseDriverSteps.checkRedirectToPage(linkedInReviewButton, LinkedInReviewLinks.JohnBusch);
 });
 
 test(

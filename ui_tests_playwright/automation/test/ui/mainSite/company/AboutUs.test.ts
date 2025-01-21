@@ -259,7 +259,7 @@ test(
 
 		const buttonMap = new Map([
 			[linkedInButtons[0], LinkedInReviewLinks.FerdiVanHeerden],
-			[linkedInButtons[1], LinkedInReviewLinks.GrahamBrown],
+			[linkedInButtons[1], LinkedInReviewLinks.JohnBusch],
 		]);
 
 		for (const [button, url] of buttonMap) {

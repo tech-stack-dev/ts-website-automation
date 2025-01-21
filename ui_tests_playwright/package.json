@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint . --ext .ts",
+		"prettier-check": "prettier --ignore-path .gitignore --check \"**/*.+(js|ts|json)\"",
 		"format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
 		"jira-skip": "ts-node GetListOfJirasToSkip.ts",
 		"unit-tests": "npx jest"
