@@ -16,7 +16,7 @@ class SlackSteps {
 				x.attachments!.find((x) => x.fields!.find((x) => x.value?.toLowerCase() === value.toLowerCase()))
 			);
 			expect(message).not.toBe(undefined);
-		}, 5);
+		}, 10);
 
 		return message!;
 	}
