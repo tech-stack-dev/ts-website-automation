@@ -1,9 +1,9 @@
-import {Message} from '@slack/web-api/dist/response/ConversationsHistoryResponse';
-import {WebClient} from '@slack/web-api';
-import {expect} from '@playwright/test';
-import {driver} from '../../base/driver/Driver';
-import {slackDtoVariable} from '../../runtimeVariables/dto/SlackDtoVariable';
-import {FormDto} from '../../dto/FormDto';
+import { Message } from '@slack/web-api/dist/response/ConversationsHistoryResponse';
+import { WebClient } from '@slack/web-api';
+import { expect } from '@playwright/test';
+import { driver } from '../../base/driver/Driver';
+import { slackDtoVariable } from '../../runtimeVariables/dto/SlackDtoVariable';
+import { FormDto } from '../../dto/FormDto';
 
 class SlackSteps {
 	public async getMessageWithValueFromChat(chatId: string, value: string): Promise<Message> {
@@ -11,12 +11,12 @@ class SlackSteps {
 
 		await driver.executeFunc(async () => {
 			const webClient = new WebClient(slackDtoVariable.value.token);
-			const messages: Message[] = (await webClient.conversations.history({channel: chatId})).messages!;
+			const messages: Message[] = (await webClient.conversations.history({ channel: chatId })).messages!;
 			message = messages.find((x) =>
 				x.attachments!.find((x) => x.fields!.find((x) => x.value.toLowerCase() === value.toLowerCase()))
 			);
 			expect(message).not.toBe(undefined);
-		}, 5);
+		}, 30);
 
 		return message!;
 	}
@@ -59,11 +59,11 @@ class SlackSteps {
 
 	public async postMessageInSlackChannel(chatId: string, value: string) {
 		const webClient = new WebClient(slackDtoVariable.value.token);
-		const response = await webClient.chat.postMessage({channel: chatId, text: value});
+		const response = await webClient.chat.postMessage({ channel: chatId, text: value });
 
 		expect(response.ok).toBe(true);
 	}
 }
 
 const slackSteps = new SlackSteps();
-export {slackSteps};
+export { slackSteps };
