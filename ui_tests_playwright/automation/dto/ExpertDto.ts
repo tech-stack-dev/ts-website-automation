@@ -9,10 +9,16 @@ export interface ExpertDto {
 
 export const allExpertsList: ExpertDto[] = [
 	{
-		name: 'Max Levytsky',
-		role: 'Managing Partner',
+		name: 'Anton Ivanchenko',
+		role: 'Business Development Manager',
 		pages: [
 			UrlProvider.webSiteUrl(),
+			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+			UrlProvider.urlBuilder(UrlPath.MobileDev),
+			UrlProvider.urlBuilder(UrlPath.BigData),
+			UrlProvider.urlBuilder(UrlPath.HowWeWork),
+			UrlProvider.urlBuilder(UrlPath.Pricing),
+			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
 			UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 			UrlProvider.urlBuilder(UrlPath.AiDevelopment),
@@ -21,7 +27,7 @@ export const allExpertsList: ExpertDto[] = [
 	},
 	{
 		name: 'Anzhelika Grebennikova',
-		role: 'Global Partnership Manager',
+		role: 'Business Development Manager',
 		pages: [
 			UrlProvider.urlBuilder(UrlPath.Healthcare),
 			UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
@@ -29,20 +35,8 @@ export const allExpertsList: ExpertDto[] = [
 		],
 	},
 	{
-		name: 'Anton Ivanchenko',
-		role: 'Business Development Manager',
-		pages: [
-			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-			UrlProvider.urlBuilder(UrlPath.MobileDev),
-			UrlProvider.urlBuilder(UrlPath.BigData),
-			UrlProvider.urlBuilder(UrlPath.HowWeWork),
-			UrlProvider.urlBuilder(UrlPath.Pricing),
-			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-		],
-	},
-	{
 		name: 'Artem Marynych',
-		role: 'Growth & Business Development Manager',
+		role: 'Business Development Manager',
 		pages: [
 			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
