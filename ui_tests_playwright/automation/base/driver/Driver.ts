@@ -15,7 +15,7 @@ class Driver extends BaseDriver {
 		if (driver.browser === undefined) {
 			// Uncomment if List of Chromium Commands needed
 			driver.browser = await chromium.launch({
-				headless: this.headless /*, args: driver.driver.args*/,
+				args: ['--headless=new'],
 			});
 		}
 
