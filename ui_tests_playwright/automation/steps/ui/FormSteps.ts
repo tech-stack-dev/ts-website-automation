@@ -38,7 +38,7 @@ class FormSteps {
 
 	public async sendGetOurRateCardMessage() {
 		this.fillGetOurRateCard(`Test${sessionValue.stringValue}@test.com`);
-		await driver.Page.waitForTimeout(3000);
+		await driver.Page.waitForTimeout(5000);
 		await driver.getByTestId(Buttons.Download).first().click();
 	}
 
