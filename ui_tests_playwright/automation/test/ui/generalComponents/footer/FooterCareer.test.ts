@@ -152,45 +152,45 @@ test(
 			[Buttons.Instagram, Links.Instagram],
 		]);
 
-		await playwrightUtils.expectWithRetries(
-			async () => {
-				for (const url of testDataProvider) {
-					await baseDriverSteps.goToUrl(url);
-
-					for (const entries of linkMap.entries()) {
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
+			for (const entries of linkMap.entries()) {
+				await playwrightUtils.expectWithRetries(
+					async () => {
 						const socialLinkButton = socialBlock.getByTestId(entries[0]);
 
 						const [newPage] = await Promise.all([
 							driver.DriverContext.waitForEvent('page'),
 							socialLinkButton.click(),
 						]);
+						console.log(newPage.url());
 						expect(newPage.url().includes(entries[1])).toBeTruthy();
 						await newPage.close();
-					}
-				}
-			},
-			5,
-			5000
-		);
+					},
+					5,
+					5000
+				);
+			}
+		}
 
-		await playwrightUtils.expectWithRetries(
-			async () => {
-				for (const url of testDataProvider) {
-					await baseDriverSteps.goToUrl(url);
+		for (const url of testDataProvider) {
+			await baseDriverSteps.goToUrl(url);
 
+			await playwrightUtils.expectWithRetries(
+				async () => {
 					const clutchButton = socialBlock.getByTestId(Buttons.Clutch).last();
 					const [newPage] = await Promise.all([
 						driver.DriverContext.waitForEvent('page'),
 						clutchButton.click(),
 					]);
-					await newPage.waitForLoadState();
+
 					expect(newPage.url()).toContain(Links.Clutch);
 					await newPage.close();
-				}
-			},
-			5,
-			5000
-		);
+				},
+				5,
+				5000
+			);
+		}
 	}
 );
 
