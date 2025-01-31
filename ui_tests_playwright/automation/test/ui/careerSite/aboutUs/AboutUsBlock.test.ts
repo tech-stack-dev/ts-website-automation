@@ -62,6 +62,8 @@ test(
 		await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(6)).toContainText('07 2020');
 		await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(7)).toContainText('08 2021');
 		await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(8)).toContainText('09 2022');
+		await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(9)).toContainText('10 2023');
+		await expect(carousel.getByTestId(AboutUsCareer.CarouselBlock).nth(10)).toContainText('11 2024');
 	}
 );
 
