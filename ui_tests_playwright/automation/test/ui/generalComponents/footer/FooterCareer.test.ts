@@ -163,7 +163,7 @@ test(
 							driver.DriverContext.waitForEvent('page'),
 							socialLinkButton.click(),
 						]);
-						console.log(newPage.url());
+
 						expect(newPage.url().includes(entries[1])).toBeTruthy();
 						await newPage.close();
 					},
