@@ -85,7 +85,7 @@ test(
 		await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
 		await expect(ourHistoryNextButton).toHaveAttribute('data-disabled', 'false');
 
-		clicksAmountToDisableNextButton = 8;
+		clicksAmountToDisableNextButton = 10;
 		await ourHistoryNextButton.click({clickCount: clicksAmountToDisableNextButton});
 
 		await expect(ourHistotyPrevButton).toHaveAttribute('data-disabled', 'false');
