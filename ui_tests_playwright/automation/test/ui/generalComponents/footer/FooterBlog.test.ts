@@ -252,7 +252,7 @@ test(`Check the redirection for the social links on Blog page @desktop @mobile @
 			driver.DriverContext.waitForEvent('page'),
 			footer.getByTestId(entries[0]).click(),
 		]);
-		expect(newPage.url().includes(entries[1])).toBeTruthy();
+		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
 	}
 });
