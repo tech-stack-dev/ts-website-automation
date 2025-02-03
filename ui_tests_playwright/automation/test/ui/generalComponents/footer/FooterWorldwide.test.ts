@@ -334,7 +334,7 @@ test(
 						.getByTestId(entries[0])
 						.click(),
 				]);
-				expect(newPage.url().includes(entries[1])).toBeTruthy();
+				expect(newPage.url()).toContain(entries[1]);
 				await newPage.close();
 			}
 		}
