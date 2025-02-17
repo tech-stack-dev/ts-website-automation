@@ -1,13 +1,10 @@
 export default class AboutUsCareer {
 	static WeAreTechstackTitle = 'SectionTitle-WeAreTechstackTitle';
-	static WeAreTechstackNumber = 'SectionNumber-01Number';
 
 	static OurHistoryTitle = 'SectionTitle-OurHistoryTitle';
-	static OurHistoryNumber = 'SectionNumber-02Number';
 	static OurHistoryCarousel = 'CarouselInfoLineBlock-OurHistory';
 
 	static OurAchievementsTitle = 'SectionTitle-OurAchievementsTitle';
-	static OurAchievementsNumber = 'SectionNumber-03Number';
 
 	static TechstackInGrowsTitle = 'SectionTitle-TechstackInGrowthTitle';
 	static TechstackInGrowsNumber = 'SectionNumber-04Number';

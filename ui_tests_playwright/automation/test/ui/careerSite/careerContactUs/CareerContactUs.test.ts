@@ -11,6 +11,7 @@ import Input from '../../../../identifiers/Input';
 import ContactUsCareer from '../../../../identifiers/career/pages/ContactUsCareer';
 import {HRTeamLinkedInLinks} from '../../../../identifiers/career/HRTeamLinkedInLinks';
 import {HRTeamName} from '../../../../identifiers/career/HRTeamName';
+import NumberPage from '../../../../identifiers/career/NumberPage';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.careerUrl());
@@ -26,13 +27,13 @@ test(
 		await expect(driver.getByTestId(ContactUsCareer.ContactWithHRDepartmentTitle)).toHaveText(
 			'Contact with HR Department'
 		);
-		await expect(driver.getByTestId(ContactUsCareer.ContactWithHRDepartmentNumber)).toHaveText('01');
+		await expect(driver.getByTestId(NumberPage.SectionNumber1)).toHaveText('01');
 
 		await expect(driver.locator(ContactUsCareer.OurHRTeamTitle)).toHaveText('Our HR Team');
-		await expect(driver.getByTestId(ContactUsCareer.OurHRTeamNumber)).toHaveText('02');
+		await expect(driver.getByTestId(NumberPage.SectionNumber2)).toHaveText('02');
 
 		await expect(driver.locator(ContactUsCareer.ContactUsTitle)).toHaveText('Contact us');
-		await expect(driver.getByTestId(ContactUsCareer.ContactUsNumber)).toHaveText('03');
+		await expect(driver.getByTestId(NumberPage.SectionNumber3)).toHaveText('03');
 	}
 );
 
