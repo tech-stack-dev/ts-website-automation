@@ -5,6 +5,7 @@ import UrlProvider from '../../../../providers/UrlProvider';
 import Navigation from '../../../../identifiers/career/Navigation';
 import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
+import NumberPage from '../../../../identifiers/career/NumberPage';
 
 let clicksAmountToDisableNextButton;
 
@@ -20,13 +21,13 @@ test(
 	),
 	async () => {
 		await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackTitle)).toHaveText('We are \nTechstack');
-		await expect(driver.getByTestId(AboutUsCareer.WeAreTechstackNumber)).toHaveText('01');
+		await expect(driver.getByTestId(NumberPage.SectionNumber1)).toHaveText('01');
 
 		await expect(driver.getByTestId(AboutUsCareer.OurHistoryTitle)).toHaveText('Our History');
-		await expect(driver.getByTestId(AboutUsCareer.OurHistoryNumber)).toHaveText('02');
+		await expect(driver.getByTestId(NumberPage.SectionNumber2)).toHaveText('02');
 
 		await expect(driver.getByTestId(AboutUsCareer.OurAchievementsTitle)).toHaveText('Our \nAchievements');
-		await expect(driver.getByTestId(AboutUsCareer.OurAchievementsNumber)).toHaveText('03');
+		await expect(driver.getByTestId(NumberPage.SectionNumber3)).toHaveText('03');
 
 		await expect(driver.getByTestId(AboutUsCareer.TechstackInGrowsTitle)).toHaveText('Techstack \nin Growth');
 		await expect(driver.getByTestId(AboutUsCareer.TechstackInGrowsNumber)).toHaveText('04');
