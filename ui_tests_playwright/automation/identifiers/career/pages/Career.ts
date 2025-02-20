@@ -10,5 +10,5 @@ export default class Career {
 
 	// Job Header
 	static BreadcrumbsInCareer = 'breadcrumbs-block';
-	static JobHeaderTitle = 'career-title';
+	static JobHeaderTitle = "//h1[@class='career-title']";
 }
