@@ -51,9 +51,7 @@ test(qase(4778, 'Check localization on job page @desktop @mobile @Regression @Jo
 		desktopLocator: ContainersCareer.JobPageApplyProposition,
 	});
 
-	await expect((await driver.component(ContainerByClass, Career.JobHeaderTitle)).Element).toHaveText(
-		'Тестова Вакансія'
-	);
+	await expect(driver.locator(Career.JobHeaderTitle)).toHaveText('Тестова Вакансія');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Jobs)).toHaveText('Вакансії');
 	await expect(driver.getByTestId(Navigation.NavigationTab_AboutUs)).toHaveText('Про компанію');
 	await expect(driver.getByTestId(Navigation.NavigationTab_Reviews)).toHaveText('Відгуки');
