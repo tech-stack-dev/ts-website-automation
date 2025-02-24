@@ -6,7 +6,7 @@ import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import BigDataAndAnalytics from '../../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -79,7 +79,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			whyChooseTechstackBigDataContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );

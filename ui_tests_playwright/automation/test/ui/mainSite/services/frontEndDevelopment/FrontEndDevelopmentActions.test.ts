@@ -6,7 +6,7 @@ import UrlPath from '../../../../../providers/UrlPath';
 import FrontEndDevelopment from '../../../../../identifiers/mainSite/pages/services/FrontEndDevelopment';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
@@ -57,7 +57,7 @@ test('Check redirect by "Clutch Review" button in "Case Study by Techstack" cont
 	const caseStudyContainer = driver.getByTestId(FrontEndDevelopment.CaseStudy);
 	const clutchReviewButton = caseStudyContainer.getByTestId(Buttons.Clutch);
 
-	await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.MarkBeare);
+	await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewIds.MarkBeare);
 });
 
 test('Check redirect by CTA button in "Case Study by Techstack" container from the "Front End Development" page @desktop @mobile @Regression @FrontEndDevelopment @TSWEB-1274', async () => {
@@ -84,7 +84,7 @@ test('Check redirect by "Clutch Review" button in "Why Techstack" container from
 
 	await baseDriverSteps.checkRedirectToClutch(
 		whyTechstackContainer.getByTestId(Buttons.Clutch),
-		ClutchReviewLinks.AnonymousNjorda
+		ClutchReviewIds.AnonymousNjorda
 	);
 });
 

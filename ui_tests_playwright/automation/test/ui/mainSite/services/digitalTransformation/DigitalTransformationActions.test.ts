@@ -10,7 +10,7 @@ import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 
 test.beforeEach(async () => {
@@ -118,7 +118,7 @@ test(
 		const digitalStrategyContainer = driver.getByTestId(DigitalTransformation.DigitalTransformationStrategy);
 		const clutchReviewButton = digitalStrategyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.MarkBeare);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewIds.MarkBeare);
 	}
 );
 

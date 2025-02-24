@@ -5,7 +5,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import CloudDevelopment from '../../../../../identifiers/mainSite/pages/services/CloudDevelopment';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -72,7 +72,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachToCloudAppDevelopmentContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );

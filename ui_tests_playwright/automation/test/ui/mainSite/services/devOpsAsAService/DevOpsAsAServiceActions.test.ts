@@ -7,7 +7,7 @@ import UrlProvider from '../../../../../providers/UrlProvider';
 import UrlPath from '../../../../../providers/UrlPath';
 import {DevOpsAsAService} from '../../../../../identifiers/mainSite/pages/services/DevOpsAsAService';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
@@ -50,7 +50,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );
@@ -112,7 +112,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );

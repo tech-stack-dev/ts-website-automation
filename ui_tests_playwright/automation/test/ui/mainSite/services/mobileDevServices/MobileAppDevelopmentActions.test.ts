@@ -8,7 +8,7 @@ import {expertiseUrl} from '../../../../../preconditionsData/UrlPreconditions';
 import {ExpertiseEnum} from '../../../../../enum/ExpertiseEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import MobileDevService from '../../../../../identifiers/mainSite/pages/services/MobileDevService';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
@@ -86,8 +86,8 @@ test(
 		const clutchButtons = await ourApproachContainer.getByTestId(Buttons.Clutch).all();
 
 		const buttonUrlMap = new Map([
-			[clutchButtons[0], ClutchReviewLinks.AnonymousPeerToPeer],
-			[clutchButtons[1], ClutchReviewLinks.AnonymousMedicalDevice],
+			[clutchButtons[0], ClutchReviewIds.AnonymousPeerToPeer],
+			[clutchButtons[1], ClutchReviewIds.AnonymousMedicalDevice],
 		]);
 
 		for (const [button, url] of buttonUrlMap) {

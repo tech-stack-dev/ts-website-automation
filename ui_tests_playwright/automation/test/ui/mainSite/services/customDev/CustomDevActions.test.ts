@@ -6,7 +6,7 @@ import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {CustomDev} from '../../../../../identifiers/mainSite/pages/services/CustomDev';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import {Environment} from '../../../../../providers/EnvProvider';
 import UrlPath from '../../../../../providers/UrlPath';
@@ -120,8 +120,8 @@ test(
 		const clutchReviewButtons = whyChooseTechstackContainer.getByTestId(Buttons.Clutch);
 
 		const clutchButtonUrlMap = new Map([
-			[clutchReviewButtons.nth(0), ClutchReviewLinks.DarrenCody],
-			[clutchReviewButtons.nth(1), ClutchReviewLinks.MarkBeare],
+			[clutchReviewButtons.nth(0), ClutchReviewIds.DarrenCody],
+			[clutchReviewButtons.nth(1), ClutchReviewIds.MarkBeare],
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {

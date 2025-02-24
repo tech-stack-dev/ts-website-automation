@@ -7,7 +7,7 @@ import UxUiDesign from '../../../../../identifiers/mainSite/pages/services/UxUiD
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {Environment} from '../../../../../providers/EnvProvider';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import Links from '../../../../../preconditionsData/links/Links';
@@ -31,7 +31,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.AnonymousMedicalDevice
+			ClutchReviewIds.AnonymousMedicalDevice
 		);
 	}
 );

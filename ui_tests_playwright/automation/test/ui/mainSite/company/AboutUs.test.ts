@@ -9,7 +9,7 @@ import {ExpertNames} from '../../../../preconditionsData/ExpertNames';
 import Buttons from '../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import {AuthorsEnum} from '../../../../enum/AuthorsEnum';
-import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import {LinkedInReviewLinks} from '../../../../preconditionsData/links/LinkedInReviewLinks';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
@@ -285,8 +285,8 @@ test(
 			.all();
 
 		const buttonMap = new Map([
-			[clutchButtons[0], ClutchReviewLinks.MarkBeare],
-			[clutchButtons[1], ClutchReviewLinks.AnonymousMedicalDevice],
+			[clutchButtons[0], ClutchReviewIds.MarkBeare],
+			[clutchButtons[1], ClutchReviewIds.AnonymousMedicalDevice],
 		]);
 
 		for (const [button, url] of buttonMap) {
