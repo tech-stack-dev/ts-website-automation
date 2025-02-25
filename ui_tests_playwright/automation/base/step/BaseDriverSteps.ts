@@ -155,12 +155,13 @@ class BaseDriverSteps {
 		/*
 		 * Regex to handle next url formats:
 		 *
+		 * https://clutch.co/profile/techstack#highlights
 		 * https://clutch.co/profile/techstack?page=1#review-187130
 		 * https://clutch.co/profile/techstack#review-20238
 		 * https://clutch.co/go-to-review/3cebe227-e706-4f69-9c77-417b307eb419/187130
 		 */
 		const regex =
-			/^https:\/\/clutch\.co\/(?:profile\/techstack(?:\?page=\d+)?#review-(\d+)|go-to-review\/[a-f0-9-]+\/(\d+))$/;
+			/^https:\/\/clutch\.co\/(?:profile\/techstack(?:\?page=\d+)?#(?:review-\d+|\w+)|go-to-review\/[a-f0-9-]+\/\d+)$/;
 
 		await playwrightUtils.expectWithRetries(
 			async () => {
