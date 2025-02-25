@@ -6,7 +6,7 @@ import {driver} from '../../../../base/driver/Driver';
 import Pricing from '../../../../identifiers/mainSite/pages/Pricing';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../preconditionsData/links/ExpertsLinkedInLinks';
 
 test.beforeEach(async () => {
@@ -35,8 +35,8 @@ test('Check redirects by "Clutch Review" buttons in "What Our Clients Say About 
 	const clutchReviewButtons = reviewsContainer.getByTestId(Buttons.Clutch);
 
 	const clutchButtonUrlMap = new Map([
-		[clutchReviewButtons.nth(0), ClutchReviewLinks.AnonymousVehicle],
-		[clutchReviewButtons.nth(1), ClutchReviewLinks.HenriYoki],
+		[clutchReviewButtons.nth(0), ClutchReviewIds.AnonymousVehicle],
+		[clutchReviewButtons.nth(1), ClutchReviewIds.HenriYoki],
 	]);
 
 	for (const [button, url] of clutchButtonUrlMap) {

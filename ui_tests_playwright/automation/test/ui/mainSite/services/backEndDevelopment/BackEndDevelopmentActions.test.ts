@@ -6,7 +6,7 @@ import Buttons from '../../../../../identifiers/Buttons';
 import Container from '../../../../../identifiers/Container';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
@@ -68,7 +68,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );
@@ -127,7 +127,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			whyTechstackContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.MarkBeare
+			ClutchReviewIds.MarkBeare
 		);
 	}
 );

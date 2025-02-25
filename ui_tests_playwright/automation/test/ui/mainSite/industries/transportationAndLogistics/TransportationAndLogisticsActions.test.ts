@@ -6,7 +6,7 @@ import Container from '../../../../../identifiers/Container';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import {Environment} from '../../../../../providers/EnvProvider';
@@ -25,7 +25,7 @@ test(
 		const caseStudyByTechstackContainer = driver.getByTestId(TransportationAndLogistics.CaseStudy);
 		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyByTechstackContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.AnonymousVehicle
+			ClutchReviewIds.AnonymousVehicle
 		);
 	}
 );

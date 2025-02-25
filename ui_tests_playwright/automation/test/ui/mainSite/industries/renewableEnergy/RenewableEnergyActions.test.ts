@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Container from '../../../../../identifiers/Container';
 import Buttons from '../../../../../identifiers/Buttons';
 import RenewableEnergy from '../../../../../identifiers/mainSite/pages/industries/RenewableEnergy';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -28,7 +28,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToPage(
 			techstackInNumbersContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.HenriYoki
+			ClutchReviewIds.HenriYoki
 		);
 	}
 );

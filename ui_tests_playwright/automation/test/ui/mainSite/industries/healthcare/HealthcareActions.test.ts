@@ -4,7 +4,7 @@ import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
 import Buttons from '../../../../../identifiers/Buttons';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import Healthcare from '../../../../../identifiers/mainSite/pages/industries/Healthcare';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
@@ -27,7 +27,7 @@ test(
 
 		const clutchReviewButton = caseStudyContainer.getByTestId(Buttons.Clutch);
 
-		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewLinks.AnonymousMedicalDevice);
+		await baseDriverSteps.checkRedirectToClutch(clutchReviewButton, ClutchReviewIds.AnonymousMedicalDevice);
 	}
 );
 

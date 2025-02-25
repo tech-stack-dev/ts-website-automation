@@ -1,7 +1,7 @@
 import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
 import Container from '../../../../identifiers/Container';
 import HomePage from '../../../../identifiers/mainSite/pages/HomePage';
-import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {driver} from '../../../../base/driver/Driver';
 import UrlPath from '../../../../providers/UrlPath';
@@ -64,10 +64,10 @@ test.skip(
 		const clutchButtons = await whyTechstackContainer.getByTestId(Buttons.Clutch).all();
 
 		const buttonMap = new Map([
-			[clutchButtons[0], ClutchReviewLinks.DerickDaily],
-			[clutchButtons[1], ClutchReviewLinks.SherzodGafar],
-			[clutchButtons[2], ClutchReviewLinks.MarkBeare],
-			[clutchButtons[3], ClutchReviewLinks.NDA],
+			[clutchButtons[0], ClutchReviewIds.DerickDaily],
+			[clutchButtons[1], ClutchReviewIds.SherzodGafar],
+			[clutchButtons[2], ClutchReviewIds.MarkBeare],
+			[clutchButtons[3], ClutchReviewIds.NDA],
 		]);
 
 		for (const [button, url] of buttonMap) {

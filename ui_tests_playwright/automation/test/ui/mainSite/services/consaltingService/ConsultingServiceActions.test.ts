@@ -12,7 +12,7 @@ import {AuthorsEnum} from '../../../../../enum/AuthorsEnum';
 import Buttons from '../../../../../identifiers/Buttons';
 import {ExpertsLinkedInLinks} from '../../../../../preconditionsData/links/ExpertsLinkedInLinks';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
 import MainSiteLinks from '../../../../../identifiers/mainSite/MainSiteLinks';
 import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
@@ -32,7 +32,7 @@ test(
 		const featuredCaseStudyContainer = driver.getByTestId(ConsultingService.FeaturedCaseStudy);
 		await baseDriverSteps.checkRedirectToClutch(
 			featuredCaseStudyContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.AnonymousMedicalDevice
+			ClutchReviewIds.AnonymousMedicalDevice
 		);
 	}
 );
@@ -178,7 +178,7 @@ test(
 		const ourApproachContainer = driver.getByTestId(ConsultingService.OurApproach);
 		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.AnonymousVehicle
+			ClutchReviewIds.AnonymousVehicle
 		);
 	}
 );

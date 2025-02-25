@@ -152,8 +152,20 @@ class BaseDriverSteps {
 	public async checkRedirectToClutch(locator: Locator, expectedUrl: string) {
 		const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), locator.click()]);
 
+		/*
+		 * Regex to handle next url formats:
+		 *
+		 * https://clutch.co/profile/techstack#highlights
+		 * https://clutch.co/profile/techstack?page=1#review-187130
+		 * https://clutch.co/profile/techstack#review-20238
+		 * https://clutch.co/go-to-review/3cebe227-e706-4f69-9c77-417b307eb419/187130
+		 */
+		const regex =
+			/^https:\/\/clutch\.co\/(?:profile\/techstack(?:\?page=\d+)?#(?:review-\d+|\w+)|go-to-review\/[a-f0-9-]+\/\d+)$/;
+
 		await playwrightUtils.expectWithRetries(
 			async () => {
+				expect(newPage.url()).toMatch(regex);
 				expect(newPage.url()).toContain(expectedUrl);
 			},
 			3,

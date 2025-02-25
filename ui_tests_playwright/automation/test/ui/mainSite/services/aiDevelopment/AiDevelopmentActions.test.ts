@@ -7,7 +7,7 @@ import Container from '../../../../../identifiers/Container';
 import AiDevelopment from '../../../../../identifiers/mainSite/pages/services/AiDevelopment';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
 import {Environment} from '../../../../../providers/EnvProvider';
-import {ClutchReviewLinks} from '../../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../../preconditionsData/links/ClutchReviewLinks';
 import Buttons from '../../../../../identifiers/Buttons';
 import ExternalSourceLinks from '../../../../../preconditionsData/links/ExternalSourceLinks';
 import CaseStudyPath from '../../../../../providers/CaseStudyPath';
@@ -28,7 +28,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			caseStudyContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.AnonymousMedicalDevice
+			ClutchReviewIds.AnonymousMedicalDevice
 		);
 	}
 );
@@ -133,7 +133,7 @@ test(
 
 		await baseDriverSteps.checkRedirectToClutch(
 			ourApproachContainer.getByTestId(Buttons.Clutch),
-			ClutchReviewLinks.DarrenCody
+			ClutchReviewIds.DarrenCody
 		);
 	}
 );

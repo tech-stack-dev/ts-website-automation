@@ -7,7 +7,7 @@ import OurServices from '../../../../identifiers/mainSite/pages/services/OurServ
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
-import {ClutchReviewLinks} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewLinks';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
@@ -194,9 +194,9 @@ test(
 		const clutchReviewButtons = reviewsContainer.getByTestId(Buttons.Clutch);
 
 		const clutchButtonUrlMap = new Map([
-			[clutchReviewButtons.nth(0), ClutchReviewLinks.MarkBeare],
-			[clutchReviewButtons.nth(1), ClutchReviewLinks.AnonymousPeerToPeer],
-			[clutchReviewButtons.nth(2), ClutchReviewLinks.AnonymousMedicalDevice],
+			[clutchReviewButtons.nth(0), ClutchReviewIds.MarkBeare],
+			[clutchReviewButtons.nth(1), ClutchReviewIds.AnonymousPeerToPeer],
+			[clutchReviewButtons.nth(2), ClutchReviewIds.AnonymousMedicalDevice],
 		]);
 
 		for (const [button, url] of clutchButtonUrlMap) {
