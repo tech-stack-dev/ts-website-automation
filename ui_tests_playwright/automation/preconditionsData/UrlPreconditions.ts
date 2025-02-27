@@ -47,7 +47,6 @@ export const companyUrl: Record<CompanyEnum, string> = {
 	[CompanyEnum.Pricing]: UrlProvider.urlBuilder(UrlPath.Pricing),
 	[CompanyEnum.CaseStudies]: UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	[CompanyEnum.Blog]: UrlProvider.urlBuilder(UrlPath.Blog),
-	[CompanyEnum.Whitepapers]: UrlProvider.urlBuilder(UrlPath.Whitepapers),
 	[CompanyEnum.Career]: UrlProvider.careerUrl(),
 };
 

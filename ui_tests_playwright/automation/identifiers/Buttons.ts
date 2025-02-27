@@ -75,7 +75,6 @@ export default class Buttons {
 		Career: 'Company-Career',
 		CaseStudies: 'Company-CaseStudies',
 		Blog: 'Company-Blog',
-		Whitepapers: 'Company-Whitepapers',
 	};
 
 	// Career pages list

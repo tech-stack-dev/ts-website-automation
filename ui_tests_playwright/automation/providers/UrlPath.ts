@@ -40,7 +40,6 @@ export default class UrlPath {
 	static Pricing = 'software-development-costs';
 	static CaseStudies = 'case-studies';
 	static Blog = 'blog/';
-	static Whitepapers = 'resources/cloud-based-healthcare-analytics-guide';
 
 	static ContactUs = 'contact-us';
 	static GetAQuote = 'free-proposal';

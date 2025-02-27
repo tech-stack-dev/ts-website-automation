@@ -6,5 +6,4 @@ export enum CompanyEnum {
 	Career,
 	CaseStudies,
 	Blog,
-	Whitepapers,
 }
