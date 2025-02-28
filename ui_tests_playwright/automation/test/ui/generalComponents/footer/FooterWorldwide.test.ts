@@ -40,9 +40,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
-	UrlProvider.urlBuilder(
-		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
-	),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap])),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote])),
 	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 ];
@@ -159,16 +157,7 @@ test(
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyText = [
-				'About Us',
-				'How we work',
-				'Our Clients',
-				'Pricing',
-				'Career',
-				'Case Studies',
-				'Blog',
-				'Whitepapers',
-			];
+			const companyText = ['About Us', 'How we work', 'Our Clients', 'Pricing', 'Career', 'Case Studies', 'Blog'];
 
 			for (let index = 0; index < companyUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(companyButtons)[index]);

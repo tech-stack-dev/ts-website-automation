@@ -44,9 +44,7 @@ const testDataProvider: string[] = [
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
-	UrlProvider.urlBuilder(
-		UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap, UrlPath.Whitepapers])
-	),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap])),
 ];
 
 // ToDo: add tests for checking functional related to articles that display in "Services" and "Company" dropdowns on Desktop menu
