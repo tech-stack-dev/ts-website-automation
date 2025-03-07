@@ -11,6 +11,8 @@ import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewL
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
+import GeneralContainersMainSite from '../../../../identifiers/mainSite/GeneralContainersMainSite';
+import BigDataAndAnalytics from '../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -162,6 +164,58 @@ test(
 		const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
 		await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
+	}
+);
+
+test(
+	qase(
+		5669,
+		'Check button in "Technology stack" container for the "Services" pages @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const pagesWithTechnologyStackBlock = [
+			UrlPath.OurServices,
+			UrlPath.HowWeWork,
+			UrlPath.AiDevelopment,
+			UrlPath.CloudDevelopment,
+			UrlPath.CustomDev,
+			UrlPath.DevOpsServ,
+			UrlPath.FrontEndDevelopment,
+			UrlPath.MobileDev,
+			UrlPath.BigData,
+		];
+
+		for (const pageUrl of pagesWithTechnologyStackBlock) {
+			let technologyStackContainer;
+
+			await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(pageUrl));
+
+			if (pageUrl === UrlPath.BigData) {
+				technologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
+			} else {
+				technologyStackContainer = driver.getByTestId(GeneralContainersMainSite.TechnologyStack);
+			}
+
+			const viewButton = technologyStackContainer.locator(MainSiteButtons.ViewFullStackDetails);
+			await viewButton.evaluate((element) => {
+				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+			});
+			await expect(viewButton).toBeVisible();
+			await viewButton.click();
+
+			const hideButton = technologyStackContainer.locator(MainSiteButtons.HideFullStackDetails);
+			await hideButton.evaluate((element) => {
+				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+			});
+			await expect(hideButton).toBeVisible();
+			await hideButton.click();
+
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+			const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
+			const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
+
+			expect(Math.round(containerTitlePosition)).toBe(123);
+		}
 	}
 );
 
