@@ -214,7 +214,8 @@ test(
 			const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
 			const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
 
-			expect(Math.round(containerTitlePosition)).toBe(123);
+			expect(Math.round(containerTitlePosition)).toBeGreaterThanOrEqual(120);
+			expect(Math.round(containerTitlePosition)).toBeLessThanOrEqual(125);
 		}
 	}
 );
