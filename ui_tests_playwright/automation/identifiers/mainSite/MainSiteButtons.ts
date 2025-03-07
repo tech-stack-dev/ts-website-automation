@@ -36,6 +36,8 @@ export default class MainSiteButtons extends Buttons {
 	static ViewFullTechnologyStack = 'Button-ViewFullTechnologyStack';
 	static ReadAllCases = 'Button-ReadAllCases';
 	static ViewFullServiceList = 'Button-ViewFullServiceList';
+	static ViewFullStackDetails = '//button[@class="black-btn" and span[text()="View Full Stack Details"]]';
+	static HideFullStackDetails = '//button[@class="black-btn" and span[text()="Hide Full Stack Details"]]';
 
 	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 
