@@ -13,6 +13,7 @@ import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 import GeneralContainersMainSite from '../../../../identifiers/mainSite/GeneralContainersMainSite';
 import BigDataAndAnalytics from '../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
+import BackEndServices from '../../../../identifiers/mainSite/pages/services/BackEndServices';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -181,6 +182,7 @@ test(
 			UrlPath.CustomDev,
 			UrlPath.DevOpsServ,
 			UrlPath.FrontEndDevelopment,
+			UrlPath.BackEndDevelopment,
 			UrlPath.MobileDev,
 			UrlPath.BigData,
 		];
@@ -192,25 +194,27 @@ test(
 
 			if (pageUrl === UrlPath.BigData) {
 				technologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
+			} else if (pageUrl === UrlPath.BackEndDevelopment) {
+				technologyStackContainer = driver.getByTestId(BackEndServices.TechArsenal);
 			} else {
 				technologyStackContainer = driver.getByTestId(GeneralContainersMainSite.TechnologyStack);
 			}
 
-			const viewButton = technologyStackContainer.locator(MainSiteButtons.ViewFullStackDetails);
+			const viewButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
 			await viewButton.evaluate((element) => {
 				element.scrollIntoView({behavior: 'smooth', block: 'end'});
 			});
 			await expect(viewButton).toBeVisible();
 			await viewButton.click();
 
-			const hideButton = technologyStackContainer.locator(MainSiteButtons.HideFullStackDetails);
+			const hideButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
 			await hideButton.evaluate((element) => {
 				element.scrollIntoView({behavior: 'smooth', block: 'end'});
 			});
 			await expect(hideButton).toBeVisible();
 			await hideButton.click();
 
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			await driver.Page.waitForTimeout(1000);
 			const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
 			const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
 
