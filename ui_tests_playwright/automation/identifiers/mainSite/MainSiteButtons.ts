@@ -36,6 +36,7 @@ export default class MainSiteButtons extends Buttons {
 	static ViewFullTechnologyStack = 'Button-ViewFullTechnologyStack';
 	static ReadAllCases = 'Button-ReadAllCases';
 	static ViewFullServiceList = 'Button-ViewFullServiceList';
+	static ViewFullStackDetails = 'Button-ViewFullStackDetails';
 
 	static ReceiveAFreeQuote = 'Button-ReceiveAFreeQuote';
 

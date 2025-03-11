@@ -11,6 +11,9 @@ import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewL
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
+import GeneralContainersMainSite from '../../../../identifiers/mainSite/GeneralContainersMainSite';
+import BigDataAndAnalytics from '../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
+import BackEndServices from '../../../../identifiers/mainSite/pages/services/BackEndServices';
 
 test.beforeEach(async () => {
 	await baseDriverSteps.createsNewBrowserAndGoToUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
@@ -162,6 +165,64 @@ test(
 		const testDataSectionTitles = await TechnologyStackData.getAllTechnologyStackTabsData();
 
 		await baseDriverSteps.checkTabsAndSectionTitles(navigationTabs, containerBlocks, testDataSectionTitles);
+	}
+);
+
+test(
+	qase(
+		5669,
+		'Check button in "Technology stack" container for the "Services" pages @desktop @mobile @Regression @OurServices @TSWEB-681'
+	),
+	async () => {
+		const pagesWithTechnologyStackBlock = [
+			UrlPath.OurServices,
+			UrlPath.HowWeWork,
+			UrlPath.AiDevelopment,
+			UrlPath.CloudDevelopment,
+			UrlPath.CustomDev,
+			UrlPath.DevOpsServ,
+			UrlPath.FrontEndDevelopment,
+			UrlPath.BackEndDevelopment,
+			UrlPath.MobileDev,
+			UrlPath.BigData,
+		];
+
+		for (const pageUrl of pagesWithTechnologyStackBlock) {
+			let technologyStackContainer;
+
+			await baseDriverSteps.goToUrl(UrlProvider.urlBuilder(pageUrl));
+
+			if (pageUrl === UrlPath.BigData) {
+				technologyStackContainer = driver.getByTestId(BigDataAndAnalytics.BigDataSolutionsTechnologyStack);
+			} else if (pageUrl === UrlPath.BackEndDevelopment) {
+				technologyStackContainer = driver.getByTestId(BackEndServices.TechArsenal);
+			} else {
+				technologyStackContainer = driver.getByTestId(GeneralContainersMainSite.TechnologyStack);
+			}
+
+			const viewButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
+			await viewButton.evaluate((element) => {
+				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+			});
+			await expect(viewButton).toBeVisible();
+			await viewButton.click();
+
+			const hideButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
+			await hideButton.evaluate((element) => {
+				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+			});
+			await expect(hideButton).toBeVisible();
+			await hideButton.click();
+
+			await expect(async () => {
+				const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
+				const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
+				const roundedPosition = Math.round(containerTitlePosition);
+
+				expect(roundedPosition).toBeGreaterThanOrEqual(120);
+				expect(roundedPosition).toBeLessThanOrEqual(125);
+			}).toPass({timeout: 2000});
+		}
 	}
 );
 
