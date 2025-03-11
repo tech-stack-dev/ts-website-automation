@@ -214,12 +214,14 @@ test(
 			await expect(hideButton).toBeVisible();
 			await hideButton.click();
 
-			await driver.Page.waitForTimeout(1000);
-			const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
-			const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
+			await expect(async () => {
+				const containerTitle = technologyStackContainer.getByTestId(Container.ContainerTitle);
+				const containerTitlePosition = await containerTitle.evaluate((el) => el.getBoundingClientRect().top);
+				const roundedPosition = Math.round(containerTitlePosition);
 
-			expect(Math.round(containerTitlePosition)).toBeGreaterThanOrEqual(120);
-			expect(Math.round(containerTitlePosition)).toBeLessThanOrEqual(125);
+				expect(roundedPosition).toBeGreaterThanOrEqual(120);
+				expect(roundedPosition).toBeLessThanOrEqual(125);
+			}).toPass({timeout: 2000});
 		}
 	}
 );
