@@ -12,6 +12,8 @@ import {
 	industryUrl,
 	expertiseUrl,
 	webflowPages,
+	serviceUrlWithoutWebflow,
+	expertiseUrlWithoutWebflow,
 } from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
@@ -35,14 +37,13 @@ let servicesBlock: Locator;
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrlWithoutWebflow)),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrlWithoutWebflow)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap])),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.ContactUs, UrlPath.GetAQuote])),
-	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 ];
 
 test.beforeEach(async () => {

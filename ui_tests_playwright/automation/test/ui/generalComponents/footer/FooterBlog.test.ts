@@ -98,6 +98,7 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 	const industriesText = ['Healthcare', 'Transportation and Logistics', 'Renewable Energy', 'Startups'];
 	const buttons = await industriesBlock.getByTestId(industriesButtons).all();
 	const industriesMap = arrayUtils.mergeTwoArraysToMap(industriesText, buttons);
+
 	for (const [text, button] of industriesMap) {
 		await expect(button).toHaveText(text);
 	}
