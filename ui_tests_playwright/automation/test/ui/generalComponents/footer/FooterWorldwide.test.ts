@@ -324,6 +324,18 @@ test(
 						.getByTestId(entries[0])
 						.click(),
 				]);
+
+				let instagramErrorHandled = false;
+
+				newPage.on('response', (response) => {
+					if (response.url().includes(Links.Instagram) && !instagramErrorHandled) {
+						const statusCode = response.status();
+						if (statusCode !== 200) {
+							console.warn('Instagram link returned non-200 status code:', statusCode);
+							instagramErrorHandled = true;
+						}
+					}
+				});
 				expect(newPage.url()).toContain(entries[1]);
 				await newPage.close();
 			}
