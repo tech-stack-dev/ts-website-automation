@@ -9,6 +9,8 @@ import {
 	companyUrl,
 	urlsWithOnlyLogoInHeader,
 	serviceUrl,
+	serviceUrlWithoutWebflow,
+	expertiseUrlWithoutWebflow,
 } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
@@ -33,10 +35,10 @@ let expertiseUrls: string[];
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrl)),
+	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrlWithoutWebflow)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrl)),
-	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork, UrlPath.OurClients])),
+	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrlWithoutWebflow)),
+	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.CaseStudies),
 	UrlProvider.urlBuilder(UrlPath.Pricing),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.Terms, UrlPath.CookiesPolicy, UrlPath.Sitemap])),

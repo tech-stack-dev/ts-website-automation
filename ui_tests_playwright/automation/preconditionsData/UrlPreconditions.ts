@@ -11,6 +11,12 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.RenewableEnergy]: UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
 };
 
+export const serviceUrlWithoutWebflow: Record<number, string> = {
+	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
+	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
+	[ServicesEnum.QaAsAService]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+};
+
 export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.PoCAndMVPDevelopment]: UrlProvider.urlBuilder(UrlPath.PoCAndMVPDevelopment),
 	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
@@ -22,6 +28,19 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.CloudMigration]: UrlProvider.urlBuilder(UrlPath.CloudMigration),
 	[ServicesEnum.DedicatedTeam]: UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
 	[ServicesEnum.StaffAugmentation]: UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
+};
+
+export const expertiseUrlWithoutWebflow: Record<number, string> = {
+	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
+	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
+	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
+	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
+	[ExpertiseEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
+	[ExpertiseEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
+	[ExpertiseEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
+	[ExpertiseEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	[ExpertiseEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
+	[ExpertiseEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 };
 
 export const expertiseUrl: Record<ExpertiseEnum, string> = {
