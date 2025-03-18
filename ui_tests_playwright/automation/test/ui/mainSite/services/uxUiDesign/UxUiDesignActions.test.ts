@@ -79,20 +79,22 @@ test(
 			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 		]);
 
-		let instagramErrorHandled = false;
-
 		for (const [link, url] of linkUrlMap) {
 			if (url === Links.InstagramDesign) {
-				const newPage = await driver.DriverContext.newPage();
+				const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), link.click()]);
+
+				let received429 = false;
+
 				newPage.on('response', (response) => {
-					if (response.url().includes(Links.Instagram) && !instagramErrorHandled) {
-						const statusCode = response.status();
-						if (statusCode !== 200) {
-							console.warn('Instagram link returned non-200 status code:', statusCode);
-							instagramErrorHandled = true;
-						}
+					if (response.url().includes('instagram') && response.status() === 429) {
+						received429 = true;
+						console.log('Instagram returned 429 (Too Many Requests) - this is expected');
 					}
 				});
+
+				if (received429) {
+					console.log('Skipping detailed Instagram URL check due to rate limiting');
+				}
 			} else {
 				await baseDriverSteps.checkRedirectToPage(link, url);
 			}
