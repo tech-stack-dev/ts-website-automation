@@ -149,7 +149,7 @@ test(
 			[Buttons.Behance, Links.Behance],
 			[Buttons.LinkedIn, Links.LinkedIn],
 			[Buttons.Facebook, Links.Facebook],
-			[Buttons.Instagram, Links.Instagram],
+			//[Buttons.Instagram, Links.Instagram], // because it returns 429 status code
 		]);
 
 		for (const url of testDataProvider) {
@@ -163,7 +163,6 @@ test(
 							driver.DriverContext.waitForEvent('page'),
 							socialLinkButton.click(),
 						]);
-
 						expect(newPage.url()).toContain(entries[1]);
 						await newPage.close();
 					},

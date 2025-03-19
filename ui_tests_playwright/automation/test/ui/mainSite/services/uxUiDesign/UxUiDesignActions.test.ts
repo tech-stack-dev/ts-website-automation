@@ -75,7 +75,7 @@ test(
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 		const linkUrlMap = new Map([
-			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign],
+			//[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign], // because it returns 429 status code
 			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 		]);
 
