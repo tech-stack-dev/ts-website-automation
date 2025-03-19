@@ -149,37 +149,26 @@ test(
 			[Buttons.Behance, Links.Behance],
 			[Buttons.LinkedIn, Links.LinkedIn],
 			[Buttons.Facebook, Links.Facebook],
-			[Buttons.Instagram, Links.Instagram],
+			//[Buttons.Instagram, Links.Instagram], // because it returns 429 status code
 		]);
 
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			for (const entries of linkMap.entries()) {
-				await playwrightUtils.expectWithRetries(async () => {
-					const socialLinkButton = socialBlock.getByTestId(entries[0]);
+				await playwrightUtils.expectWithRetries(
+					async () => {
+						const socialLinkButton = socialBlock.getByTestId(entries[0]);
 
-					const [newPage] = await Promise.all([
-						driver.DriverContext.waitForEvent('page'),
-						socialLinkButton.click(),
-					]);
-					if (entries[1] === Links.Instagram) {
-						let received429 = false;
-
-						newPage.on('response', (response) => {
-							if (response.url().includes('instagram') && response.status() === 429) {
-								received429 = true;
-								console.log('Instagram returned 429 (Too Many Requests) - this is expected');
-							}
-						});
-
-						if (received429) {
-							console.log('Skipping detailed Instagram URL check due to rate limiting');
-						} else {
-							expect(newPage.url()).toContain(entries[1]);
-						}
-					}
-					await newPage.close();
-				});
+						const [newPage] = await Promise.all([
+							driver.DriverContext.waitForEvent('page'),
+							socialLinkButton.click(),
+						]);
+						expect(newPage.url()).toContain(entries[1]);
+						await newPage.close();
+					},
+					5,
+					5000
+				);
 			}
 		}
 

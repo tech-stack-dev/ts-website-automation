@@ -75,29 +75,12 @@ test(
 	async () => {
 		const weNeverStopImprovingContainer = driver.getByTestId(UxUiDesign.WeNeverStopImprovingYourProduct);
 		const linkUrlMap = new Map([
-			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign],
+			//[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Instagram), Links.InstagramDesign], // because it returns 429 status code
 			[weNeverStopImprovingContainer.getByTestId(MainSiteLinks.Tiktok), Links.TikTokDesign],
 		]);
 
 		for (const [link, url] of linkUrlMap) {
-			if (url === Links.InstagramDesign) {
-				const [newPage] = await Promise.all([driver.DriverContext.waitForEvent('page'), link.click()]);
-
-				let received429 = false;
-
-				newPage.on('response', (response) => {
-					if (response.url().includes('instagram') && response.status() === 429) {
-						received429 = true;
-						console.log('Instagram returned 429 (Too Many Requests) - this is expected');
-					}
-				});
-
-				if (received429) {
-					console.log('Skipping detailed Instagram URL check due to rate limiting');
-				}
-			} else {
-				await baseDriverSteps.checkRedirectToPage(link, url);
-			}
+			await baseDriverSteps.checkRedirectToPage(link, url);
 		}
 	}
 );

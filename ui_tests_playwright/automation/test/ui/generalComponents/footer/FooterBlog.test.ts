@@ -229,7 +229,7 @@ test(`Check the redirection for the social links on Blog page @desktop @mobile @
 	const linkMap = new Map([
 		[Buttons.LinkedIn, Links.LinkedIn],
 		[Buttons.Facebook, Links.Facebook],
-		[Buttons.Instagram, Links.Instagram],
+		//[Buttons.Instagram, Links.Instagram], // because it returns 429 status code
 		[Buttons.Behance, Links.Behance],
 		[Buttons.Dribbble, Links.Dribbble],
 		[Buttons.Twitter, Links.Twitter],
@@ -244,22 +244,7 @@ test(`Check the redirection for the social links on Blog page @desktop @mobile @
 			footer.getByTestId(entries[0]).click(),
 		]);
 
-		if (entries[1] === Links.Instagram) {
-			let received429 = false;
-
-			newPage.on('response', (response) => {
-				if (response.url().includes('instagram') && response.status() === 429) {
-					received429 = true;
-					console.log('Instagram returned 429 (Too Many Requests) - this is expected');
-				}
-			});
-
-			if (received429) {
-				console.log('Skipping detailed Instagram URL check due to rate limiting');
-			} else {
-				expect(newPage.url()).toContain(entries[1]);
-			}
-		}
+		expect(newPage.url()).toContain(entries[1]);
 		await newPage.close();
 	}
 });
