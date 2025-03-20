@@ -32,6 +32,7 @@ export default class UrlPath {
 	static ComputerVision = 'services/computer-vision-development';
 	static OpenAI = 'services/openai-api-integration';
 	static DeepLearning = 'services/deep-learning-development';
+	static AiChatbotDev = 'services/ai-chatbot-development';
 
 	// Company pages
 	static AboutUs = 'about-us';

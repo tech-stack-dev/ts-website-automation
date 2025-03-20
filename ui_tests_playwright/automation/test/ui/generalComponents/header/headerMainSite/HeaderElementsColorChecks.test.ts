@@ -242,6 +242,7 @@ test(`Check the header information from the "Header" container on all pages @des
 			'Computer Vision',
 			'OpenAI API Integration',
 			'Deep Learning',
+			'AI Chatbot Development',
 		];
 
 		for (let index = 0; index < Object.values(expertiseButtons).length; index++) {

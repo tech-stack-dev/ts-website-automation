@@ -118,6 +118,7 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 		'Computer Vision',
 		'OpenAI API Integration',
 		'Deep Learning',
+		'AI Chatbot Development',
 	];
 	const expertiseMap = arrayUtils.mergeTwoArraysToMap(expertiseText, Object.values(expertiseButtons));
 	for (const [text, button] of expertiseMap) {

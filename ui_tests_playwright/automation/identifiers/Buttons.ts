@@ -51,6 +51,7 @@ export default class Buttons {
 		ComputerVision: 'Services-ComputerVision',
 		OpenApi: 'Services-OpenAPI',
 		DeepLearning: 'Services-DeepLearning',
+		AiChatbotDev: 'Services-AiChatbotDev',
 	};
 	static ExpertiseBlog = {
 		CloudDev: 'Expertise-CloudDev',
@@ -66,6 +67,7 @@ export default class Buttons {
 		ComputerVision: 'Expertise-ComputerVisionDevelopment',
 		OpenApi: 'Expertise-OpenaiApiIntegration',
 		DeepLearning: 'Expertise-DeepLearning',
+		AiChatbotDev: 'Services-AiChatbotDev',
 	};
 	static Company = {
 		AboutUs: 'Company-AboutUs',

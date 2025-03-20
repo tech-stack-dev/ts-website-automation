@@ -150,6 +150,7 @@ test(
 				'Computer Vision',
 				'OpenAI API Integration',
 				'Deep Learning',
+				'AI Chatbot Development',
 			];
 
 			for (let index = 0; index < expertiseUrls.length; index++) {
