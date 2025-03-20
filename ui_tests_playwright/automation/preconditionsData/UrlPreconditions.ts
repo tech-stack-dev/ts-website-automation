@@ -57,6 +57,7 @@ export const expertiseUrl: Record<ExpertiseEnum, string> = {
 	[ExpertiseEnum.ComputerVision]: UrlProvider.urlBuilder(UrlPath.ComputerVision),
 	[ExpertiseEnum.OpenAI]: UrlProvider.urlBuilder(UrlPath.OpenAI),
 	[ExpertiseEnum.DeepLearning]: UrlProvider.urlBuilder(UrlPath.DeepLearning),
+	[ExpertiseEnum.AiChatbotDev]: UrlProvider.urlBuilder(UrlPath.AiChatbotDev),
 };
 
 export const companyUrl: Record<CompanyEnum, string> = {
@@ -93,4 +94,5 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.DeepLearning),
 	UrlProvider.urlBuilder(UrlPath.OurClients),
 	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
+	UrlProvider.urlBuilder(UrlPath.AiChatbotDev),
 ];

@@ -12,4 +12,5 @@ export enum ExpertiseEnum {
 	ComputerVision,
 	OpenAI,
 	DeepLearning,
+	AiChatbotDev,
 }
