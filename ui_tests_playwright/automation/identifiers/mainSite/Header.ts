@@ -22,7 +22,7 @@ export default class Header {
 	static Pricing = 'Header-Pricing';
 	static Contacts = 'Header-Contacts';
 	static Engineering = 'Services-Engineering';
-	static Optimisation = 'Services-Optimisation';
+	static Optimization = 'Services-Optimization';
 	static Staffing = 'Services-Staffing';
 
 	// Mobile

@@ -1,5 +1,7 @@
 export enum ExpertiseEnum {
 	CloudDev,
+	CloudOptimization,
+	CloudModernization,
 	DevOpsAsAServ,
 	InternetOfThings,
 	DigitalTransform,

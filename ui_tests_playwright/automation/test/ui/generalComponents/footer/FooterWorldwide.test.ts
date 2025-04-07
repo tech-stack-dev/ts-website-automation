@@ -138,6 +138,8 @@ test(
 			await expect(expertiseBlock.getByTestId(Container.BlockTitle)).toHaveText('Expertise');
 			const expertiseText = [
 				'Cloud Development',
+				'Cloud Optimization',
+				'Cloud Modernization',
 				'DevOps as a Service',
 				'Internet of Things',
 				'Digital Transformation',

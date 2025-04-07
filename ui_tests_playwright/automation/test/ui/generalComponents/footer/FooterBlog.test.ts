@@ -106,6 +106,8 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 	await expect(expertiseBlock.getByTestId(Container.BlockTitle)).toHaveText('Expertise');
 	const expertiseText = [
 		'Cloud Development',
+		'Cloud Optimization',
+		'Cloud Modernization',
 		'DevOps as a Service',
 		'Internet of Things',
 		'Digital Transformation',
