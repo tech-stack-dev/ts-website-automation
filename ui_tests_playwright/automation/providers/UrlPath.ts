@@ -33,6 +33,8 @@ export default class UrlPath {
 	static OpenAI = 'services/openai-api-integration';
 	static DeepLearning = 'services/deep-learning-development';
 	static AiChatbotDev = 'services/ai-chatbot-development';
+	static CloudOptimization = 'services/cloud-optimization';
+	static CloudModernization = 'services/cloud-modernization';
 
 	// Company pages
 	static AboutUs = 'about-us';

@@ -172,8 +172,8 @@ test(`Check Services titles in the "Header" on all pages @desktop @Regression @H
 		await baseDriverSteps.goToUrl(url);
 		await servicesDropdownButton.click();
 
-		const servicesTitles = [Header.Engineering, Header.Optimisation, Header.Staffing];
-		const servicesTitlesText = ['Engineering', 'Optimisation', 'Staffing'];
+		const servicesTitles = [Header.Engineering, Header.Optimization, Header.Staffing];
+		const servicesTitlesText = ['Engineering', 'Optimization', 'Staffing'];
 
 		for (let index = 0; index < servicesTitles.length; index++) {
 			const button = servicesMenu.getByTestId(servicesTitles[index]);
@@ -230,6 +230,8 @@ test(`Check the header information from the "Header" container on all pages @des
 		const expertiseButtons = Buttons.Expertise;
 		const expertiseText = [
 			'Cloud Development',
+			'Cloud Optimization',
+			'Cloud Modernization',
 			'DevOps as a Service',
 			'Internet of Things',
 			'Digital Transformation',

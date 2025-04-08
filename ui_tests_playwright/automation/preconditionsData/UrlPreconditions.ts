@@ -31,7 +31,6 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 };
 
 export const expertiseUrlWithoutWebflow: Record<number, string> = {
-	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
@@ -40,11 +39,12 @@ export const expertiseUrlWithoutWebflow: Record<number, string> = {
 	[ExpertiseEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
 	[ExpertiseEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
 	[ExpertiseEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
-	[ExpertiseEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 };
 
 export const expertiseUrl: Record<ExpertiseEnum, string> = {
 	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
+	[ExpertiseEnum.CloudOptimization]: UrlProvider.urlBuilder(UrlPath.CloudOptimization),
+	[ExpertiseEnum.CloudModernization]: UrlProvider.urlBuilder(UrlPath.CloudModernization),
 	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
@@ -95,4 +95,8 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.OurClients),
 	UrlProvider.urlBuilder(UrlPath.BookADiscoveryCall),
 	UrlProvider.urlBuilder(UrlPath.AiChatbotDev),
+	UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
+	UrlProvider.urlBuilder(UrlPath.CloudOptimization),
+	UrlProvider.urlBuilder(UrlPath.CloudModernization),
+	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 ];

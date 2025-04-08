@@ -39,6 +39,8 @@ export default class Buttons {
 	};
 	static Expertise = {
 		CloudDev: 'Services-CloudDev',
+		CloudOptimization: 'Services-CloudOptimization',
+		CloudModernization: 'Services-CloudModernization',
 		DevOps: 'Services-DevOps',
 		InternetOfThings: 'Services-InternetOfThings',
 		DigitalTransform: 'Services-DigitalTransformation',
@@ -55,6 +57,8 @@ export default class Buttons {
 	};
 	static ExpertiseBlog = {
 		CloudDev: 'Expertise-CloudDev',
+		CloudOptimization: 'Expertise-CloudOptimization',
+		CloudModernization: 'Expertise-CloudModernization',
 		DevOps: 'Expertise-DevOps',
 		InternetOfThings: 'Expertise-InternetOfThings',
 		DigitalTransform: 'Expertise-DigitalTransformation',
