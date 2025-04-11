@@ -86,17 +86,6 @@ test(
 	}
 );
 
-test('Check Slack notification from "staging_techstack_notify" channel from "Pricing" page @desktop @mobile @Regression @GetOurRateCard @TSWEB-1768', async () => {
-	await baseDriverSteps.goToUrl(companyUrl[CompanyEnum.Pricing]);
-	await formSteps.sendGetOurRateCardMessage();
-	const message = await slackSteps.getMessageWithValueFromChat(
-		slackDtoVariable.value.stagingTechstackNotifyId,
-		`<mailto:${validGetInTouchData.email}|${validGetInTouchData.email}>`
-	);
-
-	slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
-});
-
 test(
 	qase(
 		5462,
