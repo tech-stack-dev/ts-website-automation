@@ -21,16 +21,15 @@ test('Check the Info container from the "Pricing" page @desktop @mobile @Regress
 	const expectedBlockTitles = ['10\n+', '12\n+', '5.0', '91\n%'];
 
 	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
-	await expect(infoTitle).toHaveText('Our Software Development Cost');
+	await expect(infoTitle).toHaveText('Our Software Development Pricing Model');
 	expect(infoBlockTitlesTrimmed).toStrictEqual(expectedBlockTitles);
 });
 
 test('Check the container titles and numbers from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
 	const containers = [
-		driver.getByTestId(Pricing.GetOurRateCard),
-		driver.getByTestId(Pricing.CustomOffer),
-		driver.getByTestId(Pricing.PricingInfluences),
 		driver.getByTestId(Pricing.SimplifiedPaymentProcess),
+		driver.getByTestId(Pricing.PricingInfluences),
+		driver.getByTestId(Pricing.CustomOffer),
 		driver.getByTestId(Pricing.WhyPartnerWithUs),
 		driver.getByTestId(Pricing.WhatClientsSay),
 		driver.getByTestId(Pricing.GetInTouch),
@@ -38,23 +37,16 @@ test('Check the container titles and numbers from the "Pricing" page @desktop @m
 	];
 
 	const expectedData = [
-		['Get Our Rate Card', '01'],
-		['From Consultation To Custom Offer', '02'],
-		['What Influences The Cost of Software Development', '03'],
-		['Simplified Payment Process for Your Software Development Needs', '04'],
-		['Why Partner with Us', '05'],
-		['What Our Clients Say About Us', '06'],
-		['Request a Free No-obligation Quote', '07'],
-		['FAQ', '08'],
+		['Simplified Payment Process for Your Software Development Needs', '01'],
+		['What Influences The Cost of Software Development', '02'],
+		['From Consultation To Custom Offer', '03'],
+		['Why Partner with Us', '04'],
+		['What Our Clients Say About Us', '05'],
+		['Request a Free No-obligation Quote', '06'],
+		['FAQ', '07'],
 	];
 
 	await baseDriverSteps.checkContainerTitlesAndNumbers(containers, expectedData);
-});
-
-test('Check section title in "Get Our Rate Card" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
-	const getOurRateCardContainer = driver.getByTestId(Pricing.GetOurRateCard);
-
-	await expect(getOurRateCardContainer.getByTestId(Container.SectionTitle)).toHaveText('Curious about our pricing?');
 });
 
 test('Check section titles, navigation bar and CTA button text in "From Consultation To Custom Offer" container from the "Pricing" page @desktop @mobile @Regression @Pricing @TSWEB-1297', async () => {
