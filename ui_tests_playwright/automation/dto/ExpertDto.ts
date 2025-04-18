@@ -21,7 +21,6 @@ export const allExpertsList: ExpertDto[] = [
 			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
 			UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
-			UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 			UrlProvider.urlBuilder(UrlPath.AboutUs),
 		],
 	},
@@ -38,7 +37,6 @@ export const allExpertsList: ExpertDto[] = [
 		name: 'Artem Marynych',
 		role: 'Business Development Manager',
 		pages: [
-			UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 			UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
 			UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
