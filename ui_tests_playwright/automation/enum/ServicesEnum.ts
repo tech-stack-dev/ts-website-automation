@@ -9,4 +9,5 @@ export enum ServicesEnum {
 	CloudMigration,
 	DedicatedTeam,
 	StaffAugmentation,
+	AiAugmentedEngineering,
 }

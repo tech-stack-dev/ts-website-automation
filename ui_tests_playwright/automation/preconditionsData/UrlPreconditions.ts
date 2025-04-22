@@ -28,6 +28,7 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 	[ServicesEnum.CloudMigration]: UrlProvider.urlBuilder(UrlPath.CloudMigration),
 	[ServicesEnum.DedicatedTeam]: UrlProvider.urlBuilder(UrlPath.DedicatedTeam),
 	[ServicesEnum.StaffAugmentation]: UrlProvider.urlBuilder(UrlPath.StaffAugmentation),
+	[ServicesEnum.AiAugmentedEngineering]: UrlProvider.urlBuilder(UrlPath.AiAugmentedEngineering),
 };
 
 export const expertiseUrlWithoutWebflow: Record<number, string> = {
@@ -99,4 +100,5 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.CloudOptimization),
 	UrlProvider.urlBuilder(UrlPath.CloudModernization),
 	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
+	UrlProvider.urlBuilder(UrlPath.AiAugmentedEngineering),
 ];
