@@ -82,6 +82,7 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 		'Cloud Migration',
 		'Dedicated Team',
 		'Expert Outstaffing',
+		'AI-Augmented Engineering',
 	];
 
 	for (const text of servicesText) {

@@ -212,6 +212,7 @@ test(`Check the header information from the "Header" container on all pages @des
 			'Cloud Migration',
 			'Dedicated Team',
 			'Expert Outstaffing',
+			'AI-Augmented Engineering',
 		];
 
 		for (let index = 0; index < Object.values(servicesButtons).length; index++) {

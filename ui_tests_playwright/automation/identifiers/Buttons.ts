@@ -18,6 +18,7 @@ export default class Buttons {
 		CloudMigration: 'Services-CloudMigration',
 		DedicatedTeam: 'Services-DedicatedTeam',
 		StaffAugmentation: 'Services-StaffAugmentation',
+		AiAugmentedEngineering: 'Services-AI-AugmentedEngineering',
 	};
 	static ServicesBlog = {
 		PoCAndMVPDevelopment: 'Services-PocMvpDevelopment',
@@ -30,6 +31,7 @@ export default class Buttons {
 		CloudMigration: 'Services-CloudMigration',
 		DedicatedTeam: 'Services-DedicatedDevelopmentTeam',
 		StaffAugmentation: 'Services-ItStaffAugmentation',
+		AiAugmentedEngineering: 'Services-AI-AugmentedEngineering',
 	};
 	static Industries = {
 		Healthcare: 'Industries-Healthcare',

@@ -35,6 +35,7 @@ export default class UrlPath {
 	static AiChatbotDev = 'services/ai-chatbot-development';
 	static CloudOptimization = 'services/cloud-optimization';
 	static CloudModernization = 'services/cloud-modernization';
+	static AiAugmentedEngineering = 'services/ai-augmented-development';
 
 	// Company pages
 	static AboutUs = 'about-us';

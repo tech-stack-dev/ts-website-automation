@@ -120,6 +120,7 @@ test(
 				'Cloud Migration',
 				'Dedicated Team',
 				'Expert Outstaffing',
+				'AI-Augmented Engineering',
 			];
 
 			for (let index = 0; index < servicesUrls.length; index++) {
