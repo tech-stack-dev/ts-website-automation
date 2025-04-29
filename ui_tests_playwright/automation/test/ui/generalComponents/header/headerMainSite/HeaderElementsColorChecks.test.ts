@@ -64,7 +64,6 @@ test.beforeEach(async () => {
 	servicesDropdownButton = header.getByTestId(Header.Services);
 	expertiseDropdownButton = header.getByTestId(Header.Expertise);
 	companyDropdownButton = header.getByTestId(Header.Company);
-	pricingButton = header.getByTestId(Header.Pricing);
 	contactsButton = header.getByTestId(Header.Contacts);
 	headerButtonsList = [
 		industriesDropdownButton,
@@ -253,11 +252,20 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(expertiseText[index]);
 		}
 
-		const companyText = ['About Us', 'How we work', 'Our Clients', 'Career', 'Case Studies', 'Blog'];
+		const companyText = [
+			'About Us',
+			'How We Work',
+			'Our Clients',
+			'Pricing Model',
+			'Career',
+			'Case Studies',
+			'Blog',
+		];
 		const companyButtons = [
 			Buttons.Company.AboutUs,
 			Buttons.Company.HowWeWork,
 			Buttons.Company.OurClients,
+			Buttons.Company.Pricing,
 			Buttons.Company.Career,
 			Buttons.Company.CaseStudies,
 			Buttons.Company.Blog,
@@ -268,7 +276,6 @@ test(`Check the header information from the "Header" container on all pages @des
 			await expect(button).toHaveText(companyText[index]);
 		}
 
-		await expect(pricingButton).toHaveText('Pricing');
 		await expect(contactsButton).toHaveText('Contacts');
 
 		await expect(bookADiscoveryCallButton).toHaveText('Book a discovery call');

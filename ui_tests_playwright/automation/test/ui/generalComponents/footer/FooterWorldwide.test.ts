@@ -162,7 +162,15 @@ test(
 			}
 
 			await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-			const companyText = ['About Us', 'How we work', 'Our Clients', 'Pricing', 'Career', 'Case Studies', 'Blog'];
+			const companyText = [
+				'About Us',
+				'How We Work',
+				'Our Clients',
+				'Pricing Model',
+				'Career',
+				'Case Studies',
+				'Blog',
+			];
 
 			for (let index = 0; index < companyUrls.length; index++) {
 				const button = footer.getByTestId(Object.values(companyButtons)[index]);

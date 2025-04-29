@@ -130,7 +130,7 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 	}
 
 	await expect(companyBlock.getByTestId(Container.BlockTitle)).toHaveText('Company');
-	const companyText = ['About Us', 'How we work', 'Our Clients', 'Pricing', 'Case Studies', 'Blog', 'Career'];
+	const companyText = ['About Us', 'Our Clients', 'How We Work', 'Pricing Model', 'Case Studies', 'Blog', 'Career'];
 
 	const companyLocator = await companyBlock.getByTestId(industriesButtons).all();
 	const companyMap = arrayUtils.mergeTwoArraysToMap(companyText, companyLocator);
@@ -207,8 +207,8 @@ test(`Check the redirection for the Expertise block on Blog page @desktop @mobil
 test(`Check the redirection for the Company block on Blog page @desktop @mobile @Regression @Footer @Blog @TSWEB-818`, async () => {
 	const companyList = [
 		companyUrl[CompanyEnum.AboutUs],
-		companyUrl[CompanyEnum.HowWeWork],
 		companyUrl[CompanyEnum.OurClients],
+		companyUrl[CompanyEnum.HowWeWork],
 		companyUrl[CompanyEnum.Pricing],
 		companyUrl[CompanyEnum.CaseStudies],
 		companyUrl[CompanyEnum.Blog],

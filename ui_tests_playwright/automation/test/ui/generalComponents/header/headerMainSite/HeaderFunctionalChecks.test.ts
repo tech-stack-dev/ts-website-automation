@@ -166,6 +166,7 @@ test(
 			[Buttons.Company.AboutUs, companyUrl[CompanyEnum.AboutUs]],
 			[Buttons.Company.HowWeWork, companyUrl[CompanyEnum.HowWeWork]],
 			[Buttons.Company.OurClients, companyUrl[CompanyEnum.OurClients]],
+			[Buttons.Company.Pricing, companyUrl[CompanyEnum.Pricing]],
 			[Buttons.Company.Career, UrlProvider.careerUrl(Environment.Production)],
 			[Buttons.Company.CaseStudies, companyUrl[CompanyEnum.CaseStudies]],
 			[Buttons.Company.Blog, companyUrl[CompanyEnum.Blog]],
@@ -182,21 +183,6 @@ test(
 				await baseDriverSteps.checkUrl(companyUrl);
 				await baseDriverSteps.goToUrl(url);
 			}
-		}
-	}
-);
-
-test(
-	qase(
-		5499,
-		`Check the redirection to the "Pricing" page by clicking on the "Pricing" button in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
-	),
-	async () => {
-		for (const url of testDataProvider) {
-			await baseDriverSteps.goToUrl(url);
-			await headerMenuSteps.clickOnBurgerMenu();
-			await header.getByTestId(Header.Pricing).click();
-			await baseDriverSteps.checkUrl(companyUrl[CompanyEnum.Pricing]);
 		}
 	}
 );
