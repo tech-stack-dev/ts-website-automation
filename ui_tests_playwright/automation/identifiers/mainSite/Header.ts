@@ -19,7 +19,6 @@ export default class Header {
 	static Services = 'Header-Services';
 	static Expertise = 'Header-Expertise';
 	static Company = 'Header-Company';
-	static Pricing = 'Header-Pricing';
 	static Contacts = 'Header-Contacts';
 	static Engineering = 'Services-Engineering';
 	static Optimization = 'Services-Optimization';

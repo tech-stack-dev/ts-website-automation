@@ -20,7 +20,7 @@ test('Check the Info container from the "Pricing" page @desktop @mobile @Regress
 
 	const expectedBlockTitles = ['10\n+', '12\n+', '5.0', '91\n%'];
 
-	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing');
+	await expect(info.getByTestId(Container.Breadcrumbs)).toHaveText('Home\nPricing Model');
 	await expect(infoTitle).toHaveText('Our Software Development Pricing Model');
 	expect(infoBlockTitlesTrimmed).toStrictEqual(expectedBlockTitles);
 });
