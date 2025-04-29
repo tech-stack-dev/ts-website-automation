@@ -30,7 +30,6 @@ let industriesDropdownButton: Locator;
 let servicesDropdownButton: Locator;
 let expertiseDropdownButton: Locator;
 let companyDropdownButton: Locator;
-let pricingButton: Locator;
 let contactsButton: Locator;
 let bookADiscoveryCallButton: Locator;
 
@@ -70,7 +69,6 @@ test.beforeEach(async () => {
 		servicesDropdownButton,
 		expertiseDropdownButton,
 		companyDropdownButton,
-		pricingButton,
 		contactsButton,
 	];
 	bookADiscoveryCallButton = header.getByTestId(MainSiteButtons.GetAQuote);
