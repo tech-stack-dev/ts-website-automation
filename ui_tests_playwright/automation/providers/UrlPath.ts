@@ -36,6 +36,9 @@ export default class UrlPath {
 	static CloudOptimization = 'services/cloud-optimization';
 	static CloudModernization = 'services/cloud-modernization';
 	static AiAugmentedEngineering = 'services/ai-augmented-development';
+	static CloudArchitecture = 'services/cloud-architecture';
+	static AWSDevOpsServ = 'services/aws-devops';
+	static MachineLearning = 'services/machine-learning-development';
 
 	// Company pages
 	static AboutUs = 'about-us';
