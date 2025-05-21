@@ -12,8 +12,6 @@ export const industryUrl: Record<IndustriesEnum, string> = {
 };
 
 export const serviceUrlWithoutWebflow: Record<number, string> = {
-	[ServicesEnum.CustomDev]: UrlProvider.urlBuilder(UrlPath.CustomDev),
-	[ServicesEnum.ConsultingServ]: UrlProvider.urlBuilder(UrlPath.ConsultingServ),
 	[ServicesEnum.QaAsAService]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 };
 
@@ -32,7 +30,6 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 };
 
 export const expertiseUrlWithoutWebflow: Record<number, string> = {
-	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
 	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 	[ExpertiseEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
@@ -46,7 +43,9 @@ export const expertiseUrl: Record<ExpertiseEnum, string> = {
 	[ExpertiseEnum.CloudDev]: UrlProvider.urlBuilder(UrlPath.CloudDevelopment),
 	[ExpertiseEnum.CloudOptimization]: UrlProvider.urlBuilder(UrlPath.CloudOptimization),
 	[ExpertiseEnum.CloudModernization]: UrlProvider.urlBuilder(UrlPath.CloudModernization),
+	[ExpertiseEnum.CloudArchitecture]: UrlProvider.urlBuilder(UrlPath.CloudArchitecture),
 	[ExpertiseEnum.DevOpsAsAServ]: UrlProvider.urlBuilder(UrlPath.DevOpsServ),
+	[ExpertiseEnum.AWSDevOpsServ]: UrlProvider.urlBuilder(UrlPath.AWSDevOpsServ),
 	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 	[ExpertiseEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
@@ -57,6 +56,7 @@ export const expertiseUrl: Record<ExpertiseEnum, string> = {
 	[ExpertiseEnum.AiDevelopment]: UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 	[ExpertiseEnum.ComputerVision]: UrlProvider.urlBuilder(UrlPath.ComputerVision),
 	[ExpertiseEnum.OpenAI]: UrlProvider.urlBuilder(UrlPath.OpenAI),
+	[ExpertiseEnum.MachineLearning]: UrlProvider.urlBuilder(UrlPath.MachineLearning),
 	[ExpertiseEnum.DeepLearning]: UrlProvider.urlBuilder(UrlPath.DeepLearning),
 	[ExpertiseEnum.AiChatbotDev]: UrlProvider.urlBuilder(UrlPath.AiChatbotDev),
 };
