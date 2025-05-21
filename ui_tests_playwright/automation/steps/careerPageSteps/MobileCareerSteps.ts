@@ -34,7 +34,6 @@ class MobileCareerSteps extends CareerSteps {
 
 		await headerMenuSteps.clickOnBurgerMenu();
 		await switcher.click();
-		await driver.Page.waitForLoadState('networkidle');
 		await expect(switcher).toHaveClass(/active-locale/);
 		await driver.getByTestId(Buttons.Close).click();
 	}
