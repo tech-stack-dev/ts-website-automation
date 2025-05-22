@@ -109,7 +109,7 @@ test(`Check the footer information from the "Footer" container on Blog page @des
 		'Cloud Development',
 		'Cloud Optimization',
 		'Cloud Modernization',
-		'Cloud Architecture Design Services',
+		'Cloud Architecture Design',
 		'DevOps as a Service',
 		'AWS DevOps Services',
 		'Internet of Things',
