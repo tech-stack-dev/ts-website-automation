@@ -177,8 +177,6 @@ test(
 		const pagesWithTechnologyStackBlock = [
 			UrlPath.OurServices,
 			UrlPath.HowWeWork,
-			UrlPath.CustomDev,
-			UrlPath.DevOpsServ,
 			UrlPath.FrontEndDevelopment,
 			UrlPath.BackEndDevelopment,
 			UrlPath.MobileDev,

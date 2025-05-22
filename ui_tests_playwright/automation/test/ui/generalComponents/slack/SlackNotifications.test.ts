@@ -9,7 +9,12 @@ import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
 import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../../identifiers/career/Navigation';
-import {companyUrl, industryUrl, serviceUrl, webflowPages} from '../../../../preconditionsData/UrlPreconditions';
+import {
+	companyUrl,
+	industryUrl,
+	serviceUrlWithoutWebflow,
+	webflowPages,
+} from '../../../../preconditionsData/UrlPreconditions';
 import {CompanyEnum} from '../../../../enum/CompanyEnum';
 import {qase} from 'playwright-qase-reporter/dist/playwright';
 import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
@@ -119,7 +124,7 @@ test(
 		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
 	),
 	async () => {
-		for (const url of Object.values(serviceUrl)) {
+		for (const url of Object.values(serviceUrlWithoutWebflow)) {
 			if (!webflowPages.includes(url)) {
 				await baseDriverSteps.goToUrl(url);
 				await formSteps.sendGetInTouchMessage();
