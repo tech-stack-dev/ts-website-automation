@@ -230,7 +230,7 @@ test(`Check the header information from the "Header" container on all pages @des
 			'Cloud Development',
 			'Cloud Optimization',
 			'Cloud Modernization',
-			'Cloud Architecture Design Services',
+			'Cloud Architecture Design',
 			'DevOps as a Service',
 			'AWS DevOps Services',
 			'Internet of Things',
