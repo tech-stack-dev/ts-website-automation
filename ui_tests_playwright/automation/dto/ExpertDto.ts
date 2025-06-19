@@ -14,13 +14,8 @@ export const allExpertsList: ExpertDto[] = [
 		pages: [
 			UrlProvider.webSiteUrl(),
 			UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-			UrlProvider.urlBuilder(UrlPath.MobileDev),
-			UrlProvider.urlBuilder(UrlPath.BigData),
 			UrlProvider.urlBuilder(UrlPath.HowWeWork),
 			UrlProvider.urlBuilder(UrlPath.Pricing),
-			UrlProvider.urlBuilder(UrlPath.ConsultingServ),
-			UrlProvider.urlBuilder(UrlPath.DevOpsServ),
-			UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 			UrlProvider.urlBuilder(UrlPath.AboutUs),
 		],
 	},
@@ -38,10 +33,6 @@ export const allExpertsList: ExpertDto[] = [
 		role: 'Business Development Manager',
 		pages: [
 			UrlProvider.urlBuilder(UrlPath.DigitalTransform),
-			UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
-			UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-			UrlProvider.urlBuilder(UrlPath.QaAsAServ),
-			UrlProvider.urlBuilder(UrlPath.CustomDev),
 		],
 	},
 ];

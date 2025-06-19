@@ -1,6 +1,6 @@
-import {expect, Locator, test} from '@playwright/test';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
-import {driver} from '../../../../base/driver/Driver';
+import { expect, Locator, test } from '@playwright/test';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
 import UrlProvider from '../../../../providers/UrlProvider';
 import UrlPath from '../../../../providers/UrlPath';
 import Footer from '../../../../identifiers/Footer';
@@ -12,13 +12,12 @@ import {
 	industryUrl,
 	expertiseUrl,
 	webflowPages,
-	serviceUrlWithoutWebflow,
 	expertiseUrlWithoutWebflow,
 } from '../../../../preconditionsData/UrlPreconditions';
 import Links from '../../../../preconditionsData/links/Links';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {Environment} from '../../../../providers/EnvProvider';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { Environment } from '../../../../providers/EnvProvider';
 import UrlUtils from '../../../../utils/UrlUtils';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 
@@ -37,7 +36,6 @@ let servicesBlock: Locator;
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrlWithoutWebflow)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrlWithoutWebflow)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
 	UrlProvider.urlBuilder(UrlPath.Pricing),

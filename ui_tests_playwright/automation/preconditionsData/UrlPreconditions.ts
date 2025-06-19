@@ -1,18 +1,14 @@
-import {CompanyEnum} from '../enum/CompanyEnum';
-import {IndustriesEnum} from '../enum/IndustriesEnum';
-import {ExpertiseEnum} from '../enum/ExpertiseEnum';
+import { CompanyEnum } from '../enum/CompanyEnum';
+import { IndustriesEnum } from '../enum/IndustriesEnum';
+import { ExpertiseEnum } from '../enum/ExpertiseEnum';
 import UrlPath from '../providers/UrlPath';
 import UrlProvider from '../providers/UrlProvider';
-import {ServicesEnum} from '../enum/ServicesEnum';
+import { ServicesEnum } from '../enum/ServicesEnum';
 
 export const industryUrl: Record<IndustriesEnum, string> = {
 	[IndustriesEnum.Healthcare]: UrlProvider.urlBuilder(UrlPath.Healthcare),
 	[IndustriesEnum.TransportAndLogist]: UrlProvider.urlBuilder(UrlPath.TransportAndLogist),
 	[IndustriesEnum.RenewableEnergy]: UrlProvider.urlBuilder(UrlPath.RenewableEnergy),
-};
-
-export const serviceUrlWithoutWebflow: Record<number, string> = {
-	[ServicesEnum.QaAsAService]: UrlProvider.urlBuilder(UrlPath.QaAsAServ),
 };
 
 export const serviceUrl: Record<ServicesEnum, string> = {
@@ -30,13 +26,8 @@ export const serviceUrl: Record<ServicesEnum, string> = {
 };
 
 export const expertiseUrlWithoutWebflow: Record<number, string> = {
-	[ExpertiseEnum.InternetOfThings]: UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 	[ExpertiseEnum.DigitalTransform]: UrlProvider.urlBuilder(UrlPath.DigitalTransform),
 	[ExpertiseEnum.UiUxDesign]: UrlProvider.urlBuilder(UrlPath.UiUxDesign),
-	[ExpertiseEnum.MobileDev]: UrlProvider.urlBuilder(UrlPath.MobileDev),
-	[ExpertiseEnum.FrontEndDevelopment]: UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
-	[ExpertiseEnum.BackEndDevelopment]: UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
-	[ExpertiseEnum.BigData]: UrlProvider.urlBuilder(UrlPath.BigData),
 };
 
 export const expertiseUrl: Record<ExpertiseEnum, string> = {
@@ -101,4 +92,10 @@ export const webflowPages: string[] = [
 	UrlProvider.urlBuilder(UrlPath.CloudModernization),
 	UrlProvider.urlBuilder(UrlPath.AiDevelopment),
 	UrlProvider.urlBuilder(UrlPath.AiAugmentedEngineering),
+	UrlProvider.urlBuilder(UrlPath.QaAsAServ),
+	UrlProvider.urlBuilder(UrlPath.FrontEndDevelopment),
+	UrlProvider.urlBuilder(UrlPath.BackEndDevelopment),
+	UrlProvider.urlBuilder(UrlPath.MobileDev),
+	UrlProvider.urlBuilder(UrlPath.BigData),
+	UrlProvider.urlBuilder(UrlPath.InternetOfThings),
 ];

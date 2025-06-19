@@ -1,17 +1,16 @@
-import {Locator, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { Locator, test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import {
 	companyUrl,
 	expertiseUrlWithoutWebflow,
 	industryUrl,
-	serviceUrlWithoutWebflow,
 } from '../../../../preconditionsData/UrlPreconditions';
 import Container from '../../../../identifiers/Container';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
 
 let breadcrumbsHome: Locator;
 let breadcrumbsPrev: Locator;
@@ -38,20 +37,6 @@ test(
 
 test(
 	qase(
-		5481,
-		'Check redirect to main page by clicking "Home" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
-	),
-	async () => {
-		for (const url of Object.values(serviceUrlWithoutWebflow)) {
-			await baseDriverSteps.goToUrl(url);
-			await breadcrumbsHome.click();
-			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
-		}
-	}
-);
-
-test(
-	qase(
 		5483,
 		'Check redirect to main page by clicking "Home" breadcrumbs button from "Expertise" pages @desktop @mobile @Regression @Breadcrumbs'
 	),
@@ -60,20 +45,6 @@ test(
 			await baseDriverSteps.goToUrl(url);
 			await breadcrumbsHome.click();
 			await baseDriverSteps.checkUrl(UrlProvider.webSiteUrl());
-		}
-	}
-);
-
-test(
-	qase(
-		5484,
-		'Check redirect to "Our Services" page by clicking "Our Services" breadcrumbs button from "Services" pages @desktop @mobile @Regression @Breadcrumbs'
-	),
-	async () => {
-		for (const url of Object.values(serviceUrlWithoutWebflow)) {
-			await baseDriverSteps.goToUrl(url);
-			await breadcrumbsPrev.click();
-			await baseDriverSteps.checkUrl(UrlProvider.urlBuilder(UrlPath.OurServices));
 		}
 	}
 );
