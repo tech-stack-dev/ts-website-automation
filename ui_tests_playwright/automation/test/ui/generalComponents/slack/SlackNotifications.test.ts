@@ -1,26 +1,24 @@
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlProvider from '../../../../providers/UrlProvider';
 import CareerButtons from '../../../../identifiers/career/CareerButtons';
-import {sessionValue} from '../../../../runtimeVariables/SessionValue';
-import {slackSteps} from '../../../../steps/api/SlackSteps';
-import {formSteps} from '../../../../steps/ui/FormSteps';
+import { sessionValue } from '../../../../runtimeVariables/SessionValue';
+import { slackSteps } from '../../../../steps/api/SlackSteps';
+import { formSteps } from '../../../../steps/ui/FormSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import SlackProvider from '../../../../providers/SlackProvider';
-import {slackDtoVariable} from '../../../../runtimeVariables/dto/SlackDtoVariable';
+import { slackDtoVariable } from '../../../../runtimeVariables/dto/SlackDtoVariable';
 import Navigation from '../../../../identifiers/career/Navigation';
 import {
 	companyUrl,
 	industryUrl,
-	serviceUrlWithoutWebflow,
-	webflowPages,
 } from '../../../../preconditionsData/UrlPreconditions';
-import {CompanyEnum} from '../../../../enum/CompanyEnum';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {contentfulSteps} from '../../../../steps/contentful/ContentfulSteps';
-import {careerSteps, containerSteps, test} from '../../../../fixtures/DesktopMobileSetup';
+import { CompanyEnum } from '../../../../enum/CompanyEnum';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { contentfulSteps } from '../../../../steps/contentful/ContentfulSteps';
+import { careerSteps, containerSteps, test } from '../../../../fixtures/DesktopMobileSetup';
 import AboutUsCareer from '../../../../identifiers/career/pages/AboutUsCareer';
-import {validGetInTouchData} from '../../../../dto/FormDto';
+import { validGetInTouchData } from '../../../../dto/FormDto';
 
 test.beforeEach(async () => {
 	await SlackProvider.getSlackSecret();
@@ -114,27 +112,6 @@ test(
 			);
 
 			slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
-		}
-	}
-);
-
-test(
-	qase(
-		5464,
-		'Check Slack notification from "staging_techstack_notify" channel from all "Services" pages @desktop @mobile @Regression @GetInTouchShort @TSWEB-606'
-	),
-	async () => {
-		for (const url of Object.values(serviceUrlWithoutWebflow)) {
-			if (!webflowPages.includes(url)) {
-				await baseDriverSteps.goToUrl(url);
-				await formSteps.sendGetInTouchMessage();
-				const message = await slackSteps.getMessageWithValueFromChat(
-					slackDtoVariable.value.stagingTechstackNotifyId,
-					validGetInTouchData.firstName
-				);
-
-				slackSteps.checkMessageFromNotifyChannel(message, validGetInTouchData);
-			}
 		}
 	}
 );

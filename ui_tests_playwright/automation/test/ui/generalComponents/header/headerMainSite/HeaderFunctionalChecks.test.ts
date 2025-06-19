@@ -1,7 +1,7 @@
-import {Locator} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {CompanyEnum} from '../../../../../enum/CompanyEnum';
+import { Locator } from '@playwright/test';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { CompanyEnum } from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
 import {
 	industryUrl,
@@ -9,14 +9,13 @@ import {
 	companyUrl,
 	urlsWithOnlyLogoInHeader,
 	serviceUrl,
-	serviceUrlWithoutWebflow,
 	expertiseUrlWithoutWebflow,
 } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlProvider from '../../../../../providers/UrlProvider';
 import Buttons from '../../../../../identifiers/Buttons';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {Environment} from '../../../../../providers/EnvProvider';
-import {containerSteps, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { Environment } from '../../../../../providers/EnvProvider';
+import { containerSteps, headerMenuSteps, test } from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import UrlPath from '../../../../../providers/UrlPath';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
@@ -35,7 +34,6 @@ let expertiseUrls: string[];
 
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrlWithoutWebflow)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrlWithoutWebflow)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),

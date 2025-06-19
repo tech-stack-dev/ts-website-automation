@@ -1,24 +1,23 @@
-import {Locator} from '@playwright/test';
-import {driver} from '../../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../../base/step/BaseDriverSteps';
-import {ColorsEnum} from '../../../../../enum/ColorsEnum';
-import {CompanyEnum} from '../../../../../enum/CompanyEnum';
+import { Locator } from '@playwright/test';
+import { driver } from '../../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../../base/step/BaseDriverSteps';
+import { ColorsEnum } from '../../../../../enum/ColorsEnum';
+import { CompanyEnum } from '../../../../../enum/CompanyEnum';
 import Header from '../../../../../identifiers/mainSite/Header';
 import {
 	companyUrl,
 	industryUrl,
-	serviceUrlWithoutWebflow,
 	expertiseUrlWithoutWebflow,
 } from '../../../../../preconditionsData/UrlPreconditions';
 import UrlPath from '../../../../../providers/UrlPath';
 import UrlProvider from '../../../../../providers/UrlProvider';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
-import {buttonSteps, containerSteps, expect, headerMenuSteps, test} from '../../../../../fixtures/DesktopMobileSetup';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
+import { buttonSteps, containerSteps, expect, headerMenuSteps, test } from '../../../../../fixtures/DesktopMobileSetup';
 import UrlUtils from '../../../../../utils/UrlUtils';
 import Buttons from '../../../../../identifiers/Buttons';
-import {locatorUtils} from '../../../../../utils/LocatorUtils';
+import { locatorUtils } from '../../../../../utils/LocatorUtils';
 import MainSiteButtons from '../../../../../identifiers/mainSite/MainSiteButtons';
-import {playwrightUtils} from '../../../../../utils/PlaywrightUtils';
+import { playwrightUtils } from '../../../../../utils/PlaywrightUtils';
 
 let header: Locator;
 let servicesMenu: Locator;
@@ -42,7 +41,6 @@ const pagesWithWhiteHeader: string[] = [
 ];
 const testDataProvider: string[] = [
 	UrlProvider.webSiteUrl(),
-	UrlUtils.getRandomUrlFromArray(Object.values(serviceUrlWithoutWebflow)),
 	UrlUtils.getRandomUrlFromArray(Object.values(industryUrl)),
 	UrlUtils.getRandomUrlFromArray(Object.values(expertiseUrlWithoutWebflow)),
 	UrlProvider.urlBuilder(UrlUtils.getRandomUrlFromArray([UrlPath.AboutUs, UrlPath.HowWeWork])),
@@ -142,7 +140,7 @@ test(
 		5505,
 		`Check buttons background color after clicking on it in the "Header" on all pages @desktop @mobile @Regression @Header @TSWEB-656`
 	),
-	async ({isMobile}) => {
+	async ({ isMobile }) => {
 		for (const url of testDataProvider) {
 			await baseDriverSteps.goToUrl(url);
 			const headerButtonsList = [

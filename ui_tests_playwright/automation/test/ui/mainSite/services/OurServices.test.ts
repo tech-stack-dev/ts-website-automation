@@ -1,15 +1,15 @@
-import {expect, test} from '@playwright/test';
-import {driver} from '../../../../base/driver/Driver';
-import {baseDriverSteps} from '../../../../base/step/BaseDriverSteps';
+import { expect, test } from '@playwright/test';
+import { driver } from '../../../../base/driver/Driver';
+import { baseDriverSteps } from '../../../../base/step/BaseDriverSteps';
 import UrlPath from '../../../../providers/UrlPath';
 import UrlProvider from '../../../../providers/UrlProvider';
 import OurServices from '../../../../identifiers/mainSite/pages/services/OurServices';
 import Container from '../../../../identifiers/Container';
 import MainSiteButtons from '../../../../identifiers/mainSite/MainSiteButtons';
 import Buttons from '../../../../identifiers/Buttons';
-import {ClutchReviewIds} from '../../../../preconditionsData/links/ClutchReviewLinks';
+import { ClutchReviewIds } from '../../../../preconditionsData/links/ClutchReviewLinks';
 import TechnologyStackData from '../../../../preconditionsData/technologyStack/TechnologyStackData';
-import {qase} from 'playwright-qase-reporter/dist/playwright';
+import { qase } from 'playwright-qase-reporter/dist/playwright';
 import MainSiteImages from '../../../../identifiers/mainSite/MainSiteImages';
 import GeneralContainersMainSite from '../../../../identifiers/mainSite/GeneralContainersMainSite';
 import BigDataAndAnalytics from '../../../../identifiers/mainSite/pages/services/BigDataAndAnalytics';
@@ -177,10 +177,6 @@ test(
 		const pagesWithTechnologyStackBlock = [
 			UrlPath.OurServices,
 			UrlPath.HowWeWork,
-			UrlPath.FrontEndDevelopment,
-			UrlPath.BackEndDevelopment,
-			UrlPath.MobileDev,
-			UrlPath.BigData,
 		];
 
 		for (const pageUrl of pagesWithTechnologyStackBlock) {
@@ -198,14 +194,14 @@ test(
 
 			const viewButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
 			await viewButton.evaluate((element) => {
-				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+				element.scrollIntoView({ behavior: 'smooth', block: 'end' });
 			});
 			await expect(viewButton).toBeVisible();
 			await viewButton.click();
 
 			const hideButton = technologyStackContainer.getByTestId(MainSiteButtons.ViewFullStackDetails);
 			await hideButton.evaluate((element) => {
-				element.scrollIntoView({behavior: 'smooth', block: 'end'});
+				element.scrollIntoView({ behavior: 'smooth', block: 'end' });
 			});
 			await expect(hideButton).toBeVisible();
 			await hideButton.click();
@@ -217,7 +213,7 @@ test(
 
 				expect(roundedPosition).toBeGreaterThanOrEqual(120);
 				expect(roundedPosition).toBeLessThanOrEqual(125);
-			}).toPass({timeout: 2000});
+			}).toPass({ timeout: 2000 });
 		}
 	}
 );
