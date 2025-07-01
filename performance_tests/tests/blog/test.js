@@ -1,20 +1,15 @@
 import { sleep } from 'k6';
 import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 import { getQualityEngineering, getTechStackNews, goToBlog } from '../../steps/blog-steps.js';
+import { buildTestConfigs } from "../../providers/scenario-provider.js"
+import { TEST_TYPE, BUSINESS_VALUE, EXEC } from '../../configs/testType.js';
 
-export let options = {
-	stages: [
-		{ duration: '1m', target: 500 },
-		{ duration: '10m', target: 500 },
-		{ duration: '30s', target: 0 },
-	],
-	thresholds: {
-		http_req_failed: ['rate<0.01'], // http errors should be less than 1%
-		http_req_duration: ['p(95)<400'], // 95% of requests should be below 400ms
-	}
-};
+if (!EXEC) throw new Error('Missing required EXEC name');
+if (!BUSINESS_VALUE || isNaN(BUSINESS_VALUE)) throw new Error('Missing or invalid BV');
 
-export default function () {
+export const options = buildTestConfigs(BUSINESS_VALUE, EXEC, TEST_TYPE);
+
+export function blogFlow() {
 	sleep(randomIntBetween(1, 3));
 
 	goToBlog();
@@ -28,4 +23,4 @@ export default function () {
 
 	goToBlog();
 	sleep(randomIntBetween(1, 5));
-};
+}

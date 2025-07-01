@@ -1,10 +1,10 @@
 import {PlaywrightTestConfig, devices} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
-import {QaseAwsSecret} from './automation/providers/QaseAwsSecret';
-import EnvProvider from './automation/providers/EnvProvider';
-import DateTimeUtils from './automation/utils/DateTimeUtils';
+// import ExternalSourceLinks from './automation/preconditionsData/links/ExternalSourceLinks';
+// import {QaseAwsSecret} from './automation/providers/QaseAwsSecret';
+// import EnvProvider from './automation/providers/EnvProvider';
+// import DateTimeUtils from './automation/utils/DateTimeUtils';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -52,20 +52,20 @@ const config: PlaywrightTestConfig = {
 	reporter: [
 		['html', {open: 'never'}],
 		['list'],
-		[
-			'./TsQaseReporter', // Report to Qase
-			// 'playwright-qase-reporter', // Report to Qase with automatic creation of test cases, for tests that have no matches by ID and title
-			{
-				apiToken: QaseAwsSecret.getQaseApiToken(),
-				projectCode: 'TS',
-				basePath: ExternalSourceLinks.QaseApiUrl,
-				uploadAttachments: true,
-				runComplete: true,
-				logging: true,
-				rootSuiteTitle: `Automated run ${DateTimeUtils.currentDateTime}`,
-				environmentId: EnvProvider.qaseEnvironmentId,
-			},
-		],
+		// [
+		// 	'./TsQaseReporter', // Report to Qase
+		// 	// 'playwright-qase-reporter', // Report to Qase with automatic creation of test cases, for tests that have no matches by ID and title
+		// 	{
+		// 		apiToken: QaseAwsSecret.getQaseApiToken(),
+		// 		projectCode: 'TS',
+		// 		basePath: ExternalSourceLinks.QaseApiUrl,
+		// 		uploadAttachments: true,
+		// 		runComplete: true,
+		// 		logging: true,
+		// 		rootSuiteTitle: `Automated run ${DateTimeUtils.currentDateTime}`,
+		// 		environmentId: EnvProvider.qaseEnvironmentId,
+		// 	},
+		// ],
 	],
 
 	/* Configure projects for major browsers */
